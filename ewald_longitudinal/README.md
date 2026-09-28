@@ -58,3 +58,16 @@ This builds Γ_full, Γ_S and Γ_L from periodic pair kernels summed directly ov
 (converged to about 1e-15), then checks each Laplacian for PSD, the split, the null modes and the
 quadratic-form identity. It then builds Γ_L from a truncated Fourier series at increasing kc.
 No eigenvalue is clipped. The report is written to `results/periodic_graph_psd_kappa1_xi1.txt`.
+
+## Automatic parameter selection (`test_parameter_selection.py`)
+
+```
+python3 test_parameter_selection.py        # about 5.5 min
+```
+
+This tests the balanced choice ξ·rc = kc/(2ξ) = s together with a PPPM long-range operator.
+The PPPM uses B-spline order p, the influence function K̂_L/|Ŵ|², and adjoint gather. Both
+parts are assembled as degree-minus-weight graph Laplacians and compared with the exact
+periodic Γ (N = 30, L = 6 and N = 40, L = 10). The error is split into real-cutoff,
+Fourier-cutoff, alias and transfer parts. Results, tables, the 8 plots and
+`final_report.md` are in `parameter_selection_results/`.
