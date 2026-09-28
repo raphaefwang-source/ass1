@@ -47,3 +47,14 @@ Requires NumPy, SciPy and Matplotlib. Outputs:
 | ‖K̂_L‖ / asymptotic at k = 40 | 0.99975 (prediction 1 − 0.4018/k²) |
 | E_S / asymptotic at rc = 8 | 1.0248 (prediction 1 + 1.6004/rc²) |
 | E_F / asymptotic at kc = 30 | 1.0018 (prediction 1 + 1.5982/kc²) |
+
+## Periodic particle graph Laplacian (`verify_periodic_graph_psd.py`)
+
+```
+python3 verify_periodic_graph_psd.py        # case A: N=30, L=6; case B: N=40, L=10; plus a sweep (~50 s)
+```
+
+This builds Γ_full, Γ_S and Γ_L from periodic pair kernels summed directly over images
+(converged to about 1e-15), then checks each Laplacian for PSD, the split, the null modes and the
+quadratic-form identity. It then builds Γ_L from a truncated Fourier series at increasing kc.
+No eigenvalue is clipped. The report is written to `results/periodic_graph_psd_kappa1_xi1.txt`.
