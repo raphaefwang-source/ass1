@@ -81,3 +81,15 @@ Fourier-cutoff, alias and transfer parts. Results, tables, the 8 plots and
   three implementations. Also a clean h^p test at fixed k_c with 64 random mesh offsets, the C_M and q^p
   predictors, and PSD checks. Output: `mesh_error_decomposition_results/`.
 - The combined answers are in `FOLLOWUP_REPORT.md`.
+
+## Lanczos discrete-FDT thermostat (`test_lanczos_fdt.py`)
+
+```
+python3 test_lanczos_fdt.py        # about 35 min
+```
+
+This validates η = f_dt(Γ_h)Πξ computed by Lanczos with full reorthogonalization, using the literal PPPM Γ_h
+action. The Lanczos results are compared with dense references for configurations A and B and ten more
+configurations. The script also measures the ranks needed, tests stopping rules, and separates the discrete-FDT
+covariance error into its Krylov and Monte Carlo parts. It covers the Euler variant and rank/time scaling up to
+N = 4000. Answers are in `lanczos_fdt_results/REPORT.md`.

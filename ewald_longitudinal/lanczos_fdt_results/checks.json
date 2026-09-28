@@ -1,19 +1,33 @@
 {
- "orth_max": 1.0556248752434288e-15,
- "recurrence_max": 3.6754285595912463e-16,
- "T_vs_QtAQ_max": 4.49059950234363e-16,
- "T_vs_QtGQ_max": 6.62370580683234e-16,
- "action_dev_max": 2.7531147407931963e-15,
- "mom_max": 8.523714561996954e-16,
- "offPi_max": 1.4070781697539399e-16,
- "n_negative_ritz_runs": 6,
+ "orth_max": 1.2126894004881987e-15,
+ "recurrence_max": 4.92459647301841e-16,
+ "T_vs_QtAQ_max": 5.559855109170788e-16,
+ "T_vs_QtGQ_max": 9.22498811046183e-16,
+ "action_dev_max": 2.964899659071315e-15,
+ "mom_max": 1.0237361494235774e-15,
+ "offPi_max": 1.6793727063866156e-16,
+ "n_runs_f_not_evaluable": 64,
+ "f_not_evaluable_cases": [
+  [
+   "A",
+   "f_E",
+   2.0
+  ],
+  [
+   "B",
+   "f_E",
+   2.0
+  ]
+ ],
+ "n_runs_negative_ritz": 0,
  "ritz_min_over_lam_star": {
-  "A": 0.9999999999999984,
-  "B": 0.9999999999999742
+  "A": 0.999999999999995,
+  "B": 0.9999999999999697
  },
  "ritz_max_over_lam_max": {
   "A": 1.0000000000000013,
-  "B": 1.000000000000001
+  "B": 1.0000000000000009
  },
- "min_final_err": 0.0013960104154268152
+ "worst_final_err_evaluable_runs": 2.489568303741454e-15,
+ "note": "n_runs_negative_ritz corrected: all 64 non-evaluable runs are f_E at dt*lambda_max/m = 2 exactly (top Ritz value exceeds lambda_max by ~1 ulp); no NegativeRitz exception was raised"
 }

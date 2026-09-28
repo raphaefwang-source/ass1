@@ -609,7 +609,7 @@ def main():
         offPi_max=max(float(q["offPi"].max()) for q in runs),
         n_runs_f_not_evaluable=len(negs),
         f_not_evaluable_cases=sorted({(q["config"], q["fn"], q["tau"]) for q in negs}),
-        n_runs_negative_ritz=sum("Ritz value" in q["neg"][1] for q in negs),
+        n_runs_negative_ritz=sum(q["neg"][1].startswith("Ritz value") for q in negs),
         ritz_min_over_lam_star={n: float(min(q["ritz_min"].min() for q in runs if q["config"] == n) /
                                          next(i["lam_star"] for i in infos if i["config"] == n)) for n in ("A", "B")},
         ritz_max_over_lam_max={n: float(max(q["ritz_max"].max() for q in runs if q["config"] == n) /
@@ -871,7 +871,7 @@ def report(infos, stat_rows, gap_rows, checks, cov, scal, negs):
                  f"{r['t_actions']:.2f} | {r['t_reorth']:.2f} | {r['t_lanczos']:.2f} |")
     if negs:
         L.append(f"\nf NOT EVALUABLE in {len(negs)} runs (no negative Ritz value among them: "
-                 f"{sum('Ritz value' in q['neg'][1] for q in negs)} negative-Ritz cases): "
+                 f"{sum(q['neg'][1].startswith('Ritz value') for q in negs)} negative-Ritz cases): "
                  + "; ".join(f"{q['config']} {q['fn']} dt lam_max/m={q['tau']}: rank {q['neg'][0]}, {q['neg'][1]}"
                              for q in negs[:6]) + (" ..." if len(negs) > 6 else ""))
     return "\n".join(L)
