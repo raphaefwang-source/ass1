@@ -71,3 +71,13 @@ parts are assembled as degree-minus-weight graph Laplacians and compared with th
 periodic Γ (N = 30, L = 6 and N = 40, L = 10). The error is split into real-cutoff,
 Fourier-cutoff, alias and transfer parts. Results, tables, the 8 plots and
 `final_report.md` are in `parameter_selection_results/`.
+
+## Follow-ups (`test_equal_accuracy_xi.py`, `test_mesh_error_decomposition.py`)
+
+- `test_equal_accuracy_xi.py` (about 13 min): for each ξ and tol ∈ {1e-5, 1e-7, 1e-9} it searches s, η_N, p and
+  an FFT-friendly M until the actual operator error meets tol in both dense configurations. It then times the
+  cheapest accepted sets on A, B and an N = 4000 system. Output: `equal_accuracy_xi_results/`.
+- `test_mesh_error_decomposition.py` (about 5 min): exact D_h + α decomposition of the PPPM error, checked across
+  three implementations. Also a clean h^p test at fixed k_c with 64 random mesh offsets, the C_M and q^p
+  predictors, and PSD checks. Output: `mesh_error_decomposition_results/`.
+- The combined answers are in `FOLLOWUP_REPORT.md`.
