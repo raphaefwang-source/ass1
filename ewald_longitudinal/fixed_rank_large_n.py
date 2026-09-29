@@ -248,7 +248,7 @@ def main():
     R += ["", "## Answers", ""] + ans + ["",
           "Notes:",
           "- For N ≤ 4000, T_root is estimated as r × (stored per-action time) + (stored rank-400 reorth time) × (r/400)².",
-          "  The new N are measured directly with the same code on the same machine type.",
+          "  The new N are measured directly with the same code; the stored N ≤ 4000 timings come from an earlier run in the same environment, so the combined exponent mixes measured and estimated points.",
           "- Rank 48 was not part of the previous N ≤ 4000 set, so its column there is bounded by the rank-40 values",
           "  (the error decreased monotonically with rank in every run).",
           "- No dynamics claim is made."]

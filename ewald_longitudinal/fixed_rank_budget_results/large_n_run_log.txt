@@ -1,0 +1,92 @@
+N=8000: L=38.62, mesh M=108, real-space pairs 466994, setup 1.5s
+    N=8000: reference rank 260: successive 4.6e-13, 20-step 1.7e-11 -> extend
+    N=8000: reference rank 360: successive 3.1e-15, 20-step 4.7e-15 -> accepted
+    seed 0: r=32: 9.22e-04, r=40: 4.44e-04, r=48: 2.09e-04; t_root(r=32) 10.98s, t_action 337ms
+    N=8000: reference rank 260: successive 4.6e-13, 20-step 1.8e-11 -> extend
+    N=8000: reference rank 360: successive 3.0e-15, 20-step 3.8e-15 -> accepted
+    seed 1: r=32: 8.22e-04, r=40: 3.63e-04, r=48: 1.75e-04; t_root(r=32) 10.62s, t_action 335ms
+    N=8000: reference rank 260: successive 4.5e-13, 20-step 1.9e-11 -> extend
+    N=8000: reference rank 360: successive 2.8e-15, 20-step 5.0e-15 -> accepted
+    seed 2: r=32: 1.04e-03, r=40: 4.54e-04, r=48: 2.15e-04; t_root(r=32) 10.16s, t_action 327ms
+N=16000: L=48.66, mesh M=128, real-space pairs 935435, setup 2.5s
+    N=16000: reference rank 260: successive 3.9e-11, 20-step 1.7e-09 -> extend
+    N=16000: reference rank 360: successive 8.1e-14, 20-step 2.4e-12 -> accepted
+    seed 0: r=32: 1.78e-03, r=40: 9.07e-04, r=48: 4.83e-04; t_root(r=32) 23.55s, t_action 705ms
+    N=16000: reference rank 260: successive 4.2e-11, 20-step 1.8e-09 -> extend
+    N=16000: reference rank 360: successive 9.5e-14, 20-step 2.9e-12 -> accepted
+    seed 1: r=32: 1.71e-03, r=40: 8.80e-04, r=48: 4.75e-04; t_root(r=32) 22.41s, t_action 706ms
+    N=16000: reference rank 260: successive 4.3e-11, 20-step 1.9e-09 -> extend
+    N=16000: reference rank 360: successive 1.1e-13, 20-step 2.9e-12 -> accepted
+    seed 2: r=32: 1.75e-03, r=40: 8.84e-04, r=48: 4.64e-04; t_root(r=32) 21.88s, t_action 710ms
+
+---
+
+# Large-N extension (N = 8000, 16000)
+
+Script: `fixed_rank_large_n.py`; raw per-seed data: `large_n_raw.json`; figure: `fixed_rank_error_large_n.png`.
+Same direct-start Lanczos, density 30/216, Γ_h parameters {'xi': 0.7, 's': 4.1, 'eta': 0.7, 'p': 7}, dt·λ_max/m = 0.5, β = m = 1.
+There are 3 fixed Gaussian seeds per new N. Rows for N ≤ 4000 are reused from the tables above
+(2 seeds, not rerun).
+
+Reference checks (new N):
+
+- N=8000 seed 0: rank 360, successive 3.1e-15 (≤ 1e-12), 20-step 4.7e-15 (≤ 1e-11); λ_max 35.433, smallest Ritz value 6.859e-03
+- N=8000 seed 1: rank 360, successive 3.0e-15 (≤ 1e-12), 20-step 3.8e-15 (≤ 1e-11); λ_max 35.433, smallest Ritz value 6.861e-03
+- N=8000 seed 2: rank 360, successive 2.8e-15 (≤ 1e-12), 20-step 5.0e-15 (≤ 1e-11); λ_max 35.433, smallest Ritz value 6.847e-03
+- N=16000 seed 0: rank 360, successive 8.1e-14 (≤ 1e-12), 20-step 2.4e-12 (≤ 1e-11); λ_max 88.804, smallest Ritz value 4.422e-03
+- N=16000 seed 1: rank 360, successive 9.5e-14 (≤ 1e-12), 20-step 2.9e-12 (≤ 1e-11); λ_max 88.804, smallest Ritz value 4.361e-03
+- N=16000 seed 2: rank 360, successive 1.1e-13 (≤ 1e-12), 20-step 2.9e-12 (≤ 1e-11); λ_max 88.804, smallest Ritz value 4.377e-03
+
+Relative root-action error, median / max over seeds:
+
+| N | r=32 | r=40 | r=48 |
+|---|---|---|---|
+| 128 | 1.49e-07 / 1.53e-07 | 4.48e-09 / 4.56e-09 | ≤ 4.56e-09 (bounded by r=40; not evaluated) |
+| 256 | 3.25e-06 / 3.44e-06 | 2.43e-07 / 2.61e-07 | ≤ 2.61e-07 (bounded by r=40; not evaluated) |
+| 512 | 1.96e-05 / 2.03e-05 | 3.26e-06 / 3.34e-06 | ≤ 3.34e-06 (bounded by r=40; not evaluated) |
+| 1024 | 9.10e-05 / 9.55e-05 | 1.75e-05 / 1.79e-05 | ≤ 1.79e-05 (bounded by r=40; not evaluated) |
+| 2048 | 2.56e-04 / 2.60e-04 | 7.78e-05 / 7.79e-05 | ≤ 7.79e-05 (bounded by r=40; not evaluated) |
+| 4000 | 4.85e-04 / 5.22e-04 | 1.90e-04 / 2.02e-04 | ≤ 2.02e-04 (bounded by r=40; not evaluated) |
+| 8000 | 9.22e-04 / 1.04e-03 | 4.44e-04 / 4.54e-04 | 2.09e-04 / 2.15e-04 |
+| 16000 | 1.75e-03 / 1.78e-03 | 8.84e-04 / 9.07e-04 | 4.75e-04 / 4.83e-04 |
+
+Diagnostics for the new N (median over seeds):
+
+| N | r | t_root [s] | Γ_h actions [s] | reorth [s] | f(T_r) [s] | Ritz min | Ritz max | max momentum residual |
+|---|---|---|---|---|---|---|---|---|
+| 8000 | 32 | 10.62 | 10.58 | 0.047 | 0.0007 | 2.697e-02 | 35.433 | 1.8e-15 |
+| 8000 | 40 | 13.49 | 13.43 | 0.064 | 0.0007 | 1.646e-02 | 35.433 | 1.9e-15 |
+| 8000 | 48 | 15.87 | 15.79 | 0.075 | 0.0007 | 1.204e-02 | 35.433 | 1.4e-15 |
+| 16000 | 32 | 22.41 | 22.34 | 0.067 | 0.0015 | 4.512e-02 | 88.804 | 2.2e-15 |
+| 16000 | 40 | 28.33 | 28.24 | 0.086 | 0.0016 | 2.855e-02 | 88.804 | 2.0e-15 |
+| 16000 | 48 | 34.19 | 34.08 | 0.112 | 0.0016 | 1.931e-02 | 88.804 | 2.7e-15 |
+
+Root-action time at the chosen rank r = 40 and T/(N log N):
+
+| N | T_root [s] | source | T/(N log N) [s] |
+|---|---|---|---|
+| 128 | 0.129 | estimated from stored timings | 2.08e-04 |
+| 256 | 0.257 | estimated from stored timings | 1.81e-04 |
+| 512 | 0.549 | estimated from stored timings | 1.72e-04 |
+| 1024 | 1.131 | estimated from stored timings | 1.59e-04 |
+| 2048 | 2.884 | estimated from stored timings | 1.85e-04 |
+| 4000 | 4.939 | estimated from stored timings | 1.49e-04 |
+| 8000 | 13.491 | measured | 1.88e-04 |
+| 16000 | 28.326 | measured | 1.83e-04 |
+
+## Answers
+
+1. **Rank 32 at N = 8000:** no (max over seeds 1.04e-03).
+2. **Rank 32 at N = 16000:** no (max 1.78e-03).
+3. **Rank 40:** N = 8000: yes (4.54e-04), N = 16000: yes (9.07e-04).
+4. **Rank 48:** N = 8000: yes (2.15e-04), N = 16000: yes (4.83e-04).
+5. **Smallest single rank below 1e-3 for every N = 128–16000:** r = 40.
+6. **T/(N log N) at r = 40:** ranges from 1.49e-04 to 2.08e-04 s over N = 128–16000, a max/min ratio of 1.40. Over the large-N points (N ≥ 2048) it goes 1.85e-04, 1.49e-04, 1.88e-04, 1.83e-04.
+7. **Timing exponent (T_root ∝ N^α at r = 40):** α = 1.146 over N = 2048–16000; α = 1.070 over the measured N = 8000–16000 alone.
+
+Notes:
+- For N ≤ 4000, T_root is estimated as r × (stored per-action time) + (stored rank-400 reorth time) × (r/400)².
+  The new N are measured directly with the same code on the same machine type.
+- Rank 48 was not part of the previous N ≤ 4000 set, so its column there is bounded by the rank-40 values
+  (the error decreased monotonically with rank in every run).
+- No dynamics claim is made.
