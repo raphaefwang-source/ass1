@@ -1,0 +1,147 @@
+config A: N=30 L=6 seed=7 density=0.1389  ||Gamma||_2=3.9366e+00  lambda_*=1.1900e-01  reference image-sum convergence 9.1e-16  (built in 0.7s)
+config B: N=40 L=10 seed=13 density=0.0400  ||Gamma||_2=1.9495e+00  lambda_*=8.5389e-03  reference image-sum convergence 5.3e-16  (built in 0.7s)
+
+== s rules (xi = 1) ==
+config A: continuum C_S = 2.5088, C_F = 0.4505;  relative-mapped C_S^B = 0.1996, C_F^B = 7.7442
+   tol=1e-03: s0=2.6283  sA=2.8185  sB=3.2923 (S-limited 2.6381, F-limited 3.2923)
+   tol=1e-05: s0=3.3931  sA=3.5759  sB=3.9532 (S-limited 3.4395, F-limited 3.9532)
+   tol=1e-07: s0=4.0147  sA=4.1893  sB=4.5128 (S-limited 4.0749, F-limited 4.5128)
+   tol=1e-09: s0=4.5523  sA=4.7196  sB=5.0074 (S-limited 4.6190, F-limited 5.0074)
+config B: continuum C_S = 2.5088, C_F = 0.4505;  relative-mapped C_S^B = 0.1996, C_F^B = 35.8530
+   tol=1e-03: s0=2.6283  sA=2.8185  sB=3.5272 (S-limited 2.6381, F-limited 3.5272)
+   tol=1e-05: s0=3.3931  sA=3.5759  sB=4.1483 (S-limited 3.4395, F-limited 4.1483)
+   tol=1e-07: s0=4.0147  sA=4.1893  sB=4.6835 (S-limited 4.0749, F-limited 4.6835)
+   tol=1e-09: s0=4.5523  sA=4.7196  sB=5.1611 (S-limited 4.6190, F-limited 5.1611)
+
+== main runs (xi = 1, eta_N = 0.7, p = 4) ==
+  A tol=1e-03 s0: s=2.628 M=15 err2=4.35e-04 S=4.0e-04 F=2.4e-04 al=7.4e-07 tr=1.1e-04 lam_h=1.189e-01 class=A
+  A tol=1e-03 sA: s=2.819 M=16 err2=2.01e-04 S=1.7e-04 F=1.0e-04 al=3.9e-07 tr=9.9e-05 lam_h=1.189e-01 class=A
+  A tol=1e-03 sB: s=3.292 M=18 err2=4.83e-05 S=9.3e-06 F=5.3e-06 al=1.4e-07 tr=4.9e-05 lam_h=1.190e-01 class=A
+  A tol=1e-05 s0: s=3.393 M=19 err2=4.14e-05 S=5.7e-06 F=2.9e-06 al=7.9e-08 tr=4.2e-05 lam_h=1.190e-01 class=A
+  A tol=1e-05 sA: s=3.576 M=20 err2=4.02e-05 S=1.2e-06 F=5.0e-07 al=4.9e-08 tr=4.0e-05 lam_h=1.190e-01 class=A
+  A tol=1e-05 sB: s=3.953 M=22 err2=1.75e-05 S=8.4e-08 F=3.7e-08 al=2.0e-08 tr=1.8e-05 lam_h=1.190e-01 class=A
+  A tol=1e-07 s0: s=4.015 M=22 err2=1.75e-05 S=5.7e-08 F=3.0e-08 al=2.0e-08 tr=1.8e-05 lam_h=1.190e-01 class=A
+  A tol=1e-07 sA: s=4.189 M=23 err2=1.40e-05 S=1.3e-08 F=8.8e-09 al=1.3e-08 tr=1.4e-05 lam_h=1.190e-01 class=A
+  A tol=1e-07 sB: s=4.513 M=25 err2=1.15e-05 S=8.2e-10 F=4.0e-10 al=5.8e-09 tr=1.2e-05 lam_h=1.190e-01 class=A
+  A tol=1e-09 s0: s=4.552 M=25 err2=1.15e-05 S=5.4e-10 F=3.1e-10 al=5.8e-09 tr=1.2e-05 lam_h=1.190e-01 class=A
+  A tol=1e-09 sA: s=4.720 M=26 err2=9.32e-06 S=1.2e-10 F=6.8e-11 al=3.6e-09 tr=9.3e-06 lam_h=1.190e-01 class=A
+  A tol=1e-09 sB: s=5.007 M=28 err2=6.53e-06 S=6.5e-12 F=3.2e-12 al=1.8e-09 tr=6.5e-06 lam_h=1.190e-01 class=A
+  B tol=1e-03 s0: s=2.628 M=24 err2=5.54e-04 S=5.0e-04 F=3.3e-04 al=2.1e-06 tr=2.6e-04 lam_h=8.590e-03 class=A
+  B tol=1e-03 sA: s=2.819 M=26 err2=2.72e-04 S=1.8e-04 F=1.4e-04 al=1.1e-06 tr=1.7e-04 lam_h=8.526e-03 class=A
+  B tol=1e-03 sB: s=3.527 M=33 err2=5.07e-05 S=2.4e-06 F=1.4e-06 al=9.9e-08 tr=5.0e-05 lam_h=8.538e-03 class=A
+  B tol=1e-05 s0: s=3.393 M=31 err2=6.86e-05 S=6.7e-06 F=4.2e-06 al=2.0e-07 tr=7.0e-05 lam_h=8.540e-03 class=A
+  B tol=1e-05 sA: s=3.576 M=33 err2=5.06e-05 S=1.6e-06 F=1.1e-06 al=9.9e-08 tr=5.0e-05 lam_h=8.538e-03 class=A
+  B tol=1e-05 sB: s=4.148 M=38 err2=2.23e-05 S=2.6e-08 F=9.9e-09 al=2.3e-08 tr=2.2e-05 lam_h=8.539e-03 class=A
+  B tol=1e-07 s0: s=4.015 M=37 err2=3.39e-05 S=6.1e-08 F=3.8e-08 al=2.9e-08 tr=3.4e-05 lam_h=8.539e-03 class=A
+  B tol=1e-07 sA: s=4.189 M=39 err2=2.84e-05 S=1.5e-08 F=9.6e-09 al=1.7e-08 tr=2.8e-05 lam_h=8.539e-03 class=A
+  B tol=1e-07 sB: s=4.683 M=43 err2=1.87e-05 S=1.7e-10 F=1.1e-10 al=5.9e-09 tr=1.9e-05 lam_h=8.539e-03 class=A
+  B tol=1e-09 s0: s=4.552 M=42 err2=1.66e-05 S=5.4e-10 F=3.1e-10 al=8.1e-09 tr=1.7e-05 lam_h=8.539e-03 class=A
+  B tol=1e-09 sA: s=4.720 M=43 err2=1.87e-05 S=1.2e-10 F=9.0e-11 al=5.9e-09 tr=1.9e-05 lam_h=8.539e-03 class=A
+  B tol=1e-09 sB: s=5.161 M=47 err2=1.08e-05 S=1.9e-12 F=1.0e-12 al=3.4e-09 tr=1.1e-05 lam_h=8.539e-03 class=A
+
+== real / Fourier cutoff sweep (xi = 1) ==
+  A s=1.00: eps_S=2.04e-01 eps_F=5.38e-02 exp(-s^2)=3.68e-01 eps_S/exp=5.53e-01 eps_F/exp=1.46e-01
+  A s=2.00: eps_S=6.47e-03 eps_F=2.94e-03 exp(-s^2)=1.83e-02 eps_S/exp=3.53e-01 eps_F/exp=1.60e-01
+  A s=3.00: eps_S=4.98e-05 eps_F=3.75e-05 exp(-s^2)=1.23e-04 eps_S/exp=4.04e-01 eps_F/exp=3.04e-01
+  A s=4.00: eps_S=6.20e-08 eps_F=3.02e-08 exp(-s^2)=1.13e-07 eps_S/exp=5.51e-01 eps_F/exp=2.68e-01
+  A s=5.00: eps_S=8.79e-12 eps_F=3.19e-12 exp(-s^2)=1.39e-11 eps_S/exp=6.33e-01 eps_F/exp=2.30e-01
+  B s=1.00: eps_S=2.66e-01 eps_F=6.99e-02 exp(-s^2)=3.68e-01 eps_S/exp=7.24e-01 eps_F/exp=1.90e-01
+  B s=2.00: eps_S=1.34e-02 eps_F=7.22e-03 exp(-s^2)=1.83e-02 eps_S/exp=7.32e-01 eps_F/exp=3.94e-01
+  B s=3.00: eps_S=6.42e-05 eps_F=3.94e-05 exp(-s^2)=1.23e-04 eps_S/exp=5.20e-01 eps_F/exp=3.19e-01
+  B s=4.00: eps_S=7.55e-08 eps_F=3.80e-08 exp(-s^2)=1.13e-07 eps_S/exp=6.71e-01 eps_F/exp=3.37e-01
+  B s=5.00: eps_S=7.44e-12 eps_F=4.84e-12 exp(-s^2)=1.39e-11 eps_S/exp=5.36e-01 eps_F/exp=3.49e-01
+
+== mesh sweep (xi = 1, s = s0(tol)) ==
+  config A: 80 mesh runs done
+  config B: 80 mesh runs done
+
+== explicit search for parameters that meet each tolerance (reported, not silent) ==
+  A tol=1e-03: s=2.73 (= 1.038 s0), eta_N=0.8, p=3, M=14, err2=7.59e-04
+  A tol=1e-05: s=3.44 (= 1.015 s0), eta_N=0.8, p=6, M=17, err2=4.79e-06
+  A tol=1e-07: s=4.11 (= 1.025 s0), eta_N=0.5, p=6, M=32, err2=4.76e-08
+  A tol=1e-09: s=4.60 -- no tested (eta, p) reaches tol
+  B tol=1e-03: s=2.78 (= 1.057 s0), eta_N=0.8, p=4, M=23, err2=3.90e-04
+  B tol=1e-05: s=3.49 (= 1.029 s0), eta_N=0.7, p=5, M=32, err2=9.08e-06
+  B tol=1e-07: s=4.16 (= 1.037 s0), eta_N=0.5, p=6, M=54, err2=9.22e-08
+  B tol=1e-09: s=4.60 -- no tested (eta, p) reaches tol
+
+== EXTENSION (outside the requested grid): tol = 1e-9, eta_N in {0.3,...,0.45}, p in {6,7,8} ==
+  A: s = 1.02 s0 = 4.643; smallest M meeting 1e-9: eta_N=0.45, p=7, M=40, err2=9.88e-10
+     p=6 eta_N=0.30 M= 60 mesh=1.07e-09 err2=9.75e-10
+     p=6 eta_N=0.35 M= 51 mesh=2.32e-09 err2=2.39e-09
+     p=6 eta_N=0.40 M= 45 mesh=5.56e-09 err2=5.63e-09
+     p=6 eta_N=0.45 M= 40 mesh=1.36e-08 err2=1.35e-08
+     p=7 eta_N=0.30 M= 60 mesh=6.29e-11 err2=2.63e-10
+     p=7 eta_N=0.35 M= 51 mesh=2.19e-10 err2=3.00e-10
+     p=7 eta_N=0.40 M= 45 mesh=4.37e-10 err2=5.15e-10
+     p=7 eta_N=0.45 M= 40 mesh=1.08e-09 err2=9.88e-10
+     p=8 eta_N=0.30 M= 60 mesh=3.64e-12 err2=2.73e-10
+     p=8 eta_N=0.35 M= 51 mesh=1.32e-11 err2=2.72e-10
+     p=8 eta_N=0.40 M= 45 mesh=3.81e-11 err2=2.74e-10
+     p=8 eta_N=0.45 M= 40 mesh=1.32e-10 err2=2.58e-10
+  B: s = 1.02 s0 = 4.643; smallest M meeting 1e-9: eta_N=0.45, p=8, M=66, err2=3.31e-10
+     p=6 eta_N=0.30 M= 99 mesh=1.49e-09 err2=1.55e-09
+     p=6 eta_N=0.35 M= 85 mesh=4.68e-09 err2=4.75e-09
+     p=6 eta_N=0.40 M= 74 mesh=9.85e-09 err2=9.88e-09
+     p=6 eta_N=0.45 M= 66 mesh=1.90e-08 err2=1.90e-08
+     p=7 eta_N=0.30 M= 99 mesh=1.10e-10 err2=3.31e-10
+     p=7 eta_N=0.35 M= 85 mesh=2.20e-10 err2=3.39e-10
+     p=7 eta_N=0.40 M= 74 mesh=6.75e-10 err2=7.60e-10
+     p=7 eta_N=0.45 M= 66 mesh=1.48e-09 err2=1.54e-09
+     p=8 eta_N=0.30 M= 99 mesh=5.68e-12 err2=3.31e-10
+     p=8 eta_N=0.35 M= 85 mesh=2.74e-11 err2=3.31e-10
+     p=8 eta_N=0.40 M= 74 mesh=7.32e-11 err2=3.31e-10
+     p=8 eta_N=0.45 M= 66 mesh=2.14e-10 err2=3.31e-10
+
+== xi sweep (s = s0(1e-7), eta_N = 0.7, p = 4) ==
+  A xi=0.5: rc=8.03 kc=4.01 neighbors=4314 modes=251 M^3=1331 t_real=0.0076s t_mesh=0.0012s t_total=0.0088s err2=3.64e-06
+  A xi=0.7: rc=5.74 kc=5.62 neighbors=1627 modes=619 M^3=4096 t_real=0.0028s t_mesh=0.0014s t_total=0.0042s err2=9.31e-06
+  A xi=1.0: rc=4.01 kc=8.03 neighbors=517 modes=1863 M^3=10648 t_real=0.0029s t_mesh=0.0030s t_total=0.0059s err2=1.75e-05
+  A xi=1.4: rc=2.87 kc=11.24 neighbors=194 modes=5185 M^3=29791 t_real=0.0003s t_mesh=0.0122s t_total=0.0125s err2=3.06e-05
+  A xi=2.0: rc=2.01 kc=16.06 neighbors=78 modes=15203 M^3=85184 t_real=0.0003s t_mesh=0.0181s t_total=0.0184s err2=4.03e-05
+  B xi=0.5: rc=8.03 kc=4.01 neighbors=1671 modes=1045 M^3=6859 t_real=0.0049s t_mesh=0.0030s t_total=0.0079s err2=4.85e-06
+  B xi=0.7: rc=5.74 kc=5.62 neighbors=623 modes=2969 M^3=17576 t_real=0.0049s t_mesh=0.0050s t_total=0.0099s err2=1.22e-05
+  B xi=1.0: rc=4.01 kc=8.03 neighbors=238 modes=8733 M^3=50653 t_real=0.0004s t_mesh=0.0216s t_total=0.0219s err2=3.39e-05
+  B xi=1.4: rc=2.87 kc=11.24 neighbors=106 modes=23871 M^3=140608 t_real=0.0004s t_mesh=0.0332s t_total=0.0336s err2=3.41e-05
+  B xi=2.0: rc=2.01 kc=16.06 neighbors=37 modes=69983 M^3=405224 t_real=0.0004s t_mesh=0.1722s t_total=0.1725s err2=9.90e-05
+  C xi=0.5: rc=8.03 kc=4.01 neighbors=642161 modes=29423 M^3=166375 t_real=0.2112s t_mesh=0.0596s t_total=0.2708s
+  C xi=0.7: rc=5.74 kc=5.62 neighbors=233804 modes=80797 M^3=456533 t_real=0.0740s t_mesh=0.1681s t_total=0.2421s
+  C xi=1.0: rc=4.01 kc=8.03 neighbors=80221 modes=236169 M^3=1331000 t_real=0.0315s t_mesh=0.5039s t_total=0.5354s
+  C xi=1.4: rc=2.87 kc=11.24 neighbors=29402 modes=646963 M^3=3652264 t_real=0.0154s t_mesh=1.6626s t_total=1.6780s
+  C xi=2.0: rc=2.01 kc=16.06 neighbors=10097 modes=1888217 M^3=10648000 t_real=0.0097s t_mesh=6.1462s t_total=6.1559s
+
+== failures (actual err_2 > requested tol) ==
+  A tol=1e-05 s0 s=3.393: predicted(B-mapped)=2.7e-04 actual=4.1e-05 miss factor=4.1x; dominant = eps_transfer (4.15e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 4.2e-05
+  A tol=1e-05 sA s=3.576: predicted(B-mapped)=7.9e-05 actual=4.0e-05 miss factor=4.0x; dominant = eps_transfer (4.03e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 4.0e-05
+  A tol=1e-05 sB s=3.953: predicted(B-mapped)=5.1e-06 actual=1.8e-05 miss factor=1.8x; dominant = eps_transfer (1.75e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 1.8e-05
+  A tol=1e-07 s0 s=4.015: predicted(B-mapped)=3.2e-06 actual=1.8e-05 miss factor=175.4x; dominant = eps_transfer (1.75e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 1.8e-05
+  A tol=1e-07 sA s=4.189: predicted(B-mapped)=7.9e-07 actual=1.4e-05 miss factor=139.7x; dominant = eps_transfer (1.40e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 1.4e-05
+  A tol=1e-07 sB s=4.513: predicted(B-mapped)=5.1e-08 actual=1.2e-05 miss factor=115.1x; dominant = eps_transfer (1.15e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 1.2e-05
+  A tol=1e-09 s0 s=4.552: predicted(B-mapped)=3.6e-08 actual=1.2e-05 miss factor=11511.0x; dominant = eps_transfer (1.15e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 1.2e-05
+  A tol=1e-09 sA s=4.720: predicted(B-mapped)=7.9e-09 actual=9.3e-06 miss factor=9321.1x; dominant = eps_transfer (9.32e-06); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 9.3e-06
+  A tol=1e-09 sB s=5.007: predicted(B-mapped)=5.1e-10 actual=6.5e-06 miss factor=6531.3x; dominant = eps_transfer (6.53e-06); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 6.5e-06
+  B tol=1e-05 s0 s=3.393: predicted(B-mapped)=1.2e-03 actual=6.9e-05 miss factor=6.9x; dominant = eps_transfer (7.02e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 7.0e-05
+  B tol=1e-05 sA s=3.576: predicted(B-mapped)=3.6e-04 actual=5.1e-05 miss factor=5.1x; dominant = eps_transfer (5.03e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 5.0e-05
+  B tol=1e-05 sB s=4.148: predicted(B-mapped)=5.0e-06 actual=2.2e-05 miss factor=2.2x; dominant = eps_transfer (2.23e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 2.2e-05
+  B tol=1e-07 s0 s=4.015: predicted(B-mapped)=1.4e-05 actual=3.4e-05 miss factor=338.9x; dominant = eps_transfer (3.39e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 3.4e-05
+  B tol=1e-07 sA s=4.189: predicted(B-mapped)=3.6e-06 actual=2.8e-05 miss factor=283.7x; dominant = eps_transfer (2.84e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 2.8e-05
+  B tol=1e-07 sB s=4.683: predicted(B-mapped)=5.0e-08 actual=1.9e-05 miss factor=187.2x; dominant = eps_transfer (1.87e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 1.9e-05
+  B tol=1e-09 s0 s=4.552: predicted(B-mapped)=1.6e-07 actual=1.7e-05 miss factor=16609.6x; dominant = eps_transfer (1.66e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 1.7e-05
+  B tol=1e-09 sA s=4.720: predicted(B-mapped)=3.6e-08 actual=1.9e-05 miss factor=18716.7x; dominant = eps_transfer (1.87e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 1.9e-05
+  B tol=1e-09 sB s=5.161: predicted(B-mapped)=5.0e-10 actual=1.1e-05 miss factor=10786.8x; dominant = eps_transfer (1.08e-05); transfer error (position-dependent m != m' spread/gather terms); heuristic q^p = 8.4e-02, measured mesh = 1.1e-05
+
+# Final report (kappa = 1)
+
+1. Balanced Ewald choice x = y = s: YES for the two Ewald tails.  Over s in [2.5, 5], measured eps_S/exp(-s^2) = 0.34-0.79 and eps_F/exp(-s^2) = 0.18-0.44 (both configs): both tails follow exp(-s^2) with O(1) prefactors below 1, and the two are within a factor ~2-3 of each other.
+2. s0 = sqrt(log(1/tol)) for the Ewald part alone: (eps_S + eps_F)/tol at s0 = 0.64-1.1.  It is marginal, not systematically optimistic by a large factor: meeting eps_S + eps_F <= tol/2 needed s = 1-1.1 x s0 (explicit search).  sqrt(log(2/tol)) is about 1.02-1.05 s0 and matches that margin.  Predictor A (C = 1) gives s ~ 1.04-1.07 s0 and meets the tails with margin.  Predictor B's Fourier mapping (coherent, proportional to V) overpredicts eps_F by 76-5.3e+02x, so s_B over-resolves; the real-space mapping E_S/||K||_L1 is within 1-2x of the measured value.
+3. Dominant error once the tails are small: {'eps_S': 4, 'eps_transfer': 20} (main runs, eta_N = 0.7, p = 4).  The mesh error is almost entirely the position-dependent transfer term: eps_transfer/eps_alias = 22-2.2e+05.  The heuristic q^p overestimates the measured mesh error by 37-1.5e+05x, and at fixed eta the mesh error still falls as the mesh refines with s (it depends on xi h, not only on eta).  It decays algebraically, not like exp(-s^2), so it sets the achievable tolerance.
+4. Raw Gamma_h PSD: classes over all 226 runs = {'A': 222, 'B': 4} (A certified, B observed only, C indefinite).  No run was indefinite; the smallest lambda_h/lambda_* was 0.9932.  Uncertified runs: B p=2 eta=0.6 err_abs/lambda_*=1.18, B p=2 eta=0.7 err_abs/lambda_*=1.49, B p=2 eta=0.8 err_abs/lambda_*=1.56, B p=2 eta=0.8 err_abs/lambda_*=1.13.  Certification holds whenever err_2 < lambda_*/||Gamma||_2 (= A: 3.0e-02, B: 4.4e-03).
+5. The spectral-gap certificate is very conservative: the actual shift lambda_* - lambda_h is only 1.2e-02 (median), max 0.25, of ||Gamma_h - Gamma||_2.  The Weyl bound lambda_h >= lambda_* - ||dGamma||_2 held in 226/226 runs.  The error budget sum/actual = 1-2.6, so it is conservative (guaranteed >= 1 by the triangle inequality).
+6. Stabilisation: NOT needed in the tested regime (tol 1e-3 to 1e-9, p 2-8, eta 0.3-0.8).  The negative eigenvalue of Khat_L never produced a negative eigenvalue of Gamma_h.
+7A. Measured cost vs xi, config A: xi=0.5: 8.8 ms, xi=0.7: 4.2 ms, xi=1: 5.9 ms, xi=1.4: 12.5 ms, xi=2: 18.4 ms; minimum at xi = 0.7 (the minimum is not fitted).
+7B. Measured cost vs xi, config B: xi=0.5: 7.9 ms, xi=0.7: 9.9 ms, xi=1: 21.9 ms, xi=1.4: 33.6 ms, xi=2: 172.5 ms; minimum at xi = 0.5 (the minimum is not fitted).
+7C. Measured cost vs xi, config C: xi=0.5: 270.8 ms, xi=0.7: 242.1 ms, xi=1: 535.4 ms, xi=1.4: 1678.0 ms, xi=2: 6155.9 ms; minimum at xi = 0.7 (the minimum is not fitted).
+   Note: at fixed (s, eta_N, p) the mesh error grows with xi (B xi=0.5: 5e-06, B xi=0.7: 1e-05, B xi=1: 3e-05, B xi=1.4: 3e-05, B xi=2: 1e-04), so equal-s runs are not equal-accuracy runs.
+8. Recommended rule (from these data): s = sqrt(log(2/tol)); rc = s/xi; kc = 2 xi s.  Choose the mesh from the measured transfer error, not from q^p.  Measured cheapest settings meeting the full tolerance: A tol=1e-03: eta=0.8, p=3, M=14; A tol=1e-05: eta=0.8, p=6, M=17; A tol=1e-07: eta=0.5, p=6, M=32; A tol=1e-09: eta=0.45, p=7, M=40; B tol=1e-03: eta=0.8, p=4, M=23; B tol=1e-05: eta=0.7, p=5, M=32; B tol=1e-07: eta=0.5, p=6, M=54; B tol=1e-09: eta=0.45, p=8, M=66.  In short: p = 3-4 at eta = 0.8 for 1e-3; p = 5-6 at eta = 0.7-0.8 for 1e-5; p = 6 at eta = 0.5 for 1e-7; for 1e-9, p >= 7 or eta < 0.5 (see extension).  Pick xi at the measured cost minimum (0.5-0.7 here), which also gives the smallest mesh error.
+
+Missed tolerances in the main table: 18 of 24 (all at eta = 0.7, p = 4); dominant source in every miss = eps_transfer.  Assumption that failed: the mesh (transfer) error was not part of the s predictors; at fixed eta and p it decays only algebraically.
