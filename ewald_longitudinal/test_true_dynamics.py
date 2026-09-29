@@ -267,6 +267,21 @@ def control_run(args, say):
         say(f"control trajectory {s}: max momentum defect {rec['dP'].max():.2e}, final T {rec['T'][-1].round(3)}")
 
 
+def equil_run(args, say):
+    """Long rank-40 runs (N = 64) for the equilibrium check: burn-in to t = T_eq/2 (> 2 slow relaxation times)."""
+    params = json.loads((OUT / "params_small.json").read_text())
+    N, dt = params["N"], params["dt"]
+    nsteps = int(round(args.T_eq / dt))
+    box = Box(N)
+    for s in (args.trajs if args.trajs else range(args.ntraj)):
+        q0, p0, _ = initial_state(N, box.L, s)
+        xi = np.random.default_rng([20260929, s, 11]).normal(size=(nsteps, N, 3))
+        rec, _, _ = run(box, q0, p0, xi, dt, nsteps, "rank40", snap_from=nsteps // 2, snap_every=10)
+        np.savez_compressed(OUT / f"raw_equil_traj{s:02d}.npz", **rec)
+        say(f"equil trajectory {s}: {nsteps} steps, late T {rec['T'][rec['t'] >= args.T_eq / 2].mean(0).round(3)}, "
+            f"max dP {rec['dP'].max():.1e}")
+
+
 def large_run(args, say):
     """One production trajectory (run as an independent process so that trajectories can run in parallel)."""
     N, s, rank = args.N, args.seed, args.rank
@@ -311,7 +326,8 @@ def timing_run(args, say):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--stage", choices=["small", "large", "timing", "report", "control"], required=True)
+    ap.add_argument("--stage", choices=["small", "large", "timing", "report", "control", "equil"], required=True)
+    ap.add_argument("--T-eq", type=float, default=30.0)
     ap.add_argument("--N-small", type=int, default=64)
     ap.add_argument("--ntraj", type=int, default=16)
     ap.add_argument("--trajs", type=int, nargs="+", default=None, help="subset of trajectory indices (parallel runs)")
@@ -327,7 +343,8 @@ def main():
     args = ap.parse_args()
     OUT.mkdir(exist_ok=True)
     tag = {"large": f"_N{args.N}_s{args.seed}_r{args.rank}",
-           "small": ("_traj" + "-".join(map(str, args.trajs))) if args.trajs else ""}.get(args.stage, "")
+           "small": ("_traj" + "-".join(map(str, args.trajs))) if args.trajs else "",
+           "equil": ("_traj" + "-".join(map(str, args.trajs))) if args.trajs else ""}.get(args.stage, "")
     logf = OUT / f"log_{args.stage}{tag}.txt"
     lines = []
 
@@ -343,6 +360,8 @@ def main():
         small_study(args, say)
     elif args.stage == "large":
         large_run(args, say)
+    elif args.stage == "equil":
+        equil_run(args, say)
     elif args.stage == "control":
         control_run(args, say)
     elif args.stage == "timing":
@@ -470,7 +489,34 @@ def report(say):
         x = snaps / np.sqrt(MASS / BETA * (N - 1) / N)
         mx[m_] = dict(all=moments(x), **{c: moments(x[..., k]) for k, c in enumerate("xyz")},
                       n_snapshots=int(snaps.shape[0]))
-    S["maxwell_conditional"] = mx
+    S["maxwell_conditional_short_runs_pooled"] = mx
+
+    # ---- long equilibrium runs: per-trajectory statistics (snapshots within a trajectory are correlated) ----
+    eqf = sorted(OUT.glob("raw_equil_traj*.npz"))
+    if eqf:
+        per_T, per_m = [], []
+        for f in eqf:
+            rec = dict(np.load(f))
+            late = rec["t"] >= rec["t"][-1] / 2
+            per_T.append(np.r_[rec["T"][late].mean(0), rec["Tkin"][late].mean()])
+            x = rec["snaps"] / np.sqrt(MASS / BETA * (N - 1) / N)
+            row = []
+            for comp in (x.reshape(-1), x[..., 0], x[..., 1], x[..., 2]):
+                mo = moments(comp)
+                row.append([mo["mean"], mo["var"], mo["skew"], mo["exkurt"]])
+            per_m.append(row)
+        per_T, per_m = np.array(per_T), np.array(per_m)
+        nt_eq = len(eqf)
+        muT, seT = per_T.mean(0), per_T.std(0, ddof=1) / np.sqrt(nt_eq)
+        S["equilibrium_long"] = dict(
+            n_traj=nt_eq, T_eq=float(rec["t"][-1]), burn_in=float(rec["t"][-1] / 2),
+            temperatures={o: dict(mean=float(muT[k]), ci95=[float(muT[k] - 1.96 * seT[k]), float(muT[k] + 1.96 * seT[k])])
+                          for k, o in enumerate(("Tx", "Ty", "Tz", "Tkin"))},
+            maxwell={c: {st: dict(mean=float(per_m[:, ci, k].mean()),
+                                  se=float(per_m[:, ci, k].std(ddof=1) / np.sqrt(nt_eq)))
+                         for k, st in enumerate(("mean", "var", "skew", "exkurt"))}
+                     for ci, c in enumerate(("all", "x", "y", "z"))},
+            momentum_defect_max=float(max(np.load(f)["dP"].max() for f in eqf)))
 
     # ---- large N ----------------------------------------------------------------------------------------
     large = {}
@@ -583,8 +629,12 @@ def report(say):
 
     from scipy import stats as sst
     fig, axs = plt.subplots(1, 2, figsize=(11, 4.4))
-    for k, m_ in enumerate(("dense", "rank40")):
-        snaps = np.concatenate([runs[s][m_]["snaps"] for s in trajs if "snaps" in runs[s][m_]])
+    sources = [("rank40, long runs (t >= T_eq/2)", [np.load(f)["snaps"] for f in eqf])] if eqf else []
+    sources += [(f"{m_}, short runs (t >= 3)", [runs[s][m_]["snaps"] for s in trajs if "snaps" in runs[s][m_]])
+                for m_ in ("dense",)]
+    for k, (lab, sn) in enumerate(sources):
+        snaps = np.concatenate(sn)
+        m_ = lab
         x = np.sort((snaps / np.sqrt(MASS / BETA * (N - 1) / N)).ravel())
         qn = sst.norm.ppf((np.arange(1, x.size + 1) - 0.5) / x.size)
         axs[0].plot(qn[::7], x[::7], ".", ms=2, color=PAL[k], label=m_)
@@ -592,7 +642,7 @@ def report(say):
     xx = np.linspace(-4.5, 4.5, 300)
     axs[0].plot(xx, xx, color=INK2, lw=0.8, label="y = x")
     axs[1].plot(xx, sst.norm.pdf(xx), color=INK2, lw=0.8, label="standard normal")
-    axs[0].set(xlabel="normal quantile", ylabel="sample quantile", title="7a. QQ plot, Pi p / sqrt(m/beta (N-1)/N), t >= T/2")
+    axs[0].set(xlabel="normal quantile", ylabel="sample quantile", title="7a. QQ plot of Pi p / sqrt(m/beta (N-1)/N)")
     axs[1].set(xlabel="normalised momentum component", ylabel="density", title="7b. Conditional Maxwell histogram")
     axs[0].legend(fontsize=8), axs[1].legend(fontsize=8)
     fig.tight_layout(), fig.savefig(OUT / "plot7_maxwell.png"), plt.close(fig)
