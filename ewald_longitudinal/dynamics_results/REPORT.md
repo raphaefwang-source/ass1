@@ -1,8 +1,10 @@
 # First time-dependent test: ideal-gas PPPM–Lanczos finite-time FDT thermostat
 
 Script: `test_true_dynamics.py`, run in stages: small, control, equil, large, timing, report.
-Data: `summary.json`, `params_small.json`, `timing.json`, `damping_rank_high_tau.json`, `raw_*.npz`; logs in `log_*.txt`.
-Plots: `plot1` … `plot8`.
+Data: `summary.json`, `params_small.json`, `timing.json` (historical 40 + 12 timing), `damping_rank_high_tau.json`,
+`raw_*.npz`; logs in `log_*.txt`. Plots: `plot1` … `plot8`.
+Production timing (noise 40 + damping 16): `test_production_timing_rank40_16.py` →
+`production_timing_rank40_16.json`, `.csv`, `.png`.
 
 ## Setup
 
@@ -25,8 +27,9 @@ Plots: `plot1` … `plot8`.
   - Encountered dt·λ_max(t): 0.07–3.66 at N = 64, 0.43–3.65 at N = 4000 and 0.73–10.06 at N = 16000.
   - With U = 0, particles can approach arbitrarily closely, and each close pair spikes λ_max. The exponential step
     is unconditionally stable, so dt was not tuned around the spikes.
-- **Ranks.** Damping rank 12, chosen from a static test (rank 5 already gives 1e-8 at dt·λ_max = 0.2). Noise
-  ranks 40 (production) and 48; high-rank Lanczos uses 90 for noise and 24 for damping.
+- **Ranks used in the dynamics runs.** Damping rank 12, chosen from a static test (rank 5 already gives 1e-8 at
+  dt·λ_max = 0.2). Noise ranks 40 and 48; high-rank Lanczos uses 90 for noise and 24 for damping. The **final
+  production configuration** is noise 40 + damping 16 (answer 10), which is what the cost section times.
 - **Coupled methods at N = 64** (16 trajectories, T_end = 6.0, 140 steps; same initial states and Gaussian streams):
   - dense eigendecomposition (reference);
   - "tight" dense with the tol-1e-9 PPPM set (a spatial-error proxy);
@@ -100,14 +103,47 @@ checked: the slow long-wavelength modes have a relaxation time of about 1/(2λ_*
 Rank 12 therefore met the 1e-6 target throughout the observed range (dt·λ_max ≤ 10.06), but only marginally. On
 the final configurations, rank 12 and rank 24 agreed to at most 1.2e-15.
 
-**Cost.** Single-process wall time per step with 52 Γ_h actions (40 noise + 12 damping):
+**Cost (final production configuration: noise rank 40 + damping rank 16).** Measured by
+`test_production_timing_rank40_16.py`: one real A(dt/2) O(dt) A(dt/2) step per iteration, with the same Box, PPPM
+parameters, dt = 0.04292 and Lanczos routine. It ran as a single process with OMP/OpenBLAS threads = 1, one N at a
+time, with 3 warm-up and 10 timed steps. The (max − min)/median spread was at most 0.25, so no 20-step rerun was
+needed. All values are medians.
 
-| N | 64 | 512 | 4000 | 16000 |
-|---|---|---|---|---|
-| s / step | 0.132 | 0.79 | 7.44 | 40.4 |
-| T/(N log N) [s] | 4.95e-4 | 2.47e-4 | 2.24e-4 | 2.61e-4 |
+- **Action count.** The measured count was **56 Γ_h actions per step** (16 damping + 40 noise) at every N and every
+  step.
+- **Where the time goes.** The Γ_h actions take 96% of the step.
+  - Neighbour list, weights and PPPM degree setup: 2.5–3%.
+  - Two-pass reorthogonalization: ≤ 0.45%.
+  - Small tridiagonal eigenproblem and matrix function: < 0.5 ms per step.
+  - Projection and vector overhead: ≤ 0.7%.
 
-For N ≥ 512 the fitted exponent is 1.14; N log N over the same range corresponds to about 1.13.
+| N | 512 | 4000 | 16000 |
+|---|---|---|---|
+| total step [s] | 0.789 | 6.35 | 37.4 |
+| thermostat part (all but setup) [s] | 0.764 | 6.17 | 36.2 |
+| setup: neighbours + Γ_h(q_half) [s] | 0.024 | 0.182 | 0.944 |
+| damping: actions / reorth / small-matrix [s] | 0.212 / 0.0008 / 0.0001 | 1.70 / 0.004 / 0.0001 | 10.75 / 0.021 / 0.0002 |
+| noise: actions / reorth / small-matrix [s] | 0.536 / 0.0027 / 0.0003 | 4.45 / 0.023 / 0.0003 | 26.0 / 0.096 / 0.0003 |
+| projection / vector overhead [s] | 0.006 | 0.020 | 0.061 |
+| time per Γ_h action [ms] | 13.5 | 109 | 644 |
+| T/(N ln N) [s] | 2.47e-4 | 1.91e-4 | 2.41e-4 |
+
+- **Descriptive fit.** A fit of T = C N^α to the three points gives α = 1.11. For comparison, the local exponent of
+  N ln N over this range is about 1.13. This is a descriptive fit only.
+- **Normalized cost.** T/(N ln N) stays within 1.9–2.5e-4 s, with a max/min ratio of 1.29 (natural log throughout).
+- **Sanity checks.** No negative Ritz values; the smallest Ritz value was ≥ 1.7e-2. Total momentum was conserved to
+  ≤ 5.9e-15 relative, and ‖(I−Π)η‖/‖η‖ ≤ 8.1e-17. No reference solve was run.
+
+*Historical comparison (superseded configuration).* The earlier timing stage (`timing.json`) used noise 40 + damping
+12 = 52 actions, with 4 timed steps in an earlier session: 0.132 / 0.79 / 7.44 / 40.4 s per step at
+N = 64 / 512 / 4000 / 16000, and T/(N ln N) = 4.95e-4 / 2.47e-4 / 2.24e-4 / 2.61e-4 (exponent 1.14 for N ≥ 512).
+
+- **Measured ratios.** T_new/T_old = 1.00 / 0.85 / 0.93 at N = 512 / 4000 / 16000.
+- **Expected cost of the change.** Since actions take 96% of the step, the four extra actions should cost about
+  +7% (56/52 = 1.077).
+- **Why the new timing is faster anyway.** The measured ratio is below 1 because the two timings come from different
+  sessions and container load. Step-to-step spread within a single run was up to 17%. The measured ratio therefore
+  reflects machine variation, not an effect of the configuration change.
 
 ## Answers
 
@@ -126,17 +162,21 @@ For N ≥ 512 the fitted exponent is 1.14; N log N over the same range correspon
 6. **Rank 48 is not materially better in the observables.** Its changes relative to rank 40 are far below every
    other error source.
 7. **Damping rank:** 12 was sufficient here (≤ 1e-6 up to the observed dt·λ_max = 10). Because close-pair spikes
-   can exceed 10 and rank 12 degrades to 1.8e-4 at dt·λ_max = 20, rank 16 is recommended for margin: ≤ 6e-7 at 20,
-   for about 8% more cost per step.
+   can exceed 10 and rank 12 degrades to 1.8e-4 at dt·λ_max = 20, rank 16 is recommended for margin: ≤ 6e-7 at 20.
+   It costs 4 more Γ_h actions per step (56 instead of 52), about 8% of the step.
 8. **Fixed-rank Lanczos errors are far below the temporal discretization error at the intended dt:** about 1e-9 at
    N = 64 and at most 1.4e-4 at N = 16000, against a temporal difference of about 1e-2 to 3e-2 at dt.
 9. **At N = 16000, rank 40 still gives acceptable dynamics,** consistent with its static 1e-3 root-action budget
    (9.1e-4 at N = 16000). Only one coupled rank-48 trajectory per large N was run.
 10. **Production ranks:** noise rank 40 (rank 48 buys nothing measurable up to N = 16000) and damping rank 16
-    (12 was adequate in these runs but marginal at the largest spikes).
-11. **Is the cost O(N log N)?** Yes, within the stated scope. With fixed ranks (noise 40, damping 12) chosen from
-    the tested accuracy budget, the measured wall time per step follows N log N from N = 512 to 16000:
-    T/(N log N) stays at 2.2–2.6e-4 s, with an exponent of 1.14. This is a measured statement over the tested
+    (12 was adequate in these runs but marginal at the largest spikes). That is **56 measured Γ_h actions per
+    step**.
+11. **Is the cost O(N log N)?** Yes, within the stated scope: under the tested fixed physical-accuracy budget, the
+    measured PPPM-Lanczos thermostat cost is consistent with O(N log N) over the tested range. The configuration
+    timed was the final one (noise 40, damping 16, 56 actions per step), with fixed ranks chosen from the tested
+    accuracy budget. The measured wall time per step follows N log N from N = 512 to 16000: 0.79, 6.35 and 37.4 s.
+    T/(N ln N) stays at 1.9–2.5e-4 s, and the descriptive exponent is 1.11. The superseded 40 + 12 timing gave
+    2.2–2.6e-4 s and 1.14. This is a measured statement over the tested
     range only. The fixed noise rank is verified to meet its 1e-3 budget only up to N = 16000, where its margin is
     thin. No asymptotic claim is made.
 
@@ -146,6 +186,6 @@ For N ≥ 512 the fitted exponent is 1.14; N log N over the same range correspon
   coupling is only approximate while Γ_h(q) evolves, and 16 trajectories leave SE ≈ 1e-2.
 - **Large-N statistics** are limited: 4 seeds per N, T = 3, and one coupled rank-48 trajectory per N. Large-N runs
   were executed as 5 concurrent single-threaded processes, so their logged per-step times (about 10 s at N = 4000,
-  about 53 s at N = 16000) are inflated by contention. The cost table uses the separate single-process timing stage.
+  about 53 s at N = 16000) are inflated by contention. The cost table uses the separate single-process production timing.
 - **At N = 64,** rank 40 covers most of the 189-dimensional space, so this test cannot stress it. The informative
   rank-40 test is the large-N rank-48 comparison.

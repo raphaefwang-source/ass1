@@ -111,3 +111,6 @@ It compares dense, high-rank Lanczos, rank-40 and rank-48 runs on coupled stream
 refinement, a tight-PPPM spatial proxy, long equilibrium runs, a negative control, and N = 4000 and 16000
 production runs with timing. Run it in stages (`--stage small|control|equil|large|timing|report`). The answers are
 in `dynamics_results/REPORT.md`.
+
+`test_production_timing_rank40_16.py` (about 10 min, single-threaded) times the final production step: noise rank
+40, damping rank 16, 56 Γ_h actions, at N = 512, 4000 and 16000. Output is `dynamics_results/production_timing_rank40_16.*`.
