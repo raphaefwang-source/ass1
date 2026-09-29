@@ -1,0 +1,149 @@
+== dense validation: A, B (32 vectors) and E1..E10 (16 vectors) ==
+  A: N=30 L=6 cond=33.1  f_dt rank(1e-8) median direct 25.0 range 30.0  (Gamma_h actions: direct r, range r+1)
+  B: N=40 L=10 cond=228.3  f_dt rank(1e-8) median direct 48.0 range 57.0  (Gamma_h actions: direct r, range r+1)
+  E1: N=30 L=6 cond=27.6  f_dt rank(1e-8) median direct 23.0 range 28.0  (Gamma_h actions: direct r, range r+1)
+  E2: N=30 L=6 cond=25.8  f_dt rank(1e-8) median direct 25.0 range 30.0  (Gamma_h actions: direct r, range r+1)
+  E3: N=40 L=10 cond=172.4  f_dt rank(1e-8) median direct 41.0 range 48.0  (Gamma_h actions: direct r, range r+1)
+  E4: N=40 L=10 cond=269.5  f_dt rank(1e-8) median direct 38.0 range 46.0  (Gamma_h actions: direct r, range r+1)
+  E5: N=50 L=8 cond=51.9  f_dt rank(1e-8) median direct 31.0 range 37.0  (Gamma_h actions: direct r, range r+1)
+  E6: N=50 L=12 cond=987.2  f_dt rank(1e-8) median direct 52.0 range 61.0  (Gamma_h actions: direct r, range r+1)
+  E7: N=20 L=5 cond=26.7  f_dt rank(1e-8) median direct 21.0 range 24.0  (Gamma_h actions: direct r, range r+1)
+  E8: N=60 L=9 cond=143.8  f_dt rank(1e-8) median direct 39.0 range 47.0  (Gamma_h actions: direct r, range r+1)
+  E9: N=36 L=7 cond=63.9  f_dt rank(1e-8) median direct 32.0 range 38.0  (Gamma_h actions: direct r, range r+1)
+  E10: N=45 L=11 cond=294.8  f_dt rank(1e-8) median direct 44.0 range 51.0  (Gamma_h actions: direct r, range r+1)
+  direct-start consistency with previous run (median rank 1e-8, now vs before): {'A': (25.0, 25.0), 'B': (48.0, 48.0), 'E1': (23.0, 23.0), 'E2': (25.0, 25.0), 'E3': (41.0, 41.0), 'E4': (38.0, 38.0), 'E5': (31.0, 31.0), 'E6': (52.0, 52.0), 'E7': (21.0, 21.0), 'E8': (39.0, 39.0), 'E9': (32.0, 32.0), 'E10': (44.0, 44.0)}
+
+== fixed-density scaling (same seeds as test_lanczos_fdt.py) ==
+   N=128 v0: ref ok True (conv 9.8e-16, agree 2.9e-15); rank 1e-6 d/r 28/36, 1e-8 d/r 39/48; timed 1e-8: direct 0.14s (44 act) range 0.18s (54 act)
+   N=128 v1: ref ok True (conv 1.0e-15, agree 3.9e-15); rank 1e-6 d/r 29/36, 1e-8 d/r 39/47; timed 1e-8: direct 0.14s (43 act) range 0.19s (53 act)
+   N=256 v0: ref ok True (conv 2.5e-15, agree 3.5e-15); rank 1e-6 d/r 36/47, 1e-8 d/r 50/62; timed 1e-8: direct 0.39s (55 act) range 0.47s (69 act)
+   N=256 v1: ref ok True (conv 2.8e-15, agree 4.5e-15); rank 1e-6 d/r 36/47, 1e-8 d/r 50/62; timed 1e-8: direct 0.35s (55 act) range 0.52s (68 act)
+
+# Direct-start vs range-start Lanczos: summary
+
+Gamma_h: {'xi': 0.7, 's': 4.1, 'eta': 0.7, 'p': 7}; f_dt with dt lambda_max/m = 0.5; beta = m = 1. Same z as test_lanczos_fdt.py.
+
+## Dense configurations (f_dt; median/p90/p99/max required rank)
+
+| config | lam_* | lam_max | cond | tol | direct | range | range/direct (median) |
+|---|---|---|---|---|---|---|---|
+| E2 | 1.196e-01 | 3.085 | 25.8 | 0.0001 | 12/12/12/12 | 16/16/16/16 | 1.33 |
+| E2 | 1.196e-01 | 3.085 | 25.8 | 1e-06 | 18/18/18/18 | 23/23/23/23 | 1.28 |
+| E2 | 1.196e-01 | 3.085 | 25.8 | 1e-08 | 25/25/25/25 | 30/30/30/30 | 1.20 |
+| E2 | 1.196e-01 | 3.085 | 25.8 | 1e-10 | 31/32/32/32 | 36/36/36/36 | 1.16 |
+| E7 | 1.620e-01 | 4.328 | 26.7 | 0.0001 | 10/11/11/11 | 14/14/14/14 | 1.35 |
+| E7 | 1.620e-01 | 4.328 | 26.7 | 1e-06 | 16/16/16/16 | 19/19/19/19 | 1.19 |
+| E7 | 1.620e-01 | 4.328 | 26.7 | 1e-08 | 21/21/21/21 | 24/25/25/25 | 1.14 |
+| E7 | 1.620e-01 | 4.328 | 26.7 | 1e-10 | 26/26/26/26 | 29/29/29/29 | 1.14 |
+| E1 | 1.240e-01 | 3.420 | 27.6 | 0.0001 | 11/11/11/11 | 15/15/15/15 | 1.36 |
+| E1 | 1.240e-01 | 3.420 | 27.6 | 1e-06 | 17/17/17/17 | 21/21/22/22 | 1.24 |
+| E1 | 1.240e-01 | 3.420 | 27.6 | 1e-08 | 23/23/23/23 | 28/28/28/28 | 1.22 |
+| E1 | 1.240e-01 | 3.420 | 27.6 | 1e-10 | 29/29/29/29 | 33/34/34/34 | 1.14 |
+| A | 1.190e-01 | 3.937 | 33.1 | 0.0001 | 12/12/12/12 | 16/16/16/16 | 1.33 |
+| A | 1.190e-01 | 3.937 | 33.1 | 1e-06 | 18/19/19/19 | 23/23/24/24 | 1.28 |
+| A | 1.190e-01 | 3.937 | 33.1 | 1e-08 | 25/25/25/25 | 30/30/30/30 | 1.20 |
+| A | 1.190e-01 | 3.937 | 33.1 | 1e-10 | 31/31/31/31 | 36/36/36/36 | 1.16 |
+| E5 | 5.460e-02 | 2.835 | 51.9 | 0.0001 | 14/15/15/15 | 20/20/21/21 | 1.43 |
+| E5 | 5.460e-02 | 2.835 | 51.9 | 1e-06 | 23/23/23/23 | 29/29/29/29 | 1.26 |
+| E5 | 5.460e-02 | 2.835 | 51.9 | 1e-08 | 31/31/31/31 | 37/37/38/38 | 1.19 |
+| E5 | 5.460e-02 | 2.835 | 51.9 | 1e-10 | 38/39/39/39 | 45/45/45/45 | 1.18 |
+| E9 | 6.634e-02 | 4.242 | 63.9 | 0.0001 | 15/15/16/16 | 21/21/22/22 | 1.40 |
+| E9 | 6.634e-02 | 4.242 | 63.9 | 1e-06 | 24/24/24/24 | 30/30/30/30 | 1.25 |
+| E9 | 6.634e-02 | 4.242 | 63.9 | 1e-08 | 32/32/32/32 | 38/38/38/38 | 1.19 |
+| E9 | 6.634e-02 | 4.242 | 63.9 | 1e-10 | 39/39/39/39 | 44/44/44/44 | 1.13 |
+| E8 | 3.252e-02 | 4.677 | 143.8 | 0.0001 | 17/18/18/18 | 24/25/25/25 | 1.41 |
+| E8 | 3.252e-02 | 4.677 | 143.8 | 1e-06 | 29/29/29/29 | 37/37/38/38 | 1.28 |
+| E8 | 3.252e-02 | 4.677 | 143.8 | 1e-08 | 39/40/40/40 | 47/48/48/48 | 1.21 |
+| E8 | 3.252e-02 | 4.677 | 143.8 | 1e-10 | 49/49/49/49 | 56/57/57/57 | 1.14 |
+| E3 | 9.734e-03 | 1.678 | 172.4 | 0.0001 | 20/21/21/21 | 28/28/29/29 | 1.40 |
+| E3 | 9.734e-03 | 1.678 | 172.4 | 1e-06 | 32/32/32/32 | 39/39/40/40 | 1.22 |
+| E3 | 9.734e-03 | 1.678 | 172.4 | 1e-08 | 41/42/42/42 | 48/48/49/49 | 1.17 |
+| E3 | 9.734e-03 | 1.678 | 172.4 | 1e-10 | 49/50/50/50 | 56/56/57/57 | 1.14 |
+| B | 8.539e-03 | 1.949 | 228.3 | 0.0001 | 22/23/23/23 | 31/32/32/32 | 1.41 |
+| B | 8.539e-03 | 1.949 | 228.3 | 1e-06 | 36/36/36/36 | 45/46/46/46 | 1.25 |
+| B | 8.539e-03 | 1.949 | 228.3 | 1e-08 | 48/49/49/49 | 57/58/58/58 | 1.19 |
+| B | 8.539e-03 | 1.949 | 228.3 | 1e-10 | 59/59/60/60 | 67/67/67/67 | 1.14 |
+| E4 | 9.754e-03 | 2.628 | 269.5 | 0.0001 | 18/18/19/19 | 24/25/26/26 | 1.33 |
+| E4 | 9.754e-03 | 2.628 | 269.5 | 1e-06 | 28/29/29/29 | 36/36/37/37 | 1.29 |
+| E4 | 9.754e-03 | 2.628 | 269.5 | 1e-08 | 38/39/39/39 | 46/46/46/46 | 1.21 |
+| E4 | 9.754e-03 | 2.628 | 269.5 | 1e-10 | 47/48/48/48 | 54/55/56/56 | 1.16 |
+| E10 | 7.292e-03 | 2.149 | 294.8 | 0.0001 | 21/22/22/22 | 29/30/30/30 | 1.38 |
+| E10 | 7.292e-03 | 2.149 | 294.8 | 1e-06 | 33/34/34/34 | 41/42/42/42 | 1.24 |
+| E10 | 7.292e-03 | 2.149 | 294.8 | 1e-08 | 44/44/44/44 | 51/51/51/51 | 1.16 |
+| E10 | 7.292e-03 | 2.149 | 294.8 | 1e-10 | 52/53/53/53 | 59/60/60/60 | 1.13 |
+| E6 | 5.118e-03 | 5.053 | 987.2 | 0.0001 | 26/26/27/27 | 35/36/36/36 | 1.35 |
+| E6 | 5.118e-03 | 5.053 | 987.2 | 1e-06 | 40/40/41/41 | 49/50/50/50 | 1.23 |
+| E6 | 5.118e-03 | 5.053 | 987.2 | 1e-08 | 52/52/53/53 | 61/61/62/62 | 1.17 |
+| E6 | 5.118e-03 | 5.053 | 987.2 | 1e-10 | 62/63/63/63 | 70/71/71/71 | 1.13 |
+
+sqrt debug test (A, B):
+- A: tol 0.0001: direct 12/12/12/12, range 16/16/16/16, tol 1e-06: direct 18/19/19/19, range 23/23/23/23, tol 1e-08: direct 25/25/25/25, range 30/30/30/30, tol 1e-10: direct 31/31/31/31, range 36/36/36/36
+- B: tol 0.0001: direct 22/22/23/23, range 31/32/32/32, tol 1e-06: direct 36/36/36/36, range 45/46/46/46, tol 1e-08: direct 48/49/49/49, range 57/57/58/58, tol 1e-10: direct 58/59/60/60, range 67/67/67/67
+
+## Low-mode share (mean over vectors): (share of ||f_dt z||^2, share of ||z||^2, share of ||b||^2, #modes)
+
+- A: <2lam*: 9.01e-02, 2.52e-01, 1.50e-02, 22; <5lam*: 4.03e-01, 6.77e-01, 1.33e-01, 59; <10lam*: 7.28e-01, 9.02e-01, 3.99e-01, 77; <0.01lam_max: 0.00e+00, 0.00e+00, 0.00e+00, 0; <0.05lam_max: 4.32e-02, 1.41e-01, 5.93e-03, 13
+- B: <2lam*: 5.98e-03, 7.64e-02, 1.30e-04, 9; <5lam*: 2.97e-02, 2.19e-01, 1.22e-03, 27; <10lam*: 1.05e-01, 4.27e-01, 8.79e-03, 51; <0.01lam_max: 7.96e-03, 9.50e-02, 1.82e-04, 11; <0.05lam_max: 1.31e-01, 4.77e-01, 1.26e-02, 56
+
+## Checks
+
+- final_err_max_direct: 4.1790499101953085e-15
+- final_err_max_range: 9.223976467128134e-15
+- ritz_stops: []
+- min_ritz_over_lam_star_range: {'A': 0.9999999999999982, 'B': 0.9999999999999856, 'E1': 0.9999999999999988, 'E2': 0.9999999999999979, 'E3': 0.9999999999999943, 'E4': 0.9999999999999971, 'E5': 0.9999999999999941, 'E6': 0.9999999999999998, 'E7': 1.0000000000000004, 'E8': 0.9999999999999849, 'E9': 0.9999999999999952, 'E10': 0.9999999999999828}
+- gmax_range_over_g_at_lam_star: {}
+- offPi_max_range: 1.3772510271128258e-16
+- mom_max_range: 7.580337536696283e-16
+- b_offPi_max: 1.0533523790466702e-16
+- direct_consistency: {'A': (25.0, 25.0), 'B': (48.0, 48.0), 'E1': (23.0, 23.0), 'E2': (25.0, 25.0), 'E3': (41.0, 41.0), 'E4': (38.0, 38.0), 'E5': (31.0, 31.0), 'E6': (52.0, 52.0), 'E7': (21.0, 21.0), 'E8': (39.0, 39.0), 'E9': (32.0, 32.0), 'E10': (44.0, 44.0)}
+
+## Stopping rules (f_dt, dense, all configurations)
+
+- direct 0.0001 d <= tol/10: false-stop 0.000, over-solve median 1.27 (range 1.15-1.40), max error at stop 2.8e-05 (n=224)
+- direct 0.0001 d2 <= tol: false-stop 0.013, over-solve median 1.08 (range 0.96-1.20), max error at stop 1.0e-04 (n=224)
+- direct 0.0001 d <= tol: false-stop 0.446, over-solve median 1.00 (range 0.84-1.10), max error at stop 2.8e-04 (n=224)
+- direct 1e-06 d <= tol/10: false-stop 0.000, over-solve median 1.17 (range 1.10-1.27), max error at stop 2.3e-07 (n=224)
+- direct 1e-06 d2 <= tol: false-stop 0.004, over-solve median 1.06 (range 0.97-1.13), max error at stop 1.0e-06 (n=224)
+- direct 1e-06 d <= tol: false-stop 0.429, over-solve median 1.00 (range 0.92-1.07), max error at stop 2.5e-06 (n=224)
+- direct 1e-08 d <= tol/10: false-stop 0.000, over-solve median 1.12 (range 1.08-1.20), max error at stop 1.8e-09 (n=224)
+- direct 1e-08 d2 <= tol: false-stop 0.000, over-solve median 1.05 (range 1.00-1.10), max error at stop 8.8e-09 (n=224)
+- direct 1e-08 d <= tol: false-stop 0.290, over-solve median 1.00 (range 0.96-1.05), max error at stop 1.8e-08 (n=224)
+- direct 1e-10 d <= tol/10: false-stop 0.000, over-solve median 1.10 (range 1.06-1.16), max error at stop 1.5e-11 (n=224)
+- direct 1e-10 d2 <= tol: false-stop 0.000, over-solve median 1.04 (range 1.00-1.08), max error at stop 8.2e-11 (n=224)
+- direct 1e-10 d <= tol: false-stop 0.134, over-solve median 1.00 (range 0.97-1.04), max error at stop 1.7e-10 (n=224)
+- range 0.0001 d <= tol/10: false-stop 0.000, over-solve median 1.20 (range 1.11-1.33), max error at stop 2.5e-05 (n=224)
+- range 0.0001 d2 <= tol: false-stop 0.009, over-solve median 1.05 (range 0.97-1.15), max error at stop 1.1e-04 (n=224)
+- range 0.0001 d <= tol: false-stop 0.540, over-solve median 0.96 (range 0.86-1.08), max error at stop 3.3e-04 (n=224)
+- range 1e-06 d <= tol/10: false-stop 0.000, over-solve median 1.14 (range 1.08-1.23), max error at stop 2.0e-07 (n=224)
+- range 1e-06 d2 <= tol: false-stop 0.009, over-solve median 1.05 (range 0.98-1.11), max error at stop 1.1e-06 (n=224)
+- range 1e-06 d <= tol: false-stop 0.357, over-solve median 1.00 (range 0.93-1.05), max error at stop 2.3e-06 (n=224)
+- range 1e-08 d <= tol/10: false-stop 0.000, over-solve median 1.10 (range 1.05-1.17), max error at stop 1.9e-09 (n=224)
+- range 1e-08 d2 <= tol: false-stop 0.000, over-solve median 1.04 (range 1.02-1.08), max error at stop 7.1e-09 (n=224)
+- range 1e-08 d <= tol: false-stop 0.196, over-solve median 1.00 (range 0.96-1.04), max error at stop 2.0e-08 (n=224)
+- range 1e-10 d <= tol/10: false-stop 0.000, over-solve median 1.08 (range 1.05-1.12), max error at stop 1.5e-11 (n=224)
+- range 1e-10 d2 <= tol: false-stop 0.000, over-solve median 1.04 (range 1.01-1.07), max error at stop 6.4e-11 (n=224)
+- range 1e-10 d <= tol: false-stop 0.107, over-solve median 1.00 (range 0.97-1.03), max error at stop 2.1e-10 (n=224)
+
+## Landau-style threshold ablation (tau = 1e-12 ||T_r||, range start)
+
+- discarded_max: 0.0
+- action_bias_max: 0.0
+- rank_change_1e8: [('A', 30), ('A', 30), ('A', 30)]
+- cov_bias_A: 0.0
+- rank_thr_vs_nothr_1e8_A: (30.0, 30.0)
+- cov_bias_B: 0.0
+- rank_thr_vs_nothr_1e8_B: (57.0, 57.0)
+
+## Scaling (fixed density, same seeds)
+
+| N | vec | cond est | ref ok | r_d(1e-6) | r_r(1e-6) | r_d(1e-8) | r_r(1e-8) | rule r_r(1e-8) (err) | direct 1e-8: actions / t [s] | range 1e-8: actions / t [s] | low share <5 ritz_min |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 128 | 0 | 82 | True | 28 | 36 | 39 | 48 | 53 (1.1e-09) | 44 / 0.14 | 54 / 0.18 | 1.8e-01 |
+| 128 | 1 | 82 | True | 29 | 36 | 39 | 47 | 52 (9.0e-10) | 43 / 0.14 | 53 / 0.19 | 1.8e-01 |
+| 256 | 0 | 158 | True | 36 | 47 | 50 | 62 | 68 (1.3e-09) | 55 / 0.39 | 69 / 0.47 | 6.9e-02 |
+| 256 | 1 | 158 | True | 36 | 47 | 50 | 62 | 67 (2.2e-09) | 55 / 0.35 | 68 / 0.52 | 9.6e-02 |
+
+Power-law fits r ~ N^alpha: r_direct_1e-06: 0.337, r_range_1e-06: 0.385, r_direct_1e-08: 0.358, r_range_1e-08: 0.384
+Time fits t ~ N^alpha (timed solves, d <= tol/10): direct_1e-06: 1.361, direct_1e-08: 1.439, range_1e-06: 1.417, range_1e-08: 1.424
+
+wall time 185s
