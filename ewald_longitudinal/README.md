@@ -103,3 +103,11 @@ python3 test_lanczos_range_start.py        # about 13 min
 This compares Landau-style range-start Lanczos (b = ΠΓ_h z, g = f/λ) with direct start. It uses the same Γ_h,
 vectors and seeds as `test_lanczos_fdt.py`, and covers the dense configurations, scaling to N = 4000, timing,
 stopping rules and a threshold ablation. Answers are in `lanczos_range_start_results/REPORT.md`.
+
+## Ideal-gas dynamics test (`test_true_dynamics.py`)
+
+This is the first time-dependent test: an ideal gas under the A–O–A finite-time FDT thermostat with the PPPM Γ_h.
+It compares dense, high-rank Lanczos, rank-40 and rank-48 runs on coupled streams, with nested dt/4…2dt
+refinement, a tight-PPPM spatial proxy, long equilibrium runs, a negative control, and N = 4000 and 16000
+production runs with timing. Run it in stages (`--stage small|control|equil|large|timing|report`). The answers are
+in `dynamics_results/REPORT.md`.
