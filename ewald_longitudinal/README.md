@@ -93,3 +93,13 @@ action. The Lanczos results are compared with dense references for configuration
 configurations. The script also measures the ranks needed, tests stopping rules, and separates the discrete-FDT
 covariance error into its Krylov and Monte Carlo parts. It covers the Euler variant and rank/time scaling up to
 N = 4000. Answers are in `lanczos_fdt_results/REPORT.md`.
+
+## Range-start vs direct-start Lanczos (`test_lanczos_range_start.py`)
+
+```
+python3 test_lanczos_range_start.py        # about 13 min
+```
+
+This compares Landau-style range-start Lanczos (b = ΠΓ_h z, g = f/λ) with direct start. It uses the same Γ_h,
+vectors and seeds as `test_lanczos_fdt.py`, and covers the dense configurations, scaling to N = 4000, timing,
+stopping rules and a threshold ablation. Answers are in `lanczos_range_start_results/REPORT.md`.

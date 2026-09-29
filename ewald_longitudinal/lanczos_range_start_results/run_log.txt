@@ -14,10 +14,18 @@
   direct-start consistency with previous run (median rank 1e-8, now vs before): {'A': (25.0, 25.0), 'B': (48.0, 48.0), 'E1': (23.0, 23.0), 'E2': (25.0, 25.0), 'E3': (41.0, 41.0), 'E4': (38.0, 38.0), 'E5': (31.0, 31.0), 'E6': (52.0, 52.0), 'E7': (21.0, 21.0), 'E8': (39.0, 39.0), 'E9': (32.0, 32.0), 'E10': (44.0, 44.0)}
 
 == fixed-density scaling (same seeds as test_lanczos_fdt.py) ==
-   N=128 v0: ref ok True (conv 9.8e-16, agree 2.9e-15); rank 1e-6 d/r 28/36, 1e-8 d/r 39/48; timed 1e-8: direct 0.14s (44 act) range 0.18s (54 act)
+   N=128 v0: ref ok True (conv 9.8e-16, agree 2.9e-15); rank 1e-6 d/r 28/36, 1e-8 d/r 39/48; timed 1e-8: direct 0.14s (44 act) range 0.19s (54 act)
    N=128 v1: ref ok True (conv 1.0e-15, agree 3.9e-15); rank 1e-6 d/r 29/36, 1e-8 d/r 39/47; timed 1e-8: direct 0.14s (43 act) range 0.19s (53 act)
-   N=256 v0: ref ok True (conv 2.5e-15, agree 3.5e-15); rank 1e-6 d/r 36/47, 1e-8 d/r 50/62; timed 1e-8: direct 0.39s (55 act) range 0.47s (69 act)
-   N=256 v1: ref ok True (conv 2.8e-15, agree 4.5e-15); rank 1e-6 d/r 36/47, 1e-8 d/r 50/62; timed 1e-8: direct 0.35s (55 act) range 0.52s (68 act)
+   N=256 v0: ref ok True (conv 2.5e-15, agree 3.5e-15); rank 1e-6 d/r 36/47, 1e-8 d/r 50/62; timed 1e-8: direct 0.37s (55 act) range 0.45s (69 act)
+   N=256 v1: ref ok True (conv 2.8e-15, agree 4.5e-15); rank 1e-6 d/r 36/47, 1e-8 d/r 50/62; timed 1e-8: direct 0.38s (55 act) range 0.47s (68 act)
+   N=512 v0: ref ok True (conv 3.4e-15, agree 8.2e-15); rank 1e-6 d/r 45/60, 1e-8 d/r 64/79; timed 1e-8: direct 0.90s (70 act) range 1.12s (86 act)
+   N=512 v1: ref ok True (conv 5.1e-15, agree 8.8e-15); rank 1e-6 d/r 45/60, 1e-8 d/r 64/79; timed 1e-8: direct 0.93s (70 act) range 1.14s (85 act)
+   N=1024 v0: ref ok True (conv 2.9e-15, agree 3.5e-15); rank 1e-6 d/r 56/75, 1e-8 d/r 81/102; timed 1e-8: direct 2.62s (87 act) range 2.97s (108 act)
+   N=1024 v1: ref ok True (conv 3.3e-15, agree 5.4e-15); rank 1e-6 d/r 57/77, 1e-8 d/r 84/104; timed 1e-8: direct 2.49s (90 act) range 3.05s (110 act)
+   N=2048 v0: ref ok True (conv 3.6e-15, agree 5.2e-15); rank 1e-6 d/r 71/95, 1e-8 d/r 103/129; timed 1e-8: direct 6.99s (109 act) range 9.07s (136 act)
+   N=2048 v1: ref ok True (conv 3.4e-15, agree 4.4e-15); rank 1e-6 d/r 71/94, 1e-8 d/r 101/128; timed 1e-8: direct 6.65s (106 act) range 8.51s (134 act)
+   N=4000 v0: ref ok True (conv 3.2e-15, agree 5.7e-15); rank 1e-6 d/r 85/120, 1e-8 d/r 128/169; timed 1e-8: direct 15.79s (132 act) range 20.62s (175 act)
+   N=4000 v1: ref ok True (conv 3.8e-15, agree 5.6e-15); rank 1e-6 d/r 85/119, 1e-8 d/r 126/166; timed 1e-8: direct 15.88s (131 act) range 20.92s (172 act)
 
 # Direct-start vs range-start Lanczos: summary
 
@@ -138,12 +146,20 @@ sqrt debug test (A, B):
 
 | N | vec | cond est | ref ok | r_d(1e-6) | r_r(1e-6) | r_d(1e-8) | r_r(1e-8) | rule r_r(1e-8) (err) | direct 1e-8: actions / t [s] | range 1e-8: actions / t [s] | low share <5 ritz_min |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 128 | 0 | 82 | True | 28 | 36 | 39 | 48 | 53 (1.1e-09) | 44 / 0.14 | 54 / 0.18 | 1.8e-01 |
+| 128 | 0 | 82 | True | 28 | 36 | 39 | 48 | 53 (1.1e-09) | 44 / 0.14 | 54 / 0.19 | 1.8e-01 |
 | 128 | 1 | 82 | True | 29 | 36 | 39 | 47 | 52 (9.0e-10) | 43 / 0.14 | 53 / 0.19 | 1.8e-01 |
-| 256 | 0 | 158 | True | 36 | 47 | 50 | 62 | 68 (1.3e-09) | 55 / 0.39 | 69 / 0.47 | 6.9e-02 |
-| 256 | 1 | 158 | True | 36 | 47 | 50 | 62 | 67 (2.2e-09) | 55 / 0.35 | 68 / 0.52 | 9.6e-02 |
+| 256 | 0 | 158 | True | 36 | 47 | 50 | 62 | 68 (1.3e-09) | 55 / 0.37 | 69 / 0.45 | 6.9e-02 |
+| 256 | 1 | 158 | True | 36 | 47 | 50 | 62 | 67 (2.2e-09) | 55 / 0.38 | 68 / 0.47 | 9.6e-02 |
+| 512 | 0 | 1611 | True | 45 | 60 | 64 | 79 | 85 (2.3e-09) | 70 / 0.90 | 86 / 1.12 | 2.1e-02 |
+| 512 | 1 | 1611 | True | 45 | 60 | 64 | 79 | 84 (2.4e-09) | 70 / 0.93 | 85 / 1.14 | 1.8e-02 |
+| 1024 | 0 | 410 | True | 56 | 75 | 81 | 102 | 107 (3.6e-09) | 87 / 2.62 | 108 / 2.97 | 6.5e-03 |
+| 1024 | 1 | 410 | True | 57 | 77 | 84 | 104 | 109 (4.1e-09) | 90 / 2.49 | 110 / 3.05 | 5.8e-03 |
+| 2048 | 0 | 672 | True | 71 | 95 | 103 | 129 | 135 (4.6e-09) | 109 / 6.99 | 136 / 9.07 | 1.4e-03 |
+| 2048 | 1 | 672 | True | 71 | 94 | 101 | 128 | 133 (4.6e-09) | 106 / 6.65 | 134 / 8.51 | 1.7e-03 |
+| 4000 | 0 | 1892 | True | 85 | 120 | 128 | 169 | 174 (4.9e-09) | 132 / 15.79 | 175 / 20.62 | 5.2e-04 |
+| 4000 | 1 | 1892 | True | 85 | 119 | 126 | 166 | 171 (5.3e-09) | 131 / 15.88 | 172 / 20.92 | 4.7e-04 |
 
-Power-law fits r ~ N^alpha: r_direct_1e-06: 0.337, r_range_1e-06: 0.385, r_direct_1e-08: 0.358, r_range_1e-08: 0.384
-Time fits t ~ N^alpha (timed solves, d <= tol/10): direct_1e-06: 1.361, direct_1e-08: 1.439, range_1e-06: 1.417, range_1e-08: 1.424
+Power-law fits r ~ N^alpha: r_direct_1e-06: 0.320, r_range_1e-06: 0.345, r_direct_1e-08: 0.344, r_range_1e-08: 0.363
+Time fits t ~ N^alpha (timed solves, d <= tol/10): direct_1e-06: 1.337, direct_1e-08: 1.380, range_1e-06: 1.356, range_1e-08: 1.376
 
-wall time 185s
+wall time 800s
