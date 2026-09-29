@@ -1,0 +1,5 @@
+N=64 L=7.724: lambda_max(q0) median 4.660 (range 2.493-12.749); dt = 0.04292, T_end = 6.008, 140 steps
+  trajectory 1: done in 136s; final T dense [1.357 0.962 1.53 ], rank40 [1.357 0.962 1.53 ]; max dt*lambda_max 1.37
+  trajectory 5: done in 133s; final T dense [0.91  0.988 1.066], rank40 [0.91  0.988 1.066]; max dt*lambda_max 1.70
+  trajectory 9: done in 132s; final T dense [0.818 0.985 1.013], rank40 [0.818 0.985 1.013]; max dt*lambda_max 0.91
+  trajectory 13: done in 132s; final T dense [1.261 1.118 0.783], rank40 [1.261 1.118 0.783]; max dt*lambda_max 0.85
