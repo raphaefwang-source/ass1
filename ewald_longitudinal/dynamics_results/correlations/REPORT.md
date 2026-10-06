@@ -2,7 +2,7 @@
 
 Script: `test_dynamic_correlations.py`, run as `--stage generate`, one trajectory per process, then
 `--stage analyze`. Figures `fig1_vacf.png`, `fig2_vccf.png` and `fig3_hydro_modes.png` follow the spirit of
-Figs. 1–3 of Wang et al., PRL 131, 177301 (2023), adapted to the screened pure-longitudinal Markovian model. All
+Figs. 1–3 of Lyu and Lei, PRL 131, 177301 (2023), adapted to the screened pure-longitudinal Markovian model. All
 numbers are in `correlations.json`.
 
 ## Data

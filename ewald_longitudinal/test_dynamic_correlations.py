@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Dynamical validation of the ideal-gas PPPM-Lanczos finite-time FDT thermostat (screened pure-longitudinal Markovian
-model), in the spirit of Figs. 1-3 of Wang et al., PRL 131, 177301 (2023):
+model), in the spirit of Figs. 1-3 of Lyu and Lei, PRL 131, 177301 (2023):
     Fig. 1  velocity autocorrelation C_V(t)
     Fig. 2  distance-conditioned velocity cross-correlation C_vv(t; r0), plus its components along / across r_ij(0)
     Fig. 3  longitudinal and transverse hydrodynamic-mode correlations C_L(k, t), C_T(k, t)

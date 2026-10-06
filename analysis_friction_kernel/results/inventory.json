@@ -1,0 +1,2577 @@
+{
+ "n_files": 232,
+ "by_type": {
+  "lammps_input": [],
+  "md_trajectory": [],
+  "topology": [],
+  "hdf5": [],
+  "numpy": [
+   "ewald_longitudinal/dynamics_results/raw_equil_traj02.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj14.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj10.npz",
+   "ewald_longitudinal/dynamics_results/raw_control_traj03.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj03.npz",
+   "ewald_longitudinal/dynamics_results/raw_large_N16000_seed2_rank40.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj15.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj01.npz",
+   "ewald_longitudinal/dynamics_results/raw_control_traj00.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj02.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj13.npz",
+   "ewald_longitudinal/dynamics_results/raw_large_N4000_seed0_rank48.npz",
+   "ewald_longitudinal/dynamics_results/raw_large_N16000_seed3_rank40.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj15.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj04.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj10.npz",
+   "ewald_longitudinal/dynamics_results/raw_large_N16000_seed0_rank48.npz",
+   "ewald_longitudinal/dynamics_results/raw_large_N4000_seed3_rank40.npz",
+   "ewald_longitudinal/dynamics_results/raw_large_N16000_seed0_rank40.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj07.npz",
+   "ewald_longitudinal/dynamics_results/raw_large_N4000_seed2_rank40.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj03.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj09.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj08.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj05.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj14.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj11.npz",
+   "ewald_longitudinal/dynamics_results/raw_large_N4000_seed0_rank40.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj05.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj11.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj00.npz",
+   "ewald_longitudinal/dynamics_results/raw_large_N16000_seed1_rank40.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj06.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj01.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj08.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj07.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj09.npz",
+   "ewald_longitudinal/dynamics_results/raw_control_traj02.npz",
+   "ewald_longitudinal/dynamics_results/raw_large_N4000_seed1_rank40.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj13.npz",
+   "ewald_longitudinal/dynamics_results/raw_control_traj01.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj12.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj12.npz",
+   "ewald_longitudinal/dynamics_results/raw_equil_traj04.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj00.npz",
+   "ewald_longitudinal/dynamics_results/raw_small_traj06.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed4.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed0.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_dense_seed1.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed3.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed6.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed2.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_dense_seed0.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed1.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_lanczos_hi_seed0.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed7.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_lanczos_hi_seed1.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed5.npz"
+  ],
+  "table": [
+   "ewald_longitudinal/parameter_selection_results/main_runs.csv",
+   "ewald_longitudinal/parameter_selection_results/cutoff_sweep.csv",
+   "ewald_longitudinal/parameter_selection_results/xi_sweep.csv",
+   "ewald_longitudinal/parameter_selection_results/xi_timing_large.csv",
+   "ewald_longitudinal/parameter_selection_results/achieving.csv",
+   "ewald_longitudinal/parameter_selection_results/mesh_sweep.csv",
+   "ewald_longitudinal/parameter_selection_results/extension.csv",
+   "ewald_longitudinal/mesh_error_decomposition_results/fixed_config.csv",
+   "ewald_longitudinal/mesh_error_decomposition_results/predictors.csv",
+   "ewald_longitudinal/mesh_error_decomposition_results/fits.csv",
+   "ewald_longitudinal/mesh_error_decomposition_results/phase_averaged.csv",
+   "ewald_longitudinal/dynamics_results/production_timing_rank40_16.csv",
+   "ewald_longitudinal/equal_accuracy_xi_results/accepted_best.csv",
+   "ewald_longitudinal/equal_accuracy_xi_results/all_passing.csv",
+   "ewald_longitudinal/equal_accuracy_xi_results/timed_candidates.csv"
+  ],
+  "notebook": [
+   "distorted_Q4_stiffness_matrix.ipynb"
+  ],
+  "python": [
+   "ewald_longitudinal/test_lanczos_fdt.py",
+   "ewald_longitudinal/verify_ewald_longitudinal.py",
+   "ewald_longitudinal/test_lanczos_range_start.py",
+   "ewald_longitudinal/test_parameter_selection.py",
+   "ewald_longitudinal/test_true_dynamics.py",
+   "ewald_longitudinal/test_dynamic_correlations.py",
+   "ewald_longitudinal/test_mesh_error_decomposition.py",
+   "ewald_longitudinal/test_equal_accuracy_xi.py",
+   "ewald_longitudinal/fixed_rank_large_n.py",
+   "ewald_longitudinal/test_production_timing_rank40_16.py",
+   "ewald_longitudinal/verify_periodic_graph_psd.py"
+  ],
+  "document": [
+   "ewald_longitudinal/FOLLOWUP_REPORT.md",
+   "ewald_longitudinal/README.md",
+   "ewald_longitudinal/DERIVATIONS.md",
+   "ewald_longitudinal/fixed_rank_budget_results/large_n_run_log.txt",
+   "ewald_longitudinal/fixed_rank_budget_results/REPORT.md",
+   "ewald_longitudinal/lanczos_fdt_results/run_log.txt",
+   "ewald_longitudinal/lanczos_fdt_results/REPORT.md",
+   "ewald_longitudinal/lanczos_fdt_results/summary.md",
+   "ewald_longitudinal/parameter_selection_results/final_report.md",
+   "ewald_longitudinal/parameter_selection_results/run_log.txt",
+   "ewald_longitudinal/parameter_selection_results/main_tolerance_table.md",
+   "ewald_longitudinal/mesh_error_decomposition_results/run_log.txt",
+   "ewald_longitudinal/mesh_error_decomposition_results/summary.md",
+   "ewald_longitudinal/dynamics_results/log_timing.txt",
+   "ewald_longitudinal/dynamics_results/log_small_traj2-6-10-14.txt",
+   "ewald_longitudinal/dynamics_results/log_small_traj1-5-9-13.txt",
+   "ewald_longitudinal/dynamics_results/log_small_traj0-4-8-12.txt",
+   "ewald_longitudinal/dynamics_results/log_large_N16000_s0_r40.txt",
+   "ewald_longitudinal/dynamics_results/log_large_N4000_s3_r40.txt",
+   "ewald_longitudinal/dynamics_results/log_large_N16000_s0_r48.txt",
+   "ewald_longitudinal/dynamics_results/log_report.txt",
+   "ewald_longitudinal/dynamics_results/log_large_N16000_s3_r40.txt",
+   "ewald_longitudinal/dynamics_results/log_large_N4000_s2_r40.txt",
+   "ewald_longitudinal/dynamics_results/log_small_traj3-7-11-15.txt",
+   "ewald_longitudinal/dynamics_results/log_equil_traj0-2-4-6-8-10-12-14.txt",
+   "ewald_longitudinal/dynamics_results/log_large_N16000_s2_r40.txt",
+   "ewald_longitudinal/dynamics_results/log_large_N4000_s0_r40.txt",
+   "ewald_longitudinal/dynamics_results/log_equil_traj1-3-5-7-9-11-13-15.txt",
+   "ewald_longitudinal/dynamics_results/log_large_N4000_s1_r40.txt",
+   "ewald_longitudinal/dynamics_results/REPORT.md",
+   "ewald_longitudinal/dynamics_results/log_large_N16000_s1_r40.txt",
+   "ewald_longitudinal/dynamics_results/log_large_N4000_s0_r48.txt",
+   "ewald_longitudinal/dynamics_results/log_control.txt",
+   "ewald_longitudinal/dynamics_results/correlations/REPORT.md",
+   "ewald_longitudinal/results/summary_kappa1_xi1.txt",
+   "ewald_longitudinal/results/periodic_graph_psd_kappa1_xi1.txt",
+   "ewald_longitudinal/equal_accuracy_xi_results/run_log.txt",
+   "ewald_longitudinal/equal_accuracy_xi_results/accepted_runs.md",
+   "ewald_longitudinal/equal_accuracy_xi_results/summary.md",
+   "ewald_longitudinal/lanczos_range_start_results/run_log.txt",
+   "ewald_longitudinal/lanczos_range_start_results/REPORT.md",
+   "ewald_longitudinal/lanczos_range_start_results/summary.md"
+  ]
+ },
+ "keyword_hits": {
+  "mori_zwanzig": [],
+  "constrained_dynamics": [],
+  "lammps": [],
+  "molecule_mapping": [],
+  "friction_tensor": [
+   "ewald_longitudinal/test_parameter_selection.py",
+   "ewald_longitudinal/README.md",
+   "ewald_longitudinal/verify_periodic_graph_psd.py",
+   "ewald_longitudinal/results/periodic_graph_psd_kappa1_xi1.txt"
+  ],
+  "vacf_vccf": [
+   "ewald_longitudinal/test_dynamic_correlations.py",
+   "ewald_longitudinal/README.md",
+   "ewald_longitudinal/dynamics_results/correlations/REPORT.md"
+  ]
+ },
+ "npz": [
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj02.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj14.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj10.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_control_traj03.npz",
+   "size_mb": 0.02,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     141
+    ],
+    "T": [
+     141,
+     3
+    ],
+    "Tkin": [
+     141
+    ],
+    "Ok": [
+     141
+    ],
+    "dP": [
+     141
+    ],
+    "vcm": [
+     141,
+     3
+    ],
+    "dt_lmax": [
+     141
+    ],
+    "lam_min": [
+     141
+    ],
+    "t_step": [
+     141
+    ],
+    "n_actions": [
+     141
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj03.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_large_N16000_seed2_rank40.npz",
+   "size_mb": 0.19,
+   "kinds": [],
+   "shapes": {
+    "damp_check": [
+     1
+    ],
+    "p_final": [
+     16000,
+     3
+    ],
+    "t": [
+     71
+    ],
+    "T": [
+     71,
+     3
+    ],
+    "Tkin": [
+     71
+    ],
+    "Ok": [
+     71
+    ],
+    "dP": [
+     71
+    ],
+    "vcm": [
+     71,
+     3
+    ],
+    "dt_lmax": [
+     71
+    ],
+    "lam_min": [
+     71
+    ],
+    "t_step": [
+     71
+    ],
+    "n_actions": [
+     71
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj15.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s15__dense_dt4__t": [
+     561
+    ],
+    "s15__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s15__dense_dt4__Tkin": [
+     561
+    ],
+    "s15__dense_dt4__Ok": [
+     561
+    ],
+    "s15__dense_dt4__dP": [
+     561
+    ],
+    "s15__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s15__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s15__dense_dt4__lam_min": [
+     561
+    ],
+    "s15__dense_dt4__t_step": [
+     561
+    ],
+    "s15__dense_dt4__n_actions": [
+     561
+    ],
+    "s15__dense_dt2__t": [
+     281
+    ],
+    "s15__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj01.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_control_traj00.npz",
+   "size_mb": 0.02,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     141
+    ],
+    "T": [
+     141,
+     3
+    ],
+    "Tkin": [
+     141
+    ],
+    "Ok": [
+     141
+    ],
+    "dP": [
+     141
+    ],
+    "vcm": [
+     141,
+     3
+    ],
+    "dt_lmax": [
+     141
+    ],
+    "lam_min": [
+     141
+    ],
+    "t_step": [
+     141
+    ],
+    "n_actions": [
+     141
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj02.npz",
+   "size_mb": 0.18,
+   "kinds": [],
+   "shapes": {
+    "s2__dense_dt4__t": [
+     561
+    ],
+    "s2__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s2__dense_dt4__Tkin": [
+     561
+    ],
+    "s2__dense_dt4__Ok": [
+     561
+    ],
+    "s2__dense_dt4__dP": [
+     561
+    ],
+    "s2__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s2__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s2__dense_dt4__lam_min": [
+     561
+    ],
+    "s2__dense_dt4__t_step": [
+     561
+    ],
+    "s2__dense_dt4__n_actions": [
+     561
+    ],
+    "s2__dense_dt2__t": [
+     281
+    ],
+    "s2__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj13.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s13__dense_dt4__t": [
+     561
+    ],
+    "s13__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s13__dense_dt4__Tkin": [
+     561
+    ],
+    "s13__dense_dt4__Ok": [
+     561
+    ],
+    "s13__dense_dt4__dP": [
+     561
+    ],
+    "s13__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s13__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s13__dense_dt4__lam_min": [
+     561
+    ],
+    "s13__dense_dt4__t_step": [
+     561
+    ],
+    "s13__dense_dt4__n_actions": [
+     561
+    ],
+    "s13__dense_dt2__t": [
+     281
+    ],
+    "s13__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_large_N4000_seed0_rank48.npz",
+   "size_mb": 0.05,
+   "kinds": [],
+   "shapes": {
+    "damp_check": [
+     1
+    ],
+    "p_final": [
+     4000,
+     3
+    ],
+    "t": [
+     71
+    ],
+    "T": [
+     71,
+     3
+    ],
+    "Tkin": [
+     71
+    ],
+    "Ok": [
+     71
+    ],
+    "dP": [
+     71
+    ],
+    "vcm": [
+     71,
+     3
+    ],
+    "dt_lmax": [
+     71
+    ],
+    "lam_min": [
+     71
+    ],
+    "t_step": [
+     71
+    ],
+    "n_actions": [
+     71
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_large_N16000_seed3_rank40.npz",
+   "size_mb": 0.19,
+   "kinds": [],
+   "shapes": {
+    "damp_check": [
+     1
+    ],
+    "p_final": [
+     16000,
+     3
+    ],
+    "t": [
+     71
+    ],
+    "T": [
+     71,
+     3
+    ],
+    "Tkin": [
+     71
+    ],
+    "Ok": [
+     71
+    ],
+    "dP": [
+     71
+    ],
+    "vcm": [
+     71,
+     3
+    ],
+    "dt_lmax": [
+     71
+    ],
+    "lam_min": [
+     71
+    ],
+    "t_step": [
+     71
+    ],
+    "n_actions": [
+     71
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj15.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj04.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s4__dense_dt4__t": [
+     561
+    ],
+    "s4__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s4__dense_dt4__Tkin": [
+     561
+    ],
+    "s4__dense_dt4__Ok": [
+     561
+    ],
+    "s4__dense_dt4__dP": [
+     561
+    ],
+    "s4__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s4__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s4__dense_dt4__lam_min": [
+     561
+    ],
+    "s4__dense_dt4__t_step": [
+     561
+    ],
+    "s4__dense_dt4__n_actions": [
+     561
+    ],
+    "s4__dense_dt2__t": [
+     281
+    ],
+    "s4__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj10.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s10__dense_dt4__t": [
+     561
+    ],
+    "s10__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s10__dense_dt4__Tkin": [
+     561
+    ],
+    "s10__dense_dt4__Ok": [
+     561
+    ],
+    "s10__dense_dt4__dP": [
+     561
+    ],
+    "s10__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s10__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s10__dense_dt4__lam_min": [
+     561
+    ],
+    "s10__dense_dt4__t_step": [
+     561
+    ],
+    "s10__dense_dt4__n_actions": [
+     561
+    ],
+    "s10__dense_dt2__t": [
+     281
+    ],
+    "s10__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_large_N16000_seed0_rank48.npz",
+   "size_mb": 0.19,
+   "kinds": [],
+   "shapes": {
+    "damp_check": [
+     1
+    ],
+    "p_final": [
+     16000,
+     3
+    ],
+    "t": [
+     71
+    ],
+    "T": [
+     71,
+     3
+    ],
+    "Tkin": [
+     71
+    ],
+    "Ok": [
+     71
+    ],
+    "dP": [
+     71
+    ],
+    "vcm": [
+     71,
+     3
+    ],
+    "dt_lmax": [
+     71
+    ],
+    "lam_min": [
+     71
+    ],
+    "t_step": [
+     71
+    ],
+    "n_actions": [
+     71
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_large_N4000_seed3_rank40.npz",
+   "size_mb": 0.05,
+   "kinds": [],
+   "shapes": {
+    "damp_check": [
+     1
+    ],
+    "p_final": [
+     4000,
+     3
+    ],
+    "t": [
+     71
+    ],
+    "T": [
+     71,
+     3
+    ],
+    "Tkin": [
+     71
+    ],
+    "Ok": [
+     71
+    ],
+    "dP": [
+     71
+    ],
+    "vcm": [
+     71,
+     3
+    ],
+    "dt_lmax": [
+     71
+    ],
+    "lam_min": [
+     71
+    ],
+    "t_step": [
+     71
+    ],
+    "n_actions": [
+     71
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_large_N16000_seed0_rank40.npz",
+   "size_mb": 0.19,
+   "kinds": [],
+   "shapes": {
+    "damp_check": [
+     1
+    ],
+    "p_final": [
+     16000,
+     3
+    ],
+    "t": [
+     71
+    ],
+    "T": [
+     71,
+     3
+    ],
+    "Tkin": [
+     71
+    ],
+    "Ok": [
+     71
+    ],
+    "dP": [
+     71
+    ],
+    "vcm": [
+     71,
+     3
+    ],
+    "dt_lmax": [
+     71
+    ],
+    "lam_min": [
+     71
+    ],
+    "t_step": [
+     71
+    ],
+    "n_actions": [
+     71
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj07.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s7__dense_dt4__t": [
+     561
+    ],
+    "s7__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s7__dense_dt4__Tkin": [
+     561
+    ],
+    "s7__dense_dt4__Ok": [
+     561
+    ],
+    "s7__dense_dt4__dP": [
+     561
+    ],
+    "s7__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s7__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s7__dense_dt4__lam_min": [
+     561
+    ],
+    "s7__dense_dt4__t_step": [
+     561
+    ],
+    "s7__dense_dt4__n_actions": [
+     561
+    ],
+    "s7__dense_dt2__t": [
+     281
+    ],
+    "s7__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_large_N4000_seed2_rank40.npz",
+   "size_mb": 0.05,
+   "kinds": [],
+   "shapes": {
+    "damp_check": [
+     1
+    ],
+    "p_final": [
+     4000,
+     3
+    ],
+    "t": [
+     71
+    ],
+    "T": [
+     71,
+     3
+    ],
+    "Tkin": [
+     71
+    ],
+    "Ok": [
+     71
+    ],
+    "dP": [
+     71
+    ],
+    "vcm": [
+     71,
+     3
+    ],
+    "dt_lmax": [
+     71
+    ],
+    "lam_min": [
+     71
+    ],
+    "t_step": [
+     71
+    ],
+    "n_actions": [
+     71
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj03.npz",
+   "size_mb": 0.18,
+   "kinds": [],
+   "shapes": {
+    "s3__dense_dt4__t": [
+     561
+    ],
+    "s3__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s3__dense_dt4__Tkin": [
+     561
+    ],
+    "s3__dense_dt4__Ok": [
+     561
+    ],
+    "s3__dense_dt4__dP": [
+     561
+    ],
+    "s3__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s3__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s3__dense_dt4__lam_min": [
+     561
+    ],
+    "s3__dense_dt4__t_step": [
+     561
+    ],
+    "s3__dense_dt4__n_actions": [
+     561
+    ],
+    "s3__dense_dt2__t": [
+     281
+    ],
+    "s3__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj09.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj08.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj05.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s5__dense_dt4__t": [
+     561
+    ],
+    "s5__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s5__dense_dt4__Tkin": [
+     561
+    ],
+    "s5__dense_dt4__Ok": [
+     561
+    ],
+    "s5__dense_dt4__dP": [
+     561
+    ],
+    "s5__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s5__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s5__dense_dt4__lam_min": [
+     561
+    ],
+    "s5__dense_dt4__t_step": [
+     561
+    ],
+    "s5__dense_dt4__n_actions": [
+     561
+    ],
+    "s5__dense_dt2__t": [
+     281
+    ],
+    "s5__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj14.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s14__dense_dt4__t": [
+     561
+    ],
+    "s14__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s14__dense_dt4__Tkin": [
+     561
+    ],
+    "s14__dense_dt4__Ok": [
+     561
+    ],
+    "s14__dense_dt4__dP": [
+     561
+    ],
+    "s14__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s14__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s14__dense_dt4__lam_min": [
+     561
+    ],
+    "s14__dense_dt4__t_step": [
+     561
+    ],
+    "s14__dense_dt4__n_actions": [
+     561
+    ],
+    "s14__dense_dt2__t": [
+     281
+    ],
+    "s14__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj11.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s11__dense_dt4__t": [
+     561
+    ],
+    "s11__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s11__dense_dt4__Tkin": [
+     561
+    ],
+    "s11__dense_dt4__Ok": [
+     561
+    ],
+    "s11__dense_dt4__dP": [
+     561
+    ],
+    "s11__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s11__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s11__dense_dt4__lam_min": [
+     561
+    ],
+    "s11__dense_dt4__t_step": [
+     561
+    ],
+    "s11__dense_dt4__n_actions": [
+     561
+    ],
+    "s11__dense_dt2__t": [
+     281
+    ],
+    "s11__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_large_N4000_seed0_rank40.npz",
+   "size_mb": 0.05,
+   "kinds": [],
+   "shapes": {
+    "damp_check": [
+     1
+    ],
+    "p_final": [
+     4000,
+     3
+    ],
+    "t": [
+     71
+    ],
+    "T": [
+     71,
+     3
+    ],
+    "Tkin": [
+     71
+    ],
+    "Ok": [
+     71
+    ],
+    "dP": [
+     71
+    ],
+    "vcm": [
+     71,
+     3
+    ],
+    "dt_lmax": [
+     71
+    ],
+    "lam_min": [
+     71
+    ],
+    "t_step": [
+     71
+    ],
+    "n_actions": [
+     71
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj05.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj11.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj00.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_large_N16000_seed1_rank40.npz",
+   "size_mb": 0.19,
+   "kinds": [],
+   "shapes": {
+    "damp_check": [
+     1
+    ],
+    "p_final": [
+     16000,
+     3
+    ],
+    "t": [
+     71
+    ],
+    "T": [
+     71,
+     3
+    ],
+    "Tkin": [
+     71
+    ],
+    "Ok": [
+     71
+    ],
+    "dP": [
+     71
+    ],
+    "vcm": [
+     71,
+     3
+    ],
+    "dt_lmax": [
+     71
+    ],
+    "lam_min": [
+     71
+    ],
+    "t_step": [
+     71
+    ],
+    "n_actions": [
+     71
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj06.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj01.npz",
+   "size_mb": 0.18,
+   "kinds": [],
+   "shapes": {
+    "s1__dense_dt4__t": [
+     561
+    ],
+    "s1__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s1__dense_dt4__Tkin": [
+     561
+    ],
+    "s1__dense_dt4__Ok": [
+     561
+    ],
+    "s1__dense_dt4__dP": [
+     561
+    ],
+    "s1__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s1__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s1__dense_dt4__lam_min": [
+     561
+    ],
+    "s1__dense_dt4__t_step": [
+     561
+    ],
+    "s1__dense_dt4__n_actions": [
+     561
+    ],
+    "s1__dense_dt2__t": [
+     281
+    ],
+    "s1__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj08.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s8__dense_dt4__t": [
+     561
+    ],
+    "s8__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s8__dense_dt4__Tkin": [
+     561
+    ],
+    "s8__dense_dt4__Ok": [
+     561
+    ],
+    "s8__dense_dt4__dP": [
+     561
+    ],
+    "s8__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s8__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s8__dense_dt4__lam_min": [
+     561
+    ],
+    "s8__dense_dt4__t_step": [
+     561
+    ],
+    "s8__dense_dt4__n_actions": [
+     561
+    ],
+    "s8__dense_dt2__t": [
+     281
+    ],
+    "s8__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj07.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj09.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s9__dense_dt4__t": [
+     561
+    ],
+    "s9__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s9__dense_dt4__Tkin": [
+     561
+    ],
+    "s9__dense_dt4__Ok": [
+     561
+    ],
+    "s9__dense_dt4__dP": [
+     561
+    ],
+    "s9__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s9__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s9__dense_dt4__lam_min": [
+     561
+    ],
+    "s9__dense_dt4__t_step": [
+     561
+    ],
+    "s9__dense_dt4__n_actions": [
+     561
+    ],
+    "s9__dense_dt2__t": [
+     281
+    ],
+    "s9__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_control_traj02.npz",
+   "size_mb": 0.02,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     141
+    ],
+    "T": [
+     141,
+     3
+    ],
+    "Tkin": [
+     141
+    ],
+    "Ok": [
+     141
+    ],
+    "dP": [
+     141
+    ],
+    "vcm": [
+     141,
+     3
+    ],
+    "dt_lmax": [
+     141
+    ],
+    "lam_min": [
+     141
+    ],
+    "t_step": [
+     141
+    ],
+    "n_actions": [
+     141
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_large_N4000_seed1_rank40.npz",
+   "size_mb": 0.05,
+   "kinds": [],
+   "shapes": {
+    "damp_check": [
+     1
+    ],
+    "p_final": [
+     4000,
+     3
+    ],
+    "t": [
+     71
+    ],
+    "T": [
+     71,
+     3
+    ],
+    "Tkin": [
+     71
+    ],
+    "Ok": [
+     71
+    ],
+    "dP": [
+     71
+    ],
+    "vcm": [
+     71,
+     3
+    ],
+    "dt_lmax": [
+     71
+    ],
+    "lam_min": [
+     71
+    ],
+    "t_step": [
+     71
+    ],
+    "n_actions": [
+     71
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj13.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_control_traj01.npz",
+   "size_mb": 0.02,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     141
+    ],
+    "T": [
+     141,
+     3
+    ],
+    "Tkin": [
+     141
+    ],
+    "Ok": [
+     141
+    ],
+    "dP": [
+     141
+    ],
+    "vcm": [
+     141,
+     3
+    ],
+    "dt_lmax": [
+     141
+    ],
+    "lam_min": [
+     141
+    ],
+    "t_step": [
+     141
+    ],
+    "n_actions": [
+     141
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj12.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s12__dense_dt4__t": [
+     561
+    ],
+    "s12__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s12__dense_dt4__Tkin": [
+     561
+    ],
+    "s12__dense_dt4__Ok": [
+     561
+    ],
+    "s12__dense_dt4__dP": [
+     561
+    ],
+    "s12__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s12__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s12__dense_dt4__lam_min": [
+     561
+    ],
+    "s12__dense_dt4__t_step": [
+     561
+    ],
+    "s12__dense_dt4__n_actions": [
+     561
+    ],
+    "s12__dense_dt2__t": [
+     281
+    ],
+    "s12__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj12.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_equil_traj04.npz",
+   "size_mb": 0.11,
+   "kinds": [],
+   "shapes": {
+    "t": [
+     700
+    ],
+    "T": [
+     700,
+     3
+    ],
+    "Tkin": [
+     700
+    ],
+    "Ok": [
+     700
+    ],
+    "dP": [
+     700
+    ],
+    "vcm": [
+     700,
+     3
+    ],
+    "dt_lmax": [
+     700
+    ],
+    "lam_min": [
+     700
+    ],
+    "t_step": [
+     700
+    ],
+    "n_actions": [
+     700
+    ],
+    "snaps": [
+     36,
+     64,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj00.npz",
+   "size_mb": 0.18,
+   "kinds": [],
+   "shapes": {
+    "s0__dense_dt4__t": [
+     561
+    ],
+    "s0__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s0__dense_dt4__Tkin": [
+     561
+    ],
+    "s0__dense_dt4__Ok": [
+     561
+    ],
+    "s0__dense_dt4__dP": [
+     561
+    ],
+    "s0__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s0__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s0__dense_dt4__lam_min": [
+     561
+    ],
+    "s0__dense_dt4__t_step": [
+     561
+    ],
+    "s0__dense_dt4__n_actions": [
+     561
+    ],
+    "s0__dense_dt2__t": [
+     281
+    ],
+    "s0__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/raw_small_traj06.npz",
+   "size_mb": 0.16,
+   "kinds": [],
+   "shapes": {
+    "s6__dense_dt4__t": [
+     561
+    ],
+    "s6__dense_dt4__T": [
+     561,
+     3
+    ],
+    "s6__dense_dt4__Tkin": [
+     561
+    ],
+    "s6__dense_dt4__Ok": [
+     561
+    ],
+    "s6__dense_dt4__dP": [
+     561
+    ],
+    "s6__dense_dt4__vcm": [
+     561,
+     3
+    ],
+    "s6__dense_dt4__dt_lmax": [
+     561
+    ],
+    "s6__dense_dt4__lam_min": [
+     561
+    ],
+    "s6__dense_dt4__t_step": [
+     561
+    ],
+    "s6__dense_dt4__n_actions": [
+     561
+    ],
+    "s6__dense_dt2__t": [
+     281
+    ],
+    "s6__dense_dt2__T": [
+     281,
+     3
+    ]
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed4.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed0.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_dense_seed1.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed3.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed6.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed2.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_dense_seed0.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed1.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_lanczos_hi_seed0.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed7.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_lanczos_hi_seed1.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  },
+  {
+   "file": "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed5.npz",
+   "size_mb": 14.78,
+   "kinds": [
+    "momenta",
+    "positions"
+   ],
+   "shapes": {
+    "q": [
+     601,
+     512,
+     3
+    ],
+    "p": [
+     601,
+     512,
+     3
+    ],
+    "dt": [],
+    "L": [],
+    "lam": [
+     600,
+     2
+    ],
+    "damping_rank": [],
+    "wall": []
+   }
+  }
+ ],
+ "classification": {
+  "case": 0,
+  "md_trajectories": [],
+  "md_forces": [],
+  "md_memory": [],
+  "model_trajectories": [
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed4.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed0.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_dense_seed1.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed3.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed6.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed2.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_dense_seed0.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed1.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_lanczos_hi_seed0.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed7.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_lanczos_hi_seed1.npz",
+   "ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed5.npz"
+  ]
+ }
+}
