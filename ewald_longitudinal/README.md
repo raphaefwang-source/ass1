@@ -114,3 +114,11 @@ in `dynamics_results/REPORT.md`.
 
 `test_production_timing_rank40_16.py` (about 10 min, single-threaded) times the final production step: noise rank
 40, damping rank 16, 56 Γ_h actions, at N = 512, 4000 and 16000. Output is `dynamics_results/production_timing_rank40_16.*`.
+
+## Dynamical correlation functions (`test_dynamic_correlations.py`)
+
+This computes the VACF, the distance-conditioned VCCF (split along and across r̂_ij(0)) and the longitudinal and
+transverse hydrodynamic-mode correlations, in the spirit of Figs. 1–3 of the CG many-body PRL (2023). It uses
+N = 512 equilibrium trajectories generated with the unchanged `test_true_dynamics.step`: dense, high-rank and
+production 40/16 runs on coupled streams, plus 6 more production seeds. Run `--stage generate --method M --seed S`
+per trajectory (raw output is git-ignored), then `--stage analyze`. Output is in `dynamics_results/correlations/`.
