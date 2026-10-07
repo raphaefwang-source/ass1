@@ -5,6 +5,54 @@ operator Γ_h and finite-time FDT thermostat, compared with dense full-periodic 
 This is a **toy application**. It is not a reproduction of Lyu & Lei, PRL 131, 177301 (2023), and no figure
 here validates real MD. The friction is pure longitudinal, K = g(r) r̂r̂ᵀ, with no transverse kernel.
 
+## Summary by validation layer (read this first)
+
+The layers follow the error chain of the fast-particle Landau preprint (Zhao, Dou, Lei): from the most local
+diagnostic to the most integrated, so that a good-looking trajectory plot cannot hide an operator, sampling or
+time-discretisation floor.
+
+**Layer 1 — operator accuracy** (static configurations, no time integration; Sections 2 and 8)
+- Γ_h (production PPPM) vs two independent dense full-periodic references, on 6 fixed configurations: relative
+  spectral error ≤ 1.3e-7 (law A) and ≤ 4.6e-8 (law B). The tight PPPM set gives ≤ 1.8e-9.
+- Error split: real cutoff, Fourier cutoff, mesh alias and mesh transfer reported separately.
+  - The exact split is ξ-independent to 1e-15.
+  - The ξ dependence of the total error comes from mesh transfer.
+  - k = 0 is retained.
+- Structure and FDT:
+  - PSD is Weyl-certified; total-momentum null space and symmetry hold to ~1e-16;
+  - frozen-q FDT identity holds to 4e-15;
+  - Lanczos 40/16 matches dense to 3e-15.
+- On 130 configurations per case visited by the long runs, the operator error is ≤ 1.5e-7.
+
+**Layer 2 — fixed-time statistical validation** (`toy_fixed_time_results/REPORT.md`, Section 9)
+- Setup: double_well_A, N = 64, 5 initial states × 16 paired noise paths, t = 0.5, 1, 2. The dense step ladder
+  2dt…dt/4 uses nested coupled noise.
+- **fast − dense:** 95 % bounds ≤ 2e-5 (≤ 1e-6 relative) for K/N, U/N, ⟨|v|⁴⟩ and MSD. One resolved but tiny systematic
+  MSD difference (≈ 2e-8 relative), consistent with the 1e-7 operator error.
+- **Dense time-step bias:**
+  - at the production dt it is not resolved; it is only bounded, e.g. |K/N| ≤ 2.7e-3 at t = 0.5;
+  - at 2dt it is resolved at t = 0.5: K/N −0.43 %, ⟨|v|⁴⟩ −1.0 %.
+- **Comparison:** fast − dense is about 6 orders of magnitude below the resolved 2dt bias and 4–6 orders below the
+  resolution of the dt test. No claim is made relative to the unresolved dt bias, and no convergence order is
+  claimed.
+
+**Layer 3 — long-time physical trends** (Sections 5–6; `toy_dynamics_results/production_t60/ab_*.png`)
+- The A/B figures of VACF, VCCF, C_L/C_T, RDF and distinct van Hove are kept for display:
+  - law B damps much more strongly (LJ: D 0.010 vs 0.058);
+  - static structure agrees between A and B within error.
+- These are long-time trends of the toy model, not validated against MD, and the 5-seed error bars are optimistic
+  given slow collective fluctuations.
+
+**Layer 4 — unresolved: the law-A diffusion difference** (Section 8; `production_t60/paired/PAIRED_ANALYSIS.md`)
+- **double_well_A:** seed-paired fast − dense D is +5.6 % (MSD) to +8.0 % (Green-Kubo) at max lag 3, with all 5 seeds
+  positive.
+- **Not a constant offset:** the difference depends on the integration limit and changes sign between time windows.
+- **lj_A** shows −4 %.
+- **Not explained:** this is neither explained nor established as an algorithmic effect. Layers 1–2 show no operator
+  or short-time discrepancy at the 1e-7 / 1e-5 level, but they do not cover t ≫ 6, where the coupled paths have
+  decorrelated.
+- The targeted long rerun with a null-control arm (about 30–36 pairs for ±3 %) has been postponed and not started.
+
 ## 1. What was integrated (and what was not changed)
 
 | piece | file | status |
@@ -325,3 +373,17 @@ gives a comparable spread: 80–100 % within |z| ≤ 2 and max |z| 1.4–7.8. Th
 **Recommendation.** A targeted rerun for law A (double_well_A first) with a null-control arm:
 - double_well_A needs about 30–36 pairs for ±3% and 61–77 for ±2%; lj_A needs about 12–13 for ±3%.
 - The design and cost are in `PAIRED_ANALYSIS.md`. It has not been started.
+
+## 9. Fixed-time paired validation (`toy_fixed_time_results/`)
+
+Script: `test_toy_fixed_time.py`. The report is `toy_fixed_time_results/REPORT.md`.
+
+Outputs:
+- `paths.csv`: every path × method × step × time;
+- `fixed_time_per_state.csv` and `fixed_time_across_states.csv`;
+- `fixed_time_verdict.csv`;
+- `fixed_time_differences.png`;
+- `selftest.json`, `run_meta.json`, `timing.json`;
+- `paths/*.npz`: per-path observables, seeds, and the q and p at t = 0.5, 1, 2.
+
+Summary in the Layer-2 paragraph above.

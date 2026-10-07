@@ -322,7 +322,7 @@ def stage_analyze(args):
         for k, v in d.items():
             tim.setdefault(k, []).append(v)
     (OUT / "timing.json").write_text(json.dumps({k: dict(mean_s=float(np.mean(v)), n=len(v)) for k, v in tim.items()}, indent=1) + "\n")
-    figure(overall)
+    figure(overall, per_state)
     print(f"{len(files)} paths, states {states}, paths per state {[len(paths_of[s]) for s in states]}")
     for v in verdict:
         print(f"t={v['t']:<4} {v['observable']:<16} fast-dense {v['fast_dense_mean']:+.2e} [{v['fast_dense_ci_low']:+.2e},{v['fast_dense_ci_high']:+.2e}]"
@@ -339,7 +339,11 @@ def write(path, rows):
             w.writerow({k: (f"{v:.10g}" if isinstance(v, (float, np.floating)) else v) for k, v in r.items()})
 
 
-def figure(overall):
+def figure(overall, per_state=None):
+    """Log-scale magnitudes, no lines across magnitudes.
+    Top: 95% bound on |mean difference| over the 5 initial states; filled = CI excludes 0 (marker at |mean|, bar to
+    the CI end farthest from 0), open = CI includes 0 (marker at the bound, i.e. an upper bound only).
+    Bottom: pathwise RMS of the per-path difference (median over initial states, bar = min..max over states)."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -347,23 +351,32 @@ def figure(overall):
               "dense@2dt_minus_dense@dt/4": ("#94a3b8", "v", "dense 2dt − dense dt/4"),
               "dense@dt_minus_dense@dt/4": ("#2563eb", "s", "dense dt − dense dt/4"),
               "dense@dt/2_minus_dense@dt/4": ("#0f766e", "^", "dense dt/2 − dense dt/4")}
-    fig, axes = plt.subplots(1, 4, figsize=(18, 4.4), layout="constrained")
-    for ax, ob in zip(axes, OBS):
+    fig, axes = plt.subplots(2, 4, figsize=(18, 7.5), layout="constrained", sharex=True)
+    for col, ob in enumerate(OBS):
         for k, (name, (c, mk, lab)) in enumerate(styles.items()):
-            rr = [r for r in overall if r["observable"] == ob and r["comparison"] == name]
-            x = np.array([r["t"] for r in rr]) * (1 + 0.03 * (k - 1.5))
-            y = np.array([r["mean_of_state_means"] for r in rr])
-            e = np.array([[r["mean_of_state_means"] - r["ci95_low"], r["ci95_high"] - r["mean_of_state_means"]] for r in rr]).T
-            ax.errorbar(x, y, yerr=e, color=c, marker=mk, ls="-", lw=1, capsize=3, label=lab)
-        lin = max(1e-12, min(abs(r["mean_of_state_means"]) for r in overall if r["observable"] == ob) * 10)
-        ax.set_yscale("symlog", linthresh=lin)
-        ax.axhline(0, color=".6", lw=.6)
-        ax.set(xscale="log", xticks=list(TIMES), xticklabels=[str(t) for t in TIMES], xlabel="time t",
-               title=ob.replace("_", " "), ylabel="difference (mean of 5 state means, 95% CI over states)")
-        ax.legend(fontsize=7)
-    fig.suptitle("double_well_A, N = 64: fixed-time differences. Fast vs dense at the production step, against the dense "
-                 "time-discretisation differences (nested coupled noise). Symlog scale; no convergence order assumed.",
-                 fontsize=10)
+            x0 = np.arange(len(TIMES)) + 0.15 * (k - 1.5)
+            for xi_, t in zip(x0, TIMES):
+                r = next(r for r in overall if r["observable"] == ob and r["comparison"] == name and r["t"] == t)
+                lo, hi, m = r["ci95_low"], r["ci95_high"], r["mean_of_state_means"]
+                bound = max(abs(lo), abs(hi))
+                if r["ci_excludes_zero"]:
+                    near = min(abs(lo), abs(hi))
+                    axes[0, col].errorbar([xi_], [abs(m)], yerr=[[abs(m) - near], [bound - abs(m)]], color=c, marker=mk,
+                                          ms=7, capsize=3, lw=1)
+                else:
+                    axes[0, col].plot([xi_], [bound], marker=mk, mfc="none", mec=c, ms=7, ls="none")
+                if per_state is not None:
+                    rms = [q["rms_pathwise"] for q in per_state if q["observable"] == ob and q["comparison"] == name and q["t"] == t]
+                    med = float(np.median(rms))
+                    axes[1, col].errorbar([xi_], [med], yerr=[[med - min(rms)], [max(rms) - med]], color=c, marker=mk,
+                                          ms=6, capsize=3, lw=1, ls="none")
+            axes[0, col].plot([], [], color=c, marker=mk, ls="none", label=lab)
+        axes[0, col].set(yscale="log", title=ob.replace("_", " "), ylabel="|mean difference|: 95% bound over 5 states")
+        axes[1, col].set(yscale="log", ylabel="pathwise RMS of the difference", xlabel="time t",
+                         xticks=range(len(TIMES)), xticklabels=[str(t) for t in TIMES])
+        axes[0, col].legend(fontsize=7, title="filled: CI excludes 0\nopen: upper bound only", title_fontsize=7)
+    fig.suptitle("double_well_A, N = 64, 5 initial states x 16 coupled noise paths: fast vs dense at the production step dt, "
+                 "and dense time-step differences (nested coupled noise). No convergence order assumed.", fontsize=10)
     fig.savefig(OUT / "fixed_time_differences.png", dpi=140)
     plt.close(fig)
 

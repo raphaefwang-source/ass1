@@ -136,6 +136,9 @@ python3 test_toy_dynamics.py --stage analyze --tag production_t60 --origins 300
 python3 test_toy_dynamics.py --stage report  --tag production_t60 --origins 300
 python3 analyze_toy_paired.py      # seed-paired fast - reference: paired_summary / lag_scan (cache only),
                                    # window_summary / operator check (need the raw files; skipped otherwise)
+python3 test_toy_fixed_time.py --stage selftest
+python3 test_toy_fixed_time.py --stage run --states 101 102 103 104 105 --paths 16 --workers 4   # ~33 min
+python3 test_toy_fixed_time.py --stage analyze   # fixed-time fast/dense + dense step ladder (toy_fixed_time_results/)
 ```
 
 - `radial_kernels.py`: laws A (e^{−κr}/r) and B (r e^{−κr}) with the toy amplitude g(r_ref) = γ, through the
