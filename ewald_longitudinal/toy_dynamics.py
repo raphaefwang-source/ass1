@@ -27,6 +27,7 @@ import time
 from pathlib import Path
 
 import numpy as np
+from scipy.spatial import cKDTree
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -52,7 +53,7 @@ def f_damp(dt, m):
 
 class Thermostat:
     def __init__(self, method, L, law, gamma, kappa, r_ref, dt, kT, mass, pppm=None,
-                 rank_noise=RANK_NOISE, rank_damp=RANK_DAMP):
+                 rank_noise=RANK_NOISE, rank_damp=RANK_DAMP, pair_search="images"):
         if method not in METHODS:
             raise ValueError(f"method must be one of {METHODS}")
         self.method, self.L, self.dt, self.kT, self.m = method, float(L), dt, kT, mass
@@ -66,7 +67,7 @@ class Thermostat:
             self.record["operator"] = self.lat.record()
         else:
             K = rk.toy_kernel(law, gamma, kappa, r_ref, self.pppm["xi"])
-            self.fast = rk.FastFriction(L, K, self.pppm["s"], self.pppm["eta"], self.pppm["p"])
+            self.fast = rk.FastFriction(L, K, self.pppm["s"], self.pppm["eta"], self.pppm["p"], pair_search=pair_search)
             self.record["operator"] = self.fast.record()
             if method == "pppm_lanczos":
                 self.record.update(rank_noise=rank_noise, rank_damp=rank_damp)
@@ -93,7 +94,40 @@ class Thermostat:
         return p_new, info
 
 
-def run(potential, thermostat, q0, p0, steps, stride, seed, burn=0, stop_rmin=0.45):
+def conservative_force_neighbor(q, box, potential, epsilon=1.0, sigma=1.0, r_on=2.0, r_cut=2.5):
+    """Same pair potential, switch and switch-derivative term as v2.conservative_force (v2.pair_potential), but the
+    pairs come from a periodic KD-tree within r_cut*sigma instead of all N(N-1)/2 pairs: O(N log N).
+
+    Forces and energy are identical to the all-pair version up to summation order (pairs beyond r_cut contribute
+    exactly zero there). rmin is the minimum over pairs within the cutoff; it equals the all-pair minimum whenever
+    any pair is closer than r_cut (always at the toy densities). Requires r_cut*sigma < box/2.
+    """
+    L = float(np.asarray(box).ravel()[0])
+    rc = r_cut * sigma
+    if not rc < L / 2:
+        raise ValueError("neighbour list requires r_cut*sigma < box/2")
+    q = np.asarray(q, float)
+    n = len(q)
+    x = np.mod(q, L)
+    x[x >= L] = 0.0                                          # guard the rounding case q % L == L
+    pairs = cKDTree(x, boxsize=L).query_pairs(rc, output_type="ndarray")
+    if len(pairs) == 0:
+        return np.zeros_like(q), 0.0, np.inf
+    i, j = pairs[:, 0], pairs[:, 1]
+    dr = v2.minimum_image(q[i] - q[j], L)
+    r = np.linalg.norm(dr, axis=1)
+    if np.any(r < 1e-12):
+        raise ValueError("Coincident particles.")
+    u, du = v2.pair_potential(r, potential, epsilon=epsilon, sigma=sigma, r_on=r_on, r_cut=r_cut)
+    fij = -du[:, None] * dr / r[:, None]
+    force = np.stack([np.bincount(i, fij[:, c], n) - np.bincount(j, fij[:, c], n) for c in range(3)], axis=1)
+    return force, float(u.sum()), float(r.min())
+
+
+FORCES = {"neighbor": conservative_force_neighbor, "allpairs": v2.conservative_force}
+
+
+def run(potential, thermostat, q0, p0, steps, stride, seed, burn=0, stop_rmin=0.45, force_method="neighbor"):
     """Integrate `burn + steps` steps from (q0, p0); save every `stride` steps after burn-in.
 
     Returns dict with Q (unwrapped), V (velocity), t, box, diagnostics, final state and RNG state for restart.
@@ -103,7 +137,8 @@ def run(potential, thermostat, q0, p0, steps, stride, seed, burn=0, stop_rmin=0.
     rng = np.random.default_rng(seed)
     q, p = np.array(q0, float), np.array(p0, float)
     n = len(q)
-    force, energy, rmin = v2.conservative_force(q, L, potential)
+    conservative_force = FORCES[force_method]               # runs before 2026-10-08 used "allpairs"
+    force, energy, rmin = conservative_force(q, L, potential)
     Q, V, T, diag = [], [], [], []
     t_wall = time.perf_counter()
     lam_rng = [np.inf, -np.inf]
@@ -122,11 +157,12 @@ def run(potential, thermostat, q0, p0, steps, stride, seed, burn=0, stop_rmin=0.
         p, info = th.o_step(q, p, xi)
         lam_rng = [min(lam_rng[0], info["lam_min"]), max(lam_rng[1], info["lam_max"])]
         q = q + 0.5 * dt / m * p
-        force, energy, rmin = v2.conservative_force(q, L, potential)
+        force, energy, rmin = conservative_force(q, L, potential)
         p = p + 0.5 * dt * force
         if not np.all(np.isfinite(p)) or rmin < stop_rmin:
             raise RuntimeError("Unstable close encounter: reduce dt (no force clipping is applied).")
     meta = dict(potential=potential, thermostat=th.record, steps=steps, burn=burn, stride=stride, seed=seed,
+                force_method=force_method,
                 sample_interval=stride * dt, burn_in_time=burn * dt, production_time=steps * dt,
                 V_kind="velocity (p/m), not momentum", positions="unwrapped", n=n, box=L,
                 lam_range=lam_rng, wall_time=time.perf_counter() - t_wall)

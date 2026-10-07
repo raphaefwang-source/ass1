@@ -69,6 +69,40 @@ class FastOperator(unittest.TestCase):
             self.assertGreater(np.linalg.eigvalsh(G)[3], 0.0)
 
 
+class Enumeration(unittest.TestCase):
+    """Cost-optimisation replacements must reproduce the old enumerations exactly (same pairs, same forces)."""
+
+    def test_tree_pair_search_matches_image_enumeration(self):
+        rng = np.random.default_rng(11)
+        for N, L in ((40, 5.5), (120, 7.7)):
+            x = rng.uniform(0, L, (N, 3))
+            for rc in (0.3 * L, 0.49 * L, 0.51 * L, 1.07 * L, 1.6 * L):
+                a, b = rk.real_pairs(x, L, rc), rk.real_pairs_tree(x, L, rc)
+                ka, kb = (np.lexsort((*np.round(c[2], 9).T[::-1], c[1], c[0])) for c in (a, b))
+                self.assertEqual(len(ka), len(kb))
+                np.testing.assert_array_equal(a[0][ka], b[0][kb])
+                np.testing.assert_array_equal(a[1][ka], b[1][kb])
+                np.testing.assert_allclose(a[2][ka], b[2][kb], rtol=0, atol=1e-12)
+        fo = rk.FastFriction(5.5, rk.toy_kernel("B", 0.5, 0.7, 1.3, 0.7), 4.10, 0.7, 7, pair_search="images")
+        fn = rk.FastFriction(5.5, rk.toy_kernel("B", 0.5, 0.7, 1.3, 0.7), 4.10, 0.7, 7, pair_search="tree")
+        x = rng.uniform(0, 5.5, (24, 3))
+        Go, Gn = fo.gamma_h(x).dense(), fn.gamma_h(x).dense()
+        np.testing.assert_allclose(Gn, Go, rtol=0, atol=1e-14 * np.abs(Go).max())
+
+    def test_neighbour_list_force_matches_all_pairs(self):
+        ck = HERE / "toy_models/v2_results/restart_checkpoints/double_well_burn140/lattice/double_well_A/seed_101/restart.npz"
+        with np.load(ck) as c:
+            q64 = c["Q"]
+        rng = np.random.default_rng(12)
+        for pot in ("lj", "double_well"):
+            for q, L in ((q64, 5.5), (q64 + rng.normal(0, 0.05, q64.shape) + 5.5 * rng.integers(-2, 3, q64.shape), 5.5)):
+                fa, ua, ra = v2.conservative_force(q, L, pot)
+                fn, un, rn = td.conservative_force_neighbor(q, L, pot)
+                np.testing.assert_allclose(fn, fa, rtol=0, atol=1e-13 * np.abs(fa).max())
+                self.assertAlmostEqual(un, ua, delta=1e-12 * abs(ua))
+                self.assertEqual(rn, ra)
+
+
 class Dynamics(unittest.TestCase):
     def test_noise_function_uses_explicit_temperature(self):
         f = td.f_noise(0.01, 0.7, 2.0)

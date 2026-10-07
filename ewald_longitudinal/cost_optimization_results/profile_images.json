@@ -1,0 +1,186 @@
+{
+ "N64_A": {
+  "N": 64,
+  "L": 5.499999999999999,
+  "law": "A",
+  "mesh_M": 15,
+  "rc": 5.857142857142857,
+  "kc": 5.739999999999999,
+  "step_median": {
+   "force_1": 0.000404601500008539,
+   "operator_build": 0.030043801499999745,
+   "lanczos_total": 0.05775009250004359,
+   "force_2": 0.0005105225000079372,
+   "lanczos_action": 0.05459422650002921,
+   "lanczos_reorth": 0.0009396790000835153,
+   "lanczos_small": 0.00034669350003468935,
+   "lanczos_other": 0.0018262389999108564,
+   "n_actions": 56.0,
+   "step_total": 0.08873274450004942
+  },
+  "matvec": {
+   "real_space": 0.00048411865000161917,
+   "spread": 0.00013679175000049784,
+   "fft_forward": 0.00013870299999894087,
+   "influence": 5.512395000266679e-05,
+   "fft_inverse": 0.00013892464999969435,
+   "gather": 0.00011736410000082744,
+   "degree_term": 1.3994249999882412e-05,
+   "matvec_total": 0.0009994200500017315,
+   "breakdown_vs_matvec_maxdiff": 1.4829980151465687e-16
+  },
+  "build": {
+   "neighbour_pairs": 0.05485494699996707,
+   "real_weights": 0.0006441030000132741,
+   "stencil": 0.0007595449999939774,
+   "degree": 0.0006544700000290504,
+   "n_real_pairs": 9538
+  },
+  "force_one_call": {
+   "allpairs": 0.0004474255999980414,
+   "neighbor": 0.0002923548000012488
+  },
+  "share_actions": 0.6152658390950457,
+  "timed_steps": 4,
+  "warmup_steps": 2,
+  "pair_search": "images"
+ },
+ "N64_B": {
+  "N": 64,
+  "L": 5.499999999999999,
+  "law": "B",
+  "mesh_M": 15,
+  "rc": 5.857142857142857,
+  "kc": 5.739999999999999,
+  "step_median": {
+   "force_1": 0.0003331750000086231,
+   "operator_build": 0.028597369500005243,
+   "lanczos_total": 0.05869396250000136,
+   "force_2": 0.0005156060000217622,
+   "lanczos_action": 0.05510283750004419,
+   "lanczos_reorth": 0.00093900149994397,
+   "lanczos_small": 0.0004099899999800982,
+   "lanczos_other": 0.002195488000097612,
+   "n_actions": 56.0,
+   "step_total": 0.08818612850001273
+  },
+  "matvec": {
+   "real_space": 0.000628399099997523,
+   "spread": 0.0001804028500060895,
+   "fft_forward": 0.00022540499999195162,
+   "influence": 8.165725000424117e-05,
+   "fft_inverse": 0.0001908966500025144,
+   "gather": 0.00018594269999425706,
+   "degree_term": 2.4194299996338483e-05,
+   "matvec_total": 0.0012010748499989177,
+   "breakdown_vs_matvec_maxdiff": 5.5059588583574645e-17
+  },
+  "build": {
+   "neighbour_pairs": 0.026253611000015553,
+   "real_weights": 0.0005744169999957194,
+   "stencil": 0.0007509420000246791,
+   "degree": 0.0005510809999691446,
+   "n_real_pairs": 9506
+  },
+  "force_one_call": {
+   "allpairs": 0.0004423945999974421,
+   "neighbor": 0.0003269585999987612
+  },
+  "share_actions": 0.6248469962034475,
+  "timed_steps": 4,
+  "warmup_steps": 2,
+  "pair_search": "images"
+ },
+ "N512_A": {
+  "N": 512,
+  "L": 10.999999999999998,
+  "law": "A",
+  "mesh_M": 30,
+  "rc": 5.857142857142857,
+  "kc": 5.739999999999999,
+  "step_median": {
+   "force_1": 0.002434761500012428,
+   "operator_build": 1.6890445735000128,
+   "lanczos_total": 0.5266791624999883,
+   "force_2": 0.0025508779999938724,
+   "lanczos_action": 0.5182774740000866,
+   "lanczos_reorth": 0.003078693499844576,
+   "lanczos_small": 0.00043028999999705775,
+   "lanczos_other": 0.004976359000266939,
+   "n_actions": 56.0,
+   "step_total": 2.2204006935000393
+  },
+  "matvec": {
+   "real_space": 0.004173639599997613,
+   "spread": 0.0013969092499991123,
+   "fft_forward": 0.0005825981500095168,
+   "influence": 0.0003111742999863054,
+   "fft_inverse": 0.0005786243999978069,
+   "gather": 0.0013088891000137437,
+   "degree_term": 2.8179549994433733e-05,
+   "matvec_total": 0.008378980099999466,
+   "breakdown_vs_matvec_maxdiff": 1.5329997665981036e-16
+  },
+  "build": {
+   "neighbour_pairs": 0.6709757500000251,
+   "real_weights": 0.005476842999996734,
+   "stencil": 0.004160585000022365,
+   "degree": 0.007166901000005055,
+   "n_real_pairs": 77823
+  },
+  "force_one_call": {
+   "allpairs": 0.02824375659999987,
+   "neighbor": 0.0024391921999949774
+  },
+  "share_actions": 0.2334161917338986,
+  "timed_steps": 4,
+  "warmup_steps": 2,
+  "pair_search": "images"
+ },
+ "N512_B": {
+  "N": 512,
+  "L": 10.999999999999998,
+  "law": "B",
+  "mesh_M": 30,
+  "rc": 5.857142857142857,
+  "kc": 5.739999999999999,
+  "step_median": {
+   "force_1": 0.0024518940000177736,
+   "operator_build": 1.4534558179999806,
+   "lanczos_total": 0.4900552449999793,
+   "force_2": 0.0025936400000148296,
+   "lanczos_action": 0.48188483750016076,
+   "lanczos_reorth": 0.0028178005001677775,
+   "lanczos_small": 0.00043820300001584656,
+   "lanczos_other": 0.00473702799965281,
+   "n_actions": 56.0,
+   "step_total": 1.9485676664999971
+  },
+  "matvec": {
+   "real_space": 0.003997806200001719,
+   "spread": 0.0012350949500046227,
+   "fft_forward": 0.0005626487999961683,
+   "influence": 0.0002890402499957645,
+   "fft_inverse": 0.0005404395500050895,
+   "gather": 0.0011656188500012376,
+   "degree_term": 2.6073649988234137e-05,
+   "matvec_total": 0.009964425449999226,
+   "breakdown_vs_matvec_maxdiff": 1.1968814259938202e-16
+  },
+  "build": {
+   "neighbour_pairs": 1.6255548330000238,
+   "real_weights": 0.006063587999960873,
+   "stencil": 0.003565731000037431,
+   "degree": 0.005399543999999423,
+   "n_real_pairs": 77617
+  },
+  "force_one_call": {
+   "allpairs": 0.026559840000004442,
+   "neighbor": 0.0023188971999957174
+  },
+  "share_actions": 0.2473020802842935,
+  "timed_steps": 4,
+  "warmup_steps": 2,
+  "pair_search": "images"
+ }
+}

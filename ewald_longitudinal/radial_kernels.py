@@ -32,6 +32,7 @@ from pathlib import Path
 
 import numpy as np
 from scipy import special
+from scipy.spatial import cKDTree
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -138,22 +139,54 @@ def toy_kernel(law, gamma, kappa, r_ref, xi):
     return RadialEwald(law, kappa, xi, amplitude(law, gamma, kappa, r_ref))
 
 
+def real_pairs_tree(x, L, rc):
+    """Same pair-image set as test_lanczos_fdt.real_pairs (all i < j and lattice vectors n with
+    |x_i - x_j + nL| <= rc, displacement d = x_i - x_j + nL), without the O(N^2 n_img) enumeration.
+
+    rc < L/2: identical to real_pairs (periodic KD-tree, one image per pair).
+    rc >= L/2: a KD-tree on x against a KD-tree on the (2m+1)^3 replicas x_j - nL, |n_c| <= m = floor(rc/L) + 1,
+    keeping i < j (each unordered pair image (i, j, n) ~ (j, i, -n) is found once). Self images (i = j, n != 0)
+    are skipped as in real_pairs; they do not act on a graph Laplacian. Pair order differs from real_pairs.
+    """
+    x = np.asarray(x, float)
+    N = len(x)
+    if rc < L / 2:
+        return real_pairs(x, L, rc)
+    m = int(np.floor(rc / L)) + 1
+    g = np.arange(-m, m + 1)
+    shifts = np.stack(np.meshgrid(g, g, g, indexing="ij"), axis=-1).reshape(-1, 3) * L
+    Y = (x[None, :, :] - shifts[:, None, :]).reshape(-1, 3)
+    sdm = cKDTree(x).sparse_distance_matrix(cKDTree(Y), rc, output_type="ndarray")
+    i, k = sdm["i"].astype(np.intp), sdm["j"].astype(np.intp)
+    j = k % N
+    keep = i < j
+    i, k, j = i[keep], k[keep], j[keep]
+    return i, j, x[i] - Y[k]
+
+
+PAIR_SEARCH = {"images": real_pairs, "tree": real_pairs_tree}
+
+
 class FastFriction:
     """PPPM friction operator for one box: mesh/influence function built once, Gamma_h(q) per configuration.
 
     gamma_h(x) returns a GammaH instance whose matvec / dense are the project's literal implementations.
+    pair_search: "images" (test_lanczos_fdt.real_pairs; all pairs x image vectors when rc >= L/2, used by every
+    run before the cost-optimisation round) or "tree" (real_pairs_tree; same pair set, O(N log N)).
     """
 
-    def __init__(self, L, kernel, s, eta, p):
+    def __init__(self, L, kernel, s, eta, p, pair_search="images"):
         self.L, self.K, self.s, self.eta, self.p = float(L), kernel, float(s), float(eta), int(p)
         self.rc, self.kc = s / kernel.xi, 2 * kernel.xi * s
         self.mesh = make_mesh(self.L, kernel, self.kc, eta, p)
+        self.pair_search = pair_search
+        self._pairs = PAIR_SEARCH[pair_search]
 
     def gamma_h(self, x):
         x = np.asarray(x, float) % self.L
         op = GammaH.__new__(GammaH)
         op.x, op.L, op.N, op.rc, op.kc = x, self.L, len(x), self.rc, self.kc
-        op.i, op.j, op.d = real_pairs(x, self.L, self.rc)
+        op.i, op.j, op.d = self._pairs(x, self.L, self.rc)
         r = np.linalg.norm(op.d, axis=1)
         op.w = self.K.theta_S_scaled_closed(r) * np.exp(-(self.K.xi * r) ** 2) / r ** 2
         op.mesh = self.mesh
@@ -166,4 +199,5 @@ class FastFriction:
         m = self.mesh
         return dict(law=self.K.law, amplitude=self.K.amp, kappa=self.K.kap, xi=self.K.xi, s=self.s, rc=self.rc,
                     kc=self.kc, eta_N=self.eta, eta_actual=m.eta_actual, p=self.p, M=m.M, n_modes=m.n_modes,
-                    n_excluded=m.n_excluded, k0_retained=bool(np.any(np.all(m.mv == 0, axis=1))))
+                    n_excluded=m.n_excluded, k0_retained=bool(np.any(np.all(m.mv == 0, axis=1))),
+                    pair_search=self.pair_search)

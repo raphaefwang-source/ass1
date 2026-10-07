@@ -1,0 +1,152 @@
+[
+ {
+  "stage": "profile",
+  "argv": [
+   "--stage",
+   "profile",
+   "--N",
+   "64",
+   "512",
+   "--reps",
+   "4"
+  ],
+  "wall_s": 37.15208601951599,
+  "cpu_s_main": 36.91972298
+ },
+ {
+  "stage": "profile",
+  "argv": [
+   "--stage",
+   "profile",
+   "--N",
+   "64",
+   "512",
+   "--reps",
+   "4",
+   "--pair-search",
+   "tree"
+  ],
+  "wall_s": 8.34334421157837,
+  "cpu_s_main": 8.290535536,
+  "cpu_s_children": 0.0
+ },
+ {
+  "stage": "search",
+  "argv": [
+   "--stage",
+   "search",
+   "--laws",
+   "A",
+   "B",
+   "--timing-N",
+   "64",
+   "512"
+  ],
+  "wall_s": 138.47457575798035,
+  "cpu_s_main": 137.516432415,
+  "cpu_s_children": 0.0
+ },
+ {
+  "stage": "search",
+  "argv": [
+   "--stage",
+   "search",
+   "--laws",
+   "B",
+   "--tols",
+   "5e-8",
+   "--timing-N",
+   "64",
+   "512"
+  ],
+  "wall_s": 35.643924713134766,
+  "cpu_s_main": 35.409509220000004,
+  "cpu_s_children": 0.0
+ },
+ {
+  "stage": "ranks",
+  "argv": [
+   "--stage",
+   "ranks",
+   "--laws",
+   "A",
+   "--tols",
+   "2e-7",
+   "1e-6",
+   "1e-4",
+   "--N",
+   "64",
+   "512",
+   "--vectors",
+   "6",
+   "--top",
+   "2"
+  ],
+  "wall_s": 65.60500884056091,
+  "cpu_s_main": 65.291095666,
+  "cpu_s_children": 0.0
+ },
+ {
+  "stage": "ranks",
+  "argv": [
+   "--stage",
+   "ranks",
+   "--laws",
+   "B",
+   "--tols",
+   "5e-8",
+   "2e-7",
+   "1e-6",
+   "1e-4",
+   "--N",
+   "64",
+   "512",
+   "--vectors",
+   "6",
+   "--top",
+   "2"
+  ],
+  "wall_s": 83.15524983406067,
+  "cpu_s_main": 82.695101841,
+  "cpu_s_children": 65.943032
+ },
+ {
+  "stage": "refine",
+  "argv": [
+   "--stage",
+   "refine",
+   "--laws",
+   "A",
+   "B",
+   "--tols",
+   "5e-8",
+   "2e-7",
+   "1e-6",
+   "1e-4",
+   "--N",
+   "512",
+   "--top",
+   "3"
+  ],
+  "wall_s": 109.51242566108704,
+  "cpu_s_main": 108.818686615,
+  "cpu_s_children": 0.0
+ },
+ {
+  "stage": "slowmodes",
+  "argv": [
+   "--stage",
+   "slowmodes",
+   "--candidates",
+   "cost_optimization_results/candidates.json",
+   "--N",
+   "64",
+   "512",
+   "--vectors",
+   "4"
+  ],
+  "wall_s": 89.54791259765625,
+  "cpu_s_main": 89.070242607,
+  "cpu_s_children": 0.0
+ }
+]
