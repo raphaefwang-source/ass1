@@ -148,5 +148,136 @@
   "wall_s": 89.54791259765625,
   "cpu_s_main": 89.070242607,
   "cpu_s_children": 0.0
+ },
+ {
+  "stage": "ranks_large",
+  "argv": [
+   "--stage",
+   "ranks_large",
+   "--candidates",
+   "cost_optimization_results/candidates.json",
+   "--N",
+   "1728",
+   "4096",
+   "--vectors",
+   "3"
+  ],
+  "wall_s": 244.57908749580383,
+  "cpu_s_main": 243.429550562,
+  "cpu_s_children": 0.0
+ },
+ {
+  "stage": "modes",
+  "argv": [
+   "--stage",
+   "modes",
+   "--candidates",
+   "cost_optimization_results/candidates.json",
+   "--laws",
+   "A",
+   "B",
+   "--N",
+   "64",
+   "512",
+   "1728",
+   "4096",
+   "--vectors",
+   "4"
+  ],
+  "wall_s": 125.65918731689453,
+  "cpu_s_main": 125.03103676799999,
+  "cpu_s_children": 0.0
+ },
+ {
+  "stage": "validate",
+  "argv": [
+   "--stage",
+   "validate",
+   "--candidates",
+   "cost_optimization_results/candidates_validate.json",
+   "--states",
+   "101",
+   "102",
+   "103",
+   "104",
+   "105",
+   "--paths",
+   "2",
+   "--workers",
+   "4"
+  ],
+  "wall_s": 0.2621750831604004,
+  "cpu_s_main": 0.25618451799999997,
+  "cpu_s_children": 0.030543999999999998
+ },
+ {
+  "stage": "timing",
+  "argv": [
+   "--stage",
+   "timing",
+   "--candidates",
+   "cost_optimization_results/candidates_timing.json",
+   "--N",
+   "64",
+   "256",
+   "512",
+   "--reps",
+   "5",
+   "--warm",
+   "2"
+  ],
+  "wall_s": 207.47525262832642,
+  "cpu_s_main": 0.07810051600000001,
+  "cpu_s_children": 206.38503599999999
+ },
+ {
+  "stage": "validate (path runs, 4 workers; first analysis crashed before logging)",
+  "argv": [
+   "--stage",
+   "validate"
+  ],
+  "wall_s": null,
+  "cpu_s_main": 0.0,
+  "cpu_s_children": 1202.138637875998,
+  "note": "sum of per-path wall times"
+ },
+ {
+  "stage": "unlogged",
+  "argv": [],
+  "wall_s": null,
+  "cpu_s_main": 0.0,
+  "cpu_s_children": 180.0,
+  "note": "estimate: interrupted first ranks run (~60 s), pair/force equivalence checks (~120 s)"
+ },
+ {
+  "stage": "timing",
+  "argv": [
+   "--stage",
+   "timing",
+   "--candidates",
+   "cost_optimization_results/candidates_timing.json",
+   "--N",
+   "1728",
+   "4096",
+   "--reps",
+   "3",
+   "--warm",
+   "1",
+   "--direct-max",
+   "1728"
+  ],
+  "wall_s": 295.65410137176514,
+  "cpu_s_main": 0.037191859999999966,
+  "cpu_s_children": 293.919648
+ },
+ {
+  "stage": "table",
+  "argv": [
+   "--stage",
+   "table"
+  ],
+  "wall_s": 0.0025107860565185547,
+  "cpu_s_main": 0.002496363999999973,
+  "cpu_s_children": 0.0
  }
 ]

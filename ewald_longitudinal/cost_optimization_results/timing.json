@@ -1,0 +1,3684 @@
+[
+ {
+  "method": "dense",
+  "N": 64,
+  "law": "A",
+  "L": 5.499999999999999,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 2.3946824700001343,
+  "step_median": 0.016714148000119167,
+  "step_min": 0.016657068000313302,
+  "step_max": 0.016761533000135387,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": null,
+  "operator_build": 0.010972640000090905,
+  "matrix_function": 0.00485286899993298,
+  "peak_rss_mb": 501.1484375,
+  "tag": "dense",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 64,
+  "law": "A",
+  "L": 5.499999999999999,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 0.8289134010001362,
+  "step_median": 0.018852444999993168,
+  "step_min": 0.018844992999675014,
+  "step_max": 0.01948601399999461,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0001006252142750392,
+  "operator_build": 0.010541923000346287,
+  "matrix_function": 0.007594350999625021,
+  "peak_rss_mb": 501.27734375,
+  "tag": "direct_base_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 64,
+  "law": "A",
+  "L": 5.499999999999999,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "images"
+  },
+  "precompute": 0.004486745999656705,
+  "step_median": 0.08250614199960182,
+  "step_min": 0.08201734200019928,
+  "step_max": 0.08765535800012003,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0009680761428642524,
+  "operator_build": 0.02453351099984502,
+  "matrix_function": 0.05778493100024207,
+  "peak_rss_mb": 159.8125,
+  "tag": "baseline_images",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 64,
+  "law": "A",
+  "L": 5.499999999999999,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "tree"
+  },
+  "precompute": 0.0070069660000626754,
+  "step_median": 0.06599217099983434,
+  "step_min": 0.06203114400022969,
+  "step_max": 0.06698666800002684,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.001007619357169785,
+  "operator_build": 0.004733766999834188,
+  "matrix_function": 0.060552697999810334,
+  "peak_rss_mb": 114.78515625,
+  "tag": "baseline_tree",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 64,
+  "law": "A",
+  "L": 5.499999999999999,
+  "params": {
+   "law": "A",
+   "tag": "A_2e-7",
+   "budget": "2e-7",
+   "xi": 0.85,
+   "s": 4.1,
+   "eta": 0.6779116381586452,
+   "p": 7,
+   "rank_noise": 32,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 1.3615839771365663e-07,
+   "est_step_N512": 0.2909582393413075,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     32,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     20,
+     4
+    ],
+    "1728": [
+     24,
+     4
+    ],
+    "4096": [
+     32,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 0.00525259999994887,
+  "step_median": 0.036697545999686554,
+  "step_min": 0.03584728999976505,
+  "step_max": 0.03705831200022658,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0008637163610703485,
+  "operator_build": 0.00275082600001042,
+  "matrix_function": 0.03317493399981686,
+  "peak_rss_mb": 112.83984375,
+  "tag": "A_2e-7",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 64,
+  "law": "A",
+  "L": 5.499999999999999,
+  "params": {
+   "law": "A",
+   "tag": "A_2e-7",
+   "budget": "2e-7",
+   "xi": 0.85,
+   "s": 4.1,
+   "eta": 0.6779116381586452,
+   "p": 7,
+   "rank_noise": 32,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 1.3615839771365663e-07,
+   "est_step_N512": 0.2909582393413075,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     32,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     20,
+     4
+    ],
+    "1728": [
+     24,
+     4
+    ],
+    "4096": [
+     32,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 2.3777944710000156,
+  "step_median": 0.016885970000203088,
+  "step_min": 0.01672621900024751,
+  "step_max": 0.017442109000057826,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.00010368255553001088,
+  "operator_build": 0.010967719000291254,
+  "matrix_function": 0.005145688999618869,
+  "peak_rss_mb": 501.44140625,
+  "tag": "direct_A_2e-7_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 64,
+  "law": "A",
+  "L": 5.499999999999999,
+  "params": {
+   "law": "A",
+   "tag": "A_1e-6",
+   "budget": "1e-6",
+   "xi": 0.85,
+   "s": 3.9,
+   "eta": 0.6448427777606625,
+   "p": 6,
+   "rank_noise": 24,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 6.972441267509237e-07,
+   "est_step_N512": 0.17597187700099917,
+   "eta_requested_at_512": 0.7,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     24,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     12,
+     3
+    ],
+    "512": [
+     20,
+     3
+    ],
+    "1728": [
+     20,
+     3
+    ],
+    "4096": [
+     24,
+     3
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.00473911200015209,
+  "step_median": 0.02556792299992594,
+  "step_min": 0.0253388759997506,
+  "step_max": 0.02626447000011467,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0007458485357087089,
+  "operator_build": 0.0022138849999464583,
+  "matrix_function": 0.022534486000040488,
+  "peak_rss_mb": 111.85546875,
+  "tag": "A_1e-6",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 64,
+  "law": "A",
+  "L": 5.499999999999999,
+  "params": {
+   "law": "A",
+   "tag": "A_1e-4",
+   "budget": "1e-4",
+   "xi": 0.85,
+   "s": 3.2,
+   "eta": 0.7936526495515848,
+   "p": 5,
+   "rank_noise": 16,
+   "rank_damp": 3,
+   "M512": 24,
+   "err512": 5.2172684954406136e-05,
+   "est_step_N512": 0.05313864950304984,
+   "eta_requested_at_512": 0.95,
+   "ranks_by_N": {
+    "64": [
+     10,
+     3
+    ],
+    "512": [
+     16,
+     3
+    ],
+    "1728": [
+     20,
+     3
+    ],
+    "4096": [
+     24,
+     3
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     2
+    ],
+    "512": [
+     10,
+     2
+    ],
+    "1728": [
+     10,
+     2
+    ],
+    "4096": [
+     12,
+     2
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.004281269000330212,
+  "step_median": 0.01131197999984579,
+  "step_min": 0.011146645999815519,
+  "step_max": 0.011497539999709261,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0004280346315681527,
+  "operator_build": 0.0015088559998730489,
+  "matrix_function": 0.009021977999964292,
+  "peak_rss_mb": 111.56640625,
+  "tag": "A_1e-4",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "dense",
+  "N": 64,
+  "law": "B",
+  "L": 5.499999999999999,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 2.420910764999917,
+  "step_median": 0.016980646999854798,
+  "step_min": 0.016812014000151976,
+  "step_max": 0.017505384999822127,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": null,
+  "operator_build": 0.011171544999797334,
+  "matrix_function": 0.0048656910003046505,
+  "peak_rss_mb": 501.32421875,
+  "tag": "dense",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 64,
+  "law": "B",
+  "L": 5.499999999999999,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 2.0447027390000585,
+  "step_median": 0.019394042999920202,
+  "step_min": 0.01920232800011945,
+  "step_max": 0.021443361999899935,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0001012410356955635,
+  "operator_build": 0.01088815599996451,
+  "matrix_function": 0.007779674999710551,
+  "peak_rss_mb": 501.33203125,
+  "tag": "direct_base_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 64,
+  "law": "B",
+  "L": 5.499999999999999,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "images"
+  },
+  "precompute": 0.0037063919999127393,
+  "step_median": 0.09031003300015072,
+  "step_min": 0.08630563399992752,
+  "step_max": 0.09894287299994176,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0010579685000249941,
+  "operator_build": 0.0260963869995976,
+  "matrix_function": 0.06286228199996913,
+  "peak_rss_mb": 155.43359375,
+  "tag": "baseline_images",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 64,
+  "law": "B",
+  "L": 5.499999999999999,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "tree"
+  },
+  "precompute": 0.003480755000055069,
+  "step_median": 0.0623640440003328,
+  "step_min": 0.059273136999763665,
+  "step_max": 0.0709086860001662,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0009552304285713424,
+  "operator_build": 0.004517222000231413,
+  "matrix_function": 0.05699207899988323,
+  "peak_rss_mb": 114.6015625,
+  "tag": "baseline_tree",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 64,
+  "law": "B",
+  "L": 5.499999999999999,
+  "params": {
+   "law": "B",
+   "tag": "B_5e-8",
+   "budget": "5e-8",
+   "xi": 1.0,
+   "s": 3.9,
+   "eta": 0.6827747058642308,
+   "p": 7,
+   "rank_noise": 12,
+   "rank_damp": 5,
+   "M512": 40,
+   "err512": 3.5275408637207224e-08,
+   "est_step_N512": 0.13165164750315247,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     8,
+     5
+    ],
+    "512": [
+     12,
+     5
+    ],
+    "1728": [
+     16,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     12,
+     5
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 0.004792476999682549,
+  "step_median": 0.018947786999888194,
+  "step_min": 0.01844200899995485,
+  "step_max": 0.028801146999740013,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0008615689411646385,
+  "operator_build": 0.002438883999730024,
+  "matrix_function": 0.015713262000190298,
+  "peak_rss_mb": 113.05859375,
+  "tag": "B_5e-8",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 64,
+  "law": "B",
+  "L": 5.499999999999999,
+  "params": {
+   "law": "B",
+   "tag": "B_5e-8",
+   "budget": "5e-8",
+   "xi": 1.0,
+   "s": 3.9,
+   "eta": 0.6827747058642308,
+   "p": 7,
+   "rank_noise": 12,
+   "rank_damp": 5,
+   "M512": 40,
+   "err512": 3.5275408637207224e-08,
+   "est_step_N512": 0.13165164750315247,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     8,
+     5
+    ],
+    "512": [
+     12,
+     5
+    ],
+    "1728": [
+     16,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     12,
+     5
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 2.502430812000057,
+  "step_median": 0.01385559700020167,
+  "step_min": 0.013502651999715454,
+  "step_max": 0.01615964199982045,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.00010181111763492535,
+  "operator_build": 0.010632975000135048,
+  "matrix_function": 0.002470948999871325,
+  "peak_rss_mb": 501.2265625,
+  "tag": "direct_B_5e-8_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 64,
+  "law": "B",
+  "L": 5.499999999999999,
+  "params": {
+   "law": "B",
+   "tag": "B_1e-6",
+   "budget": "1e-6",
+   "xi": 1.0,
+   "s": 3.5,
+   "eta": 0.7659331636297462,
+   "p": 6,
+   "rank_noise": 10,
+   "rank_damp": 5,
+   "M512": 32,
+   "err512": 9.481825846883428e-07,
+   "est_step_N512": 0.07113069550230951,
+   "eta_requested_at_512": 0.8,
+   "ranks_by_N": {
+    "64": [
+     6,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     6,
+     4
+    ],
+    "512": [
+     8,
+     4
+    ],
+    "1728": [
+     8,
+     4
+    ],
+    "4096": [
+     10,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.0038598769997406635,
+  "step_median": 0.011550274999990506,
+  "step_min": 0.011477295000076992,
+  "step_max": 0.01171451700020043,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0005476143999051904,
+  "operator_build": 0.0017589449998922646,
+  "matrix_function": 0.009021056999699795,
+  "peak_rss_mb": 112.07421875,
+  "tag": "B_1e-6",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 64,
+  "law": "B",
+  "L": 5.499999999999999,
+  "params": {
+   "law": "B",
+   "tag": "B_1e-4",
+   "budget": "1e-4",
+   "xi": 0.85,
+   "s": 2.9,
+   "eta": 0.8630972563873484,
+   "p": 5,
+   "rank_noise": 8,
+   "rank_damp": 4,
+   "M512": 20,
+   "err512": 4.680219416269255e-05,
+   "est_step_N512": 0.029375848662766657,
+   "eta_requested_at_512": 0.95,
+   "ranks_by_N": {
+    "64": [
+     6,
+     3
+    ],
+    "512": [
+     8,
+     4
+    ],
+    "1728": [
+     8,
+     4
+    ],
+    "4096": [
+     10,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     6,
+     3
+    ],
+    "512": [
+     6,
+     3
+    ],
+    "1728": [
+     6,
+     3
+    ],
+    "4096": [
+     6,
+     3
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.0031217169998853933,
+  "step_median": 0.007434316999933799,
+  "step_min": 0.007370995000201219,
+  "step_max": 0.0076388319998841325,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0003871622500355443,
+  "operator_build": 0.0014134760003798874,
+  "matrix_function": 0.005255353999928047,
+  "peak_rss_mb": 111.43359375,
+  "tag": "B_1e-4",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "dense",
+  "N": 256,
+  "law": "A",
+  "L": 8.730705785825096,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 1.4763150300000234,
+  "step_median": 0.4509673450002083,
+  "step_min": 0.4351621749997321,
+  "step_max": 0.5038636909998786,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": null,
+  "operator_build": 0.2739682129999892,
+  "matrix_function": 0.1642139020000286,
+  "peak_rss_mb": 485.66015625,
+  "tag": "dense",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 256,
+  "law": "A",
+  "L": 8.730705785825096,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 1.4281220019997818,
+  "step_median": 0.3879091819999303,
+  "step_min": 0.3527105019998089,
+  "step_max": 0.4173346870002206,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0016489632678501817,
+  "operator_build": 0.28604142199992566,
+  "matrix_function": 0.09914761899972291,
+  "peak_rss_mb": 485.58984375,
+  "tag": "direct_base_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 256,
+  "law": "A",
+  "L": 8.730705785825096,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "images"
+  },
+  "precompute": 0.007507319000069401,
+  "step_median": 0.44039029900022797,
+  "step_min": 0.42848854400017444,
+  "step_max": 1.059221448000244,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.004294555499979781,
+  "operator_build": 0.18808922399966832,
+  "matrix_function": 0.24688877199969284,
+  "peak_rss_mb": 373.6171875,
+  "tag": "baseline_images",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 256,
+  "law": "A",
+  "L": 8.730705785825096,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "tree"
+  },
+  "precompute": 0.009687480000138748,
+  "step_median": 0.24452959200016267,
+  "step_min": 0.23999677500023608,
+  "step_max": 0.2793560059999436,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.003980947464274972,
+  "operator_build": 0.013135318999957235,
+  "matrix_function": 0.2288746290000745,
+  "peak_rss_mb": 126.18359375,
+  "tag": "baseline_tree",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 256,
+  "law": "A",
+  "L": 8.730705785825096,
+  "params": {
+   "law": "A",
+   "tag": "A_2e-7",
+   "budget": "2e-7",
+   "xi": 0.85,
+   "s": 4.1,
+   "eta": 0.6779116381586452,
+   "p": 7,
+   "rank_noise": 32,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 1.3615839771365663e-07,
+   "est_step_N512": 0.2909582393413075,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     32,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     20,
+     4
+    ],
+    "1728": [
+     24,
+     4
+    ],
+    "4096": [
+     32,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 0.010633529000187991,
+  "step_median": 0.14940018700008295,
+  "step_min": 0.1430369839999912,
+  "step_max": 0.1693853459996717,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0036987686666457697,
+  "operator_build": 0.010617076000016823,
+  "matrix_function": 0.1367818300000181,
+  "peak_rss_mb": 121.40234375,
+  "tag": "A_2e-7",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 256,
+  "law": "A",
+  "L": 8.730705785825096,
+  "params": {
+   "law": "A",
+   "tag": "A_2e-7",
+   "budget": "2e-7",
+   "xi": 0.85,
+   "s": 4.1,
+   "eta": 0.6779116381586452,
+   "p": 7,
+   "rank_noise": 32,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 1.3615839771365663e-07,
+   "est_step_N512": 0.2909582393413075,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     32,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     20,
+     4
+    ],
+    "1728": [
+     24,
+     4
+    ],
+    "4096": [
+     32,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 1.5849313009998696,
+  "step_median": 0.3633780619998106,
+  "step_min": 0.32779937300028905,
+  "step_max": 0.39555673899985777,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0017681711666455158,
+  "operator_build": 0.2769136800002343,
+  "matrix_function": 0.0681207180000456,
+  "peak_rss_mb": 485.5234375,
+  "tag": "direct_A_2e-7_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 256,
+  "law": "A",
+  "L": 8.730705785825096,
+  "params": {
+   "law": "A",
+   "tag": "A_1e-6",
+   "budget": "1e-6",
+   "xi": 0.85,
+   "s": 3.9,
+   "eta": 0.6448427777606625,
+   "p": 6,
+   "rank_noise": 24,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 6.972441267509237e-07,
+   "est_step_N512": 0.17597187700099917,
+   "eta_requested_at_512": 0.7,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     24,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     12,
+     3
+    ],
+    "512": [
+     20,
+     3
+    ],
+    "1728": [
+     20,
+     3
+    ],
+    "4096": [
+     24,
+     3
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.008730477999961295,
+  "step_median": 0.09854098300002079,
+  "step_min": 0.097200191000411,
+  "step_max": 0.11493216100006975,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0030315133928979776,
+  "operator_build": 0.00879747099997985,
+  "matrix_function": 0.08793082900001536,
+  "peak_rss_mb": 119.0859375,
+  "tag": "A_1e-6",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 256,
+  "law": "A",
+  "L": 8.730705785825096,
+  "params": {
+   "law": "A",
+   "tag": "A_1e-4",
+   "budget": "1e-4",
+   "xi": 0.85,
+   "s": 3.2,
+   "eta": 0.7936526495515848,
+   "p": 5,
+   "rank_noise": 16,
+   "rank_damp": 3,
+   "M512": 24,
+   "err512": 5.2172684954406136e-05,
+   "est_step_N512": 0.05313864950304984,
+   "eta_requested_at_512": 0.95,
+   "ranks_by_N": {
+    "64": [
+     10,
+     3
+    ],
+    "512": [
+     16,
+     3
+    ],
+    "1728": [
+     20,
+     3
+    ],
+    "4096": [
+     24,
+     3
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     2
+    ],
+    "512": [
+     10,
+     2
+    ],
+    "1728": [
+     10,
+     2
+    ],
+    "4096": [
+     12,
+     2
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.00668018700025641,
+  "step_median": 0.031525300000339485,
+  "step_min": 0.030803712999841082,
+  "step_max": 0.03816136700015704,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.00131856752635653,
+  "operator_build": 0.002900554000007105,
+  "matrix_function": 0.02662660700025299,
+  "peak_rss_mb": 114.98046875,
+  "tag": "A_1e-4",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "dense",
+  "N": 256,
+  "law": "B",
+  "L": 8.730705785825096,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 2.1936957220000295,
+  "step_median": 0.44071960700011914,
+  "step_min": 0.4275385930000084,
+  "step_max": 0.47316301699993346,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": null,
+  "operator_build": 0.27906680600017353,
+  "matrix_function": 0.15447504199983086,
+  "peak_rss_mb": 501.44140625,
+  "tag": "dense",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 256,
+  "law": "B",
+  "L": 8.730705785825096,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 1.6076812139999674,
+  "step_median": 0.37236174300005587,
+  "step_min": 0.36379511799987085,
+  "step_max": 0.4213941880002494,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0016142471785737403,
+  "operator_build": 0.2739103890003207,
+  "matrix_function": 0.09654456499993103,
+  "peak_rss_mb": 501.47265625,
+  "tag": "direct_base_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 256,
+  "law": "B",
+  "L": 8.730705785825096,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "images"
+  },
+  "precompute": 0.005563039000207937,
+  "step_median": 0.4185831749996396,
+  "step_min": 0.41299607000019023,
+  "step_max": 0.7918875039999875,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.004166930892868744,
+  "operator_build": 0.17838013500022498,
+  "matrix_function": 0.23936940400017193,
+  "peak_rss_mb": 373.4453125,
+  "tag": "baseline_images",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 256,
+  "law": "B",
+  "L": 8.730705785825096,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "tree"
+  },
+  "precompute": 0.005952760000127455,
+  "step_median": 0.2566378850001456,
+  "step_min": 0.2507173949998105,
+  "step_max": 0.28691125799969086,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.004200511446445684,
+  "operator_build": 0.014347369000006438,
+  "matrix_function": 0.2410217259998717,
+  "peak_rss_mb": 125.8671875,
+  "tag": "baseline_tree",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 256,
+  "law": "B",
+  "L": 8.730705785825096,
+  "params": {
+   "law": "B",
+   "tag": "B_5e-8",
+   "budget": "5e-8",
+   "xi": 1.0,
+   "s": 3.9,
+   "eta": 0.6827747058642308,
+   "p": 7,
+   "rank_noise": 12,
+   "rank_damp": 5,
+   "M512": 40,
+   "err512": 3.5275408637207224e-08,
+   "est_step_N512": 0.13165164750315247,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     8,
+     5
+    ],
+    "512": [
+     12,
+     5
+    ],
+    "1728": [
+     16,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     12,
+     5
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 0.00814484900001844,
+  "step_median": 0.08049748199982787,
+  "step_min": 0.07122294600003443,
+  "step_max": 0.09392085899980884,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0038003408235454117,
+  "operator_build": 0.00800196899990624,
+  "matrix_function": 0.06661475700002484,
+  "peak_rss_mb": 119.80078125,
+  "tag": "B_5e-8",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 256,
+  "law": "B",
+  "L": 8.730705785825096,
+  "params": {
+   "law": "B",
+   "tag": "B_5e-8",
+   "budget": "5e-8",
+   "xi": 1.0,
+   "s": 3.9,
+   "eta": 0.6827747058642308,
+   "p": 7,
+   "rank_noise": 12,
+   "rank_damp": 5,
+   "M512": 40,
+   "err512": 3.5275408637207224e-08,
+   "est_step_N512": 0.13165164750315247,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     8,
+     5
+    ],
+    "512": [
+     12,
+     5
+    ],
+    "1728": [
+     16,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     12,
+     5
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 2.130457820999709,
+  "step_median": 0.3295816400000149,
+  "step_min": 0.31629115299983823,
+  "step_max": 0.47656155999993643,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0016323501764578825,
+  "operator_build": 0.2970758609999393,
+  "matrix_function": 0.02985313799990763,
+  "peak_rss_mb": 501.3828125,
+  "tag": "direct_B_5e-8_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 256,
+  "law": "B",
+  "L": 8.730705785825096,
+  "params": {
+   "law": "B",
+   "tag": "B_1e-6",
+   "budget": "1e-6",
+   "xi": 1.0,
+   "s": 3.5,
+   "eta": 0.7659331636297462,
+   "p": 6,
+   "rank_noise": 10,
+   "rank_damp": 5,
+   "M512": 32,
+   "err512": 9.481825846883428e-07,
+   "est_step_N512": 0.07113069550230951,
+   "eta_requested_at_512": 0.8,
+   "ranks_by_N": {
+    "64": [
+     6,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     6,
+     4
+    ],
+    "512": [
+     8,
+     4
+    ],
+    "1728": [
+     8,
+     4
+    ],
+    "4096": [
+     10,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.007268179999755375,
+  "step_median": 0.04006675900018308,
+  "step_min": 0.03840214100000594,
+  "step_max": 0.0458819680002307,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.002114875466728942,
+  "operator_build": 0.004309349999857659,
+  "matrix_function": 0.03333471100040697,
+  "peak_rss_mb": 116.44140625,
+  "tag": "B_1e-6",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 256,
+  "law": "B",
+  "L": 8.730705785825096,
+  "params": {
+   "law": "B",
+   "tag": "B_1e-4",
+   "budget": "1e-4",
+   "xi": 0.85,
+   "s": 2.9,
+   "eta": 0.8630972563873484,
+   "p": 5,
+   "rank_noise": 8,
+   "rank_damp": 4,
+   "M512": 20,
+   "err512": 4.680219416269255e-05,
+   "est_step_N512": 0.029375848662766657,
+   "eta_requested_at_512": 0.95,
+   "ranks_by_N": {
+    "64": [
+     6,
+     3
+    ],
+    "512": [
+     8,
+     4
+    ],
+    "1728": [
+     8,
+     4
+    ],
+    "4096": [
+     10,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     6,
+     3
+    ],
+    "512": [
+     6,
+     3
+    ],
+    "1728": [
+     6,
+     3
+    ],
+    "4096": [
+     6,
+     3
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.005090073000246775,
+  "step_median": 0.01913142000012158,
+  "step_min": 0.01825602799999615,
+  "step_max": 0.025120237999999517,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.0011034908332779498,
+  "operator_build": 0.0023673910000070464,
+  "matrix_function": 0.014471627000148146,
+  "peak_rss_mb": 114.26171875,
+  "tag": "B_1e-4",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "dense",
+  "N": 512,
+  "law": "A",
+  "L": 10.999999999999998,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 1.0496387029998004,
+  "step_median": 2.594617683000024,
+  "step_min": 2.3660868110000592,
+  "step_max": 2.823148554999989,
+  "reps": 2,
+  "warmup": 2,
+  "gamma_v": null,
+  "operator_build": 1.3795261579998623,
+  "matrix_function": 1.2094640140001047,
+  "peak_rss_mb": 388.453125,
+  "tag": "dense",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 512,
+  "law": "A",
+  "L": 10.999999999999998,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 0.8585399449998476,
+  "step_median": 1.5410098799998195,
+  "step_min": 1.3459173679998457,
+  "step_max": 1.731370373000118,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.006458982660701297,
+  "operator_build": 1.1704725370000233,
+  "matrix_function": 0.3701439980000032,
+  "peak_rss_mb": 383.66015625,
+  "tag": "direct_base_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 512,
+  "law": "A",
+  "L": 10.999999999999998,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "images"
+  },
+  "precompute": 0.009731305000059365,
+  "step_median": 1.6337641830000393,
+  "step_min": 1.1317421769999783,
+  "step_max": 2.9947176050000053,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.00815916344644003,
+  "operator_build": 1.1557606799997302,
+  "matrix_function": 0.4645505100002083,
+  "peak_rss_mb": 1149.47265625,
+  "tag": "baseline_images",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 512,
+  "law": "A",
+  "L": 10.999999999999998,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "tree"
+  },
+  "precompute": 0.009789592999823071,
+  "step_median": 0.5001702750000732,
+  "step_min": 0.46904847700034225,
+  "step_max": 0.5537710399999014,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.008215282625006435,
+  "operator_build": 0.02462298299997201,
+  "matrix_function": 0.46854262599981666,
+  "peak_rss_mb": 138.484375,
+  "tag": "baseline_tree",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 512,
+  "law": "A",
+  "L": 10.999999999999998,
+  "params": {
+   "law": "A",
+   "tag": "A_2e-7",
+   "budget": "2e-7",
+   "xi": 0.85,
+   "s": 4.1,
+   "eta": 0.6779116381586452,
+   "p": 7,
+   "rank_noise": 32,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 1.3615839771365663e-07,
+   "est_step_N512": 0.2909582393413075,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     32,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     20,
+     4
+    ],
+    "1728": [
+     24,
+     4
+    ],
+    "4096": [
+     32,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 0.01409970400027305,
+  "step_median": 0.31433132099982686,
+  "step_min": 0.2919912000002114,
+  "step_max": 0.37791550299971277,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.007780986916638237,
+  "operator_build": 0.019518968999818753,
+  "matrix_function": 0.28561967300038305,
+  "peak_rss_mb": 129.1328125,
+  "tag": "A_2e-7",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 512,
+  "law": "A",
+  "L": 10.999999999999998,
+  "params": {
+   "law": "A",
+   "tag": "A_2e-7",
+   "budget": "2e-7",
+   "xi": 0.85,
+   "s": 4.1,
+   "eta": 0.6779116381586452,
+   "p": 7,
+   "rank_noise": 32,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 1.3615839771365663e-07,
+   "est_step_N512": 0.2909582393413075,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     32,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     20,
+     4
+    ],
+    "1728": [
+     24,
+     4
+    ],
+    "4096": [
+     32,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 1.2576618940001936,
+  "step_median": 1.512303306999911,
+  "step_min": 1.4050715860003038,
+  "step_max": 1.8235409330000039,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.006592240944478868,
+  "operator_build": 1.2373586359999535,
+  "matrix_function": 0.2431006269998761,
+  "peak_rss_mb": 383.53125,
+  "tag": "direct_A_2e-7_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 512,
+  "law": "A",
+  "L": 10.999999999999998,
+  "params": {
+   "law": "A",
+   "tag": "A_1e-6",
+   "budget": "1e-6",
+   "xi": 0.85,
+   "s": 3.9,
+   "eta": 0.6448427777606625,
+   "p": 6,
+   "rank_noise": 24,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 6.972441267509237e-07,
+   "est_step_N512": 0.17597187700099917,
+   "eta_requested_at_512": 0.7,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     24,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     12,
+     3
+    ],
+    "512": [
+     20,
+     3
+    ],
+    "1728": [
+     20,
+     3
+    ],
+    "4096": [
+     24,
+     3
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.012397076000070228,
+  "step_median": 0.19267136400003437,
+  "step_min": 0.18510873200011702,
+  "step_max": 0.20117516400023305,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.006060768714275712,
+  "operator_build": 0.013609686000108923,
+  "matrix_function": 0.17350709599986658,
+  "peak_rss_mb": 125.18359375,
+  "tag": "A_1e-6",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 512,
+  "law": "A",
+  "L": 10.999999999999998,
+  "params": {
+   "law": "A",
+   "tag": "A_1e-4",
+   "budget": "1e-4",
+   "xi": 0.85,
+   "s": 3.2,
+   "eta": 0.7936526495515848,
+   "p": 5,
+   "rank_noise": 16,
+   "rank_damp": 3,
+   "M512": 24,
+   "err512": 5.2172684954406136e-05,
+   "est_step_N512": 0.05313864950304984,
+   "eta_requested_at_512": 0.95,
+   "ranks_by_N": {
+    "64": [
+     10,
+     3
+    ],
+    "512": [
+     16,
+     3
+    ],
+    "1728": [
+     20,
+     3
+    ],
+    "4096": [
+     24,
+     3
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     2
+    ],
+    "512": [
+     10,
+     2
+    ],
+    "1728": [
+     10,
+     2
+    ],
+    "4096": [
+     12,
+     2
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.009113578999858873,
+  "step_median": 0.06423742300012236,
+  "step_min": 0.06232317300009527,
+  "step_max": 0.07318614199994045,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.002631585157934368,
+  "operator_build": 0.006163757999729569,
+  "matrix_function": 0.05240699400019366,
+  "peak_rss_mb": 118.3203125,
+  "tag": "A_1e-4",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "dense",
+  "N": 512,
+  "law": "B",
+  "L": 10.999999999999998,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 1.630958273000033,
+  "step_median": 2.5014716605001013,
+  "step_min": 2.4338920049999615,
+  "step_max": 2.569051316000241,
+  "reps": 2,
+  "warmup": 2,
+  "gamma_v": null,
+  "operator_build": 1.2635171609999816,
+  "matrix_function": 1.23239817700005,
+  "peak_rss_mb": 485.421875,
+  "tag": "dense",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 512,
+  "law": "B",
+  "L": 10.999999999999998,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 1.6656586340000104,
+  "step_median": 1.4904525960000683,
+  "step_min": 1.4547466290000557,
+  "step_max": 1.58556773600003,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.006592281553586028,
+  "operator_build": 1.114147111999955,
+  "matrix_function": 0.3783243840002797,
+  "peak_rss_mb": 485.56640625,
+  "tag": "direct_base_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 512,
+  "law": "B",
+  "L": 10.999999999999998,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "images"
+  },
+  "precompute": 0.007630544000221562,
+  "step_median": 1.2161702920002426,
+  "step_min": 1.166889068999808,
+  "step_max": 2.9109190729996044,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.008273644339307598,
+  "operator_build": 0.7453032339999481,
+  "matrix_function": 0.4710730930000864,
+  "peak_rss_mb": 1149.828125,
+  "tag": "baseline_images",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 512,
+  "law": "B",
+  "L": 10.999999999999998,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "tree"
+  },
+  "precompute": 0.008979565000117873,
+  "step_median": 0.47142932699989615,
+  "step_min": 0.4522496989998217,
+  "step_max": 0.5542311619997236,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.007742199714300568,
+  "operator_build": 0.02368781899986061,
+  "matrix_function": 0.44138525699963793,
+  "peak_rss_mb": 138.43359375,
+  "tag": "baseline_tree",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 512,
+  "law": "B",
+  "L": 10.999999999999998,
+  "params": {
+   "law": "B",
+   "tag": "B_5e-8",
+   "budget": "5e-8",
+   "xi": 1.0,
+   "s": 3.9,
+   "eta": 0.6827747058642308,
+   "p": 7,
+   "rank_noise": 12,
+   "rank_damp": 5,
+   "M512": 40,
+   "err512": 3.5275408637207224e-08,
+   "est_step_N512": 0.13165164750315247,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     8,
+     5
+    ],
+    "512": [
+     12,
+     5
+    ],
+    "1728": [
+     16,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     12,
+     5
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 0.01380796100011139,
+  "step_median": 0.17211242100029267,
+  "step_min": 0.14285538900003303,
+  "step_max": 0.18627141000024494,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.008589482588189746,
+  "operator_build": 0.017141531000106625,
+  "matrix_function": 0.14842911799996727,
+  "peak_rss_mb": 127.69921875,
+  "tag": "B_5e-8",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 512,
+  "law": "B",
+  "L": 10.999999999999998,
+  "params": {
+   "law": "B",
+   "tag": "B_5e-8",
+   "budget": "5e-8",
+   "xi": 1.0,
+   "s": 3.9,
+   "eta": 0.6827747058642308,
+   "p": 7,
+   "rank_noise": 12,
+   "rank_damp": 5,
+   "M512": 40,
+   "err512": 3.5275408637207224e-08,
+   "est_step_N512": 0.13165164750315247,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     8,
+     5
+    ],
+    "512": [
+     12,
+     5
+    ],
+    "1728": [
+     16,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     12,
+     5
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 1.6528664150000623,
+  "step_median": 1.3187792629996693,
+  "step_min": 1.2433225319996382,
+  "step_max": 1.332802706000166,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.006568204882275014,
+  "operator_build": 1.1922415389999514,
+  "matrix_function": 0.11437103600019327,
+  "peak_rss_mb": 485.4765625,
+  "tag": "direct_B_5e-8_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 512,
+  "law": "B",
+  "L": 10.999999999999998,
+  "params": {
+   "law": "B",
+   "tag": "B_1e-6",
+   "budget": "1e-6",
+   "xi": 1.0,
+   "s": 3.5,
+   "eta": 0.7659331636297462,
+   "p": 6,
+   "rank_noise": 10,
+   "rank_damp": 5,
+   "M512": 32,
+   "err512": 9.481825846883428e-07,
+   "est_step_N512": 0.07113069550230951,
+   "eta_requested_at_512": 0.8,
+   "ranks_by_N": {
+    "64": [
+     6,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     6,
+     4
+    ],
+    "512": [
+     8,
+     4
+    ],
+    "1728": [
+     8,
+     4
+    ],
+    "4096": [
+     10,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.01065365100021154,
+  "step_median": 0.07427898400010235,
+  "step_min": 0.07208075700009431,
+  "step_max": 0.079845320000004,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.003956622066652926,
+  "operator_build": 0.008580380999774206,
+  "matrix_function": 0.061220741999932216,
+  "peak_rss_mb": 122.37109375,
+  "tag": "B_1e-6",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 512,
+  "law": "B",
+  "L": 10.999999999999998,
+  "params": {
+   "law": "B",
+   "tag": "B_1e-4",
+   "budget": "1e-4",
+   "xi": 0.85,
+   "s": 2.9,
+   "eta": 0.8630972563873484,
+   "p": 5,
+   "rank_noise": 8,
+   "rank_damp": 4,
+   "M512": 20,
+   "err512": 4.680219416269255e-05,
+   "est_step_N512": 0.029375848662766657,
+   "eta_requested_at_512": 0.95,
+   "ranks_by_N": {
+    "64": [
+     6,
+     3
+    ],
+    "512": [
+     8,
+     4
+    ],
+    "1728": [
+     8,
+     4
+    ],
+    "4096": [
+     10,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     6,
+     3
+    ],
+    "512": [
+     6,
+     3
+    ],
+    "1728": [
+     6,
+     3
+    ],
+    "4096": [
+     6,
+     3
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.0058289099997637095,
+  "step_median": 0.03650874999993903,
+  "step_min": 0.03555064400006813,
+  "step_max": 0.0368176649999441,
+  "reps": 5,
+  "warmup": 2,
+  "gamma_v": 0.002088703749943003,
+  "operator_build": 0.005108784000185551,
+  "matrix_function": 0.026419078000344598,
+  "peak_rss_mb": 118.53515625,
+  "tag": "B_1e-4",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 1728,
+  "law": "A",
+  "L": 16.499999999999996,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 0.3317112750000888,
+  "step_median": 20.570408392000445,
+  "step_min": 20.25982896100004,
+  "step_max": 21.24723941800039,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.11861547508928945,
+  "operator_build": 13.90076688299996,
+  "matrix_function": 6.675026278000132,
+  "peak_rss_mb": 569.03515625,
+  "tag": "direct_base_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 1728,
+  "law": "A",
+  "L": 16.499999999999996,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "tree"
+  },
+  "precompute": 0.022711602000072162,
+  "step_median": 1.8273103200003789,
+  "step_min": 1.6946645319999334,
+  "step_max": 1.939183508000042,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.03026906141075512,
+  "operator_build": 0.07902762699995947,
+  "matrix_function": 1.7133558800001083,
+  "peak_rss_mb": 187.515625,
+  "tag": "baseline_tree",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 1728,
+  "law": "A",
+  "L": 16.499999999999996,
+  "params": {
+   "law": "A",
+   "tag": "A_2e-7",
+   "budget": "2e-7",
+   "xi": 0.85,
+   "s": 4.1,
+   "eta": 0.6779116381586452,
+   "p": 7,
+   "rank_noise": 32,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 1.3615839771365663e-07,
+   "est_step_N512": 0.2909582393413075,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     32,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     20,
+     4
+    ],
+    "1728": [
+     24,
+     4
+    ],
+    "4096": [
+     32,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 0.03484802999992098,
+  "step_median": 1.088839542000187,
+  "step_min": 1.0555917669998962,
+  "step_max": 1.1952626249999412,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.02762937772220337,
+  "operator_build": 0.06552911800008587,
+  "matrix_function": 1.0075674190002246,
+  "peak_rss_mb": 173.3359375,
+  "tag": "A_2e-7",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 1728,
+  "law": "A",
+  "L": 16.499999999999996,
+  "params": {
+   "law": "A",
+   "tag": "A_1e-6",
+   "budget": "1e-6",
+   "xi": 0.85,
+   "s": 3.9,
+   "eta": 0.6448427777606625,
+   "p": 6,
+   "rank_noise": 32,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 6.972441267509237e-07,
+   "est_step_N512": 0.17597187700099917,
+   "eta_requested_at_512": 0.7,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     24,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     12,
+     3
+    ],
+    "512": [
+     20,
+     3
+    ],
+    "1728": [
+     20,
+     3
+    ],
+    "4096": [
+     24,
+     3
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.03691177600012452,
+  "step_median": 1.1533234730000004,
+  "step_min": 0.9087181550003152,
+  "step_max": 1.225255038999876,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.029731327083330445,
+  "operator_build": 0.05329993099985586,
+  "matrix_function": 1.081751069999882,
+  "peak_rss_mb": 154.8671875,
+  "tag": "A_1e-6",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 1728,
+  "law": "A",
+  "L": 16.499999999999996,
+  "params": {
+   "law": "A",
+   "tag": "A_1e-4",
+   "budget": "1e-4",
+   "xi": 0.85,
+   "s": 3.2,
+   "eta": 0.7936526495515848,
+   "p": 5,
+   "rank_noise": 20,
+   "rank_damp": 3,
+   "M512": 24,
+   "err512": 5.2172684954406136e-05,
+   "est_step_N512": 0.05313864950304984,
+   "eta_requested_at_512": 0.95,
+   "ranks_by_N": {
+    "64": [
+     10,
+     3
+    ],
+    "512": [
+     16,
+     3
+    ],
+    "1728": [
+     20,
+     3
+    ],
+    "4096": [
+     24,
+     3
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     2
+    ],
+    "512": [
+     10,
+     2
+    ],
+    "1728": [
+     10,
+     2
+    ],
+    "4096": [
+     12,
+     2
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.02225921399985964,
+  "step_median": 0.2902252810004029,
+  "step_min": 0.28094461499995305,
+  "step_max": 0.3189394500000162,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.010484402304368616,
+  "operator_build": 0.023932148000312736,
+  "matrix_function": 0.24678120999988096,
+  "peak_rss_mb": 137.29296875,
+  "tag": "A_1e-4",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "direct_lanczos",
+  "N": 1728,
+  "law": "B",
+  "L": 16.499999999999996,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16
+  },
+  "precompute": 0.6875613010001871,
+  "step_median": 21.00140713799965,
+  "step_min": 19.420696083000166,
+  "step_max": 22.31136887799994,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.11090939533930363,
+  "operator_build": 14.971179032999771,
+  "matrix_function": 6.240733788000398,
+  "peak_rss_mb": 540.671875,
+  "tag": "direct_base_ranks",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 1728,
+  "law": "B",
+  "L": 16.499999999999996,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "tree"
+  },
+  "precompute": 0.016447497000172007,
+  "step_median": 1.6884984099997382,
+  "step_min": 1.679972798000108,
+  "step_max": 1.9190962620000391,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.028394129714261647,
+  "operator_build": 0.06486027399978411,
+  "matrix_function": 1.605661087000044,
+  "peak_rss_mb": 178.54296875,
+  "tag": "baseline_tree",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 1728,
+  "law": "B",
+  "L": 16.499999999999996,
+  "params": {
+   "law": "B",
+   "tag": "B_5e-8",
+   "budget": "5e-8",
+   "xi": 1.0,
+   "s": 3.9,
+   "eta": 0.6827747058642308,
+   "p": 7,
+   "rank_noise": 16,
+   "rank_damp": 5,
+   "M512": 40,
+   "err512": 3.5275408637207224e-08,
+   "est_step_N512": 0.13165164750315247,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     8,
+     5
+    ],
+    "512": [
+     12,
+     5
+    ],
+    "1728": [
+     16,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     12,
+     5
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 0.03412864099982471,
+  "step_median": 0.751205187999858,
+  "step_min": 0.7181336429998737,
+  "step_max": 0.7529778630000692,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.031235665380899308,
+  "operator_build": 0.06129126500036364,
+  "matrix_function": 0.6610991799998374,
+  "peak_rss_mb": 166.8828125,
+  "tag": "B_5e-8",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 1728,
+  "law": "B",
+  "L": 16.499999999999996,
+  "params": {
+   "law": "B",
+   "tag": "B_1e-6",
+   "budget": "1e-6",
+   "xi": 1.0,
+   "s": 3.5,
+   "eta": 0.7659331636297462,
+   "p": 6,
+   "rank_noise": 12,
+   "rank_damp": 5,
+   "M512": 32,
+   "err512": 9.481825846883428e-07,
+   "est_step_N512": 0.07113069550230951,
+   "eta_requested_at_512": 0.8,
+   "ranks_by_N": {
+    "64": [
+     6,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     6,
+     4
+    ],
+    "512": [
+     8,
+     4
+    ],
+    "1728": [
+     8,
+     4
+    ],
+    "4096": [
+     10,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.026169036000283086,
+  "step_median": 0.32154810400015776,
+  "step_min": 0.3161464720001277,
+  "step_max": 0.4029761410001811,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.015421825235347675,
+  "operator_build": 0.037019903999862436,
+  "matrix_function": 0.26623276400005125,
+  "peak_rss_mb": 146.8125,
+  "tag": "B_1e-6",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 1728,
+  "law": "B",
+  "L": 16.499999999999996,
+  "params": {
+   "law": "B",
+   "tag": "B_1e-4",
+   "budget": "1e-4",
+   "xi": 0.85,
+   "s": 2.9,
+   "eta": 0.8630972563873484,
+   "p": 5,
+   "rank_noise": 8,
+   "rank_damp": 4,
+   "M512": 20,
+   "err512": 4.680219416269255e-05,
+   "est_step_N512": 0.029375848662766657,
+   "eta_requested_at_512": 0.95,
+   "ranks_by_N": {
+    "64": [
+     6,
+     3
+    ],
+    "512": [
+     8,
+     4
+    ],
+    "1728": [
+     8,
+     4
+    ],
+    "4096": [
+     10,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     6,
+     3
+    ],
+    "512": [
+     6,
+     3
+    ],
+    "1728": [
+     6,
+     3
+    ],
+    "4096": [
+     6,
+     3
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.011925539000003482,
+  "step_median": 0.1430451239998547,
+  "step_min": 0.13408888100002514,
+  "step_max": 0.16528500699996584,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.008002808333420338,
+  "operator_build": 0.022624421000273287,
+  "matrix_function": 0.09877496199987945,
+  "peak_rss_mb": 132.6953125,
+  "tag": "B_1e-4",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 4096,
+  "law": "A",
+  "L": 21.999999999999996,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "tree"
+  },
+  "precompute": 0.040648805999808246,
+  "step_median": 4.718204971999967,
+  "step_min": 4.696288281000307,
+  "step_max": 4.891711919000045,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.07923889107146513,
+  "operator_build": 0.2550737190003929,
+  "matrix_function": 4.477501746999678,
+  "peak_rss_mb": 286.2265625,
+  "tag": "baseline_tree",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 4096,
+  "law": "A",
+  "L": 21.999999999999996,
+  "params": {
+   "law": "A",
+   "tag": "A_2e-7",
+   "budget": "2e-7",
+   "xi": 0.85,
+   "s": 4.1,
+   "eta": 0.6779116381586452,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 1.3615839771365663e-07,
+   "est_step_N512": 0.2909582393413075,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     32,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     20,
+     4
+    ],
+    "1728": [
+     24,
+     4
+    ],
+    "4096": [
+     32,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 0.06598354700008713,
+  "step_median": 3.795745051999802,
+  "step_min": 3.4239033980002205,
+  "step_max": 3.9224934930002746,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.08059988315913168,
+  "operator_build": 0.18054721900034565,
+  "matrix_function": 3.581483586000104,
+  "peak_rss_mb": 257.2734375,
+  "tag": "A_2e-7",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 4096,
+  "law": "A",
+  "L": 21.999999999999996,
+  "params": {
+   "law": "A",
+   "tag": "A_1e-6",
+   "budget": "1e-6",
+   "xi": 0.85,
+   "s": 3.9,
+   "eta": 0.6448427777606625,
+   "p": 6,
+   "rank_noise": 40,
+   "rank_damp": 4,
+   "M512": 36,
+   "err512": 6.972441267509237e-07,
+   "est_step_N512": 0.17597187700099917,
+   "eta_requested_at_512": 0.7,
+   "ranks_by_N": {
+    "64": [
+     16,
+     4
+    ],
+    "512": [
+     24,
+     4
+    ],
+    "1728": [
+     32,
+     4
+    ],
+    "4096": [
+     40,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     12,
+     3
+    ],
+    "512": [
+     20,
+     3
+    ],
+    "1728": [
+     20,
+     3
+    ],
+    "4096": [
+     24,
+     3
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.07325876699997025,
+  "step_median": 2.727942227999847,
+  "step_min": 2.6979865479997898,
+  "step_max": 3.0586031769998954,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.057403468704551,
+  "operator_build": 0.12674619800009168,
+  "matrix_function": 2.5577741119996062,
+  "peak_rss_mb": 222.76953125,
+  "tag": "A_1e-6",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 4096,
+  "law": "A",
+  "L": 21.999999999999996,
+  "params": {
+   "law": "A",
+   "tag": "A_1e-4",
+   "budget": "1e-4",
+   "xi": 0.85,
+   "s": 3.2,
+   "eta": 0.7936526495515848,
+   "p": 5,
+   "rank_noise": 24,
+   "rank_damp": 3,
+   "M512": 24,
+   "err512": 5.2172684954406136e-05,
+   "est_step_N512": 0.05313864950304984,
+   "eta_requested_at_512": 0.95,
+   "ranks_by_N": {
+    "64": [
+     10,
+     3
+    ],
+    "512": [
+     16,
+     3
+    ],
+    "1728": [
+     20,
+     3
+    ],
+    "4096": [
+     24,
+     3
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     2
+    ],
+    "512": [
+     10,
+     2
+    ],
+    "1728": [
+     10,
+     2
+    ],
+    "4096": [
+     12,
+     2
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.03626218499994138,
+  "step_median": 0.763746935999734,
+  "step_min": 0.7383189930001208,
+  "step_max": 0.8195358110001507,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.02407485248143833,
+  "operator_build": 0.05337774500003434,
+  "matrix_function": 0.6632212989998152,
+  "peak_rss_mb": 170.43359375,
+  "tag": "A_1e-4",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 4096,
+  "law": "B",
+  "L": 21.999999999999996,
+  "params": {
+   "xi": 0.7,
+   "s": 4.1,
+   "eta": 0.7,
+   "p": 7,
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "pair_search": "tree"
+  },
+  "precompute": 0.03192430399985824,
+  "step_median": 4.578495549999843,
+  "step_min": 4.530252503000156,
+  "step_max": 4.807582026999626,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.07684521833925016,
+  "operator_build": 0.21670524199998908,
+  "matrix_function": 4.342337467000107,
+  "peak_rss_mb": 275.125,
+  "tag": "baseline_tree",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 4096,
+  "law": "B",
+  "L": 21.999999999999996,
+  "params": {
+   "law": "B",
+   "tag": "B_5e-8",
+   "budget": "5e-8",
+   "xi": 1.0,
+   "s": 3.9,
+   "eta": 0.6827747058642308,
+   "p": 7,
+   "rank_noise": 16,
+   "rank_damp": 5,
+   "M512": 40,
+   "err512": 3.5275408637207224e-08,
+   "est_step_N512": 0.13165164750315247,
+   "eta_requested_at_512": 0.75,
+   "ranks_by_N": {
+    "64": [
+     8,
+     5
+    ],
+    "512": [
+     12,
+     5
+    ],
+    "1728": [
+     16,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     8,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     12,
+     5
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": true
+  },
+  "precompute": 0.06283199800009243,
+  "step_median": 1.932303120999677,
+  "step_min": 1.8669490670004052,
+  "step_max": 1.9409927050000988,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.08260791761899998,
+  "operator_build": 0.1431148659999053,
+  "matrix_function": 1.7461710859997766,
+  "peak_rss_mb": 245.6875,
+  "tag": "B_5e-8",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 4096,
+  "law": "B",
+  "L": 21.999999999999996,
+  "params": {
+   "law": "B",
+   "tag": "B_1e-6",
+   "budget": "1e-6",
+   "xi": 1.0,
+   "s": 3.5,
+   "eta": 0.7659331636297462,
+   "p": 6,
+   "rank_noise": 16,
+   "rank_damp": 5,
+   "M512": 32,
+   "err512": 9.481825846883428e-07,
+   "est_step_N512": 0.07113069550230951,
+   "eta_requested_at_512": 0.8,
+   "ranks_by_N": {
+    "64": [
+     6,
+     4
+    ],
+    "512": [
+     10,
+     5
+    ],
+    "1728": [
+     12,
+     5
+    ],
+    "4096": [
+     16,
+     5
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     6,
+     4
+    ],
+    "512": [
+     8,
+     4
+    ],
+    "1728": [
+     8,
+     4
+    ],
+    "4096": [
+     10,
+     4
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.051178913000057946,
+  "step_median": 0.9259980209999412,
+  "step_min": 0.9238868050001656,
+  "step_max": 1.0262176960000033,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.0376440521904442,
+  "operator_build": 0.08599123100020734,
+  "matrix_function": 0.8005700190001335,
+  "peak_rss_mb": 203.1328125,
+  "tag": "B_1e-6",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ },
+ {
+  "method": "pppm_lanczos",
+  "N": 4096,
+  "law": "B",
+  "L": 21.999999999999996,
+  "params": {
+   "law": "B",
+   "tag": "B_1e-4",
+   "budget": "1e-4",
+   "xi": 0.85,
+   "s": 2.9,
+   "eta": 0.8630972563873484,
+   "p": 5,
+   "rank_noise": 10,
+   "rank_damp": 4,
+   "M512": 20,
+   "err512": 4.680219416269255e-05,
+   "est_step_N512": 0.029375848662766657,
+   "eta_requested_at_512": 0.95,
+   "ranks_by_N": {
+    "64": [
+     6,
+     3
+    ],
+    "512": [
+     8,
+     4
+    ],
+    "1728": [
+     8,
+     4
+    ],
+    "4096": [
+     10,
+     4
+    ]
+   },
+   "ranks_by_N_overall_only": {
+    "64": [
+     6,
+     3
+    ],
+    "512": [
+     6,
+     3
+    ],
+    "1728": [
+     6,
+     3
+    ],
+    "4096": [
+     6,
+     3
+    ]
+   },
+   "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512",
+   "time_direct": false
+  },
+  "precompute": 0.022081694999997126,
+  "step_median": 0.35516634800023894,
+  "step_min": 0.35383686500017575,
+  "step_max": 0.36818723399983355,
+  "reps": 3,
+  "warmup": 1,
+  "gamma_v": 0.018502476785735262,
+  "operator_build": 0.048043629999938275,
+  "matrix_function": 0.264799733000018,
+  "peak_rss_mb": 166.4140625,
+  "tag": "B_1e-4",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": 1,
+   "OMP_NUM_THREADS": 1,
+   "MKL_NUM_THREADS": 1
+  },
+  "cpu": "x86_64 Intel(R) Xeon(R) Processor @ 2.30GHz"
+ }
+]

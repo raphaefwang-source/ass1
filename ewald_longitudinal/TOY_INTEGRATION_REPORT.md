@@ -53,6 +53,16 @@ time-discretisation floor.
   decorrelated.
 - The targeted long rerun with a null-control arm (about 30–36 pairs for ±3 %) has been postponed and not started.
 
+**Cost under error constraints** (Section 10; `cost_optimization_results/REPORT.md`)
+- **The original code's bottleneck:** at N = 512 the image enumeration of real-space pairs took 76 % of a step;
+  the 56 Γv actions took 23 %. An exact KD-tree pair search (same pair set, same Γ_h to 6e-16) brings the Γv share
+  to 92 %.
+- **Rank needs:** damping rank 4–5 meets every budget tested. The noise rank needed grows with N (law A, strict:
+  32 at N = 512, 40 at N = 4096).
+- **Measured speedups at equal operator accuracy, N = 512:** ×5.2 (A) and ×7.1 (B).
+- **N = 64:** the dense reference is cheaper than PPPM.
+- **Scope:** fixed-time t ≤ 2 checks only; the long-time diffusion question is untouched.
+
 ## 1. What was integrated (and what was not changed)
 
 | piece | file | status |
@@ -387,3 +397,22 @@ Outputs:
 - `paths/*.npz`: per-path observables, seeds, and the q and p at t = 0.5, 1, 2.
 
 Summary in the Layer-2 paragraph above.
+
+## 10. Cost optimisation under error constraints (`cost_optimization_results/`)
+
+Script: `toy_cost_opt.py`. The report, with the final table of original vs recommended parameters, errors, step
+times and measured speedups, is `cost_optimization_results/REPORT.md`.
+
+The model is unchanged:
+- pure longitudinal, full periodic images, k = 0;
+- g(r_ref) = 0.5, kT = 0.7, dt = 0.005.
+
+The baseline (ξ 0.7, s 4.10, η 0.7, p 7, ranks 40/16) is kept as the reference version.
+
+Code changes that keep results identical up to round-off:
+- `radial_kernels.real_pairs_tree`, selected with `FastFriction(..., pair_search="tree")`; the default is still
+  `"images"`;
+- `toy_dynamics.conservative_force_neighbor`, which is the default in `run()`.
+
+Both are covered by `test_radial_kernels.Enumeration`.
+

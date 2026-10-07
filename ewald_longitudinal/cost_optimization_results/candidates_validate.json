@@ -209,58 +209,6 @@
  },
  {
   "law": "B",
-  "tag": "B_2e-7",
-  "budget": "2e-7",
-  "xi": 0.85,
-  "s": 3.8,
-  "eta": 0.6283083475616712,
-  "p": 6,
-  "rank_noise": 10,
-  "rank_damp": 5,
-  "M512": 36,
-  "err512": 1.8618305355945624e-07,
-  "est_step_N512": 0.0952610245027093,
-  "eta_requested_at_512": 0.7,
-  "ranks_by_N": {
-   "64": [
-    8,
-    4
-   ],
-   "512": [
-    10,
-    5
-   ],
-   "1728": [
-    12,
-    5
-   ],
-   "4096": [
-    16,
-    5
-   ]
-  },
-  "ranks_by_N_overall_only": {
-   "64": [
-    6,
-    4
-   ],
-   "512": [
-    10,
-    4
-   ],
-   "1728": [
-    10,
-    4
-   ],
-   "4096": [
-    12,
-    4
-   ]
-  },
-  "rank_rule": "strict: overall, k=2pi/L plane-wave and lowest-3/12-eigenmode Krylov errors <= budget at N=64 and 512"
- },
- {
-  "law": "B",
   "tag": "B_1e-6",
   "budget": "1e-6",
   "xi": 1.0,

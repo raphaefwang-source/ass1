@@ -14,8 +14,13 @@ Stages (each writes JSON/CSV to cost_optimization_results/ and can be rerun inde
             full-periodic reference (v2 LatticeFriction); timing of each accepted candidate
   ranks     noise sqrt-action and damping-action errors vs Lanczos rank, against dense f(Gamma_h) (Krylov part) and
             dense f(Gamma_ref) (total), separately from Gamma v
+  refine    mesh rescan at a large box (N = 512, matrix-free spectral error) for the cheapest (xi, s) per budget
+  modes     rank requirement per N: overall, k = 2 pi / L plane-wave and lowest-eigenmode Lanczos errors
+  slowmodes final static checks of the selected sets (N = 64, 512) + slow-mode errors at their ranks
+  ranks_large  large-N rank errors (converged-Lanczos reference) and sampled-row Gamma v error vs direct sum
   validate  short fixed-time dynamics, candidate vs baseline on common initial states and common noise
   timing    dense vs direct full-periodic sum + Lanczos vs PPPM + Lanczos at several N (one process per case)
+  table     final table (cost_table.csv, timing_table.md); report: cost_optimization_results/REPORT.md
 Error budgets: "5e-8" (law B only; ~ B baseline error), "2e-7" (~ A baseline error), "1e-6" and "1e-4" (relative spectral operator
 error against the full-periodic reference, and relative Lanczos action errors).
 """
@@ -742,7 +747,7 @@ def run_validation_path(job):
                wall=time.perf_counter() - t0, thermostat=th.record, steps=400, stride=100, dt=TOY["dt"])
     f.parent.mkdir(parents=True, exist_ok=True)
     f.write_text(json.dumps(rec, indent=1) + "\n")
-    return rec
+    return json.loads(f.read_text())                       # observable keys as strings, as when cached
 
 
 def stage_validate(args):
@@ -833,22 +838,29 @@ def timing_case(method, N, law, params, reps, warm):
         fast = fast_op(L, law, params["xi"], params["s"], params["eta"], params["p"],
                        pair_search=params.get("pair_search", "tree"))
     t_pre = time.perf_counter() - t0
-    steps, t_act = [], []
+    steps, t_act, t_build, t_fun = [], [], [], []
     for k in range(warm + reps):
         ts = time.perf_counter()
         force, _, _ = td.conservative_force_neighbor(q, L, pot)
         p = p + 0.5 * dt * force
         q = q + 0.5 * dt / m * p
         xi = rng.standard_normal(q.shape)
+        tb = time.perf_counter()
         if method == "dense":
-            ref = DenseRef(lattice_matrix(lat, q % L), N)
+            G = lattice_matrix(lat, q % L)
+            tf = time.perf_counter()
+            ref = DenseRef(G, N)
             damp, noise = ref.apply(f_damp(dt), proj(p.ravel())), ref.apply(f_noise(dt), proj(xi.ravel()))
         else:
             op = DirectLatticeOp(lat, q % L) if method == "direct_lanczos" else fast.gamma_h(q)
+            tf = time.perf_counter()
             damp, _ = timed_apply(op, proj(p.ravel()), params["rank_damp"], f_damp(dt))
             noise, _ = timed_apply(op, proj(xi.ravel()), params["rank_noise"], f_noise(dt))
             if k >= warm:
                 t_act.append(op.t_actions / max(op.n_actions, 1))
+        if k >= warm:
+            t_build.append(tf - tb)
+            t_fun.append(time.perf_counter() - tf)
         p = p.mean(axis=0)[None] + (proj(damp) + proj(noise)).reshape(p.shape)
         q = q + 0.5 * dt / m * p
         force, _, _ = td.conservative_force_neighbor(q, L, pot)
@@ -857,7 +869,8 @@ def timing_case(method, N, law, params, reps, warm):
             steps.append(time.perf_counter() - ts)
     return dict(method=method, N=N, law=law, L=L, params=params, precompute=t_pre, step_median=float(np.median(steps)),
                 step_min=float(np.min(steps)), step_max=float(np.max(steps)), reps=reps, warmup=warm,
-                gamma_v=float(np.median(t_act)) if t_act else None,
+                gamma_v=float(np.median(t_act)) if t_act else None, operator_build=float(np.median(t_build)),
+                matrix_function=float(np.median(t_fun)),
                 peak_rss_mb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024)
 
 
@@ -874,8 +887,12 @@ def stage_timing(args):
             plan.append(("pppm_lanczos", N, law, dict(BASE, pair_search="tree"), "baseline_tree"))
             for c in cands:
                 if c["law"] == law:
-                    plan.append(("pppm_lanczos", N, law, c, c["tag"]))
-                    plan.append(("direct_lanczos", N, law, c, "direct_" + c["tag"] + "_ranks"))
+                    cc = dict(c)
+                    if N > 512 and str(N) in c.get("ranks_by_N", {}):      # rank requirement grows with N
+                        cc["rank_noise"], cc["rank_damp"] = c["ranks_by_N"][str(N)]
+                    plan.append(("pppm_lanczos", N, law, cc, c["tag"]))
+                    if c.get("time_direct"):
+                        plan.append(("direct_lanczos", N, law, cc, "direct_" + c["tag"] + "_ranks"))
     for method, N, law, params, tag in plan:
         if (method, N, law, tag) in done or (method == "dense" and N > args.dense_max):
             continue
@@ -893,6 +910,9 @@ def stage_timing(args):
             continue
         r = json.loads(outp.stdout.strip().splitlines()[-1])
         r["tag"] = tag
+        r["threads"] = dict(OPENBLAS_NUM_THREADS=1, OMP_NUM_THREADS=1, MKL_NUM_THREADS=1)
+        r["cpu"] = os.uname().machine + " " + (open("/proc/cpuinfo").read().split("model name")[1].split("\n")[0].strip(" :\t")
+                                                 if Path("/proc/cpuinfo").exists() else "")
         res.append(r)
         save("timing.json", res)
         print(f"{method:15s} {tag:28s} N={N:5d} {law}: pre {r['precompute']:.2f}s step {1e3 * r['step_median']:.1f} ms "
@@ -960,10 +980,80 @@ def stage_summary(args):
               f"est N64 {1e3 * r.get('est_step_N64', np.nan):.1f} ms N512 {1e3 * r.get('est_step_N512', np.nan):.1f} ms")
 
 
+def stage_table(args):
+    """Final table: original vs recommended parameters, errors, measured step times and speedups (timing.json),
+    fixed-time dynamics differences (validate.json). Writes cost_table.csv and cost_table.md."""
+    import csv
+    C = load("candidates.json")
+    T = load("timing.json") if (OUT / "timing.json").exists() else []
+    V = load("validate.json") if (OUT / "validate.json").exists() else []
+    S = load("slowmodes.json")
+    RL = load("ranks_large.json")
+    step = {(r["tag"], r["N"], r["law"]): r for r in T}
+    rows = []
+    Ns = sorted({r["N"] for r in T})
+    for c in C:
+        law, tag = c["law"], c["tag"]
+        st64, st512 = S.get(f"{law}_{tag}_N64", {}).get("static", {}), S.get(f"{law}_{tag}_N512", {}).get("static", {})
+        v = [r for r in V if r["tag"] == tag]
+        row = dict(law=law, budget=c["budget"],
+                   original="xi 0.7, s 4.10, eta 0.7, p 7, ranks 40/16, image-enumerated pairs",
+                   recommended=f"xi {c['xi']}, s {c['s']}, eta {c['eta']:.4f}, p {c['p']}, ranks {c['rank_noise']}/{c['rank_damp']} (N<=512), KD-tree pairs",
+                   ranks_N1728="%d/%d" % tuple(c["ranks_by_N"]["1728"]), ranks_N4096="%d/%d" % tuple(c["ranks_by_N"]["4096"]),
+                   M_N64=st64.get("M"), M_N512=st512.get("M"),
+                   op_err_N64=st64.get("op_err"), op_err_N512=st512.get("op_err"),
+                   gv_rows_err_N1728=RL.get(f"{law}_{tag}_N1728", {}).get("gv_rows_err"),
+                   gv_rows_err_N4096=RL.get(f"{law}_{tag}_N4096", {}).get("gv_rows_err"),
+                   dyn_validated=bool(v),
+                   dyn_max_abs_rel_mean_diff=max((abs(r["rel_mean_diff"]) for r in v), default=None),
+                   dyn_all_ci_include_zero=all(r["ci95_low"] <= 0 <= r["ci95_high"] for r in v) if v else None)
+        for N in Ns:
+            cand, b_img, b_tree = step.get((tag, N, law)), step.get(("baseline_images", N, law)), step.get(("baseline_tree", N, law))
+            if cand:
+                row[f"step_ms_N{N}"] = 1e3 * cand["step_median"]
+                orig = b_img or b_tree
+                row[f"speedup_vs_original_N{N}"] = orig["step_median"] / cand["step_median"] if orig else None
+                row[f"speedup_vs_baseline_tree_N{N}"] = b_tree["step_median"] / cand["step_median"] if b_tree else None
+                row[f"rss_mb_N{N}"] = cand["peak_rss_mb"]
+        rows.append(row)
+    keys = list(dict.fromkeys(k for r in rows for k in r))
+    with open(OUT / "cost_table.csv", "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=keys)
+        w.writeheader()
+        w.writerows(rows)
+    base = []
+    for N in Ns:
+        for law in ("A", "B"):
+            for tag in ("dense", "direct_base_ranks", "baseline_images", "baseline_tree"):
+                r = step.get((tag, N, law))
+                if r:
+                    base.append(f"| {law} | {N} | {tag} | {r['precompute']:.3f} | {1e3 * r['step_median']:.1f} "
+                                f"({1e3 * r['step_min']:.1f}-{1e3 * r['step_max']:.1f}) | {1e3 * r['operator_build']:.1f} | "
+                                f"{('%.2f' % (1e3 * r['gamma_v'])) if r['gamma_v'] else '-'} | {r['peak_rss_mb']:.0f} |")
+    md = ["| law | N | method | precompute s | step ms median (min-max) | operator build ms | Gamma v ms | peak RSS MB |",
+          "|---|---|---|---|---|---|---|---|"] + base
+    for N in Ns:
+        for c in C:
+            r = step.get((c["tag"], N, c["law"]))
+            if r:
+                md.append(f"| {c['law']} | {N} | {c['tag']} (ranks {r['params']['rank_noise']}/{r['params']['rank_damp']}) | "
+                          f"{r['precompute']:.3f} | {1e3 * r['step_median']:.1f} ({1e3 * r['step_min']:.1f}-{1e3 * r['step_max']:.1f}) | "
+                          f"{1e3 * r['operator_build']:.1f} | {1e3 * r['gamma_v']:.2f} | {r['peak_rss_mb']:.0f} |")
+            r = step.get(("direct_" + c["tag"] + "_ranks", N, c["law"]))
+            if r:
+                md.append(f"| {c['law']} | {N} | direct sum, ranks of {c['tag']} | {r['precompute']:.3f} | "
+                          f"{1e3 * r['step_median']:.1f} ({1e3 * r['step_min']:.1f}-{1e3 * r['step_max']:.1f}) | "
+                          f"{1e3 * r['operator_build']:.1f} | {1e3 * r['gamma_v']:.2f} | {r['peak_rss_mb']:.0f} |")
+    (OUT / "timing_table.md").write_text("\n".join(md) + "\n")
+    print("\n".join(md))
+    for r in rows:
+        print(r)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--stage", required=True,
-                    choices=["profile", "search", "ranks", "ranks_large", "slowmodes", "modes", "refine", "validate", "timing", "summary", "_timing_case"])
+                    choices=["profile", "search", "ranks", "ranks_large", "slowmodes", "modes", "refine", "table", "validate", "timing", "summary", "_timing_case"])
     ap.add_argument("--N", type=int, nargs="+", default=[64, 512])
     ap.add_argument("--laws", nargs="+", default=["A", "B"])
     ap.add_argument("--tols", nargs="+", default=list(TOLS))
@@ -979,7 +1069,7 @@ def main():
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--dense-max", type=int, default=512)
     ap.add_argument("--direct-max", type=int, default=1024)
-    ap.add_argument("--images-max", type=int, default=1024)
+    ap.add_argument("--images-max", type=int, default=512)
     ap.add_argument("--case", default=None)
     ap.add_argument("--pair-search", default="tree", choices=["tree", "images"])
     args = ap.parse_args()
@@ -989,7 +1079,7 @@ def main():
         print(json.dumps(timing_case(c["method"], c["N"], c["law"], c["params"], c["reps"], c["warm"])))
         return
     t0, c0 = time.time(), time.process_time()
-    {"profile": stage_profile, "search": stage_search, "ranks": stage_ranks, "ranks_large": stage_ranks_large, "slowmodes": stage_slowmodes, "modes": stage_modes, "refine": stage_refine,
+    {"profile": stage_profile, "search": stage_search, "ranks": stage_ranks, "ranks_large": stage_ranks_large, "slowmodes": stage_slowmodes, "modes": stage_modes, "table": stage_table, "refine": stage_refine,
      "validate": stage_validate,
      "timing": stage_timing, "summary": stage_summary}[args.stage](args)
     log = OUT / "budget_log.json"
