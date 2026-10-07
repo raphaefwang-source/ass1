@@ -137,13 +137,19 @@ def stage_analyze(args):
                     continue
                 cmp_ = {}
                 for k in ("vacf", "vccf_normalized", "hydro_L_mode_mean", "hydro_T_mode_mean", "van_hove_distinct", "rdf"):
+                    # Paired difference (same start, same noise) compared with the sampling error bar of the
+                    # observable itself (reference SEM across seeds). Points where the reference has no spread
+                    # (t = 0 normalisation, empty van Hove bins) carry no statistical information and are skipped.
                     diff = st[m][k] - st["reference"][k]
-                    mean, sem = diff.mean(axis=0), diff.std(axis=0, ddof=1) / np.sqrt(len(seeds))
-                    spread = st["reference"][k].std(axis=0, ddof=1) / np.sqrt(len(seeds))
-                    ok = np.isfinite(mean) & np.isfinite(sem)
-                    cmp_[k] = dict(max_abs_paired_diff=float(np.abs(mean[ok]).max()),
-                                   max_abs_diff_over_sem=float(np.max(np.abs(mean[ok]) / np.maximum(sem[ok], 1e-300))),
-                                   max_reference_sem=float(np.nanmax(spread)))
+                    mean = diff.mean(axis=0)
+                    sem_ref = st["reference"][k].std(axis=0, ddof=1) / np.sqrt(len(seeds))
+                    scale = np.nanmax(np.abs(st["reference"][k]))
+                    ok = np.isfinite(mean) & np.isfinite(sem_ref) & (sem_ref > 1e-12 * scale)
+                    ratio = np.abs(mean[ok]) / sem_ref[ok]
+                    cmp_[k] = dict(max_abs_paired_diff=float(np.nanmax(np.abs(mean))),
+                                   max_reference_sem=float(np.nanmax(sem_ref)),
+                                   max_diff_over_reference_sem=float(ratio.max()),
+                                   fraction_within_2_reference_sem=float(np.mean(ratio <= 2.0)))
                 comp[m] = cmp_
             Ts = {m: [float(np.mean(d["diagnostics"][:, 1])) for d in diag[m]] for m in methods}
             Us = {m: [float(np.mean(d["diagnostics"][:, 2])) for d in diag[m]] for m in methods}
@@ -157,7 +163,8 @@ def stage_analyze(args):
                                          pathwise=path_div)
             print(f"[{case}] seeds {seeds} methods {methods}", flush=True)
             for m, c in comp.items():
-                print("   " + m + ": " + "  ".join(f"{k}: {v['max_abs_paired_diff']:.1e} ({v['max_abs_diff_over_sem']:.1f} SEM)" for k, v in c.items()), flush=True)
+                print("   " + m + ": " + "  ".join(f"{k}: {v['max_abs_paired_diff']:.1e} (max {v['max_diff_over_reference_sem']:.2f} ref-SEM, "
+                                                 f"{100 * v['fraction_within_2_reference_sem']:.0f}% within 2)" for k, v in c.items()), flush=True)
     (out / "comparison.json").write_text(json.dumps(report, indent=1) + "\n")
     figures(stats, out, args.tag)
 
@@ -189,17 +196,20 @@ def figures(stats, out, tag):
                         if key == "vccf_normalized":
                             yr = yr[..., 0]
                         diff = y - yr
-                        mean, sem = diff.mean(axis=0), diff.std(axis=0, ddof=1) / np.sqrt(n)
+                        mean = diff.mean(axis=0)
+                        sem_ref = yr.std(axis=0, ddof=1) / np.sqrt(n)
                         ax = axes[1 if law == "A" else 2, col]
-                        ax.plot(t, mean, color=COL[law], ls=LS[m], label=f"{m} - reference")
-                        ax.fill_between(t, mean - 2 * sem, mean + 2 * sem, color=COL[law], alpha=.15, lw=0)
+                        if m == "pppm_lanczos":
+                            ax.fill_between(t, -2 * sem_ref, 2 * sem_ref, color=".75", alpha=.5, lw=0,
+                                            label="+/-2 SEM of the reference (sampling)")
+                        ax.plot(t, mean, color=COL[law], ls=LS[m], label=f"{m} - reference (paired mean)")
                 axes[0, col].set(title=title, xlabel="lag time", xlim=(0, 1.5))
         for col in range(4):
             axes[0, col].axhline(0, color=".6", lw=.6)
             for row in (1, 2):
                 axes[row, col].axhline(0, color=".6", lw=.6)
                 axes[row, col].set(xlabel="lag time", xlim=(0, 1.5),
-                                   title=f"law {'A' if row == 1 else 'B'}: paired difference, band = +/-2 SEM")
+                                   title=f"law {'A' if row == 1 else 'B'}: fast - reference (grey: +/-2 ref. SEM)")
                 axes[row, col].legend(fontsize=7)
         axes[0, 0].legend(fontsize=7)
         fig.suptitle(f"{pot}: fast PPPM operator vs dense full-periodic reference ({tag}); coupled seeds, "
@@ -222,14 +232,16 @@ def figures(stats, out, tag):
                 if m != "reference":
                     for target in (0.0, 0.5):
                         k = int(np.argmin(np.abs(t - target)))
-                        diff = S["st"][m]["van_hove_distinct"][:, k] - S["st"]["reference"]["van_hove_distinct"][:, k]
-                        mean, sem = diff.mean(axis=0), diff.std(axis=0, ddof=1) / np.sqrt(n)
+                        yr = S["st"]["reference"]["van_hove_distinct"][:, k]
+                        mean = (S["st"][m]["van_hove_distinct"][:, k] - yr).mean(axis=0)
+                        sem_ref = yr.std(axis=0, ddof=1) / np.sqrt(n)
                         ax = axes[1, 0 if law == "A" else 1]
+                        if m == "pppm_lanczos":
+                            ax.fill_between(r, -2 * sem_ref, 2 * sem_ref, color=".75", alpha=.35, lw=0)
                         ax.plot(r, mean, color=COL[law], ls=LS[m], label=f"{m} - ref, t={t[k]:.2f}")
-                        ax.fill_between(r, mean - 2 * sem, mean + 2 * sem, color=COL[law], alpha=.12, lw=0)
             for row in (0, 1):
                 axes[row, 0 if law == "A" else 1].set(xlabel="minimum-image distance r", title=f"law {law}: "
-                                                      + ("distinct van Hove g_d(r,t)" if row == 0 else "paired difference, +/-2 SEM"))
+                                                      + ("distinct van Hove g_d(r,t)" if row == 0 else "fast - reference (grey: +/-2 ref. SEM)"))
                 axes[row, 0 if law == "A" else 1].legend(fontsize=7)
         fig.suptitle(f"{pot}: distinct van Hove, fast vs reference ({tag})", fontsize=11)
         fig.savefig(out / f"fig_{pot}_van_hove.png", dpi=140)
