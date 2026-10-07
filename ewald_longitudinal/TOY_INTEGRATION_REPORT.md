@@ -178,7 +178,9 @@ instance. Symmetry, the total-momentum null space and positive semidefiniteness 
 - Law A decorrelates after t ≈ 6–10, and double well B after t ≈ 30–40. For these cases the comparison is
   statistical.
 
-**Curves, combined-SEM z between fast and coupled reference** (conservative while the pairs are still correlated):
+**Curves, combined-SEM z between fast and coupled reference** (conservative while the pairs are still correlated).
+*Superseded for the scalars by the seed-paired analysis in Section 8.* The combined-SEM z treats fast and reference
+as independent groups and so ignores the pairing:
 
 | case | VACF | VCCF (all bins) | C_L | C_T | RDF | distinct van Hove (all t) |
 |---|---|---|---|---|---|---|
@@ -192,8 +194,11 @@ Entries are the fraction of lags or radii with |z| ≤ 2, with max |z| in bracke
 **Same-model control.** The dense reference against the independent v2 ensemble (`report.json` → `independent_vs_v2`)
 gives a comparable spread: 80–100 % within |z| ≤ 2 and max |z| 1.4–7.8. The fast-vs-v2 numbers are almost the same
 (`z_*_fast_vs_v2.png`: the solid fast curves and the dotted control curves make the same excursions at the same lags).
-- The excursions are therefore properties of finite, slowly fluctuating samples (window difference, correlated lags,
-  5 seeds), shared by both algorithms. They are not a signature of the fast operator.
+- The excursions are consistent with finite, slowly fluctuating samples (window difference, correlated lags,
+  5 seeds) that both algorithms share.
+  - *Correction:* this comparison alone does not show that the fast operator leaves the dynamics unchanged.
+  - The seed-paired analysis (Section 8) finds a double-well A diffusion difference that this comparison did not
+    resolve.
 - The lag-by-lag fractions are descriptive, not a formal test.
 
 **Scalars** (mean ± SEM over 5 seeds; z uses the combined SEM):
@@ -229,8 +234,10 @@ gives a comparable spread: 80–100 % within |z| ≤ 2 and max |z| 1.4–7.8. Th
 | double_well_B | RDF peak | 4.167 ± 0.108 | 4.195 ± 0.096 | 4.076 ± 0.150 | -0.2 | 0.5 | 0.7 |
 | double_well_B | dU/N halves | -0.0264 ± 0.0682 | -0.0226 ± 0.0538 | -0.0035 ± 0.0370 | -0.0 | -0.3 | -0.3 |
 
-- Fast vs coupled reference: every |z| ≤ 1.8, except the double-well A half-to-half energy drift statistic
-  (z = −2.1), which measures non-stationarity rather than a model property.
+- Fast vs coupled reference, combined-SEM z: every |z| ≤ 1.8, except the double-well A half-to-half energy drift
+  statistic (z = −2.1).
+  - *Correction:* this z ignores the pairing. Seed-paired, the double-well A diffusion difference is +8.0% (GK) and
+    +5.6% (MSD), with all 5 seeds positive and paired t = 5.6 and 5.2 (df 4). See Section 8.
 - The largest fast-vs-v2 gap is the double-well A temperature (z = 3.8). It comes from the v2 window's own low
   temperature, 0.6960 ± 0.0011, which v2 already reported. The fast run gives 0.7007 ± 0.0007.
 - LJ B U/N differs between the new window and the v2 window by z = 2.5. It does so identically for fast and
@@ -286,3 +293,35 @@ gives a comparable spread: 80–100 % within |z| ≤ 2 and max |z| 1.4–7.8. Th
 - Commands: see the README section "Toy application". The long runs used `--stage run --tag production_t60
   --steps 12000 --seeds 101 102 103 104 105 --methods reference pppm_lanczos --workers 4`, followed by `--stage
   report` and `--stage analyze` with `--origins 300`.
+
+## 8. Seed-paired re-analysis of production_t60 (`toy_dynamics_results/production_t60/paired/`)
+
+`analyze_toy_paired.py`; full write-up in `paired/PAIRED_ANALYSIS.md`; tables in `paired_summary.csv`,
+`lag_scan.csv`, `window_summary.csv` and `operator_along_trajectories.csv`.
+
+**Method.**
+- d_i = fast_i − reference_i per seed (same start, same noise); SEM = std(d_i, ddof = 1)/√5; Student-t 95% CI with
+  df = 4.
+- The two methods are not treated as independent even after the paths separate.
+- The cache-only stages (full-run table, lag scan) run without raw files; the window and operator stages are skipped
+  explicitly when raw files are missing.
+
+**Results.**
+- **double_well_A** at max lag 3: d/D = +8.0% (GK, CI +4.1 to +12.0%) and +5.6% (MSD, CI +2.6 to +8.5%). All 5 seeds
+  are positive; paired t = 5.6 / 5.2.
+  - The difference grows with the integration limit (+1–3% at lag 0.5).
+  - It changes sign between time windows: about +15% for t ∈ [0, 45] and −11 to −16% for t ∈ [45, 60]. T and U/N
+    move with it.
+- **lj_A:** −4% (GK CI −8.5 to −0.2%), the opposite sign.
+- **double_well_B:** ±2% with CIs up to ±9%.
+- **lj_B:** ≤ 1e-7.
+- **Operator on 130 visited configurations per case:** ‖Γ_h − Γ_ref‖/‖Γ_ref‖ ≤ 1.5e-7.
+
+**Reading.**
+- The data do not establish a systematic effect of the fast algorithm. Against one: the window and lag dependence,
+  the sign reversals, the 1e-7 operator agreement, and multiplicity.
+- The data also do not establish agreement in law-A diffusion to better than several percent.
+
+**Recommendation.** A targeted rerun for law A (double_well_A first) with a null-control arm:
+- double_well_A needs about 30–36 pairs for ±3% and 61–77 for ±2%; lj_A needs about 12–13 for ±3%.
+- The design and cost are in `PAIRED_ANALYSIS.md`. It has not been started.

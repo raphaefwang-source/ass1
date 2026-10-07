@@ -1,0 +1,322 @@
+{
+ "lj_A/reference_seed101": {
+  "T_mean": 0.6992692433813668,
+  "U_per_particle": -3.067951838807748,
+  "U_first_half": -3.042276506500635,
+  "U_second_half": -3.0936100656303136,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_A/reference_seed101.npz"
+ },
+ "lj_A/reference_seed102": {
+  "T_mean": 0.6994907446568067,
+  "U_per_particle": -3.2497092848300824,
+  "U_first_half": -3.3413864446642743,
+  "U_second_half": -3.158093202384189,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_A/reference_seed102.npz"
+ },
+ "lj_A/reference_seed103": {
+  "T_mean": 0.6992404385860895,
+  "U_per_particle": -3.1496501715451135,
+  "U_first_half": -3.2195046455658805,
+  "U_second_half": -3.0798422361479445,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_A/reference_seed103.npz"
+ },
+ "lj_A/reference_seed104": {
+  "T_mean": 0.7015632691408016,
+  "U_per_particle": -3.180230929898606,
+  "U_first_half": -3.228130391533245,
+  "U_second_half": -3.1323633799639246,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_A/reference_seed104.npz"
+ },
+ "lj_A/reference_seed105": {
+  "T_mean": 0.6999063339111425,
+  "U_per_particle": -3.201694712879721,
+  "U_first_half": -3.1514880188536614,
+  "U_second_half": -3.2518679580756493,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_A/reference_seed105.npz"
+ },
+ "lj_A/pppm_lanczos_seed101": {
+  "T_mean": 0.7049961738381646,
+  "U_per_particle": -3.1381121809393977,
+  "U_first_half": -3.107235713829481,
+  "U_second_half": -3.168968077451639,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_A/pppm_lanczos_seed101.npz"
+ },
+ "lj_A/pppm_lanczos_seed102": {
+  "T_mean": 0.7042403104049894,
+  "U_per_particle": -3.3564142325291497,
+  "U_first_half": -3.393587516846164,
+  "U_second_half": -3.3192657138912267,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_A/pppm_lanczos_seed102.npz"
+ },
+ "lj_A/pppm_lanczos_seed103": {
+  "T_mean": 0.696242396138619,
+  "U_per_particle": -3.2556460250650234,
+  "U_first_half": -3.201945532680558,
+  "U_second_half": -3.3093107409722173,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_A/pppm_lanczos_seed103.npz"
+ },
+ "lj_A/pppm_lanczos_seed104": {
+  "T_mean": 0.6989440921269394,
+  "U_per_particle": -3.1454399557032353,
+  "U_first_half": -3.1606277553661553,
+  "U_second_half": -3.1302622744944544,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_A/pppm_lanczos_seed104.npz"
+ },
+ "lj_A/pppm_lanczos_seed105": {
+  "T_mean": 0.696563915017453,
+  "U_per_particle": -3.1220111821302856,
+  "U_first_half": -3.178964553637248,
+  "U_second_half": -3.0650957542419155,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_A/pppm_lanczos_seed105.npz"
+ },
+ "lj_B/reference_seed101": {
+  "T_mean": 0.6975415758991228,
+  "U_per_particle": -3.1368333538727127,
+  "U_first_half": -3.209533303404377,
+  "U_second_half": -3.0641818386845077,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_B/reference_seed101.npz"
+ },
+ "lj_B/reference_seed102": {
+  "T_mean": 0.6983276950514564,
+  "U_per_particle": -3.1159481712001083,
+  "U_first_half": -3.085832764210331,
+  "U_second_half": -3.1460435146276007,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_B/reference_seed102.npz"
+ },
+ "lj_B/reference_seed103": {
+  "T_mean": 0.7032748323723361,
+  "U_per_particle": -3.1719169698243186,
+  "U_first_half": -3.2436265940070363,
+  "U_second_half": -3.100255120208012,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_B/reference_seed103.npz"
+ },
+ "lj_B/reference_seed104": {
+  "T_mean": 0.6990419071671816,
+  "U_per_particle": -3.140114623670116,
+  "U_first_half": -3.1776658446755053,
+  "U_second_half": -3.1025884201337512,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_B/reference_seed104.npz"
+ },
+ "lj_B/reference_seed105": {
+  "T_mean": 0.7000236443555374,
+  "U_per_particle": -3.161130667075986,
+  "U_first_half": -3.084740901680571,
+  "U_second_half": -3.237469539889525,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_B/reference_seed105.npz"
+ },
+ "lj_B/pppm_lanczos_seed101": {
+  "T_mean": 0.6975416292122946,
+  "U_per_particle": -3.136833609968943,
+  "U_first_half": -3.2095332705280812,
+  "U_second_half": -3.0641823835607434,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_B/pppm_lanczos_seed101.npz"
+ },
+ "lj_B/pppm_lanczos_seed102": {
+  "T_mean": 0.698327692592471,
+  "U_per_particle": -3.1159483278752385,
+  "U_first_half": -3.085832758483701,
+  "U_second_half": -3.146043833596294,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_B/pppm_lanczos_seed102.npz"
+ },
+ "lj_B/pppm_lanczos_seed103": {
+  "T_mean": 0.7032746963318685,
+  "U_per_particle": -3.1719176008086674,
+  "U_first_half": -3.2436266205735715,
+  "U_second_half": -3.100256355207497,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_B/pppm_lanczos_seed103.npz"
+ },
+ "lj_B/pppm_lanczos_seed104": {
+  "T_mean": 0.699041902261196,
+  "U_per_particle": -3.1401125213398773,
+  "U_first_half": -3.1776658463155902,
+  "U_second_half": -3.102584215234901,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_B/pppm_lanczos_seed104.npz"
+ },
+ "lj_B/pppm_lanczos_seed105": {
+  "T_mean": 0.7000234131291242,
+  "U_per_particle": -3.1611431164807575,
+  "U_first_half": -3.084740828443016,
+  "U_second_half": -3.2374945035937572,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/lj_B/pppm_lanczos_seed105.npz"
+ },
+ "double_well_A/reference_seed101": {
+  "T_mean": 0.704711648437197,
+  "U_per_particle": -5.7166496483453955,
+  "U_first_half": -5.733167254135975,
+  "U_second_half": -5.700143046955741,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_A/reference_seed101.npz"
+ },
+ "double_well_A/reference_seed102": {
+  "T_mean": 0.6956478093946777,
+  "U_per_particle": -5.843092936828266,
+  "U_first_half": -5.930694872368505,
+  "U_second_half": -5.755549363670133,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_A/reference_seed102.npz"
+ },
+ "double_well_A/reference_seed103": {
+  "T_mean": 0.7023708757901288,
+  "U_per_particle": -5.711880251221857,
+  "U_first_half": -5.750567964336028,
+  "U_second_half": -5.673218312733344,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_A/reference_seed103.npz"
+ },
+ "double_well_A/reference_seed104": {
+  "T_mean": 0.6975834041138052,
+  "U_per_particle": -5.680260781801215,
+  "U_first_half": -5.677550296741907,
+  "U_second_half": -5.682969461074342,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_A/reference_seed104.npz"
+ },
+ "double_well_A/reference_seed105": {
+  "T_mean": 0.6961625095632069,
+  "U_per_particle": -5.830033595945795,
+  "U_first_half": -5.792149232969146,
+  "U_second_half": -5.86789271950674,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_A/reference_seed105.npz"
+ },
+ "double_well_A/pppm_lanczos_seed101": {
+  "T_mean": 0.702642775363441,
+  "U_per_particle": -5.729677906711149,
+  "U_first_half": -5.598144008842903,
+  "U_second_half": -5.861124173734715,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_A/pppm_lanczos_seed101.npz"
+ },
+ "double_well_A/pppm_lanczos_seed102": {
+  "T_mean": 0.70123852171778,
+  "U_per_particle": -5.915349258103095,
+  "U_first_half": -5.894598235567478,
+  "U_second_half": -5.936086455840222,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_A/pppm_lanczos_seed102.npz"
+ },
+ "double_well_A/pppm_lanczos_seed103": {
+  "T_mean": 0.7012146785406789,
+  "U_per_particle": -5.753319976352467,
+  "U_first_half": -5.728766440056955,
+  "U_second_half": -5.777857154529197,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_A/pppm_lanczos_seed103.npz"
+ },
+ "double_well_A/pppm_lanczos_seed104": {
+  "T_mean": 0.6997372349703892,
+  "U_per_particle": -5.675568458832144,
+  "U_first_half": -5.690650908571815,
+  "U_second_half": -5.66049605736012,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_A/pppm_lanczos_seed104.npz"
+ },
+ "double_well_A/pppm_lanczos_seed105": {
+  "T_mean": 0.6988648450195066,
+  "U_per_particle": -5.755403855161989,
+  "U_first_half": -5.673119731315853,
+  "U_second_half": -5.837633159471917,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_A/pppm_lanczos_seed105.npz"
+ },
+ "double_well_B/reference_seed101": {
+  "T_mean": 0.6975947229688411,
+  "U_per_particle": -5.669723769503407,
+  "U_first_half": -5.707863659835341,
+  "U_second_half": -5.631609288825259,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_B/reference_seed101.npz"
+ },
+ "double_well_B/reference_seed102": {
+  "T_mean": 0.6974204025135693,
+  "U_per_particle": -5.7861960793442,
+  "U_first_half": -5.850375627352821,
+  "U_second_half": -5.722059289195678,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_B/reference_seed102.npz"
+ },
+ "double_well_B/reference_seed103": {
+  "T_mean": 0.7027348588806959,
+  "U_per_particle": -5.804268658037906,
+  "U_first_half": -5.723757421470163,
+  "U_second_half": -5.8847262562068705,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_B/reference_seed103.npz"
+ },
+ "double_well_B/reference_seed104": {
+  "T_mean": 0.6988021760349589,
+  "U_per_particle": -5.732370111890873,
+  "U_first_half": -5.694352750336824,
+  "U_second_half": -5.770362145422569,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_B/reference_seed104.npz"
+ },
+ "double_well_B/reference_seed105": {
+  "T_mean": 0.6992465307374196,
+  "U_per_particle": -5.5202499784163,
+  "U_first_half": -5.479964133698094,
+  "U_second_half": -5.560508983797589,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_B/reference_seed105.npz"
+ },
+ "double_well_B/pppm_lanczos_seed101": {
+  "T_mean": 0.6972887101102792,
+  "U_per_particle": -5.700302052477118,
+  "U_first_half": -5.707316004433128,
+  "U_second_half": -5.693292773373844,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_B/pppm_lanczos_seed101.npz"
+ },
+ "double_well_B/pppm_lanczos_seed102": {
+  "T_mean": 0.6976285419026128,
+  "U_per_particle": -5.749153601555948,
+  "U_first_half": -5.8502661930899365,
+  "U_second_half": -5.648108373507325,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_B/pppm_lanczos_seed102.npz"
+ },
+ "double_well_B/pppm_lanczos_seed103": {
+  "T_mean": 0.702530886971945,
+  "U_per_particle": -5.826044071594981,
+  "U_first_half": -5.7237798428362945,
+  "U_second_half": -5.92824016962165,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_B/pppm_lanczos_seed103.npz"
+ },
+ "double_well_B/pppm_lanczos_seed104": {
+  "T_mean": 0.6987089963538781,
+  "U_per_particle": -5.75195412714571,
+  "U_first_half": -5.695505694016105,
+  "U_second_half": -5.8083649530580415,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_B/pppm_lanczos_seed104.npz"
+ },
+ "double_well_B/pppm_lanczos_seed105": {
+  "T_mean": 0.6991931530943395,
+  "U_per_particle": -5.495688874136278,
+  "U_first_half": -5.480374897738896,
+  "U_second_half": -5.51099264801774,
+  "frames": 3001,
+  "source": "toy_dynamics_raw/production_t60/double_well_B/pppm_lanczos_seed105.npz"
+ }
+}

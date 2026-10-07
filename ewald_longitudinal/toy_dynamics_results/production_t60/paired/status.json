@@ -1,0 +1,23 @@
+{
+ "tag": "production_t60",
+ "seeds": [
+  101,
+  102,
+  103,
+  104,
+  105
+ ],
+ "pairing": "d_i = pppm_lanczos_i - reference_i (same start, same noise)",
+ "paired_summary": "computed from cached observables (no raw files needed)",
+ "lag_scan": "computed from cached observables (no raw files needed)",
+ "window_summary": {
+  "state": "computed from raw trajectories",
+  "files": 40,
+  "verified_against": "toy_dynamics_results/raw_trajectory_manifest.json"
+ },
+ "operator_along_trajectories": {
+  "state": "computed from raw trajectories",
+  "files": 40,
+  "verified_against": "toy_dynamics_results/raw_trajectory_manifest.json"
+ }
+}
