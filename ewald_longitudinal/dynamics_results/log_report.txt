@@ -1,0 +1,29 @@
+{
+ "momentum_defect_max": {
+  "dense": 6.266884278394943e-15,
+  "dense_dt2": 6.279603141228643e-15,
+  "dense_dt4": 1.5834454241891146e-14,
+  "dense_2dt": 5.310990463161938e-15,
+  "tight": 5.5124447869971994e-15,
+  "lanczos_hi": 8.353147084835965e-15,
+  "rank40": 3.8085435286639255e-15,
+  "rank48": 7.188659638670309e-15,
+  "indep": 1.7218900546874336
+ },
+ "sampling_SE_max_over_t": {
+  "Tx": 0.08428007429329672,
+  "Ty": 0.049477829662303754,
+  "Tz": 0.06073982112099778,
+  "Tkin": 0.03138683684359405,
+  "Ok": 0.029046040687771453
+ }
+}
+rank40 - dense               Tx: mean 6.6e-10 path 6.7e-10  Ty: mean 6.1e-10 path 7.2e-10  Tz: mean 1.0e-09 path 8.7e-10  Tkin: mean 4.1e-10 path 4.6e-10  Ok: mean 5.6e-11 path 1.1e-10
+rank48 - dense               Tx: mean 1.2e-11 path 7.5e-12  Ty: mean 7.3e-12 path 6.3e-12  Tz: mean 5.1e-12 path 7.0e-12  Tkin: mean 3.7e-12 path 4.3e-12  Ok: mean 4.3e-13 path 9.5e-13
+lanczos_hi - dense           Tx: mean 3.0e-14 path 4.5e-14  Ty: mean 1.1e-13 path 6.3e-14  Tz: mean 5.7e-14 path 5.5e-14  Tkin: mean 2.3e-14 path 2.9e-14  Ok: mean 7.6e-15 path 1.5e-14
+rank40 - lanczos_hi          Tx: mean 6.6e-10 path 6.7e-10  Ty: mean 6.1e-10 path 7.2e-10  Tz: mean 1.0e-09 path 8.7e-10  Tkin: mean 4.1e-10 path 4.6e-10  Ok: mean 5.6e-11 path 1.1e-10
+rank48 - rank40              Tx: mean 6.6e-10 path 6.6e-10  Ty: mean 6.2e-10 path 7.2e-10  Tz: mean 1.0e-09 path 8.7e-10  Tkin: mean 4.1e-10 path 4.6e-10  Ok: mean 5.6e-11 path 1.0e-10
+tight - dense (spatial)      Tx: mean 2.4e-07 path 2.4e-07  Ty: mean 3.1e-07 path 3.5e-07  Tz: mean 5.6e-07 path 3.1e-07  Tkin: mean 1.7e-07 path 1.4e-07  Ok: mean 4.2e-08 path 5.1e-08
+dense(dt) - dense(dt/2)      Tx: mean 2.8e-02 path 3.7e-02  Ty: mean 3.3e-02 path 3.7e-02  Tz: mean 3.4e-02 path 3.9e-02  Tkin: mean 1.1e-02 path 2.0e-02  Ok: mean 1.5e-02 path 1.6e-02
+dense(dt/2) - dense(dt/4)    Tx: mean 2.6e-02 path 3.2e-02  Ty: mean 1.7e-02 path 2.6e-02  Tz: mean 3.5e-02 path 3.5e-02  Tkin: mean 1.1e-02 path 1.8e-02  Ok: mean 2.5e-03 path 7.9e-03
+dense(2dt) - dense(dt)       Tx: mean 2.8e-02 path 5.5e-02  Ty: mean 2.7e-02 path 5.3e-02  Tz: mean 4.1e-02 path 5.5e-02  Tkin: mean 2.7e-02 path 2.8e-02  Ok: mean 2.9e-03 path 1.6e-02

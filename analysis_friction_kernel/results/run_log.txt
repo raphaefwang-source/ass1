@@ -1,0 +1,83 @@
+=== Step 0: inventory ===
+Scanned 232 files under /home/user/ass1 (excluding .git and this directory).
+  lammps_input    : 0 
+  md_trajectory   : 0 
+  topology        : 0 
+  hdf5            : 0 
+  numpy archives  : 58 (keys inspected below)
+      kinds ['observables only']: 46 files, e.g. ewald_longitudinal/dynamics_results/raw_equil_traj02.npz
+      kinds ['momenta', 'positions']: 12 files, e.g. ewald_longitudinal/dynamics_results/correlations_raw/traj_N512_rank40_seed4.npz
+  notebooks       : ['distorted_Q4_stiffness_matrix.ipynb']
+  text mentions 'mori_zwanzig': 0 []
+  text mentions 'constrained_dynamics': 0 []
+  text mentions 'lammps': 0 []
+  text mentions 'molecule_mapping': 0 []
+  text mentions 'friction_tensor': 4 ['ewald_longitudinal/test_parameter_selection.py', 'ewald_longitudinal/README.md', 'ewald_longitudinal/verify_periodic_graph_psd.py', 'ewald_longitudinal/results/periodic_graph_psd_kappa1_xi1.txt']
+  text mentions 'vacf_vccf': 3 ['ewald_longitudinal/test_dynamic_correlations.py', 'ewald_longitudinal/README.md', 'ewald_longitudinal/dynamics_results/correlations/REPORT.md']
+Classification: CASE 0 (MD trajectories 0, MD forces 0, MD memory/friction 0; own-model trajectories 12)
+
+=== Step 1: MD / CG dissipation analysis ===
+No MD data of any kind (no LAMMPS input, dump, topology, atom-to-molecule map, force, constrained-dynamics or memory files). The only particle trajectories are output of this project's own CG model, whose friction law is Model A by construction. No physical friction has been estimated and no model can be preferred from data.
+
+=== Step 2: known-answer pipeline tests (synthetic; NOT evidence about MD) ===
+V1: CASE-1 path on Gamma_h(q) of this project's model (input: Model A, A = 1, kappa = 1)
+  V1 config 0: 32073 pairs, min r 0.159
+  V1 config 1: 32137 pairs, min r 0.249
+  V1 config 2: 32328 pairs, min r 0.159
+  V1 config 3: 32387 pairs, min r 0.221
+  V1 config 4: 31919 pairs, min r 0.299
+  V1 config 5: 32283 pairs, min r 0.244
+V2a: CASE-2 path on synthetic constrained-dynamics forces (input: pure Model B, core d = 0.9, memory tau = 0.2)
+  V2a config 0: 3763 sampled pairs, null modes 3, min r 0.902
+  V2a config 1: 3762 sampled pairs, null modes 3, min r 0.902
+  V2a config 2: 3759 sampled pairs, null modes 3, min r 0.901
+  V2a config 3: 3758 sampled pairs, null modes 3, min r 0.901
+  V2a config 4: 3742 sampled pairs, null modes 3, min r 0.901
+  V2a config 5: 3751 sampled pairs, null modes 3, min r 0.902
+V2b: CASE-2 path on synthetic constrained-dynamics forces (input: Model B × environment factor, core d = 0.9, memory tau = 0.2)
+  V2b config 0: 3763 sampled pairs, null modes 3, min r 0.902
+  V2b config 1: 3762 sampled pairs, null modes 3, min r 0.902
+  V2b config 2: 3759 sampled pairs, null modes 3, min r 0.901
+  V2b config 3: 3758 sampled pairs, null modes 3, min r 0.901
+  V2b config 4: 3742 sampled pairs, null modes 3, min r 0.901
+  V2b config 5: 3751 sampled pairs, null modes 3, min r 0.902
+V3: CASE-3 Markovian drift regression on this project's model trajectories (input: Model A)
+  V3 trajectory 0: 600 steps
+  V3 trajectory 1: 600 steps
+  V3 trajectory 2: 600 steps
+  V3 trajectory 3: 600 steps
+  V3 trajectory 4: 600 steps
+  V3 trajectory 5: 600 steps
+  V3 trajectory 6: 600 steps
+  V3 trajectory 7: 600 steps
+
+=== Step 3: Fourier and real-space comparison ===
+Fourier closed forms vs QAWF quadrature: max rel. error 7.6e-10
+large-k slopes: A L/T -1.99/-1.99, B L/T -4.00/-4.00; lam_L changes sign at k = 1.515 (A), 0.577 (B), kappa = 1
+
+results in /home/user/ass1/analysis_friction_kernel/results, figures in /home/user/ass1/analysis_friction_kernel/figures  (549 s)
+
+================ FINAL ANSWERS ================
+A. Data found: CASE 0. No LAMMPS inputs, MD dumps, topology/molecule maps, forces, constrained-dynamics series or memory kernels anywhere in the repository (all branches checked separately). Only 12 trajectory archives of this project's OWN CG model (input kernel = Model A).
+B. Physical quantity estimated from MD: none. Estimated only in known-answer tests: pair friction G_ij = -Gamma_ij projected on rhat (V1 from the model's friction tensor, V2a/V2b from synthetic constrained-force memory integrals, V3 from a Markovian drift regression).
+C. True MZ/constrained-dynamics friction from MD: NO. Not even a proxy from MD is possible here.
+D/E [V1, input = A (kappa = 1, A = 1)]
+    Model A: amp 0.9976 ± 0.0013, kappa 0.9993 ± 0.00026; chi2/dof 0.417, wRMSE 0.601, RMSE 0.00146, MAE 0.000539, R2 1.0000, AIC 9.427, BIC 10.84; boot95 amp [0.998, 1] kappa [1, 1]
+    Model B: amp 0.4749 ± 0.00068, kappa 1.49 ± 0.00029; chi2/dof 7.79e+03, wRMSE 82.2, RMSE 0.651, MAE 0.236, R2 -0.0642, AIC 1.013e+05, BIC 1.013e+05; boot95 amp [0.475, 0.478] kappa [1.49, 1.49]
+    spline : chi2/dof 2.5; Delta AIC (B - A) = 1.013e+05; bootstrap fraction with A better = 1.00
+D/E [V2a, input = pure B (kappa = 1, B = 1), core d = 0.9]
+    Model A: amp 0.5841 ± 0.016, kappa 0.1558 ± 0.013; chi2/dof 25.3, wRMSE 4.62, RMSE 0.0421, MAE 0.0326, R2 0.8790, AIC 281.8, BIC 283; boot95 amp [0.564, 0.609] kappa [0.141, 0.17]
+    Model B: amp 1.057 ± 0.036, kappa 1.037 ± 0.017; chi2/dof 1.76, wRMSE 1.22, RMSE 0.0106, MAE 0.00907, R2 0.9922, AIC 23.35, BIC 24.48; boot95 amp [1, 1.12] kappa [1.01, 1.06]
+    spline : chi2/dof 1.63; Delta AIC (B - A) = -258.5; bootstrap fraction with A better = 0.00
+D/E [V2b, input = B (kappa = 1, B = 1) x environment factor, core d = 0.9]
+    Model A: amp 0.6707 ± 0.024, kappa 0.1803 ± 0.015; chi2/dof 9.49, wRMSE 2.83, RMSE 0.0383, MAE 0.0261, R2 0.9174, AIC 108.4, BIC 109.5; boot95 amp [0.616, 0.721] kappa [0.141, 0.21]
+    Model B: amp 1.089 ± 0.047, kappa 1.035 ± 0.018; chi2/dof 4, wRMSE 1.84, RMSE 0.0177, MAE 0.0148, R2 0.9824, AIC 48.04, BIC 49.17; boot95 amp [0.957, 1.21] kappa [0.977, 1.08]
+    spline : chi2/dof 4.33; Delta AIC (B - A) = -60.32; bootstrap fraction with A better = 0.00
+D/E [V3, input = A (kappa = 1, A = 1)]
+    Model A: amp 0.9014 ± 0.0095, kappa 0.9573 ± 0.0083; chi2/dof 6.17, wRMSE 2.31, RMSE 0.0545, MAE 0.0177, R2 0.9921, AIC 84.22, BIC 85.64; boot95 amp [0.888, 0.921] kappa [0.947, 0.974]
+    Model B: amp 7.717 ± 0.13, kappa 2.88 ± 0.014; chi2/dof 228, wRMSE 14.1, RMSE 0.38, MAE 0.113, R2 0.6138, AIC 2973, BIC 2975; boot95 amp [7.44, 8.23] kappa [2.84, 2.94]
+    spline : chi2/dof 2.5; Delta AIC (B - A) = 2889; bootstrap fraction with A better = 1.00
+F. Better-supported model for the PHYSICAL system: undetermined - there are no MD/CG dissipation data. The pipeline identifies the correct law in all known-answer tests (see D/E), so it can decide once data exist.
+G. gamma_T << gamma_L: not testable for MD. In V1 (this model) max |gamma_T| = 6.7e-07 (pure-longitudinal by construction, PPPM-level). The assumption must be tested on real constrained-force data.
+H. Many-body scatter: not testable for MD. In V2b (input with an environment factor) the per-pair estimation noise variance of the memory integral is 232x (median over bins) the true intrinsic conditional variance; the split-half estimate of the intrinsic variance (median 5.3e-03 vs true 8.8e-04) is noise-dominated. The many-body factor nonetheless biases the conditional MEAN <gamma_L | r> by 14% relative to the pure radial law: Model B's chi2/dof rises from 1.8 (V2a) to 4 (V2b) and the AIC margin over A shrinks from 258 to 60, i.e. environment dependence shows up as a misfit of every pairwise radial law long before it is resolvable as per-pair scatter.
+I. Needed: atomistic MD with molecule mapping (positions, velocities, forces per atom), plus constrained dynamics with CG coordinates (and momenta) held fixed producing unresolved-force time series dF_i(t) for many CG configurations (Lyu-Lei); or a directly computed friction tensor. See README.md.

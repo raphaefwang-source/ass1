@@ -1,0 +1,201 @@
+== dense validation (A, B) ==
+   f NOT EVALUABLE: A vec 0 f_E tau 2.0: rank 15: f not finite at Ritz values [3.9365731] (lambda_max 3.936573e+00)
+  A: lambda_* 1.1900e-01, lambda_max 3.9366e+00, cond 33.1, literal-vs-dense 3.7e-16, full-space min eig -8.6e-17
+   f NOT EVALUABLE: B vec 0 f_E tau 2.0: rank 17: f not finite at Ritz values [1.9494809] (lambda_max 1.949481e+00)
+  B: lambda_* 8.5389e-03, lambda_max 1.9495e+00, cond 228.3, literal-vs-dense 4.2e-16, full-space min eig -2.4e-17
+
+== spectral-gap dependence ==
+  A: N=30 L=6 cond=33.1  median rank 1e-6/1e-8/1e-10: 18.0/25.0/31.0 (dim 87)
+  B: N=40 L=10 cond=228.3  median rank 1e-6/1e-8/1e-10: 36.0/48.0/59.0 (dim 117)
+  E1: N=30 L=6 cond=27.6  median rank 1e-6/1e-8/1e-10: 17.0/23.0/29.0 (dim 87)
+  E2: N=30 L=6 cond=25.8  median rank 1e-6/1e-8/1e-10: 18.0/25.0/31.0 (dim 87)
+  E3: N=40 L=10 cond=172.4  median rank 1e-6/1e-8/1e-10: 32.0/41.0/49.0 (dim 117)
+  E4: N=40 L=10 cond=269.5  median rank 1e-6/1e-8/1e-10: 28.0/38.0/47.0 (dim 117)
+  E5: N=50 L=8 cond=51.9  median rank 1e-6/1e-8/1e-10: 23.0/31.0/38.0 (dim 147)
+  E6: N=50 L=12 cond=987.2  median rank 1e-6/1e-8/1e-10: 40.0/52.0/62.0 (dim 147)
+  E7: N=20 L=5 cond=26.7  median rank 1e-6/1e-8/1e-10: 16.0/21.0/25.5 (dim 57)
+  E8: N=60 L=9 cond=143.8  median rank 1e-6/1e-8/1e-10: 29.0/39.0/49.0 (dim 177)
+  E9: N=36 L=7 cond=63.9  median rank 1e-6/1e-8/1e-10: 24.0/32.0/39.0 (dim 105)
+  E10: N=45 L=11 cond=294.8  median rank 1e-6/1e-8/1e-10: 33.0/44.0/52.0 (dim 132)
+
+== Lanczos identity / momentum checks ==
+  orth_max: 1.2126894004881987e-15
+  recurrence_max: 4.92459647301841e-16
+  T_vs_QtAQ_max: 5.559855109170788e-16
+  T_vs_QtGQ_max: 9.22498811046183e-16
+  action_dev_max: 2.964899659071315e-15
+  mom_max: 1.0237361494235774e-15
+  offPi_max: 1.6793727063866156e-16
+  n_runs_f_not_evaluable: 64
+  f_not_evaluable_cases: [('A', 'f_E', 2.0), ('B', 'f_E', 2.0)]
+  n_runs_negative_ritz: 64
+  ritz_min_over_lam_star: {'A': 0.999999999999995, 'B': 0.9999999999999697}
+  ritz_max_over_lam_max: {'A': 1.0000000000000013, 'B': 1.0000000000000009}
+  worst_final_err_evaluable_runs: 2.489568303741454e-15
+
+== discrete-FDT covariance (tau = dt lambda_max/m = 0.5) ==
+   A tau=0.5 M=1000: MC 2.23e-01, Krylov(tol 1e-8) 1.96e-09, Krylov(tol 1e-4) 2.50e-05 (26s)
+   A tau=0.5 M=10000: MC 6.97e-02, Krylov(tol 1e-8) 1.78e-09, Krylov(tol 1e-4) 2.41e-05 (258s)
+   A tau=0.5 M=100000: MC 2.35e-02, Krylov(rank 80) 3.60e-15 (588s)
+  A: exact FDT identity 3.3e-15 (full) 3.5e-15 (Range Pi); literal-vs-batched covariance 1.2e-15; momentum max 7.2e-16; min Ritz 1.190e-01
+   B tau=0.5 M=1000: MC 2.19e-01, Krylov(tol 1e-8) 3.51e-09, Krylov(tol 1e-4) 5.22e-05 (45s)
+   B tau=0.5 M=10000: MC 7.12e-02, Krylov(tol 1e-8) 2.24e-09, Krylov(tol 1e-4) 3.91e-05 (434s)
+   B tau=0.5 M=100000: MC 2.16e-02, Krylov(rank 100) 3.01e-15 (981s)
+  B: exact FDT identity 4.2e-15 (full) 3.6e-15 (Range Pi); literal-vs-batched covariance 1.4e-15; momentum max 7.4e-16; min Ritz 8.539e-03
+
+== system-size scaling (density of A, same spatial parameters) ==
+   N=128 L=9.73 M=27 vec 0: s_run=381, lam_max~5.679, ritz_min 6.89e-02, rank(1e-6/1e-8, tau .5) true 28/39 rule 29/39; t_action 3.0ms x 381, reorth 0.04s, Lanczos 1.22s
+   N=128 L=9.73 M=27 vec 1: s_run=381, lam_max~5.679, ritz_min 6.89e-02, rank(1e-6/1e-8, tau .5) true 29/39 rule 29/39; t_action 3.4ms x 381, reorth 0.04s, Lanczos 1.37s
+   N=256 L=12.26 M=36 vec 0: s_run=400, lam_max~7.727, ritz_min 4.88e-02, rank(1e-6/1e-8, tau .5) true 36/50 rule 35/49; t_action 6.5ms x 400, reorth 0.10s, Lanczos 2.74s
+   N=256 L=12.26 M=36 vec 1: s_run=400, lam_max~7.727, ritz_min 4.88e-02, rank(1e-6/1e-8, tau .5) true 36/50 rule 35/50; t_action 6.3ms x 400, reorth 0.09s, Lanczos 2.64s
+   N=512 L=15.45 M=45 vec 0: s_run=400, lam_max~51.368, ritz_min 3.19e-02, rank(1e-6/1e-8, tau .5) true 45/64 rule 43/61; t_action 13.1ms x 400, reorth 0.16s, Lanczos 5.46s
+   N=512 L=15.45 M=45 vec 1: s_run=400, lam_max~51.368, ritz_min 3.19e-02, rank(1e-6/1e-8, tau .5) true 45/64 rule 42/61; t_action 14.2ms x 400, reorth 0.18s, Lanczos 5.93s
+   N=1024 L=19.46 M=54 vec 0: s_run=400, lam_max~8.973, ritz_min 2.19e-02, rank(1e-6/1e-8, tau .5) true 56/81 rule 50/75; t_action 27.5ms x 400, reorth 0.25s, Lanczos 11.32s
+   N=1024 L=19.46 M=54 vec 1: s_run=400, lam_max~8.973, ritz_min 2.19e-02, rank(1e-6/1e-8, tau .5) true 57/84 rule 50/76; t_action 28.9ms x 400, reorth 0.23s, Lanczos 11.88s
+   N=2048 L=24.52 M=72 vec 0: s_run=400, lam_max~10.125, ritz_min 1.51e-02, rank(1e-6/1e-8, tau .5) true 71/103 rule 60/93; t_action 69.3ms x 400, reorth 0.39s, Lanczos 28.28s
+   N=2048 L=24.52 M=72 vec 1: s_run=400, lam_max~10.125, ritz_min 1.51e-02, rank(1e-6/1e-8, tau .5) true 71/101 rule 59/92; t_action 74.7ms x 400, reorth 0.40s, Lanczos 30.37s
+   N=4000 L=30.65 M=81 vec 0: s_run=400, lam_max~19.076, ritz_min 1.01e-02, rank(1e-6/1e-8, tau .5) true 85/128 rule 70/113; t_action 125.5ms x 400, reorth 0.71s, Lanczos 51.53s
+   N=4000 L=30.65 M=81 vec 1: s_run=400, lam_max~19.076, ritz_min 1.01e-02, rank(1e-6/1e-8, tau .5) true 85/126 rule 71/112; t_action 121.1ms x 400, reorth 0.69s, Lanczos 49.52s
+
+# Lanczos discrete-FDT thermostat: summary
+
+Gamma_h parameters: {'xi': 0.7, 's': 4.1, 'eta': 0.7, 'p': 7} (accepted at operator tol 1e-7 in A and B); beta = m = 1.
+- config A: N=30 L=6, lambda_* = 1.1900e-01, lambda_max = 3.9366e+00, lambda_max/lambda_* = 33.1; literal vs dense action 3.7e-16
+- config B: N=40 L=10, lambda_* = 8.5389e-03, lambda_max = 1.9495e+00, lambda_max/lambda_* = 228.3; literal vs dense action 4.2e-16
+
+## Required rank (sustained, f_dt), median / 90% / 99% / max over vectors
+
+| config | fn | dt lam_max/m | 1e-4 | 1e-6 | 1e-8 | 1e-10 |
+|---|---|---|---|---|---|---|
+| A | f_dt | 0.05 | 12/12/12/12 | 18/19/19/19 | 25/25/25/25 | 31/31/31/31 |
+| A | f_dt | 0.2 | 12/12/12/12 | 18/19/19/19 | 25/25/25/25 | 31/31/31/31 |
+| A | f_dt | 0.5 | 12/12/12/12 | 18/19/19/19 | 25/25/25/25 | 31/31/31/31 |
+| A | f_dt | 1.0 | 12/12/12/12 | 19/19/19/19 | 25/25/25/25 | 31/31/31/31 |
+| A | f_dt | 2.0 | 12/12/13/13 | 19/19/19/19 | 25/25/26/26 | 31/32/32/32 |
+| A | sqrt | 0.5 | 12/12/12/12 | 18/19/19/19 | 25/25/25/25 | 31/31/31/31 |
+| A | f_E | 0.05 | 12/12/12/12 | 18/19/19/19 | 25/25/25/25 | 31/31/31/31 |
+| A | f_E | 0.2 | 12/12/12/12 | 18/19/19/19 | 25/25/25/25 | 31/31/31/31 |
+| A | f_E | 0.5 | 12/12/12/12 | 18/19/19/19 | 25/25/25/25 | 31/31/31/31 |
+| A | f_E | 1.0 | 12/12/12/12 | 18/19/19/19 | 25/25/25/25 | 31/31/31/31 |
+| A | f_E | 2.0 | 12/12/12/12 | 18/18/18/18 | n/a | n/a |
+| A | f_E | 1.9 | 12/12/12/12 | 19/19/19/19 | 25/25/26/26 | 31/32/32/32 |
+| B | f_dt | 0.05 | 22/22/23/23 | 36/36/36/36 | 48/49/49/49 | 58/59/60/60 |
+| B | f_dt | 0.2 | 22/22/23/23 | 36/36/36/36 | 48/49/49/49 | 58/59/60/60 |
+| B | f_dt | 0.5 | 22/23/23/23 | 36/36/36/36 | 48/49/49/49 | 59/59/60/60 |
+| B | f_dt | 1.0 | 22/23/23/23 | 36/36/37/37 | 48/49/49/49 | 59/59/60/60 |
+| B | f_dt | 2.0 | 22/23/23/23 | 36/37/37/37 | 48/49/49/49 | 59/60/60/60 |
+| B | sqrt | 0.5 | 22/22/23/23 | 36/36/36/36 | 48/49/49/49 | 58/59/60/60 |
+| B | f_E | 0.05 | 22/22/23/23 | 36/36/36/36 | 48/49/49/49 | 58/59/60/60 |
+| B | f_E | 0.2 | 22/22/23/23 | 36/36/36/36 | 48/49/49/49 | 58/59/60/60 |
+| B | f_E | 0.5 | 22/23/23/23 | 36/36/36/36 | 48/49/49/49 | 58/59/60/60 |
+| B | f_E | 1.0 | 22/23/23/23 | 36/36/36/36 | 48/49/49/49 | 59/59/60/60 |
+| B | f_E | 2.0 | 22/23/23/23 | n/a | n/a | n/a |
+| B | f_E | 1.9 | 22/23/23/23 | 36/36/37/37 | 48/49/49/49 | 59/59/60/60 |
+
+## Stopping rules (f_dt, all tau pooled): false-stop rate, over-solving s_stop/s_true, error at stop
+
+- A tol 0.0001 [d1 <= tol]: false-stop 0.000, over-solve median 1.00 (range 1.00-1.09), error at stop median 6.0e-05, max 9.0e-05
+- A tol 0.0001 [d2 <= tol]: false-stop 0.000, over-solve median 1.17 (range 1.08-1.18), error at stop median 1.8e-05, max 3.5e-05
+- A tol 0.0001 [d1 <= tol twice]: false-stop 0.000, over-solve median 1.08 (range 1.08-1.18), error at stop median 3.0e-05, max 4.6e-05
+- A tol 0.0001 [gres <= tol]: false-stop 0.938, over-solve median 0.92 (range 0.91-1.00), error at stop median 1.3e-04, max 1.9e-04
+- A tol 0.0001 [d1 <= tol/10]: false-stop 0.000, over-solve median 1.33 (range 1.23-1.36), error at stop median 4.6e-06, max 9.4e-06
+- A tol 1e-06 [d1 <= tol]: false-stop 0.000, over-solve median 1.06 (range 1.00-1.06), error at stop median 5.1e-07, max 9.0e-07
+- A tol 1e-06 [d2 <= tol]: false-stop 0.000, over-solve median 1.11 (range 1.05-1.11), error at stop median 2.2e-07, max 3.2e-07
+- A tol 1e-06 [d1 <= tol twice]: false-stop 0.000, over-solve median 1.11 (range 1.05-1.11), error at stop median 2.4e-07, max 4.3e-07
+- A tol 1e-06 [gres <= tol]: false-stop 0.988, over-solve median 0.94 (range 0.89-1.00), error at stop median 1.9e-06, max 2.9e-06
+- A tol 1e-06 [d1 <= tol/10]: false-stop 0.000, over-solve median 1.22 (range 1.16-1.28), error at stop median 5.6e-08, max 1.0e-07
+- A tol 1e-08 [d1 <= tol]: false-stop 0.000, over-solve median 1.00 (range 1.00-1.04), error at stop median 5.5e-09, max 9.3e-09
+- A tol 1e-08 [d2 <= tol]: false-stop 0.000, over-solve median 1.08 (range 1.04-1.08), error at stop median 1.8e-09, max 3.0e-09
+- A tol 1e-08 [d1 <= tol twice]: false-stop 0.000, over-solve median 1.04 (range 1.04-1.08), error at stop median 2.7e-09, max 4.7e-09
+- A tol 1e-08 [gres <= tol]: false-stop 1.000, over-solve median 0.96 (range 0.92-0.96), error at stop median 1.7e-08, max 3.0e-08
+- A tol 1e-08 [d1 <= tol/10]: false-stop 0.000, over-solve median 1.16 (range 1.12-1.17), error at stop median 3.9e-10, max 8.0e-10
+- A tol 1e-10 [d1 <= tol]: false-stop 0.000, over-solve median 1.03 (range 1.00-1.03), error at stop median 3.6e-11, max 7.0e-11
+- A tol 1e-10 [d2 <= tol]: false-stop 0.000, over-solve median 1.06 (range 1.03-1.07), error at stop median 1.5e-11, max 2.7e-11
+- A tol 1e-10 [d1 <= tol twice]: false-stop 0.000, over-solve median 1.06 (range 1.03-1.07), error at stop median 1.6e-11, max 3.3e-11
+- A tol 1e-10 [gres <= tol]: false-stop 1.000, over-solve median 0.97 (range 0.94-0.97), error at stop median 1.9e-10, max 3.4e-10
+- A tol 1e-10 [d1 <= tol/10]: false-stop 0.000, over-solve median 1.13 (range 1.09-1.13), error at stop median 3.9e-12, max 7.9e-12
+- B tol 0.0001 [d1 <= tol]: false-stop 0.988, over-solve median 0.91 (range 0.86-1.00), error at stop median 1.7e-04, max 2.6e-04
+- B tol 0.0001 [d2 <= tol]: false-stop 0.000, over-solve median 1.05 (range 1.00-1.10), error at stop median 6.5e-05, max 9.2e-05
+- B tol 0.0001 [d1 <= tol twice]: false-stop 0.744, over-solve median 0.95 (range 0.91-1.05), error at stop median 1.2e-04, max 1.8e-04
+- B tol 0.0001 [gres <= tol]: false-stop 1.000, over-solve median 0.64 (range 0.59-0.70), error at stop median 1.2e-03, max 1.7e-03
+- B tol 0.0001 [d1 <= tol/10]: false-stop 0.000, over-solve median 1.23 (range 1.13-1.32), error at stop median 1.7e-05, max 2.7e-05
+- B tol 1e-06 [d1 <= tol]: false-stop 0.975, over-solve median 0.94 (range 0.91-1.00), error at stop median 1.5e-06, max 2.3e-06
+- B tol 1e-06 [d2 <= tol]: false-stop 0.019, over-solve median 1.03 (range 0.97-1.06), error at stop median 5.6e-07, max 1.1e-06
+- B tol 1e-06 [d1 <= tol twice]: false-stop 0.519, over-solve median 0.97 (range 0.94-1.03), error at stop median 1.1e-06, max 1.6e-06
+- B tol 1e-06 [gres <= tol]: false-stop 1.000, over-solve median 0.75 (range 0.72-0.82), error at stop median 1.6e-05, max 2.5e-05
+- B tol 1e-06 [d1 <= tol/10]: false-stop 0.000, over-solve median 1.14 (range 1.11-1.17), error at stop median 1.3e-07, max 2.2e-07
+- B tol 1e-08 [d1 <= tol]: false-stop 0.887, over-solve median 0.98 (range 0.94-1.00), error at stop median 1.3e-08, max 1.9e-08
+- B tol 1e-08 [d2 <= tol]: false-stop 0.000, over-solve median 1.02 (range 1.00-1.04), error at stop median 5.0e-09, max 9.4e-09
+- B tol 1e-08 [d1 <= tol twice]: false-stop 0.300, over-solve median 1.00 (range 0.96-1.02), error at stop median 9.0e-09, max 1.4e-08
+- B tol 1e-08 [gres <= tol]: false-stop 1.000, over-solve median 0.81 (range 0.80-0.85), error at stop median 2.1e-07, max 3.0e-07
+- B tol 1e-08 [d1 <= tol/10]: false-stop 0.000, over-solve median 1.10 (range 1.08-1.13), error at stop median 1.0e-09, max 2.0e-09
+- B tol 1e-10 [d1 <= tol]: false-stop 0.525, over-solve median 0.98 (range 0.95-1.02), error at stop median 1.0e-10, max 2.1e-10
+- B tol 1e-10 [d2 <= tol]: false-stop 0.000, over-solve median 1.02 (range 1.00-1.04), error at stop median 4.5e-11, max 8.9e-11
+- B tol 1e-10 [d1 <= tol twice]: false-stop 0.075, over-solve median 1.00 (range 0.98-1.04), error at stop median 6.6e-11, max 1.2e-10
+- B tol 1e-10 [gres <= tol]: false-stop 1.000, over-solve median 0.86 (range 0.84-0.90), error at stop median 2.2e-09, max 3.6e-09
+- B tol 1e-10 [d1 <= tol/10]: false-stop 0.000, over-solve median 1.08 (range 1.07-1.11), error at stop median 7.6e-12, max 1.5e-11
+
+## Gap dependence (f_dt, tau = 0.5, median rank)
+
+| config | N | L | cond | 1e-6 | 1e-8 | 1e-10 | dim |
+|---|---|---|---|---|---|---|---|
+| E2 | 30 | 6 | 25.8 | 18.0 | 25.0 | 31.0 | 87 |
+| E7 | 20 | 5 | 26.7 | 16.0 | 21.0 | 25.5 | 57 |
+| E1 | 30 | 6 | 27.6 | 17.0 | 23.0 | 29.0 | 87 |
+| A | 30 | 6 | 33.1 | 18.0 | 25.0 | 31.0 | 87 |
+| E5 | 50 | 8 | 51.9 | 23.0 | 31.0 | 38.0 | 147 |
+| E9 | 36 | 7 | 63.9 | 24.0 | 32.0 | 39.0 | 105 |
+| E8 | 60 | 9 | 143.8 | 29.0 | 39.0 | 49.0 | 177 |
+| E3 | 40 | 10 | 172.4 | 32.0 | 41.0 | 49.0 | 117 |
+| B | 40 | 10 | 228.3 | 36.0 | 48.0 | 59.0 | 117 |
+| E4 | 40 | 10 | 269.5 | 28.0 | 38.0 | 47.0 | 117 |
+| E10 | 45 | 11 | 294.8 | 33.0 | 44.0 | 52.0 | 132 |
+| E6 | 50 | 12 | 987.2 | 40.0 | 52.0 | 62.0 | 147 |
+
+## Checks
+
+- orth_max: 1.2126894004881987e-15
+- recurrence_max: 4.92459647301841e-16
+- T_vs_QtAQ_max: 5.559855109170788e-16
+- T_vs_QtGQ_max: 9.22498811046183e-16
+- action_dev_max: 2.964899659071315e-15
+- mom_max: 1.0237361494235774e-15
+- offPi_max: 1.6793727063866156e-16
+- n_runs_f_not_evaluable: 64
+- f_not_evaluable_cases: [('A', 'f_E', 2.0), ('B', 'f_E', 2.0)]
+- n_runs_negative_ritz: 64
+- ritz_min_over_lam_star: {'A': 0.999999999999995, 'B': 0.9999999999999697}
+- ritz_max_over_lam_max: {'A': 1.0000000000000013, 'B': 1.0000000000000009}
+- worst_final_err_evaluable_runs: 2.489568303741454e-15
+
+## Covariance (tau = 0.5)
+
+- config A: exact FDT identity residual 3.3e-15 (full), 3.5e-15 (Range Pi); literal-action vs batched covariance 1.2e-15 (1000 samples, rank 48); min Ritz 1.190e-01; max |momentum|/||eta|| 7.2e-16
+  - M = 1000: Monte Carlo 2.23e-01; Krylov part at stop tol 1e-4/1e-6/1e-8/1e-10: 2.5e-05/2.1e-07/2.0e-09/1.3e-11; FDT deviation Lanczos 3.86e-02 vs dense-same 3.86e-02; conditional Maxwell deviation Lanczos 2.96e-01 vs dense-same 2.96e-01 (Krylov part 5.3e-10); stop ranks median {'0.0001': 13.0, '1e-06': 20.0, '1e-08': 26.0, '1e-10': 33.0}
+  - M = 10000: Monte Carlo 6.97e-02; Krylov part at stop tol 1e-4/1e-6/1e-8/1e-10: 2.4e-05/2.0e-07/1.8e-09/1.1e-11; FDT deviation Lanczos 1.21e-02 vs dense-same 1.21e-02; conditional Maxwell deviation Lanczos 9.42e-02 vs dense-same 9.42e-02 (Krylov part 3.3e-10); stop ranks median {'0.0001': 13.0, '1e-06': 20.0, '1e-08': 26.0, '1e-10': 33.0}
+  - M = 100000 (fixed ranks only): Monte Carlo 2.35e-02; Krylov part at rank 4: 2.2e-02, 8: 1.0e-03, 12: 6.0e-05, 16: 3.4e-06, 24: 1.1e-08, 32: 2.4e-11, 48: 3.6e-15, 64: 3.6e-15, 80: 3.6e-15
+- config B: exact FDT identity residual 4.2e-15 (full), 3.6e-15 (Range Pi); literal-action vs batched covariance 1.4e-15 (1000 samples, rank 48); min Ritz 8.539e-03; max |momentum|/||eta|| 7.4e-16
+  - M = 1000: Monte Carlo 2.19e-01; Krylov part at stop tol 1e-4/1e-6/1e-8/1e-10: 5.2e-05/4.3e-07/3.5e-09/2.6e-11; FDT deviation Lanczos 3.14e-02 vs dense-same 3.14e-02; conditional Maxwell deviation Lanczos 3.43e-01 vs dense-same 3.43e-01 (Krylov part 1.4e-09); stop ranks median {'0.0001': 21.0, '1e-06': 35.0, '1e-08': 48.0, '1e-10': 59.0}
+  - M = 10000: Monte Carlo 7.12e-02; Krylov part at stop tol 1e-4/1e-6/1e-8/1e-10: 3.9e-05/2.8e-07/2.2e-09/1.5e-11; FDT deviation Lanczos 1.02e-02 vs dense-same 1.02e-02; conditional Maxwell deviation Lanczos 1.08e-01 vs dense-same 1.08e-01 (Krylov part 5.4e-10); stop ranks median {'0.0001': 21.0, '1e-06': 35.0, '1e-08': 48.0, '1e-10': 59.0}
+  - M = 100000 (fixed ranks only): Monte Carlo 2.16e-02; Krylov part at rank 4: 4.6e-02, 8: 6.2e-03, 12: 1.1e-03, 16: 2.4e-04, 24: 1.6e-05, 32: 1.1e-06, 48: 2.3e-09, 64: 1.5e-12, 80: 3.0e-15, 100: 3.0e-15
+
+## System-size scaling (density 30/216, same spatial parameters)
+
+| N | M | s_run | lam_max est | min Ritz | cond est | rank 1e-6 (tau .5) | rank 1e-8 (tau .5) | rank 1e-8 (tau 2) | rule rank 1e-8 | t_action [ms] | t_actions [s] | t_reorth [s] | t_Lanczos [s] |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 128 | 27 | 381 | 5.679 | 6.89e-02 | 82 | 28 | 39 | 39 | 39 | 3.03 | 1.16 | 0.04 | 1.22 |
+| 128 | 27 | 381 | 5.679 | 6.89e-02 | 82 | 29 | 39 | 39 | 39 | 3.41 | 1.30 | 0.04 | 1.37 |
+| 256 | 36 | 400 | 7.727 | 4.88e-02 | 158 | 36 | 50 | 50 | 49 | 6.53 | 2.61 | 0.10 | 2.74 |
+| 256 | 36 | 400 | 7.727 | 4.88e-02 | 158 | 36 | 50 | 51 | 50 | 6.28 | 2.51 | 0.09 | 2.64 |
+| 512 | 45 | 400 | 51.368 | 3.19e-02 | 1611 | 45 | 64 | 64 | 61 | 13.12 | 5.25 | 0.16 | 5.46 |
+| 512 | 45 | 400 | 51.368 | 3.19e-02 | 1611 | 45 | 64 | 64 | 61 | 14.24 | 5.70 | 0.18 | 5.93 |
+| 1024 | 54 | 400 | 8.973 | 2.19e-02 | 410 | 56 | 81 | 82 | 75 | 27.51 | 11.01 | 0.25 | 11.32 |
+| 1024 | 54 | 400 | 8.973 | 2.19e-02 | 410 | 57 | 84 | 84 | 76 | 28.94 | 11.57 | 0.23 | 11.88 |
+| 2048 | 72 | 400 | 10.125 | 1.51e-02 | 672 | 71 | 103 | 104 | 93 | 69.31 | 27.72 | 0.39 | 28.28 |
+| 2048 | 72 | 400 | 10.125 | 1.51e-02 | 672 | 71 | 101 | 102 | 92 | 74.70 | 29.88 | 0.40 | 30.37 |
+| 4000 | 81 | 400 | 19.076 | 1.01e-02 | 1892 | 85 | 128 | 129 | 113 | 125.52 | 50.21 | 0.71 | 51.53 |
+| 4000 | 81 | 400 | 19.076 | 1.01e-02 | 1892 | 85 | 126 | 127 | 112 | 121.07 | 48.43 | 0.69 | 49.52 |
+
+f NOT EVALUABLE in 64 runs (no negative Ritz value among them: 64 negative-Ritz cases): A f_E dt lam_max/m=2.0: rank 15, f not finite at Ritz values [3.9365731] (lambda_max 3.936573e+00); A f_E dt lam_max/m=2.0: rank 17, f not finite at Ritz values [3.9365731] (lambda_max 3.936573e+00); A f_E dt lam_max/m=2.0: rank 13, f not finite at Ritz values [3.9365731] (lambda_max 3.936573e+00); A f_E dt lam_max/m=2.0: rank 15, f not finite at Ritz values [3.9365731] (lambda_max 3.936573e+00); A f_E dt lam_max/m=2.0: rank 15, f not finite at Ritz values [3.9365731] (lambda_max 3.936573e+00); A f_E dt lam_max/m=2.0: rank 14, f not finite at Ritz values [3.9365731] (lambda_max 3.936573e+00) ...
+
+wall time 2115s

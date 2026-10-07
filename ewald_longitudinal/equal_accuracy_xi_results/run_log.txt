@@ -1,0 +1,94 @@
+  tol=1e-05 xi=0.5: 30 passing (s, eta, p) combos, 6 candidates (evaluations so far 86, 7s)
+     p=3 s=3.494 eta=0.4 M_A=18 M_B=30 M_C=90 err_A=7.7e-06 err_B=9.0e-06 | t_A=9.20ms t_B=8.62ms t_C=317ms
+     p=4 s=3.581 eta=0.7 M_A=10 M_B=18 M_C=50 err_A=5.6e-06 err_B=7.3e-06 | t_A=7.59ms t_B=5.71ms t_C=174ms
+     p=5 s=3.494 eta=0.8 M_A=9 M_B=15 M_C=45 err_A=3.0e-06 err_B=3.4e-06 | t_A=7.75ms t_B=5.95ms t_C=164ms
+     p=6 s=3.494 eta=0.8 M_A=9 M_B=15 M_C=45 err_A=1.4e-06 err_B=1.4e-06 | t_A=7.71ms t_B=5.68ms t_C=224ms
+     p=7 s=3.494 eta=0.8 M_A=9 M_B=15 M_C=45 err_A=1.1e-06 err_B=1.2e-06 | t_A=8.91ms t_B=6.60ms t_C=240ms
+     p=8 s=3.494 eta=0.8 M_A=9 M_B=15 M_C=45 err_A=1.1e-06 err_B=1.2e-06 | t_A=10.06ms t_B=7.87ms t_C=336ms
+  tol=1e-05 xi=0.7: 28 passing (s, eta, p) combos, 6 candidates (evaluations so far 183, 14s)
+     p=3 s=3.668 eta=0.3 M_A=36 M_B=60 M_C=180 err_A=5.0e-06 err_B=9.4e-06 | t_A=9.78ms t_B=36.24ms t_C=2471ms
+     p=4 s=3.668 eta=0.6 M_A=18 M_B=30 M_C=90 err_A=4.7e-06 err_B=9.4e-06 | t_A=3.90ms t_B=8.54ms t_C=256ms
+     p=5 s=3.668 eta=0.8 M_A=15 M_B=24 M_C=64 err_A=2.3e-06 err_B=3.6e-06 | t_A=3.86ms t_B=6.55ms t_C=129ms
+     p=6 s=3.494 eta=0.8 M_A=12 M_B=20 M_C=60 err_A=3.0e-06 err_B=4.0e-06 | t_A=3.81ms t_B=2.39ms t_C=150ms
+     p=7 s=3.494 eta=0.8 M_A=12 M_B=20 M_C=60 err_A=2.1e-06 err_B=2.0e-06 | t_A=4.35ms t_B=3.14ms t_C=206ms
+     p=8 s=3.494 eta=0.8 M_A=12 M_B=20 M_C=60 err_A=2.0e-06 err_B=1.9e-06 | t_A=5.34ms t_B=4.13ms t_C=317ms
+  tol=1e-05 xi=1: 25 passing (s, eta, p) combos, 5 candidates (evaluations so far 287, 29s)
+     p=4 s=3.494 eta=0.4 M_A=36 M_B=60 M_C=180 err_A=3.1e-06 err_B=4.2e-06 | t_A=10.13ms t_B=34.38ms t_C=2781ms
+     p=5 s=3.494 eta=0.7 M_A=20 M_B=32 M_C=96 err_A=5.6e-06 err_B=9.1e-06 | t_A=4.24ms t_B=5.84ms t_C=293ms
+     p=6 s=3.494 eta=0.8 M_A=18 M_B=30 M_C=90 err_A=4.3e-06 err_B=5.9e-06 | t_A=4.50ms t_B=5.24ms t_C=270ms
+     p=7 s=3.494 eta=0.8 M_A=18 M_B=30 M_C=90 err_A=2.8e-06 err_B=3.3e-06 | t_A=4.80ms t_B=5.73ms t_C=370ms
+     p=8 s=3.494 eta=0.8 M_A=18 M_B=30 M_C=90 err_A=2.5e-06 err_B=2.7e-06 | t_A=5.94ms t_B=6.74ms t_C=431ms
+  tol=1e-05 xi=1.4: 25 passing (s, eta, p) combos, 5 candidates (evaluations so far 400, 52s)
+     p=4 s=3.756 eta=0.5 M_A=45 M_B=72 M_C=216 err_A=5.0e-06 err_B=8.1e-06 | t_A=14.84ms t_B=70.58ms t_C=6802ms
+     p=5 s=3.494 eta=0.6 M_A=32 M_B=54 M_C=160 err_A=5.6e-06 err_B=6.0e-06 | t_A=5.65ms t_B=28.74ms t_C=1333ms
+     p=6 s=3.668 eta=0.8 M_A=25 M_B=45 M_C=125 err_A=4.8e-06 err_B=4.0e-06 | t_A=3.32ms t_B=15.53ms t_C=675ms
+     p=7 s=3.494 eta=0.8 M_A=24 M_B=40 M_C=120 err_A=3.6e-06 err_B=4.0e-06 | t_A=3.65ms t_B=11.18ms t_C=663ms
+     p=8 s=3.494 eta=0.8 M_A=24 M_B=40 M_C=120 err_A=3.7e-06 err_B=4.0e-06 | t_A=4.84ms t_B=12.48ms t_C=903ms
+  tol=1e-05 xi=2: 25 passing (s, eta, p) combos, 5 candidates (evaluations so far 513, 108s)
+     p=4 s=3.581 eta=0.4 M_A=72 M_B=120 M_C=360 err_A=6.4e-06 err_B=9.9e-06 | t_A=64.53ms t_B=417.43ms t_C=nanms
+     p=5 s=3.581 eta=0.6 M_A=48 M_B=80 M_C=240 err_A=7.3e-06 err_B=5.3e-06 | t_A=18.45ms t_B=106.63ms t_C=9859ms
+     p=6 s=3.494 eta=0.8 M_A=36 M_B=60 M_C=180 err_A=8.5e-06 err_B=6.9e-06 | t_A=8.51ms t_B=34.49ms t_C=1999ms
+     p=7 s=3.494 eta=0.8 M_A=36 M_B=60 M_C=180 err_A=3.5e-06 err_B=4.0e-06 | t_A=8.62ms t_B=35.83ms t_C=2381ms
+     p=8 s=3.494 eta=0.8 M_A=36 M_B=60 M_C=180 err_A=3.5e-06 err_B=3.8e-06 | t_A=9.84ms t_B=40.33ms t_C=2664ms
+  tol=1e-07 xi=0.5: 20 passing (s, eta, p) combos, 4 candidates (evaluations so far 637, 150s)
+     p=5 s=4.305 eta=0.5 M_A=18 M_B=30 M_C=90 err_A=4.4e-08 err_B=6.8e-08 | t_A=8.52ms t_B=9.13ms t_C=516ms
+     p=6 s=4.100 eta=0.7 M_A=12 M_B=20 M_C=60 err_A=8.9e-08 err_B=1.0e-07 | t_A=8.83ms t_B=7.02ms t_C=332ms
+     p=7 s=4.100 eta=0.8 M_A=10 M_B=18 M_C=50 err_A=7.7e-08 err_B=4.9e-08 | t_A=8.81ms t_B=7.29ms t_C=400ms
+     p=8 s=4.100 eta=0.8 M_A=10 M_B=18 M_C=50 err_A=2.5e-08 err_B=1.6e-08 | t_A=10.85ms t_B=8.70ms t_C=487ms
+  tol=1e-07 xi=0.7: 20 passing (s, eta, p) combos, 4 candidates (evaluations so far 774, 158s)
+     p=5 s=4.100 eta=0.4 M_A=30 M_B=48 M_C=144 err_A=4.8e-08 err_B=9.8e-08 | t_A=7.16ms t_B=21.49ms t_C=973ms
+     p=6 s=4.408 eta=0.6 M_A=20 M_B=36 M_C=100 err_A=5.9e-08 err_B=4.0e-08 | t_A=8.96ms t_B=12.52ms t_C=426ms
+     p=7 s=4.100 eta=0.7 M_A=16 M_B=27 M_C=80 err_A=5.4e-08 err_B=9.7e-08 | t_A=4.66ms t_B=8.36ms t_C=311ms
+     p=8 s=4.100 eta=0.8 M_A=15 M_B=24 M_C=72 err_A=3.1e-08 err_B=5.9e-08 | t_A=5.46ms t_B=8.70ms t_C=385ms
+  tol=1e-07 xi=1: 20 passing (s, eta, p) combos, 4 candidates (evaluations so far 922, 173s)
+     p=5 s=4.100 eta=0.3 M_A=54 M_B=90 M_C=270 err_A=4.0e-08 err_B=6.1e-08 | t_A=29.51ms t_B=157.22ms t_C=14203ms
+     p=6 s=4.100 eta=0.5 M_A=32 M_B=54 M_C=160 err_A=4.8e-08 err_B=8.9e-08 | t_A=8.19ms t_B=25.63ms t_C=1168ms
+     p=7 s=4.408 eta=0.7 M_A=25 M_B=45 M_C=125 err_A=5.3e-08 err_B=3.7e-08 | t_A=5.95ms t_B=16.09ms t_C=717ms
+     p=8 s=4.100 eta=0.8 M_A=20 M_B=36 M_C=100 err_A=8.2e-08 err_B=5.1e-08 | t_A=5.83ms t_B=9.57ms t_C=532ms
+  tol=1e-07 xi=1.4: 20 passing (s, eta, p) combos, 4 candidates (evaluations so far 1074, 222s)
+     p=5 s=4.100 eta=0.3 M_A=75 M_B=125 M_C=375 err_A=4.1e-08 err_B=7.1e-08 | t_A=80.65ms t_B=496.40ms t_C=nanms
+     p=6 s=4.510 eta=0.6 M_A=45 M_B=72 M_C=216 err_A=6.3e-08 err_B=9.2e-08 | t_A=17.61ms t_B=71.48ms t_C=6766ms
+     p=7 s=4.305 eta=0.7 M_A=36 M_B=60 M_C=180 err_A=4.9e-08 err_B=8.7e-08 | t_A=10.92ms t_B=39.78ms t_C=2762ms
+     p=8 s=4.408 eta=0.8 M_A=30 M_B=50 M_C=150 err_A=6.1e-08 err_B=9.9e-08 | t_A=9.61ms t_B=23.27ms t_C=1366ms
+    tol=1e-07 xi=2: s factors skipped (Ewald tails alone > 0.95 tol): [(1.0, 1.0220731143040562e-07)]
+  tol=1e-07 xi=2: 15 passing (s, eta, p) combos, 4 candidates (evaluations so far 1199, 326s)
+     p=5 s=4.305 eta=0.3 M_A=120 M_B=192 M_C=576 err_A=4.5e-08 err_B=5.2e-08 | t_A=446.41ms t_B=2908.64ms t_C=nanms
+     p=6 s=4.305 eta=0.5 M_A=72 M_B=120 M_C=360 err_A=7.4e-08 err_B=7.1e-08 | t_A=78.10ms t_B=430.04ms t_C=nanms
+     p=7 s=4.203 eta=0.6 M_A=54 M_B=90 M_C=270 err_A=4.4e-08 err_B=4.6e-08 | t_A=26.16ms t_B=156.13ms t_C=13791ms
+     p=8 s=4.203 eta=0.7 M_A=48 M_B=80 M_C=240 err_A=2.6e-08 err_B=5.9e-08 | t_A=20.47ms t_B=119.07ms t_C=8145ms
+  tol=1e-09 xi=0.5: 15 passing (s, eta, p) combos, 3 candidates (evaluations so far 1361, 404s)
+     p=6 s=5.091 eta=0.4 M_A=25 M_B=45 M_C=125 err_A=5.7e-10 err_B=6.2e-10 | t_A=11.21ms t_B=27.63ms t_C=1150ms
+     p=7 s=4.628 eta=0.5 M_A=18 M_B=30 M_C=90 err_A=6.5e-10 err_B=8.1e-10 | t_A=10.19ms t_B=10.35ms t_C=637ms
+     p=8 s=4.628 eta=0.7 M_A=15 M_B=24 M_C=64 err_A=4.8e-10 err_B=7.5e-10 | t_A=10.98ms t_B=9.58ms t_C=592ms
+  tol=1e-09 xi=0.7: 15 passing (s, eta, p) combos, 3 candidates (evaluations so far 1536, 416s)
+     p=6 s=4.628 eta=0.3 M_A=45 M_B=72 M_C=216 err_A=4.3e-10 err_B=6.0e-10 | t_A=22.74ms t_B=74.73ms t_C=7257ms
+     p=7 s=5.091 eta=0.5 M_A=30 M_B=48 M_C=144 err_A=3.2e-10 err_B=7.9e-10 | t_A=14.00ms t_B=22.99ms t_C=1171ms
+     p=8 s=4.628 eta=0.6 M_A=24 M_B=36 M_C=108 err_A=3.3e-10 err_B=8.7e-10 | t_A=11.68ms t_B=14.13ms t_C=739ms
+  tol=1e-09 xi=1: 11 passing (s, eta, p) combos, 3 candidates (evaluations so far 1712, 445s)
+     p=6 s=5.091 eta=0.3 M_A=72 M_B=120 M_C=360 err_A=2.0e-10 err_B=4.6e-10 | t_A=71.90ms t_B=409.89ms t_C=nanms
+     p=7 s=4.628 eta=0.4 M_A=45 M_B=75 M_C=225 err_A=5.3e-10 err_B=8.6e-10 | t_A=18.17ms t_B=84.87ms t_C=8028ms
+     p=8 s=4.628 eta=0.5 M_A=36 M_B=60 M_C=180 err_A=4.0e-10 err_B=5.8e-10 | t_A=11.75ms t_B=35.01ms t_C=2791ms
+  tol=1e-09 xi=1.4: 11 passing (s, eta, p) combos, 3 candidates (evaluations so far 1888, 508s)
+     p=6 s=5.091 eta=0.3 M_A=96 M_B=160 M_C=480 err_A=6.6e-10 err_B=8.6e-10 | t_A=184.54ms t_B=1142.03ms t_C=nanms
+     p=7 s=4.628 eta=0.4 M_A=64 M_B=108 M_C=320 err_A=6.4e-10 err_B=9.0e-10 | t_A=47.05ms t_B=302.36ms t_C=nanms
+     p=8 s=4.628 eta=0.5 M_A=50 M_B=90 M_C=250 err_A=5.9e-10 err_B=5.1e-10 | t_A=25.44ms t_B=165.85ms t_C=12704ms
+    tol=1e-09 xi=2: s factors skipped (Ewald tails alone > 0.95 tol): [(1.0, 1.0979414024296434e-09)]
+  tol=1e-09 xi=2: 9 passing (s, eta, p) combos, 3 candidates (evaluations so far 2030, 677s)
+     p=6 s=5.091 eta=0.3 M_A=135 M_B=225 M_C=675 err_A=8.0e-10 err_B=9.8e-10 | t_A=635.25ms t_B=5160.86ms t_C=nanms
+     p=7 s=4.743 eta=0.4 M_A=96 M_B=160 M_C=480 err_A=8.1e-10 err_B=5.2e-10 | t_A=186.63ms t_B=1097.80ms t_C=nanms
+     p=8 s=4.743 eta=0.5 M_A=75 M_B=125 M_C=375 err_A=4.6e-10 err_B=4.4e-10 | t_A=82.59ms t_B=533.86ms t_C=nanms
+
+# Equal-accuracy xi optimisation: summary
+
+- tol 1e-05, system A: xi=0.5: 7.59 ms (p=4, eta=0.7, M=10), xi=0.7: 3.81 ms (p=6, eta=0.8, M=12), xi=1: 4.24 ms (p=5, eta=0.7, M=20), xi=1.4: 3.32 ms (p=6, eta=0.8, M=25), xi=2: 8.51 ms (p=6, eta=0.8, M=36)  ->  cheapest tested xi = 1.4
+- tol 1e-05, system B: xi=0.5: 5.68 ms (p=6, eta=0.8, M=15), xi=0.7: 2.39 ms (p=6, eta=0.8, M=20), xi=1: 5.24 ms (p=6, eta=0.8, M=30), xi=1.4: 11.18 ms (p=7, eta=0.8, M=40), xi=2: 34.49 ms (p=6, eta=0.8, M=60)  ->  cheapest tested xi = 0.7
+- tol 1e-05, system C: xi=0.5: 163.93 ms (p=5, eta=0.8, M=45), xi=0.7: 128.63 ms (p=5, eta=0.8, M=64), xi=1: 269.84 ms (p=6, eta=0.8, M=90), xi=1.4: 662.52 ms (p=7, eta=0.8, M=120), xi=2: 1999.17 ms (p=6, eta=0.8, M=180)  ->  cheapest tested xi = 0.7
+- tol 1e-07, system A: xi=0.5: 8.52 ms (p=5, eta=0.5, M=18), xi=0.7: 4.66 ms (p=7, eta=0.7, M=16), xi=1: 5.83 ms (p=8, eta=0.8, M=20), xi=1.4: 9.61 ms (p=8, eta=0.8, M=30), xi=2: 20.47 ms (p=8, eta=0.7, M=48)  ->  cheapest tested xi = 0.7
+- tol 1e-07, system B: xi=0.5: 7.02 ms (p=6, eta=0.7, M=20), xi=0.7: 8.36 ms (p=7, eta=0.7, M=27), xi=1: 9.57 ms (p=8, eta=0.8, M=36), xi=1.4: 23.27 ms (p=8, eta=0.8, M=50), xi=2: 119.07 ms (p=8, eta=0.7, M=80)  ->  cheapest tested xi = 0.5
+- tol 1e-07, system C: xi=0.5: 332.03 ms (p=6, eta=0.7, M=60), xi=0.7: 311.12 ms (p=7, eta=0.7, M=80), xi=1: 532.30 ms (p=8, eta=0.8, M=100), xi=1.4: 1366.26 ms (p=8, eta=0.8, M=150), xi=2: 8145.20 ms (p=8, eta=0.7, M=240)  ->  cheapest tested xi = 0.7
+- tol 1e-09, system A: xi=0.5: 10.19 ms (p=7, eta=0.5, M=18), xi=0.7: 11.68 ms (p=8, eta=0.6, M=24), xi=1: 11.75 ms (p=8, eta=0.5, M=36), xi=1.4: 25.44 ms (p=8, eta=0.5, M=50), xi=2: 82.59 ms (p=8, eta=0.5, M=75)  ->  cheapest tested xi = 0.5
+- tol 1e-09, system B: xi=0.5: 9.58 ms (p=8, eta=0.7, M=24), xi=0.7: 14.13 ms (p=8, eta=0.6, M=36), xi=1: 35.01 ms (p=8, eta=0.5, M=60), xi=1.4: 165.85 ms (p=8, eta=0.5, M=90), xi=2: 533.86 ms (p=8, eta=0.5, M=125)  ->  cheapest tested xi = 0.5
+- tol 1e-09, system C: xi=0.5: 591.99 ms (p=8, eta=0.7, M=64), xi=0.7: 738.95 ms (p=8, eta=0.6, M=108), xi=1: 2791.26 ms (p=8, eta=0.5, M=180), xi=1.4: 12704.24 ms (p=8, eta=0.5, M=250)  ->  cheapest tested xi = 0.5
+- not feasible / not timed: tol 1e-09 xi 2 system C
+- all accepted runs PSD observed: True; certified: 44/44
+- dense evaluations: 2030; wall time 767s

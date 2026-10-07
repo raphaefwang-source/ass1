@@ -1,0 +1,28 @@
+{
+ "discarded_max": 0.0,
+ "action_bias_max": 0.0,
+ "rank_change_1e8": [
+  [
+   "A",
+   30
+  ],
+  [
+   "A",
+   30
+  ],
+  [
+   "A",
+   30
+  ]
+ ],
+ "cov_bias_A": 0.0,
+ "rank_thr_vs_nothr_1e8_A": [
+  30.0,
+  30.0
+ ],
+ "cov_bias_B": 0.0,
+ "rank_thr_vs_nothr_1e8_B": [
+  57.0,
+  57.0
+ ]
+}
