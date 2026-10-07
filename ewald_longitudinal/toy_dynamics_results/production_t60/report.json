@@ -1,0 +1,1305 @@
+{
+ "tag": "production_t60",
+ "toy": {
+  "gamma": 0.5,
+  "kappa": 0.7,
+  "r_ref": 1.3,
+  "dt": 0.005,
+  "kT": 0.7,
+  "mass": 1.0,
+  "L": 5.5
+ },
+ "max_lag_time": 3.0,
+ "origins": 300,
+ "cases": {
+  "lj_A": {
+   "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+   ],
+   "methods": [
+    "reference",
+    "pppm_lanczos"
+   ],
+   "scalars": {
+    "T_mean": {
+     "reference": [
+      0.6998940059352414,
+      0.000433975219091656
+     ],
+     "pppm_lanczos": [
+      0.7001973775052331,
+      0.0018679989852339698
+     ],
+     "v2_lattice": [
+      0.6975006497541998,
+      0.001445721084240328
+     ]
+    },
+    "U_per_particle": {
+     "reference": [
+      -3.169847387592254,
+      0.03024121616880635
+     ],
+     "pppm_lanczos": [
+      -3.2035247152734185,
+      0.04493825232966066
+     ],
+     "v2_lattice": [
+      -3.202730713280265,
+      0.028993608387013023
+     ]
+    },
+    "U_second_minus_first_half": {
+     "reference": [
+      0.053401832983135035,
+      0.055102545057476485
+     ],
+     "pppm_lanczos": [
+      0.009891702261630808,
+      0.04138891161923844
+     ],
+     "v2_lattice": [
+      -0.04128306279941585,
+      0.02230855124374857
+     ]
+    },
+    "D_green_kubo": {
+     "reference": [
+      0.06091941846019524,
+      0.0017744913970514544
+     ],
+     "pppm_lanczos": [
+      0.05826256452355082,
+      0.0013721927884359747
+     ],
+     "v2_lattice": [
+      0.058417628531460875,
+      0.00154019152037191
+     ]
+    },
+    "D_msd": {
+     "reference": [
+      0.060258216599847925,
+      0.001800603793573516
+     ],
+     "pppm_lanczos": [
+      0.0579529365074886,
+      0.0018499862784017327
+     ],
+     "v2_lattice": [
+      0.05876326263354246,
+      0.0016872258683611658
+     ]
+    },
+    "vacf_min": {
+     "reference": [
+      -0.012320868132523054,
+      0.001734133494316328
+     ],
+     "pppm_lanczos": [
+      -0.012520702677313356,
+      0.000655884837485363
+     ],
+     "v2_lattice": [
+      -0.011427498124073105,
+      0.0014620375800287664
+     ]
+    },
+    "tau_T": {
+     "reference": [
+      0.2407823523414479,
+      0.009851377165507094
+     ],
+     "pppm_lanczos": [
+      0.22329592923564748,
+      0.008981588262865096
+     ],
+     "v2_lattice": [
+      0.2152805443265963,
+      0.01069157026407747
+     ]
+    },
+    "rdf_peak": {
+     "reference": [
+      3.268969562473351,
+      0.04635994755923104
+     ],
+     "pppm_lanczos": [
+      3.308584713692703,
+      0.06404982755696854
+     ],
+     "v2_lattice": [
+      3.3182802000331946,
+      0.0631788736967422
+     ]
+    }
+   },
+   "paired": {
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_paired_diff": 0.011714107121888306,
+      "max_diff_over_reference_sem": 7.123665926350385,
+      "fraction_within_2_reference_sem": 0.82
+     },
+     "vccf_normalized": {
+      "max_abs_paired_diff": 0.0031724595214382527,
+      "max_diff_over_reference_sem": 10.379447952052791,
+      "fraction_within_2_reference_sem": 0.7196467991169978
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_paired_diff": 0.04369732676724627,
+      "max_diff_over_reference_sem": 18.733292811752055,
+      "fraction_within_2_reference_sem": 0.5866666666666667
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_paired_diff": 0.019430382874580272,
+      "max_diff_over_reference_sem": 7.76417410474396,
+      "fraction_within_2_reference_sem": 0.8666666666666667
+     },
+     "rdf": {
+      "max_abs_paired_diff": 0.05343582684454682,
+      "max_diff_over_reference_sem": 9.34919564494504,
+      "fraction_within_2_reference_sem": 0.7804878048780488
+     },
+     "van_hove_distinct": {
+      "max_abs_paired_diff": 0.6138833519258822,
+      "max_diff_over_reference_sem": 30.63973079921373,
+      "fraction_within_2_reference_sem": 0.793450590141171
+     }
+    }
+   },
+   "independent_vs_v2": {
+    "reference": {
+     "vacf": {
+      "max_abs_diff": 0.006897432554104743,
+      "max_abs_z": 5.141588773862916,
+      "fraction_abs_z_le_2": 0.9,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 0.0026845563960600106,
+      "max_abs_z": 5.003698517811573,
+      "fraction_abs_z_le_2": 0.8852097130242825,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 0.03880445670243479,
+      "max_abs_z": 2.4424385143514264,
+      "fraction_abs_z_le_2": 0.9333333333333333,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 0.03976798193681402,
+      "max_abs_z": 3.948944981595623,
+      "fraction_abs_z_le_2": 0.84,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.05194935895731634,
+      "max_abs_z": 2.3617193826576752,
+      "fraction_abs_z_le_2": 0.975609756097561,
+      "n_points": 41
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.4092555679505882,
+      "max_abs_z": 6.870986386263628,
+      "fraction_abs_z_le_2": 0.9648860234860696,
+      "n_points": 8686
+     }
+    },
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_diff": 0.007216415442746954,
+      "max_abs_z": 1.9303761669709585,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 0.002506360324050938,
+      "max_abs_z": 4.864469300451778,
+      "fraction_abs_z_le_2": 0.8719646799116998,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 0.02857491734932038,
+      "max_abs_z": 2.8672106705191216,
+      "fraction_abs_z_le_2": 0.9733333333333334,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 0.036983863116320875,
+      "max_abs_z": 5.089535561188557,
+      "fraction_abs_z_le_2": 0.8533333333333334,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.055681029653141145,
+      "max_abs_z": 3.441942099564333,
+      "fraction_abs_z_le_2": 0.926829268292683,
+      "n_points": 41
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.6820926132509804,
+      "max_abs_z": 6.552143396012651,
+      "fraction_abs_z_le_2": 0.9614853989422856,
+      "n_points": 8698
+     }
+    }
+   },
+   "z_fast_vs_reference": {
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_diff": 0.011714107121888306,
+      "max_abs_z": 2.8456392086086972,
+      "fraction_abs_z_le_2": 0.9466666666666667,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 0.003172459521438256,
+      "max_abs_z": 5.300329599396733,
+      "fraction_abs_z_le_2": 0.8962472406181016,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 0.04369732676724626,
+      "max_abs_z": 3.63607797203962,
+      "fraction_abs_z_le_2": 0.8533333333333334,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 0.019430382874580272,
+      "max_abs_z": 3.1226136120652783,
+      "fraction_abs_z_le_2": 0.9666666666666667,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.05343582684454695,
+      "max_abs_z": 3.5981653916524,
+      "fraction_abs_z_le_2": 0.8780487804878049,
+      "n_points": 41
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.6138833519258822,
+      "max_abs_z": 7.911134337857495,
+      "fraction_abs_z_le_2": 0.948658915621043,
+      "n_points": 8687
+     }
+    }
+   },
+   "scalar_z": {
+    "T_mean": {
+     "fast_vs_reference": 0.1581916294612598,
+     "fast_vs_v2": 1.1416640059511418,
+     "reference_vs_v2 (same-model control)": 1.5855800080413553
+    },
+    "U_per_particle": {
+     "fast_vs_reference": -0.6217405885532374,
+     "fast_vs_v2": -0.014846798597346979,
+     "reference_vs_v2 (same-model control)": 0.7849054014915885
+    },
+    "U_second_minus_first_half": {
+     "fast_vs_reference": -0.6313556936955721,
+     "fast_vs_v2": 1.0884027475627591,
+     "reference_vs_v2 (same-model control)": 1.5927579156750138
+    },
+    "D_green_kubo": {
+     "fast_vs_reference": -1.1844286265425832,
+     "fast_vs_v2": -0.07517197626220831,
+     "reference_vs_v2 (same-model control)": 1.0647351392762927
+    },
+    "D_msd": {
+     "fast_vs_reference": -0.8929680039068795,
+     "fast_vs_v2": -0.3236342371082847,
+     "reference_vs_v2 (same-model control)": 0.6058403786320489
+    },
+    "vacf_min": {
+     "fast_vs_reference": -0.1077842447890358,
+     "fast_vs_v2": -0.6822224545903204,
+     "reference_vs_v2 (same-model control)": -0.39386579434517266
+    },
+    "tau_T": {
+     "fast_vs_reference": -1.3117002156106623,
+     "fast_vs_v2": 0.5740251305210297,
+     "reference_vs_v2 (same-model control)": 1.7541239732243852
+    },
+    "rdf_peak": {
+     "fast_vs_reference": 0.501031295063099,
+     "fast_vs_v2": -0.10776787689689407,
+     "reference_vs_v2 (same-model control)": -0.6292563650311059
+    }
+   }
+  },
+  "lj_B": {
+   "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+   ],
+   "methods": [
+    "reference",
+    "pppm_lanczos"
+   ],
+   "scalars": {
+    "T_mean": {
+     "reference": [
+      0.699641930969127,
+      0.000996052552456257
+     ],
+     "pppm_lanczos": [
+      0.6996418667053909,
+      0.0009960180025795537
+     ],
+     "v2_lattice": [
+      0.6987093947932221,
+      0.0008218000423261246
+     ]
+    },
+    "U_per_particle": {
+     "reference": [
+      -3.145188757128648,
+      0.009795696264285263
+     ],
+     "pppm_lanczos": [
+      -3.1451910352946966,
+      0.009796815803168197
+     ],
+     "v2_lattice": [
+      -3.196449685110462,
+      0.017930605362444445
+     ]
+    },
+    "U_second_minus_first_half": {
+     "reference": [
+      0.030172194886884808,
+      0.05904177002125274
+     ],
+     "pppm_lanczos": [
+      0.030167606630153544,
+      0.05904566074165876
+     ],
+     "v2_lattice": [
+      0.03552854780810684,
+      0.03243332985607119
+     ]
+    },
+    "D_green_kubo": {
+     "reference": [
+      0.010040533678351766,
+      0.0002581770474339366
+     ],
+     "pppm_lanczos": [
+      0.01004049242797008,
+      0.00025818844481178535
+     ],
+     "v2_lattice": [
+      0.009470531668050463,
+      0.0005524848834293269
+     ]
+    },
+    "D_msd": {
+     "reference": [
+      0.009275131630502538,
+      7.714882525524903e-05
+     ],
+     "pppm_lanczos": [
+      0.009275231326563566,
+      7.705864666619556e-05
+     ],
+     "v2_lattice": [
+      0.009006804661705108,
+      0.00012909520537405717
+     ]
+    },
+    "vacf_min": {
+     "reference": [
+      -0.02887296414828776,
+      0.0014879609631306427
+     ],
+     "pppm_lanczos": [
+      -0.02887305990534573,
+      0.0014880090255939844
+     ],
+     "v2_lattice": [
+      -0.02853945870015927,
+      0.00174747352152014
+     ]
+    },
+    "tau_T": {
+     "reference": [
+      0.017533492745905856,
+      0.0036040351043586027
+     ],
+     "pppm_lanczos": [
+      0.01753394071089869,
+      0.003604046559478229
+     ],
+     "v2_lattice": [
+      0.0214061296225493,
+      0.002915775776016154
+     ]
+    },
+    "rdf_peak": {
+     "reference": [
+      3.2527599212478413,
+      0.019157371599344837
+     ],
+     "pppm_lanczos": [
+      3.2522296993385966,
+      0.018508001454520945
+     ],
+     "v2_lattice": [
+      3.333505143427247,
+      0.03799463559012958
+     ]
+    }
+   },
+   "paired": {
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_paired_diff": 1.2442837857226295e-06,
+      "max_diff_over_reference_sem": 0.0013270904933765113,
+      "fraction_within_2_reference_sem": 1.0
+     },
+     "vccf_normalized": {
+      "max_abs_paired_diff": 1.8186886921700564e-05,
+      "max_diff_over_reference_sem": 0.04874424938107372,
+      "fraction_within_2_reference_sem": 1.0
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_paired_diff": 8.44972798159163e-06,
+      "max_diff_over_reference_sem": 0.001354717929267812,
+      "fraction_within_2_reference_sem": 1.0
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_paired_diff": 4.4539284006505505e-06,
+      "max_diff_over_reference_sem": 0.0010575386160420238,
+      "fraction_within_2_reference_sem": 1.0
+     },
+     "rdf": {
+      "max_abs_paired_diff": 0.0006992235912362865,
+      "max_diff_over_reference_sem": 0.20289673953518936,
+      "fraction_within_2_reference_sem": 1.0
+     },
+     "van_hove_distinct": {
+      "max_abs_paired_diff": 0.0009468248379385979,
+      "max_diff_over_reference_sem": 0.3692744729379961,
+      "fraction_within_2_reference_sem": 1.0
+     }
+    }
+   },
+   "independent_vs_v2": {
+    "reference": {
+     "vacf": {
+      "max_abs_diff": 0.006233980667648615,
+      "max_abs_z": 3.4843828287636756,
+      "fraction_abs_z_le_2": 0.9333333333333333,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 0.0024498922022646303,
+      "max_abs_z": 3.825536845493166,
+      "fraction_abs_z_le_2": 0.9249448123620309,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 0.04296390737380153,
+      "max_abs_z": 5.862148678236952,
+      "fraction_abs_z_le_2": 0.9,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 0.03013648881344374,
+      "max_abs_z": 3.7139633224557507,
+      "fraction_abs_z_le_2": 0.8933333333333333,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.08074522217940583,
+      "max_abs_z": 3.848501049725881,
+      "fraction_abs_z_le_2": 0.8048780487804879,
+      "n_points": 41
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.10385159484144113,
+      "max_abs_z": 7.833472785434937,
+      "fraction_abs_z_le_2": 0.8093375065206051,
+      "n_points": 7668
+     }
+    },
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_diff": 0.006234694356660554,
+      "max_abs_z": 3.4845615820900844,
+      "fraction_abs_z_le_2": 0.9333333333333333,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 0.002444878657550941,
+      "max_abs_z": 3.8308547759678437,
+      "fraction_abs_z_le_2": 0.9227373068432672,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 0.04296722255978387,
+      "max_abs_z": 5.861520595621128,
+      "fraction_abs_z_le_2": 0.9,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 0.030136687791139868,
+      "max_abs_z": 3.714028295181517,
+      "fraction_abs_z_le_2": 0.8933333333333333,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.0812754440886505,
+      "max_abs_z": 3.857525554644619,
+      "fraction_abs_z_le_2": 0.8048780487804879,
+      "n_points": 41
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.10391634022475804,
+      "max_abs_z": 7.833472785434937,
+      "fraction_abs_z_le_2": 0.8098591549295775,
+      "n_points": 7668
+     }
+    }
+   },
+   "z_fast_vs_reference": {
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_diff": 1.2442837857226403e-06,
+      "max_abs_z": 0.0009388603362792947,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 1.818688692169744e-05,
+      "max_abs_z": 0.03416135696019395,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 8.449727981588856e-06,
+      "max_abs_z": 0.0009587061172131621,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 4.453928400650377e-06,
+      "max_abs_z": 0.000747733911265408,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.0006992235912366418,
+      "max_abs_z": 0.13706026545606198,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 41
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.0009468248379389532,
+      "max_abs_z": 0.26111648393354553,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 7552
+     }
+    }
+   },
+   "scalar_z": {
+    "T_mean": {
+     "fast_vs_reference": -4.562220295491357e-05,
+     "fast_vs_v2": 0.7221292331877704,
+     "reference_vs_v2 (same-model control)": 0.7221640963301444
+    },
+    "U_per_particle": {
+     "fast_vs_reference": -0.0001644410531458823,
+     "fast_vs_v2": 2.508690793386645,
+     "reference_vs_v2 (same-model control)": 2.5088681996523157
+    },
+    "U_second_minus_first_half": {
+     "fast_vs_reference": -5.49489039736137e-05,
+     "fast_vs_v2": -0.079578164563749,
+     "reference_vs_v2 (same-model control)": -0.07951408116516676
+    },
+    "D_green_kubo": {
+     "fast_vs_reference": -0.00011297588645336284,
+     "fast_vs_v2": 0.9346120781592238,
+     "reference_vs_v2 (same-model control)": 0.9346871154350342
+    },
+    "D_msd": {
+     "fast_vs_reference": 0.0009142974445829325,
+     "fast_vs_v2": 1.7854051402070874,
+     "reference_vs_v2 (same-model control)": 1.7841932726528924
+    },
+    "vacf_min": {
+     "fast_vs_reference": -4.550480366578069e-05,
+     "fast_vs_v2": -0.1453488322598889,
+     "reference_vs_v2 (same-model control)": -0.14530908399019957
+    },
+    "tau_T": {
+     "fast_vs_reference": 8.788998208914697e-05,
+     "fast_vs_v2": -0.8352745239396067,
+     "reference_vs_v2 (same-model control)": -0.8353727597864222
+    },
+    "rdf_peak": {
+     "fast_vs_reference": -0.019905168560539886,
+     "fast_vs_v2": -1.9230996604583632,
+     "reference_vs_v2 (same-model control)": -1.8976054073972746
+    }
+   }
+  },
+  "double_well_A": {
+   "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+   ],
+   "methods": [
+    "reference",
+    "pppm_lanczos"
+   ],
+   "scalars": {
+    "T_mean": {
+     "reference": [
+      0.699295249459803,
+      0.0018006269461374933
+     ],
+     "pppm_lanczos": [
+      0.7007396111223592,
+      0.0006563589282224972
+     ],
+     "v2_lattice": [
+      0.695980001969936,
+      0.0010514792399486566
+     ]
+    },
+    "U_per_particle": {
+     "reference": [
+      -5.756383442828506,
+      0.03338925681486074
+     ],
+     "pppm_lanczos": [
+      -5.7658638910321685,
+      0.04004705210854919
+     ],
+     "v2_lattice": [
+      -5.76797408939557,
+      0.07330469290749626
+     ]
+    },
+    "U_second_minus_first_half": {
+     "reference": [
+      0.04087134332225215,
+      0.04193067233556873
+     ],
+     "pppm_lanczos": [
+      -0.0975835353162335,
+      0.051793334062650576
+     ],
+     "v2_lattice": [
+      0.018669846609567563,
+      0.043354494649140235
+     ]
+    },
+    "D_green_kubo": {
+     "reference": [
+      0.019368344703749724,
+      0.0006212559340381325
+     ],
+     "pppm_lanczos": [
+      0.02092580128070299,
+      0.0006417632216661648
+     ],
+     "v2_lattice": [
+      0.02024157577022001,
+      0.0014905878648585316
+     ]
+    },
+    "D_msd": {
+     "reference": [
+      0.020057394362588164,
+      0.00040027385599484226
+     ],
+     "pppm_lanczos": [
+      0.0211725659366031,
+      0.0004838911969179297
+     ],
+     "v2_lattice": [
+      0.02107983833265555,
+      0.0010317368865878581
+     ]
+    },
+    "vacf_min": {
+     "reference": [
+      -0.13442449942267679,
+      0.002521772502359035
+     ],
+     "pppm_lanczos": [
+      -0.1314406294564655,
+      0.004937781307685405
+     ],
+     "v2_lattice": [
+      -0.13485758204320503,
+      0.005738429753438909
+     ]
+    },
+    "tau_T": {
+     "reference": [
+      0.10504250683319116,
+      0.006795351666507327
+     ],
+     "pppm_lanczos": [
+      0.12468050074271293,
+      0.017246806099579504
+     ],
+     "v2_lattice": [
+      0.13801332940498634,
+      0.013709308037329497
+     ]
+    },
+    "rdf_peak": {
+     "reference": [
+      4.2720820960810855,
+      0.07404669331859103
+     ],
+     "pppm_lanczos": [
+      4.24269403084308,
+      0.08104254722969555
+     ],
+     "v2_lattice": [
+      4.2420861865582635,
+      0.1224285848742443
+     ]
+    }
+   },
+   "paired": {
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_paired_diff": 0.0058635493854099115,
+      "max_diff_over_reference_sem": 5.05887535568153,
+      "fraction_within_2_reference_sem": 0.88
+     },
+     "vccf_normalized": {
+      "max_abs_paired_diff": 0.002017165572945882,
+      "max_diff_over_reference_sem": 12.472203642185029,
+      "fraction_within_2_reference_sem": 0.8233995584988962
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_paired_diff": 0.04586301890035297,
+      "max_diff_over_reference_sem": 5.524153732800634,
+      "fraction_within_2_reference_sem": 0.84
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_paired_diff": 0.029348625973894177,
+      "max_diff_over_reference_sem": 8.874842460878059,
+      "fraction_within_2_reference_sem": 0.7466666666666667
+     },
+     "rdf": {
+      "max_abs_paired_diff": 0.040524762441244234,
+      "max_diff_over_reference_sem": 2.6781809469162168,
+      "fraction_within_2_reference_sem": 0.8222222222222222
+     },
+     "van_hove_distinct": {
+      "max_abs_paired_diff": 0.2728370453003921,
+      "max_diff_over_reference_sem": 13.063945294843629,
+      "fraction_within_2_reference_sem": 0.9101782633697527
+     }
+    }
+   },
+   "independent_vs_v2": {
+    "reference": {
+     "vacf": {
+      "max_abs_diff": 0.005884299318294934,
+      "max_abs_z": 2.504349051447604,
+      "fraction_abs_z_le_2": 0.9333333333333333,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 0.0022681388351381074,
+      "max_abs_z": 5.244803629645864,
+      "fraction_abs_z_le_2": 0.8565121412803532,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 0.04935382530395095,
+      "max_abs_z": 2.7996625708992897,
+      "fraction_abs_z_le_2": 0.9266666666666666,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 0.035354493293154134,
+      "max_abs_z": 3.935434719079246,
+      "fraction_abs_z_le_2": 0.8733333333333333,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.06001936754636139,
+      "max_abs_z": 2.2519956532136707,
+      "fraction_abs_z_le_2": 0.9333333333333333,
+      "n_points": 45
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.7503018745760783,
+      "max_abs_z": 6.0,
+      "fraction_abs_z_le_2": 0.9821734658896126,
+      "n_points": 8751
+     }
+    },
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_diff": 0.006761439839813405,
+      "max_abs_z": 3.88594842958462,
+      "fraction_abs_z_le_2": 0.9533333333333334,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 0.002287588785488263,
+      "max_abs_z": 5.958531535469893,
+      "fraction_abs_z_le_2": 0.9293598233995585,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 0.05033443024706451,
+      "max_abs_z": 4.482126494073475,
+      "fraction_abs_z_le_2": 0.84,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 0.03186552056363846,
+      "max_abs_z": 3.320498443330126,
+      "fraction_abs_z_le_2": 0.8733333333333333,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.06472086602337912,
+      "max_abs_z": 1.492405014489273,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 45
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.6820926132509804,
+      "max_abs_z": 5.463749147291224,
+      "fraction_abs_z_le_2": 0.9867428571428571,
+      "n_points": 8750
+     }
+    }
+   },
+   "z_fast_vs_reference": {
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_diff": 0.0058635493854099115,
+      "max_abs_z": 3.051178287912983,
+      "fraction_abs_z_le_2": 0.9666666666666667,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 0.002017165572945882,
+      "max_abs_z": 3.124297708666093,
+      "fraction_abs_z_le_2": 0.9558498896247241,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 0.04586301890035298,
+      "max_abs_z": 2.8906034565218186,
+      "fraction_abs_z_le_2": 0.9466666666666667,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 0.029348625973894177,
+      "max_abs_z": 2.450771889067144,
+      "fraction_abs_z_le_2": 0.98,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.040524762441244144,
+      "max_abs_z": 1.715837004453448,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 45
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.2728370453003921,
+      "max_abs_z": 5.065902322058098,
+      "fraction_abs_z_le_2": 0.9812614259597806,
+      "n_points": 8752
+     }
+    }
+   },
+   "scalar_z": {
+    "T_mean": {
+     "fast_vs_reference": 0.7536360741545177,
+     "fast_vs_v2": 3.8398736300691896,
+     "reference_vs_v2 (same-model control)": 1.58992954579799
+    },
+    "U_per_particle": {
+     "fast_vs_reference": -0.18182579971166762,
+     "fast_vs_v2": 0.025262609110050023,
+     "reference_vs_v2 (same-model control)": 0.14389250398032302
+    },
+    "U_second_minus_first_half": {
+     "fast_vs_reference": -2.077691404284499,
+     "fast_vs_v2": -1.7211561008813807,
+     "reference_vs_v2 (same-model control)": 0.36809780925134344
+    },
+    "D_green_kubo": {
+     "fast_vs_reference": 1.7436678831303989,
+     "fast_vs_v2": 0.4216140773993774,
+     "reference_vs_v2 (same-model control)": -0.5407432559000686
+    },
+    "D_msd": {
+     "fast_vs_reference": 1.7757827701866384,
+     "fast_vs_v2": 0.0813703228249761,
+     "reference_vs_v2 (same-model control)": -0.9238992832332874
+    },
+    "vacf_min": {
+     "fast_vs_reference": 0.5381715690353449,
+     "fast_vs_v2": 0.45135574353176244,
+     "reference_vs_v2 (same-model control)": 0.06909327069503658
+    },
+    "tau_T": {
+     "fast_vs_reference": 1.059380898370172,
+     "fast_vs_v2": -0.6051646537843082,
+     "reference_vs_v2 (same-model control)": -2.154808764910825
+    },
+    "rdf_peak": {
+     "fast_vs_reference": -0.2677089712562434,
+     "fast_vs_v2": 0.0041400127027030505,
+     "reference_vs_v2 (same-model control)": 0.20964542348810128
+    }
+   }
+  },
+  "double_well_B": {
+   "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+   ],
+   "methods": [
+    "reference",
+    "pppm_lanczos"
+   ],
+   "scalars": {
+    "T_mean": {
+     "reference": [
+      0.6991597382270969,
+      0.0009589429814074129
+     ],
+     "pppm_lanczos": [
+      0.6990700576866109,
+      0.0009320414167525864
+     ],
+     "v2_lattice": [
+      0.6984372741806693,
+      0.0009414304805373969
+     ]
+    },
+    "U_per_particle": {
+     "reference": [
+      -5.7025617194385365,
+      0.05125595070193301
+     ],
+     "pppm_lanczos": [
+      -5.704628545382008,
+      0.0559635712241759
+     ],
+     "v2_lattice": [
+      -5.682166431287619,
+      0.08721885320433452
+     ]
+    },
+    "U_second_minus_first_half": {
+     "reference": [
+      -0.022590474150944395,
+      0.05380707709015768
+     ],
+     "pppm_lanczos": [
+      -0.026351257092848003,
+      0.06821699769437148
+     ],
+     "v2_lattice": [
+      -0.0034925049330201572,
+      0.03704006335929712
+     ]
+    },
+    "D_green_kubo": {
+     "reference": [
+      0.0064269046250185705,
+      0.0003925794041091313
+     ],
+     "pppm_lanczos": [
+      0.006313974513469328,
+      0.000488358572954579
+     ],
+     "v2_lattice": [
+      0.005809153991241862,
+      0.00026076308642165874
+     ]
+    },
+    "D_msd": {
+     "reference": [
+      0.005146766975587016,
+      0.0002043570962336878
+     ],
+     "pppm_lanczos": [
+      0.00513618759764538,
+      0.0002844187805453611
+     ],
+     "v2_lattice": [
+      0.005071130915382549,
+      0.0003374462633524691
+     ]
+    },
+    "vacf_min": {
+     "reference": [
+      -0.051635973098064114,
+      0.002173213392700126
+     ],
+     "pppm_lanczos": [
+      -0.051920892215940526,
+      0.0022740947077995767
+     ],
+     "v2_lattice": [
+      -0.050313599427915204,
+      0.002007134578680616
+     ]
+    },
+    "tau_T": {
+     "reference": [
+      0.020596455236522666,
+      0.0034952388873836096
+     ],
+     "pppm_lanczos": [
+      0.022371593046525647,
+      0.004197982357776644
+     ],
+     "v2_lattice": [
+      0.016951117986186974,
+      0.0025039833116602133
+     ]
+    },
+    "rdf_peak": {
+     "reference": [
+      4.194577695128406,
+      0.095787246118032
+     ],
+     "pppm_lanczos": [
+      4.1673658370882425,
+      0.10791600406448547
+     ],
+     "v2_lattice": [
+      4.075605035141864,
+      0.15027714007603507
+     ]
+    }
+   },
+   "paired": {
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_paired_diff": 0.001004437598052753,
+      "max_diff_over_reference_sem": 2.7478468943593404,
+      "fraction_within_2_reference_sem": 0.9933333333333333
+     },
+     "vccf_normalized": {
+      "max_abs_paired_diff": 0.0010484176408044482,
+      "max_diff_over_reference_sem": 3.9077417830055645,
+      "fraction_within_2_reference_sem": 0.9801324503311258
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_paired_diff": 0.011979072226151096,
+      "max_diff_over_reference_sem": 1.2537333862967344,
+      "fraction_within_2_reference_sem": 1.0
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_paired_diff": 0.007776216022995773,
+      "max_diff_over_reference_sem": 1.27372144371993,
+      "fraction_within_2_reference_sem": 1.0
+     },
+     "rdf": {
+      "max_abs_paired_diff": 0.03696404167312375,
+      "max_diff_over_reference_sem": 11.112484017976378,
+      "fraction_within_2_reference_sem": 0.9555555555555556
+     },
+     "van_hove_distinct": {
+      "max_abs_paired_diff": 0.04418872411426635,
+      "max_diff_over_reference_sem": 11.41236394339191,
+      "fraction_within_2_reference_sem": 0.9791981845688351
+     }
+    }
+   },
+   "independent_vs_v2": {
+    "reference": {
+     "vacf": {
+      "max_abs_diff": 0.006108459681192502,
+      "max_abs_z": 3.9688724517401623,
+      "fraction_abs_z_le_2": 0.9133333333333333,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 0.0023695296526546504,
+      "max_abs_z": 4.216748840301112,
+      "fraction_abs_z_le_2": 0.9183222958057395,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 0.04534123743808503,
+      "max_abs_z": 3.233412736042146,
+      "fraction_abs_z_le_2": 0.94,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 0.029006222283437112,
+      "max_abs_z": 4.213776024615529,
+      "fraction_abs_z_le_2": 0.9466666666666667,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.13614909831316524,
+      "max_abs_z": 1.3957386902823825,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 45
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.17184839272786423,
+      "max_abs_z": 6.932325934139483,
+      "fraction_abs_z_le_2": 0.9871024292511896,
+      "n_points": 7986
+     }
+    },
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_diff": 0.00626226894331579,
+      "max_abs_z": 4.163849828287169,
+      "fraction_abs_z_le_2": 0.9133333333333333,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 0.002524263256343775,
+      "max_abs_z": 4.029764419626689,
+      "fraction_abs_z_le_2": 0.9116997792494481,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 0.04501983163453905,
+      "max_abs_z": 3.0257603832994557,
+      "fraction_abs_z_le_2": 0.9266666666666666,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 0.029291117923345794,
+      "max_abs_z": 3.3624213125858518,
+      "fraction_abs_z_le_2": 0.9333333333333333,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.11822282929021943,
+      "max_abs_z": 1.6061719728708912,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 45
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.15372777215378974,
+      "max_abs_z": 5.94225082166566,
+      "fraction_abs_z_le_2": 0.9907326236693801,
+      "n_points": 7985
+     }
+    }
+   },
+   "z_fast_vs_reference": {
+    "pppm_lanczos": {
+     "vacf": {
+      "max_abs_diff": 0.001004437598052753,
+      "max_abs_z": 1.4527229067273282,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 150
+     },
+     "vccf_normalized": {
+      "max_abs_diff": 0.001048417640804448,
+      "max_abs_z": 3.482418871651644,
+      "fraction_abs_z_le_2": 0.9955849889624724,
+      "n_points": 453
+     },
+     "hydro_L_mode_mean": {
+      "max_abs_diff": 0.011979072226151098,
+      "max_abs_z": 0.7987419302912846,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 150
+     },
+     "hydro_T_mode_mean": {
+      "max_abs_diff": 0.0077762160229957735,
+      "max_abs_z": 0.930430753575084,
+      "fraction_abs_z_le_2": 1.0,
+      "n_points": 150
+     },
+     "rdf": {
+      "max_abs_diff": 0.03696404167312384,
+      "max_abs_z": 2.7429337817001116,
+      "fraction_abs_z_le_2": 0.9777777777777777,
+      "n_points": 45
+     },
+     "van_hove_distinct": {
+      "max_abs_diff": 0.044188724114266664,
+      "max_abs_z": 3.5542700827167844,
+      "fraction_abs_z_le_2": 0.9986160040261701,
+      "n_points": 7948
+     }
+    }
+   },
+   "scalar_z": {
+    "T_mean": {
+     "fast_vs_reference": -0.06706274504237154,
+     "fast_vs_v2": 0.4776585011070641,
+     "reference_vs_v2 (same-model control)": 0.5376180487669113
+    },
+    "U_per_particle": {
+     "fast_vs_reference": -0.027234965457581778,
+     "fast_vs_v2": -0.21675429089161843,
+     "reference_vs_v2 (same-model control)": -0.20160474805746068
+    },
+    "U_second_minus_first_half": {
+     "fast_vs_reference": -0.043285301824766,
+     "fast_vs_v2": -0.29447950209579427,
+     "reference_vs_v2 (same-model control)": -0.29235957807767154
+    },
+    "D_green_kubo": {
+     "fast_vs_reference": -0.18023021214795318,
+     "fast_vs_v2": 0.9118592258192229,
+     "reference_vs_v2 (same-model control)": 1.3107603673241224
+    },
+    "D_msd": {
+     "fast_vs_reference": -0.030207582594574615,
+     "fast_vs_v2": 0.1474135967775847,
+     "reference_vs_v2 (same-model control)": 0.19172543149459081
+    },
+    "vacf_min": {
+     "fast_vs_reference": -0.09057903032872583,
+     "fast_vs_v2": -0.5299059762462752,
+     "reference_vs_v2 (same-model control)": -0.44700696794704264
+    },
+    "tau_T": {
+     "fast_vs_reference": 0.32496342158382846,
+     "fast_vs_v2": 1.1089248490122081,
+     "reference_vs_v2 (same-model control)": 0.8478301772832969
+    },
+    "rdf_peak": {
+     "fast_vs_reference": -0.18858483846250096,
+     "fast_vs_v2": 0.49597475286100773,
+     "reference_vs_v2 (same-model control)": 0.6676022004978792
+    }
+   }
+  }
+ },
+ "notes": [
+  "Paired: fast and reference share start state and noise stream (coupled); compared with the reference sampling SEM.",
+  "Independent: fast vs the earlier v2 full-lattice ensemble (different noise, window t in [140, 200]); z = difference / combined SEM. Lags and radii are strongly correlated, so the fraction |z| <= 2 is descriptive, not a formal test.",
+  "No equilibrium claim: absence of detected drift is not a proof of equilibrium."
+ ]
+}

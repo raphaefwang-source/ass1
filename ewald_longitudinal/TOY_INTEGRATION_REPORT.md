@@ -146,3 +146,143 @@ instance. Symmetry, the total-momentum null space and positive semidefiniteness 
   - tag `production_t60`, about 2 h wall on 4 cores;
   - Law A needs these to compare statistics after decorrelation. Law B gets the same protocol so that the fast
     algorithm's figures cover both laws.
+
+## 5. Long coupled runs: fast vs reference statistics (`toy_dynamics_results/production_t60/`)
+
+**Setup.**
+- Cases: LJ and double well × laws A and B, seeds 101–105.
+- Start states: the v2 t = 200 states.
+- Length: 12000 steps (t = 60), stride 4 (sample interval 0.02).
+- Methods: `pppm_lanczos` (production 40/16) and `reference`, on the same noise stream (seed + 3000).
+- Statistics: every lag up to 3.0, 300 time origins per run, VCCF bins as in v2.
+- The independent v2 full-lattice ensembles (5 seeds, window t ∈ [140, 200]) are a second, uncoupled reference.
+
+**Conservation and spectrum.**
+- max ‖P(t) − P(0)‖ ≤ 1.1e-12 in all 40 runs.
+- Spectrum: law A λ ∈ [1.47, 13.2], law B λ ∈ [28.7, 51.9].
+- Wall time per step: reference 18.3–18.7 ms, PPPM + Lanczos 93–98 ms (N = 64, one core). At N = 64 the dense
+  reference is cheaper. No performance claim is made here; the project's scaling study is in
+  `dynamics_results/REPORT.md`.
+
+**When the coupled pairs decorrelate** (max_i |Δv_i| reaches O(1)):
+
+| case | t = 0.02 | t = 10 | t = 40 | t = 60 |
+|---|---|---|---|---|
+| LJ A | 7.6e-8 | 1.1 | 3.0 | 2.9 |
+| LJ B | 2.6e-8 | 2.1e-7 | 1.6e-4 | 1.4e-2 |
+| double well A | 5.8e-8 | 2.7 | 3.0 | 2.9 |
+| double well B | 3.5e-8 | 2.7e-6 | 1.1 | 0.8 |
+
+- LJ B stays pathwise coupled for essentially the whole window. Its fast and reference statistics agree to
+  ≤ 1e-3 (van Hove) and ≤ 2e-5 (time correlations), at most 0.4 reference-SEM.
+- Law A decorrelates after t ≈ 6–10, and double well B after t ≈ 30–40. For these cases the comparison is
+  statistical.
+
+**Curves, combined-SEM z between fast and coupled reference** (conservative while the pairs are still correlated):
+
+| case | VACF | VCCF (all bins) | C_L | C_T | RDF | distinct van Hove (all t) |
+|---|---|---|---|---|---|---|
+| LJ A | 95 % (max 2.8) | 90 % (5.3) | 85 % (3.6) | 97 % (3.1) | 88 % (3.6) | 95 % (7.9) |
+| LJ B | 100 % (0.0) | 100 % (0.0) | 100 % (0.0) | 100 % (0.0) | 100 % (0.1) | 100 % (0.3) |
+| double well A | 97 % (3.1) | 96 % (3.1) | 95 % (2.9) | 98 % (2.5) | 100 % (1.7) | 98 % (5.1) |
+| double well B | 100 % (1.5) | 100 % (3.5) | 100 % (0.8) | 100 % (0.9) | 98 % (2.7) | 100 % (3.6) |
+
+Entries are the fraction of lags or radii with |z| ≤ 2, with max |z| in brackets.
+
+**Same-model control.** The dense reference against the independent v2 ensemble (`report.json` → `independent_vs_v2`)
+gives a comparable spread: 80–100 % within |z| ≤ 2 and max |z| 1.4–7.8. The fast-vs-v2 numbers are almost the same
+(`z_*_fast_vs_v2.png`: the solid fast curves and the dotted control curves make the same excursions at the same lags).
+- The excursions are therefore properties of finite, slowly fluctuating samples (window difference, correlated lags,
+  5 seeds), shared by both algorithms. They are not a signature of the fast operator.
+- The lag-by-lag fractions are descriptive, not a formal test.
+
+**Scalars** (mean ± SEM over 5 seeds; z uses the combined SEM):
+
+| case | quantity | fast PPPM+Lanczos | coupled dense reference | v2 lattice (t in [140,200]) | z fast-ref | z fast-v2 | z ref-v2 (control) |
+|---|---|---|---|---|---|---|---|
+| lj_A | T | 0.7002 ± 0.0019 | 0.6999 ± 0.0004 | 0.6975 ± 0.0014 | 0.2 | 1.1 | 1.6 |
+| lj_A | U/N | -3.204 ± 0.045 | -3.170 ± 0.030 | -3.203 ± 0.029 | -0.6 | -0.0 | 0.8 |
+| lj_A | D (Green-Kubo) | 0.0583 ± 0.0014 | 0.0609 ± 0.0018 | 0.0584 ± 0.0015 | -1.2 | -0.1 | 1.1 |
+| lj_A | D (MSD) | 0.0580 ± 0.0018 | 0.0603 ± 0.0018 | 0.0588 ± 0.0017 | -0.9 | -0.3 | 0.6 |
+| lj_A | tau_T | 0.223 ± 0.009 | 0.241 ± 0.010 | 0.215 ± 0.011 | -1.3 | 0.6 | 1.8 |
+| lj_A | RDF peak | 3.309 ± 0.064 | 3.269 ± 0.046 | 3.318 ± 0.063 | 0.5 | -0.1 | -0.6 |
+| lj_A | dU/N halves | 0.0099 ± 0.0414 | 0.0534 ± 0.0551 | -0.0413 ± 0.0223 | -0.6 | 1.1 | 1.6 |
+| lj_B | T | 0.6996 ± 0.0010 | 0.6996 ± 0.0010 | 0.6987 ± 0.0008 | -0.0 | 0.7 | 0.7 |
+| lj_B | U/N | -3.145 ± 0.010 | -3.145 ± 0.010 | -3.196 ± 0.018 | -0.0 | 2.5 | 2.5 |
+| lj_B | D (Green-Kubo) | 0.0100 ± 0.0003 | 0.0100 ± 0.0003 | 0.0095 ± 0.0006 | -0.0 | 0.9 | 0.9 |
+| lj_B | D (MSD) | 0.0093 ± 0.0001 | 0.0093 ± 0.0001 | 0.0090 ± 0.0001 | 0.0 | 1.8 | 1.8 |
+| lj_B | tau_T | 0.0175 ± 0.0036 | 0.0175 ± 0.0036 | 0.0214 ± 0.0029 | 0.0 | -0.8 | -0.8 |
+| lj_B | RDF peak | 3.252 ± 0.019 | 3.253 ± 0.019 | 3.334 ± 0.038 | -0.0 | -1.9 | -1.9 |
+| lj_B | dU/N halves | 0.0302 ± 0.0590 | 0.0302 ± 0.0590 | 0.0355 ± 0.0324 | -0.0 | -0.1 | -0.1 |
+| double_well_A | T | 0.7007 ± 0.0007 | 0.6993 ± 0.0018 | 0.6960 ± 0.0011 | 0.8 | 3.8 | 1.6 |
+| double_well_A | U/N | -5.766 ± 0.040 | -5.756 ± 0.033 | -5.768 ± 0.073 | -0.2 | 0.0 | 0.1 |
+| double_well_A | D (Green-Kubo) | 0.0209 ± 0.0006 | 0.0194 ± 0.0006 | 0.0202 ± 0.0015 | 1.7 | 0.4 | -0.5 |
+| double_well_A | D (MSD) | 0.0212 ± 0.0005 | 0.0201 ± 0.0004 | 0.0211 ± 0.0010 | 1.8 | 0.1 | -0.9 |
+| double_well_A | tau_T | 0.125 ± 0.017 | 0.105 ± 0.007 | 0.138 ± 0.014 | 1.1 | -0.6 | -2.2 |
+| double_well_A | RDF peak | 4.243 ± 0.081 | 4.272 ± 0.074 | 4.242 ± 0.122 | -0.3 | 0.0 | 0.2 |
+| double_well_A | dU/N halves | -0.0976 ± 0.0518 | 0.0409 ± 0.0419 | 0.0187 ± 0.0434 | -2.1 | -1.7 | 0.4 |
+| double_well_B | T | 0.6991 ± 0.0009 | 0.6992 ± 0.0010 | 0.6984 ± 0.0009 | -0.1 | 0.5 | 0.5 |
+| double_well_B | U/N | -5.705 ± 0.056 | -5.703 ± 0.051 | -5.682 ± 0.087 | -0.0 | -0.2 | -0.2 |
+| double_well_B | D (Green-Kubo) | 0.0063 ± 0.0005 | 0.0064 ± 0.0004 | 0.0058 ± 0.0003 | -0.2 | 0.9 | 1.3 |
+| double_well_B | D (MSD) | 0.0051 ± 0.0003 | 0.0051 ± 0.0002 | 0.0051 ± 0.0003 | -0.0 | 0.1 | 0.2 |
+| double_well_B | tau_T | 0.0224 ± 0.0042 | 0.0206 ± 0.0035 | 0.0170 ± 0.0025 | 0.3 | 1.1 | 0.8 |
+| double_well_B | RDF peak | 4.167 ± 0.108 | 4.195 ± 0.096 | 4.076 ± 0.150 | -0.2 | 0.5 | 0.7 |
+| double_well_B | dU/N halves | -0.0264 ± 0.0682 | -0.0226 ± 0.0538 | -0.0035 ± 0.0370 | -0.0 | -0.3 | -0.3 |
+
+- Fast vs coupled reference: every |z| ≤ 1.8, except the double-well A half-to-half energy drift statistic
+  (z = −2.1), which measures non-stationarity rather than a model property.
+- The largest fast-vs-v2 gap is the double-well A temperature (z = 3.8). It comes from the v2 window's own low
+  temperature, 0.6960 ± 0.0011, which v2 already reported. The fast run gives 0.7007 ± 0.0007.
+- LJ B U/N differs between the new window and the v2 window by z = 2.5. It does so identically for fast and
+  reference, because they are pathwise identical: a window effect, not an algorithm effect.
+
+**Physics of the fast method** (`ab_{lj,double_well}_pppm_lanczos.png`, v2 layout and colours):
+- Kernel A vs B: B damps far more strongly.
+  - LJ: D = 0.058 (A) vs 0.010 (B); τ_T = 0.22 vs 0.018.
+  - Double well: D = 0.021 vs 0.0063.
+- First-shell VCCF peak: 0.038 (LJ) and 0.035 (double well) at t ≈ 0.15 for A; 0.006 at t ≈ 0.08 for B.
+- First zero crossing:
+  - law B: VACF at t = 0.08–0.10, C_L at 0.08–0.10, C_T at 0.12;
+  - law A: VACF at 0.54 (LJ) and 0.14 (double well), C_L at 0.34 and 0.16, C_T at 1.02 and 0.54.
+- Static structure (RDF, van Hove at t = 0) is the same for A and B within error, as it must be, since the friction
+  does not change the Boltzmann distribution.
+
+## 6. Limitations (kept from v2, not weakened)
+
+- **No equilibrium proof.** The start states have an effective history of t = 200 under the reference model.
+  "No detected drift" and "agreement within ~2σ" are consistency statements, not proofs of equilibrium.
+  - Window-to-window shifts larger than the within-window SEM remain. Examples: LJ B U/N, z = 2.5 between windows;
+    the double-well A temperature of the v2 window.
+  - At ρ = 0.385, T = 0.7 the LJ system is likely in liquid–vapour coexistence, and the double well forms an ordered
+    condensed cluster. Slow collective fluctuations make 5-seed SEMs optimistic for small differences.
+- **Law A comparison is statistical.** Chaotic decorrelation after t ≈ 6–10 makes fast-vs-reference agreement for
+  law A a statement about distributions, at the resolution of 5 seeds × t = 60. Pathwise agreement holds only up to
+  the Lyapunov horizon. For law B the agreement is mostly pathwise.
+- **Splitting-parameter dependence is attributed component by component** (Section 2): real cutoff, Fourier cutoff,
+  mesh alias, mesh transfer and split implementation. It is not attributed to k = 0, which is retained.
+- **PPPM parameters were not re-optimised.** The production and tight sets were tuned by the project at κ = 1. Here
+  their accuracy was measured at κ = 0.7 for both laws on six configurations (≤ 1.3e-7 and ≤ 1.8e-9), but not
+  re-optimised.
+- **Single box.** One box (N = 64, L = 5.5); no finite-size study. Law-B friction is dominated by the uniform
+  k = 0 part.
+- **No external validation.** There is no MD or experimental data and no PRL reproduction; toy potentials and
+  parameters only.
+
+## 7. Files, data, commands
+
+- Report: this file. The static stage is in `radial_kernel_static_results/` (`summary.json`, `fig1`, `fig2`).
+- Short coupled runs: `toy_dynamics_results/coupled_short/`.
+- Long runs: `toy_dynamics_results/production_t60/`:
+  - `report.json`: scalars, z tables, paired and independent comparisons;
+  - `comparison.json`: pathwise divergence, paired differences;
+  - `ensemble_<case>_<method>.npz`: mean and SEM curves;
+  - `observables/<case>/<method>_seed<s>.npz`: per-seed observables;
+  - figures `ab_*`, `fig_*`, `z_*`.
+- Raw trajectories: 76 files, 414 MB, git-ignored. They contain Q (unwrapped), V (velocity), t, box, diagnostics,
+  metadata, and the final q, p and RNG state for an exact restart. SHA-256 per file is in
+  `toy_dynamics_results/raw_trajectory_manifest.json`.
+- v2 raw trajectories: 100 files, 845 MB. Their manifest is
+  `toy_models/v2_results/restart_checkpoints/trajectory_manifest.json`, and the small restart checkpoints are in git.
+- Commands: see the README section "Toy application". The long runs used `--stage run --tag production_t60
+  --steps 12000 --seeds 101 102 103 104 105 --methods reference pppm_lanczos --workers 4`, followed by `--stage
+  report` and `--stage analyze` with `--origins 300`.

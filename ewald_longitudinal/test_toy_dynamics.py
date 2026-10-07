@@ -108,9 +108,8 @@ def stage_analyze(args):
             for m in methods:
                 obs_list, d_list = [], []
                 for s in seeds:
-                    with np.load(root / case / f"{m}_seed{s}.npz") as tr:
-                        tr = {k: tr[k] for k in tr.files}
-                    obs_list.append(observables(tr, pot, args.max_lag_time, args.origins))
+                    obs, tr = cached_observables(args.tag, case, m, s, args)
+                    obs_list.append(obs)
                     d_list.append(tr)
                 data[m] = obs_list
                 diag[m] = d_list
@@ -383,12 +382,25 @@ def stage_report(args):
             for m in methods:
                 for k in CURVES:
                     c["independent_vs_v2"].setdefault(m, {})[k] = z_compare(per[m]["ens"], v2ens, k)[1]
+                    if m != "reference":
+                        # combined-SEM z between the fast and the coupled reference ensembles (conservative while
+                        # the pairs are still correlated; appropriate once they have decorrelated)
+                        c.setdefault("z_fast_vs_reference", {}).setdefault(m, {})[k] = \
+                            z_compare(per[m]["ens"], per["reference"]["ens"], k)[1]
+            for k in SCALARS:
+                sc = c["scalars"][k]
+                zz = lambda a, b: (sc[a][0] - sc[b][0]) / max(np.hypot(sc[a][1], sc[b][1]), 1e-300)
+                c.setdefault("scalar_z", {})[k] = {"fast_vs_reference": zz("pppm_lanczos", "reference"),
+                                                   "fast_vs_v2": zz("pppm_lanczos", "v2_lattice"),
+                                                   "reference_vs_v2 (same-model control)": zz("reference", "v2_lattice")}
             rep["cases"][case] = c
             print(f"[{case}] seeds {seeds}", flush=True)
             for k in ("D_green_kubo", "tau_T", "U_per_particle", "rdf_peak"):
                 print(f"   {k}: " + "  ".join(f"{m} {v[0]:.4g}+/-{v[1]:.2g}" for m, v in c["scalars"][k].items()), flush=True)
             for m, d in c["independent_vs_v2"].items():
                 print(f"   {m} vs v2: " + "  ".join(f"{k} max|z|={v['max_abs_z']:.1f} ({100 * v['fraction_abs_z_le_2']:.0f}%)" for k, v in d.items()), flush=True)
+            for m, d in c.get("z_fast_vs_reference", {}).items():
+                print(f"   {m} vs coupled ref (combined SEM): " + "  ".join(f"{k} max|z|={v['max_abs_z']:.1f} ({100 * v['fraction_abs_z_le_2']:.0f}%)" for k, v in d.items()), flush=True)
     (out / "report.json").write_text(json.dumps(rep, indent=1) + "\n")
     # A/B physics figures of the fast method and of the coupled reference (v2 layout and colours)
     for pot in POTENTIALS:
@@ -413,18 +425,20 @@ def stage_report(args):
                                          (axes[1, 0], "hydro_T_mode_mean", t, None, "C_T"),
                                          (axes[1, 1], "rdf", r, None, "RDF"),
                                          (axes[1, 2], "van_hove_distinct", r, 25, "van Hove, t=0.5")):
-                z, _ = z_compare(fe, v2ens, key)
-                if sel is not None:
-                    z = z[..., sel] if key == "vccf_normalized" else z[sel]
-                ax.plot(x, z, color=COL[law], lw=1, label=f"law {law}")
+                for ens_, ls, lab_ in ((fe, "-", "fast - v2"), (cs[law]["reference"]["ens"], ":", "reference - v2 (control)")):
+                    z, _ = z_compare(ens_, v2ens, key)
+                    if sel is not None:
+                        z = z[..., sel] if key == "vccf_normalized" else z[sel]
+                    ax.plot(x, z, color=COL[law], lw=1, ls=ls, label=f"law {law}: {lab_}")
                 ax.axhspan(-2, 2, color=".88", zorder=0)
                 ax.set(title=f"{lab}: z = (fast - v2 ref)/combined SEM", xlabel="lag time" if x is t else "r",
                        ylim=(-6, 6))
                 if x is t:
                     ax.set_xlim(0, 3)
                 ax.legend(fontsize=8)
-        fig.suptitle(f"{pot}: fast PPPM+Lanczos ensemble vs independent v2 full-lattice ensemble (5 seeds each). "
-                     "Grey: |z| <= 2. Correlated lags; descriptive only.", fontsize=11)
+        fig.suptitle(f"{pot}: z vs the independent v2 full-lattice ensemble (window t in [140,200]); solid = fast PPPM+Lanczos, "
+                     "dotted = dense reference (same model, control). 5 seeds each; grey |z| <= 2; correlated lags, descriptive only.",
+                     fontsize=10)
         fig.savefig(out / f"z_{pot}_fast_vs_v2.png", dpi=140)
         plt.close(fig)
 
