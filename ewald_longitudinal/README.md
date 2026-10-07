@@ -122,3 +122,26 @@ transverse hydrodynamic-mode correlations, in the spirit of Figs. 1–3 of the C
 N = 512 equilibrium trajectories generated with the unchanged `test_true_dynamics.step`: dense, high-rank and
 production 40/16 runs on coupled streams, plus 6 more production seeds. Run `--stage generate --method M --seed S`
 per trajectory (raw output is git-ignored), then `--stage analyze`. Output is in `dynamics_results/correlations/`.
+
+## Toy application: double well / Lennard-Jones with radial laws A and B (`TOY_INTEGRATION_REPORT.md`)
+
+```
+python3 test_radial_kernels.py                               # unit checks (~10 s)
+python3 test_radial_kernel_static.py                         # Gamma_h vs dense full-periodic references (~5 min)
+python3 test_toy_dynamics.py --stage run --tag coupled_short --steps 2000
+python3 test_toy_dynamics.py --stage analyze --tag coupled_short
+python3 test_toy_dynamics.py --stage run --tag production_t60 --steps 12000 --seeds 101 102 103 104 105 \
+        --methods reference pppm_lanczos
+python3 test_toy_dynamics.py --stage analyze --tag production_t60 --origins 300
+python3 test_toy_dynamics.py --stage report  --tag production_t60 --origins 300
+```
+
+- `radial_kernels.py`: laws A (e^{−κr}/r) and B (r e^{−κr}) with the toy amplitude g(r_ref) = γ, through the
+  Gaussian-scale densities ρ_κ and w_κ = ρ_κ′. They plug into the unchanged `Mesh`/`GammaH`/Lanczos code.
+- `toy_dynamics.py`: B A O A B with the toy pair forces and the finite-time FDT O-step. kT is explicit:
+  `test_true_dynamics.f_noise` assumes β = 1. Three methods: dense full-periodic reference, PPPM dense, and
+  PPPM + Lanczos 40/16.
+- `toy_models/`: the v2 dense reference kit, its statistics, figures and restart checkpoints. Raw trajectories are
+  not in git; see `toy_models/v2_results/restart_checkpoints/trajectory_manifest.json` for their SHA-256 hashes.
+- New raw trajectories go to `toy_dynamics_raw/` (git-ignored); per-seed observables and figures go to
+  `toy_dynamics_results/`.

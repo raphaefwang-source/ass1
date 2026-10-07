@@ -107,7 +107,7 @@ def band(ax, t, mean, sem, **kw):
     ax.fill_between(t, mean-sem, mean+sem, color=line.get_color(), alpha=.22, lw=0)
 
 
-def plot_ab(ens, potential, images, path, n_seeds):
+def plot_ab(ens, potential, images, path, n_seeds, rule=None):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -142,7 +142,7 @@ def plot_ab(ens, potential, images, path, n_seeds):
         ax.set_xlim(0, 1.5)
     for ax in axes.flat[4:]:
         ax.axhline(1, color='.6', lw=.6)
-    rule = {'minimum': 'minimum-image friction', 'lattice': 'full periodic-image friction (k=0 retained)'}[images]
+    rule = rule or {'minimum': 'minimum-image friction', 'lattice': 'full periodic-image friction (k=0 retained)'}[images]
     fig.suptitle(f'{potential}: kernel A vs B, {rule}\nMean of {n_seeds} independent seeds; bands = +/-1 SEM '
                  'across seeds. Toy model, not a PRL reproduction or MD validation.', fontsize=12)
     fig.savefig(path, dpi=150)

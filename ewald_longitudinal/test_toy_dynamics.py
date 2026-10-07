@@ -263,9 +263,175 @@ def figures(stats, out, tag):
     plt.close(fig)
 
 
+# ----------------------------------------------------------------------------
+# Report stage: fast-method physics, paired and independent comparisons, scalar table
+# ----------------------------------------------------------------------------
+V2_RESULTS = HERE / "toy_models" / "v2_results"
+SCALARS = ("T_mean", "U_per_particle", "U_second_minus_first_half", "D_green_kubo", "D_msd", "vacf_min", "tau_T",
+           "rdf_peak")
+CURVES = ("vacf", "vccf_normalized", "hydro_L_mode_mean", "hydro_T_mode_mean", "rdf", "van_hove_distinct")
+
+
+def cached_observables(tag, case, method, seed, args):
+    pot = case.rsplit("_", 1)[0]
+    cache = OUT / tag / "observables" / case / f"{method}_seed{seed}.npz"
+    with np.load(raw_path(tag, pot, case.rsplit("_", 1)[1], method, seed)) as tr:
+        tr = {k: tr[k] for k in tr.files}
+    if cache.exists():
+        with np.load(cache) as f:
+            obs = {k: f[k] for k in f.files}
+    else:
+        obs = observables(tr, pot, args.max_lag_time, args.origins)
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(cache, **obs)
+    return obs, tr
+
+
+def run_scalars(obs, tr):
+    """Same definitions as toy_models/ensemble.run_one."""
+    d = tr["diagnostics"]
+    half = len(d) // 2
+    t, vacf = obs["lag_time"], obs["vacf"]
+    fit = t >= t[-1] / 2
+    return dict(T_mean=float(d[:, 1].mean()), U_per_particle=float(d[:, 2].mean()),
+                U_second_minus_first_half=float(d[half:, 2].mean() - d[:half, 2].mean()),
+                D_green_kubo=float(obs["mean_squared_speed"]) / 3 * float(np.trapezoid(vacf, t)),
+                D_msd=float(np.polyfit(t[fit], obs["msd"][fit], 1)[0] / 6), vacf_min=float(vacf.min()),
+                tau_T=float(np.trapezoid(obs["hydro_T"].mean(axis=1), t)), rdf_peak=float(obs["rdf"].max()))
+
+
+def ensemble_stats(obs_list):
+    st = {k: np.stack([np.asarray(o[k], float) for o in obs_list]) for k in KEYS}
+    for k in ("hydro_L", "hydro_T"):
+        st[k + "_mode_mean"] = st[k].mean(axis=-1)
+    n = len(obs_list)
+    ens = {k + "_mean": v.mean(axis=0) for k, v in st.items()}
+    ens.update({k + "_sem": v.std(axis=0, ddof=1) / np.sqrt(n) for k, v in st.items()})
+    for k in ("lag_time", "vccf_edges", "radial_centers", "radial_edges", "modes"):
+        ens[k] = obs_list[0][k]
+    return st, ens
+
+
+def z_compare(ens_a, ens_b, key):
+    """Independent-sample comparison z = (mean_a - mean_b)/sqrt(sem_a^2 + sem_b^2) over points with spread."""
+    d = ens_a[key + "_mean"] - ens_b[key + "_mean"]
+    den = np.sqrt(ens_a[key + "_sem"] ** 2 + ens_b[key + "_sem"] ** 2)
+    scale = np.nanmax(np.abs(ens_b[key + "_mean"]))
+    ok = np.isfinite(d) & np.isfinite(den) & (den > 1e-12 * scale)
+    z = np.full(d.shape, np.nan)
+    z[ok] = d[ok] / den[ok]
+    return z, dict(max_abs_diff=float(np.nanmax(np.abs(d))), max_abs_z=float(np.nanmax(np.abs(z))),
+                   fraction_abs_z_le_2=float(np.mean(np.abs(z[ok]) <= 2)), n_points=int(ok.sum()))
+
+
+def stage_report(args):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from ensemble import plot_ab
+    tag, out = args.tag, OUT / args.tag
+    out.mkdir(parents=True, exist_ok=True)
+    rep = dict(tag=tag, toy=TOY, max_lag_time=args.max_lag_time, origins=args.origins, cases={},
+               notes=["Paired: fast and reference share start state and noise stream (coupled); compared with the "
+                      "reference sampling SEM.",
+                      "Independent: fast vs the earlier v2 full-lattice ensemble (different noise, window t in "
+                      "[140, 200]); z = difference / combined SEM. Lags and radii are strongly correlated, so the "
+                      "fraction |z| <= 2 is descriptive, not a formal test.",
+                      "No equilibrium claim: absence of detected drift is not a proof of equilibrium."])
+    ens_all = {}
+    for pot in POTENTIALS:
+        for law in LAWS:
+            case = f"{pot}_{law}"
+            seeds = sorted({int(f.stem.split("_seed")[1]) for f in (RAW / tag / case).glob("*_seed*.npz")})
+            methods = [m for m in td.METHODS if all(raw_path(tag, pot, law, m, s).exists() for s in seeds)]
+            if not seeds or "reference" not in methods:
+                continue
+            per = {}
+            for m in methods:
+                obs_l, sc_l = [], []
+                for s in seeds:
+                    obs, tr = cached_observables(tag, case, m, s, args)
+                    obs_l.append(obs)
+                    sc_l.append(run_scalars(obs, tr))
+                st, ens = ensemble_stats(obs_l)
+                np.savez_compressed(out / f"ensemble_{case}_{m}.npz", **ens, seeds=np.asarray(seeds))
+                per[m] = dict(st=st, ens=ens, scalars=sc_l)
+            ens_all[case] = per
+            with np.load(V2_RESULTS / f"{pot}_burn140" / "lattice" / case / "ensemble_observables.npz") as f:
+                v2ens = {k: f[k] for k in f.files}
+            v2sum = json.loads((V2_RESULTS / f"{pot}_burn140" / "ensemble_summary.json").read_text())
+            v2row = next(r for r in v2sum["table"] if r["images"] == "lattice" and r["kernel"] == law)
+            c = dict(seeds=seeds, methods=methods, scalars={}, paired={}, independent_vs_v2={})
+            for k in SCALARS:
+                for m in methods:
+                    v = np.array([x[k] for x in per[m]["scalars"]])
+                    c["scalars"].setdefault(k, {})[m] = [float(v.mean()), float(v.std(ddof=1) / np.sqrt(len(v)))]
+                c["scalars"][k]["v2_lattice"] = [v2row[k]["mean"], v2row[k]["sem"]]
+            for m in methods:
+                if m == "reference":
+                    continue
+                for k in CURVES:
+                    diff = per[m]["st"][k] - per["reference"]["st"][k]
+                    mean = diff.mean(axis=0)
+                    sem_ref = per["reference"]["st"][k].std(axis=0, ddof=1) / np.sqrt(len(seeds))
+                    scale = np.nanmax(np.abs(per["reference"]["st"][k]))
+                    ok = np.isfinite(mean) & (sem_ref > 1e-12 * scale)
+                    r_ = np.abs(mean[ok]) / sem_ref[ok]
+                    c["paired"].setdefault(m, {})[k] = dict(max_abs_paired_diff=float(np.nanmax(np.abs(mean))),
+                                                            max_diff_over_reference_sem=float(r_.max()),
+                                                            fraction_within_2_reference_sem=float(np.mean(r_ <= 2)))
+            for m in methods:
+                for k in CURVES:
+                    c["independent_vs_v2"].setdefault(m, {})[k] = z_compare(per[m]["ens"], v2ens, k)[1]
+            rep["cases"][case] = c
+            print(f"[{case}] seeds {seeds}", flush=True)
+            for k in ("D_green_kubo", "tau_T", "U_per_particle", "rdf_peak"):
+                print(f"   {k}: " + "  ".join(f"{m} {v[0]:.4g}+/-{v[1]:.2g}" for m, v in c["scalars"][k].items()), flush=True)
+            for m, d in c["independent_vs_v2"].items():
+                print(f"   {m} vs v2: " + "  ".join(f"{k} max|z|={v['max_abs_z']:.1f} ({100 * v['fraction_abs_z_le_2']:.0f}%)" for k, v in d.items()), flush=True)
+    (out / "report.json").write_text(json.dumps(rep, indent=1) + "\n")
+    # A/B physics figures of the fast method and of the coupled reference (v2 layout and colours)
+    for pot in POTENTIALS:
+        cs = {law: ens_all.get(f"{pot}_{law}") for law in LAWS}
+        if not all(cs.values()):
+            continue
+        n = len(rep["cases"][f"{pot}_A"]["seeds"])
+        for m, rule in (("pppm_lanczos", "FAST: project PPPM Gamma_h + Lanczos (noise 40, damping 16), k=0 retained"),
+                        ("reference", "dense full-periodic reference (coupled to the fast runs)")):
+            if all(m in cs[law] for law in LAWS):
+                plot_ab({law: cs[law][m]["ens"] for law in LAWS}, pot, "lattice", out / f"ab_{pot}_{m}.png", n, rule=rule)
+        # z-score figure: fast vs independent v2 ensemble
+        fig, axes = plt.subplots(2, 3, figsize=(16, 7.5), layout="constrained")
+        for law in LAWS:
+            with np.load(V2_RESULTS / f"{pot}_burn140" / "lattice" / f"{pot}_{law}" / "ensemble_observables.npz") as f:
+                v2ens = {k: f[k] for k in f.files}
+            fe = cs[law]["pppm_lanczos"]["ens"]
+            t, r = fe["lag_time"], fe["radial_centers"]
+            for ax, key, x, sel, lab in ((axes[0, 0], "vacf", t, None, "VACF"),
+                                         (axes[0, 1], "vccf_normalized", t, 0, "VCCF first shell"),
+                                         (axes[0, 2], "hydro_L_mode_mean", t, None, "C_L"),
+                                         (axes[1, 0], "hydro_T_mode_mean", t, None, "C_T"),
+                                         (axes[1, 1], "rdf", r, None, "RDF"),
+                                         (axes[1, 2], "van_hove_distinct", r, 25, "van Hove, t=0.5")):
+                z, _ = z_compare(fe, v2ens, key)
+                if sel is not None:
+                    z = z[..., sel] if key == "vccf_normalized" else z[sel]
+                ax.plot(x, z, color=COL[law], lw=1, label=f"law {law}")
+                ax.axhspan(-2, 2, color=".88", zorder=0)
+                ax.set(title=f"{lab}: z = (fast - v2 ref)/combined SEM", xlabel="lag time" if x is t else "r",
+                       ylim=(-6, 6))
+                if x is t:
+                    ax.set_xlim(0, 3)
+                ax.legend(fontsize=8)
+        fig.suptitle(f"{pot}: fast PPPM+Lanczos ensemble vs independent v2 full-lattice ensemble (5 seeds each). "
+                     "Grey: |z| <= 2. Correlated lags; descriptive only.", fontsize=11)
+        fig.savefig(out / f"z_{pot}_fast_vs_v2.png", dpi=140)
+        plt.close(fig)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--stage", choices=["run", "analyze"], required=True)
+    ap.add_argument("--stage", choices=["run", "analyze", "report"], required=True)
     ap.add_argument("--tag", default="coupled_short")
     ap.add_argument("--potentials", nargs="+", default=list(POTENTIALS), choices=POTENTIALS)
     ap.add_argument("--laws", nargs="+", default=list(LAWS), choices=LAWS)
@@ -279,8 +445,10 @@ def main():
     args = ap.parse_args()
     if args.stage == "run":
         stage_run(args)
-    else:
+    elif args.stage == "analyze":
         stage_analyze(args)
+    else:
+        stage_report(args)
 
 
 if __name__ == "__main__":
