@@ -1,0 +1,24 @@
+{
+  "potential": "double_well",
+  "kernel": "A",
+  "images": "minimum",
+  "seed": 102,
+  "noise_seed": 1102,
+  "effective_burn_in_time": 140.0,
+  "friction_record": {
+    "images": "minimum"
+  },
+  "T_mean": 0.6976235776734879,
+  "U_per_particle": -5.845378404704912,
+  "U_second_minus_first_half": 0.0631151378749184,
+  "T_second_minus_first_half": -0.0035823493991866684,
+  "max_total_momentum": 9.57858193005268e-13,
+  "min_distance": 0.6928004549082273,
+  "D_green_kubo": 0.02634599383088826,
+  "D_msd": 0.027261701701153194,
+  "vacf_min": -0.13239694815593359,
+  "vacf_min_time": 0.22,
+  "tau_T": 0.2715703384175945,
+  "rdf_peak": 4.372307949456739,
+  "rdf_peak_r": 1.03125
+}

@@ -1,0 +1,32 @@
+请在我现有的 long-range longitudinal friction / Ewald-PPPM 项目中，接入下面的应用测试。
+请直接检查仓库并实现，保留原有代码、参数和绘图配色；不要只给建议。
+
+目标已经确定：用两个 toy 保守势（pair double well 和 Lennard-Jones）生成位置/速度轨迹，
+计算 VACF、按初始距离分组的 VCCF、纵向/横向 hydrodynamic mode correlation，
+以及 distinct van Hove 函数。图的物理量参照 Lyu & Lei PRL 131,177301(2023)，
+但这里不是复现 PRL 的 DeePCG/星形聚合物体系。不要声称 toy 数据或图验证了真实 MD。
+摩擦仍然只做 P_L=rhat rhat^T；不要增加 transverse kernel。
+
+本文件同目录的 prl_toy_models.py 是已经写好的 NumPy 小规模参考实现，README_zh.txt 给出精确定义。
+先运行 test_physics.py。主程序可用 demo 子命令运行两种势、A/B，或 analyze 子命令处理现有轨迹。
+
+请按顺序执行：
+1. 阅读项目说明/AGENTS，定位现有积分器、Gamma action、Ewald 参数、OU/Lanczos 噪声与输出接口。
+2. 保守势采用这里的 pair LJ 和双 Gaussian 吸引阱加排斥核心，截断力包含 switch 导数项。
+   势依赖粒子间距；不要改成固定外场 double well，否则会改变平移不变性和总动量结构。
+3. 优先接 Kernel A，跑通后接 B。接口显式接收 gamma,kappa,r_ref；参考实现统一 g(r_ref)=gamma，
+   这不是全局等强度归一化，也不是物理参数拟合。保持 A/B 参数记录完整。
+4. 关键：参考脚本是 minimum-image friction，现有项目可能是完整周期镜像 Ewald sum。
+   查清项目真实约定。沿用项目目标约定，并给 dense 参考实现相同的足够收敛周期镜像和。
+   不要直接把两种不同模型的差异当 Ewald 误差；不要静默删零 Fourier 模式。
+5. 使用项目已有 BAOAB/有限时间 FDT 方案接入保守力。匹配耗散与噪声使用同一 Gamma。
+   保存 Q,V,t,box，记录 V 是速度还是动量、实际采样间隔和 burn-in。
+6. 复用并适配统计函数。VCCF 按每个时间起点的初始距离分组；Fourier 相关含复共轭；
+   distinct van Hove 排除 i=j，使用球壳体积与声明的有限N归一化；保留空 bin 为NaN。
+7. 小规模直接算法与快速算法使用同一物理模型，比较统计结果与误差范围。
+   先做短运行检查有限值、守恒与四种统计量，再根据温度/RDF/相关时间延长 burn-in 和生产轨迹。
+   记录并报告至少多个独立随机种子的采样不确定性。不要从一条短轨迹宣布平衡或物理优越性。
+8. 输出两种势各自的 A/B 对照图，以及数值参数、运行命令和具体修改清单。
+   若参考数据缺失，只说明没有外部物理验证；不要让寻找真实 MD 阻塞这两个已授权 toy 应用。
+
+当前交付范围：完成上述两个 toy 应用和观测量流程。完整 PRL 的学习势或多体记忆模型另行处理。

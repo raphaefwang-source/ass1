@@ -1,0 +1,1006 @@
+{
+ "archive": "prl_toy_models_v2_full.tar (not in git; sha256 in prl_toy_models_v2_full.tar.sha256)",
+ "note": "trajectory = path in v2_results naming; archive_path = path inside the tar",
+ "runs": [
+  {
+   "trajectory": "dt_check_dt0025/minimum/double_well_A/seed_101/trajectory.npz",
+   "bytes": 5995210,
+   "sha256": "59407d2ba0d695aa3d09f8d226c0cb292b09b4a3c4efab050f670e99378d474d",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0025/minimum/double_well_A/seed_101/restart.npz",
+   "archive_path": "dtcheck_dt0025/minimum/double_well_A/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0025/minimum/double_well_A/seed_102/trajectory.npz",
+   "bytes": 5996909,
+   "sha256": "a6f3eac0080c6b0c95606b22eef206a5e57585e819aaa46d837268d51c8fc5df",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0025/minimum/double_well_A/seed_102/restart.npz",
+   "archive_path": "dtcheck_dt0025/minimum/double_well_A/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0025/minimum/double_well_A/seed_103/trajectory.npz",
+   "bytes": 6000804,
+   "sha256": "33adf2cc927e2453c967bab1ae1a37df8723108e7b6a5ec5089dd23660f45ec9",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0025/minimum/double_well_A/seed_103/restart.npz",
+   "archive_path": "dtcheck_dt0025/minimum/double_well_A/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0025/minimum/double_well_A/seed_104/trajectory.npz",
+   "bytes": 5993443,
+   "sha256": "9dce14e1356b454eadd1da308590348fdc18fa5dae6dd91d7cc856a1a8b7b4ca",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0025/minimum/double_well_A/seed_104/restart.npz",
+   "archive_path": "dtcheck_dt0025/minimum/double_well_A/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0025/minimum/double_well_A/seed_105/trajectory.npz",
+   "bytes": 5993089,
+   "sha256": "e4c33e73ff05093bf0324455ec665e8ad754c37680da0fd96d0f159f08186b3a",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0025/minimum/double_well_A/seed_105/restart.npz",
+   "archive_path": "dtcheck_dt0025/minimum/double_well_A/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0025/minimum/double_well_B/seed_101/trajectory.npz",
+   "bytes": 5991238,
+   "sha256": "4d59bd4cbf59a67bd5f66f174f3d345edc8aa2c4a8cbc867ae56817d11afd5f2",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0025/minimum/double_well_B/seed_101/restart.npz",
+   "archive_path": "dtcheck_dt0025/minimum/double_well_B/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0025/minimum/double_well_B/seed_102/trajectory.npz",
+   "bytes": 5991111,
+   "sha256": "06946117da266b779d911ef781ae193c8c97405bce48234defd90658ace1eef8",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0025/minimum/double_well_B/seed_102/restart.npz",
+   "archive_path": "dtcheck_dt0025/minimum/double_well_B/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0025/minimum/double_well_B/seed_103/trajectory.npz",
+   "bytes": 6000432,
+   "sha256": "1a3479d61bc431873b662448dd4c6c43e228d67e88c0bc71b057ff4366254325",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0025/minimum/double_well_B/seed_103/restart.npz",
+   "archive_path": "dtcheck_dt0025/minimum/double_well_B/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0025/minimum/double_well_B/seed_104/trajectory.npz",
+   "bytes": 5994931,
+   "sha256": "a526d3338b1e4b9505005fb4c532d781313b5edad7b2ce41a1c4f6d04e4c3733",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0025/minimum/double_well_B/seed_104/restart.npz",
+   "archive_path": "dtcheck_dt0025/minimum/double_well_B/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0025/minimum/double_well_B/seed_105/trajectory.npz",
+   "bytes": 5989540,
+   "sha256": "23d59c42a82ccec47351e8bb826c6d36d1215ac648cfddcb462f02d146ebb297",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0025/minimum/double_well_B/seed_105/restart.npz",
+   "archive_path": "dtcheck_dt0025/minimum/double_well_B/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0050/minimum/double_well_A/seed_101/trajectory.npz",
+   "bytes": 5994671,
+   "sha256": "e9f3770c6d797816a562b349ad0d92ef72b00ac284f33fe87644e9a78da52968",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0050/minimum/double_well_A/seed_101/restart.npz",
+   "archive_path": "dtcheck_dt0050/minimum/double_well_A/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0050/minimum/double_well_A/seed_102/trajectory.npz",
+   "bytes": 5997497,
+   "sha256": "32f52443e890604e8dce06bcc2210ebf182296a6919c5b785dfca8e934155109",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0050/minimum/double_well_A/seed_102/restart.npz",
+   "archive_path": "dtcheck_dt0050/minimum/double_well_A/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0050/minimum/double_well_A/seed_103/trajectory.npz",
+   "bytes": 6000017,
+   "sha256": "b8440a7e183fed62794bf86fa4402a640b65dad4c09e7beaabc16e96c0756472",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0050/minimum/double_well_A/seed_103/restart.npz",
+   "archive_path": "dtcheck_dt0050/minimum/double_well_A/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0050/minimum/double_well_A/seed_104/trajectory.npz",
+   "bytes": 5993592,
+   "sha256": "003b7192b23c63b69e14a9aa2c05fa5a1374d24bac92432defb1bb5315d39607",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0050/minimum/double_well_A/seed_104/restart.npz",
+   "archive_path": "dtcheck_dt0050/minimum/double_well_A/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0050/minimum/double_well_A/seed_105/trajectory.npz",
+   "bytes": 5992201,
+   "sha256": "e960c5410ff5621f9051e949a7c9c6d910c865639fc26e31b7047379328f8fde",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0050/minimum/double_well_A/seed_105/restart.npz",
+   "archive_path": "dtcheck_dt0050/minimum/double_well_A/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0050/minimum/double_well_B/seed_101/trajectory.npz",
+   "bytes": 5991649,
+   "sha256": "9e7e2886ed4b0d0bcbc4a7bec38fb9d4c8dd91cc00dd67c438aed15d8bb9abc7",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0050/minimum/double_well_B/seed_101/restart.npz",
+   "archive_path": "dtcheck_dt0050/minimum/double_well_B/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0050/minimum/double_well_B/seed_102/trajectory.npz",
+   "bytes": 5991648,
+   "sha256": "373d235b238eb4708742693c71795279c3250e68001186804ec43cb53521cf5c",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0050/minimum/double_well_B/seed_102/restart.npz",
+   "archive_path": "dtcheck_dt0050/minimum/double_well_B/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0050/minimum/double_well_B/seed_103/trajectory.npz",
+   "bytes": 6002261,
+   "sha256": "f5e8df269d00ee38c4f37b2780cc04b8e86d163f7bc6842c493515b216463dee",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0050/minimum/double_well_B/seed_103/restart.npz",
+   "archive_path": "dtcheck_dt0050/minimum/double_well_B/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0050/minimum/double_well_B/seed_104/trajectory.npz",
+   "bytes": 5995864,
+   "sha256": "ac39bbb89e33c59ddae66be54c5898b2fb36746e0b32a2319f33c1bf686e4307",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0050/minimum/double_well_B/seed_104/restart.npz",
+   "archive_path": "dtcheck_dt0050/minimum/double_well_B/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "dt_check_dt0050/minimum/double_well_B/seed_105/trajectory.npz",
+   "bytes": 5990380,
+   "sha256": "c3699d0271eea47a277f01a1a62d896cabe776f890e6fde0d9775e895b49fb19",
+   "frames": 2001,
+   "particles": 64,
+   "simulated_time_at_end": 240.0,
+   "checkpoint": "dt_check_dt0050/minimum/double_well_B/seed_105/restart.npz",
+   "archive_path": "dtcheck_dt0050/minimum/double_well_B/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/double_well_A/seed_101/trajectory.npz",
+   "bytes": 9072307,
+   "sha256": "5b776e56b6efc5d70f96fdc053708b3a0e7d750147c4086ae4d4794d5ed0af27",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/double_well_A/seed_101/restart.npz",
+   "archive_path": "ensemble_results/lattice/double_well_A/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/double_well_A/seed_102/trajectory.npz",
+   "bytes": 9043565,
+   "sha256": "81d93716c7a1fe8ed3cdb1dff3d6d99d9fe819aa4db8b4fdaff0087fa43b58a0",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/double_well_A/seed_102/restart.npz",
+   "archive_path": "ensemble_results/lattice/double_well_A/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/double_well_A/seed_103/trajectory.npz",
+   "bytes": 9076296,
+   "sha256": "c19d2aa93b093ff69b586133accd94fe7a216ab681fb12c6f5f17dab45ebbbc5",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/double_well_A/seed_103/restart.npz",
+   "archive_path": "ensemble_results/lattice/double_well_A/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/double_well_A/seed_104/trajectory.npz",
+   "bytes": 9074265,
+   "sha256": "a18f7c6ba0cb4d61729b1ded2dacb69455326e12e16e83dcc90815c292a028f3",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/double_well_A/seed_104/restart.npz",
+   "archive_path": "ensemble_results/lattice/double_well_A/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/double_well_A/seed_105/trajectory.npz",
+   "bytes": 9076186,
+   "sha256": "9cc0bdf1af8374a08e4e655bb220aed3b789b98d75ecce94178e55e6de092b5f",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/double_well_A/seed_105/restart.npz",
+   "archive_path": "ensemble_results/lattice/double_well_A/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/double_well_B/seed_101/trajectory.npz",
+   "bytes": 9035687,
+   "sha256": "39dcc9b8e69728e228411457e6eb6901a7bd9e440becb196f27c5cacd5328fe4",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/double_well_B/seed_101/restart.npz",
+   "archive_path": "ensemble_results/lattice/double_well_B/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/double_well_B/seed_102/trajectory.npz",
+   "bytes": 9046129,
+   "sha256": "f9681fee21eea13bb5b6b2ac54456a261adec5cc39b522ab4cf0ddb0079381a2",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/double_well_B/seed_102/restart.npz",
+   "archive_path": "ensemble_results/lattice/double_well_B/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/double_well_B/seed_103/trajectory.npz",
+   "bytes": 9057730,
+   "sha256": "2eaa8664488036b9be2e817527b53079d7215fa1c2ec840b017679bdb1439df4",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/double_well_B/seed_103/restart.npz",
+   "archive_path": "ensemble_results/lattice/double_well_B/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/double_well_B/seed_104/trajectory.npz",
+   "bytes": 9052874,
+   "sha256": "afda0befd6e128736157944ba5ac90f50666c17fa6c21d79d35d736a12279b33",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/double_well_B/seed_104/restart.npz",
+   "archive_path": "ensemble_results/lattice/double_well_B/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/double_well_B/seed_105/trajectory.npz",
+   "bytes": 9052068,
+   "sha256": "96e04a4e6ac9f1cf762cd4a63df386e9766ca6976f28f6fb21fa2ffb5c947615",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/double_well_B/seed_105/restart.npz",
+   "archive_path": "ensemble_results/lattice/double_well_B/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/lj_A/seed_101/trajectory.npz",
+   "bytes": 9072109,
+   "sha256": "e6ec9be1821fbd06b4b95573e6d4842c8791a59fe7185731b5adb480cbf02418",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/lj_A/seed_101/restart.npz",
+   "archive_path": "ensemble_results/lattice/lj_A/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/lj_A/seed_102/trajectory.npz",
+   "bytes": 9075075,
+   "sha256": "eca29511ceece5547275112c10de76d16901af895bff79d724042f8d269e2201",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/lj_A/seed_102/restart.npz",
+   "archive_path": "ensemble_results/lattice/lj_A/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/lj_A/seed_103/trajectory.npz",
+   "bytes": 9080687,
+   "sha256": "c9945bee2530d6433482ab66c3505092c91a0cab789ddb1bccfbc1782b4877c2",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/lj_A/seed_103/restart.npz",
+   "archive_path": "ensemble_results/lattice/lj_A/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/lj_A/seed_104/trajectory.npz",
+   "bytes": 9076352,
+   "sha256": "49cd5cd0d51963b157cb9390426fd9b8621ee0eae01b94f5b6af264e66e4d753",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/lj_A/seed_104/restart.npz",
+   "archive_path": "ensemble_results/lattice/lj_A/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/lj_A/seed_105/trajectory.npz",
+   "bytes": 9080181,
+   "sha256": "b4cc838472c947ab64e2f76f4cba850500b48eadad5645703958aa0cf8daf472",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/lj_A/seed_105/restart.npz",
+   "archive_path": "ensemble_results/lattice/lj_A/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/lj_B/seed_101/trajectory.npz",
+   "bytes": 9047652,
+   "sha256": "3c959b013cc7bd22c5fe1871815b959fd5963c535ef43db41b195de16f261630",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/lj_B/seed_101/restart.npz",
+   "archive_path": "ensemble_results/lattice/lj_B/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/lj_B/seed_102/trajectory.npz",
+   "bytes": 9055186,
+   "sha256": "cd25a98d1b9bcc1982150a9d009e8f1d3ca5b8cf90f074abbd00183d3dbbc51f",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/lj_B/seed_102/restart.npz",
+   "archive_path": "ensemble_results/lattice/lj_B/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/lj_B/seed_103/trajectory.npz",
+   "bytes": 9057661,
+   "sha256": "ba1d16728d4ada37cd913a89f1d82f7b0ceaee852956d3dfd619ee506a391632",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/lj_B/seed_103/restart.npz",
+   "archive_path": "ensemble_results/lattice/lj_B/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/lj_B/seed_104/trajectory.npz",
+   "bytes": 9057211,
+   "sha256": "d05ba1b02d7874af62383f0dd5521b7a8cffdea47abeb8069ab55293f415bafe",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/lj_B/seed_104/restart.npz",
+   "archive_path": "ensemble_results/lattice/lj_B/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/lattice/lj_B/seed_105/trajectory.npz",
+   "bytes": 9053850,
+   "sha256": "ea985f974e879aed4dff739fef213f69000105ec28090e61bf5ff97b7d6ebd2a",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/lattice/lj_B/seed_105/restart.npz",
+   "archive_path": "ensemble_results/lattice/lj_B/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/double_well_A/seed_101/trajectory.npz",
+   "bytes": 9066699,
+   "sha256": "f795e7c8cd278d3972d879d10b87b7fbafa55788a418ed1ae5ac61ef54ba1783",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/double_well_A/seed_101/restart.npz",
+   "archive_path": "ensemble_results/minimum/double_well_A/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/double_well_A/seed_102/trajectory.npz",
+   "bytes": 9068785,
+   "sha256": "4bb83ae113635d57aaf9d4fbeabcfd024e7e6e4afd1df2fd9014207d6f338a61",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/double_well_A/seed_102/restart.npz",
+   "archive_path": "ensemble_results/minimum/double_well_A/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/double_well_A/seed_103/trajectory.npz",
+   "bytes": 9077882,
+   "sha256": "7ab70481c45466fe2653e7d81af19a4d46140f1248738629c79583622bbc4f8f",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/double_well_A/seed_103/restart.npz",
+   "archive_path": "ensemble_results/minimum/double_well_A/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/double_well_A/seed_104/trajectory.npz",
+   "bytes": 9067900,
+   "sha256": "17e29cb8b4e93938a7d470342acf7e9b724f115af8828a8262e6c5788c8c06e7",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/double_well_A/seed_104/restart.npz",
+   "archive_path": "ensemble_results/minimum/double_well_A/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/double_well_A/seed_105/trajectory.npz",
+   "bytes": 9067454,
+   "sha256": "0b8a39d4ad8ef0e428edd189d4fdbb66353f6c5b9f86d6f5b1b76218d1aa84d4",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/double_well_A/seed_105/restart.npz",
+   "archive_path": "ensemble_results/minimum/double_well_A/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/double_well_B/seed_101/trajectory.npz",
+   "bytes": 9054592,
+   "sha256": "63d5f33a648f8ee82ba159643f89b34042439e6aa20db4c76612ed9c2c8e807e",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/double_well_B/seed_101/restart.npz",
+   "archive_path": "ensemble_results/minimum/double_well_B/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/double_well_B/seed_102/trajectory.npz",
+   "bytes": 9063991,
+   "sha256": "87a3c25be415af2f9d307ca62a77ddb7358be501264fe70b14c1cb2bd697fd3c",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/double_well_B/seed_102/restart.npz",
+   "archive_path": "ensemble_results/minimum/double_well_B/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/double_well_B/seed_103/trajectory.npz",
+   "bytes": 9069476,
+   "sha256": "08bcf0118db4356f4e1def7f1050f31611ac2896612f0f93df9fab68272d0b12",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/double_well_B/seed_103/restart.npz",
+   "archive_path": "ensemble_results/minimum/double_well_B/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/double_well_B/seed_104/trajectory.npz",
+   "bytes": 9068303,
+   "sha256": "2b4f3e462a956fdb9276c51fce061910355ce69783a4cf1d26a0f5bba5fdd862",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/double_well_B/seed_104/restart.npz",
+   "archive_path": "ensemble_results/minimum/double_well_B/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/double_well_B/seed_105/trajectory.npz",
+   "bytes": 9059495,
+   "sha256": "a5a640b908a1f36059d647e96aa8bb26453d44d602df185be6fe1e3d5ae221b5",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/double_well_B/seed_105/restart.npz",
+   "archive_path": "ensemble_results/minimum/double_well_B/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/lj_A/seed_101/trajectory.npz",
+   "bytes": 9079234,
+   "sha256": "fb3d44064eeefda119a0a4fa1aab1850006e346ca19c7267b68ff1ac99e028a8",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/lj_A/seed_101/restart.npz",
+   "archive_path": "ensemble_results/minimum/lj_A/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/lj_A/seed_102/trajectory.npz",
+   "bytes": 9081681,
+   "sha256": "247c9c5af5d4fcb5bcb054e4a634b7754beb45aefc9e2c3a0619a7d20391c10c",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/lj_A/seed_102/restart.npz",
+   "archive_path": "ensemble_results/minimum/lj_A/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/lj_A/seed_103/trajectory.npz",
+   "bytes": 9080606,
+   "sha256": "dd428018ace0611065563bc138ee06b53bbfed345c8ac6bae4d5910cb4bba5fb",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/lj_A/seed_103/restart.npz",
+   "archive_path": "ensemble_results/minimum/lj_A/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/lj_A/seed_104/trajectory.npz",
+   "bytes": 9083481,
+   "sha256": "037d56a460708500f652b72b9775c67d85223ae2c271bd2645f959ff09739634",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/lj_A/seed_104/restart.npz",
+   "archive_path": "ensemble_results/minimum/lj_A/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/lj_A/seed_105/trajectory.npz",
+   "bytes": 9074516,
+   "sha256": "ff8e29f447a8f6d343281ccbe0070b40d980395baa3f7cb926560c8b199cad3a",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/lj_A/seed_105/restart.npz",
+   "archive_path": "ensemble_results/minimum/lj_A/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/lj_B/seed_101/trajectory.npz",
+   "bytes": 9065524,
+   "sha256": "07858cf76220d976eb45a78fb1c626dc67916ccf1f5a281742283b6074bc3a2c",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/lj_B/seed_101/restart.npz",
+   "archive_path": "ensemble_results/minimum/lj_B/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/lj_B/seed_102/trajectory.npz",
+   "bytes": 9065347,
+   "sha256": "79b4eb8bc7eac0a9453051c18d60e632c8a9ced55d5f323e4592f61adae92a4f",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/lj_B/seed_102/restart.npz",
+   "archive_path": "ensemble_results/minimum/lj_B/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/lj_B/seed_103/trajectory.npz",
+   "bytes": 9077000,
+   "sha256": "734055f740cc9ac53c774148eedc167c88b52d485b4cd7705af3d8a047d621f2",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/lj_B/seed_103/restart.npz",
+   "archive_path": "ensemble_results/minimum/lj_B/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/lj_B/seed_104/trajectory.npz",
+   "bytes": 9070917,
+   "sha256": "de9d7ff34811c5ce52257b377b1c3050bca6984a2b75b8b2fbbb1bfa92f5b434",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/lj_B/seed_104/restart.npz",
+   "archive_path": "ensemble_results/minimum/lj_B/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "ensemble_burn40/minimum/lj_B/seed_105/trajectory.npz",
+   "bytes": 9070767,
+   "sha256": "098719e6f3da311c26fefa4923a008a8daff8d8f4a117bdf001489982f732c94",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 100.0,
+   "checkpoint": "ensemble_burn40/minimum/lj_B/seed_105/restart.npz",
+   "archive_path": "ensemble_results/minimum/lj_B/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/lattice/double_well_A/seed_101/trajectory.npz",
+   "bytes": 9073754,
+   "sha256": "cbb5c7f25bdda6878293ff6a27bb7d98e3a55a1c36c3d264d4365feec621ff09",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/lattice/double_well_A/seed_101/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/lattice/double_well_A/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/lattice/double_well_A/seed_102/trajectory.npz",
+   "bytes": 9050921,
+   "sha256": "033972c5147732df14e4079411ff73586ffe201d552c2632af163aae08831ab5",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/lattice/double_well_A/seed_102/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/lattice/double_well_A/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/lattice/double_well_A/seed_103/trajectory.npz",
+   "bytes": 9082016,
+   "sha256": "d9625ee5603eb58f2337b698f8e85a762d631374843978c19a1edcc71c333219",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/lattice/double_well_A/seed_103/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/lattice/double_well_A/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/lattice/double_well_A/seed_104/trajectory.npz",
+   "bytes": 9079035,
+   "sha256": "12a49829baf2f599daa5c3daf58bac1a5e2d7a3e8e00288fe5eb473f68f60676",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/lattice/double_well_A/seed_104/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/lattice/double_well_A/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/lattice/double_well_A/seed_105/trajectory.npz",
+   "bytes": 9080514,
+   "sha256": "fc92d2f8b47e4c6956ab5a61066b251163771ac2d2d2597865c4ba5e7747780b",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/lattice/double_well_A/seed_105/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/lattice/double_well_A/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/lattice/double_well_B/seed_101/trajectory.npz",
+   "bytes": 9037064,
+   "sha256": "ce297d6a8f055e00f88e7dba33cdfa47cc7cff67e48a84633d7d6198b4269676",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/lattice/double_well_B/seed_101/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/lattice/double_well_B/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/lattice/double_well_B/seed_102/trajectory.npz",
+   "bytes": 9040316,
+   "sha256": "54721f589d9638e6ca17f1f7b8b7b63504911eb381ca7f52f7d48c511a407f8f",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/lattice/double_well_B/seed_102/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/lattice/double_well_B/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/lattice/double_well_B/seed_103/trajectory.npz",
+   "bytes": 9061975,
+   "sha256": "6cf8044515b519911e257ffc2a2366664aee340a8b90ce2da3b1d3dc56ac242a",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/lattice/double_well_B/seed_103/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/lattice/double_well_B/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/lattice/double_well_B/seed_104/trajectory.npz",
+   "bytes": 9055142,
+   "sha256": "23556eb0c7603ad2f23a2f0c910295dca9ee4c7aae93e88cdfe86ba3ea349f87",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/lattice/double_well_B/seed_104/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/lattice/double_well_B/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/lattice/double_well_B/seed_105/trajectory.npz",
+   "bytes": 9051989,
+   "sha256": "b98ddc86a9342d87cc2eba1684572a73d5fc3f15db4608c5c721e706d967a09d",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/lattice/double_well_B/seed_105/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/lattice/double_well_B/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/minimum/double_well_A/seed_101/trajectory.npz",
+   "bytes": 9072425,
+   "sha256": "3095378fde2e9d40564cb387a7555dc3eb2e8b138a53f8819f32c39098e0dff3",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/minimum/double_well_A/seed_101/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/minimum/double_well_A/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/minimum/double_well_A/seed_102/trajectory.npz",
+   "bytes": 9075345,
+   "sha256": "d1f29d5f3ade8ab8746b4448a82bb501c53133e66973a208229514b27e772062",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/minimum/double_well_A/seed_102/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/minimum/double_well_A/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/minimum/double_well_A/seed_103/trajectory.npz",
+   "bytes": 9078916,
+   "sha256": "971aa0cf8b9ebca75398fc7572b9526f767996bb6206eb66c67a98a510610f7a",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/minimum/double_well_A/seed_103/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/minimum/double_well_A/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/minimum/double_well_A/seed_104/trajectory.npz",
+   "bytes": 9067668,
+   "sha256": "f75eba1869dca3b2ebfd06a81c4393b7e4acfc320b5caaa367319cd645a0dd10",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/minimum/double_well_A/seed_104/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/minimum/double_well_A/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/minimum/double_well_A/seed_105/trajectory.npz",
+   "bytes": 9067826,
+   "sha256": "cb46166596e832cd6e14e6446e3da6e8966523e78600a750fae90d6cae1819c1",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/minimum/double_well_A/seed_105/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/minimum/double_well_A/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/minimum/double_well_B/seed_101/trajectory.npz",
+   "bytes": 9062645,
+   "sha256": "8bbbe5e823e161ed64d3abe624ac54f6b3de6abd59467779b94e2997c7e3dac7",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/minimum/double_well_B/seed_101/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/minimum/double_well_B/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/minimum/double_well_B/seed_102/trajectory.npz",
+   "bytes": 9070366,
+   "sha256": "ec9028fdf7083223fd020f72966ad1ce837d6c273fb3267a82f3c2b3412db4bf",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/minimum/double_well_B/seed_102/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/minimum/double_well_B/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/minimum/double_well_B/seed_103/trajectory.npz",
+   "bytes": 9080304,
+   "sha256": "3a6feef2ac1508344fbfa909a9e4868cb573b1ce7c498ea796f4940554c0d2f3",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/minimum/double_well_B/seed_103/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/minimum/double_well_B/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/minimum/double_well_B/seed_104/trajectory.npz",
+   "bytes": 9074093,
+   "sha256": "a6315dd0722ce675e23e7f225bc6d93ecd329106cece5785fd21363d500b5cc6",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/minimum/double_well_B/seed_104/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/minimum/double_well_B/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "double_well_burn140/minimum/double_well_B/seed_105/trajectory.npz",
+   "bytes": 9065201,
+   "sha256": "dbd3d59eb62417dfe3fbaca5bcc4da58206f613fb6671ddf0c0901cf34b9a6df",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "double_well_burn140/minimum/double_well_B/seed_105/restart.npz",
+   "archive_path": "ensemble_results_dw_continued/minimum/double_well_B/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/lattice/lj_A/seed_101/trajectory.npz",
+   "bytes": 9085080,
+   "sha256": "81c29185da0de12573bec72834e95c8493ee059cbb4a2f287931f437d066cdaa",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/lattice/lj_A/seed_101/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/lattice/lj_A/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/lattice/lj_A/seed_102/trajectory.npz",
+   "bytes": 9078341,
+   "sha256": "085896ab5be81ea7b212fd65bedce0d8f2b5031662e9f7f1c03ce0773e188724",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/lattice/lj_A/seed_102/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/lattice/lj_A/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/lattice/lj_A/seed_103/trajectory.npz",
+   "bytes": 9089249,
+   "sha256": "c0b76f112dd70693cf3b60d3871fdfff4cf48dc2377128939d85c7c6838e68a5",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/lattice/lj_A/seed_103/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/lattice/lj_A/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/lattice/lj_A/seed_104/trajectory.npz",
+   "bytes": 9082508,
+   "sha256": "29dd09154821704d59b0d725aaf92c55ba9c2bd249f7ef89eb8aa3898e8cb047",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/lattice/lj_A/seed_104/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/lattice/lj_A/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/lattice/lj_A/seed_105/trajectory.npz",
+   "bytes": 9080908,
+   "sha256": "d9ac44f090d8aa8f5e9724c3de92a63c6940316478b2145e706605f882441fab",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/lattice/lj_A/seed_105/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/lattice/lj_A/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/lattice/lj_B/seed_101/trajectory.npz",
+   "bytes": 9056024,
+   "sha256": "94af3644a7d7322d1a198e6738d284299ff8d28e965db31433b5331b52a567d4",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/lattice/lj_B/seed_101/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/lattice/lj_B/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/lattice/lj_B/seed_102/trajectory.npz",
+   "bytes": 9058619,
+   "sha256": "df4394ec8b16aa5d9327a8428d42a64e622ecc2268cf010608a60e0258de021d",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/lattice/lj_B/seed_102/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/lattice/lj_B/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/lattice/lj_B/seed_103/trajectory.npz",
+   "bytes": 9070584,
+   "sha256": "f6d1af31686475b0ded4d72f2bbce84ae3081248a02c21a1baff587e71fe6a7b",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/lattice/lj_B/seed_103/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/lattice/lj_B/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/lattice/lj_B/seed_104/trajectory.npz",
+   "bytes": 9067639,
+   "sha256": "1216c7d4e1b1310e13400fdee4ca8af15c7b5fcb07969910c26b1d6f37fe0ce7",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/lattice/lj_B/seed_104/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/lattice/lj_B/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/lattice/lj_B/seed_105/trajectory.npz",
+   "bytes": 9064074,
+   "sha256": "9675e844259c5693c11dd5f92c546c75958a19566aa7afc4a96ff5e46c706a46",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/lattice/lj_B/seed_105/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/lattice/lj_B/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/minimum/lj_A/seed_101/trajectory.npz",
+   "bytes": 9084730,
+   "sha256": "96a586af005566442947d75218e3f610272a030a16c1dae75d61143c3932b297",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/minimum/lj_A/seed_101/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/minimum/lj_A/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/minimum/lj_A/seed_102/trajectory.npz",
+   "bytes": 9079727,
+   "sha256": "cf3bc3bda69a1df7306cb9e23634286f3a5b0e3422356f9ae0dc197ecd0da8f2",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/minimum/lj_A/seed_102/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/minimum/lj_A/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/minimum/lj_A/seed_103/trajectory.npz",
+   "bytes": 9084418,
+   "sha256": "2f3504f02931c61da8511d02de1571b1e7167db8149f18f9db441664a16f2ec1",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/minimum/lj_A/seed_103/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/minimum/lj_A/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/minimum/lj_A/seed_104/trajectory.npz",
+   "bytes": 9088829,
+   "sha256": "7e32aa6427412ce4f21be8c90cf7e01e5e1083b79178603e6480c6b7972f6f9c",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/minimum/lj_A/seed_104/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/minimum/lj_A/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/minimum/lj_A/seed_105/trajectory.npz",
+   "bytes": 9082245,
+   "sha256": "24b23c0a5183a8aaaf2f5934cae9e35d39d60360b787effb2fd333d19b31d979",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/minimum/lj_A/seed_105/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/minimum/lj_A/seed_105/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/minimum/lj_B/seed_101/trajectory.npz",
+   "bytes": 9075139,
+   "sha256": "1d72090a7268834f516c042b41217ac8621b03e74dd5d6cf3f886e8cff43c289",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/minimum/lj_B/seed_101/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/minimum/lj_B/seed_101/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/minimum/lj_B/seed_102/trajectory.npz",
+   "bytes": 9073306,
+   "sha256": "5500c05ac5f3d2d71e647506d95812a905ef0bb87e918ec00aa46879b7e76c5c",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/minimum/lj_B/seed_102/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/minimum/lj_B/seed_102/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/minimum/lj_B/seed_103/trajectory.npz",
+   "bytes": 9083112,
+   "sha256": "3c831d36e0191d13592c16fdebcab80fea79e791db24e5041ddb1c9baeab66d7",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/minimum/lj_B/seed_103/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/minimum/lj_B/seed_103/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/minimum/lj_B/seed_104/trajectory.npz",
+   "bytes": 9081394,
+   "sha256": "3b10c85663c3ec0c35739d85a7dc269a15caf720234e41e5ceb11a81a1221574",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/minimum/lj_B/seed_104/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/minimum/lj_B/seed_104/trajectory.npz"
+  },
+  {
+   "trajectory": "lj_burn140/minimum/lj_B/seed_105/trajectory.npz",
+   "bytes": 9082691,
+   "sha256": "e357d54e2b9d5e5fb1b246d193c3689f5a3eb6283a3c458e1a2bd747212cb2ea",
+   "frames": 3001,
+   "particles": 64,
+   "simulated_time_at_end": 200.0,
+   "checkpoint": "lj_burn140/minimum/lj_B/seed_105/restart.npz",
+   "archive_path": "ensemble_results_lj_continued/minimum/lj_B/seed_105/trajectory.npz"
+  }
+ ]
+}

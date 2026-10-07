@@ -1,0 +1,15 @@
+已执行的数值检查与试跑
+========================
+命令: OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python test_physics.py
+结果: 5 tests passed.
+命令: OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python prl_toy_models.py demo --kernels A B --out pilot_results
+所有四组完成。每组N=64、生产轨迹401帧、物理时间长度8、seed=42。
+下面温度是单次短轨迹均值，不含误差条，不能据此宣称已平衡。
+
+double_well_A: mean T=0.722605, max |P|=1.605890e-13, min sampled r=0.698141
+double_well_B: mean T=0.711305, max |P|=1.344144e-13, min sampled r=0.723281
+lj_A: mean T=0.699076, max |P|=1.336723e-13, min sampled r=0.924082
+lj_B: mean T=0.693683, max |P|=2.128129e-13, min sampled r=0.913730
+
+当前为dense minimum-image参考，不是周期镜像Ewald快速实现。
+overview.png展示两个势、A/B试跑VACF与温度；完整四类图在各case目录中。

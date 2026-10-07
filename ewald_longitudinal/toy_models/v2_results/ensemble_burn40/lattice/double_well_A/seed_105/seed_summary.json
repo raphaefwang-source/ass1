@@ -1,0 +1,30 @@
+{
+  "potential": "double_well",
+  "kernel": "A",
+  "images": "lattice",
+  "seed": 105,
+  "friction_record": {
+    "images": "lattice",
+    "rel_tol": 1e-10,
+    "r_tail": 37.62,
+    "tail_estimate_per_pair": 2.489082860514488e-11,
+    "near_images": 33,
+    "far_images": 1902,
+    "chebyshev_degree": 16,
+    "ghat0": 41.41284998382907,
+    "zero_mode_per_pair": 0.08297089904097986
+  },
+  "T_mean": 0.7015125453231991,
+  "U_per_particle": -5.607100627993254,
+  "U_second_minus_first_half": -0.035733039694200386,
+  "T_second_minus_first_half": -0.013543510692803573,
+  "max_total_momentum": 3.3227356978376503e-13,
+  "min_distance": 0.6868053082939664,
+  "D_green_kubo": 0.023077259993683125,
+  "D_msd": 0.023729341854347667,
+  "vacf_min": -0.12303136322358822,
+  "vacf_min_time": 0.22,
+  "tau_T": 0.12523401497467113,
+  "rdf_peak": 4.025199595248044,
+  "rdf_peak_r": 1.03125
+}

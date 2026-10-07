@@ -1,0 +1,188 @@
+{
+  "parameters": {
+    "potentials": [
+      "double_well"
+    ],
+    "kernels": [
+      "A",
+      "B"
+    ],
+    "images": [
+      "minimum"
+    ],
+    "seeds": [
+      101,
+      102,
+      103,
+      104,
+      105
+    ],
+    "n": 64,
+    "box": 5.5,
+    "dt": 0.0025,
+    "stride": 8,
+    "burn": 0,
+    "steps": 16000,
+    "temperature": 0.7,
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "max_lag_time": 1.0,
+    "origins": 100,
+    "continue_from": "../ensemble_results_dw_continued",
+    "continue_seed_offset": 2000
+  },
+  "vccf_edges": {
+    "double_well": [
+      0.0,
+      1.36,
+      1.9,
+      2.75
+    ],
+    "lj": [
+      0.0,
+      1.55,
+      2.4,
+      2.75
+    ]
+  },
+  "sample_interval": 0.02,
+  "burn_in_time": 0.0,
+  "production_time": 40.0,
+  "effective_burn_in_time": [
+    200.0
+  ],
+  "error_bars": "standard error of the mean across independent seeds (ddof=1)",
+  "table": [
+    {
+      "images": "minimum",
+      "potential": "double_well",
+      "kernel": "A",
+      "n_seeds": 5,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "T_mean": {
+        "mean": 0.7007343355516957,
+        "sem": 0.001316259913166276
+      },
+      "U_per_particle": {
+        "mean": -5.775990455105456,
+        "sem": 0.03627048402154918
+      },
+      "U_second_minus_first_half": {
+        "mean": 0.10619767512626037,
+        "sem": 0.03894576450536578
+      },
+      "T_second_minus_first_half": {
+        "mean": -0.0017224677468983042,
+        "sem": 0.0023702652392320225
+      },
+      "D_green_kubo": {
+        "mean": 0.029226968103639096,
+        "sem": 0.0004272998070877327
+      },
+      "D_msd": {
+        "mean": 0.030311831008189634,
+        "sem": 0.0007967134616325984
+      },
+      "vacf_min": {
+        "mean": -0.12810818155574966,
+        "sem": 0.004316759867338336
+      },
+      "vacf_min_time": {
+        "mean": 0.21600000000000003,
+        "sem": 0.0039999999999999975
+      },
+      "tau_T": {
+        "mean": 0.1972245996918196,
+        "sem": 0.0114834218821447
+      },
+      "rdf_peak": {
+        "mean": 4.2511789733871534,
+        "sem": 0.08381194153684335
+      },
+      "rdf_peak_r": {
+        "mean": 1.0404166666666668,
+        "sem": 0.009166666666666677
+      },
+      "max_total_momentum": {
+        "mean": 8.242059448896667e-13,
+        "sem": 6.015246652119998e-14
+      },
+      "min_distance": {
+        "mean": 0.7063392299855681,
+        "sem": 0.00206489098191169
+      }
+    },
+    {
+      "images": "minimum",
+      "potential": "double_well",
+      "kernel": "B",
+      "n_seeds": 5,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "T_mean": {
+        "mean": 0.6988143052676697,
+        "sem": 0.0020217964879565365
+      },
+      "U_per_particle": {
+        "mean": -5.701452143328561,
+        "sem": 0.022678807621287433
+      },
+      "U_second_minus_first_half": {
+        "mean": -0.07079312875487584,
+        "sem": 0.06765525020567162
+      },
+      "T_second_minus_first_half": {
+        "mean": 0.0009806769265883863,
+        "sem": 0.003167555391539829
+      },
+      "D_green_kubo": {
+        "mean": 0.021506202915125977,
+        "sem": 0.0008210037768725481
+      },
+      "D_msd": {
+        "mean": 0.02170459338893722,
+        "sem": 0.000735442240498745
+      },
+      "vacf_min": {
+        "mean": -0.12200762778956935,
+        "sem": 0.0032424339836023917
+      },
+      "vacf_min_time": {
+        "mean": 0.2,
+        "sem": 0.0
+      },
+      "tau_T": {
+        "mean": 0.1415533085563127,
+        "sem": 0.01216160328005802
+      },
+      "rdf_peak": {
+        "mean": 4.139637297856185,
+        "sem": 0.042301727867978395
+      },
+      "rdf_peak_r": {
+        "mean": 1.0404166666666668,
+        "sem": 0.009166666666666679
+      },
+      "max_total_momentum": {
+        "mean": 6.789891218011155e-13,
+        "sem": 7.611585410561292e-14
+      },
+      "min_distance": {
+        "mean": 0.702265789977383,
+        "sem": 0.001656479847830486
+      }
+    }
+  ]
+}

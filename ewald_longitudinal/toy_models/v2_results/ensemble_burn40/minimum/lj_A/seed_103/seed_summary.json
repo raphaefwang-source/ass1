@@ -1,0 +1,22 @@
+{
+  "potential": "lj",
+  "kernel": "A",
+  "images": "minimum",
+  "seed": 103,
+  "friction_record": {
+    "images": "minimum"
+  },
+  "T_mean": 0.6989777331820147,
+  "U_per_particle": -3.239296169460854,
+  "U_second_minus_first_half": 0.10481486971566056,
+  "T_second_minus_first_half": -0.007583482802385966,
+  "max_total_momentum": 5.299453613673118e-13,
+  "min_distance": 0.8921291324121572,
+  "D_green_kubo": 0.07654489185722803,
+  "D_msd": 0.07837424970408423,
+  "vacf_min": -0.014745804508199773,
+  "vacf_min_time": 1.46,
+  "tau_T": 0.3604866986349812,
+  "rdf_peak": 3.3991011681996346,
+  "rdf_peak_r": 1.1229166666666666
+}
