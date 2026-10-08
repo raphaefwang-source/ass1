@@ -1,5 +1,5 @@
 {
- "A_A_2e-7_N64": {
+ "A_A_2e-7_N64_650d3bde1e": {
   "law": "A",
   "tag": "A_2e-7",
   "N": 64,
@@ -52,9 +52,10 @@
    "err512": 1.3615839771365663e-07,
    "est_step_N512": 0.19891775933865574,
    "eta_requested_at_512": 0.75
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 20/4 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 32/4: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "A_A_2e-7_N512": {
+ "A_A_2e-7_N512_650d3bde1e": {
   "law": "A",
   "tag": "A_2e-7",
   "N": 512,
@@ -106,9 +107,10 @@
    "err512": 1.3615839771365663e-07,
    "est_step_N512": 0.19891775933865574,
    "eta_requested_at_512": 0.75
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 20/4 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 32/4: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "A_A_1e-6_N64": {
+ "A_A_1e-6_N64_f2c0ca3e0e": {
   "law": "A",
   "tag": "A_1e-6",
   "N": 64,
@@ -161,9 +163,10 @@
    "err512": 6.972441267509237e-07,
    "est_step_N512": 0.1469145320008162,
    "eta_requested_at_512": 0.7
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 20/3 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 24/4: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "A_A_1e-6_N512": {
+ "A_A_1e-6_N512_f2c0ca3e0e": {
   "law": "A",
   "tag": "A_1e-6",
   "N": 512,
@@ -215,9 +218,10 @@
    "err512": 6.972441267509237e-07,
    "est_step_N512": 0.1469145320008162,
    "eta_requested_at_512": 0.7
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 20/3 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 24/4: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "A_A_1e-4_N64": {
+ "A_A_1e-4_N64_f6226fe9ae": {
   "law": "A",
   "tag": "A_1e-4",
   "N": 64,
@@ -270,9 +274,10 @@
    "err512": 5.2172684954406136e-05,
    "est_step_N512": 0.035768454001906015,
    "eta_requested_at_512": 0.95
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 10/2 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 16/3: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "A_A_1e-4_N512": {
+ "A_A_1e-4_N512_f6226fe9ae": {
   "law": "A",
   "tag": "A_1e-4",
   "N": 512,
@@ -324,9 +329,10 @@
    "err512": 5.2172684954406136e-05,
    "est_step_N512": 0.035768454001906015,
    "eta_requested_at_512": 0.95
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 10/2 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 16/3: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "B_B_5e-8_N64": {
+ "B_B_5e-8_N64_a179c56874": {
   "law": "B",
   "tag": "B_5e-8",
   "N": 64,
@@ -379,9 +385,10 @@
    "err512": 3.5275408637207224e-08,
    "est_step_N512": 0.11767471850278828,
    "eta_requested_at_512": 0.75
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 10/5 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 12/5: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "B_B_5e-8_N512": {
+ "B_B_5e-8_N512_a179c56874": {
   "law": "B",
   "tag": "B_5e-8",
   "N": 512,
@@ -433,9 +440,10 @@
    "err512": 3.5275408637207224e-08,
    "est_step_N512": 0.11767471850278828,
    "eta_requested_at_512": 0.75
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 10/5 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 12/5: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "B_B_2e-7_N64": {
+ "B_B_2e-7_N64_f3405aace4": {
   "law": "B",
   "tag": "B_2e-7",
   "N": 64,
@@ -488,9 +496,10 @@
    "err512": 1.8618305355945624e-07,
    "est_step_N512": 0.08962217300252935,
    "eta_requested_at_512": 0.7
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 10/4 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 10/5: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "B_B_2e-7_N512": {
+ "B_B_2e-7_N512_f3405aace4": {
   "law": "B",
   "tag": "B_2e-7",
   "N": 512,
@@ -542,9 +551,10 @@
    "err512": 1.8618305355945624e-07,
    "est_step_N512": 0.08962217300252935,
    "eta_requested_at_512": 0.7
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 10/4 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 10/5: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "B_B_1e-6_N64": {
+ "B_B_1e-6_N64_d73a904b03": {
   "law": "B",
   "tag": "B_1e-6",
   "N": 64,
@@ -597,9 +607,10 @@
    "err512": 9.481825846883428e-07,
    "est_step_N512": 0.05845505800183067,
    "eta_requested_at_512": 0.8
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 8/4 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 10/5: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "B_B_1e-6_N512": {
+ "B_B_1e-6_N512_d73a904b03": {
   "law": "B",
   "tag": "B_1e-6",
   "N": 512,
@@ -651,9 +662,10 @@
    "err512": 9.481825846883428e-07,
    "est_step_N512": 0.05845505800183067,
    "eta_requested_at_512": 0.8
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 8/4 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 10/5: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "B_B_1e-4_N64": {
+ "B_B_1e-4_N64_d723e8272b": {
   "law": "B",
   "tag": "B_1e-4",
   "N": 64,
@@ -706,9 +718,10 @@
    "err512": 4.680219416269255e-05,
    "est_step_N512": 0.023293209163739448,
    "eta_requested_at_512": 0.95
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 6/3 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 8/4: see the entry with that hash. Static checks are rank-independent and remain valid"
  },
- "B_B_1e-4_N512": {
+ "B_B_1e-4_N512_d723e8272b": {
   "law": "B",
   "tag": "B_1e-4",
   "N": 512,
@@ -760,6 +773,7 @@
    "err512": 4.680219416269255e-05,
    "est_step_N512": 0.023293209163739448,
    "eta_requested_at_512": 0.95
-  }
+  },
+  "superseded": "slow-mode errors at early ranks 6/3 (selected by the overall-error rule before the strict rule); the candidate's final ranks are 8/4: see the entry with that hash. Static checks are rank-independent and remain valid"
  }
 }

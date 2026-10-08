@@ -1,0 +1,107 @@
+pilot directory: $RUN_ROOT/pilot/local-20261008T161009
+{
+ "host": "vm",
+ "python": "3.13.16",
+ "numpy": "2.5.3",
+ "scipy": "1.18.1",
+ "platform": "Linux-6.18.44-fc-v80-x86_64-with-glibc2.39",
+ "machine": "x86_64",
+ "cores_visible": 4,
+ "threads": {
+  "OPENBLAS_NUM_THREADS": "1",
+  "OMP_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1"
+ },
+ "slurm": {},
+ "cpu_model": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+ "blas": {
+  "name": "scipy-openblas",
+  "found": true,
+  "version": "0.3.34.106.0",
+  "detection method": "pkgconfig",
+  "include directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include",
+  "lib directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib",
+  "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+  "pc file directory": "/project/.openblas"
+ }
+}
+$RUN_ROOT/pilot/local-20261008T161009/production_tasks.tsv: 40 tasks
+  N=256 kernel A: task ids 1-5,11-15
+  N=256 kernel B: task ids 6-10,16-20
+  N=512 kernel A: task ids 21-25,31-35
+  N=512 kernel B: task ids 26-30,36-40
+[2026-10-08T16:10:10+00:00] run $RUN_ROOT/pilot/local-20261008T161009/double_well_A_N512_s101 (new)
+[2026-10-08T16:10:10+00:00]   config costopt_hiacc: cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)
+[2026-10-08T16:10:10+00:00]   potential double_well, kernel A, N 512, L 11.000000, density 0.384673, dt 0.005, kT 0.7, gamma 0.5, kappa 0.7, r_ref 1.3
+[2026-10-08T16:10:10+00:00]   PPPM xi 0.85 s 4.1 eta 0.6779116381586452 p 7 -> M 36, eta_actual 0.6779, rc 4.824, kc 6.970, k0 retained True
+[2026-10-08T16:10:10+00:00]   pair search tree, conservative force neighbor
+[2026-10-08T16:10:10+00:00]   Lanczos ranks noise 40 / damping 5 (strict Krylov rule, table row N <= 512; verified at this N: True)
+[2026-10-08T16:10:10+00:00]   static verification costopt_hiacc_A_N512: PASS (operator error 1.36e-07 <= 2e-07)
+[2026-10-08T16:10:10+00:00]   plan: burn-in 0 steps (t 0.0), production 200 steps (t 1.0), frames every 20 steps; init replicate64 (equilibrated: False)
+[2026-10-08T16:10:10+00:00]   hashes: physics c8f5af98bade4384, operator 576e1743b9bc5600; code 907cc41d1b958d9cb8e1ced89acb5698d6546477 dirty=True; threads {'OPENBLAS_NUM_THREADS': '1', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1'}
+[2026-10-08T16:11:19+00:00] checkpoint step 100/200 (production) T 0.7099 U/N -5.5506 |P| 3.8e-14 rmin 0.723 step 664.7 ms, Ritz [0.615, 12.0]; monitor err 3.0e-11 S(kmin) 0.0
+[2026-10-08T16:12:29+00:00] checkpoint step 200/200 (production) T 0.7102 U/N -5.4705 |P| 4.8e-14 rmin 0.720 step 667.3 ms, Ritz [0.608, 12.2]; monitor err 4.4e-11 S(kmin) 0.0
+[2026-10-08T16:12:29+00:00] segment end: complete at step 200/200 (complete); exit 0
+[2026-10-08T16:12:30+00:00] run $RUN_ROOT/pilot/local-20261008T161009/double_well_B_N512_s101 (new)
+[2026-10-08T16:12:30+00:00]   config costopt_hiacc: cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)
+[2026-10-08T16:12:30+00:00]   potential double_well, kernel B, N 512, L 11.000000, density 0.384673, dt 0.005, kT 0.7, gamma 0.5, kappa 0.7, r_ref 1.3
+[2026-10-08T16:12:30+00:00]   PPPM xi 1.0 s 3.9 eta 0.6827747058642308 p 7 -> M 40, eta_actual 0.6828, rc 3.900, kc 7.800, k0 retained True
+[2026-10-08T16:12:30+00:00]   pair search tree, conservative force neighbor
+[2026-10-08T16:12:30+00:00]   Lanczos ranks noise 24 / damping 8 (strict Krylov rule, table row N <= 512; verified at this N: True)
+[2026-10-08T16:12:30+00:00]   static verification costopt_hiacc_B_N512: PASS (operator error 3.53e-08 <= 5e-08)
+[2026-10-08T16:12:30+00:00]   plan: burn-in 0 steps (t 0.0), production 200 steps (t 1.0), frames every 20 steps; init replicate64 (equilibrated: False)
+[2026-10-08T16:12:30+00:00]   hashes: physics 736ecd688baed148, operator 2fd68258a2bc0a0f; code 907cc41d1b958d9cb8e1ced89acb5698d6546477 dirty=True; threads {'OPENBLAS_NUM_THREADS': '1', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1'}
+[2026-10-08T16:13:17+00:00] checkpoint step 100/200 (production) T 0.7027 U/N -5.8065 |P| 1.5e-13 rmin 0.715 step 452.8 ms, Ritz [17.937, 54.8]; monitor err 8.7e-15 S(kmin) 0.0
+[2026-10-08T16:14:06+00:00] checkpoint step 200/200 (production) T 0.7072 U/N -5.7979 |P| 1.4e-13 rmin 0.711 step 464.2 ms, Ritz [17.935, 54.8]; monitor err 1.1e-14 S(kmin) 0.0
+[2026-10-08T16:14:06+00:00] segment end: complete at step 200/200 (complete); exit 0
+{
+ "exit_codes": [
+  0,
+  75,
+  75,
+  0
+ ],
+ "expected": "continuous 0, stopped segments 75, final resume 0",
+ "segments": 3,
+ "q_p_bitwise": true,
+ "rng_state_equal": true,
+ "diag_bitwise_except_wall": true,
+ "frames_bitwise": true,
+ "monitor_bitwise": true,
+ "steps": 60,
+ "passed": true
+}
+RESTART CHECK PASS
+{
+ "exit_codes": [
+  0,
+  75,
+  0
+ ],
+ "expected": "continuous 0, stopped segments 75, final resume 0",
+ "segments": 2,
+ "q_p_bitwise": true,
+ "rng_state_equal": true,
+ "diag_bitwise_except_wall": true,
+ "frames_bitwise": true,
+ "monitor_bitwise": true,
+ "steps": 400,
+ "passed": true
+}
+RESTART CHECK PASS
+$RUN_ROOT/pilot/local-20261008T161009/double_well_A_N512_s101: PASS  costopt_hiacc double_well A N=512 ranks 40/5 M 36 steps 200/200 | step 666.2 ms (p90 751.3) peak RSS 126 MB | T 0.7101 rmin 0.720 |dP| 2.4e-14 Ritz [0.608, 12.2] monitor err 8.3e-11 S(kmin) 0.0
+$RUN_ROOT/pilot/local-20261008T161009/double_well_B_N512_s101: PASS  costopt_hiacc double_well B N=512 ranks 24/8 M 40 steps 200/200 | step 457.6 ms (p90 526.8) peak RSS 125 MB | T 0.7049 rmin 0.711 |dP| 1.2e-13 Ritz [17.935, 54.8] monitor err 1.3e-14 S(kmin) 0.0
+costopt_hiacc A N=256: 10 tasks x 40000 steps, 316.6 ms/step -> 3.52 h run per task; sbatch --time=05:40:00 (margin 1.5, 1 job(s) per task) --mem=1G; 35.2 core-h (52.8 with margin); disk 10 MB/task
+    step time: scaled from pilot N=512 by the local benchmark ratio 0.475 (timing.json tag A_2e-7); not a pilot at this N
+costopt_hiacc A N=512: 10 tasks x 40000 steps, 666.2 ms/step -> 7.40 h run per task; sbatch --time=11:25:00 (margin 1.5, 1 job(s) per task) --mem=1G; 74.0 core-h (111.0 with margin); disk 17 MB/task
+    step time: pilot $RUN_ROOT/pilot/local-20261008T161009/double_well_A_N512_s101
+costopt_hiacc B N=256: 10 tasks x 40000 steps, 214.0 ms/step -> 2.38 h run per task; sbatch --time=03:55:00 (margin 1.5, 1 job(s) per task) --mem=1G; 23.8 core-h (35.7 with margin); disk 10 MB/task
+    step time: scaled from pilot N=512 by the local benchmark ratio 0.468 (timing.json tag B_5e-8); not a pilot at this N
+costopt_hiacc B N=512: 10 tasks x 40000 steps, 457.6 ms/step -> 5.08 h run per task; sbatch --time=07:55:00 (margin 1.5, 1 job(s) per task) --mem=1G; 50.8 core-h (76.3 with margin); disk 17 MB/task
+    step time: pilot $RUN_ROOT/pilot/local-20261008T161009/double_well_B_N512_s101
+TOTAL 40 tasks: 183.8 core-h run time (275.7 with margin), disk 0.54 GB; queue wait: not estimable from a pilot (site load, fair share, priorities)
+PILOT PASSED: $RUN_ROOT/pilot/local-20261008T161009
+
+real	4m50.862s
+user	3m36.691s
+sys	1m9.706s

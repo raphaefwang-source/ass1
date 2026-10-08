@@ -1,0 +1,26 @@
+{
+ "state": "complete",
+ "step": 200,
+ "updated": "2026-10-08T16:12:29+00:00",
+ "total_steps": 200,
+ "burn_steps": 0,
+ "physics_hash": "c8f5af98bade4384",
+ "last_checkpoint_step": 200,
+ "peak_rss_mb": 125.83984375,
+ "segments": [
+  {
+   "host": "vm",
+   "slurm_job_id": null,
+   "slurm_array_task": null,
+   "start_step": 0,
+   "start": "2026-10-08T16:10:10+00:00",
+   "end_step": 200,
+   "end": "2026-10-08T16:12:29+00:00",
+   "wall_s": 138.98880624799995,
+   "stop_reason": "complete",
+   "median_step_wall_s": 0.6661704175000978,
+   "peak_rss_mb": 125.83984375
+  }
+ ],
+ "exit_code": 0
+}

@@ -279,5 +279,45 @@
   "wall_s": 0.0025107860565185547,
   "cpu_s_main": 0.002496363999999973,
   "cpu_s_children": 0.0
+ },
+ {
+  "stage": "table",
+  "argv": [
+   "--stage",
+   "table"
+  ],
+  "wall_s": 0.009401321411132812,
+  "cpu_s_main": 0.006862582000000117,
+  "cpu_s_children": 0.0
+ },
+ {
+  "stage": "validate",
+  "argv": [
+   "--stage",
+   "validate",
+   "--candidates",
+   "cost_optimization_results/candidates_validate.json",
+   "--states",
+   "101",
+   "102",
+   "103",
+   "104",
+   "105",
+   "--paths",
+   "2",
+   "--workers",
+   "1"
+  ],
+  "wall_s": 0.985177755355835,
+  "cpu_s_main": 0.40071846099999986,
+  "cpu_s_children": 0.020621999999999998
+ },
+ {
+  "stage": "hpc round 2026-10-08 (estimate)",
+  "argv": [],
+  "wall_s": null,
+  "cpu_s_main": 0.0,
+  "cpu_s_children": 1550.0,
+  "note": "production-config verification runs (incl. an interrupted first protocol and the N=1728 check) ~850 s, rank scan 46 s, runner tests ~150 s, local pilot 286 s, profiling and same-machine timings ~220 s"
  }
 ]

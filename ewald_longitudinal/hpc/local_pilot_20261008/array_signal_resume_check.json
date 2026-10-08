@@ -1,0 +1,8 @@
+{
+ "what": "hpc/array.sbatch run under bash (SLURM_ARRAY_TASK_ID=1, no Slurm), task: double_well B N=64 seed 101, burn-in t=0.5, production t=2.0 (500 steps), costopt_hiacc",
+ "segment_1": "USR1 sent to the batch shell after 6 s; forwarded to toy_run.py; checkpoint at step 151; exit 75; status incomplete (signal SIGUSR1)",
+ "segment_2": "same script again: resumed at step 151, completed 500/500, exit 0",
+ "segment_3": "same script again: 'already complete', exit 0, nothing written",
+ "check_run": "PASS",
+ "bitwise_vs_continuous_run": {"diagnostics_except_wall": true, "frames": true, "monitor": true}
+}

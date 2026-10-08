@@ -1,0 +1,7 @@
+# Fallback when the pinned versions in requirements.txt are not installable for the cluster's Python
+# (NumPy 2.5 needs Python >= 3.12). Checked locally with Python 3.11 (test_toy_run.py passes).
+# Bitwise comparisons with runs made under other versions do not apply; restart consistency on the same
+# installation is still checked by the pilot.
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.6

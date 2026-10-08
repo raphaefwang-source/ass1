@@ -1,0 +1,6 @@
+# Versions used for every local check of this round (Python 3.13.16). Other recent versions should work, but
+# bitwise reproducibility across NumPy / SciPy / BLAS versions is not guaranteed; record versions per run
+# (toy_run.py stores them in config.json).
+numpy==2.5.3
+scipy==1.18.1
+matplotlib==3.11.2

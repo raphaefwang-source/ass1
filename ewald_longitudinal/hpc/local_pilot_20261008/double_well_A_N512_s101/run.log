@@ -1,0 +1,12 @@
+[2026-10-08T16:10:10+00:00] run $RUN_ROOT/pilot/local-20261008T161009/double_well_A_N512_s101 (new)
+[2026-10-08T16:10:10+00:00]   config costopt_hiacc: cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)
+[2026-10-08T16:10:10+00:00]   potential double_well, kernel A, N 512, L 11.000000, density 0.384673, dt 0.005, kT 0.7, gamma 0.5, kappa 0.7, r_ref 1.3
+[2026-10-08T16:10:10+00:00]   PPPM xi 0.85 s 4.1 eta 0.6779116381586452 p 7 -> M 36, eta_actual 0.6779, rc 4.824, kc 6.970, k0 retained True
+[2026-10-08T16:10:10+00:00]   pair search tree, conservative force neighbor
+[2026-10-08T16:10:10+00:00]   Lanczos ranks noise 40 / damping 5 (strict Krylov rule, table row N <= 512; verified at this N: True)
+[2026-10-08T16:10:10+00:00]   static verification costopt_hiacc_A_N512: PASS (operator error 1.36e-07 <= 2e-07)
+[2026-10-08T16:10:10+00:00]   plan: burn-in 0 steps (t 0.0), production 200 steps (t 1.0), frames every 20 steps; init replicate64 (equilibrated: False)
+[2026-10-08T16:10:10+00:00]   hashes: physics c8f5af98bade4384, operator 576e1743b9bc5600; code 907cc41d1b958d9cb8e1ced89acb5698d6546477 dirty=True; threads {'OPENBLAS_NUM_THREADS': '1', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1'}
+[2026-10-08T16:11:19+00:00] checkpoint step 100/200 (production) T 0.7099 U/N -5.5506 |P| 3.8e-14 rmin 0.723 step 664.7 ms, Ritz [0.615, 12.0]; monitor err 3.0e-11 S(kmin) 0.0
+[2026-10-08T16:12:29+00:00] checkpoint step 200/200 (production) T 0.7102 U/N -5.4705 |P| 4.8e-14 rmin 0.720 step 667.3 ms, Ritz [0.608, 12.2]; monitor err 4.4e-11 S(kmin) 0.0
+[2026-10-08T16:12:29+00:00] segment end: complete at step 200/200 (complete); exit 0

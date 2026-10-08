@@ -25,6 +25,7 @@ Error budgets: "5e-8" (law B only; ~ B baseline error), "2e-7" (~ A baseline err
 error against the full-periodic reference, and relative Lanczos action errors).
 """
 import argparse
+import hashlib
 import json
 import os
 import resource
@@ -57,6 +58,19 @@ ETAS = (0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5, 0.45, 0.4, 0.35, 
 PS = (5, 6, 7)
 RANKS_N = (6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 64)
 RANKS_D = (2, 3, 4, 5, 6, 8, 12, 16, 24)
+
+
+OP_KEYS = ("law", "xi", "s", "eta", "p")                     # what a static operator result depends on
+RUN_KEYS = OP_KEYS + ("rank_noise", "rank_damp", "pair_search")
+
+
+def phash(d, keys=RUN_KEYS):
+    """Short hash of the actual parameters (+ the fixed model) used in cache keys: a changed parameter never
+    reuses an old result. pair_search defaults to "tree" (fast_op's default)."""
+    sub = {k: d[k] for k in keys if k in d}
+    if "pair_search" in keys:
+        sub.setdefault("pair_search", "tree")
+    return hashlib.sha256(json.dumps(dict(sub, model=TOY), sort_keys=True, default=float).encode()).hexdigest()[:10]
 
 
 def box(N):
@@ -550,7 +564,7 @@ def stage_ranks_large(args):
     out = load("ranks_large.json") if (OUT / "ranks_large.json").exists() else {}
     for c in cands:
         for N in args.N:
-            key = f"{c['law']}_{c['tag']}_N{N}"
+            key = f"{c['law']}_{c['tag']}_N{N}_{phash(c, OP_KEYS)}"
             if key in out:
                 continue
             t0 = time.process_time()
@@ -599,7 +613,7 @@ def stage_slowmodes(args):
     out = load("slowmodes.json") if (OUT / "slowmodes.json").exists() else {}
     for c in cands:
         for N in args.N:
-            key = f"{c['law']}_{c['tag']}_N{N}"
+            key = f"{c['law']}_{c['tag']}_N{N}_{phash(c, OP_KEYS + ('rank_noise', 'rank_damp'))}"
             if key in out:
                 continue
             q, L = config(N, c["law"])
@@ -654,7 +668,7 @@ def stage_modes(args):
     for law in args.laws:
         c = next(x for x in cands if x["law"] == law)
         for N in args.N:
-            key = f"{law}_N{N}"
+            key = f"{law}_N{N}_{phash(c, OP_KEYS)}"
             if key in out:
                 continue
             t0 = time.process_time()
@@ -731,7 +745,7 @@ def run_validation_path(job):
     ranks 40/16) or a candidate (tree pair enumeration). Same initial state and same noise seed for every arm."""
     law, state, path, cand = job
     tag = cand["tag"]
-    f = OUT / "validate_paths" / f"{law}_{tag}_state{state}_path{path:02d}.json"
+    f = OUT / "validate_paths" / f"{law}_{tag}_{phash(cand)}_state{state}_path{path:02d}.json"
     if f.exists():
         return json.loads(f.read_text())
     with np.load(CKPT / "double_well_burn140" / "lattice" / f"double_well_{law}" / f"seed_{state}" / "restart.npz") as ck:
@@ -994,7 +1008,11 @@ def stage_table(args):
     Ns = sorted({r["N"] for r in T})
     for c in C:
         law, tag = c["law"], c["tag"]
-        st64, st512 = S.get(f"{law}_{tag}_N64", {}).get("static", {}), S.get(f"{law}_{tag}_N512", {}).get("static", {})
+        # static checks do not depend on the Lanczos ranks: any slowmodes entry for the same operator parameters
+        ho = phash(c, OP_KEYS)
+        stat = {e["N"]: e["static"] for e in S.values()
+                if e["law"] == law and e["tag"] == tag and phash(e["params"], OP_KEYS) == ho}
+        st64, st512 = stat.get(64, {}), stat.get(512, {})
         v = [r for r in V if r["tag"] == tag]
         row = dict(law=law, budget=c["budget"],
                    original="xi 0.7, s 4.10, eta 0.7, p 7, ranks 40/16, image-enumerated pairs",
@@ -1002,8 +1020,8 @@ def stage_table(args):
                    ranks_N1728="%d/%d" % tuple(c["ranks_by_N"]["1728"]), ranks_N4096="%d/%d" % tuple(c["ranks_by_N"]["4096"]),
                    M_N64=st64.get("M"), M_N512=st512.get("M"),
                    op_err_N64=st64.get("op_err"), op_err_N512=st512.get("op_err"),
-                   gv_rows_err_N1728=RL.get(f"{law}_{tag}_N1728", {}).get("gv_rows_err"),
-                   gv_rows_err_N4096=RL.get(f"{law}_{tag}_N4096", {}).get("gv_rows_err"),
+                   gv_rows_err_N1728=RL.get(f"{law}_{tag}_N1728_{phash(c, OP_KEYS)}", {}).get("gv_rows_err"),
+                   gv_rows_err_N4096=RL.get(f"{law}_{tag}_N4096_{phash(c, OP_KEYS)}", {}).get("gv_rows_err"),
                    dyn_validated=bool(v),
                    dyn_max_abs_rel_mean_diff=max((abs(r["rel_mean_diff"]) for r in v), default=None),
                    dyn_all_ci_include_zero=all(r["ci95_low"] <= 0 <= r["ci95_high"] for r in v) if v else None)

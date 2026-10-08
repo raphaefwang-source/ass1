@@ -1,0 +1,42 @@
+{
+ "baseline_A": {
+  "median_ms": 2323.910705000344,
+  "p10": 1440.3484673999628,
+  "p90": 2609.618825999951,
+  "steps": 25,
+  "ranks": "40/16",
+  "pairs": "images",
+  "force": "allpairs",
+  "peak_rss": 1135.45703125
+ },
+ "baseline_B": {
+  "median_ms": 2346.5614890001234,
+  "p10": 1489.1535062000003,
+  "p90": 2499.2074260001577,
+  "steps": 25,
+  "ranks": "40/16",
+  "pairs": "images",
+  "force": "allpairs",
+  "peak_rss": 1135.97265625
+ },
+ "costopt_A": {
+  "median_ms": 666.1731810002038,
+  "p10": 612.7184127999953,
+  "p90": 751.2596242001109,
+  "steps": 195,
+  "ranks": "40/5",
+  "pairs": "tree",
+  "force": "neighbor",
+  "peak_rss": 125.83984375
+ },
+ "costopt_B": {
+  "median_ms": 457.6480770001581,
+  "p10": 417.4056374000884,
+  "p90": 526.8019025999365,
+  "steps": 195,
+  "ranks": "24/8",
+  "pairs": "tree",
+  "force": "neighbor",
+  "peak_rss": 124.55859375
+ }
+}

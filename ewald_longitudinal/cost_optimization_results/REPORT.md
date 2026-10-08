@@ -25,6 +25,13 @@ checks).
 
 ## 0. Result table
 
+> **Amendment (2026-10-08, Section 10).** The ranks in this table were chosen on replicated or v2 states. On a
+> liquid-like test state, law B at 12/5 misses its budget at N = 256 and 512, and law A at 32/4 misses at N = 1728.
+> The production configuration `costopt_hiacc` (`../toy_configs.py`) keeps these operator sets but uses higher
+> ranks (A 32/5 for N ≤ 256 and 40/5 for N ≤ 512; B 16/6 and 24/8) and refuses N > 512. Its measured speedup at
+> N = 512 against the original version, on one machine and with the same runner, is ×3.5 (A) and ×5.1 (B). The
+> table below keeps the study's numbers as they were measured.
+
 **How to read this table:**
 - **Error budget:** the relative spectral error ‖Γ_h − Γ_ref‖₂/‖Γ_ref‖₂ against the dense full-periodic reference.
   The Lanczos noise and damping errors must meet the same budget. They are judged on the overall relative error,
@@ -370,3 +377,107 @@ python3 toy_cost_opt.py --stage table
 
 All with `OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1`. `validate_paths/*.json` holds one file per
 path: seed, initial state, observables, thermostat record.
+
+## 10. Production configuration and verification (amendment, 2026-10-08)
+
+The study's sets are packaged as the named configuration `costopt_hiacc` in `../toy_configs.py`:
+- law A: the 2e-7 set, ξ 0.85, s 4.1, η* 0.6779, p 7;
+- law B: the 5e-8 set, ξ 1.0, s 3.9, η* 0.6828, p 7;
+- KD-tree pairs and neighbour-list forces.
+
+The original version is kept as `baseline_hiacc`. The runner is `../toy_run.py`; the HPC files are in `../hpc/`.
+
+**Static confirmation at exactly the configured parameters** (`production_config_verification.json`, written by
+`../verify_production_configs.py`):
+- **Cache key.** Each entry is keyed by the configuration's operator hash: config, law, N, dt, model, PPPM set, pair
+  search and ranks. The protocol and the budget are part of the key too, so a parameter change always recomputes.
+- **Test states** at N = 256 and 512:
+  - the earlier state, a replicated v2 state or a jittered lattice;
+  - a liquid-like double-well state, whose positions come from scalar Langevin dynamics with conservative forces
+    only (t = 50 from fcc / sc, `verification_states/`). Positions are canonical whatever the friction, so the
+    friction model plays no part in preparing them.
+- **Checks** (`checks` / `passed` in each entry): operator error, Krylov errors at the configured ranks (overall,
+  k = 2π/L, lowest 3 / 12 eigenmodes) and the O-step error. Structure: symmetry ≤ 2e-17, null space ≤ 3e-15,
+  λ_min > 0, k = 0 retained, literal matvec equals dense assembly.
+
+**Spectra on Range(Π), λ_min / λ_max of Γ_h:**
+
+| law, N | earlier test state | liquid-like state |
+|---|---|---|
+| A 256 | 1.78 / 6.8 | 0.456 / 18.5 |
+| A 512 | 0.620 / 11.9 | 0.215 / 21.5 |
+| B 256 | 28.6 / 49.2 | 15.7 / 78.3 |
+| B 512 | 17.9 / 54.8 | 9.31 / 96.6 |
+
+The liquid-like state is much harder for Lanczos.
+
+**Rank scan** (`production_rank_scan.json`): the ranks needed to meet the budget on every state are:
+
+| law | N=64 | N=256 | N=512 |
+|---|---|---|---|
+| A (2e-7) | 16/4 | 32/4 | 32/5 |
+| B (5e-8) | 8/5 | 16/6 | 20/6 |
+
+The study's B ranks 12/5 fail: noise error 1.6e-5 at N = 512, against a budget of 5e-8. A 32/4 meets the budget
+at N = 512 with little margin: 1.5e-7 against 2e-7. At N = 1728, A 32/4 fails on the liquid-like state (3.5e-5 at
+k = 2π/L); `costopt_hiacc_A_N1728` is kept as evidence only.
+
+**Configured ranks:**
+- **Choice.** The smallest ranks of the scan that meet budget/10 on every state at that N:
+  - A: 32/5 (N ≤ 256) and 40/5 (N ≤ 512);
+  - B: 16/6 and 24/8.
+- **Why the factor 10.** It is a margin for production states that are more clustered than the test state.
+- **Refusal above N = 512.** No larger-N rows have been verified on liquid-like states.
+- **Re-verification at the budget** with independent vectors:
+
+| config, law | N | ranks | operator error | max Krylov error | result |
+|---|---|---|---|---|---|
+| costopt A | 64 | 32/5 | 1.48e-7 | 8.2e-12 | PASS |
+| costopt A | 256 | 32/5 | 1.07e-7 | 1.5e-9 | PASS |
+| costopt A | 512 | 40/5 | 1.36e-7 | 1.3e-9 | PASS |
+| costopt B | 64 | 16/6 | 3.58e-8 | 2.1e-12 | PASS |
+| costopt B | 256 | 16/6 | 4.26e-8 | 5.6e-9 | PASS |
+| costopt B | 512 | 24/8 | 3.53e-8 | 2.3e-10 | PASS |
+| baseline A | 64 / 256 / 512 | 40/16 | 1.27e-7 / 1.38e-7 / 1.17e-7 | ≤ 1.3e-9 | PASS (checked against 2e-7) |
+| baseline B | 64 / 256 / 512 | 40/16 | 4.55e-8 / 4.41e-8 / 4.37e-8 | ≤ 2.1e-14 | PASS (checked against 5e-8) |
+
+**Structure of the liquid-like state.** It shows strong long-wavelength density fluctuations:
+- max S(k) over the wavevectors k = 2πn/L with 0 < |n| ≤ 2: 113 at N = 256 and 236 at N = 512;
+- neighbours within 1.6σ: 19–21, against 12.3 in the v2 N = 64 state.
+
+This is consistent with clustering or liquid–vapour separation at this density and temperature, which a 64-particle
+box cannot show. For LJ, T = 0.7 is below the critical temperature and ρ = 0.385 lies between the coexisting
+densities (literature values). It was not established here: there is one preparation per N and no test of
+equilibration.
+
+For production at N = 256 and 512 this means two things:
+- The system may become inhomogeneous during burn-in, and the physics of the toy model then differs from the N = 64
+  picture.
+- The friction spectrum may become harder than the verified states.
+
+The runner therefore monitors, every 500 steps, the Lanczos error estimates (overall and at k = 2π/L), the extreme
+Ritz values and max S(k = 2π/L). It warns when an estimate exceeds the budget or the spectrum falls below the
+verified λ_min.
+
+**Measured cost of the production configuration** (`../hpc/local_pilot_20261008/`):
+- N = 512, through `toy_run.py`, on one machine (Xeon @ 2.10 GHz, slower than the VM of Section 6), 1 thread:
+
+  | law | production config | original version | speedup |
+  |---|---|---|---|
+  | A | 666 ms | 2324 ms | ×3.5 |
+  | B | 458 ms | 2347 ms | ×5.1 |
+
+- Peak RSS: 125 MB against 1135 MB.
+- These replace the Section 0 speedups (A ×5.2, B ×7.1) for the production configuration. Those were for the
+  lower study ranks on a faster VM.
+- At equal accuracy the A operator parameters remain within timing noise of the original operator (Section 3). The
+  gains come from the pair search and from damping rank 16 → 5.
+
+**Cache keys of this study.**
+- `toy_cost_opt.py` now puts a hash of the actual parameters into the keys of `slowmodes.json`, `ranks_large.json`,
+  `modes.json` and the `validate_paths/` file names. Existing entries were migrated by the hash of the parameters
+  stored in each entry.
+- The `slowmodes.json` entries computed at early ranks (for example A 20/4) carry a `superseded` note. Their static
+  parts are rank-independent and still feed `cost_table.csv`, which regenerates identically, as does
+  `validate.json`.
+

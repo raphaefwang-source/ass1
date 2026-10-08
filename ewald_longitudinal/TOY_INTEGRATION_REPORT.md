@@ -63,6 +63,13 @@ time-discretisation floor.
 - **N = 64:** the dense reference is cheaper than PPPM.
 - **Scope:** fixed-time t ≤ 2 checks only; the long-time diffusion question is untouched.
 
+**HPC-ready runner** (2026-10-08; `hpc/README.md`, `toy_run.py`, `toy_configs.py`)
+- **Production configuration `costopt_hiacc`:** ranks re-chosen on a liquid-like test state (A 32/5 and 40/5,
+  B 16/6 and 24/8); N ≤ 512; statically verified at N = 64, 256 and 512.
+- **Runner:** restartable, with bitwise restart consistency and a runtime accuracy and S(k) monitor.
+- **Slurm templates and a local pilot only:** nothing has been run on an HPC system yet.
+- **Larger boxes may cluster at this state point**: report Section 10.
+
 ## 1. What was integrated (and what was not changed)
 
 | piece | file | status |
@@ -415,4 +422,8 @@ Code changes that keep results identical up to round-off:
 - `toy_dynamics.conservative_force_neighbor`, which is the default in `run()`.
 
 Both are covered by `test_radial_kernels.Enumeration`.
+
+Production use: the named configurations of `toy_configs.py` are run with `toy_run.py`; see `hpc/README.md` and
+`cost_optimization_results/REPORT.md`, Section 10. The production ranks differ from the study's: they were re-chosen
+on a liquid-like test state.
 

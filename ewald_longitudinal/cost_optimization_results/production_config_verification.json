@@ -1,0 +1,3160 @@
+{
+ "costopt_hiacc_A_N64": {
+  "per_state": {
+   "v2_dw_lj": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.85,
+     "s": 4.1,
+     "rc": 4.823529411764706,
+     "kc": 6.969999999999999,
+     "eta_N": 0.6779116381586452,
+     "eta_actual": 0.6779116381586452,
+     "p": 7,
+     "M": 18,
+     "n_modes": 949,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 5208,
+    "op_err": 1.482941326325614e-07,
+    "op_err_by_state": {
+     "double_well": 1.342497668151149e-07,
+     "lj": 1.482941326325614e-07
+    },
+    "sym_resid": 2.255385966761233e-17,
+    "null_resid": 6.197476879977645e-16,
+    "literal_vs_dense": 4.122950703725131e-16,
+    "lam_min": 1.7294699865738743,
+    "lam_max": 11.840188450369405,
+    "lam_min_ref": 1.7294701842094031,
+    "krylov": {
+     "noise": {
+      "rank": 32,
+      "overall": 2.6068240384324723e-15,
+      "kmin": 3.825233809403044e-15,
+      "low3": 6.363344451026231e-15,
+      "low12": 4.522563681202691e-15,
+      "conv": null,
+      "total_vs_ref": 4.254583667180102e-08
+     },
+     "damp": {
+      "rank": 5,
+      "overall": 2.1547971916533236e-12,
+      "kmin": 6.621494166834883e-12,
+      "low3": 8.153028731887085e-12,
+      "low12": 4.132336452215931e-12,
+      "conv": null,
+      "total_vs_ref": 2.777199833902479e-09
+     }
+    },
+    "ostep": {
+     "krylov": 2.082355587318399e-12
+    },
+    "ritz_min": 1.7294699866194545,
+    "ritz_max": 11.840188450369398,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "A",
+   "amplitude": 1.6148096467001307,
+   "kappa": 0.7,
+   "xi": 0.85,
+   "s": 4.1,
+   "rc": 4.823529411764706,
+   "kc": 6.969999999999999,
+   "eta_N": 0.6779116381586452,
+   "eta_actual": 0.6779116381586452,
+   "p": 7,
+   "M": 18,
+   "n_modes": 949,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "tree"
+  },
+  "budget": 2e-07,
+  "op_err": 1.482941326325614e-07,
+  "sym_resid": 2.255385966761233e-17,
+  "null_resid": 6.197476879977645e-16,
+  "literal_vs_dense": 4.122950703725131e-16,
+  "lam_min": 1.7294699865738743,
+  "ritz_min": 1.7294699866194545,
+  "ritz_max": 11.840188450369398,
+  "krylov": {
+   "noise": {
+    "rank": 32,
+    "overall": 2.6068240384324723e-15,
+    "kmin": 3.825233809403044e-15,
+    "low3": 6.363344451026231e-15,
+    "low12": 4.522563681202691e-15,
+    "conv": null,
+    "total_vs_ref": 4.254583667180102e-08
+   },
+   "damp": {
+    "rank": 5,
+    "overall": 2.1547971916533236e-12,
+    "kmin": 6.621494166834883e-12,
+    "low3": 8.153028731887085e-12,
+    "low12": 4.132336452215931e-12,
+    "conv": null,
+    "total_vs_ref": 2.777199833902479e-09
+   }
+  },
+  "ostep": {
+   "krylov": 2.082355587318399e-12
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "costopt_hiacc",
+  "law": "A",
+  "N": 64,
+  "operator_hash": "6767bb4ee9b295c9",
+  "cache_key": "78521673109dedbd",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "costopt_hiacc",
+   "description": "cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)",
+   "law": "A",
+   "potential": "double_well",
+   "N": 64,
+   "L": 5.499999999999999,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 0.85,
+    "s": 4.1,
+    "eta": 0.6779116381586452,
+    "p": 7
+   },
+   "pair_search": "tree",
+   "force_method": "neighbor",
+   "rank_noise": 32,
+   "rank_damp": 5,
+   "rank_provenance": {
+    "rule": "strict Krylov rule, table row N <= 256",
+    "table_row_N_max": 256,
+    "verified_at_this_N": true,
+    "verified_N": [
+     64,
+     256,
+     512
+    ]
+   },
+   "operator_budget": 2e-07,
+   "warnings": []
+  },
+  "cpu_s": 4.655404194
+ },
+ "costopt_hiacc_A_N256": {
+  "per_state": {
+   "jittered_lattice": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.85,
+     "s": 4.1,
+     "rc": 4.823529411764706,
+     "kc": 6.969999999999999,
+     "eta_N": 0.6779116381586452,
+     "eta_actual": 0.6456705885327112,
+     "p": 7,
+     "M": 30,
+     "n_modes": 3791,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 23894,
+    "op_err": 1.0734734392358944e-07,
+    "op_err_by_state": {
+     "double_well": 1.0734734392358944e-07
+    },
+    "sym_resid": 2.0729859283080834e-17,
+    "null_resid": 1.5357067155307473e-15,
+    "literal_vs_dense": 6.317015900109847e-16,
+    "lam_min": 1.775270855004427,
+    "lam_max": 6.776866142777105,
+    "lam_min_ref": 1.7752707901680265,
+    "krylov": {
+     "noise": {
+      "rank": 32,
+      "overall": 3.3497049141900957e-15,
+      "kmin": 5.42452944785709e-15,
+      "low3": 4.617983315719262e-15,
+      "low12": 6.6656660573206545e-15,
+      "conv": null,
+      "total_vs_ref": 2.510585272152838e-08
+     },
+     "damp": {
+      "rank": 5,
+      "overall": 7.67584247771519e-14,
+      "kmin": 4.51552045017838e-13,
+      "low3": 4.554426200567424e-13,
+      "low12": 3.282427894957424e-13,
+      "conv": null,
+      "total_vs_ref": 1.2046916142862663e-09
+     }
+    },
+    "ostep": {
+     "krylov": 7.56453887578661e-14
+    },
+    "ritz_min": 1.7753331221183712,
+    "ritz_max": 6.776846285658462,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   },
+   "liquid_scalar_langevin": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.85,
+     "s": 4.1,
+     "rc": 4.823529411764706,
+     "kc": 6.969999999999999,
+     "eta_N": 0.6779116381586452,
+     "eta_actual": 0.6456705885327112,
+     "p": 7,
+     "M": 30,
+     "n_modes": 3791,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 30834,
+    "op_err": 1.0226586842455144e-07,
+    "op_err_by_state": {
+     "double_well": 1.0226586842455144e-07
+    },
+    "sym_resid": 2.0211197637096352e-17,
+    "null_resid": 1.231857696616851e-15,
+    "literal_vs_dense": 6.322034077224388e-16,
+    "lam_min": 0.4556438167025341,
+    "lam_max": 18.486329356125697,
+    "lam_min_ref": 0.4556438375822507,
+    "krylov": {
+     "noise": {
+      "rank": 32,
+      "overall": 3.278117793976346e-11,
+      "kmin": 5.781334275829736e-10,
+      "low3": 1.4557194194756888e-09,
+      "low12": 5.818416632375892e-10,
+      "conv": null,
+      "total_vs_ref": 2.107383180399566e-08
+     },
+     "damp": {
+      "rank": 5,
+      "overall": 4.3673599262841964e-11,
+      "kmin": 2.7684142486235067e-10,
+      "low3": 4.680592130485349e-10,
+      "low12": 1.8097142989562607e-10,
+      "conv": null,
+      "total_vs_ref": 2.3018208724658537e-09
+     }
+    },
+    "ostep": {
+     "krylov": 4.179011754892531e-11
+    },
+    "ritz_min": 0.4556438167050454,
+    "ritz_max": 18.48630345734437,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "A",
+   "amplitude": 1.6148096467001307,
+   "kappa": 0.7,
+   "xi": 0.85,
+   "s": 4.1,
+   "rc": 4.823529411764706,
+   "kc": 6.969999999999999,
+   "eta_N": 0.6779116381586452,
+   "eta_actual": 0.6456705885327112,
+   "p": 7,
+   "M": 30,
+   "n_modes": 3791,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "tree"
+  },
+  "budget": 2e-07,
+  "op_err": 1.0734734392358944e-07,
+  "sym_resid": 2.0729859283080834e-17,
+  "null_resid": 1.5357067155307473e-15,
+  "literal_vs_dense": 6.322034077224388e-16,
+  "lam_min": 0.4556438167025341,
+  "ritz_min": 0.4556438167050454,
+  "ritz_max": 18.48630345734437,
+  "krylov": {
+   "noise": {
+    "rank": 32,
+    "overall": 3.278117793976346e-11,
+    "kmin": 5.781334275829736e-10,
+    "low3": 1.4557194194756888e-09,
+    "low12": 5.818416632375892e-10,
+    "conv": null,
+    "total_vs_ref": 2.510585272152838e-08
+   },
+   "damp": {
+    "rank": 5,
+    "overall": 4.3673599262841964e-11,
+    "kmin": 2.7684142486235067e-10,
+    "low3": 4.680592130485349e-10,
+    "low12": 1.8097142989562607e-10,
+    "conv": null,
+    "total_vs_ref": 2.3018208724658537e-09
+   }
+  },
+  "ostep": {
+   "krylov": 4.179011754892531e-11
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "costopt_hiacc",
+  "law": "A",
+  "N": 256,
+  "operator_hash": "71b4e02fad3e21e3",
+  "cache_key": "751cbbc44288bbc2",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "costopt_hiacc",
+   "description": "cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)",
+   "law": "A",
+   "potential": "double_well",
+   "N": 256,
+   "L": 8.730705785825096,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 0.85,
+    "s": 4.1,
+    "eta": 0.6779116381586452,
+    "p": 7
+   },
+   "pair_search": "tree",
+   "force_method": "neighbor",
+   "rank_noise": 32,
+   "rank_damp": 5,
+   "rank_provenance": {
+    "rule": "strict Krylov rule, table row N <= 256",
+    "table_row_N_max": 256,
+    "verified_at_this_N": true,
+    "verified_N": [
+     64,
+     256,
+     512
+    ]
+   },
+   "operator_budget": 2e-07,
+   "warnings": []
+  },
+  "cpu_s": 7.278959067
+ },
+ "costopt_hiacc_A_N512": {
+  "per_state": {
+   "replicated_v2": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.85,
+     "s": 4.1,
+     "rc": 4.823529411764706,
+     "kc": 6.969999999999999,
+     "eta_N": 0.6779116381586452,
+     "eta_actual": 0.6779116381586452,
+     "p": 7,
+     "M": 36,
+     "n_modes": 7521,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 41663,
+    "op_err": 1.3615845624462958e-07,
+    "op_err_by_state": {
+     "double_well": 1.3615845624462958e-07
+    },
+    "sym_resid": 2.3921046079165806e-17,
+    "null_resid": 1.3508737900138908e-15,
+    "literal_vs_dense": 8.622903880722429e-16,
+    "lam_min": 0.6196800033170677,
+    "lam_max": 11.896970163237295,
+    "lam_min_ref": 0.6196800702101348,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 2.1021875253517345e-12,
+      "kmin": 4.02096608054776e-11,
+      "low3": 1.1308550185718017e-10,
+      "low12": 6.327262962467187e-11,
+      "conv": null,
+      "total_vs_ref": 4.116110843919798e-08
+     },
+     "damp": {
+      "rank": 5,
+      "overall": 3.994001560476328e-12,
+      "kmin": 3.2038680929065354e-11,
+      "low3": 3.96824882137494e-11,
+      "low12": 2.7615986548546274e-11,
+      "conv": null,
+      "total_vs_ref": 2.6580032808320604e-09
+     }
+    },
+    "ostep": {
+     "krylov": 3.885747833029305e-12
+    },
+    "ritz_min": 0.6196801311860082,
+    "ritz_max": 11.896699301279414,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   },
+   "liquid_scalar_langevin": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.85,
+     "s": 4.1,
+     "rc": 4.823529411764706,
+     "kc": 6.969999999999999,
+     "eta_N": 0.6779116381586452,
+     "eta_actual": 0.6779116381586452,
+     "p": 7,
+     "M": 36,
+     "n_modes": 7521,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 83874,
+    "op_err": 1.228665635531373e-07,
+    "op_err_by_state": {
+     "double_well": 1.228665635531373e-07
+    },
+    "sym_resid": 1.8257021534109198e-17,
+    "null_resid": 1.3872122273489609e-15,
+    "literal_vs_dense": 8.858061457960501e-16,
+    "lam_min": 0.21457196452307772,
+    "lam_max": 21.454580818633328,
+    "lam_min_ref": 0.2145719723725698,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 3.8563853369813234e-11,
+      "kmin": 5.897337392815334e-10,
+      "low3": 1.3106601865504012e-09,
+      "low12": 9.090835184077917e-10,
+      "conv": null,
+      "total_vs_ref": 2.8229208979548937e-08
+     },
+     "damp": {
+      "rank": 5,
+      "overall": 8.617167704300189e-11,
+      "kmin": 7.023075438299436e-10,
+      "low3": 1.2921303366136026e-09,
+      "low12": 7.684541144996737e-10,
+      "conv": null,
+      "total_vs_ref": 3.6023457435811847e-09
+     }
+    },
+    "ostep": {
+     "krylov": 8.23442607300824e-11
+    },
+    "ritz_min": 0.21457196452325603,
+    "ritz_max": 21.454580258719815,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "A",
+   "amplitude": 1.6148096467001307,
+   "kappa": 0.7,
+   "xi": 0.85,
+   "s": 4.1,
+   "rc": 4.823529411764706,
+   "kc": 6.969999999999999,
+   "eta_N": 0.6779116381586452,
+   "eta_actual": 0.6779116381586452,
+   "p": 7,
+   "M": 36,
+   "n_modes": 7521,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "tree"
+  },
+  "budget": 2e-07,
+  "op_err": 1.3615845624462958e-07,
+  "sym_resid": 2.3921046079165806e-17,
+  "null_resid": 1.3872122273489609e-15,
+  "literal_vs_dense": 8.858061457960501e-16,
+  "lam_min": 0.21457196452307772,
+  "ritz_min": 0.21457196452325603,
+  "ritz_max": 21.454580258719815,
+  "krylov": {
+   "noise": {
+    "rank": 40,
+    "overall": 3.8563853369813234e-11,
+    "kmin": 5.897337392815334e-10,
+    "low3": 1.3106601865504012e-09,
+    "low12": 9.090835184077917e-10,
+    "conv": null,
+    "total_vs_ref": 4.116110843919798e-08
+   },
+   "damp": {
+    "rank": 5,
+    "overall": 8.617167704300189e-11,
+    "kmin": 7.023075438299436e-10,
+    "low3": 1.2921303366136026e-09,
+    "low12": 7.684541144996737e-10,
+    "conv": null,
+    "total_vs_ref": 3.6023457435811847e-09
+   }
+  },
+  "ostep": {
+   "krylov": 8.23442607300824e-11
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "costopt_hiacc",
+  "law": "A",
+  "N": 512,
+  "operator_hash": "576e1743b9bc5600",
+  "cache_key": "47dc947a1b7122f3",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "costopt_hiacc",
+   "description": "cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)",
+   "law": "A",
+   "potential": "double_well",
+   "N": 512,
+   "L": 10.999999999999998,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 0.85,
+    "s": 4.1,
+    "eta": 0.6779116381586452,
+    "p": 7
+   },
+   "pair_search": "tree",
+   "force_method": "neighbor",
+   "rank_noise": 40,
+   "rank_damp": 5,
+   "rank_provenance": {
+    "rule": "strict Krylov rule, table row N <= 512",
+    "table_row_N_max": 512,
+    "verified_at_this_N": true,
+    "verified_N": [
+     64,
+     256,
+     512
+    ]
+   },
+   "operator_budget": 2e-07,
+   "warnings": []
+  },
+  "cpu_s": 22.532375496999997
+ },
+ "costopt_hiacc_A_N1728": {
+  "per_state": {
+   "replicated_v2": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.85,
+     "s": 4.1,
+     "rc": 4.823529411764706,
+     "kc": 6.969999999999999,
+     "eta_N": 0.6779116381586452,
+     "eta_actual": 0.677911638158645,
+     "p": 7,
+     "M": 54,
+     "n_modes": 25677,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 140609,
+    "gv_rows_err": 8.431902349049111e-08,
+    "krylov": {
+     "noise": {
+      "rank": 32,
+      "overall": 1.151563976852159e-09,
+      "kmin": 4.008344009719267e-08,
+      "low3": null,
+      "low12": null,
+      "conv": 2.9994710880508486e-15
+     },
+     "damp": {
+      "rank": 4,
+      "overall": 1.4197983455496088e-09,
+      "kmin": 1.2678821773463062e-08,
+      "low3": null,
+      "low12": null,
+      "conv": 1.988687943529903e-15
+     }
+    },
+    "ostep": {
+     "krylov": 1.35734394169416e-09
+    },
+    "ritz_min": 0.4508227699959992,
+    "ritz_max": 11.94332267996735,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "reference_converged": true
+    },
+    "passed": true
+   },
+   "liquid_scalar_langevin": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.85,
+     "s": 4.1,
+     "rc": 4.823529411764706,
+     "kc": 6.969999999999999,
+     "eta_N": 0.6779116381586452,
+     "eta_actual": 0.677911638158645,
+     "p": 7,
+     "M": 54,
+     "n_modes": 25677,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 351381,
+    "gv_rows_err": 6.338845196860561e-08,
+    "krylov": {
+     "noise": {
+      "rank": 32,
+      "overall": 5.900210195502913e-07,
+      "kmin": 3.484428010663158e-05,
+      "low3": null,
+      "low12": null,
+      "conv": 3.2390715915747773e-14
+     },
+     "damp": {
+      "rank": 4,
+      "overall": 2.2979801077196218e-08,
+      "kmin": 2.902697348031392e-07,
+      "low3": null,
+      "low12": null,
+      "conv": 2.053696445561628e-15
+     }
+    },
+    "ostep": {
+     "krylov": 1.988110415740251e-07
+    },
+    "ritz_min": 0.18296008711360945,
+    "ritz_max": 23.62024395640404,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": false,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "reference_converged": true
+    },
+    "passed": false
+   }
+  },
+  "mesh": {
+   "law": "A",
+   "amplitude": 1.6148096467001307,
+   "kappa": 0.7,
+   "xi": 0.85,
+   "s": 4.1,
+   "rc": 4.823529411764706,
+   "kc": 6.969999999999999,
+   "eta_N": 0.6779116381586452,
+   "eta_actual": 0.677911638158645,
+   "p": 7,
+   "M": 54,
+   "n_modes": 25677,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "tree"
+  },
+  "budget": 2e-07,
+  "gv_rows_err": 8.431902349049111e-08,
+  "ritz_min": 0.18296008711360945,
+  "ritz_max": 23.62024395640404,
+  "krylov": {
+   "noise": {
+    "rank": 32,
+    "overall": 5.900210195502913e-07,
+    "kmin": 3.484428010663158e-05,
+    "low3": null,
+    "low12": null,
+    "conv": 3.2390715915747773e-14
+   },
+   "damp": {
+    "rank": 4,
+    "overall": 2.2979801077196218e-08,
+    "kmin": 2.902697348031392e-07,
+    "low3": null,
+    "low12": null,
+    "conv": 2.053696445561628e-15
+   }
+  },
+  "ostep": {
+   "krylov": 1.988110415740251e-07
+  },
+  "checks": {
+   "operator": true,
+   "krylov": false,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "reference_converged": true
+  },
+  "passed": false,
+  "config": "costopt_hiacc",
+  "law": "A",
+  "N": 1728,
+  "operator_hash": "98358a5c7fce7573",
+  "cache_key": "640822c97db7da8c",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "costopt_hiacc",
+   "description": "cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)",
+   "law": "A",
+   "potential": "double_well",
+   "N": 1728,
+   "L": 16.499999999999996,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 0.85,
+    "s": 4.1,
+    "eta": 0.6779116381586452,
+    "p": 7
+   },
+   "pair_search": "tree",
+   "force_method": "neighbor",
+   "rank_noise": 32,
+   "rank_damp": 4,
+   "rank_provenance": {
+    "rule": "strict Krylov rule, table row N <= 1728",
+    "table_row_N_max": 1728,
+    "verified_at_this_N": true,
+    "verified_N": [
+     64,
+     256,
+     512,
+     1728,
+     4096
+    ]
+   },
+   "operator_budget": 2e-07,
+   "warnings": []
+  },
+  "cpu_s": 238.54643784799998,
+  "status_note": "evidence only: ranks 32/4 fail at N = 1728 on the liquid-like state; the N > 512 rows were removed from toy_configs.costopt_hiacc, which now refuses N > 512"
+ },
+ "costopt_hiacc_B_N64": {
+  "per_state": {
+   "v2_dw_lj": {
+    "mesh": {
+     "law": "B",
+     "amplitude": 0.9555086666864678,
+     "kappa": 0.7,
+     "xi": 1.0,
+     "s": 3.9,
+     "rc": 3.9,
+     "kc": 7.8,
+     "eta_N": 0.6827747058642308,
+     "eta_actual": 0.6827747058642308,
+     "p": 7,
+     "M": 20,
+     "n_modes": 1357,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 2953,
+    "op_err": 3.579851014005697e-08,
+    "op_err_by_state": {
+     "double_well": 3.579851014005697e-08,
+     "lj": 3.2998395907937236e-08
+    },
+    "sym_resid": 1.5228486010798698e-17,
+    "null_resid": 6.503432240039869e-16,
+    "literal_vs_dense": 4.950064365974568e-16,
+    "lam_min": 30.031183927092673,
+    "lam_max": 51.07766496680106,
+    "lam_min_ref": 30.031183807953706,
+    "krylov": {
+     "noise": {
+      "rank": 16,
+      "overall": 2.5024133167258957e-15,
+      "kmin": 9.112107121578755e-15,
+      "low3": 4.7279108232529916e-15,
+      "low12": 3.964481935629204e-15,
+      "conv": null,
+      "total_vs_ref": 7.896295802560491e-09
+     },
+     "damp": {
+      "rank": 6,
+      "overall": 4.3697472569918426e-13,
+      "kmin": 1.0294674188443226e-12,
+      "low3": 2.0886746237667457e-12,
+      "low12": 1.0327695211125344e-12,
+      "conv": null,
+      "total_vs_ref": 3.4392858068704827e-09
+     }
+    },
+    "ostep": {
+     "krylov": 3.977463188623806e-13
+    },
+    "ritz_min": 30.034616690035456,
+    "ritz_max": 51.07685907872801,
+    "budget": 5e-08,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "B",
+   "amplitude": 0.9555086666864678,
+   "kappa": 0.7,
+   "xi": 1.0,
+   "s": 3.9,
+   "rc": 3.9,
+   "kc": 7.8,
+   "eta_N": 0.6827747058642308,
+   "eta_actual": 0.6827747058642308,
+   "p": 7,
+   "M": 20,
+   "n_modes": 1357,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "tree"
+  },
+  "budget": 5e-08,
+  "op_err": 3.579851014005697e-08,
+  "sym_resid": 1.5228486010798698e-17,
+  "null_resid": 6.503432240039869e-16,
+  "literal_vs_dense": 4.950064365974568e-16,
+  "lam_min": 30.031183927092673,
+  "ritz_min": 30.034616690035456,
+  "ritz_max": 51.07685907872801,
+  "krylov": {
+   "noise": {
+    "rank": 16,
+    "overall": 2.5024133167258957e-15,
+    "kmin": 9.112107121578755e-15,
+    "low3": 4.7279108232529916e-15,
+    "low12": 3.964481935629204e-15,
+    "conv": null,
+    "total_vs_ref": 7.896295802560491e-09
+   },
+   "damp": {
+    "rank": 6,
+    "overall": 4.3697472569918426e-13,
+    "kmin": 1.0294674188443226e-12,
+    "low3": 2.0886746237667457e-12,
+    "low12": 1.0327695211125344e-12,
+    "conv": null,
+    "total_vs_ref": 3.4392858068704827e-09
+   }
+  },
+  "ostep": {
+   "krylov": 3.977463188623806e-13
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "costopt_hiacc",
+  "law": "B",
+  "N": 64,
+  "operator_hash": "a6e6767daa7d3d2a",
+  "cache_key": "284b790caae85935",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "costopt_hiacc",
+   "description": "cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)",
+   "law": "B",
+   "potential": "double_well",
+   "N": 64,
+   "L": 5.499999999999999,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 1.0,
+    "s": 3.9,
+    "eta": 0.6827747058642308,
+    "p": 7
+   },
+   "pair_search": "tree",
+   "force_method": "neighbor",
+   "rank_noise": 16,
+   "rank_damp": 6,
+   "rank_provenance": {
+    "rule": "strict Krylov rule, table row N <= 256",
+    "table_row_N_max": 256,
+    "verified_at_this_N": true,
+    "verified_N": [
+     64,
+     256,
+     512
+    ]
+   },
+   "operator_budget": 5e-08,
+   "warnings": []
+  },
+  "cpu_s": 4.820705572999998
+ },
+ "costopt_hiacc_B_N256": {
+  "per_state": {
+   "jittered_lattice": {
+    "mesh": {
+     "law": "B",
+     "amplitude": 0.9555086666864678,
+     "kappa": 0.7,
+     "xi": 1.0,
+     "s": 3.9,
+     "rc": 3.9,
+     "kc": 7.8,
+     "eta_N": 0.6827747058642308,
+     "eta_actual": 0.6773983039663488,
+     "p": 7,
+     "M": 32,
+     "n_modes": 5377,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 11949,
+    "op_err": 4.259442970740763e-08,
+    "op_err_by_state": {
+     "double_well": 4.259442970740763e-08
+    },
+    "sym_resid": 1.0482718011784318e-17,
+    "null_resid": 1.4729083670989609e-15,
+    "literal_vs_dense": 6.83614817339468e-16,
+    "lam_min": 28.62710347688969,
+    "lam_max": 49.2024302021123,
+    "lam_min_ref": 28.62710366841498,
+    "krylov": {
+     "noise": {
+      "rank": 16,
+      "overall": 3.294912710574372e-15,
+      "kmin": 9.172015549763875e-15,
+      "low3": 4.079697649961978e-15,
+      "low12": 3.996636763874466e-15,
+      "conv": null,
+      "total_vs_ref": 9.717039268791324e-09
+     },
+     "damp": {
+      "rank": 6,
+      "overall": 1.6832867231756679e-13,
+      "kmin": 3.074503650609626e-12,
+      "low3": 2.5435467246303748e-12,
+      "low12": 1.2481920652251352e-12,
+      "conv": null,
+      "total_vs_ref": 4.741913692376929e-09
+     }
+    },
+    "ostep": {
+     "krylov": 1.399259493762139e-13
+    },
+    "ritz_min": 28.703216679186138,
+    "ritz_max": 49.20125969420928,
+    "budget": 5e-08,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   },
+   "liquid_scalar_langevin": {
+    "mesh": {
+     "law": "B",
+     "amplitude": 0.9555086666864678,
+     "kappa": 0.7,
+     "xi": 1.0,
+     "s": 3.9,
+     "rc": 3.9,
+     "kc": 7.8,
+     "eta_N": 0.6827747058642308,
+     "eta_actual": 0.6773983039663488,
+     "p": 7,
+     "M": 32,
+     "n_modes": 5377,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 21438,
+    "op_err": 3.637383252592762e-08,
+    "op_err_by_state": {
+     "double_well": 3.637383252592762e-08
+    },
+    "sym_resid": 1.0102880493032766e-17,
+    "null_resid": 1.0956162182283436e-15,
+    "literal_vs_dense": 6.712189660796101e-16,
+    "lam_min": 15.651523875570813,
+    "lam_max": 78.25650335528375,
+    "lam_min_ref": 15.651523915909136,
+    "krylov": {
+     "noise": {
+      "rank": 16,
+      "overall": 1.5389833291943888e-10,
+      "kmin": 1.487704444809283e-09,
+      "low3": 3.787116881727289e-09,
+      "low12": 1.3611942904749131e-09,
+      "conv": null,
+      "total_vs_ref": 7.904911256689869e-09
+     },
+     "damp": {
+      "rank": 6,
+      "overall": 2.8140814712076435e-10,
+      "kmin": 1.7111347149599602e-09,
+      "low3": 5.5826339788894634e-09,
+      "low12": 1.5180009776910229e-09,
+      "conv": null,
+      "total_vs_ref": 4.555733395055816e-09
+     }
+    },
+    "ostep": {
+     "krylov": 2.3873967313920613e-10
+    },
+    "ritz_min": 15.651560762645389,
+    "ritz_max": 78.2563179105762,
+    "budget": 5e-08,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "B",
+   "amplitude": 0.9555086666864678,
+   "kappa": 0.7,
+   "xi": 1.0,
+   "s": 3.9,
+   "rc": 3.9,
+   "kc": 7.8,
+   "eta_N": 0.6827747058642308,
+   "eta_actual": 0.6773983039663488,
+   "p": 7,
+   "M": 32,
+   "n_modes": 5377,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "tree"
+  },
+  "budget": 5e-08,
+  "op_err": 4.259442970740763e-08,
+  "sym_resid": 1.0482718011784318e-17,
+  "null_resid": 1.4729083670989609e-15,
+  "literal_vs_dense": 6.83614817339468e-16,
+  "lam_min": 15.651523875570813,
+  "ritz_min": 15.651560762645389,
+  "ritz_max": 78.2563179105762,
+  "krylov": {
+   "noise": {
+    "rank": 16,
+    "overall": 1.5389833291943888e-10,
+    "kmin": 1.487704444809283e-09,
+    "low3": 3.787116881727289e-09,
+    "low12": 1.3611942904749131e-09,
+    "conv": null,
+    "total_vs_ref": 9.717039268791324e-09
+   },
+   "damp": {
+    "rank": 6,
+    "overall": 2.8140814712076435e-10,
+    "kmin": 1.7111347149599602e-09,
+    "low3": 5.5826339788894634e-09,
+    "low12": 1.5180009776910229e-09,
+    "conv": null,
+    "total_vs_ref": 4.741913692376929e-09
+   }
+  },
+  "ostep": {
+   "krylov": 2.3873967313920613e-10
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "costopt_hiacc",
+  "law": "B",
+  "N": 256,
+  "operator_hash": "c20d60ff948161d2",
+  "cache_key": "00c142b8eb80f174",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "costopt_hiacc",
+   "description": "cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)",
+   "law": "B",
+   "potential": "double_well",
+   "N": 256,
+   "L": 8.730705785825096,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 1.0,
+    "s": 3.9,
+    "eta": 0.6827747058642308,
+    "p": 7
+   },
+   "pair_search": "tree",
+   "force_method": "neighbor",
+   "rank_noise": 16,
+   "rank_damp": 6,
+   "rank_provenance": {
+    "rule": "strict Krylov rule, table row N <= 256",
+    "table_row_N_max": 256,
+    "verified_at_this_N": true,
+    "verified_N": [
+     64,
+     256,
+     512
+    ]
+   },
+   "operator_budget": 5e-08,
+   "warnings": []
+  },
+  "cpu_s": 5.689159437000001
+ },
+ "costopt_hiacc_B_N512": {
+  "per_state": {
+   "replicated_v2": {
+    "mesh": {
+     "law": "B",
+     "amplitude": 0.9555086666864678,
+     "kappa": 0.7,
+     "xi": 1.0,
+     "s": 3.9,
+     "rc": 3.9,
+     "kc": 7.8,
+     "eta_N": 0.6827747058642308,
+     "eta_actual": 0.6827747058642308,
+     "p": 7,
+     "M": 40,
+     "n_modes": 10779,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 23638,
+    "op_err": 3.527544614859687e-08,
+    "op_err_by_state": {
+     "double_well": 3.527544614859687e-08
+    },
+    "sym_resid": 1.1741431384748898e-17,
+    "null_resid": 2.8740638799366013e-15,
+    "literal_vs_dense": 9.31344294091927e-16,
+    "lam_min": 17.94734392167468,
+    "lam_max": 54.801500046144476,
+    "lam_min_ref": 17.947344014321672,
+    "krylov": {
+     "noise": {
+      "rank": 24,
+      "overall": 3.826863522734945e-15,
+      "kmin": 8.268166239719842e-15,
+      "low3": 1.1213049694300707e-14,
+      "low12": 8.338410500230811e-15,
+      "conv": null,
+      "total_vs_ref": 7.573202344973975e-09
+     },
+     "damp": {
+      "rank": 8,
+      "overall": 3.6267060317342595e-15,
+      "kmin": 6.624137434011361e-15,
+      "low3": 7.007536665052832e-15,
+      "low12": 4.594240521465683e-15,
+      "conv": null,
+      "total_vs_ref": 3.470457800314125e-09
+     }
+    },
+    "ostep": {
+     "krylov": 3.720566017991893e-15
+    },
+    "ritz_min": 17.947349750214084,
+    "ritz_max": 54.80148645032389,
+    "budget": 5e-08,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   },
+   "liquid_scalar_langevin": {
+    "mesh": {
+     "law": "B",
+     "amplitude": 0.9555086666864678,
+     "kappa": 0.7,
+     "xi": 1.0,
+     "s": 3.9,
+     "rc": 3.9,
+     "kc": 7.8,
+     "eta_N": 0.6827747058642308,
+     "eta_actual": 0.6827747058642308,
+     "p": 7,
+     "M": 40,
+     "n_modes": 10779,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "tree"
+    },
+    "n_real_pairs": 54533,
+    "op_err": 3.416312283248078e-08,
+    "op_err_by_state": {
+     "double_well": 3.416312283248078e-08
+    },
+    "sym_resid": 9.845624741499686e-18,
+    "null_resid": 2.2833088738152057e-15,
+    "literal_vs_dense": 9.254308528917923e-16,
+    "lam_min": 9.313324828884063,
+    "lam_max": 96.56316911512313,
+    "lam_min_ref": 9.313324842442567,
+    "krylov": {
+     "noise": {
+      "rank": 24,
+      "overall": 7.831371137823094e-12,
+      "kmin": 7.757293399112304e-11,
+      "low3": 2.3270674845927528e-10,
+      "low12": 1.2131487855142597e-10,
+      "conv": null,
+      "total_vs_ref": 7.391199788766098e-09
+     },
+     "damp": {
+      "rank": 8,
+      "overall": 3.7190658573348636e-13,
+      "kmin": 1.993749297235534e-12,
+      "low3": 3.2623635406730728e-12,
+      "low12": 1.925425753056609e-12,
+      "conv": null,
+      "total_vs_ref": 5.053084319109256e-09
+     }
+    },
+    "ostep": {
+     "krylov": 4.782536917614109e-12
+    },
+    "ritz_min": 9.313324832790563,
+    "ritz_max": 96.56305218608772,
+    "budget": 5e-08,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "B",
+   "amplitude": 0.9555086666864678,
+   "kappa": 0.7,
+   "xi": 1.0,
+   "s": 3.9,
+   "rc": 3.9,
+   "kc": 7.8,
+   "eta_N": 0.6827747058642308,
+   "eta_actual": 0.6827747058642308,
+   "p": 7,
+   "M": 40,
+   "n_modes": 10779,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "tree"
+  },
+  "budget": 5e-08,
+  "op_err": 3.527544614859687e-08,
+  "sym_resid": 1.1741431384748898e-17,
+  "null_resid": 2.8740638799366013e-15,
+  "literal_vs_dense": 9.31344294091927e-16,
+  "lam_min": 9.313324828884063,
+  "ritz_min": 9.313324832790563,
+  "ritz_max": 96.56305218608772,
+  "krylov": {
+   "noise": {
+    "rank": 24,
+    "overall": 7.831371137823094e-12,
+    "kmin": 7.757293399112304e-11,
+    "low3": 2.3270674845927528e-10,
+    "low12": 1.2131487855142597e-10,
+    "conv": null,
+    "total_vs_ref": 7.573202344973975e-09
+   },
+   "damp": {
+    "rank": 8,
+    "overall": 3.7190658573348636e-13,
+    "kmin": 1.993749297235534e-12,
+    "low3": 3.2623635406730728e-12,
+    "low12": 1.925425753056609e-12,
+    "conv": null,
+    "total_vs_ref": 5.053084319109256e-09
+   }
+  },
+  "ostep": {
+   "krylov": 4.782536917614109e-12
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "costopt_hiacc",
+  "law": "B",
+  "N": 512,
+  "operator_hash": "2fd68258a2bc0a0f",
+  "cache_key": "0d9ac2110aa9ab78",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "costopt_hiacc",
+   "description": "cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)",
+   "law": "B",
+   "potential": "double_well",
+   "N": 512,
+   "L": 10.999999999999998,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 1.0,
+    "s": 3.9,
+    "eta": 0.6827747058642308,
+    "p": 7
+   },
+   "pair_search": "tree",
+   "force_method": "neighbor",
+   "rank_noise": 24,
+   "rank_damp": 8,
+   "rank_provenance": {
+    "rule": "strict Krylov rule, table row N <= 512",
+    "table_row_N_max": 512,
+    "verified_at_this_N": true,
+    "verified_N": [
+     64,
+     256,
+     512
+    ]
+   },
+   "operator_budget": 5e-08,
+   "warnings": []
+  },
+  "cpu_s": 23.994895913999997
+ },
+ "baseline_hiacc_A_N64": {
+  "per_state": {
+   "v2_dw_lj": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.7,
+     "s": 4.1,
+     "rc": 5.857142857142857,
+     "kc": 5.739999999999999,
+     "eta_N": 0.7,
+     "eta_actual": 0.6699362071214845,
+     "p": 7,
+     "M": 15,
+     "n_modes": 515,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "images"
+    },
+    "n_real_pairs": 9533,
+    "op_err": 1.2655921037543455e-07,
+    "op_err_by_state": {
+     "double_well": 1.0609262180879208e-07,
+     "lj": 1.2655921037543455e-07
+    },
+    "sym_resid": 2.295435772169745e-17,
+    "null_resid": 5.312123209071245e-16,
+    "literal_vs_dense": 4.680312604260658e-16,
+    "lam_min": 1.7294699349621678,
+    "lam_max": 11.840188332517991,
+    "lam_min_ref": 1.7294701842094031,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 2.80460150030058e-15,
+      "kmin": 3.3959226071613993e-15,
+      "low3": 4.626398647357085e-15,
+      "low12": 3.4279100350358767e-15,
+      "conv": null,
+      "total_vs_ref": 3.629207142157442e-08
+     },
+     "damp": {
+      "rank": 16,
+      "overall": 2.2866322421542113e-15,
+      "kmin": 5.611154985828316e-15,
+      "low3": 2.854539523461008e-15,
+      "low12": 2.881625723429686e-15,
+      "conv": null,
+      "total_vs_ref": 2.1987876251007726e-09
+     }
+    },
+    "ostep": {
+     "krylov": 2.2517116559269145e-15
+    },
+    "ritz_min": 1.729469934962176,
+    "ritz_max": 11.840188332518,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "A",
+   "amplitude": 1.6148096467001307,
+   "kappa": 0.7,
+   "xi": 0.7,
+   "s": 4.1,
+   "rc": 5.857142857142857,
+   "kc": 5.739999999999999,
+   "eta_N": 0.7,
+   "eta_actual": 0.6699362071214845,
+   "p": 7,
+   "M": 15,
+   "n_modes": 515,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "images"
+  },
+  "budget": 2e-07,
+  "op_err": 1.2655921037543455e-07,
+  "sym_resid": 2.295435772169745e-17,
+  "null_resid": 5.312123209071245e-16,
+  "literal_vs_dense": 4.680312604260658e-16,
+  "lam_min": 1.7294699349621678,
+  "ritz_min": 1.729469934962176,
+  "ritz_max": 11.840188332518,
+  "krylov": {
+   "noise": {
+    "rank": 40,
+    "overall": 2.80460150030058e-15,
+    "kmin": 3.3959226071613993e-15,
+    "low3": 4.626398647357085e-15,
+    "low12": 3.4279100350358767e-15,
+    "conv": null,
+    "total_vs_ref": 3.629207142157442e-08
+   },
+   "damp": {
+    "rank": 16,
+    "overall": 2.2866322421542113e-15,
+    "kmin": 5.611154985828316e-15,
+    "low3": 2.854539523461008e-15,
+    "low12": 2.881625723429686e-15,
+    "conv": null,
+    "total_vs_ref": 2.1987876251007726e-09
+   }
+  },
+  "ostep": {
+   "krylov": 2.2517116559269145e-15
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "baseline_hiacc",
+  "law": "A",
+  "N": 64,
+  "operator_hash": "7b8ab5b20cf73932",
+  "cache_key": "19e2c0b9c4ba174f",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "baseline_hiacc",
+   "description": "original high-accuracy PPPM + Lanczos 40/16, image-enumerated pairs, all-pair forces (reproduces runs before 2026-10-08)",
+   "law": "A",
+   "potential": "double_well",
+   "N": 64,
+   "L": 5.499999999999999,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 0.7,
+    "s": 4.1,
+    "eta": 0.7,
+    "p": 7
+   },
+   "pair_search": "images",
+   "force_method": "allpairs",
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "rank_provenance": {
+    "rule": "fixed ranks of the original version",
+    "table_row_N_max": null,
+    "verified_at_this_N": true,
+    "verified_N": null
+   },
+   "operator_budget": 2e-07,
+   "warnings": []
+  },
+  "cpu_s": 3.3472367969999937
+ },
+ "baseline_hiacc_A_N256": {
+  "per_state": {
+   "jittered_lattice": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.7,
+     "s": 4.1,
+     "rc": 5.857142857142857,
+     "kc": 5.739999999999999,
+     "eta_N": 0.7,
+     "eta_actual": 0.6646608999601439,
+     "p": 7,
+     "M": 24,
+     "n_modes": 2103,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "images"
+    },
+    "n_real_pairs": 42940,
+    "op_err": 1.3809542460598598e-07,
+    "op_err_by_state": {
+     "double_well": 1.3809542460598598e-07
+    },
+    "sym_resid": 1.7595957867338318e-17,
+    "null_resid": 1.6973601310064167e-15,
+    "literal_vs_dense": 6.305399431633171e-16,
+    "lam_min": 1.7752706325937875,
+    "lam_max": 6.776865872068809,
+    "lam_min_ref": 1.7752707901680265,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 3.5379271934615642e-15,
+      "kmin": 1.104292546434199e-14,
+      "low3": 1.0811093613573346e-14,
+      "low12": 7.235931527172702e-15,
+      "conv": null,
+      "total_vs_ref": 4.2851286505139265e-08
+     },
+     "damp": {
+      "rank": 16,
+      "overall": 3.1484373164918023e-15,
+      "kmin": 7.732975142433804e-15,
+      "low3": 9.526675798108815e-15,
+      "low12": 4.109820227728201e-15,
+      "conv": null,
+      "total_vs_ref": 2.043147379634402e-09
+     }
+    },
+    "ostep": {
+     "krylov": 3.1534181036193875e-15
+    },
+    "ritz_min": 1.7752723917199134,
+    "ritz_max": 6.776865696273604,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   },
+   "liquid_scalar_langevin": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.7,
+     "s": 4.1,
+     "rc": 5.857142857142857,
+     "kc": 5.739999999999999,
+     "eta_N": 0.7,
+     "eta_actual": 0.6646608999601439,
+     "p": 7,
+     "M": 24,
+     "n_modes": 2103,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "images"
+    },
+    "n_real_pairs": 42267,
+    "op_err": 1.0966710032206499e-07,
+    "op_err_by_state": {
+     "double_well": 1.0966710032206499e-07
+    },
+    "sym_resid": 2.0661848027112136e-17,
+    "null_resid": 1.1247395968846268e-15,
+    "literal_vs_dense": 6.009693996513884e-16,
+    "lam_min": 0.4556437373295684,
+    "lam_max": 18.486329461753563,
+    "lam_min_ref": 0.4556438375822507,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 1.5959087770033884e-13,
+      "kmin": 2.5358563065565526e-12,
+      "low3": 4.126554757237445e-12,
+      "low12": 2.5370412883226903e-12,
+      "conv": null,
+      "total_vs_ref": 2.370296296078338e-08
+     },
+     "damp": {
+      "rank": 16,
+      "overall": 3.0945000905491806e-15,
+      "kmin": 6.444400412762041e-15,
+      "low3": 1.3906064816030178e-14,
+      "low12": 4.1551420252536586e-15,
+      "conv": null,
+      "total_vs_ref": 2.5477082542478735e-09
+     }
+    },
+    "ostep": {
+     "krylov": 4.984715326665436e-14
+    },
+    "ritz_min": 0.4556437373295736,
+    "ritz_max": 18.486327731243097,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "A",
+   "amplitude": 1.6148096467001307,
+   "kappa": 0.7,
+   "xi": 0.7,
+   "s": 4.1,
+   "rc": 5.857142857142857,
+   "kc": 5.739999999999999,
+   "eta_N": 0.7,
+   "eta_actual": 0.6646608999601439,
+   "p": 7,
+   "M": 24,
+   "n_modes": 2103,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "images"
+  },
+  "budget": 2e-07,
+  "op_err": 1.3809542460598598e-07,
+  "sym_resid": 2.0661848027112136e-17,
+  "null_resid": 1.6973601310064167e-15,
+  "literal_vs_dense": 6.305399431633171e-16,
+  "lam_min": 0.4556437373295684,
+  "ritz_min": 0.4556437373295736,
+  "ritz_max": 18.486327731243097,
+  "krylov": {
+   "noise": {
+    "rank": 40,
+    "overall": 1.5959087770033884e-13,
+    "kmin": 2.5358563065565526e-12,
+    "low3": 4.126554757237445e-12,
+    "low12": 2.5370412883226903e-12,
+    "conv": null,
+    "total_vs_ref": 4.2851286505139265e-08
+   },
+   "damp": {
+    "rank": 16,
+    "overall": 3.1484373164918023e-15,
+    "kmin": 7.732975142433804e-15,
+    "low3": 1.3906064816030178e-14,
+    "low12": 4.1551420252536586e-15,
+    "conv": null,
+    "total_vs_ref": 2.5477082542478735e-09
+   }
+  },
+  "ostep": {
+   "krylov": 4.984715326665436e-14
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "baseline_hiacc",
+  "law": "A",
+  "N": 256,
+  "operator_hash": "d997a193299046ee",
+  "cache_key": "f2c49fb5e4811fdf",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "baseline_hiacc",
+   "description": "original high-accuracy PPPM + Lanczos 40/16, image-enumerated pairs, all-pair forces (reproduces runs before 2026-10-08)",
+   "law": "A",
+   "potential": "double_well",
+   "N": 256,
+   "L": 8.730705785825096,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 0.7,
+    "s": 4.1,
+    "eta": 0.7,
+    "p": 7
+   },
+   "pair_search": "images",
+   "force_method": "allpairs",
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "rank_provenance": {
+    "rule": "fixed ranks of the original version",
+    "table_row_N_max": null,
+    "verified_at_this_N": true,
+    "verified_N": null
+   },
+   "operator_budget": 2e-07,
+   "warnings": []
+  },
+  "cpu_s": 8.317209908999999
+ },
+ "baseline_hiacc_A_N512": {
+  "per_state": {
+   "replicated_v2": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.7,
+     "s": 4.1,
+     "rc": 5.857142857142857,
+     "kc": 5.739999999999999,
+     "eta_N": 0.7,
+     "eta_actual": 0.6699362071214845,
+     "p": 7,
+     "M": 30,
+     "n_modes": 4169,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "images"
+    },
+    "n_real_pairs": 77825,
+    "op_err": 1.1728301041751333e-07,
+    "op_err_by_state": {
+     "double_well": 1.1728301041751333e-07
+    },
+    "sym_resid": 2.3651358530140668e-17,
+    "null_resid": 1.6303649600031827e-15,
+    "literal_vs_dense": 8.257802231845631e-16,
+    "lam_min": 0.6196799177005726,
+    "lam_max": 11.896969971121731,
+    "lam_min_ref": 0.6196800702101348,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 2.1022412406268353e-12,
+      "kmin": 4.0216942109351955e-11,
+      "low3": 1.1309964315273918e-10,
+      "low12": 6.327635768732991e-11,
+      "conv": null,
+      "total_vs_ref": 3.66922959642626e-08
+     },
+     "damp": {
+      "rank": 16,
+      "overall": 3.7458933402321515e-15,
+      "kmin": 6.223067583243628e-15,
+      "low3": 6.142285954416549e-15,
+      "low12": 5.0514997807274246e-15,
+      "conv": null,
+      "total_vs_ref": 2.2549875872994874e-09
+     }
+    },
+    "ostep": {
+     "krylov": 5.079960665632753e-13
+    },
+    "ritz_min": 0.6196800455686323,
+    "ritz_max": 11.896699160574283,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   },
+   "liquid_scalar_langevin": {
+    "mesh": {
+     "law": "A",
+     "amplitude": 1.6148096467001307,
+     "kappa": 0.7,
+     "xi": 0.7,
+     "s": 4.1,
+     "rc": 5.857142857142857,
+     "kc": 5.739999999999999,
+     "eta_N": 0.7,
+     "eta_actual": 0.6699362071214845,
+     "p": 7,
+     "M": 30,
+     "n_modes": 4169,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "images"
+    },
+    "n_real_pairs": 116306,
+    "op_err": 1.1494362659215387e-07,
+    "op_err_by_state": {
+     "double_well": 1.1494362659215387e-07
+    },
+    "sym_resid": 1.933250456323249e-17,
+    "null_resid": 1.5259334421459998e-15,
+    "literal_vs_dense": 8.967564024147433e-16,
+    "lam_min": 0.21457194798501697,
+    "lam_max": 21.45458128760632,
+    "lam_min_ref": 0.2145719723725698,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 3.856399553879352e-11,
+      "kmin": 5.897301336414307e-10,
+      "low3": 1.3106735269044505e-09,
+      "low12": 9.090864094201208e-10,
+      "conv": null,
+      "total_vs_ref": 2.211849486277657e-08
+     },
+     "damp": {
+      "rank": 16,
+      "overall": 3.846147231360476e-15,
+      "kmin": 8.621652189705347e-15,
+      "low3": 1.2583107475568625e-14,
+      "low12": 6.255629468142617e-15,
+      "conv": null,
+      "total_vs_ref": 2.89122124768618e-09
+     }
+    },
+    "ostep": {
+     "krylov": 1.2486802101226157e-11
+    },
+    "ritz_min": 0.2145719479851996,
+    "ritz_max": 21.454580727698364,
+    "budget": 2e-07,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "A",
+   "amplitude": 1.6148096467001307,
+   "kappa": 0.7,
+   "xi": 0.7,
+   "s": 4.1,
+   "rc": 5.857142857142857,
+   "kc": 5.739999999999999,
+   "eta_N": 0.7,
+   "eta_actual": 0.6699362071214845,
+   "p": 7,
+   "M": 30,
+   "n_modes": 4169,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "images"
+  },
+  "budget": 2e-07,
+  "op_err": 1.1728301041751333e-07,
+  "sym_resid": 2.3651358530140668e-17,
+  "null_resid": 1.6303649600031827e-15,
+  "literal_vs_dense": 8.967564024147433e-16,
+  "lam_min": 0.21457194798501697,
+  "ritz_min": 0.2145719479851996,
+  "ritz_max": 21.454580727698364,
+  "krylov": {
+   "noise": {
+    "rank": 40,
+    "overall": 3.856399553879352e-11,
+    "kmin": 5.897301336414307e-10,
+    "low3": 1.3106735269044505e-09,
+    "low12": 9.090864094201208e-10,
+    "conv": null,
+    "total_vs_ref": 3.66922959642626e-08
+   },
+   "damp": {
+    "rank": 16,
+    "overall": 3.846147231360476e-15,
+    "kmin": 8.621652189705347e-15,
+    "low3": 1.2583107475568625e-14,
+    "low12": 6.255629468142617e-15,
+    "conv": null,
+    "total_vs_ref": 2.89122124768618e-09
+   }
+  },
+  "ostep": {
+   "krylov": 1.2486802101226157e-11
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "baseline_hiacc",
+  "law": "A",
+  "N": 512,
+  "operator_hash": "8182d14b16344c95",
+  "cache_key": "1293b470e2d51176",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "baseline_hiacc",
+   "description": "original high-accuracy PPPM + Lanczos 40/16, image-enumerated pairs, all-pair forces (reproduces runs before 2026-10-08)",
+   "law": "A",
+   "potential": "double_well",
+   "N": 512,
+   "L": 10.999999999999998,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 0.7,
+    "s": 4.1,
+    "eta": 0.7,
+    "p": 7
+   },
+   "pair_search": "images",
+   "force_method": "allpairs",
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "rank_provenance": {
+    "rule": "fixed ranks of the original version",
+    "table_row_N_max": null,
+    "verified_at_this_N": true,
+    "verified_N": null
+   },
+   "operator_budget": 2e-07,
+   "warnings": []
+  },
+  "cpu_s": 31.164457861000002
+ },
+ "baseline_hiacc_B_N64": {
+  "per_state": {
+   "v2_dw_lj": {
+    "mesh": {
+     "law": "B",
+     "amplitude": 0.9555086666864678,
+     "kappa": 0.7,
+     "xi": 0.7,
+     "s": 4.1,
+     "rc": 5.857142857142857,
+     "kc": 5.739999999999999,
+     "eta_N": 0.7,
+     "eta_actual": 0.6699362071214845,
+     "p": 7,
+     "M": 15,
+     "n_modes": 515,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "images"
+    },
+    "n_real_pairs": 9509,
+    "op_err": 4.545858308520605e-08,
+    "op_err_by_state": {
+     "double_well": 4.545858308520605e-08,
+     "lj": 3.916561761767577e-08
+    },
+    "sym_resid": 1.4706473700643752e-17,
+    "null_resid": 5.780828674600629e-16,
+    "literal_vs_dense": 4.447865007906225e-16,
+    "lam_min": 30.03118371392868,
+    "lam_max": 51.077664769191784,
+    "lam_min_ref": 30.031183807953706,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 2.8964671522045105e-15,
+      "kmin": 1.6190135886523497e-14,
+      "low3": 3.788726378206622e-15,
+      "low12": 3.2998616844156572e-15,
+      "conv": null,
+      "total_vs_ref": 8.955143220841245e-09
+     },
+     "damp": {
+      "rank": 16,
+      "overall": 2.407688986266942e-15,
+      "kmin": 4.496864464311572e-15,
+      "low3": 3.892054589633052e-15,
+      "low12": 2.792489567997173e-15,
+      "conv": null,
+      "total_vs_ref": 4.379981801087571e-09
+     }
+    },
+    "ostep": {
+     "krylov": 2.656208016156202e-15
+    },
+    "ritz_min": 30.031183714672146,
+    "ritz_max": 51.077664769191784,
+    "budget": 5e-08,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "B",
+   "amplitude": 0.9555086666864678,
+   "kappa": 0.7,
+   "xi": 0.7,
+   "s": 4.1,
+   "rc": 5.857142857142857,
+   "kc": 5.739999999999999,
+   "eta_N": 0.7,
+   "eta_actual": 0.6699362071214845,
+   "p": 7,
+   "M": 15,
+   "n_modes": 515,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "images"
+  },
+  "budget": 5e-08,
+  "op_err": 4.545858308520605e-08,
+  "sym_resid": 1.4706473700643752e-17,
+  "null_resid": 5.780828674600629e-16,
+  "literal_vs_dense": 4.447865007906225e-16,
+  "lam_min": 30.03118371392868,
+  "ritz_min": 30.031183714672146,
+  "ritz_max": 51.077664769191784,
+  "krylov": {
+   "noise": {
+    "rank": 40,
+    "overall": 2.8964671522045105e-15,
+    "kmin": 1.6190135886523497e-14,
+    "low3": 3.788726378206622e-15,
+    "low12": 3.2998616844156572e-15,
+    "conv": null,
+    "total_vs_ref": 8.955143220841245e-09
+   },
+   "damp": {
+    "rank": 16,
+    "overall": 2.407688986266942e-15,
+    "kmin": 4.496864464311572e-15,
+    "low3": 3.892054589633052e-15,
+    "low12": 2.792489567997173e-15,
+    "conv": null,
+    "total_vs_ref": 4.379981801087571e-09
+   }
+  },
+  "ostep": {
+   "krylov": 2.656208016156202e-15
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "baseline_hiacc",
+  "law": "B",
+  "N": 64,
+  "operator_hash": "771e10d21cc4d407",
+  "cache_key": "d8bd6553a873086a",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "baseline_hiacc",
+   "description": "original high-accuracy PPPM + Lanczos 40/16, image-enumerated pairs, all-pair forces (reproduces runs before 2026-10-08)",
+   "law": "B",
+   "potential": "double_well",
+   "N": 64,
+   "L": 5.499999999999999,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 0.7,
+    "s": 4.1,
+    "eta": 0.7,
+    "p": 7
+   },
+   "pair_search": "images",
+   "force_method": "allpairs",
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "rank_provenance": {
+    "rule": "fixed ranks of the original version",
+    "table_row_N_max": null,
+    "verified_at_this_N": true,
+    "verified_N": null
+   },
+   "operator_budget": 5e-08,
+   "warnings": []
+  },
+  "cpu_s": 5.914601497999996
+ },
+ "baseline_hiacc_B_N256": {
+  "per_state": {
+   "jittered_lattice": {
+    "mesh": {
+     "law": "B",
+     "amplitude": 0.9555086666864678,
+     "kappa": 0.7,
+     "xi": 0.7,
+     "s": 4.1,
+     "rc": 5.857142857142857,
+     "kc": 5.739999999999999,
+     "eta_N": 0.7,
+     "eta_actual": 0.6646608999601439,
+     "p": 7,
+     "M": 24,
+     "n_modes": 2103,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "images"
+    },
+    "n_real_pairs": 42940,
+    "op_err": 3.8360948350136625e-08,
+    "op_err_by_state": {
+     "double_well": 3.8360948350136625e-08
+    },
+    "sym_resid": 1.158368851213901e-17,
+    "null_resid": 1.992758357428262e-15,
+    "literal_vs_dense": 6.798077453091482e-16,
+    "lam_min": 28.627103444995388,
+    "lam_max": 49.202430789185264,
+    "lam_min_ref": 28.62710366841498,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 3.4573463115861424e-15,
+      "kmin": 7.393575891554066e-15,
+      "low3": 5.33518211571629e-15,
+      "low12": 5.084366024200903e-15,
+      "conv": null,
+      "total_vs_ref": 8.902790933367592e-09
+     },
+     "damp": {
+      "rank": 16,
+      "overall": 3.1418653430292657e-15,
+      "kmin": 4.988638392525568e-15,
+      "low3": 5.435718914850137e-15,
+      "low12": 3.869985433031369e-15,
+      "conv": null,
+      "total_vs_ref": 4.2461828884746535e-09
+     }
+    },
+    "ostep": {
+     "krylov": 3.295055181490678e-15
+    },
+    "ritz_min": 28.627103604866996,
+    "ritz_max": 49.20243078918524,
+    "budget": 5e-08,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   },
+   "liquid_scalar_langevin": {
+    "mesh": {
+     "law": "B",
+     "amplitude": 0.9555086666864678,
+     "kappa": 0.7,
+     "xi": 0.7,
+     "s": 4.1,
+     "rc": 5.857142857142857,
+     "kc": 5.739999999999999,
+     "eta_N": 0.7,
+     "eta_actual": 0.6646608999601439,
+     "p": 7,
+     "M": 24,
+     "n_modes": 2103,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "images"
+    },
+    "n_real_pairs": 42267,
+    "op_err": 4.413777183957016e-08,
+    "op_err_by_state": {
+     "double_well": 4.413777183957016e-08
+    },
+    "sym_resid": 1.0788813753519216e-17,
+    "null_resid": 1.5936235844241712e-15,
+    "literal_vs_dense": 6.604243669423088e-16,
+    "lam_min": 15.65152380338725,
+    "lam_max": 78.25650425223334,
+    "lam_min_ref": 15.651523915909136,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 3.329386864976937e-15,
+      "kmin": 6.143386714224024e-15,
+      "low3": 2.1199465526973905e-14,
+      "low12": 5.1661611731587924e-15,
+      "conv": null,
+      "total_vs_ref": 8.328075811932474e-09
+     },
+     "damp": {
+      "rank": 16,
+      "overall": 3.211280751300664e-15,
+      "kmin": 6.7934234284583654e-15,
+      "low3": 1.6594363052729106e-14,
+      "low12": 3.1972228847731873e-15,
+      "conv": null,
+      "total_vs_ref": 4.281946458114727e-09
+     }
+    },
+    "ostep": {
+     "krylov": 3.3230846064616633e-15
+    },
+    "ritz_min": 15.65152380338725,
+    "ritz_max": 78.25650425223334,
+    "budget": 5e-08,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "B",
+   "amplitude": 0.9555086666864678,
+   "kappa": 0.7,
+   "xi": 0.7,
+   "s": 4.1,
+   "rc": 5.857142857142857,
+   "kc": 5.739999999999999,
+   "eta_N": 0.7,
+   "eta_actual": 0.6646608999601439,
+   "p": 7,
+   "M": 24,
+   "n_modes": 2103,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "images"
+  },
+  "budget": 5e-08,
+  "op_err": 4.413777183957016e-08,
+  "sym_resid": 1.158368851213901e-17,
+  "null_resid": 1.992758357428262e-15,
+  "literal_vs_dense": 6.798077453091482e-16,
+  "lam_min": 15.65152380338725,
+  "ritz_min": 15.65152380338725,
+  "ritz_max": 78.25650425223334,
+  "krylov": {
+   "noise": {
+    "rank": 40,
+    "overall": 3.4573463115861424e-15,
+    "kmin": 7.393575891554066e-15,
+    "low3": 2.1199465526973905e-14,
+    "low12": 5.1661611731587924e-15,
+    "conv": null,
+    "total_vs_ref": 8.902790933367592e-09
+   },
+   "damp": {
+    "rank": 16,
+    "overall": 3.211280751300664e-15,
+    "kmin": 6.7934234284583654e-15,
+    "low3": 1.6594363052729106e-14,
+    "low12": 3.869985433031369e-15,
+    "conv": null,
+    "total_vs_ref": 4.281946458114727e-09
+   }
+  },
+  "ostep": {
+   "krylov": 3.3230846064616633e-15
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "baseline_hiacc",
+  "law": "B",
+  "N": 256,
+  "operator_hash": "569356ca49f4d868",
+  "cache_key": "9eb12a4266fb45f7",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "baseline_hiacc",
+   "description": "original high-accuracy PPPM + Lanczos 40/16, image-enumerated pairs, all-pair forces (reproduces runs before 2026-10-08)",
+   "law": "B",
+   "potential": "double_well",
+   "N": 256,
+   "L": 8.730705785825096,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 0.7,
+    "s": 4.1,
+    "eta": 0.7,
+    "p": 7
+   },
+   "pair_search": "images",
+   "force_method": "allpairs",
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "rank_provenance": {
+    "rule": "fixed ranks of the original version",
+    "table_row_N_max": null,
+    "verified_at_this_N": true,
+    "verified_N": null
+   },
+   "operator_budget": 5e-08,
+   "warnings": []
+  },
+  "cpu_s": 8.922328205
+ },
+ "baseline_hiacc_B_N512": {
+  "per_state": {
+   "replicated_v2": {
+    "mesh": {
+     "law": "B",
+     "amplitude": 0.9555086666864678,
+     "kappa": 0.7,
+     "xi": 0.7,
+     "s": 4.1,
+     "rc": 5.857142857142857,
+     "kc": 5.739999999999999,
+     "eta_N": 0.7,
+     "eta_actual": 0.6699362071214845,
+     "p": 7,
+     "M": 30,
+     "n_modes": 4169,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "images"
+    },
+    "n_real_pairs": 77630,
+    "op_err": 4.344618188265747e-08,
+    "op_err_by_state": {
+     "double_well": 4.344618188265747e-08
+    },
+    "sym_resid": 1.1218363340517269e-17,
+    "null_resid": 2.6502271313154293e-15,
+    "literal_vs_dense": 9.08952177534914e-16,
+    "lam_min": 17.947343835843164,
+    "lam_max": 54.801500274226484,
+    "lam_min_ref": 17.947344014321672,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 3.939978875487468e-15,
+      "kmin": 1.0871936105153791e-14,
+      "low3": 1.4051348712880134e-14,
+      "low12": 6.473646642441861e-15,
+      "conv": null,
+      "total_vs_ref": 8.579234901349409e-09
+     },
+     "damp": {
+      "rank": 16,
+      "overall": 3.872833076307328e-15,
+      "kmin": 7.388110206544111e-15,
+      "low3": 6.807601441977831e-15,
+      "low12": 5.538119694450137e-15,
+      "conv": null,
+      "total_vs_ref": 3.97503767674255e-09
+     }
+    },
+    "ostep": {
+     "krylov": 3.895052514756316e-15
+    },
+    "ritz_min": 17.94734383584316,
+    "ritz_max": 54.80150027422638,
+    "budget": 5e-08,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   },
+   "liquid_scalar_langevin": {
+    "mesh": {
+     "law": "B",
+     "amplitude": 0.9555086666864678,
+     "kappa": 0.7,
+     "xi": 0.7,
+     "s": 4.1,
+     "rc": 5.857142857142857,
+     "kc": 5.739999999999999,
+     "eta_N": 0.7,
+     "eta_actual": 0.6699362071214845,
+     "p": 7,
+     "M": 30,
+     "n_modes": 4169,
+     "n_excluded": 0,
+     "k0_retained": true,
+     "pair_search": "images"
+    },
+    "n_real_pairs": 116306,
+    "op_err": 4.374548605339386e-08,
+    "op_err_by_state": {
+     "double_well": 4.374548605339386e-08
+    },
+    "sym_resid": 9.669913113208248e-18,
+    "null_resid": 1.791216461275419e-15,
+    "literal_vs_dense": 9.48209442640191e-16,
+    "lam_min": 9.313324817328647,
+    "lam_max": 96.56317005137183,
+    "lam_min_ref": 9.313324842442567,
+    "krylov": {
+     "noise": {
+      "rank": 40,
+      "overall": 3.974830125477946e-15,
+      "kmin": 1.2300234105043564e-14,
+      "low3": 2.06704157337901e-14,
+      "low12": 8.115295361599156e-15,
+      "conv": null,
+      "total_vs_ref": 7.347421070187565e-09
+     },
+     "damp": {
+      "rank": 16,
+      "overall": 3.68704886924708e-15,
+      "kmin": 1.21370950029975e-14,
+      "low3": 5.77639047414846e-15,
+      "low12": 4.017947384221681e-15,
+      "conv": null,
+      "total_vs_ref": 4.906428454123968e-09
+     }
+    },
+    "ostep": {
+     "krylov": 3.781909609712865e-15
+    },
+    "ritz_min": 9.3133248173286,
+    "ritz_max": 96.56317005129416,
+    "budget": 5e-08,
+    "checks": {
+     "operator": true,
+     "krylov": true,
+     "ostep": true,
+     "ritz_positive": true,
+     "k0_retained": true,
+     "symmetric": true,
+     "null_space": true,
+     "psd_on_range": true,
+     "literal_matvec": true
+    },
+    "passed": true
+   }
+  },
+  "mesh": {
+   "law": "B",
+   "amplitude": 0.9555086666864678,
+   "kappa": 0.7,
+   "xi": 0.7,
+   "s": 4.1,
+   "rc": 5.857142857142857,
+   "kc": 5.739999999999999,
+   "eta_N": 0.7,
+   "eta_actual": 0.6699362071214845,
+   "p": 7,
+   "M": 30,
+   "n_modes": 4169,
+   "n_excluded": 0,
+   "k0_retained": true,
+   "pair_search": "images"
+  },
+  "budget": 5e-08,
+  "op_err": 4.374548605339386e-08,
+  "sym_resid": 1.1218363340517269e-17,
+  "null_resid": 2.6502271313154293e-15,
+  "literal_vs_dense": 9.48209442640191e-16,
+  "lam_min": 9.313324817328647,
+  "ritz_min": 9.3133248173286,
+  "ritz_max": 96.56317005129416,
+  "krylov": {
+   "noise": {
+    "rank": 40,
+    "overall": 3.974830125477946e-15,
+    "kmin": 1.2300234105043564e-14,
+    "low3": 2.06704157337901e-14,
+    "low12": 8.115295361599156e-15,
+    "conv": null,
+    "total_vs_ref": 8.579234901349409e-09
+   },
+   "damp": {
+    "rank": 16,
+    "overall": 3.872833076307328e-15,
+    "kmin": 1.21370950029975e-14,
+    "low3": 6.807601441977831e-15,
+    "low12": 5.538119694450137e-15,
+    "conv": null,
+    "total_vs_ref": 4.906428454123968e-09
+   }
+  },
+  "ostep": {
+   "krylov": 3.895052514756316e-15
+  },
+  "checks": {
+   "operator": true,
+   "krylov": true,
+   "ostep": true,
+   "ritz_positive": true,
+   "k0_retained": true,
+   "symmetric": true,
+   "null_space": true,
+   "psd_on_range": true,
+   "literal_matvec": true
+  },
+  "passed": true,
+  "config": "baseline_hiacc",
+  "law": "B",
+  "N": 512,
+  "operator_hash": "bcf3708e280c1918",
+  "cache_key": "bc04ceb212f98ceb",
+  "protocol": {
+   "version": 2,
+   "vectors_dense": 4,
+   "vectors_large": 3,
+   "rows_large": 48,
+   "ref_ranks": [
+    96,
+    32
+   ],
+   "conv_ranks": [
+    80,
+    24
+   ],
+   "states": [
+    "toy_cost_opt.config(N, law, pot, seed=101, rng_seed=0)",
+    "N > 64: scalar-Langevin double-well liquid {'t': 50.0, 'dt': 0.005, 'gamma': 1.0, 'seed': 7, 'start': 'fcc if N = 4 n^3 else sc, jitter 0.05'}"
+   ]
+  },
+  "resolved": {
+   "config": "baseline_hiacc",
+   "description": "original high-accuracy PPPM + Lanczos 40/16, image-enumerated pairs, all-pair forces (reproduces runs before 2026-10-08)",
+   "law": "B",
+   "potential": "double_well",
+   "N": 512,
+   "L": 10.999999999999998,
+   "dt": 0.005,
+   "model": {
+    "gamma": 0.5,
+    "kappa": 0.7,
+    "r_ref": 1.3,
+    "kT": 0.7,
+    "mass": 1.0,
+    "density": 0.38467317806160783,
+    "epsilon": 1.0,
+    "sigma": 1.0,
+    "r_on": 2.0,
+    "r_cut": 2.5,
+    "stop_rmin": 0.45
+   },
+   "pppm": {
+    "xi": 0.7,
+    "s": 4.1,
+    "eta": 0.7,
+    "p": 7
+   },
+   "pair_search": "images",
+   "force_method": "allpairs",
+   "rank_noise": 40,
+   "rank_damp": 16,
+   "rank_provenance": {
+    "rule": "fixed ranks of the original version",
+    "table_row_N_max": null,
+    "verified_at_this_N": true,
+    "verified_N": null
+   },
+   "operator_budget": 5e-08,
+   "warnings": []
+  },
+  "cpu_s": 29.863261539999982
+ }
+}

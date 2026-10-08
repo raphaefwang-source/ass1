@@ -1,0 +1,16 @@
+{
+ "exit_codes": [
+  0,
+  75,
+  0
+ ],
+ "expected": "continuous 0, stopped segments 75, final resume 0",
+ "segments": 2,
+ "q_p_bitwise": true,
+ "rng_state_equal": true,
+ "diag_bitwise_except_wall": true,
+ "frames_bitwise": true,
+ "monitor_bitwise": true,
+ "steps": 400,
+ "passed": true
+}

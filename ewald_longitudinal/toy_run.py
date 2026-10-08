@@ -1,0 +1,652 @@
+#!/usr/bin/env python3
+"""
+Unified, restartable runner for the toy friction dynamics (local and HPC entry point).
+
+    python3 toy_run.py --config costopt_hiacc --potential double_well --kernel A --N 512 --seed 101 \\
+        --burn-in 140 --production 60 --out RUNS/double_well_A_N512_s101
+    python3 toy_run.py --resume --out RUNS/double_well_A_N512_s101          # continue from the last checkpoint
+
+Model and step:
+- the step is that of toy_dynamics.run, B(dt/2) A(dt/2) O(dt) A(dt/2) B(dt/2): finite-time FDT O-step of
+  toy_dynamics.Thermostat("pppm_lanczos"), with damping and noise from the same Gamma_h;
+- one standard-normal (N, 3) draw per step. With the same state and noise stream, the trajectory is bitwise that of
+  toy_dynamics.run (test_toy_run.py);
+- every parameter comes from a named configuration in toy_configs.py. The resolved set is printed at start-up and
+  stored in config.json; nothing falls back to an old default.
+
+Initial states (recorded in config.json; none of the constructed ones is marked equilibrated):
+- v2_checkpoint  N = 64 only: the v2 restart state (after its burn-in, with the v2 dense lattice thermostat);
+- replicate64    N = 64 k^3: k^3 periodic copies of a v2 N = 64 state, uniform jitter, fresh Maxwell momenta;
+- fcc / sc       N = 4 n^3 / n^3: lattice at the toy density, uniform jitter, fresh Maxwell momenta;
+- --from-state   q, p from an .npz file (e.g. checkpoint_burnin_end.npz of another run).
+
+Output directory:
+  config.json                  resolved parameters, provenance, init record, code version, hashes (written once)
+  status.json                  state (running / incomplete / complete / failed), counters, segments, peak RSS
+  run.log                      human-readable log (appended)
+  init_state.npz               initial q, p
+  checkpoint.npz               latest state: q, p, step, RNG state, physics hash (atomic replace)
+  checkpoint_burnin_end.npz    state at the end of burn-in (kept)
+  chunks/chunk_<end step>.npz  per checkpoint interval (start, end]: per-step diagnostics (DIAG_COLS), saved
+                               frames (unwrapped Q, velocity V, step) and accuracy-monitor rows (MON_COLS);
+                               chunk_000000000 holds the initial state.
+                               On resume, chunks ending past the checkpoint are moved to chunks/stale/
+
+Accuracy monitor (every --monitor-every-steps, own RNG keyed by step, so the trajectory is unchanged):
+- Lanczos error estimates of the noise sqrt-action and the damping action at the configured ranks:
+  |f_r - f_(r+8)| / |f_(r+8)| (damping: r+4), overall and in the k = 2 pi / L plane-wave components;
+- extreme Ritz values;
+- max_k S(k) over the three k = 2 pi / L vectors: long-wavelength density fluctuations (clustering or phase
+  separation change the friction spectrum and the rank requirement).
+Warnings go to run.log and status.json when an estimate exceeds the operator budget or the smallest Ritz value falls
+below the verified spectrum. They are estimates, not proofs.
+
+Exit codes:
+- 0   complete, including an already complete run;
+- 75  stopped early but resumable (signal, wall limit, segment limit);
+- 2   physical or numerical failure (the last checkpoint is kept);
+- 1   usage or configuration error.
+"""
+import os
+
+for _v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ.setdefault(_v, "1")                     # before NumPy is imported; recorded in config.json
+
+import argparse  # noqa: E402
+import datetime  # noqa: E402
+import hashlib  # noqa: E402
+import json  # noqa: E402
+import platform  # noqa: E402
+import resource  # noqa: E402
+import shutil  # noqa: E402
+import signal  # noqa: E402
+import socket  # noqa: E402
+import subprocess  # noqa: E402
+import sys  # noqa: E402
+import time  # noqa: E402
+from pathlib import Path  # noqa: E402
+
+import numpy as np  # noqa: E402
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(HERE / "toy_models"))
+import scipy  # noqa: E402
+import toy_configs as tc  # noqa: E402
+import toy_dynamics as td  # noqa: E402
+from test_lanczos_fdt import lanczos, proj, tridiag  # noqa: E402
+
+V2_CKPT = HERE / "toy_models" / "v2_results" / "restart_checkpoints"
+VERIFICATION = HERE / "cost_optimization_results" / "production_config_verification.json"
+DIAG_COLS = ("step", "t", "T_kin", "U_per_N", "KE_per_N", "P_norm", "rmin", "step_wall_s", "ritz_min", "ritz_max")
+MON_COLS = ("step", "noise_err_est", "noise_err_est_kmin", "damp_err_est", "damp_err_est_kmin", "ritz_min_mon",
+            "ritz_max_mon", "S_kmin_max")
+MON_EXTRA = (8, 4)                  # extra Lanczos steps of the error estimate (noise, damping)
+EXIT_COMPLETE, EXIT_USAGE, EXIT_FAILED, EXIT_INCOMPLETE = 0, 1, 2, 75
+STOP = {"signal": None}
+
+
+def _now():
+    return datetime.datetime.now().astimezone().isoformat(timespec="seconds")
+
+
+def _sha256(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as fh:
+        for block in iter(lambda: fh.read(1 << 20), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def _atomic_write_text(path, text):
+    tmp = path.with_name(path.name + ".tmp")
+    with open(tmp, "w") as fh:
+        fh.write(text)
+        fh.flush()
+        os.fsync(fh.fileno())
+    os.replace(tmp, path)
+
+
+def _atomic_savez(path, **arrays):
+    tmp = path.with_name(path.name + ".tmp")
+    with open(tmp, "wb") as fh:
+        np.savez(fh, **arrays)
+        fh.flush()
+        os.fsync(fh.fileno())
+    os.replace(tmp, path)
+
+
+def _git_info():
+    try:
+        head = subprocess.run(["git", "-C", str(HERE), "rev-parse", "HEAD"], capture_output=True, text=True,
+                              timeout=10).stdout.strip() or None
+        dirty = subprocess.run(["git", "-C", str(HERE), "status", "--porcelain", "--untracked-files=no"],
+                               capture_output=True, text=True, timeout=10).stdout.strip()
+        return dict(commit=head, dirty=bool(dirty))
+    except Exception as exc:                                          # git absent on the node is not fatal
+        return dict(commit=None, dirty=None, error=str(exc))
+
+
+def _steps(t, k, dt, what, required=False):
+    """Time t or step count k -> integer steps (exactly one of them, or neither -> 0 unless required)."""
+    if t is not None and k is not None:
+        raise tc.ConfigError(f"give {what} as time or as steps, not both")
+    if k is not None:
+        return int(k)
+    if t is None:
+        if required:
+            raise tc.ConfigError(f"{what} is required")
+        return 0
+    n = int(round(t / dt))
+    if abs(n * dt - t) > 1e-9 * max(1.0, t):
+        raise tc.ConfigError(f"{what} = {t} is not a multiple of dt = {dt}")
+    return n
+
+
+# ----------------------------------------------------------------------------
+# initial states
+# ----------------------------------------------------------------------------
+def _maxwell(rng, N, kT, m):
+    p = rng.normal(0.0, np.sqrt(m * kT), (N, 3))
+    return p - p.mean(axis=0)
+
+
+def _lattice(kind, N, L):
+    if kind == "fcc":
+        n = round((N / 4) ** (1 / 3))
+        if 4 * n ** 3 != N:
+            raise tc.ConfigError(f"fcc needs N = 4 n^3 (N = {N})")
+        g = np.stack(np.meshgrid(*[np.arange(n)] * 3, indexing="ij"), -1).reshape(-1, 3)
+        basis = np.array([[0, 0, 0], [0.5, 0.5, 0], [0.5, 0, 0.5], [0, 0.5, 0.5]])
+        return ((g[:, None, :] + basis[None]).reshape(-1, 3) + 0.25) * (L / n)
+    n = round(N ** (1 / 3))
+    if n ** 3 != N:
+        raise tc.ConfigError(f"sc needs N = n^3 (N = {N})")
+    g = np.stack(np.meshgrid(*[np.arange(n)] * 3, indexing="ij"), -1).reshape(-1, 3)
+    return (g + 0.5) * (L / n)
+
+
+def initial_state(r, args):
+    """(q, p, record). Constructed states are never marked equilibrated."""
+    N, L, law, pot = r["N"], r["L"], r["law"], r["potential"]
+    kT, m = r["model"]["kT"], r["model"]["mass"]
+    rng = np.random.default_rng([args.seed, 2])
+    method = args.init or "auto"
+    if args.from_state:
+        method = "from_state"
+    elif method == "auto":
+        k = round((N / 64) ** (1 / 3))
+        if N == 64:
+            method = "v2_checkpoint"
+        elif 64 * k ** 3 == N:
+            method = "replicate64"
+        elif 4 * round((N / 4) ** (1 / 3)) ** 3 == N:
+            method = "fcc"
+        else:
+            method = "sc"
+    rec = dict(method=method, rng=f"numpy default_rng([seed, 2]) (seed {args.seed})", equilibrated=False)
+    if method == "from_state":
+        f = Path(args.from_state)
+        with np.load(f) as d:
+            q, p = np.array(d["q"], float), np.array(d["p"], float)
+        if q.shape != (N, 3):
+            raise tc.ConfigError(f"--from-state has shape {q.shape}, expected ({N}, 3)")
+        rec.update(source=str(f.resolve()), source_sha256=_sha256(f),
+                   note="state supplied by the user; its equilibration status is the user's responsibility")
+        return q, p, rec
+    if method in ("v2_checkpoint", "replicate64"):
+        src_seed = args.init_source_seed if args.init_source_seed is not None else args.seed
+        f = V2_CKPT / f"{pot}_burn140" / "lattice" / f"{pot}_{law}" / f"seed_{src_seed}" / "restart.npz"
+        if not f.exists():
+            raise tc.ConfigError(f"no v2 checkpoint {f} (available source seeds 101-105); set --init-source-seed")
+        with np.load(f) as d:
+            q64, p64 = np.array(d["Q"], float), np.array(d["p"], float)
+            meta = json.loads(str(d["metadata"]))
+        src = dict(source=str(f.relative_to(HERE)), source_sha256=_sha256(f), source_seed=src_seed,
+                   source_history=dict(burn_in_time=meta.get("burn_in_time"), total_prior_time=meta.get("total_prior_time"),
+                                       production_time=meta.get("production_time"), thermostat="v2 dense lattice friction",
+                                       box=meta.get("box"), n=meta.get("n")))
+        if method == "v2_checkpoint":
+            if N != 64:
+                raise tc.ConfigError("v2_checkpoint is the N = 64 state; use replicate64 for N = 64 k^3")
+            rec.update(src, note="v2 state after its burn-in under the v2 dense lattice thermostat; not "
+                                 "re-equilibrated with this operator", equilibrated=False)
+            return q64, p64, rec
+        k = round((N / 64) ** (1 / 3))
+        if 64 * k ** 3 != N:
+            raise tc.ConfigError(f"replicate64 needs N = 64 k^3 (N = {N})")
+        jit = 0.02 if args.init_jitter is None else args.init_jitter
+        shifts = np.stack(np.meshgrid(*[np.arange(k)] * 3, indexing="ij"), -1).reshape(-1, 3) * 5.5
+        q = ((q64 % 5.5)[None] + shifts[:, None]).reshape(-1, 3) + rng.uniform(-jit, jit, (N, 3))
+        p = _maxwell(rng, N, kT, m)
+        rec.update(src, copies=k ** 3, jitter_uniform_halfwidth=jit, momenta="fresh Maxwell at kT, total momentum 0",
+                   note=f"{k}x{k}x{k} periodic copies of one N = 64 state: correlated, NOT equilibrated at N = {N}; "
+                        "needs burn-in")
+        return q % L, p, rec
+    if method in ("fcc", "sc"):
+        jit = 0.05 if args.init_jitter is None else args.init_jitter
+        q = _lattice(method, N, L) + rng.uniform(-jit, jit, (N, 3))
+        p = _maxwell(rng, N, kT, m)
+        rec.update(jitter_uniform_halfwidth=jit, momenta="fresh Maxwell at kT, total momentum 0",
+                   note=f"{method} lattice at the toy density: NOT equilibrated; needs burn-in")
+        return q % L, p, rec
+    raise tc.ConfigError(f"unknown init method {method}")
+
+
+# ----------------------------------------------------------------------------
+# run
+# ----------------------------------------------------------------------------
+def verification_status(r):
+    key = f"{r['config']}_{r['law']}_N{r['N']}"
+    if not VERIFICATION.exists():
+        return dict(key=key, verified=False, reason="no verification file")
+    e = json.loads(VERIFICATION.read_text()).get(key)
+    if e is None:
+        return dict(key=key, verified=False, reason="no verification entry for this config / law / N")
+    if e.get("operator_hash") != tc.operator_hash(r):
+        return dict(key=key, verified=False, reason="verification entry is for different parameters")
+    lam = [x for x in (e.get("lam_min"), e.get("ritz_min")) if x is not None]
+    return dict(key=key, verified=bool(e["passed"]), operator_hash=e["operator_hash"],
+                operator_error=e.get("op_err", e.get("gv_rows_err")), budget=e["budget"],
+                failed_checks=[k for k, v in e["checks"].items() if not v],
+                lambda_min_verified=min(lam) if lam else None, states=list(e.get("per_state", {})))
+
+
+def build_thermostat(r):
+    m = r["model"]
+    th = td.Thermostat("pppm_lanczos", r["L"], r["law"], m["gamma"], m["kappa"], m["r_ref"], r["dt"], m["kT"],
+                       m["mass"], pppm=r["pppm"], rank_noise=r["rank_noise"], rank_damp=r["rank_damp"],
+                       pair_search=r["pair_search"])
+    f = th.fast                                                      # what was actually built
+    actual = dict(pair_search=f.pair_search, xi=f.K.xi, s=f.s, eta=f.eta, p=f.p, rank_noise=th.rank_noise,
+                  rank_damp=th.rank_damp)
+    want = dict(pair_search=r["pair_search"], rank_noise=r["rank_noise"], rank_damp=r["rank_damp"], **r["pppm"])
+    if actual != want:
+        raise RuntimeError(f"thermostat built with {actual}, configuration asked for {want}")
+    return th
+
+
+class Runner:
+    def __init__(self, out, cfg, quiet=False):
+        self.out, self.cfg, self.quiet = out, cfg, quiet
+        r = cfg["resolved"]
+        self.r = r
+        self.n, self.L, self.dt = r["N"], r["L"], r["dt"]
+        self.m = r["model"]["mass"]
+        self.pot = r["potential"]
+        mp = r["model"]
+        self.fkw = dict(epsilon=mp["epsilon"], sigma=mp["sigma"], r_on=mp["r_on"], r_cut=mp["r_cut"])
+        self.force_fn = td.FORCES[r["force_method"]]
+        self.stop_rmin = mp["stop_rmin"]
+        plan = cfg["plan"]
+        self.burn, self.total = plan["burn_steps"], plan["burn_steps"] + plan["prod_steps"]
+        self.save_every, self.save_burnin = plan["save_every"], plan["save_burnin"]
+        self.th = build_thermostat(r)
+        self.monitor_every = cfg["runtime"].get("monitor_every_steps") or 0
+        self.n_warn = 0
+        (out / "chunks").mkdir(parents=True, exist_ok=True)
+
+    def log(self, msg):
+        line = f"[{_now()}] {msg}"
+        if not self.quiet:
+            print(line, flush=True)
+        with open(self.out / "run.log", "a") as fh:
+            fh.write(line + "\n")
+
+    def frame_due(self, step):
+        if step >= self.burn:
+            return (step - self.burn) % self.save_every == 0
+        return self.save_burnin and step % self.save_every == 0
+
+    def diag_row(self, step, q, p, energy, rmin, wall, info):
+        n, m = self.n, self.m
+        kin = np.sum((p - p.mean(axis=0)) ** 2) / (2 * m)
+        return [step, step * self.dt, 2 * kin / (3 * (n - 1)), energy / n, kin / n, np.linalg.norm(p.sum(axis=0)),
+                rmin, wall, info.get("lam_min", np.nan), info.get("lam_max", np.nan)]
+
+    def monitor(self, q, p, step):
+        """Accuracy monitor row (MON_COLS); see the module docstring. Does not touch the noise RNG."""
+        op = self.th.fast.gamma_h(q)
+        rng = np.random.default_rng([self.cfg["plan"]["seed"], 3, int(step)])
+        x = q % self.L
+        ph = np.exp(1j * 2 * np.pi / self.L * x)
+        row = [step]
+        ritz = [np.inf, 0.0]
+        for v, fun, r, e in ((proj(rng.standard_normal(3 * self.n)), self.th.fn, self.th.rank_noise, MON_EXTRA[0]),
+                             (proj(p.ravel()), self.th.fd, self.th.rank_damp, MON_EXTRA[1])):
+            Lz = lanczos(op, v, r + e)
+            f = {}
+            for k in (r, r + e):
+                s = min(k, Lz["s"])
+                th, U = np.linalg.eigh(tridiag(Lz["al"], Lz["be"], s))
+                ritz = [min(ritz[0], th[0]), max(ritz[1], th[-1])]
+                f[k] = proj(Lz["nz"] * (Lz["Q"][:s].T @ (U @ (fun(th) * U[0]))))
+            d, ref = f[r] - f[r + e], f[r + e]
+            Jd, Jr = ph.T @ d.reshape(self.n, 3), ph.T @ ref.reshape(self.n, 3)
+            row += [np.linalg.norm(d) / np.linalg.norm(ref),
+                    float(np.max(np.linalg.norm(Jd, axis=1) / np.linalg.norm(Jr, axis=1)))]
+        S = np.abs(np.exp(1j * 2 * np.pi / self.L * x).sum(axis=0)) ** 2 / self.n
+        return row + [ritz[0], ritz[1], float(S.max())]
+
+    def check_monitor(self, row):
+        budget = self.r["operator_budget"]
+        lam_ver = self.cfg["verification"].get("lambda_min_verified")
+        msgs = []
+        if max(row[1:5]) > budget:
+            msgs.append(f"Lanczos error estimate {max(row[1:5]):.1e} > budget {budget:.0e} at step {int(row[0])}")
+        if lam_ver is not None and row[5] < 0.9 * lam_ver:
+            msgs.append(f"smallest Ritz value {row[5]:.3f} below the verified spectrum (lambda_min {lam_ver:.3f}) "
+                        f"at step {int(row[0])}")
+        if msgs:
+            self.n_warn += 1
+            if self.n_warn <= 20:
+                for msg in msgs:
+                    self.log("WARNING " + msg)
+                st = json.loads((self.out / "status.json").read_text())
+                self.write_status(accuracy_warnings=(st.get("accuracy_warnings") or []) + msgs)
+
+    def write_status(self, **kw):
+        st = json.loads((self.out / "status.json").read_text()) if (self.out / "status.json").exists() else {}
+        st.update(kw, updated=_now(), total_steps=self.total, burn_steps=self.burn,
+                  physics_hash=self.cfg["physics_hash"])
+        _atomic_write_text(self.out / "status.json", json.dumps(st, indent=1, default=float) + "\n")
+        return st
+
+    def checkpoint(self, q, p, step, rng, chunk_start, rows, frames, mon):
+        """Chunk (start, step] first, then the checkpoint (both atomic): a kill in between only leaves a chunk ending
+        past the checkpoint, which the next resume moves to stale/ and recomputes."""
+        D = np.array(rows, float).reshape(-1, len(DIAG_COLS))
+        fs = np.array([f[0] for f in frames], np.int64)
+        Q = np.array([f[1] for f in frames], float).reshape(-1, self.n, 3)
+        V = np.array([f[2] for f in frames], float).reshape(-1, self.n, 3)
+        _atomic_savez(self.out / "chunks" / f"chunk_{step:09d}.npz", diag=D, diag_cols=np.array(DIAG_COLS),
+                      frame_step=fs, Q=Q, V=V, monitor=np.array(mon, float).reshape(-1, len(MON_COLS)),
+                      monitor_cols=np.array(MON_COLS), start=np.int64(chunk_start), end=np.int64(step))
+        state = dict(q=q, p=p, step=np.int64(step), rng_state=np.array(json.dumps(rng.bit_generator.state)),
+                     physics_hash=np.array(self.cfg["physics_hash"]), config=np.array(json.dumps(self.cfg, default=float)))
+        _atomic_savez(self.out / "checkpoint.npz", **state)
+        if step == self.burn and self.burn > 0:
+            _atomic_savez(self.out / "checkpoint_burnin_end.npz", **state)
+
+    def run(self, q, p, rng, step, fresh, max_wall_s=None, max_segment_steps=None):
+        seg = dict(host=socket.gethostname(), slurm_job_id=os.environ.get("SLURM_JOB_ID"),
+                   slurm_array_task=os.environ.get("SLURM_ARRAY_TASK_ID"), start_step=int(step), start=_now())
+        st = self.write_status(state="running", step=int(step))
+        segments = st.get("segments", [])
+        t_seg = time.monotonic()
+        force, energy, rmin = self.force_fn(q, self.L, self.pot, **self.fkw)
+        rows, frames, walls, mon = [], [], [], []
+        chunk_start = step
+        if fresh:
+            rows.append(self.diag_row(step, q, p, energy, rmin, 0.0, {}))
+            if self.frame_due(step):
+                frames.append((step, q.copy(), p / self.m))
+            if self.monitor_every:
+                mon.append(self.monitor(q, p, step))
+                self.check_monitor(mon[-1])
+            self.checkpoint(q, p, step, rng, chunk_start, rows, frames, mon)     # resumable from step 0
+            rows, frames, mon = [], [], []
+        last_ckpt_step, last_ckpt_wall = step, time.monotonic()
+        stop_reason, rc = None, EXIT_COMPLETE
+        dt, m = self.dt, self.m
+        try:
+            while step < self.total:
+                t0 = time.perf_counter()
+                xi = rng.standard_normal((self.n, 3))                 # same draw order as toy_dynamics.run
+                p = p + 0.5 * dt * force
+                q = q + 0.5 * dt / m * p
+                p, info = self.th.o_step(q, p, xi)
+                q = q + 0.5 * dt / m * p
+                force, energy, rmin = self.force_fn(q, self.L, self.pot, **self.fkw)
+                p = p + 0.5 * dt * force
+                wall = time.perf_counter() - t0
+                step += 1
+                if not np.all(np.isfinite(p)) or rmin < self.stop_rmin:
+                    raise RuntimeError(f"unstable close encounter at step {step}: rmin {rmin:.3f} < "
+                                       f"{self.stop_rmin} or non-finite momenta (no force clipping is applied)")
+                rows.append(self.diag_row(step, q, p, energy, rmin, wall, info))
+                walls.append(wall)
+                if self.frame_due(step):
+                    frames.append((step, q.copy(), p / m))
+                if self.monitor_every and step % self.monitor_every == 0:
+                    mon.append(self.monitor(q, p, step))
+                    self.check_monitor(mon[-1])
+                elapsed = time.monotonic() - t_seg
+                if STOP["signal"]:
+                    stop_reason = f"signal {STOP['signal']}"
+                elif max_wall_s is not None and elapsed >= max_wall_s:
+                    stop_reason = f"wall limit {max_wall_s:.0f} s"
+                elif max_segment_steps is not None and step - seg["start_step"] >= max_segment_steps:
+                    stop_reason = f"segment step limit {max_segment_steps}"
+                due = (step - last_ckpt_step >= self.cfg["runtime"]["checkpoint_every_steps"]
+                       or time.monotonic() - last_ckpt_wall >= 60 * self.cfg["runtime"]["checkpoint_every_minutes"]
+                       or step == self.burn or step == self.total)
+                if due or stop_reason:
+                    self.checkpoint(q, p, step, rng, chunk_start, rows, frames, mon)
+                    D = np.array(rows)
+                    self.log(f"checkpoint step {step}/{self.total} ({'burn-in' if step <= self.burn else 'production'}) "
+                             f"T {D[:, 2].mean():.4f} U/N {D[-1, 3]:+.4f} |P| {D[:, 5].max():.1e} rmin {D[:, 6].min():.3f} "
+                             f"step {1e3 * np.median(D[:, 7]):.1f} ms, Ritz [{np.nanmin(D[:, 8]):.3f}, {np.nanmax(D[:, 9]):.1f}]"
+                             + (f"; monitor err {max(max(x[1:5]) for x in mon):.1e} S(kmin) {mon[-1][7]:.1f}" if mon else ""))
+                    st = self.write_status(state="running", step=int(step), last_checkpoint_step=int(step),
+                                           peak_rss_mb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024)
+                    chunk_start, rows, frames, mon = step, [], [], []
+                    last_ckpt_step, last_ckpt_wall = step, time.monotonic()
+                    if stop_reason and step < self.total:
+                        rc = EXIT_INCOMPLETE
+                        break
+        except Exception as exc:
+            if rows:
+                D = np.array(rows, float)
+                _atomic_savez(self.out / f"failure_diag_{chunk_start:09d}.npz", diag=D, diag_cols=np.array(DIAG_COLS))
+            stop_reason, rc = f"failure: {type(exc).__name__}: {exc}", EXIT_FAILED
+            self.log(stop_reason + f" (last checkpoint kept at step {last_ckpt_step})")
+        seg.update(end_step=int(last_ckpt_step), end=_now(), wall_s=time.monotonic() - t_seg,
+                   stop_reason=stop_reason or "complete",
+                   median_step_wall_s=float(np.median(walls)) if walls else None,
+                   peak_rss_mb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024)
+        state = {EXIT_COMPLETE: "complete", EXIT_INCOMPLETE: "incomplete", EXIT_FAILED: "failed"}[rc]
+        peak = max([s.get("peak_rss_mb") or 0 for s in segments] + [seg["peak_rss_mb"]])
+        self.write_status(state=state, step=int(last_ckpt_step), last_checkpoint_step=int(last_ckpt_step),
+                          segments=segments + [seg], peak_rss_mb=peak, exit_code=rc)
+        self.log(f"segment end: {state} at step {last_ckpt_step}/{self.total} ({seg['stop_reason']}); exit {rc}")
+        return rc
+
+
+# ----------------------------------------------------------------------------
+# CLI
+# ----------------------------------------------------------------------------
+def parse(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--config", choices=sorted(tc.CONFIGS))
+    ap.add_argument("--potential", choices=tc.POTENTIALS)
+    ap.add_argument("--kernel", choices=tc.KERNELS)
+    ap.add_argument("--N", type=int)
+    ap.add_argument("--seed", type=int, help="noise stream default_rng([seed, 1]); init stream default_rng([seed, 2])")
+    ap.add_argument("--dt", type=float)
+    ap.add_argument("--burn-in", type=float, help="burn-in time (an initial plan, not an equilibration guarantee)")
+    ap.add_argument("--burn-in-steps", type=int)
+    ap.add_argument("--production", type=float, help="production time")
+    ap.add_argument("--production-steps", type=int)
+    ap.add_argument("--save-every", type=float, help="raw-frame interval in time (default 0.1)")
+    ap.add_argument("--save-every-steps", type=int)
+    ap.add_argument("--save-burnin", action="store_true", help="also save frames during burn-in")
+    ap.add_argument("--init", default=None, choices=["auto", "v2_checkpoint", "replicate64", "fcc", "sc"])
+    ap.add_argument("--init-source-seed", type=int, help="v2 checkpoint seed (101-105); default: --seed")
+    ap.add_argument("--init-jitter", type=float)
+    ap.add_argument("--from-state", help=".npz with q, p arrays (overrides --init)")
+    ap.add_argument("--ranks", type=int, nargs=2, metavar=("NOISE", "DAMP"), help="override (unverified)")
+    ap.add_argument("--allow-unverified", action="store_true")
+    ap.add_argument("--checkpoint-every-steps", type=int, default=2000)
+    ap.add_argument("--checkpoint-every-minutes", type=float, default=15.0)
+    ap.add_argument("--monitor-every-steps", type=int, default=500, help="accuracy monitor interval (0: off)")
+    ap.add_argument("--max-wall-hours", type=float, help="stop cleanly (checkpoint, exit 75) after this wall time")
+    ap.add_argument("--max-segment-steps", type=int, help="stop cleanly after this many steps in this invocation")
+    ap.add_argument("--out", required=True)
+    ap.add_argument("--resume", action="store_true", help="continue an existing run (starts fresh if none exists)")
+    ap.add_argument("--retry-failed", action="store_true", help="resume a run whose last segment failed")
+    ap.add_argument("--quiet", action="store_true")
+    return ap.parse_args(argv)
+
+
+def new_config(args):
+    need = [k for k in ("config", "potential", "kernel", "N", "seed") if getattr(args, k) is None]
+    if need:
+        raise tc.ConfigError("missing for a new run: " + ", ".join("--" + k for k in need))
+    dt = tc.DT_VALIDATED if args.dt is None else args.dt
+    r = tc.resolve(args.config, args.kernel, args.N, args.potential, dt=dt, rank_override=args.ranks,
+                   allow_unverified=args.allow_unverified)
+    burn = _steps(args.burn_in, args.burn_in_steps, dt, "burn-in")
+    prod = _steps(args.production, args.production_steps, dt, "production", required=True)
+    se = _steps(args.save_every if (args.save_every is not None or args.save_every_steps is not None) else 0.1,
+                args.save_every_steps, dt, "save interval")
+    if se < 1 or prod < 1:
+        raise tc.ConfigError("production and save interval must be >= 1 step")
+    init = "from_state" if args.from_state else (args.init or "auto")
+    plan = dict(seed=args.seed, burn_steps=burn, prod_steps=prod, save_every=se, save_burnin=bool(args.save_burnin),
+                init=init, init_source_seed=args.init_source_seed, init_jitter=args.init_jitter,
+                from_state=args.from_state, burn_in_time=burn * dt, production_time=prod * dt,
+                save_interval_time=se * dt,
+                burn_in_note="initial run plan, not an equilibration guarantee; check the diagnostics")
+    return r, plan
+
+
+def check_resume_args(args, cfg):
+    """On --resume, any physics or plan argument that is given must equal the stored value."""
+    r, plan = cfg["resolved"], cfg["plan"]
+    dt = r["dt"]
+    stored = dict(config=r["config"], potential=r["potential"], kernel=r["law"], N=r["N"], seed=plan["seed"], dt=dt)
+    diff = [f"{k}: given {getattr(args, k)!r}, stored {v!r}" for k, v in stored.items()
+            if getattr(args, k) is not None and getattr(args, k) != v]
+    for what, t, k, key in (("burn-in", args.burn_in, args.burn_in_steps, "burn_steps"),
+                            ("production", args.production, args.production_steps, "prod_steps"),
+                            ("save interval", args.save_every, args.save_every_steps, "save_every")):
+        if t is not None or k is not None:
+            if _steps(t, k, dt, what) != plan[key]:
+                diff.append(f"{what}: given {_steps(t, k, dt, what)} steps, stored {plan[key]}")
+    if args.ranks is not None and list(args.ranks) != [r["rank_noise"], r["rank_damp"]]:
+        diff.append(f"ranks: given {args.ranks}, stored {[r['rank_noise'], r['rank_damp']]}")
+    if diff:
+        raise tc.ConfigError("--resume with arguments that differ from config.json: " + "; ".join(diff))
+
+
+def load_run(out):
+    """Concatenate the chunks of a run (by end step): dict(diag, cols, frame_step, Q, V, config, status)."""
+    out = Path(out)
+    files = sorted((out / "chunks").glob("chunk_*.npz"), key=lambda f: int(f.stem.split("_")[1]))
+    D, fs, Q, V, M = [], [], [], [], []
+    for f in files:
+        with np.load(f) as c:
+            D.append(c["diag"])
+            M.append(c["monitor"] if "monitor" in c.files else np.zeros((0, len(MON_COLS))))
+            fs.append(c["frame_step"])
+            Q.append(c["Q"])
+            V.append(c["V"])
+    cfg = json.loads((out / "config.json").read_text())
+    st = json.loads((out / "status.json").read_text()) if (out / "status.json").exists() else {}
+    n = cfg["resolved"]["N"]
+    return dict(diag=np.concatenate(D) if D else np.zeros((0, len(DIAG_COLS))), cols=list(DIAG_COLS),
+                frame_step=np.concatenate(fs) if fs else np.zeros(0, np.int64),
+                Q=np.concatenate(Q) if Q else np.zeros((0, n, 3)), V=np.concatenate(V) if V else np.zeros((0, n, 3)),
+                monitor=np.concatenate(M) if M else np.zeros((0, len(MON_COLS))), monitor_cols=list(MON_COLS),
+                config=cfg, status=st)
+
+
+def main(argv=None):
+    args = parse(argv)
+    STOP["signal"] = None
+    out = Path(args.out)
+    for sig in (signal.SIGTERM, signal.SIGUSR1, signal.SIGINT):
+        signal.signal(sig, lambda s, f: STOP.__setitem__("signal", signal.Signals(s).name))
+    try:
+        fresh = not (out / "config.json").exists()
+        if not fresh and not args.resume:
+            raise tc.ConfigError(f"{out} already holds a run; pass --resume to continue it or choose a new --out")
+        if fresh:
+            if out.exists() and any(out.iterdir()):
+                raise tc.ConfigError(f"{out} is not empty but has no config.json; refusing to write into it")
+            r, plan = new_config(args)
+            out.mkdir(parents=True, exist_ok=True)
+            q, p, init_rec = initial_state(r, args)
+            cfg = dict(resolved=r, plan=plan, init=init_rec, physics_hash=tc.physics_hash(r),
+                       operator_hash=tc.operator_hash(r), verification=verification_status(r),
+                       runtime=dict(checkpoint_every_steps=args.checkpoint_every_steps,
+                                    checkpoint_every_minutes=args.checkpoint_every_minutes,
+                                    monitor_every_steps=args.monitor_every_steps),
+                       noise_rng=f"numpy default_rng([seed, 1]) = PCG64 (seed {args.seed})",
+                       code=dict(git=_git_info(), python=platform.python_version(), numpy=np.__version__,
+                                 scipy=scipy.__version__, host=socket.gethostname(), created=_now(),
+                                 threads={v: os.environ.get(v) for v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS",
+                                                                          "MKL_NUM_THREADS")}),
+                       diag_cols=list(DIAG_COLS))
+            runner = Runner(out, cfg, args.quiet)
+            cfg["operator_record"] = runner.th.record["operator"]
+            _atomic_write_text(out / "config.json", json.dumps(cfg, indent=1, default=float) + "\n")
+            _atomic_savez(out / "init_state.npz", q=q, p=p)
+            rng, step = np.random.default_rng([args.seed, 1]), 0
+        else:
+            cfg = json.loads((out / "config.json").read_text())
+            check_resume_args(args, cfg)
+            st = json.loads((out / "status.json").read_text()) if (out / "status.json").exists() else {}
+            if st.get("state") == "complete":
+                print(f"{out}: already complete ({st.get('step')} steps); nothing to do", flush=True)
+                return EXIT_COMPLETE
+            if st.get("state") == "failed" and not args.retry_failed:
+                raise tc.ConfigError(f"{out} failed earlier ({st.get('segments', [{}])[-1].get('stop_reason')}); the "
+                                     "same state and noise would fail again. Inspect it; --retry-failed to try anyway")
+            cfg["runtime"].update(checkpoint_every_steps=args.checkpoint_every_steps,
+                                  checkpoint_every_minutes=args.checkpoint_every_minutes)   # monitor cadence is kept
+            with np.load(out / "checkpoint.npz") as ck:
+                if str(ck["physics_hash"]) != cfg["physics_hash"]:
+                    raise tc.ConfigError("checkpoint physics hash differs from config.json")
+                q, p, step = ck["q"].copy(), ck["p"].copy(), int(ck["step"])
+                rng = np.random.default_rng()
+                rng.bit_generator.state = json.loads(str(ck["rng_state"]))
+            stale = [c for c in (out / "chunks").glob("chunk_*.npz") if int(c.stem.split("_")[1]) > step]
+            if stale:
+                sd = out / "chunks" / "stale" / datetime.datetime.now().strftime("%Y%m%dT%H%M%S")
+                sd.mkdir(parents=True)
+                for c in stale:
+                    shutil.move(str(c), sd / c.name)
+            if cfg["plan"]["burn_steps"] + cfg["plan"]["prod_steps"] <= step:
+                raise tc.ConfigError("checkpoint is at the end but status is not complete; inspect status.json")
+            runner = Runner(out, cfg, args.quiet)
+            if stale:
+                runner.log(f"moved {len(stale)} chunk(s) past the checkpoint to {sd.relative_to(out)}")
+        r = cfg["resolved"]
+        if fresh or not args.quiet:
+            v = cfg["verification"]
+            lines = [f"run {out} ({'new' if fresh else 'resume at step %d' % step})",
+                     f"  config {r['config']}: {r['description']}",
+                     f"  potential {r['potential']}, kernel {r['law']}, N {r['N']}, L {r['L']:.6f}, density "
+                     f"{r['model']['density']:.6f}, dt {r['dt']}, kT {r['model']['kT']}, gamma {r['model']['gamma']}, "
+                     f"kappa {r['model']['kappa']}, r_ref {r['model']['r_ref']}",
+                     f"  PPPM xi {r['pppm']['xi']} s {r['pppm']['s']} eta {r['pppm']['eta']} p {r['pppm']['p']} -> "
+                     f"M {cfg['operator_record']['M']}, eta_actual {cfg['operator_record']['eta_actual']:.4f}, "
+                     f"rc {cfg['operator_record']['rc']:.3f}, kc {cfg['operator_record']['kc']:.3f}, "
+                     f"k0 retained {cfg['operator_record']['k0_retained']}",
+                     f"  pair search {r['pair_search']}, conservative force {r['force_method']}",
+                     f"  Lanczos ranks noise {r['rank_noise']} / damping {r['rank_damp']} ({r['rank_provenance']['rule']}; "
+                     f"verified at this N: {r['rank_provenance']['verified_at_this_N']})",
+                     f"  static verification {v['key']}: {'PASS' if v['verified'] else 'NOT VERIFIED'}"
+                     + (f" (operator error {v['operator_error']:.2e} <= {v['budget']:.0e})" if v.get("verified") else
+                        f" ({v.get('reason', v.get('failed_checks'))})"),
+                     f"  plan: burn-in {cfg['plan']['burn_steps']} steps (t {cfg['plan']['burn_in_time']}), production "
+                     f"{cfg['plan']['prod_steps']} steps (t {cfg['plan']['production_time']}), frames every "
+                     f"{cfg['plan']['save_every']} steps; init {cfg['init']['method']} (equilibrated: "
+                     f"{cfg['init']['equilibrated']})",
+                     f"  hashes: physics {cfg['physics_hash']}, operator {cfg['operator_hash']}; code "
+                     f"{cfg['code']['git'].get('commit')} dirty={cfg['code']['git'].get('dirty')}; threads "
+                     f"{cfg['code']['threads']}"]
+            lines += [f"  WARNING: {w}" for w in r["warnings"]]
+            for ln in lines:
+                runner.log(ln)
+        mw = None if args.max_wall_hours is None else 3600 * args.max_wall_hours
+        return runner.run(q, p, rng, step, fresh, max_wall_s=mw, max_segment_steps=args.max_segment_steps)
+    except tc.ConfigError as exc:
+        print(f"configuration error: {exc}", file=sys.stderr, flush=True)
+        return EXIT_USAGE
+
+
+if __name__ == "__main__":
+    sys.exit(main())
