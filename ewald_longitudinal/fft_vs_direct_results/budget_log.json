@@ -1,0 +1,210 @@
+[
+ {
+  "stage": "states",
+  "argv": [
+   "--stage",
+   "states",
+   "--N",
+   "64",
+   "256",
+   "512",
+   "1728"
+  ],
+  "wall_s": 5.222634553909302,
+  "cpu_s_main": 5.117814684000001,
+  "cpu_s_children": 0.0,
+  "env": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cores": 4,
+   "python": "3.13.16",
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
+ },
+ {
+  "stage": "accuracy",
+  "argv": [
+   "--stage",
+   "accuracy",
+   "--N",
+   "64",
+   "256",
+   "512",
+   "1728"
+  ],
+  "wall_s": 782.1408138275146,
+  "cpu_s_main": 772.225297891,
+  "cpu_s_children": 0.0,
+  "env": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cores": 4,
+   "python": "3.13.16",
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
+ },
+ {
+  "stage": "timing",
+  "argv": [
+   "--stage",
+   "timing",
+   "--N",
+   "64",
+   "256",
+   "512",
+   "1728"
+  ],
+  "wall_s": 1034.3776268959045,
+  "cpu_s_main": 0.14472161999999988,
+  "cpu_s_children": 1020.906694,
+  "env": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cores": 4,
+   "python": "3.13.16",
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
+ },
+ {
+  "stage": "states",
+  "argv": [
+   "--stage",
+   "states",
+   "--N",
+   "64",
+   "108",
+   "256",
+   "512",
+   "864",
+   "1728"
+  ],
+  "wall_s": 108.67757201194763,
+  "cpu_s_main": 107.188512471,
+  "cpu_s_children": 0.0,
+  "env": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cores": 4,
+   "python": "3.13.16",
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
+ },
+ {
+  "stage": "accuracy",
+  "argv": [
+   "--stage",
+   "accuracy",
+   "--N",
+   "64",
+   "108",
+   "256",
+   "512",
+   "864",
+   "1728"
+  ],
+  "wall_s": 187.36152052879333,
+  "cpu_s_main": 184.760691767,
+  "cpu_s_children": 0.0,
+  "env": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cores": 4,
+   "python": "3.13.16",
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
+ },
+ {
+  "stage": "timing",
+  "argv": [
+   "--stage",
+   "timing",
+   "--N",
+   "108",
+   "864"
+  ],
+  "wall_s": 208.7273290157318,
+  "cpu_s_main": 0.10604102599999998,
+  "cpu_s_children": 205.682143,
+  "env": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cores": 4,
+   "python": "3.13.16",
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
+ },
+ {
+  "stage": "report",
+  "argv": [
+   "--stage",
+   "report"
+  ],
+  "wall_s": 1.824007272720337,
+  "cpu_s_main": 0.9850441819999999,
+  "cpu_s_children": 0.0,
+  "env": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cores": 4,
+   "python": "3.13.16",
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
+ },
+ {
+  "stage": "report",
+  "argv": [
+   "--stage",
+   "report"
+  ],
+  "wall_s": 0.92364501953125,
+  "cpu_s_main": 0.9187540590000001,
+  "cpu_s_children": 0.0,
+  "env": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cores": 4,
+   "python": "3.13.16",
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
+ }
+]
