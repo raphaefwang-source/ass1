@@ -1,0 +1,26 @@
+{
+ "host": "vm",
+ "python": "3.13.16",
+ "numpy": "2.5.3",
+ "scipy": "1.18.1",
+ "platform": "Linux-6.18.44-fc-v80-x86_64-with-glibc2.39",
+ "machine": "x86_64",
+ "cores_visible": 4,
+ "threads": {
+  "OPENBLAS_NUM_THREADS": "1",
+  "OMP_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1"
+ },
+ "slurm": {},
+ "cpu_model": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+ "blas": {
+  "name": "scipy-openblas",
+  "found": true,
+  "version": "0.3.34.106.0",
+  "detection method": "pkgconfig",
+  "include directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/include",
+  "lib directory": "/opt/_internal/cpython-3.13.14/lib/python3.13/site-packages/scipy_openblas64/lib",
+  "openblas configuration": "OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+  "pc file directory": "/project/.openblas"
+ }
+}

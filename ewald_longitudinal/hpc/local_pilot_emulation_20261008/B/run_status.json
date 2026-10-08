@@ -1,0 +1,43 @@
+{
+ "state": "complete",
+ "step": 300,
+ "updated": "2026-10-08T18:49:09+00:00",
+ "total_steps": 300,
+ "burn_steps": 0,
+ "physics_hash": "736ecd688baed148",
+ "last_checkpoint_step": 300,
+ "peak_rss_mb": 128.4375,
+ "segments": [
+  {
+   "host": "vm",
+   "pid": 1272,
+   "slurm_job_id": null,
+   "slurm_array_task": null,
+   "start_step": 0,
+   "start": "2026-10-08T18:46:42+00:00",
+   "previous_state": null,
+   "end_step": 124,
+   "end": "2026-10-08T18:47:41+00:00",
+   "wall_s": 59.34300102700013,
+   "stop_reason": "signal SIGUSR1",
+   "median_step_wall_s": 0.4532085160000179,
+   "peak_rss_mb": 127.1953125
+  },
+  {
+   "host": "vm",
+   "pid": 1289,
+   "slurm_job_id": null,
+   "slurm_array_task": null,
+   "start_step": 124,
+   "start": "2026-10-08T18:47:42+00:00",
+   "previous_state": "incomplete",
+   "end_step": 300,
+   "end": "2026-10-08T18:49:09+00:00",
+   "wall_s": 86.07509365899978,
+   "stop_reason": "complete",
+   "median_step_wall_s": 0.46762528049998764,
+   "peak_rss_mb": 128.4375
+  }
+ ],
+ "exit_code": 0
+}

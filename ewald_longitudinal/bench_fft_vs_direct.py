@@ -543,12 +543,23 @@ def make_figures(summ):
             ax.spines[sp].set_visible(False)
         ax.set_title(title, color=INK, fontsize=10, loc="left")
 
+    ok = lambda s: s.get("accuracy_pass") in (True, "True")  # noqa: E731
     fig, axes = plt.subplots(1, 2, figsize=(11, 4.6), sharey=True)
     for ax, law in zip(axes, ("A", "B")):
         for meth in ("dense", "direct", "pppm"):
             for clustered in (False, True):
-                S = sorted([s for s in summ if s["method"] == meth and s["law"] == law
-                            and (s["state"] == "liquid_clustered") == clustered], key=lambda s: s["N"])
+                S_all = sorted([s for s in summ if s["method"] == meth and s["law"] == law
+                                and (s["state"] == "liquid_clustered") == clustered], key=lambda s: s["N"])
+                S = [s for s in S_all if ok(s)]                  # curves: accuracy-passing cases only
+                bad = [s for s in S_all if not ok(s)]
+                if bad:
+                    ax.plot([s["N"] for s in bad], [s["step_s"] for s in bad], linestyle="none", marker="X", ms=11,
+                            mew=1.5, mec=SURF, color=col[meth], zorder=5,
+                            label=f"{lab[meth]}, lattice state: fails accuracy check (excluded from curve)")
+                    for s in bad:
+                        ax.annotate("fails accuracy\n(excluded)", (s["N"], s["step_s"]), xytext=(14, -22),
+                                    textcoords="offset points", ha="left", fontsize=7, color=INK2,
+                                    arrowprops=dict(arrowstyle="-", color=INK2, lw=0.8))
                 if not S:
                     continue
                 ax.plot([s["N"] for s in S], [s["step_s"] for s in S], "--" if clustered else "-", lw=2,
@@ -563,6 +574,10 @@ def make_figures(summ):
         ax.set_xlim(right=ax.get_xlim()[1] * 2.2)
     axes[0].set_ylabel("seconds per step (log)")
     axes[0].legend(fontsize=7, loc="upper left", frameon=False, handlelength=4.5)
+    hb, lb = axes[1].get_legend_handles_labels()
+    keep = [i for i, t in enumerate(lb) if "fails accuracy" in t]
+    if keep:
+        axes[1].legend([hb[i] for i in keep], [lb[i] for i in keep], fontsize=7, loc="lower right", frameon=False)
     fig.tight_layout()
     fig.savefig(OUT / "step_time_vs_N.png", dpi=130)
     plt.close(fig)
@@ -589,9 +604,24 @@ def make_figures(summ):
     plt.close(fig)
 
 
+def load_summary():
+    rows = list(csv.DictReader(open(OUT / "timing_summary.csv")))
+    for r in rows:
+        for k, v in list(r.items()):
+            if k in ("method", "law", "state", "accuracy_pass"):
+                continue
+            r[k] = None if v in ("", "None") else (int(v) if k in ("N", "rank_noise", "rank_damp", "reps", "n_actions",
+                                                                    "pppm_M") else float(v))
+    return rows
+
+
+def stage_figures(args):
+    make_figures(load_summary())
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--stage", required=True, choices=["states", "accuracy", "timing", "report", "_case"])
+    ap.add_argument("--stage", required=True, choices=["states", "accuracy", "timing", "report", "figures", "_case"])
     ap.add_argument("--N", type=int, nargs="+", default=[64, 256, 512])
     ap.add_argument("--case")
     args = ap.parse_args()
@@ -602,7 +632,8 @@ def main():
                          default=float))
         return
     t0, c0 = time.time(), time.process_time()
-    {"states": stage_states, "accuracy": stage_accuracy, "timing": stage_timing, "report": stage_report}[args.stage](args)
+    {"states": stage_states, "accuracy": stage_accuracy, "timing": stage_timing, "report": stage_report,
+     "figures": stage_figures}[args.stage](args)
     log = OUT / "budget_log.json"
     L = json.loads(log.read_text()) if log.exists() else []
     ch = resource.getrusage(resource.RUSAGE_CHILDREN)

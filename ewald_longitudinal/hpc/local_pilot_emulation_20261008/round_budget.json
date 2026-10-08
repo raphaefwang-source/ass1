@@ -1,0 +1,15 @@
+{
+ "round": "pre-HPC fixes and pilot preparation, 2026-10-08",
+ "budget_core_hours": 2.0,
+ "note": "single-threaded local runs on the development VM (Intel Xeon @ 2.10 GHz); measured items use the run's own wall time (1 busy core), estimated items are labelled",
+ "items": [
+  {"what": "VACF save-interval runs, N=64, A/B x seeds 101/102, 8400 steps each", "core_s": 1747.5, "source": "measured (status.json segment wall_s: 531.4, 545.5, 335.2, 335.4)"},
+  {"what": "local emulation of pilot_task.sbatch, A and B, 300 steps", "core_s": 379, "source": "measured (job_wall_s 219 + 160)"},
+  {"what": "full test_toy_run.py suite (10 tests), final run", "core_s": 113, "source": "measured"},
+  {"what": "earlier iterations of the new lock/status tests, lock_check, VACF analysis, figure re-render", "core_s": 420, "source": "estimate"}
+ ],
+ "total_core_hours": 0.74,
+ "total_is_estimate": "partly: 2240 s measured, 420 s estimated",
+ "hpc_core_hours": 0.0,
+ "hpc_note": "no HPC connection from the development container; the two pilot jobs were not submitted"
+}

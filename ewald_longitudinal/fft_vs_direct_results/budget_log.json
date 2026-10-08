@@ -206,5 +206,71 @@
     "MKL_NUM_THREADS": "1"
    }
   }
+ },
+ {
+  "stage": "figures",
+  "argv": [
+   "--stage",
+   "figures"
+  ],
+  "wall_s": 1.4115722179412842,
+  "cpu_s_main": 1.151385001,
+  "cpu_s_children": 0.0,
+  "env": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cores": 4,
+   "python": "3.13.16",
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
+ },
+ {
+  "stage": "figures",
+  "argv": [
+   "--stage",
+   "figures"
+  ],
+  "wall_s": 1.158759593963623,
+  "cpu_s_main": 1.153433584,
+  "cpu_s_children": 0.0,
+  "env": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cores": 4,
+   "python": "3.13.16",
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
+ },
+ {
+  "stage": "figures",
+  "argv": [
+   "--stage",
+   "figures"
+  ],
+  "wall_s": 1.4122297763824463,
+  "cpu_s_main": 1.411145678,
+  "cpu_s_children": 0.0,
+  "env": {
+   "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+   "cores": 4,
+   "python": "3.13.16",
+   "numpy": "2.5.3",
+   "scipy": "1.18.1",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
  }
 ]

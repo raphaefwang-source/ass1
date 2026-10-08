@@ -1,7 +1,7 @@
 #!/bin/bash
 # Submission wrapper. Reads hpc/cluster.env (copy of cluster.env.example with every FILL_ME replaced).
 #
-#   hpc/submit.sh pilot [--dry-run]
+#   hpc/submit.sh pilot [--dry-run]        (two pilot jobs: kernels A and B, N = 512)
 #   hpc/submit.sh array TASKLIST --time HH:MM:SS --mem 2G [--ids 1-40] [--max-parallel 20] [--submit]
 #
 # "array" only prints the sbatch command unless --submit is given (long runs are never submitted by default).
@@ -16,8 +16,12 @@ common=(--account="$SLURM_ACCOUNT" --partition="$SLURM_PARTITION")
 mode="${1:-}"; shift || true
 case "$mode" in
 pilot)
-    cmd=(sbatch "${common[@]}" --output="$LOG_ROOT/%x-%j.out" --export="ALL,TOY_ENV_FILE=$ENV_FILE,TOY_HPC_DIR=$HERE" "$HERE/pilot.sbatch")
-    if [ "${1:-}" = "--dry-run" ]; then echo "${cmd[*]}"; else "${cmd[@]}"; fi
+    # two short jobs, kernels A and B (N = 512, one core each); see hpc/pilot_task.sbatch
+    for K in A B; do
+        cmd=(sbatch "${common[@]}" --job-name="toy_pilot_$K" --output="$LOG_ROOT/%x-%j.out"
+             --export="ALL,TOY_ENV_FILE=$ENV_FILE,TOY_HPC_DIR=$HERE,KERNEL=$K" "$HERE/pilot_task.sbatch")
+        if [ "${1:-}" = "--dry-run" ]; then echo "${cmd[*]}"; else "${cmd[@]}"; fi
+    done
     ;;
 array)
     tasks="${1:?task list}"; shift
@@ -39,7 +43,8 @@ array)
     # stop cleanly 10 minutes before the limit even if the USR1 signal is not delivered
     IFS=: read -r hh mm ss <<< "$time"
     maxwall=$(awk -v h="$hh" -v m="$mm" -v s="$ss" 'BEGIN { printf "%.3f", h + m / 60 + s / 3600 - 10 / 60 }')
-    cmd=(sbatch "${common[@]}" --array="${ids}%${maxpar}" --time="$time" --mem="$mem"
+    # job name toy_<tasklist stem>: hpc/status.py uses it to find this array's queued tasks
+    cmd=(sbatch "${common[@]}" --job-name="toy_$(basename "$tasks" .tsv)" --array="${ids}%${maxpar}" --time="$time" --mem="$mem"
          --output="$LOG_ROOT/%x-%A_%a.out"
          --export="ALL,TOY_ENV_FILE=$ENV_FILE,TOY_HPC_DIR=$HERE,TASKLIST=$tasks,MAX_WALL_HOURS=$maxwall" "$HERE/array.sbatch")
     echo "${cmd[*]}"

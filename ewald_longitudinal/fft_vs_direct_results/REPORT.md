@@ -72,8 +72,14 @@ Structure of the clustered states:
 - **direct:** its matvec equals the dense reference to ≤ 1e-15. Its noise and damping Krylov errors must meet the
   budget; each error is the maximum over four measures (overall, k = 2π/L, lowest 3 eigenmodes, lowest 12
   eigenmodes), taken against exact f(Γ_ref).
-- **pppm:** its spectral operator error must meet the budget, and so must its Krylov errors, taken against
-  f(Γ_h): dense for N ≤ 864, converged rank-96/32 Lanczos at 1728.
+- **pppm:** its spectral operator error must meet the budget, and so must its Krylov errors.
+  - The operator error is computed matrix-free (ARPACK on Γ_h − Γ_ref) at every N. At N ≤ 512 it was also computed
+    from the dense PPPM matrix; the two agree to ≤ 1.1e-6 relative.
+  - At N ≤ 512 the Krylov errors are taken against dense f(Γ_h), from eigh of the dense PPPM matrix.
+  - At N = 864 and 1728 they are taken against a converged rank-96 / rank-32 Lanczos result of Γ_h, whose rank-80 /
+    rank-24 difference is ≤ 3e-15. The low-mode subspaces there come from Γ_ref.
+  - *Correction (2026-10-08):* the earlier text said "dense for N ≤ 864"; the code (`accuracy_case`) uses dense only
+    for N ≤ 512.
 - **dense:** the null-space separation must be clean (≤ 1e-10); at N ≤ 512 also agreement with `DenseRef`.
 
 **Results:**
@@ -98,7 +104,7 @@ The production verification covers N = 64, 256 and 512 only.
 
 Values above 1 mean PPPM is faster. Rows marked † fail the PPPM accuracy check and carry no claim.
 
-| law | N | state | step | O step | build | one Γv | dense / PPPM (step) | direct without its build / PPPM (O step)* |
+| law | N | state | step | O step | build | one Γv | dense / PPPM (step) | ESTIMATE: direct without its build / PPPM (O step)* |
 |---|---|---|---|---|---|---|---|---|
 | A | 64 | v2 | 0.33 | 0.33 | 3 | 0.11 | 0.53 | 0.11 |
 | A | 64 | clustered | 0.35 | 0.34 | 3 | 0.11 | 0.30 | 0.12 |
@@ -125,8 +131,8 @@ Values above 1 mean PPPM is faster. Rows marked † fail the PPPM accuracy check
 | B | 1728 | replicated | 15.90 | 16.00 | 270 | 4.22 | — | 3.62 |
 | B | 1728 | clustered | 11.71 | 11.81 | 213 | 2.81 | 20.72 | 2.60 |
 
-\* (direct O step − direct build) / PPPM O step: a derived bound for a hypothetical direct method whose pair tensors
-cost nothing. It is not a measured method.
+\* Estimate, not a measurement: (direct O step − direct build) / PPPM O step, a derived bound for a hypothetical
+direct method whose pair tensors cost nothing. See "Estimates" below.
 
 **Absolute times in ms** (`timing_summary.csv`). Each cell gives the step time, with (build / one Γv) for direct and
 PPPM and (build + eigh) for dense:
@@ -145,18 +151,21 @@ PPPM and (build + eigh) for dense:
 | B | 1728 | clustered | 44820 (21388 + 23300) | 25323 (19723 / 118) | 2163 (92 / 42.1) | 1559 / 536 / 181 |
 
 The other states are in the CSV. Figures:
-- `step_time_vs_N.png`: full step against N, three methods, both states;
+- `step_time_vs_N.png`: full step against N, three methods, both states. The two PPPM cases that fail the accuracy
+  check (law B, lattice state, N = 108 and 864) are not on the curves; they are drawn as separate crosses labelled
+  "fails accuracy (excluded)";
 - `build_vs_gamma_v.png`: build and Γv components, clustered state.
 
 ## Answers
 
-1. **Where the advantage starts (full step, accuracy-passing cases):**
+1. **Where the advantage starts (full step, accuracy-passing cases; measured):**
    - **N = 64:** PPPM is slower. The direct sum is ×2.9–3.0 faster (law A) and ×1.7–1.8 faster (law B); dense is
      about as fast as direct.
-   - **Law B:** PPPM is ahead from N = 108 (×1.56 on the clustered state).
+   - **Law B:** PPPM is ahead at N = 108 (×1.56 on the clustered state; the lattice state fails the PPPM accuracy
+     check and is not counted).
    - **Law A:** at N = 108 PPPM is still level or behind (×0.96 lattice, ×0.79 clustered) and is ahead at 256.
-   - **Crossover:** between N = 64 and 108 for B, and between N = 108 and 256 for A. Log interpolation puts it near
-     N ≈ 85 (B) and ≈ 110–140 (A); this is an estimate, not measured.
+   - **Measured bracket of the crossover:** 64 < N ≤ 108 for B, and 108 < N ≤ 256 for A. A point estimate inside the
+     bracket is under "Estimates" below.
 2. **How much faster** (full step, PPPM over direct):
 
    | N | law A | law B |
@@ -176,12 +185,23 @@ The other states are in the CSV. Figures:
    - **The direct cost is the build.** Each step the direct method rebuilds the full-periodic pair tensors for all
      pairs. That is O(N²) and about 11–13 µs per pair: 33 near images plus a Chebyshev far field. It takes 63–89 % of
      its step (1.3–1.7 s at N = 512), against 22–25 ms for the PPPM build.
-   - **Without that build** (last column, derived), the direct Lanczos part would beat PPPM at N = 512 (both laws) and at 864 on the clustered law-A state. PPPM
-     wins on the matvec alone only around N ≳ 900, and clearly at 1728 (×2.6–3.6).
-   - **What decides the full-step crossover at N ≈ 100–250** is the cost of building the periodic operator, not the
-     FFT matvec. That crossover is therefore specific to this direct implementation. A cheaper evaluation of the
-     periodic pair tensors (e.g. tabulation) would move it towards the matvec crossover near N ≈ 900; that is not
-     measured here.
+   - **What decides the full-step crossover** (measured bracket 64–256) is the cost of rebuilding the periodic
+     operator, not the FFT matvec. The measured Γv ratios show this (item 3): the direct Γv is cheaper up to N = 512
+     and about equal at 864. That crossover is therefore specific to this direct implementation.
+
+### Estimates (not measurements)
+
+These numbers are derived from the measured values. They are not results of a run of any method.
+- **Point estimates of the full-step crossover:** log interpolation of the measured T(direct)/T(PPPM) between the
+  bracketing N gives N ≈ 85 for law B (clustered state) and N ≈ 110–140 for law A (lattice and clustered states).
+  The true crossover can lie anywhere inside the measured brackets above.
+- **"Direct build free" bound:** the last column of the ratio table is (direct O step − direct build) / PPPM O step,
+  i.e. a hypothetical direct method whose periodic pair tensors cost nothing. By this bound, such a method would beat
+  PPPM at N = 512 (both laws) and at 864 on the clustered law-A state. PPPM would win only from around N ≈ 900, and
+  clearly at 1728 (×2.6–3.6).
+  - No such implementation was built or timed.
+  - Whether a cheaper evaluation of the periodic pair tensors (e.g. tabulation) would move the full-step crossover
+    towards N ≈ 900 is not measured.
 5. **Memory.** Peak RSS is 111–198 MB for PPPM, 346–536 MB for direct and 480–1559 MB for dense; 106 MB of each is
    Python + NumPy. At N ≤ 512, the direct and dense peaks come from the chunked Chebyshev temporaries; at 1728 dense
    needs 1.56 GB.

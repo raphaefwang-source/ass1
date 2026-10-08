@@ -1,0 +1,83 @@
+pilot A: $RUN_ROOT/pilot/local-20261008T184301_A/double_well_A_N512_s101 (300 steps, frames every 1 steps)
+[2026-10-08T18:43:03+00:00] run $RUN_ROOT/pilot/local-20261008T184301_A/double_well_A_N512_s101 (new)
+[2026-10-08T18:43:03+00:00]   config costopt_hiacc: cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)
+[2026-10-08T18:43:03+00:00]   potential double_well, kernel A, N 512, L 11.000000, density 0.384673, dt 0.005, kT 0.7, gamma 0.5, kappa 0.7, r_ref 1.3
+[2026-10-08T18:43:03+00:00]   PPPM xi 0.85 s 4.1 eta 0.6779116381586452 p 7 -> M 36, eta_actual 0.6779, rc 4.824, kc 6.970, k0 retained True
+[2026-10-08T18:43:03+00:00]   pair search tree, conservative force neighbor
+[2026-10-08T18:43:03+00:00]   Lanczos ranks noise 40 / damping 5 (strict Krylov rule, table row N <= 512; verified at this N: True)
+[2026-10-08T18:43:03+00:00]   static verification costopt_hiacc_A_N512: PASS (operator error 1.36e-07 <= 2e-07)
+[2026-10-08T18:43:03+00:00]   plan: burn-in 0 steps (t 0.0), production 300 steps (t 1.5), frames every 1 steps; init replicate64 (equilibrated: False)
+[2026-10-08T18:43:03+00:00]   hashes: physics c8f5af98bade4384, operator 576e1743b9bc5600; code e48269e169b048d3198ba72b1db7a798962a25a2 dirty=True; threads {'OPENBLAS_NUM_THREADS': '1', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1'}
+18:44:03 batch shell got a signal; forwarding USR1 to 1200
+[2026-10-08T18:44:03+00:00] checkpoint step 91/300 (production) T 0.7084 U/N -5.5768 |P| 3.8e-14 rmin 0.723 step 630.8 ms, Ritz [0.615, 12.0]; monitor err 2.9e-11 S(kmin) 0.0
+[2026-10-08T18:44:03+00:00] segment end: incomplete at step 91/300 (signal SIGUSR1); exit 75
+segment 1 exit 75 (75 expected: stopped by the scheduler's USR1)
+[2026-10-08T18:44:03+00:00] run $RUN_ROOT/pilot/local-20261008T184301_A/double_well_A_N512_s101 (resume at step 91)
+[2026-10-08T18:44:03+00:00]   config costopt_hiacc: cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)
+[2026-10-08T18:44:03+00:00]   potential double_well, kernel A, N 512, L 11.000000, density 0.384673, dt 0.005, kT 0.7, gamma 0.5, kappa 0.7, r_ref 1.3
+[2026-10-08T18:44:03+00:00]   PPPM xi 0.85 s 4.1 eta 0.6779116381586452 p 7 -> M 36, eta_actual 0.6779, rc 4.824, kc 6.970, k0 retained True
+[2026-10-08T18:44:03+00:00]   pair search tree, conservative force neighbor
+[2026-10-08T18:44:03+00:00]   Lanczos ranks noise 40 / damping 5 (strict Krylov rule, table row N <= 512; verified at this N: True)
+[2026-10-08T18:44:03+00:00]   static verification costopt_hiacc_A_N512: PASS (operator error 1.36e-07 <= 2e-07)
+[2026-10-08T18:44:03+00:00]   plan: burn-in 0 steps (t 0.0), production 300 steps (t 1.5), frames every 1 steps; init replicate64 (equilibrated: False)
+[2026-10-08T18:44:03+00:00]   hashes: physics c8f5af98bade4384, operator 576e1743b9bc5600; code e48269e169b048d3198ba72b1db7a798962a25a2 dirty=True; threads {'OPENBLAS_NUM_THREADS': '1', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1'}
+duplicate on the same directory exit 3 (3 expected: refused by the lock)
+[2026-10-08T18:46:19+00:00] checkpoint step 291/300 (production) T 0.7039 U/N -5.4799 |P| 6.6e-14 rmin 0.716 step 655.4 ms, Ritz [0.608, 12.3]; monitor err 8.2e-11 S(kmin) 0.0
+[2026-10-08T18:46:19+00:00] segment end: incomplete at step 291/300 (segment step limit 200); exit 75
+segment 2 exit 75 (75 expected: 200-step segment limit)
+[2026-10-08T18:46:20+00:00] run $RUN_ROOT/pilot/local-20261008T184301_A/double_well_A_N512_s101 (resume at step 291)
+[2026-10-08T18:46:20+00:00]   config costopt_hiacc: cost-optimised high-accuracy PPPM + Lanczos (REPORT.md budgets: A 2e-7, B 5e-8)
+[2026-10-08T18:46:20+00:00]   potential double_well, kernel A, N 512, L 11.000000, density 0.384673, dt 0.005, kT 0.7, gamma 0.5, kappa 0.7, r_ref 1.3
+[2026-10-08T18:46:20+00:00]   PPPM xi 0.85 s 4.1 eta 0.6779116381586452 p 7 -> M 36, eta_actual 0.6779, rc 4.824, kc 6.970, k0 retained True
+[2026-10-08T18:46:20+00:00]   pair search tree, conservative force neighbor
+[2026-10-08T18:46:20+00:00]   Lanczos ranks noise 40 / damping 5 (strict Krylov rule, table row N <= 512; verified at this N: True)
+[2026-10-08T18:46:20+00:00]   static verification costopt_hiacc_A_N512: PASS (operator error 1.36e-07 <= 2e-07)
+[2026-10-08T18:46:20+00:00]   plan: burn-in 0 steps (t 0.0), production 300 steps (t 1.5), frames every 1 steps; init replicate64 (equilibrated: False)
+[2026-10-08T18:46:20+00:00]   hashes: physics c8f5af98bade4384, operator 576e1743b9bc5600; code e48269e169b048d3198ba72b1db7a798962a25a2 dirty=True; threads {'OPENBLAS_NUM_THREADS': '1', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1'}
+[2026-10-08T18:46:26+00:00] checkpoint step 300/300 (production) T 0.7220 U/N -5.4891 |P| 5.0e-14 rmin 0.724 step 600.5 ms, Ritz [0.619, 12.0]; monitor err 9.6e-11 S(kmin) 0.1
+[2026-10-08T18:46:26+00:00] segment end: complete at step 300/300 (complete); exit 0
+resume attempt 1 exit 0
+$RUN_ROOT/pilot/local-20261008T184301_A/double_well_A_N512_s101: PASS  costopt_hiacc double_well A N=512 ranks 40/5 M 36 steps 300/300 | step 648.9 ms (p90 726.9) peak RSS 129 MB | T 0.7058 rmin 0.716 |dP| 4.2e-14 Ritz [0.608, 12.3] monitor err 9.6e-11 S(kmin) 0.1
+{
+ "kernel": "A",
+ "N": 512,
+ "steps": 300,
+ "total": 300,
+ "segment_exit_codes": {
+  "segment1": 75,
+  "segment2": 75,
+  "final": 0
+ },
+ "duplicate_exit_code": 3,
+ "signal_exercised": true,
+ "stop_reasons": [
+  "signal SIGUSR1",
+  "segment step limit 200",
+  "complete"
+ ],
+ "median_step_s_per_segment": [
+  0.6307789190000221,
+  0.6553604380000024,
+  0.6005246499998975
+ ],
+ "step_ms_median": 648.857186999976,
+ "step_ms_p90": 726.8762129999232,
+ "peak_rss_mb": 128.6875,
+ "run_wall_s": 201.32195213699993,
+ "job_wall_s": 219,
+ "accuracy_warnings": 0,
+ "monitor_err_max": 9.61678496595826e-11,
+ "S_kmin_max": 0.055416817616008904,
+ "check_run_passed": true,
+ "restart_check_passed": true,
+ "lock_check_passed": true,
+ "mesh_M": 36,
+ "ranks": "40/5",
+ "host": "vm",
+ "accepted": true
+}
+PILOT A ACCEPTED
+
+real	3m38.784s
+user	2m38.296s
+sys	0m57.333s

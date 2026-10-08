@@ -1,0 +1,38 @@
+{
+ "kernel": "A",
+ "N": 512,
+ "steps": 300,
+ "total": 300,
+ "segment_exit_codes": {
+  "segment1": 75,
+  "segment2": 75,
+  "final": 0
+ },
+ "duplicate_exit_code": 3,
+ "signal_exercised": true,
+ "stop_reasons": [
+  "signal SIGUSR1",
+  "segment step limit 200",
+  "complete"
+ ],
+ "median_step_s_per_segment": [
+  0.6307789190000221,
+  0.6553604380000024,
+  0.6005246499998975
+ ],
+ "step_ms_median": 648.857186999976,
+ "step_ms_p90": 726.8762129999232,
+ "peak_rss_mb": 128.6875,
+ "run_wall_s": 201.32195213699993,
+ "job_wall_s": 219,
+ "accuracy_warnings": 0,
+ "monitor_err_max": 9.61678496595826e-11,
+ "S_kmin_max": 0.055416817616008904,
+ "check_run_passed": true,
+ "restart_check_passed": true,
+ "lock_check_passed": true,
+ "mesh_M": 36,
+ "ranks": "40/5",
+ "host": "vm",
+ "accepted": true
+}

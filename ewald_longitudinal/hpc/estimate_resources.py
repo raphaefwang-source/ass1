@@ -52,7 +52,7 @@ def main():
     ap.add_argument("--tasklist")
     ap.add_argument("--burn-in", type=float, default=140.0, help="used when no task list is given")
     ap.add_argument("--production", type=float, default=60.0)
-    ap.add_argument("--save-every", type=float, default=0.1)
+    ap.add_argument("--save-every", type=float, default=0.005, help="used when no task list is given (every step)")
     ap.add_argument("--N", type=int, nargs="+", default=[256, 512], help="used when no task list is given")
     ap.add_argument("--margin", type=float, default=1.5)
     ap.add_argument("--max-job-hours", type=float, help="site wall-time limit per job (splits long tasks)")

@@ -32,5 +32,5 @@ while true; do
     wait "$pid"; rc=$?
     kill -0 "$pid" 2>/dev/null || break          # still alive: wait was interrupted by a trapped signal
 done
-echo "toy_run exit code $rc (0 complete, 75 stopped early and resumable, 2 failed, 1 configuration error)"
+echo "toy_run exit code $rc (0 complete, 75 stopped early and resumable, 3 run directory locked by another live process, 2 failed, 1 configuration error)"
 exit "$rc"

@@ -41,8 +41,13 @@ Accuracy monitor (every --monitor-every-steps, own RNG keyed by step, so the tra
 Warnings go to run.log and status.json when an estimate exceeds the operator budget or the smallest Ritz value falls
 below the verified spectrum. They are estimates, not proofs.
 
+Concurrency: an exclusive lock on <out>/.run.lock (run_lock.py) is taken before any run state is read, resumed or
+modified and held until the process exits (the kernel releases it on any exit, including SIGKILL). A second process
+for the same directory waits --lock-wait seconds, then exits 3 without changing anything.
+
 Exit codes:
 - 0   complete, including an already complete run;
+- 3   the run directory is locked by another live process (nothing changed);
 - 75  stopped early but resumable (signal, wall limit, segment limit);
 - 2   physical or numerical failure (the last checkpoint is kept);
 - 1   usage or configuration error.
@@ -72,6 +77,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "toy_models"))
 import scipy  # noqa: E402
+import run_lock  # noqa: E402
 import toy_configs as tc  # noqa: E402
 import toy_dynamics as td  # noqa: E402
 from test_lanczos_fdt import lanczos, proj, tridiag  # noqa: E402
@@ -82,7 +88,7 @@ DIAG_COLS = ("step", "t", "T_kin", "U_per_N", "KE_per_N", "P_norm", "rmin", "ste
 MON_COLS = ("step", "noise_err_est", "noise_err_est_kmin", "damp_err_est", "damp_err_est_kmin", "ritz_min_mon",
             "ritz_max_mon", "S_kmin_max")
 MON_EXTRA = (8, 4)                  # extra Lanczos steps of the error estimate (noise, damping)
-EXIT_COMPLETE, EXIT_USAGE, EXIT_FAILED, EXIT_INCOMPLETE = 0, 1, 2, 75
+EXIT_COMPLETE, EXIT_USAGE, EXIT_FAILED, EXIT_LOCKED, EXIT_INCOMPLETE = 0, 1, 2, 3, 75
 STOP = {"signal": None}
 
 
@@ -335,7 +341,8 @@ class Runner:
         if max(row[1:5]) > budget:
             msgs.append(f"Lanczos error estimate {max(row[1:5]):.1e} > budget {budget:.0e} at step {int(row[0])}")
         if lam_ver is not None and row[5] < 0.9 * lam_ver:
-            msgs.append(f"smallest Ritz value {row[5]:.3f} below the verified spectrum (lambda_min {lam_ver:.3f}) "
+            msgs.append(f"smallest Ritz value {row[5]:.3f} below the verified spectrum (lambda_min {lam_ver:.3f}; "
+                        f"Lanczos error estimate here {max(row[1:5]):.1e}, budget {budget:.0e}) "
                         f"at step {int(row[0])}")
         if msgs:
             self.n_warn += 1
@@ -368,9 +375,10 @@ class Runner:
         if step == self.burn and self.burn > 0:
             _atomic_savez(self.out / "checkpoint_burnin_end.npz", **state)
 
-    def run(self, q, p, rng, step, fresh, max_wall_s=None, max_segment_steps=None):
-        seg = dict(host=socket.gethostname(), slurm_job_id=os.environ.get("SLURM_JOB_ID"),
-                   slurm_array_task=os.environ.get("SLURM_ARRAY_TASK_ID"), start_step=int(step), start=_now())
+    def run(self, q, p, rng, step, fresh, max_wall_s=None, max_segment_steps=None, previous_state=None):
+        seg = dict(host=socket.gethostname(), pid=os.getpid(), slurm_job_id=os.environ.get("SLURM_JOB_ID"),
+                   slurm_array_task=os.environ.get("SLURM_ARRAY_TASK_ID"), start_step=int(step), start=_now(),
+                   previous_state=previous_state)
         st = self.write_status(state="running", step=int(step))
         segments = st.get("segments", [])
         t_seg = time.monotonic()
@@ -468,7 +476,8 @@ def parse(argv=None):
     ap.add_argument("--burn-in-steps", type=int)
     ap.add_argument("--production", type=float, help="production time")
     ap.add_argument("--production-steps", type=int)
-    ap.add_argument("--save-every", type=float, help="raw-frame interval in time (default 0.1)")
+    ap.add_argument("--save-every", type=float,
+                    help="raw-frame interval in time (default: every step; vacf_sampling_results/REPORT.md)")
     ap.add_argument("--save-every-steps", type=int)
     ap.add_argument("--save-burnin", action="store_true", help="also save frames during burn-in")
     ap.add_argument("--init", default=None, choices=["auto", "v2_checkpoint", "replicate64", "fcc", "sc"])
@@ -485,6 +494,11 @@ def parse(argv=None):
     ap.add_argument("--out", required=True)
     ap.add_argument("--resume", action="store_true", help="continue an existing run (starts fresh if none exists)")
     ap.add_argument("--retry-failed", action="store_true", help="resume a run whose last segment failed")
+    ap.add_argument("--lock-wait", type=float, default=30.0,
+                    help="seconds to wait for the run-directory lock before exiting 3 (default 30)")
+    ap.add_argument("--unsafe-no-lock", action="store_true",
+                    help="run without the directory lock (only where the file system cannot lock and no second "
+                         "process can start)")
     ap.add_argument("--quiet", action="store_true")
     return ap.parse_args(argv)
 
@@ -498,8 +512,8 @@ def new_config(args):
                    allow_unverified=args.allow_unverified)
     burn = _steps(args.burn_in, args.burn_in_steps, dt, "burn-in")
     prod = _steps(args.production, args.production_steps, dt, "production", required=True)
-    se = _steps(args.save_every if (args.save_every is not None or args.save_every_steps is not None) else 0.1,
-                args.save_every_steps, dt, "save interval")
+    se = _steps(args.save_every, args.save_every_steps if (args.save_every is not None or args.save_every_steps
+                                                           is not None) else 1, dt, "save interval")
     if se < 1 or prod < 1:
         raise tc.ConfigError("production and save interval must be >= 1 step")
     init = "from_state" if args.from_state else (args.init or "auto")
@@ -558,12 +572,27 @@ def main(argv=None):
     out = Path(args.out)
     for sig in (signal.SIGTERM, signal.SIGUSR1, signal.SIGINT):
         signal.signal(sig, lambda s, f: STOP.__setitem__("signal", signal.Signals(s).name))
+    lock = None
     try:
+        out.mkdir(parents=True, exist_ok=True)              # the lock file lives in the run directory
+        if not args.unsafe_no_lock:
+            lock = run_lock.RunLock(out)
+            try:
+                got = lock.acquire(args.lock_wait)
+            except run_lock.LockUnsupported as exc:
+                lock = None
+                raise tc.ConfigError(f"{exc}; refusing to run without a lock. Use a lock-capable directory (see "
+                                     "hpc/lock_check.py) or --unsafe-no-lock if no second process can start")
+            if not got:
+                lock = None
+                print(f"{out}: locked by another live process (holder note: {run_lock.holder_info(out)}); this "
+                      f"process changes nothing and exits {EXIT_LOCKED}", file=sys.stderr, flush=True)
+                return EXIT_LOCKED
         fresh = not (out / "config.json").exists()
         if not fresh and not args.resume:
             raise tc.ConfigError(f"{out} already holds a run; pass --resume to continue it or choose a new --out")
         if fresh:
-            if out.exists() and any(out.iterdir()):
+            if any(x.name != run_lock.LOCK_NAME for x in out.iterdir()):
                 raise tc.ConfigError(f"{out} is not empty but has no config.json; refusing to write into it")
             r, plan = new_config(args)
             out.mkdir(parents=True, exist_ok=True)
@@ -591,6 +620,7 @@ def main(argv=None):
             if st.get("state") == "complete":
                 print(f"{out}: already complete ({st.get('step')} steps); nothing to do", flush=True)
                 return EXIT_COMPLETE
+            unclean = st.get("state") == "running"            # the lock is ours, so that process is gone
             if st.get("state") == "failed" and not args.retry_failed:
                 raise tc.ConfigError(f"{out} failed earlier ({st.get('segments', [{}])[-1].get('stop_reason')}); the "
                                      "same state and noise would fail again. Inspect it; --retry-failed to try anyway")
@@ -611,6 +641,9 @@ def main(argv=None):
             if cfg["plan"]["burn_steps"] + cfg["plan"]["prod_steps"] <= step:
                 raise tc.ConfigError("checkpoint is at the end but status is not complete; inspect status.json")
             runner = Runner(out, cfg, args.quiet)
+            if unclean:
+                runner.log("previous segment ended without a clean shutdown (status was 'running'); resuming from "
+                           f"the last checkpoint at step {step}")
             if stale:
                 runner.log(f"moved {len(stale)} chunk(s) past the checkpoint to {sd.relative_to(out)}")
         r = cfg["resolved"]
@@ -642,10 +675,14 @@ def main(argv=None):
             for ln in lines:
                 runner.log(ln)
         mw = None if args.max_wall_hours is None else 3600 * args.max_wall_hours
-        return runner.run(q, p, rng, step, fresh, max_wall_s=mw, max_segment_steps=args.max_segment_steps)
+        return runner.run(q, p, rng, step, fresh, max_wall_s=mw, max_segment_steps=args.max_segment_steps,
+                          previous_state=None if fresh else st.get("state"))
     except tc.ConfigError as exc:
         print(f"configuration error: {exc}", file=sys.stderr, flush=True)
         return EXIT_USAGE
+    finally:
+        if lock is not None:
+            lock.release()
 
 
 if __name__ == "__main__":

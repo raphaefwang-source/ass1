@@ -429,8 +429,9 @@ on a liquid-like test state.
 
 **PPPM/FFT vs direct full-periodic sum** (`fft_vs_direct_results/REPORT.md`): same model, same Lanczos ranks,
 single thread, accuracy-checked on v2/replicated/lattice and clustered states at N = 64–1728.
-- Full step: the direct sum is faster at N = 64. PPPM leads from N ≈ 85 (law B) and N ≈ 110–140 (law A); these
-  crossovers are interpolated.
+- Full step: the direct sum is faster at N = 64. Measured crossover brackets: PPPM is ahead from N = 108 for law B
+  and from N = 256 for law A (at N = 108, law A is level or behind). Point values inside the brackets (N ≈ 85 for B,
+  ≈ 110–140 for A) are interpolation estimates, not measurements.
 - PPPM is ×1.8–3.8 faster at 256, ×3.3–4.1 at 512 and ×7.9–15.9 at 1728.
 - A single Γv is still slower with PPPM at N = 512 (×0.57–0.82); parity is near N ≈ 864.
 - The full-step advantage at N ≤ 864 comes from avoiding the O(N²) per-step rebuild of the periodic pair tensors.

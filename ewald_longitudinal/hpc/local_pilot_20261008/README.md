@@ -1,5 +1,7 @@
 # Local pilot, 2026-10-08 (emulated, not on an HPC system)
 
+> Historical record. `hpc/pilot.sbatch` used here was later replaced by `hpc/pilot_task.sbatch` (one job per kernel; directory lock and scheduler-signal checks). See `hpc/README.md`.
+
 The pilot script `hpc/pilot.sbatch` was run under bash in the development container, with no Slurm, using a local
 `cluster.env`. This is not an HPC validation; repeat the pilot on the cluster (`hpc/README.md`).
 

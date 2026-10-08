@@ -6,7 +6,8 @@
 Columns: task_id potential kernel N seed config burn_in production save_every out_rel
 out_rel is relative to $RUN_ROOT (from hpc/cluster.env), so the list does not depend on the cluster paths.
 Defaults: double_well and lj, kernels A and B, N 256 and 512, seeds 101-105, config costopt_hiacc, burn-in t = 140,
-production t = 60, frames every t = 0.1. The burn-in length is an initial run plan, not an equilibration guarantee.
+production t = 60, frames (q, v) every step (t = 0.005; see vacf_sampling_results/REPORT.md). The burn-in length is
+an initial run plan, not an equilibration guarantee.
 """
 import argparse
 import csv
@@ -28,7 +29,9 @@ def main():
     ap.add_argument("--config", default="costopt_hiacc", choices=sorted(tc.CONFIGS))
     ap.add_argument("--burn-in", type=float, default=140.0)
     ap.add_argument("--production", type=float, default=60.0)
-    ap.add_argument("--save-every", type=float, default=0.1)
+    ap.add_argument("--save-every", type=float, default=0.005,
+                    help="frame interval (default every step, 0.005: law B's VACF halves in ~3.4 steps; "
+                         "vacf_sampling_results/REPORT.md)")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
     rows = []

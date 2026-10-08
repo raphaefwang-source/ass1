@@ -1,0 +1,16 @@
+{
+ "dir": "$RUN_ROOT/pilot",
+ "host": "vm",
+ "mount": {
+  "target": "/",
+  "fstype": "ext4",
+  "options": "rw,relatime,discard,no_prefetch_block_bitmaps,resv_strict,resuid=65534,resgid=65534"
+ },
+ "holder_acquired": true,
+ "second_refused": true,
+ "probe_while_held": "held",
+ "probe_after_kill": "free",
+ "acquire_after_kill": true,
+ "warnings": [],
+ "passed": true
+}

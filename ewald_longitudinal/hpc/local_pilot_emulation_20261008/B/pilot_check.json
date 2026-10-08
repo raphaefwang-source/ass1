@@ -1,0 +1,55 @@
+[
+ {
+  "run": "$RUN_ROOT/pilot/local-20261008T184640_B/double_well_B_N512_s101",
+  "config": "costopt_hiacc",
+  "potential": "double_well",
+  "kernel": "B",
+  "N": 512,
+  "ranks": "24/8",
+  "pair_search": "tree",
+  "force": "neighbor",
+  "mesh_M": 40,
+  "steps": 300,
+  "total_steps": 300,
+  "init": "replicate64",
+  "init_equilibrated": false,
+  "step_ms_median": 462.634110999943,
+  "step_ms_p90": 529.1658645998724,
+  "peak_rss_mb": 128.4375,
+  "T_mean": 0.7050194960307876,
+  "U_per_N_last": -5.776637076533538,
+  "rmin_min": 0.7114373144292148,
+  "P_drift_max": 1.2169651277501497e-13,
+  "ritz_range": [
+   17.910446113195853,
+   54.834431612753036
+  ],
+  "monitor_err_max": 1.2765404325991856e-14,
+  "S_kmin_max": 0.05437109509410534,
+  "frames": 301,
+  "segments": 2,
+  "verification": "costopt_hiacc_B_N512",
+  "code": {
+   "commit": "e48269e169b048d3198ba72b1db7a798962a25a2",
+   "dirty": true
+  },
+  "host": "vm",
+  "checks": {
+   "status_complete": true,
+   "config_name": true,
+   "params_match_registry": true,
+   "tree_pairs_and_neighbour_forces": true,
+   "static_verification_for_these_parameters": true,
+   "steps_contiguous": true,
+   "finite": true,
+   "momentum_conserved": 1.0,
+   "rmin_above_stop": true,
+   "temperature_sanity_20pct": true,
+   "ritz_positive": true,
+   "frames_complete": true,
+   "monitor_error_within_budget": true,
+   "no_accuracy_warnings": true
+  },
+  "passed": true
+ }
+]
