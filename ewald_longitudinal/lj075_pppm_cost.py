@@ -2,7 +2,8 @@
 """
 Cost of complete production steps (LJ force, Gamma_h build, damping and noise Lanczos) for candidate PPPM sets at the
 lj075 state point, single thread, dt = 0.005, with the Lanczos ranks of each candidate's own 42-state verification
-(verify_representative_<law>[_xi_s_eta_p].json; candidates without a passed verification are timed but flagged).
+(verify_representative_<law>[_xi_s_eta_p].json; candidates without a passed verification are timed but flagged), plus
+rank variants (RANK_VARIANTS: e.g. the noise rank 14 that the strict rule requires on the visited A states).
 
 Timing: process CPU time per step; the candidates are interleaved in rounds (each round: STEPS steps per candidate
 from the same canonical state, fresh Level) so that background load affects all candidates alike; the median over
@@ -33,6 +34,8 @@ import toy_configs as tc  # noqa: E402
 CONFIG = "lj_rho0.75_kT1.0_costopt"
 CANDS = {"A": [None, (0.85, 4.1, 0.6, 7), (0.85, 4.4, 0.6, 7)],
          "B": [None, (1.0, 4.2, 0.6, 7)]}
+# (pppm candidate or None, (rank_noise, rank_damp), verification file whose chosen ranks justify them)
+RANK_VARIANTS = {"A": [(None, (14, 5), "verify_visited_eq_A.json")]}
 STATES = ("dtinit_s109", "dtinit_s110", "dtinit_s111")
 
 
@@ -69,6 +72,14 @@ def main():
                 status = dict(file=None, passed=False, note="no 42-state verification; production ranks used")
             r = dict(base, pppm=pp, rank_noise=rn, rank_damp=rd)
             setups.append((("production" if cand is None else "xi{} s{} eta{} p{}".format(*cand)), r, status))
+        for cand, (rn, rd), vfile in RANK_VARIANTS.get(law, []):
+            v = json.loads((C.OUT / vfile).read_text())
+            pp = dict(base["pppm"]) if cand is None else dict(xi=cand[0], s=cand[1], eta=cand[2], p=int(cand[3]))
+            status = dict(file=vfile, passed=bool(v["passed"]), op_err_max=max(x["op_err"] for x in v["per_state"].values()),
+                          op_err_vs_k_nonzero_max=v["operator_vs_k_nonzero_part_max"], M=v["mesh"]["M"],
+                          chosen_ranks=v["chosen_ranks"])
+            setups.append((f"{'production' if cand is None else 'xi{} s{} eta{} p{}'.format(*cand)} ranks {rn}/{rd}",
+                           dict(base, pppm=pp, rank_noise=rn, rank_damp=rd), status))
         times = {name: [] for name, _, _ in setups}
         for rd_ in range(args.rounds):
             st = np.load(C.RAW / "states" / f"{STATES[rd_ % len(STATES)]}.npz")
