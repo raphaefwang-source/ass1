@@ -1,0 +1,102 @@
+{
+ "provenance": {
+  "command": "/usr/local/bin/python3 lj075_operator_sensitivity.py --analyze --laws A",
+  "cwd": "/home/user/ass1/ewald_longitudinal",
+  "git_commit": "ec726bb2a0d1a798b00babfc0b1e60c03e6fc623",
+  "git_dirty": false,
+  "untracked_py": [],
+  "script_sha256_16": {
+   "lj075_common.py": "3936dac0eaf81905",
+   "lj075_coupled.py": "c9f26edea49d35d2",
+   "lj075_dt_analysis.py": "2e2b704ab64d0ee3",
+   "lj075_dt_study.py": "08d86c5c7aa66ada",
+   "lj075_equil_analysis.py": "9428d4d1f06b0076",
+   "lj075_equilibration.py": "1ec70796c478980e",
+   "lj075_longD.py": "12724c59e8b9bd3b",
+   "lj075_operator_sensitivity.py": "c2e31244b9979436",
+   "lj075_pppm_cost.py": "9e5fd9a0ee2504a2",
+   "lj075_pppm_screen.py": "3bfd2a79a4c07338",
+   "lj075_prepare_states.py": "e77a1d8425d42323",
+   "lj075_sampling.py": "1d3df6b7d580a625",
+   "lj075_verify.py": "18aff6d8efa571b6",
+   "lj075_visited.py": "4184807fc7d48354",
+   "toy_configs.py": "f64631f956dee239",
+   "toy_run.py": "99f0baf867aaec7e",
+   "toy_dynamics.py": "28f70bea0511ea91",
+   "radial_kernels.py": "f160a24d8f946e95",
+   "test_lanczos_fdt.py": "073614431017921a",
+   "test_true_dynamics.py": "3b39532a9f2917b1",
+   "test_equal_accuracy_xi.py": "03db2074c7890bf2",
+   "prl_toy_models.py": "404f9f23ee0d2da6"
+  },
+  "host": "vm",
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "started": "2026-10-09T20:21:46+0000"
+ },
+ "A": {
+  "n": 2,
+  "per_replica": [
+   {
+    "T_kin": 5.9285018900530865e-05,
+    "U_per_N": -1.4188210852276535e-05,
+    "pressure": -0.0004522571764729033,
+    "msd_0.5": 7.128786768003097e-07,
+    "msd_2": -0.00012896227327427497,
+    "msd_5": -0.00010552342644031967
+   },
+   {
+    "T_kin": 3.971976636799515e-05,
+    "U_per_N": -1.2267989701702505e-05,
+    "pressure": -0.0002911609312775676,
+    "msd_0.5": -9.942666935129066e-06,
+    "msd_2": 8.586421561990117e-06,
+    "msd_5": 1.5784657192975082e-05
+   }
+  ],
+  "paths": [
+   {
+    "dq": {
+     "t=0.1": 1.031812038585023e-09,
+     "t=1": 1.1498377280461035e-08,
+     "t=5": 5.456725825372524e-06,
+     "t=10": 0.01637148943587894
+    },
+    "dv": {
+     "t=0.1": 1.6761933259961668e-08,
+     "t=1": 7.075601805569656e-08,
+     "t=5": 3.108238212580033e-05,
+     "t=10": 0.09565962449754167
+    }
+   },
+   {
+    "dq": {
+     "t=0.1": 9.930921753562442e-10,
+     "t=1": 1.4072751064378795e-08,
+     "t=5": 6.421994488359264e-06,
+     "t=10": 0.009648386016568328
+    },
+    "dv": {
+     "t=0.1": 1.68994184494486e-08,
+     "t=1": 8.734338972436533e-08,
+     "t=5": 3.695519307105048e-05,
+     "t=10": 0.053813720213203825
+    }
+   }
+  ],
+  "max_abs": {
+   "T_kin": 5.9285018900530865e-05,
+   "U_per_N": 1.4188210852276535e-05,
+   "pressure": 0.0004522571764729033,
+   "msd_0.5": 9.942666935129066e-06,
+   "msd_2": 0.00012896227327427497,
+   "msd_5": 0.00010552342644031967
+  },
+  "note": "production minus tight operator; relative except pressure (absolute)"
+ }
+}
