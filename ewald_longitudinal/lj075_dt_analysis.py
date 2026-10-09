@@ -44,8 +44,8 @@ def load(law):
     reps = []
     for meta_f in sorted(RAWDIR.glob(f"{law}_rep*_L*_T*.json")):
         meta = json.loads(meta_f.read_text())
-        if not meta.get("complete"):
-            continue
+        if not meta.get("complete") or meta.get("frame_every", "every step") != "every step":
+            continue                                 # long-D runs (sparse frames) are analysed by lj075_longD.py
         reps.append((meta, meta_f.with_suffix(".npz")))
     return reps
 

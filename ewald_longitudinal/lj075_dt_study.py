@@ -91,7 +91,9 @@ def resolved(law, dt, ranks):
 def run(args):
     law, rep = args.law, args.replica
     levels = DT_ALL[4 - args.levels:]
-    out = RAWDIR / f"{law}_rep{rep:02d}_L{args.levels}_T{args.t_end:g}.npz"
+    fe = args.frame_every
+    tag = "" if fe is None else f"_F{fe:g}"
+    out = RAWDIR / f"{law}_rep{rep:02d}_L{args.levels}_T{args.t_end:g}{tag}.npz"
     meta_f = out.with_suffix(".json")
     if meta_f.exists() and json.loads(meta_f.read_text()).get("complete"):
         print(f"{out.name} complete; nothing to do")
@@ -114,14 +116,20 @@ def run(args):
         rc = int(ver["chosen_ranks"]["couple"])
     N = 256
     nsave = {k: int(round(args.t_end / dt)) + 1 for k, dt in enumerate(levels)}
-    Qs = {k: np.empty((n, N, 3), np.float32) for k, n in nsave.items()}
-    Vs = {k: np.empty((n, N, 3), np.float32) for k, n in nsave.items()}
+    fstride = {k: 1 if fe is None else int(round(fe / dt)) for k, dt in enumerate(levels)}
+    for k, dt in enumerate(levels):
+        if abs(fstride[k] * dt - (fe or dt)) > 1e-12:
+            raise SystemExit("--frame-every must be a multiple of every level's dt")
+    nframe = {k: (nsave[k] - 1) // fstride[k] + 1 for k in nsave}
+    Qs = {k: np.empty((n, N, 3), np.float32) for k, n in nframe.items()}
+    Vs = {k: np.empty((n, N, 3), np.float32) for k, n in nframe.items()}
     scal = {k: np.empty((n, 6)) for k, n in nsave.items()}
     idx = {k: 0 for k in nsave}
 
     def record(k, lv):
         i = idx[k]
-        Qs[k][i], Vs[k][i] = lv.q, lv.p / lv.m
+        if i % fstride[k] == 0:
+            Qs[k][i // fstride[k]], Vs[k][i // fstride[k]] = lv.q, lv.p / lv.m
         scal[k][i] = (lv.nstep * lv.dt, C.kinetic_temperature(lv.p, lv.m), lv.U / N,
                       C.pressure(lv.q, lv.p, lv.L, lv.m), np.linalg.norm(lv.p.sum(0)), lv.rmin)
         idx[k] = i + 1
@@ -139,7 +147,7 @@ def run(args):
         arrays[f"Q_{dt}"], arrays[f"V_{dt}"], arrays[f"S_{dt}"] = Qs[k], Vs[k], scal[k]
         arrays[f"mon_{dt}"] = np.array(res["monitor"][k], float).reshape(-1, 4)
     np.savez(out, **arrays)
-    meta = dict(law=law, replica=rep, levels=list(levels), t_end=args.t_end, init_state=f"{args.init_prefix}{rep}",
+    meta = dict(law=law, replica=rep, levels=list(levels), t_end=args.t_end, frame_every=fe or "every step", init_state=f"{args.init_prefix}{rep}",
                 init_record=json.loads(str(st["generation"])), seed=[SEED_ENTROPY, ord(law), rep],
                 scal_cols=["t", "T_kin", "U_per_N", "pressure", "P_total_norm", "rmin"],
                 resolved=r, rank_couple=rc or r["rank_noise"], monitor_every=MONITOR,
@@ -161,6 +169,8 @@ def main():
     ap.add_argument("--t-end", type=float, default=10.0)
     ap.add_argument("--init-prefix", default="dtinit_s")
     ap.add_argument("--ranks", type=int, nargs=3, metavar=("NOISE", "DAMP", "COUPLE"))
+    ap.add_argument("--frame-every", type=float, default=None,
+                    help="store q, v every this time (default: every step of every level); scalars every step")
     args = ap.parse_args()
     if args.stage == "criteria":
         criteria()
