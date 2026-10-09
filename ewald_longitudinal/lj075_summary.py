@@ -217,7 +217,7 @@ def sec_sampling(law, md, missing):
     for st, v in r["by_stride"].items():
         q, p = v["quadrature"], v["production"]
         rows.append([st, f"{v['save_interval']:g}", f"{100 * v['max_run_gk_bias']:.3f}%", q["lags_before_half"],
-                     ci(q["tau_half"]), ", ".join(f"{k}: {ci(x)}" for k, x in p["msd"].items()), ci(p["D_msd"]),
+                     ci(q["tau_half"]), ", ".join(f"{k}: {ci(x, nd=4)}" for k, x in p["msd"].items()), ci(p["D_msd"], nd=4),
                      "PASS" if v["passes_vacf_gk_rule"] else "FAIL", "PASS" if v["passes_msd_rule"] else "FAIL"])
     md.append(table(["stride", "Δ", "max run GK quadrature bias", "lags before C/C0 = ½", "τ½ rel.",
                      "production-like MSD(t) rel.", "D_MSD[2,8] rel.", "VACF/GK rule", "MSD rule"], rows))
@@ -272,6 +272,12 @@ def sec_cost(law, md):
     osd = C.RAW / "operator_sensitivity"
     cpu = sum(json.loads(f.read_text())["cpu_s"] for f in osd.glob(f"{law}_rep*.json")) if osd.exists() else 0
     rows.append(["operator sensitivity runs", f"{cpu / 3600:.3f}"])
+    pc_ = load("pppm_cost.json")
+    if pc_:
+        n_steps = pc_["rounds"] * (pc_["steps_per_round"] + 1) * sum(len(v) for v in pc_["laws"].values())
+        est = sum(v["cpu_ms_per_step_median"] for m in pc_["laws"].values() for v in m.values()) / 1e3 * \
+            pc_["rounds"] * (pc_["steps_per_round"] + 1)
+        rows.append([f"PPPM step-cost benchmark (estimated from the medians, {n_steps} steps)", f"{est / 3600:.3f}"])
     pc = load("pppm_cost.json")
     if pc and law in pc.get("laws", {}):
         m = pc["laws"][law]

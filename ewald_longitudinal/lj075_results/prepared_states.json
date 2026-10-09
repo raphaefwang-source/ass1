@@ -56,26 +56,27 @@
   "parent": "fcc_s1"
  },
  "_provenance": {
-  "command": "/usr/local/bin/python3 lj075_prepare_states.py --t 30 --names dtinit_s117 dtinit_s118 dtinit_s119 dtinit_s120",
+  "command": "/usr/local/bin/python3 lj075_prepare_states.py --t 30 --names dtinit_s121 dtinit_s122 dtinit_s123 dtinit_s124 dtinit_s125 dtinit_s126 dtinit_s127 dtinit_s128",
   "cwd": "/home/user/ass1/ewald_longitudinal",
-  "git_commit": "b4aeffa01247064b097774fe055e579f1cbb74da",
+  "git_commit": "1ea4d2add3bb4985fc5ca5a05043f9611d97fe40",
   "git_dirty": true,
   "untracked_py": [],
   "script_sha256_16": {
    "lj075_common.py": "3936dac0eaf81905",
    "lj075_coupled.py": "c9f26edea49d35d2",
-   "lj075_dt_analysis.py": "3d9dd2f24e4dddde",
+   "lj075_dt_analysis.py": "d58faaec7b210525",
    "lj075_dt_study.py": "08d86c5c7aa66ada",
-   "lj075_equil_analysis.py": "bf112f321bde0a70",
+   "lj075_equil_analysis.py": "00aeccc2e1e8887c",
    "lj075_equilibration.py": "1ec70796c478980e",
-   "lj075_longD.py": "54db35f529508d8f",
-   "lj075_operator_sensitivity.py": "42a25926d6ab83c6",
+   "lj075_longD.py": "12724c59e8b9bd3b",
+   "lj075_operator_sensitivity.py": "c2e31244b9979436",
    "lj075_pppm_cost.py": "9e5fd9a0ee2504a2",
    "lj075_pppm_screen.py": "3bfd2a79a4c07338",
    "lj075_prepare_states.py": "e77a1d8425d42323",
-   "lj075_sampling.py": "13217f5394c5d1e9",
+   "lj075_sampling.py": "1d3df6b7d580a625",
+   "lj075_summary.py": "1d68b99d57f8d58a",
    "lj075_verify.py": "18aff6d8efa571b6",
-   "lj075_visited.py": "378e1cb6c7799cf4",
+   "lj075_visited.py": "4184807fc7d48354",
    "toy_configs.py": "f64631f956dee239",
    "toy_run.py": "99f0baf867aaec7e",
    "toy_dynamics.py": "28f70bea0511ea91",
@@ -93,7 +94,7 @@
    "OPENBLAS_NUM_THREADS": "1",
    "MKL_NUM_THREADS": "1"
   },
-  "started": "2026-10-09T20:20:11+0000"
+  "started": "2026-10-09T22:06:45+0000"
  },
  "fcc_s2": {
   "name": "fcc_s2",
@@ -736,6 +737,47 @@
     "MKL_NUM_THREADS": "1"
    },
    "started": "2026-10-09T20:19:30+0000"
+  },
+  {
+   "command": "/usr/local/bin/python3 lj075_prepare_states.py --t 30 --names dtinit_s121 dtinit_s122 dtinit_s123 dtinit_s124 dtinit_s125 dtinit_s126 dtinit_s127 dtinit_s128",
+   "cwd": "/home/user/ass1/ewald_longitudinal",
+   "git_commit": "1ea4d2add3bb4985fc5ca5a05043f9611d97fe40",
+   "git_dirty": false,
+   "untracked_py": [],
+   "script_sha256_16": {
+    "lj075_common.py": "3936dac0eaf81905",
+    "lj075_coupled.py": "c9f26edea49d35d2",
+    "lj075_dt_analysis.py": "d58faaec7b210525",
+    "lj075_dt_study.py": "08d86c5c7aa66ada",
+    "lj075_equil_analysis.py": "00aeccc2e1e8887c",
+    "lj075_equilibration.py": "1ec70796c478980e",
+    "lj075_longD.py": "12724c59e8b9bd3b",
+    "lj075_operator_sensitivity.py": "c2e31244b9979436",
+    "lj075_pppm_cost.py": "9e5fd9a0ee2504a2",
+    "lj075_pppm_screen.py": "3bfd2a79a4c07338",
+    "lj075_prepare_states.py": "e77a1d8425d42323",
+    "lj075_sampling.py": "1d3df6b7d580a625",
+    "lj075_summary.py": "1d68b99d57f8d58a",
+    "lj075_verify.py": "18aff6d8efa571b6",
+    "lj075_visited.py": "4184807fc7d48354",
+    "toy_configs.py": "f64631f956dee239",
+    "toy_run.py": "99f0baf867aaec7e",
+    "toy_dynamics.py": "28f70bea0511ea91",
+    "radial_kernels.py": "f160a24d8f946e95",
+    "test_lanczos_fdt.py": "073614431017921a",
+    "test_true_dynamics.py": "3b39532a9f2917b1",
+    "test_equal_accuracy_xi.py": "03db2074c7890bf2",
+    "prl_toy_models.py": "404f9f23ee0d2da6"
+   },
+   "host": "vm",
+   "python": "3.11.15",
+   "numpy": "2.4.6",
+   "threads": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   },
+   "started": "2026-10-09T22:05:12+0000"
   }
  ],
  "dtinit_s118": {
@@ -783,6 +825,150 @@
   "cpu_s": 13.577407207,
   "U_per_N_last_quarter": -4.668905130742784,
   "T_last_quarter": 1.002722178519366,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s121": {
+  "name": "dtinit_s121",
+  "start": "dtinit",
+  "seed": 121,
+  "t": 30.0,
+  "wall_s": 12.387382651002554,
+  "cpu_s": 12.283240389,
+  "U_per_N_last_quarter": -4.677032481093406,
+  "T_last_quarter": 0.9949411905721613,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s122": {
+  "name": "dtinit_s122",
+  "start": "dtinit",
+  "seed": 122,
+  "t": 30.0,
+  "wall_s": 13.396556838000834,
+  "cpu_s": 13.191284620000001,
+  "U_per_N_last_quarter": -4.655230685219266,
+  "T_last_quarter": 1.0006347448932382,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s123": {
+  "name": "dtinit_s123",
+  "start": "dtinit",
+  "seed": 123,
+  "t": 30.0,
+  "wall_s": 12.824584635000065,
+  "cpu_s": 12.657846936999999,
+  "U_per_N_last_quarter": -4.657430481364585,
+  "T_last_quarter": 1.004607962214937,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s124": {
+  "name": "dtinit_s124",
+  "start": "dtinit",
+  "seed": 124,
+  "t": 30.0,
+  "wall_s": 12.846375969998917,
+  "cpu_s": 12.726293579999997,
+  "U_per_N_last_quarter": -4.682278484426842,
+  "T_last_quarter": 0.9993569796103575,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s125": {
+  "name": "dtinit_s125",
+  "start": "dtinit",
+  "seed": 125,
+  "t": 30.0,
+  "wall_s": 13.119355584000004,
+  "cpu_s": 12.973003599000002,
+  "U_per_N_last_quarter": -4.65082155680776,
+  "T_last_quarter": 1.0338188259361676,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s126": {
+  "name": "dtinit_s126",
+  "start": "dtinit",
+  "seed": 126,
+  "t": 30.0,
+  "wall_s": 13.225497886000085,
+  "cpu_s": 13.011497501999997,
+  "U_per_N_last_quarter": -4.666162414842356,
+  "T_last_quarter": 0.9850681358070809,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s127": {
+  "name": "dtinit_s127",
+  "start": "dtinit",
+  "seed": 127,
+  "t": 30.0,
+  "wall_s": 13.571221926998987,
+  "cpu_s": 13.452071679,
+  "U_per_N_last_quarter": -4.683536997636242,
+  "T_last_quarter": 0.9898576955759072,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s128": {
+  "name": "dtinit_s128",
+  "start": "dtinit",
+  "seed": 128,
+  "t": 30.0,
+  "wall_s": 12.53293245900204,
+  "cpu_s": 12.416768644000001,
+  "U_per_N_last_quarter": -4.644293027688241,
+  "T_last_quarter": 1.0268766549661676,
   "generation": {
    "method": "scalar Langevin BAOAB, conservative LJ forces only",
    "gamma": 1.0,
