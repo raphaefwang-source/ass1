@@ -377,8 +377,13 @@ def figure(law, res):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--laws", nargs="+", default=["A"], help="laws to analyse (default A: the lj075 campaign "
+                    "continued with law A only; B was stopped)")
+    args = ap.parse_args()
     out = dict(provenance=C.provenance())
-    for law in ("A", "B"):
+    for law in args.laws:
         res = analyze_law(law)
         if res is None:
             continue

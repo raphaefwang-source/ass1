@@ -332,9 +332,14 @@ def figure(law, res):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--laws", nargs="+", default=["A"], help="laws to analyse (default A: the lj075 campaign "
+                    "continued with law A only; B was stopped)")
+    args = ap.parse_args()
     rng = np.random.default_rng(99)
     out = dict(criteria=json.loads((C.OUT / "dt_criteria.json").read_text()), provenance=C.provenance())
-    for law in ("A", "B"):
+    for law in args.laws:
         res = analyze_law(law, rng)
         if res:
             figure(law, res)

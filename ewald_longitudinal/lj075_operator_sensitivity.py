@@ -75,9 +75,9 @@ def run(law, rep, t_end):
     print(f"[{law} {rep}] done; dq(t_end) {dq[-1]:.2e} dv(t_end) {dv[-1]:.2e}", flush=True)
 
 
-def analyze():
+def analyze(laws=("A",)):
     res = dict(provenance=C.provenance())
-    for law in ("A", "B"):
+    for law in laws:
         files = sorted(OUT.glob(f"{law}_rep*_T*.npz"))
         if not files:
             continue
@@ -112,9 +112,10 @@ def main():
     ap.add_argument("--replica", type=int)
     ap.add_argument("--t-end", type=float, default=10.0)
     ap.add_argument("--analyze", action="store_true")
+    ap.add_argument("--laws", nargs="+", default=["A"], help="laws to analyse (default A)")
     args = ap.parse_args()
     if args.analyze:
-        analyze()
+        analyze(args.laws)
     else:
         run(args.law, args.replica, args.t_end)
 

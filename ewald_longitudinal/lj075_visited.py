@@ -8,7 +8,8 @@ are far from equilibrium: lattice-like or high-energy), the step with the smalle
 largest Ritz value seen by the runner. For each picked step n the EXACT inputs of the next O-step are rebuilt:
     p' = p_n + dt/2 F(q_n),  q_half = q_n + dt/(2m) p'   (damping input Pi p' at Gamma_h(q_half)),
     xi = the (n+1)-th standard-normal (N, 3) draw of the run's noise stream default_rng([seed, 1]) (noise input).
-Per dt-study replica: the final frame and the smallest-rmin frame of the coarsest (dt = 0.01) level.
+Per dt-study replica (short L4 chains and long-D chains): the final frame and the smallest-rmin frame of the coarsest
+(dt = 0.01) level. Only runs of the requested laws (--laws, default A) are used.
 """
 import json
 import sys
@@ -25,12 +26,17 @@ OUT = C.RAW / "visited"
 
 
 def main():
+    import argparse
     import toy_run
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--laws", nargs="+", default=["A"], help="laws whose runs are used (default A)")
+    args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     L, kT = C.box_length(256, 0.75), 1.0
     n = 0
     man = {}
-    for run in sorted((C.RAW / "runs").glob("eq_*")):
+    eq_runs = sorted(r for law in args.laws for r in (C.RAW / "runs").glob(f"eq_{law}_*"))
+    for run in eq_runs:
         st = json.loads((run / "status.json").read_text())
         if st["state"] != "complete":
             continue
@@ -63,7 +69,12 @@ def main():
             man[name] = dict(run=run.name, step=int(d["frame_step"][k]), t=float(t[k]), rmin=float(diag[k, 6]),
                              inputs="exact: q_half, p' (damping input), xi (noise draw)")
             n += 1
-    for f in sorted((C.RAW / "dt_study").glob("*_L4_T10.npz")):
+    dt_files = sorted(f for law in args.laws for pat in (f"{law}_rep*_L4_T10.npz", f"{law}_rep*_T100_F0.01.npz")
+                      for f in (C.RAW / "dt_study").glob(pat))
+    for f in dt_files:
+        meta = json.loads(f.with_suffix(".json").read_text())
+        if not meta.get("complete"):
+            continue
         with np.load(f) as z:
             S = z["S_0.01"]
             for tag, k in (("final", len(S) - 1), ("rmin", int(np.argmin(S[:, 5])))):

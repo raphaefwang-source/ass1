@@ -67,8 +67,13 @@ def dmsd(Q, fdt):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--laws", nargs="+", default=["A"], help="laws to analyse (default A: the lj075 campaign "
+                    "continued with law A only; B was stopped)")
+    args = ap.parse_args()
     res = dict(provenance=C.provenance(), T0=T0, windows=[f"{a:g}-{b:g}" for a, b in WINDOWS])
-    for law in ("A", "B"):
+    for law in args.laws:
         reps = load(law)
         if len(reps) < 2:
             continue

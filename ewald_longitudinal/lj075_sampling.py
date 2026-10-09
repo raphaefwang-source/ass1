@@ -90,9 +90,14 @@ def one_run(run, burn):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--laws", nargs="+", default=["A"], help="laws to analyse (default A: the lj075 campaign "
+                    "continued with law A only; B was stopped)")
+    args = ap.parse_args()
     eq = json.loads((C.OUT / "equilibration.json").read_text())
     res = dict(rule=RULE, strides=STRIDES, provenance=C.provenance())
-    for law in ("A", "B"):
+    for law in args.laws:
         if law not in eq:
             continue
         burn = eq[law]["burn_in"]["estimate"]
