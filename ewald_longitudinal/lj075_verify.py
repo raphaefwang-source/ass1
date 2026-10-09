@@ -60,7 +60,7 @@ CONFIG = "lj_rho0.75_kT1.0_costopt"
 DTS = (0.00125, 0.0025, 0.005, 0.01)
 RANKS = (2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 20, 24, 28, 32, 40, 48, 56)
 RMAX = max(RANKS)
-PROTOCOL = dict(version=1, dts=DTS, ranks=RANKS, probes="4 gauss, 4 maxwell, actual p, 4 k x (L,T) plane waves, "
+PROTOCOL = dict(version=2, dts=DTS, ranks=RANKS, probes="4 gauss, 4 maxwell, actual p, 4 k x (L,T) plane waves, "
                 "2 slow-mode", rule="max(overall, kmin, low3, low12) <= budget/10")
 
 
@@ -126,9 +126,14 @@ def verify_state(r, fast, lat, q, p_actual, rng):
         v = Dh.U[:, :12] @ c
         probes[f"slow{k}"] = proj(v / np.linalg.norm(v) + 0.1 * rng.standard_normal(3 * N) / np.sqrt(3 * N))
     diff = Gh - Gr
+    # k != 0 part of the reference: remove the analytically exact k = 0 term c0 (N I - 1 1^T) (x) I_3, c0 = ghat(0)/(3V)
+    c0 = lat.zero_mode
+    Gk0 = c0 * np.kron(N * np.eye(N) - np.ones((N, N)), np.eye(3))
     gv = max(float(np.linalg.norm(diff @ v) / np.linalg.norm(Gr @ v)) for v in probes.values())
     rec = dict(op_err=float(np.linalg.norm(diff, 2) / np.linalg.norm(Gr, 2)),
                op_err_fro=float(np.linalg.norm(diff) / np.linalg.norm(Gr)),
+               op_err_vs_k_nonzero_part=float(np.linalg.norm(diff, 2) / np.linalg.norm(Gr - Gk0, 2)),
+               k0_shift=float(N * c0),
                op_err_gv_probes=gv,
                op_err_low12_eigs=float(np.max(np.abs(Dh.lam[:12] - Dr.lam[:12]) / Dr.lam[:12])),
                sym_resid=float(np.linalg.norm(Gh - Gh.T) / np.linalg.norm(Gh)),
