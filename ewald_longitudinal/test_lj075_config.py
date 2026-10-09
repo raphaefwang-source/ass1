@@ -55,6 +55,22 @@ class Config(unittest.TestCase):
         for k in ("gamma", "kappa", "r_ref", "mass", "epsilon", "sigma", "r_on", "r_cut"):
             self.assertEqual(r["model"][k], tc.MODEL[k])
 
+    def test_production_config(self):
+        """The lj075 production configuration: law A only, same state point and PPPM set, noise rank 14."""
+        prod = "lj_rho0.75_kT1.0_A_prod"
+        dt = tc.validated_dt(prod, "A") or 0.005
+        r = tc.resolve(prod, "A", 256, "lj", dt=dt, allow_unverified=True)
+        r0 = tc.resolve(NEW, "A", 256, "lj", dt=dt, allow_unverified=True)
+        self.assertEqual(r["model"], r0["model"])
+        self.assertEqual(r["L"], r0["L"])
+        self.assertEqual(r["pppm"], r0["pppm"])
+        self.assertEqual((r["rank_noise"], r["rank_damp"]), (14, 5))
+        self.assertNotEqual(tc.operator_hash(r), tc.operator_hash(r0))
+        with self.assertRaises(tc.ConfigError):
+            tc.resolve(prod, "B", 256, "lj", dt=dt, allow_unverified=True)
+        with self.assertRaises(tc.ConfigError):
+            tc.resolve(prod, "A", 512, "lj", dt=dt, allow_unverified=True)
+
     def test_new_config_refusals(self):
         with self.assertRaises(tc.ConfigError):
             tc.resolve(NEW, "A", 512, "lj", dt=0.005, allow_unverified=True)

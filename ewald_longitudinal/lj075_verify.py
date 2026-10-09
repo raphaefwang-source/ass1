@@ -407,5 +407,56 @@ def runner_entry(law, dt, tag="representative"):
     return entry
 
 
+def runner_entry_ranks(config, law, dt, tags):
+    """Verification entry for a configuration whose ranks may differ from the ranks a verify run chose: every verify
+    result in `tags` must bind to the configuration (PPPM set, L, model, budget, protocol, pair search), pass its
+    structural / operator checks, and the configuration's ranks must meet the strict rule (<= budget/10, overall,
+    k_min, lowest 3 / 12, absolute and increment-normalised) for the damping and noise maps at this dt on every state.
+    Writes <config>_<law>_N256_dt<dt> into the configuration's verification file."""
+    r = tc.resolve(config, law, 256, "lj", dt=dt, allow_unverified=True)
+    rn, rd = r["rank_noise"], r["rank_damp"]
+    if rn not in RANKS or rd not in RANKS:
+        raise ValueError(f"ranks {rn}/{rd} not in the scanned set")
+    if not any(abs(dt - d) < 1e-15 for d in DTS):
+        raise ValueError(f"dt {dt} not covered by the verification")
+    b = r["operator_budget"]
+    per_all, sources, worst = {}, [], {}
+    for tag in tags:
+        f = C.OUT / f"verify_{tag}_{law}.json"
+        res = json.loads(f.read_text())
+        if res["pppm"] != r["pppm"]:
+            raise ValueError(f"{f.name}: PPPM {res['pppm']} != configuration {r['pppm']}")
+        if (abs(res["L"] - r["L"]) > 1e-12 * r["L"] or res["model"] != r["model"] or res["budget"] != b
+                or res["protocol"]["version"] != PROTOCOL["version"] or res["mesh"]["pair_search"] != r["pair_search"]
+                or not res["passed"]):
+            raise ValueError(f"{f.name} does not bind to {config} (L, model, budget, protocol, pair search) or failed")
+        for name, v in res["per_state"].items():
+            for fn, rank in ((f"noise_{dt:g}", rn), (f"damp_{dt:g}", rd)):
+                key = next(k for k in v["krylov"] if k.split("_")[0] == fn.split("_")[0]
+                           and abs(float(k.split("_")[1]) - dt) < 1e-15)
+                e_abs = _mx(v["krylov"][key][str(rank)])
+                e_inc = v["krylov_increment"][key][str(rank)]
+                worst[fn] = max(worst.get(fn, 0.0), e_abs)
+                worst[fn + "_increment"] = max(worst.get(fn + "_increment", 0.0), e_inc)
+                if e_abs > b / 10 or e_inc > b / 10:
+                    raise ValueError(f"{config}: rank {rank} for {key} gives {e_abs:.2e} / {e_inc:.2e} > budget/10 on "
+                                     f"{name} ({f.name})")
+            per_all[f"{tag}:{name}"] = dict(op_err=v["op_err"], lam_min=v["lam_min"], ritz_min=v["ritz_min"])
+        sources.append(f"lj075_results/{f.name}")
+    entry = dict(passed=True, operator_hash=tc.operator_hash(r), budget=b,
+                 op_err=max(v["op_err"] for v in per_all.values()),
+                 checks=dict(bound_and_passed=True, ranks_meet_strict_rule_at_dt=True),
+                 lam_min=min(v["lam_min"] for v in per_all.values()),
+                 ritz_min=min(v["ritz_min"] for v in per_all.values()),
+                 per_state={k: dict(op_err=v["op_err"], lam_min=v["lam_min"]) for k, v in per_all.items()},
+                 source=sources, dt=dt, ranks=dict(noise=rn, damp=rd), worst_lanczos_at_ranks=worst,
+                 n_states=len(per_all))
+    f = HERE / tc.CONFIGS[config]["verification_file"]
+    db = json.loads(f.read_text()) if f.exists() else {}
+    db[f"{config}_{law}_N256_dt{dt:g}"] = entry
+    C.write_json(f, db)
+    return entry
+
+
 if __name__ == "__main__":
     main()

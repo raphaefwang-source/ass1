@@ -89,6 +89,24 @@ CONFIGS = {
         ranks={"A": ((256, 12, 5),), "B": ((256, 8, 6),)},
         verified_N=(256,),
     ),
+    "lj_rho0.75_kT1.0_A_prod": dict(
+        description="LJ rho 0.75, kT 1.0, law A only: recommended production configuration of the lj075 study "
+                    "(lj075_results/REPORT.md); PPPM set of lj_rho0.75_kT1.0_costopt, noise rank 14",
+        state_point="lj_rho0.75_kT1.0",
+        verification_file="lj075_results/verification_runner.json",
+        potentials=("lj",),
+        laws=("A",),
+        N_allowed=(256,),
+        dt_validated={"A": None},  # set from the lj075 dt study (REPORT.md section 3)
+        pair_search="tree",
+        force_method="neighbor",
+        operator_budget={"A": 2e-7},
+        pppm={"A": dict(xi=0.85, s=4.1, eta=0.6779116381586452, p=8)},
+        # strict Krylov rule on 42 representative states AND on the configurations visited by the lj075 runs
+        # (verify_visited_*_A.json): noise needs 14 there (12 gave 2.9e-8 > budget/10 on one k_min probe).
+        ranks={"A": ((256, 14, 5),)},
+        verified_N=(256,),
+    ),
     "baseline_hiacc": dict(
         description="original high-accuracy PPPM + Lanczos 40/16, image-enumerated pairs, all-pair forces "
                     "(reproduces runs before 2026-10-08)",
@@ -159,8 +177,9 @@ def resolve(name, law, N, potential, dt=None, rank_override=None, allow_unverifi
         raise ConfigError(f"unknown config {name!r}; choose from {sorted(CONFIGS)}")
     cfg = CONFIGS[name]
     pots = cfg.get("potentials", POTENTIALS)
-    if law not in KERNELS or potential not in pots:
-        raise ConfigError(f"kernel must be in {KERNELS}, potential in {pots} for {name}")
+    laws = cfg.get("laws", KERNELS)
+    if law not in laws or potential not in pots:
+        raise ConfigError(f"kernel must be in {laws}, potential in {pots} for {name}")
     model = model_of(name)
     L = box_length(N, model["density"])
     if N < 64:
@@ -213,7 +232,7 @@ def physics_hash(r):
 
 if __name__ == "__main__":
     for name in CONFIGS:
-        for law in KERNELS:
+        for law in CONFIGS[name].get("laws", KERNELS):
             for N in CONFIGS[name].get("N_allowed", (64, 256, 512)):
                 pot = CONFIGS[name].get("potentials", POTENTIALS)[0]
                 r = resolve(name, law, N, pot, dt=validated_dt(name, law) or 0.005, allow_unverified=True)
