@@ -1,0 +1,134 @@
+{
+ "config": "lj_rho0.75_kT1.0_costopt",
+ "dt": 0.005,
+ "rounds": 6,
+ "steps_per_round": 40,
+ "states": [
+  "dtinit_s109",
+  "dtinit_s110",
+  "dtinit_s111"
+ ],
+ "provenance": {
+  "command": "/usr/local/bin/python3 lj075_pppm_cost.py --laws A",
+  "cwd": "/home/user/ass1/ewald_longitudinal",
+  "git_commit": "501b5792983591881c5f5ce7c4ba6c2ef37e8b7a",
+  "git_dirty": false,
+  "untracked_py": [],
+  "script_sha256_16": {
+   "lj075_common.py": "3936dac0eaf81905",
+   "lj075_coupled.py": "c9f26edea49d35d2",
+   "lj075_dt_analysis.py": "d58faaec7b210525",
+   "lj075_dt_study.py": "08d86c5c7aa66ada",
+   "lj075_equil_analysis.py": "9428d4d1f06b0076",
+   "lj075_equilibration.py": "1ec70796c478980e",
+   "lj075_longD.py": "12724c59e8b9bd3b",
+   "lj075_operator_sensitivity.py": "c2e31244b9979436",
+   "lj075_pppm_cost.py": "9e5fd9a0ee2504a2",
+   "lj075_pppm_screen.py": "3bfd2a79a4c07338",
+   "lj075_prepare_states.py": "e77a1d8425d42323",
+   "lj075_sampling.py": "1d3df6b7d580a625",
+   "lj075_summary.py": "1d68b99d57f8d58a",
+   "lj075_verify.py": "18aff6d8efa571b6",
+   "lj075_visited.py": "4184807fc7d48354",
+   "toy_configs.py": "f64631f956dee239",
+   "toy_run.py": "99f0baf867aaec7e",
+   "toy_dynamics.py": "28f70bea0511ea91",
+   "radial_kernels.py": "f160a24d8f946e95",
+   "test_lanczos_fdt.py": "073614431017921a",
+   "test_true_dynamics.py": "3b39532a9f2917b1",
+   "test_equal_accuracy_xi.py": "03db2074c7890bf2",
+   "prl_toy_models.py": "404f9f23ee0d2da6"
+  },
+  "host": "vm",
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "started": "2026-10-09T21:56:09+0000"
+ },
+ "laws": {
+  "A": {
+   "production": {
+    "pppm": {
+     "xi": 0.85,
+     "s": 4.1,
+     "eta": 0.6779116381586452,
+     "p": 8
+    },
+    "ranks": {
+     "noise": 12,
+     "damp": 5
+    },
+    "verification": {
+     "file": "verify_representative_A.json",
+     "passed": true,
+     "op_err_max": 7.325576307650605e-08,
+     "op_err_vs_k_nonzero_max": 1.5342150670548725e-07,
+     "M": 24
+    },
+    "cpu_ms_per_step_median": 128.08879542499997,
+    "cpu_ms_per_step_range": [
+     120.85438669999995,
+     129.9817421500002
+    ],
+    "relative_to_production": 1.0,
+    "core_hours_per_time_unit": 0.007116044190277776
+   },
+   "xi0.85 s4.1 eta0.6 p7": {
+    "pppm": {
+     "xi": 0.85,
+     "s": 4.1,
+     "eta": 0.6,
+     "p": 7
+    },
+    "ranks": {
+     "noise": 12,
+     "damp": 5
+    },
+    "verification": {
+     "file": "verify_representative_A_0.85_4.1_0.6_7.0.json",
+     "passed": true,
+     "op_err_max": 7.596698890070981e-08,
+     "op_err_vs_k_nonzero_max": 1.59235784012128e-07,
+     "M": 27
+    },
+    "cpu_ms_per_step_median": 121.36722143749999,
+    "cpu_ms_per_step_range": [
+     115.46308497500002,
+     128.35630247499984
+    ],
+    "relative_to_production": 0.94752410649817,
+    "core_hours_per_time_unit": 0.006742623413194444
+   },
+   "xi0.85 s4.4 eta0.6 p7": {
+    "pppm": {
+     "xi": 0.85,
+     "s": 4.4,
+     "eta": 0.6,
+     "p": 7
+    },
+    "ranks": {
+     "noise": 12,
+     "damp": 5
+    },
+    "verification": {
+     "file": "verify_representative_A_0.85_4.4_0.6_7.0.json",
+     "passed": true,
+     "op_err_max": 1.6263570878875243e-08,
+     "op_err_vs_k_nonzero_max": 3.3199486383646707e-08,
+     "M": 30
+    },
+    "cpu_ms_per_step_median": 140.51420195000003,
+    "cpu_ms_per_step_range": [
+     136.8975508,
+     147.0828823249999
+    ],
+    "relative_to_production": 1.0970061938967606,
+    "core_hours_per_time_unit": 0.007806344552777779
+   }
+  }
+ }
+}
