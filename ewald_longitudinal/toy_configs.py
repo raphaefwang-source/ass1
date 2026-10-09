@@ -77,12 +77,14 @@ CONFIGS = {
         pair_search="tree",
         force_method="neighbor",
         operator_budget={"A": 2e-7, "B": 5e-8},
-        # A: p raised 7 -> 8 at this state point (costopt set with p = 7 gives 2.0-2.15e-7 > 2e-7 on fcc-lattice states
-        # at rho 0.75; p = 8 gives <= 7.0e-8 on lattice and liquid states, same mesh M = 24). B unchanged.
+        # A: p raised 7 -> 8 at this state point: with p = 7 the costopt set gives 2.04-2.15e-7 > 2e-7 on fcc-lattice
+        # states at rho 0.75 (lj075_results/pppm_screen.json); with p = 8, max 7.3e-8 over 42 states
+        # (verify_representative_A.json, protocol 3; same mesh M = 24). B unchanged: max 2.4e-8 (full norm) but
+        # 1.4e-7 relative to the k != 0 part of Gamma_ref (see lj075_results/REPORT.md).
         pppm={"A": dict(xi=0.85, s=4.1, eta=0.6779116381586452, p=8),
               "B": dict(xi=1.0, s=3.9, eta=0.6827747058642308, p=7)},
-        # strict Krylov rule (overall, k = 2 pi/L, lowest 3 / 12 eigenmode errors <= budget/10) on 28 (A) / 19 (B)
-        # canonical LJ states at this state point, for dt 0.00125-0.01 (lj075_results/verify_representative_*.json).
+        # strict Krylov rule (overall, k = 2 pi/L, lowest 3 / 12 eigenmode errors <= budget/10) on 42 states per law
+        # (41 canonical LJ states + 1 jittered fcc lattice) for dt 0.00125-0.01 (lj075_results/verify_representative_*.json).
         # Coupling maps of the dt study (not used in production): rank 4 (A), 6 (B).
         ranks={"A": ((256, 12, 5),), "B": ((256, 8, 6),)},
         verified_N=(256,),
