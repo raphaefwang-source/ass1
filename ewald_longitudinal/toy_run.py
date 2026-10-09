@@ -17,8 +17,11 @@ Model and step:
 Initial states (recorded in config.json; none of the constructed ones is marked equilibrated):
 - v2_checkpoint  N = 64 only: the v2 restart state (after its burn-in, with the v2 dense lattice thermostat);
 - replicate64    N = 64 k^3: k^3 periodic copies of a v2 N = 64 state, uniform jitter, fresh Maxwell momenta;
-- fcc / sc       N = 4 n^3 / n^3: lattice at the toy density, uniform jitter, fresh Maxwell momenta;
-- --from-state   q, p from an .npz file (e.g. checkpoint_burnin_end.npz of another run).
+- fcc / sc       N = 4 n^3 / n^3: lattice at the configuration's density, uniform jitter, fresh Maxwell momenta;
+- rsa            random sequential addition with minimum pair distance --init-dmin, fresh Maxwell momenta;
+- --from-state   q, p from an .npz file (e.g. checkpoint_burnin_end.npz of another run). The source must carry its
+                 state point (a run directory's config.json next to it, or keys L / kT / N in the file) and it must
+                 match this configuration; v2_checkpoint and replicate64 exist only for the toy_v2 state point.
 
 Output directory:
   config.json                  resolved parameters, provenance, init record, code version, hashes (written once)
@@ -83,7 +86,7 @@ import toy_dynamics as td  # noqa: E402
 from test_lanczos_fdt import lanczos, proj, tridiag  # noqa: E402
 
 V2_CKPT = HERE / "toy_models" / "v2_results" / "restart_checkpoints"
-VERIFICATION = HERE / "cost_optimization_results" / "production_config_verification.json"
+VERIFICATION_DEFAULT = HERE / "cost_optimization_results" / "production_config_verification.json"
 DIAG_COLS = ("step", "t", "T_kin", "U_per_N", "KE_per_N", "P_norm", "rmin", "step_wall_s", "ritz_min", "ritz_max")
 MON_COLS = ("step", "noise_err_est", "noise_err_est_kmin", "damp_err_est", "damp_err_est_kmin", "ritz_min_mon",
             "ritz_max_mon", "S_kmin_max")
@@ -180,6 +183,8 @@ def initial_state(r, args):
     method = args.init or "auto"
     if args.from_state:
         method = "from_state"
+    elif method == "auto" and r["model"] != tc.STATE_POINTS["toy_v2"]:
+        method = "fcc" if 4 * round((N / 4) ** (1 / 3)) ** 3 == N else "sc"
     elif method == "auto":
         k = round((N / 64) ** (1 / 3))
         if N == 64:
@@ -195,11 +200,29 @@ def initial_state(r, args):
         f = Path(args.from_state)
         with np.load(f) as d:
             q, p = np.array(d["q"], float), np.array(d["p"], float)
+            meta = {k: (float(d[k]) if np.ndim(d[k]) == 0 and np.issubdtype(d[k].dtype, np.number) else None)
+                    for k in ("L", "kT", "N") if k in d.files}
         if q.shape != (N, 3):
             raise tc.ConfigError(f"--from-state has shape {q.shape}, expected ({N}, 3)")
-        rec.update(source=str(f.resolve()), source_sha256=_sha256(f),
+        src_cfg = f.parent / "config.json"
+        if src_cfg.exists():
+            sr = json.loads(src_cfg.read_text())["resolved"]
+            meta.update(L=sr["L"], kT=sr["model"]["kT"], N=sr["N"], density=sr["model"]["density"],
+                        source_config=sr["config"])
+        if not {"L", "kT"} <= set(meta):
+            raise tc.ConfigError(f"--from-state {f}: no state-point record (config.json next to it, or keys L, kT in "
+                                 "the file); refusing a state of unknown box and temperature")
+        if abs(meta["L"] - L) > 1e-9 * L or abs(meta["kT"] - kT) > 1e-12:
+            raise tc.ConfigError(f"--from-state {f} is at L {meta['L']}, kT {meta['kT']}; this configuration has "
+                                 f"L {L}, kT {kT}")
+        kin = float(np.sum((p - p.mean(0)) ** 2) / (m * 3 * (N - 1)))
+        rec.update(source=str(f.resolve()), source_sha256=_sha256(f), source_state_point=meta,
+                   source_kinetic_temperature=kin,
                    note="state supplied by the user; its equilibration status is the user's responsibility")
         return q, p, rec
+    if method in ("v2_checkpoint", "replicate64") and r["model"] != tc.STATE_POINTS["toy_v2"]:
+        raise tc.ConfigError(f"{method} is a toy_v2 state (L 5.5 per 64 particles, kT 0.7); not usable for "
+                             f"{r['config']}")
     if method in ("v2_checkpoint", "replicate64"):
         src_seed = args.init_source_seed if args.init_source_seed is not None else args.seed
         f = V2_CKPT / f"{pot}_burn140" / "lattice" / f"{pot}_{law}" / f"seed_{src_seed}" / "restart.npz"
@@ -234,8 +257,26 @@ def initial_state(r, args):
         q = _lattice(method, N, L) + rng.uniform(-jit, jit, (N, 3))
         p = _maxwell(rng, N, kT, m)
         rec.update(jitter_uniform_halfwidth=jit, momenta="fresh Maxwell at kT, total momentum 0",
-                   note=f"{method} lattice at the toy density: NOT equilibrated; needs burn-in")
+                   note=f"{method} lattice at density {r['model']['density']:.6f}: NOT equilibrated; needs burn-in")
         return q % L, p, rec
+    if method == "rsa":
+        dmin = 0.9 if args.init_dmin is None else args.init_dmin
+        q = np.empty((N, 3))
+        k, tries = 0, 0
+        while k < N:
+            tries += 1
+            if tries > 10 ** 7:
+                raise tc.ConfigError(f"rsa: could not place {N} particles with dmin {dmin}")
+            x = rng.uniform(0, L, 3)
+            d = q[:k] - x
+            d -= L * np.round(d / L)
+            if k == 0 or np.einsum("pa,pa->p", d, d).min() >= dmin * dmin:
+                q[k] = x
+                k += 1
+        p = _maxwell(rng, N, kT, m)
+        rec.update(min_distance=dmin, attempts=tries, momenta="fresh Maxwell at kT, total momentum 0",
+                   note="random sequential addition: NOT equilibrated; needs burn-in")
+        return q, p, rec
     raise tc.ConfigError(f"unknown init method {method}")
 
 
@@ -244,6 +285,8 @@ def initial_state(r, args):
 # ----------------------------------------------------------------------------
 def verification_status(r):
     key = f"{r['config']}_{r['law']}_N{r['N']}"
+    vf = tc.CONFIGS[r["config"]].get("verification_file")
+    VERIFICATION = HERE / vf if vf else VERIFICATION_DEFAULT
     if not VERIFICATION.exists():
         return dict(key=key, verified=False, reason="no verification file")
     e = json.loads(VERIFICATION.read_text()).get(key)
@@ -376,6 +419,7 @@ class Runner:
             _atomic_savez(self.out / "checkpoint_burnin_end.npz", **state)
 
     def run(self, q, p, rng, step, fresh, max_wall_s=None, max_segment_steps=None, previous_state=None):
+        cpu0 = time.process_time()
         seg = dict(host=socket.gethostname(), pid=os.getpid(), slurm_job_id=os.environ.get("SLURM_JOB_ID"),
                    slurm_array_task=os.environ.get("SLURM_ARRAY_TASK_ID"), start_step=int(step), start=_now(),
                    previous_state=previous_state)
@@ -450,6 +494,7 @@ class Runner:
             stop_reason, rc = f"failure: {type(exc).__name__}: {exc}", EXIT_FAILED
             self.log(stop_reason + f" (last checkpoint kept at step {last_ckpt_step})")
         seg.update(end_step=int(last_ckpt_step), end=_now(), wall_s=time.monotonic() - t_seg,
+                   cpu_s=time.process_time() - cpu0,
                    stop_reason=stop_reason or "complete",
                    median_step_wall_s=float(np.median(walls)) if walls else None,
                    peak_rss_mb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024)
@@ -480,7 +525,8 @@ def parse(argv=None):
                     help="raw-frame interval in time (default: every step; vacf_sampling_results/REPORT.md)")
     ap.add_argument("--save-every-steps", type=int)
     ap.add_argument("--save-burnin", action="store_true", help="also save frames during burn-in")
-    ap.add_argument("--init", default=None, choices=["auto", "v2_checkpoint", "replicate64", "fcc", "sc"])
+    ap.add_argument("--init", default=None, choices=["auto", "v2_checkpoint", "replicate64", "fcc", "sc", "rsa"])
+    ap.add_argument("--init-dmin", type=float, help="rsa minimum pair distance (default 0.9)")
     ap.add_argument("--init-source-seed", type=int, help="v2 checkpoint seed (101-105); default: --seed")
     ap.add_argument("--init-jitter", type=float)
     ap.add_argument("--from-state", help=".npz with q, p arrays (overrides --init)")
@@ -507,7 +553,9 @@ def new_config(args):
     need = [k for k in ("config", "potential", "kernel", "N", "seed") if getattr(args, k) is None]
     if need:
         raise tc.ConfigError("missing for a new run: " + ", ".join("--" + k for k in need))
-    dt = tc.DT_VALIDATED if args.dt is None else args.dt
+    dt = tc.validated_dt(args.config) if args.dt is None else args.dt
+    if dt is None:
+        raise tc.ConfigError(f"{args.config} has no validated dt yet; pass --dt (with --allow-unverified)")
     r = tc.resolve(args.config, args.kernel, args.N, args.potential, dt=dt, rank_override=args.ranks,
                    allow_unverified=args.allow_unverified)
     burn = _steps(args.burn_in, args.burn_in_steps, dt, "burn-in")
@@ -603,6 +651,8 @@ def main(argv=None):
                                     checkpoint_every_minutes=args.checkpoint_every_minutes,
                                     monitor_every_steps=args.monitor_every_steps),
                        noise_rng=f"numpy default_rng([seed, 1]) = PCG64 (seed {args.seed})",
+                       command=[sys.executable] + list(sys.argv if argv is None else ["toy_run.py"] + list(argv)),
+                       state_point=tc.CONFIGS[r["config"]].get("state_point", "toy_v2"),
                        code=dict(git=_git_info(), python=platform.python_version(), numpy=np.__version__,
                                  scipy=scipy.__version__, host=socket.gethostname(), created=_now(),
                                  threads={v: os.environ.get(v) for v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS",
