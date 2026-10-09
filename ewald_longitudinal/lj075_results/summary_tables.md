@@ -7,6 +7,7 @@
 | verify_representative_A.json | 42 | 0.85, 4.1, 0.6779, 8 (M 24) | 6.13e-08 – 7.33e-08 | 1.53e-07 | 8.8e-08 | 2e-17 / 2e-15 / 4.632 | 12/5/4 | 5.3e-11 / 1.2e-10 | 4.3e-11 | 3.1e-10 | PASS | 0.15 |
 | verify_representative_A_0.85_4.1_0.6_7.0.json | 42 | 0.85, 4.1, 0.6, 7 (M 27) | 6.06e-08 – 7.60e-08 | 1.59e-07 | 8.8e-08 | 2e-17 / 2e-15 / 4.632 | 12/5/4 | 5.3e-11 / 1.2e-10 | 4.3e-11 | 3.1e-10 | PASS | 0.17 |
 | verify_representative_A_0.85_4.4_0.6_7.0.json | 42 | 0.85, 4.4, 0.6, 7 (M 30) | 1.39e-08 – 1.63e-08 | 3.32e-08 | 7.9e-09 | 2e-17 / 2e-15 / 4.632 | 12/5/4 | 5.3e-11 / 1.2e-10 | 4.3e-11 | 3.1e-10 | PASS | 0.19 |
+| verify_visited_eq_A.json | 72 | 0.85, 4.1, 0.6779, 8 (M 24) | 6.06e-08 – 7.57e-08 | 1.60e-07 | 8.9e-08 | 2e-17 / 2e-15 / 4.578 | 14/5/5 | 1.8e-11 / 4.4e-11 | 3.1e-11 | 2.6e-12 | PASS | 0.27 |
 
 ### Physical effect of the operator error (production vs tight PPPM, lock-step, same noise; n = 2)
 
@@ -20,6 +21,78 @@
 | msd_5 | -1.06e-04 | +1.58e-05 | 1.06e-04 |
 
 Pathwise RMS position difference: t=0.1 1.0e-09, t=1 1.1e-08, t=5 5.5e-06, t=10 1.6e-02; t=0.1 9.9e-10, t=1 1.4e-08, t=5 6.4e-06, t=10 9.6e-03
+
+### dt study, law A: group levels_0.00125_0.0025_0.005_0.01_T10 (n = 16 replicas [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 116, 117, 118, 119], reference 0.00125, 10.33 core-h)
+
+| criterion: mean difference [95% CI] | 0.0025 vs 0.00125 | 0.005 vs 0.00125 | 0.01 vs 0.00125 |
+|---|---|---|---|
+| T_kin (rel., tol 1%) | -0.11% [-0.32, +0.09] **PASS** | -0.12% [-0.30, +0.07] **PASS** | -0.52% [-0.78, -0.26] **PASS** |
+| U/N (rel., tol 1%) | -0.12% [-0.23, -0.01] **PASS** | -0.05% [-0.14, +0.04] **PASS** | -0.16% [-0.29, -0.03] **PASS** |
+| pressure (abs., tol 0.0075) | -0.0329 [-0.0491, -0.00299] **INCONCLUSIVE** | +0.000793 [-0.0179, +0.0192] **INCONCLUSIVE** | -0.0301 [-0.0501, +0.00238] **INCONCLUSIVE** |
+| RDF E_g: debiased [lower, upper] (tol 1%) | +0.27% [+0.00%, +1.02%] **INCONCLUSIVE** | +0.45% [+0.00%, +0.98%] **PASS** | +0.40% [+0.00%, +1.02%] **INCONCLUSIVE** |
+| RDF first-peak height (rel.) | +0.01% [-0.44, +0.47] **PASS** | -0.05% [-0.50, +0.41] **PASS** | +0.02% [-0.60, +0.64] **PASS** |
+| RDF first-peak position (rel.) | +0.03% [-0.22, +0.28] **PASS** | -0.00% [-0.23, +0.22] **PASS** | -0.04% [-0.23, +0.16] **PASS** |
+| VACF E_V = max|ΔC|/C(0), t ≤ 2.0: [lower, upper] | [+0.00%, +0.39%] (noise floor +0.20%) **PASS** | [+0.00%, +0.41%] (noise floor +0.19%) **PASS** | [+0.26%, +0.78%] (noise floor +0.24%) **PASS** |
+| MSD(t = 0.1) (rel.) | -0.03% [-0.28, +0.22] **PASS** | +0.04% [-0.19, +0.27] **PASS** | +0.14% [-0.20, +0.48] **PASS** |
+| MSD(t = 0.5) (rel.) | +0.13% [-0.23, +0.50] **PASS** | +0.41% [-0.36, +1.18] **INCONCLUSIVE** | +0.47% [-0.45, +1.40] **INCONCLUSIVE** |
+| MSD(t = 1) (rel.) | +0.25% [-0.40, +0.90] **PASS** | +0.52% [-0.63, +1.67] **INCONCLUSIVE** | +0.87% [-0.54, +2.28] **INCONCLUSIVE** |
+| MSD(t = 2) (rel.) | +0.69% [-0.59, +1.98] **INCONCLUSIVE** | +0.89% [-1.08, +2.85] **INCONCLUSIVE** | +1.80% [-0.15, +3.75] **INCONCLUSIVE** |
+| MSD(t = 5) (rel.) | +3.44% [+1.03, +5.86] **FAIL** | +3.08% [-0.20, +6.36] **INCONCLUSIVE** | +2.99% [-0.32, +6.31] **INCONCLUSIVE** |
+| D_GK to t_max (information) | +1.45% [-1.53, +4.43] | +2.26% [-1.02, +5.53] | +2.94% [-0.38, +6.26] |
+| operator/Lanczos on-line ≤ budget/10 | True | True | True |
+| all criteria PASS (primary, 95%) | False | False | False |
+| family-wise verdicts (Bonferroni, 36 tests; T U P g pk-h pk-r V MSD×5) | P P I I P P P P P I I I (all PASS False) | P P I I P P P P I I I I (all PASS False) | P P I I I P P P I I I I (all PASS False) |
+
+Level means (95% t-CI over replicas): dt 0.00125: T 1.0012, U/N -4.6647, P 0.793; dt 0.0025: T 1.0001, U/N -4.6705, P 0.767; dt 0.005: T 1.0001, U/N -4.6669, P 0.793; dt 0.01: T 0.9960, U/N -4.6720, P 0.769
+
+On-line Lanczos error estimates on actual inputs (max over replicas; damp / noise / coupling): dt 0.00125: 2.2e-15 / 1.6e-10 / –; dt 0.0025: 1.7e-14 / 1.6e-10 / 1.3e-12; dt 0.005: 5.2e-13 / 1.5e-10 / 2e-11; dt 0.01: 1.6e-11 / 1.2e-10 / 3.5e-10 (budget/10 = 2e-08)
+
+Stationarity of the paired differences (late-minus-early window, 95% CI): 0.0025_vs_0.00125: T_kin -0.21% [-0.82, +0.40], U_per_N -0.18% [-0.45, +0.08], pressure -0.0478 [-0.115, +0.0194], rdf_peak -0.88% [-1.61, -0.14]; 0.005_vs_0.00125: T_kin -0.01% [-0.64, +0.62], U_per_N -0.07% [-0.21, +0.06], pressure +0.00125 [-0.0333, +0.0358], rdf_peak -0.20% [-1.42, +1.03]; 0.01_vs_0.00125: T_kin +0.04% [-0.75, +0.83], U_per_N -0.13% [-0.32, +0.05], pressure -0.0102 [-0.0535, +0.0331], rdf_peak -0.31% [-1.65, +1.02]
+
+### Long-time diffusion, law A: levels [0.005, 0.01], n = 3 (replicas [113, 114, 115]), T0 = 10.0, 3.66 core-h
+
+dt 0.005: T_kin +1.0006 [+0.99595, +1.0053]
+| MSD window | D_MSD [95% CI] |
+|---|---|
+| 1-2 | +0.0294 [+0.0288, +0.0299] |
+| 2-4 | +0.0288 [+0.0277, +0.0299] |
+| 4-8 | +0.0282 [+0.0273, +0.029] |
+| 8-16 | +0.0283 [+0.0273, +0.0293] |
+| 16-32 | +0.0293 [+0.027, +0.0316] |
+| step | relative change [95% CI] | status |
+|---|---|---|
+| 1-2 -> 2-4 | -1.89% [-4.43, +0.65] | undetermined |
+| 2-4 -> 4-8 | -2.20% [-5.20, +0.80] | undetermined |
+| 4-8 -> 8-16 | +0.50% [-5.80, +6.81] | undetermined |
+| 8-16 -> 16-32 | +3.65% [-3.74, +11.04] | undetermined |
+
+Long-time D determined: **False**
+
+dt 0.01: T_kin +0.9962 [+0.99143, +1.001]
+| MSD window | D_MSD [95% CI] |
+|---|---|
+| 1-2 | +0.0295 [+0.0285, +0.0305] |
+| 2-4 | +0.0286 [+0.0272, +0.0301] |
+| 4-8 | +0.0281 [+0.0266, +0.0296] |
+| 8-16 | +0.0284 [+0.0276, +0.0292] |
+| 16-32 | +0.0286 [+0.0266, +0.0305] |
+| step | relative change [95% CI] | status |
+|---|---|---|
+| 1-2 -> 2-4 | -2.87% [-4.57, -1.17] | undetermined |
+| 2-4 -> 4-8 | -1.74% [-4.58, +1.11] | undetermined |
+| 4-8 -> 8-16 | +0.96% [-3.43, +5.35] | undetermined |
+| 8-16 -> 16-32 | +0.63% [-5.66, +6.93] | undetermined |
+
+Long-time D determined: **False**
+
+0.01_vs_0.005: free-particle prior x coth x − 1 (vs continuum) for dt: 0.018%, 0.122%; reference: 0.004%, 0.031%
+| window | D_dt / D_ref − 1 [95% CI] |
+|---|---|
+| 1-2 | +0.41% [-3.77, +4.59] |
+| 2-4 | -0.58% [-6.08, +4.91] |
+| 4-8 | -0.12% [-4.55, +4.31] |
+| 8-16 | +0.33% [-1.75, +2.42] |
+| 16-32 | -2.58% [-7.04, +1.89] |
 
 ### Equilibration, law A: 8 runs, start types ['fcc', 'hot', 'lgv', 'rsa'], dt 0.005, 2.93 core-h
 
@@ -109,9 +182,10 @@ Largest passing stride: 1 (MSD only: 20); VACF resolved at every step: True.
 
 | PPPM set | PPPM | ranks n/d | verification | CPU ms/step median [min, max] | rel. to production | core-h per time unit |
 |---|---|---|---|---|---|---|
-| production | {"xi": 0.85, "s": 4.1, "eta": 0.6779116381586452, "p": 8} | 12/5 | verify_representative_A.json passed=True, max ε_op 7.33e-08 | 128.1 [120.9, 130.0] | 1.000 | 0.0071 |
-| xi0.85 s4.1 eta0.6 p7 | {"xi": 0.85, "s": 4.1, "eta": 0.6, "p": 7} | 12/5 | verify_representative_A_0.85_4.1_0.6_7.0.json passed=True, max ε_op 7.60e-08 | 121.4 [115.5, 128.4] | 0.948 | 0.0067 |
-| xi0.85 s4.4 eta0.6 p7 | {"xi": 0.85, "s": 4.4, "eta": 0.6, "p": 7} | 12/5 | verify_representative_A_0.85_4.4_0.6_7.0.json passed=True, max ε_op 1.63e-08 | 140.5 [136.9, 147.1] | 1.097 | 0.0078 |
+| production | {"xi": 0.85, "s": 4.1, "eta": 0.6779116381586452, "p": 8} | 12/5 | verify_representative_A.json passed=True, max ε_op 7.33e-08 | 124.8 [122.4, 130.1] | 1.000 | 0.0069 |
+| xi0.85 s4.1 eta0.6 p7 | {"xi": 0.85, "s": 4.1, "eta": 0.6, "p": 7} | 12/5 | verify_representative_A_0.85_4.1_0.6_7.0.json passed=True, max ε_op 7.60e-08 | 117.9 [113.4, 124.8] | 0.944 | 0.0065 |
+| xi0.85 s4.4 eta0.6 p7 | {"xi": 0.85, "s": 4.4, "eta": 0.6, "p": 7} | 12/5 | verify_representative_A_0.85_4.4_0.6_7.0.json passed=True, max ε_op 1.63e-08 | 140.0 [132.4, 155.6] | 1.122 | 0.0078 |
+| production ranks 14/5 | {"xi": 0.85, "s": 4.1, "eta": 0.6779116381586452, "p": 8} | 14/5 | verify_visited_eq_A.json passed=True, max ε_op 7.57e-08 | 134.9 [133.2, 136.8] | 1.081 | 0.0075 |
 
 ### Core-hours, law A (process CPU time recorded by each script)
 
@@ -120,11 +194,12 @@ Largest passing stride: 1 (MSD only: 20); VACF resolved at every step: True.
 | static verification verify_representative_A | 0.149 |
 | static verification verify_representative_A_0.85_4.1_0.6_7.0 | 0.174 |
 | static verification verify_representative_A_0.85_4.4_0.6_7.0 | 0.186 |
+| static verification verify_visited_eq_A | 0.272 |
 | state preparation (all prepared states, both laws' inputs) | 0.131 |
+| dt study levels_0.00125_0.0025_0.005_0.01_T10 | 10.335 |
+| long-D | 3.663 |
 | equilibration / production-runner runs | 2.934 |
 | operator sensitivity runs | 0.329 |
-| PPPM step-cost benchmark (estimated from the medians, 738 steps) | 0.027 |
-| **total recorded** | **3.93** |
-
-Missing sources: dt_study, longD
+| PPPM step-cost benchmark (estimated from the medians, 984 steps) | 0.035 |
+| **total recorded** | **18.21** |
 

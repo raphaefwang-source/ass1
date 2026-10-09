@@ -616,6 +616,86 @@
    "rmin": 0.868657662555762,
    "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
   },
+  "dt_A_rep108_L4_T10_final": {
+   "source": "A_rep108_L4_T10.npz",
+   "level": 0.01,
+   "frame": 1000,
+   "t": 10.0,
+   "rmin": 0.9322318590045755,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep108_L4_T10_rmin": {
+   "source": "A_rep108_L4_T10.npz",
+   "level": 0.01,
+   "frame": 413,
+   "t": 4.13,
+   "rmin": 0.8877960150463471,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep109_L4_T10_final": {
+   "source": "A_rep109_L4_T10.npz",
+   "level": 0.01,
+   "frame": 1000,
+   "t": 10.0,
+   "rmin": 0.939353443183314,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep109_L4_T10_rmin": {
+   "source": "A_rep109_L4_T10.npz",
+   "level": 0.01,
+   "frame": 657,
+   "t": 6.57,
+   "rmin": 0.8782698182892686,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep110_L4_T10_final": {
+   "source": "A_rep110_L4_T10.npz",
+   "level": 0.01,
+   "frame": 1000,
+   "t": 10.0,
+   "rmin": 0.9417529327721258,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep110_L4_T10_rmin": {
+   "source": "A_rep110_L4_T10.npz",
+   "level": 0.01,
+   "frame": 703,
+   "t": 7.03,
+   "rmin": 0.8790978102330127,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep111_L4_T10_final": {
+   "source": "A_rep111_L4_T10.npz",
+   "level": 0.01,
+   "frame": 1000,
+   "t": 10.0,
+   "rmin": 0.9413321629903174,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep111_L4_T10_rmin": {
+   "source": "A_rep111_L4_T10.npz",
+   "level": 0.01,
+   "frame": 366,
+   "t": 3.66,
+   "rmin": 0.8803189483396042,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep112_L4_T10_final": {
+   "source": "A_rep112_L4_T10.npz",
+   "level": 0.01,
+   "frame": 1000,
+   "t": 10.0,
+   "rmin": 0.9080230424257139,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep112_L4_T10_rmin": {
+   "source": "A_rep112_L4_T10.npz",
+   "level": 0.01,
+   "frame": 286,
+   "t": 2.86,
+   "rmin": 0.8848275875403158,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
   "dt_A_rep113_L2_T100_F0.01_final": {
    "source": "A_rep113_L2_T100_F0.01.npz",
    "level": 0.01,
@@ -647,13 +727,93 @@
    "t": 93.04,
    "rmin": 0.8748159767666916,
    "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep115_L2_T100_F0.01_final": {
+   "source": "A_rep115_L2_T100_F0.01.npz",
+   "level": 0.01,
+   "frame": 10000,
+   "t": 100.0,
+   "rmin": 0.9383114663688888,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep115_L2_T100_F0.01_rmin": {
+   "source": "A_rep115_L2_T100_F0.01.npz",
+   "level": 0.01,
+   "frame": 8707,
+   "t": 87.07000000000001,
+   "rmin": 0.8709505918898718,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep116_L4_T10_final": {
+   "source": "A_rep116_L4_T10.npz",
+   "level": 0.01,
+   "frame": 1000,
+   "t": 10.0,
+   "rmin": 0.931330769247117,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep116_L4_T10_rmin": {
+   "source": "A_rep116_L4_T10.npz",
+   "level": 0.01,
+   "frame": 266,
+   "t": 2.66,
+   "rmin": 0.880174561098965,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep117_L4_T10_final": {
+   "source": "A_rep117_L4_T10.npz",
+   "level": 0.01,
+   "frame": 1000,
+   "t": 10.0,
+   "rmin": 0.9290336966188477,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep117_L4_T10_rmin": {
+   "source": "A_rep117_L4_T10.npz",
+   "level": 0.01,
+   "frame": 661,
+   "t": 6.61,
+   "rmin": 0.8786339556811842,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep118_L4_T10_final": {
+   "source": "A_rep118_L4_T10.npz",
+   "level": 0.01,
+   "frame": 1000,
+   "t": 10.0,
+   "rmin": 0.9429027331925598,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep118_L4_T10_rmin": {
+   "source": "A_rep118_L4_T10.npz",
+   "level": 0.01,
+   "frame": 214,
+   "t": 2.14,
+   "rmin": 0.8738465225712717,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep119_L4_T10_final": {
+   "source": "A_rep119_L4_T10.npz",
+   "level": 0.01,
+   "frame": 1000,
+   "t": 10.0,
+   "rmin": 0.9159237381772453,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
+  },
+  "dt_A_rep119_L4_T10_rmin": {
+   "source": "A_rep119_L4_T10.npz",
+   "level": 0.01,
+   "frame": 95,
+   "t": 0.9500000000000001,
+   "rmin": 0.8817740066242147,
+   "inputs": "full-step q and p of the coarsest level (not the exact O-step inputs)"
   }
  },
  "provenance": {
   "command": "/usr/local/bin/python3 lj075_visited.py --laws A",
   "cwd": "/home/user/ass1/ewald_longitudinal",
-  "git_commit": "1ea4d2add3bb4985fc5ca5a05043f9611d97fe40",
-  "git_dirty": false,
+  "git_commit": "527a7616a636d59c8a456aa5821ef7f04a8e0404",
+  "git_dirty": true,
   "untracked_py": [],
   "script_sha256_16": {
    "lj075_common.py": "3936dac0eaf81905",
@@ -664,14 +824,14 @@
    "lj075_equilibration.py": "1ec70796c478980e",
    "lj075_longD.py": "12724c59e8b9bd3b",
    "lj075_operator_sensitivity.py": "c2e31244b9979436",
-   "lj075_pppm_cost.py": "9e5fd9a0ee2504a2",
+   "lj075_pppm_cost.py": "f7decc37a991d439",
    "lj075_pppm_screen.py": "3bfd2a79a4c07338",
    "lj075_prepare_states.py": "e77a1d8425d42323",
    "lj075_sampling.py": "1d3df6b7d580a625",
-   "lj075_summary.py": "1d68b99d57f8d58a",
-   "lj075_verify.py": "18aff6d8efa571b6",
+   "lj075_summary.py": "264abc783c01ece2",
+   "lj075_verify.py": "1fbcd9768d1475ba",
    "lj075_visited.py": "4184807fc7d48354",
-   "toy_configs.py": "f64631f956dee239",
+   "toy_configs.py": "de5c2d3c214c9ff3",
    "toy_run.py": "99f0baf867aaec7e",
    "toy_dynamics.py": "28f70bea0511ea91",
    "radial_kernels.py": "f160a24d8f946e95",
@@ -688,6 +848,6 @@
    "OPENBLAS_NUM_THREADS": "1",
    "MKL_NUM_THREADS": "1"
   },
-  "started": "2026-10-09T22:02:26+0000"
+  "started": "2026-10-09T23:51:28+0000"
  }
 }
