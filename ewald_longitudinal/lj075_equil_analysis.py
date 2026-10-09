@@ -366,8 +366,9 @@ def figure(law, res):
         ax[7].errorbar(mid, mm[:, 0], yerr=[mm[:, 0] - mm[:, 1], mm[:, 2] - mm[:, 0]], fmt="s-", color="#eb6834",
                        label="D_MSD (window, geometric centre)")
     ax[7].set(xscale="log", xlabel="τ or window centre", ylabel="D",
-              title="diffusion: " + ("plateau found" if res["diffusion"]["long_time_D_determined"]
-                                     else "NO plateau: long-time D not determined"))
+              title="D: " + ("plateau found" if res["diffusion"]["long_time_D_determined"]
+                             else "no confirmed plateau (long-time D\nnot determined)"))
+    ax[7].title.set_fontsize(9)
     ax[7].legend(fontsize=8)
     fig.suptitle(f"lj075 equilibration and sampling, law {law} ({res['n_runs']} runs, dt {res['dt']}); dashed: "
                  f"burn-in estimate {res['burn_in']['estimate']:.1f}", fontsize=10)
