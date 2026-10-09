@@ -128,7 +128,12 @@ def sec_dt(law, md, missing):
                 f"{ci(r['comparisons'][c]['msd'][j])} **{r['comparisons'][c]['msd'][j]['verdict']}**" for c in comps])
         rows.append(["D_GK to t_max (information)"] + [ci(r["comparisons"][c]["D_GK_info_short"]) for c in comps])
         rows.append(["operator/Lanczos on-line ≤ budget/10"] + [str(r["comparisons"][c]["operator_ok"]) for c in comps])
-        rows.append(["all criteria PASS"] + [str(r["comparisons"][c]["all_pass"]) for c in comps])
+        rows.append(["all criteria PASS (primary, 95%)"] + [str(r["comparisons"][c]["all_pass"]) for c in comps])
+        if "familywise" in r["comparisons"][comps[0]]:
+            fwl = r["comparisons"][comps[0]]["familywise"]
+            rows.append([f"family-wise verdicts (Bonferroni, {fwl['n_tests']} tests; T U P g pk-h pk-r V MSD×5)"] + [
+                " ".join(v[0] for v in r["comparisons"][c]["familywise"]["verdicts"].values()) +
+                f" (all PASS {r['comparisons'][c]['familywise']['all_pass']})" for c in comps])
         md.append(table(["criterion: mean difference [95% CI]"] + [c.replace("_vs_", " vs ") for c in comps], rows))
         md.append("")
         lm = r["level_means"]

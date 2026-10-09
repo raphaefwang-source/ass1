@@ -18,6 +18,12 @@ the registered percentile bootstrap, which is anti-conservative for few replicas
   PASS if the upper bound <= 1%, FAIL if the lower bound > 1%, INCONCLUSIVE otherwise; n >= 3 replicas required.
 RDF first peak: height and position per replica and level by a quadratic fit through the 3 bins around the maximum
 (sub-bin position), paired relative differences with t-CIs.
+Family-wise sensitivity (secondary, added after an interim look at n = 6 replicas showed isolated, non-monotone FAILs
+of the finest-two comparison): every verdict is also computed with Bonferroni-adjusted intervals over the 12 criteria
+x (levels - 1) comparisons of a group (two-sided level 1 - 0.05/36 for scalars and pointwise VACF bounds; one-sided
+1 - 0.05/36 for the RDF norm). This is stricter for PASS and laxer for FAIL; the primary (pre-registered 95%)
+verdicts are unchanged and are the ones used for decisions; the family-wise verdicts flag results that are not robust
+to multiplicity.
 """
 import json
 import sys
@@ -91,6 +97,7 @@ def per_level(npz, dt, law, L):
 
 
 N_MIN = 3
+N_CRIT = 12            # criteria per comparison: T, U, P, RDF norm, peak height, peak position, VACF, MSD at 5 times
 
 
 def ci_t(d):
@@ -108,15 +115,15 @@ def peak(g, edges):
     return float(y1 - 0.25 * (y0 - y2) * x), float(rc[i] + x * h)
 
 
-def t_bounds(D):
-    """Per-point mean and Student-t 95% half-width over replicas (rows)."""
+def t_bounds(D, level=0.95):
+    """Per-point mean and Student-t two-sided half-width (default 95%) over replicas (rows)."""
     from scipy import stats
     n = len(D)
-    return D.mean(0), stats.t.ppf(0.975, n - 1) * D.std(0, ddof=1) / np.sqrt(n)
+    return D.mean(0), stats.t.ppf(0.5 + level / 2, n - 1) * D.std(0, ddof=1) / np.sqrt(n)
 
 
-def debiased_norm_bounds(D, w, den):
-    """Debiased ||E[D]||_w and one-sided 95% jackknife-t bounds (see module docstring)."""
+def debiased_norm_bounds(D, w, den, level=0.95):
+    """Debiased ||E[D]||_w and one-sided (default 95%) jackknife-t bounds (see module docstring)."""
     from scipy import stats
     n = len(D)
     if n < 3:
@@ -128,7 +135,7 @@ def debiased_norm_bounds(D, w, den):
     full = e2(D)
     jk = np.array([e2(np.delete(D, i, axis=0)) for i in range(n)])
     se = np.sqrt((n - 1) / n * np.sum((jk - jk.mean()) ** 2))
-    tq = stats.t.ppf(0.95, n - 1)
+    tq = stats.t.ppf(level, n - 1)
     f = lambda x: float(np.sqrt(max(x, 0.0)) / den)                      # noqa: E731
     return f(full), f(full + tq * se), f(full - tq * se)
 
@@ -286,6 +293,30 @@ def analyze_law(law, rng):
             allv += [x["verdict"] for x in msd_c]
             if len(obs) < N_MIN:
                 allv.append("INCONCLUSIVE")
+            # family-wise sensitivity (secondary; added after the n = 6 interim look, see module docstring)
+            fw_level = 1 - 0.05 / (N_CRIT * (len(levels) - 1))
+            fw = {}
+            for k in ("T_kin", "U_per_N"):
+                _, lo, hi = C.t_ci([(o[dt][k] - o[ref][k]) / abs(ref_mean[k]) for o in obs], fw_level)
+                fw[k] = verdict(lo, hi, TOL)
+            _, lo, hi = C.t_ci([o[dt]["pressure"] - o[ref]["pressure"] for o in obs], fw_level)
+            fw["pressure"] = verdict(lo, hi, tolp)
+            _, up_fw, lo_fw = debiased_norm_bounds(Dg, w, den, 1 - 0.05 / (N_CRIT * (len(levels) - 1)))
+            fw["rdf"] = norm_verdict(up_fw, lo_fw, TOL, len(obs))
+            for k, vals in (("first_peak_height", ph), ("first_peak_position", pp_)):
+                _, lo, hi = C.t_ci(vals, fw_level)
+                fw[k] = verdict(lo, hi, TOL)
+            mv_fw, hv_fw = t_bounds(Dv, fw_level)
+            fw["vacf"] = norm_verdict(float(np.max(np.abs(mv_fw) + hv_fw) / c0),
+                                      float(np.max(np.maximum(np.abs(mv_fw) - hv_fw, 0)) / c0), TOL, len(obs))
+            for j, tt in enumerate(MSD_TIMES):
+                _, lo, hi = C.t_ci([(o[dt]["msd"][j] - o[ref]["msd"][j]) / np.mean([oo[ref]["msd"][j] for oo in obs])
+                                    for o in obs], fw_level)
+                fw[f"msd_{tt:g}"] = verdict(lo, hi, TOL)
+            assert len(fw) == N_CRIT
+            cmp_["familywise"] = dict(level=fw_level, n_tests=N_CRIT * (len(levels) - 1), verdicts=fw,
+                                      all_pass=all(v == "PASS" for v in fw.values()) and len(obs) >= N_MIN,
+                                      any_fail=any(v == "FAIL" for v in fw.values()))
             cmp_["operator_ok"] = bool(res["operator_ok"][str(dt)] and res["operator_ok"][str(ref)])
             cmp_["all_pass"] = all(v == "PASS" for v in allv) and cmp_["operator_ok"]
             cmp_["any_fail"] = any(v == "FAIL" for v in allv)
