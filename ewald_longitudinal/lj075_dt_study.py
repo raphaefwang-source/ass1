@@ -127,6 +127,7 @@ def run(args):
         idx[k] = i + 1
 
     cpu0, wall0 = C.cpu_seconds(), time.perf_counter()
+    start_prov = C.provenance()                       # code and commit at launch (the end-time record follows)
     res = LC.run_chain(r, list(levels), q0, p0, args.t_end, seed=[SEED_ENTROPY, ord(law), rep], on_step=record,
                        monitor_every=MONITOR, rank_couple=rc, log=lambda s: print(f"[{law} rep {rep}] {s}", flush=True))
     for k in nsave:
@@ -143,7 +144,8 @@ def run(args):
                 scal_cols=["t", "T_kin", "U_per_N", "pressure", "P_total_norm", "rmin"],
                 resolved=r, rank_couple=rc or r["rank_noise"], monitor_every=MONITOR,
                 wall_per_level=res["wall_per_level"], steps=res["steps"], lam=res["lam"],
-                cpu_s=C.cpu_seconds() - cpu0, wall_s=time.perf_counter() - wall0, provenance=C.provenance(),
+                cpu_s=C.cpu_seconds() - cpu0, wall_s=time.perf_counter() - wall0, start_provenance=start_prov,
+                provenance=C.provenance(),
                 complete=True)
     C.write_json(meta_f, meta)
     print(f"[{law} rep {rep}] done: wall per level {np.round(res['wall_per_level'], 1)} s, cpu {meta['cpu_s']:.0f} s; "

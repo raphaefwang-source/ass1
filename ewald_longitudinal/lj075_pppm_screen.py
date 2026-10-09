@@ -3,8 +3,10 @@
 PPPM parameter screening for law A at the lj075 state point (the costopt_hiacc set fails the 2e-7 budget on
 fcc-lattice states at rho 0.75). Spectral operator error ||Gamma_h - Gamma_ref||_2 / ||Gamma_ref||_2 (full periodic
 lattice-sum reference) on three fcc lattice states (jitter 0, 0.02, 0.05) and three canonical liquid states, plus
-the timing of one Gamma_h build and one literal matvec (single thread). Writes lj075_results/pppm_screen_A.json.
-Law B is listed for completeness with its unchanged costopt set.
+the timing of one Gamma_h build and one literal matvec (single thread). Also the error relative to the k != 0 part
+of the reference, ||Gamma_h - Gamma_ref||_2 / ||Gamma_ref - c0 (N I - 1 1^T) (x) I_3||_2 (the k = 0 term is exact).
+Law B: the costopt set and tighter candidates (its full-norm PASS rests largely on the exact k = 0 term).
+Writes lj075_results/pppm_screen.json.
 """
 import os
 
@@ -28,7 +30,8 @@ from lj075_verify import lattice_matrix  # noqa: E402
 CANDS = {"A": [(0.85, 4.1, 0.6779116381586452, 7), (0.85, 4.1, 0.6779116381586452, 8), (0.85, 4.1, 0.6, 7),
                (0.85, 4.1, 0.55, 7), (0.85, 4.3, 0.6779116381586452, 7), (0.85, 4.4, 0.6, 7), (0.85, 4.3, 0.6, 8),
                (0.8, 4.1, 0.6, 7)],
-         "B": [(1.0, 3.9, 0.6827747058642308, 7)]}
+         "B": [(1.0, 3.9, 0.6827747058642308, 7), (1.0, 3.9, 0.6827747058642308, 8), (1.0, 3.9, 0.6, 7),
+               (1.0, 4.2, 0.6, 7), (1.0, 4.2, 0.6, 8), (1.0, 4.4, 0.55, 8)]}
 
 
 def main():
@@ -41,10 +44,13 @@ def main():
     for law, cands in CANDS.items():
         lat = v2.LatticeFriction(L, kernel=law, gamma=0.5, kappa=0.7, r_ref=1.3)
         Gr = {k: lattice_matrix(lat, q % L) for k, q in states.items()}
+        Gk0 = lat.zero_mode * np.kron(256 * np.eye(256) - np.ones((256, 256)), np.eye(3))
+        nk = {k: np.linalg.norm(G - Gk0, 2) for k, G in Gr.items()}
         for xi, s, eta, p in cands:
             ff = rk.FastFriction(L, rk.toy_kernel(law, 0.5, 0.7, 1.3, xi), s, eta, p, pair_search="tree")
-            errs = {k: float(np.linalg.norm(ff.gamma_h(q).dense() - Gr[k], 2) / np.linalg.norm(Gr[k], 2))
-                    for k, q in states.items()}
+            dif = {k: np.linalg.norm(ff.gamma_h(q).dense() - Gr[k], 2) for k, q in states.items()}
+            errs = {k: float(dif[k] / np.linalg.norm(Gr[k], 2)) for k in states}
+            errs_k = {k: float(dif[k] / nk[k]) for k in states}
             op = ff.gamma_h(states["rsa_s4"])
             v = np.random.default_rng(0).normal(size=768)
             t0 = time.perf_counter()
@@ -58,10 +64,13 @@ def main():
             key = f"{law} xi{xi} s{s} eta{eta:.4f} p{p}"
             rec = ff.record()
             out["candidates"][key] = dict(law=law, xi=xi, s=s, eta=eta, p=p, M=rec["M"], rc=rec["rc"], errors=errs,
-                                          max_error=max(errs.values()), matvec_ms=tm * 1e3, build_ms=tb * 1e3,
-                                          passes=max(errs.values()) <= out["budget"][law])
-            print(f"{key}: M {rec['M']} max {max(errs.values()):.2e} matvec {tm * 1e3:.2f} ms build {tb * 1e3:.1f} ms",
-                  flush=True)
+                                          max_error=max(errs.values()), errors_vs_k_nonzero=errs_k,
+                                          max_error_vs_k_nonzero=max(errs_k.values()),
+                                          matvec_ms=tm * 1e3, build_ms=tb * 1e3,
+                                          passes=max(errs.values()) <= out["budget"][law],
+                                          passes_vs_k_nonzero=max(errs_k.values()) <= out["budget"][law])
+            print(f"{key}: M {rec['M']} max {max(errs.values()):.2e} (k!=0 norm {max(errs_k.values()):.2e}) matvec "
+                  f"{tm * 1e3:.2f} ms build {tb * 1e3:.1f} ms", flush=True)
     C.write_json(C.OUT / "pppm_screen.json", out)
 
 

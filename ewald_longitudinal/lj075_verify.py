@@ -20,6 +20,9 @@ Error definitions (as in verify_production_configs.py, extended):
              and transverse plane waves at the smallest k (4 wave vectors), slow-mode-dominated vectors (random
              combination of the 12 lowest eigenvectors plus 10% random).
              Rank rule (as costopt_hiacc): smallest rank whose four measures are <= budget/10 on every probe and state.
+             Damping and coupling maps are close to a constant times the identity (f(0) = 1 resp. 1/sqrt 2), which
+             Lanczos reproduces exactly; their errors are therefore ALSO reported relative to the increment
+             ||(f - f(0))(Gamma) v|| ("overall_inc"), with the corresponding required ranks.
   structure  symmetry, momentum null space Gamma 1 = 0, positive definiteness on Range(Pi) (Gamma_h and Gamma_ref),
              literal matvec vs dense assembly, k = 0 retained.
   FDT        friction-noise consistency at the chosen ranks: ||R_r(R_r v) + S_r(S_r v)/(kT m) - v|| / ||v|| (same op);
@@ -60,7 +63,7 @@ CONFIG = "lj_rho0.75_kT1.0_costopt"
 DTS = (0.00125, 0.0025, 0.005, 0.01)
 RANKS = (2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 20, 24, 28, 32, 40, 48, 56)
 RMAX = max(RANKS)
-PROTOCOL = dict(version=2, dts=DTS, ranks=RANKS, probes="4 gauss, 4 maxwell, actual p, 4 k x (L,T) plane waves, "
+PROTOCOL = dict(version=3, dts=DTS, ranks=RANKS, probes="4 gauss, 4 maxwell, actual p, 4 k x (L,T) plane waves, "
                 "2 slow-mode", rule="max(overall, kmin, low3, low12) <= budget/10")
 
 
@@ -149,6 +152,8 @@ def verify_state(r, fast, lat, q, p_actual, rng, xi_actual=None):
     funcs = functions(kT, m)
     lows = {3: Dh.U[:, :3], 12: Dh.U[:, :12]}
     tab = {fn: {rk_: dict(overall=0.0, kmin=0.0, low3=0.0, low12=0.0) for rk_ in RANKS} for fn in funcs}
+    tab_inc = {fn: {rk_: 0.0 for rk_ in RANKS} for fn in funcs}
+    const = {fn: (1.0 if fn.startswith("damp") else (1 / np.sqrt(2) if fn.startswith("couple") else 0.0)) for fn in funcs}
     worst_probe = {fn: {} for fn in funcs}
     ritz_min = np.inf
     t1 = time.perf_counter()
@@ -162,6 +167,7 @@ def verify_state(r, fast, lat, q, p_actual, rng, xi_actual=None):
             ritz_min = min(ritz_min, th[0])
         for fn, f in funcs.items():
             ref = Dh.apply(f, v)
+            inc = np.linalg.norm(ref - const[fn] * proj(v))
             Jr = ph.T @ ref.reshape(N, 3)
             lowr = {k: np.linalg.norm(B.T @ ref) for k, B in lows.items()}
             for rk_ in RANKS:
@@ -173,12 +179,14 @@ def verify_state(r, fast, lat, q, p_actual, rng, xi_actual=None):
                          kmin=float(np.max(np.linalg.norm(ph.T @ d.reshape(N, 3), axis=1) / np.linalg.norm(Jr, axis=1))),
                          low3=float(np.linalg.norm(lows[3].T @ d) / lowr[3]),
                          low12=float(np.linalg.norm(lows[12].T @ d) / lowr[12]))
+                tab_inc[fn][rk_] = max(tab_inc[fn][rk_], float(np.linalg.norm(d) / inc))
                 t = tab[fn][rk_]
                 for kk, vv in e.items():
                     if vv > t[kk]:
                         t[kk] = vv
                         worst_probe[fn].setdefault(str(rk_), {})[kk] = pname
     rec.update(krylov={fn: {str(k): v for k, v in t.items()} for fn, t in tab.items()}, worst_probe=worst_probe,
+               krylov_increment={fn: {str(k): v for k, v in t.items()} for fn, t in tab_inc.items()},
                ritz_min=float(ritz_min), lanczos_s=time.perf_counter() - t1, probes=list(probes))
     return rec, op, Dh, Dr, probes
 
@@ -186,9 +194,13 @@ def verify_state(r, fast, lat, q, p_actual, rng, xi_actual=None):
 def required(krylov_by_state, budget, factor=0.1):
     out = {}
     for fn in next(iter(krylov_by_state.values())):
-        out[fn] = next((k for k in RANKS if all(max(st[fn][str(k)].values()) <= factor * budget
+        out[fn] = next((k for k in RANKS if all(_mx(st[fn][str(k)]) <= factor * budget
                                                  for st in krylov_by_state.values())), None)
     return out
+
+
+def _mx(x):
+    return max(x.values()) if isinstance(x, dict) else x
 
 
 def chosen_checks(r, op, Dh, Dr, probes, rn, rd, rc):
@@ -201,27 +213,37 @@ def chosen_checks(r, op, Dh, Dr, probes, rn, rd, rc):
     for dt in DTS:
         fn = lambda l, dt=dt: np.sqrt(kT * m * -np.expm1(-2 * dt * l / m))   # noqa: E731
         fd = lambda l, dt=dt: np.exp(-dt * l / m)                            # noqa: E731
-        comb, fdt, kry = 0.0, 0.0, 0.0
+        comb, fdt, kry, comb_i, kry_i, fdt_i, op_only_i = 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
         for p, x in zip(pv, xv):
             o_l = lanczos_apply(op, p, rd, fd)[0] + lanczos_apply(op, x, rn, fn)[0]
             o_h = Dh.apply(fd, p) + Dh.apply(fn, x)
             o_r = Dr.apply(fd, p) + Dr.apply(fn, x)
             comb = max(comb, float(np.linalg.norm(o_l - o_r) / np.linalg.norm(o_r)))
             kry = max(kry, float(np.linalg.norm(o_l - o_h) / np.linalg.norm(o_h)))
+            # relative to the O-step increment p_new - p (the part the friction actually changes)
+            inc_r = np.linalg.norm(o_r - p)
+            comb_i = max(comb_i, float(np.linalg.norm(o_l - o_r) / inc_r))
+            kry_i = max(kry_i, float(np.linalg.norm(o_l - o_h) / np.linalg.norm(o_h - p)))
+            op_only_i = max(op_only_i, float(np.linalg.norm(o_h - o_r) / inc_r))
             Rv = lanczos_apply(op, p, rd, fd)[0]
             Sv = lanczos_apply(op, p, rn, fn)[0]
-            fdt = max(fdt, float(np.linalg.norm(lanczos_apply(op, Rv, rd, fd)[0]
-                                                + lanczos_apply(op, Sv, rn, fn)[0] / (kT * m) - p) / np.linalg.norm(p)))
+            resid = lanczos_apply(op, Rv, rd, fd)[0] + lanczos_apply(op, Sv, rn, fn)[0] / (kT * m) - p
+            fdt = max(fdt, float(np.linalg.norm(resid) / np.linalg.norm(p)))
+            fdt_i = max(fdt_i, float(np.linalg.norm(resid) / np.linalg.norm(Dh.apply(lambda l: fn(l) ** 2, p) / (kT * m))))
         dense_fdt = float(np.max(np.abs(fd(Dh.lam) ** 2 + fn(Dh.lam) ** 2 / (kT * m) - 1)))
-        out[str(dt)] = dict(ostep_krylov=kry, ostep_vs_reference=comb, fdt_lanczos=fdt, fdt_dense=dense_fdt)
+        out[str(dt)] = dict(ostep_krylov=kry, ostep_vs_reference=comb, fdt_lanczos=fdt, fdt_dense=dense_fdt,
+                            ostep_krylov_increment=kry_i, ostep_vs_reference_increment=comb_i,
+                            ostep_pppm_only_increment=op_only_i, fdt_lanczos_increment=fdt_i)
         if dt > DTS[0]:
             a, b = coupling_funcs(dt / 2, m)
-            c_err = 0.0
+            c_err, c_inc = 0.0, 0.0
             for x1, x2 in zip(xv, xv[1:] + xv[:1]):
                 c_l = lanczos_apply(op, x1, rc, a)[0] + lanczos_apply(op, x2, rc, b)[0]
                 c_d = Dh.apply(a, x1) + Dh.apply(b, x2)
                 c_err = max(c_err, float(np.linalg.norm(c_l - c_d) / np.linalg.norm(c_d)))
+                c_inc = max(c_inc, float(np.linalg.norm(c_l - c_d) / np.linalg.norm(c_d - (x1 + x2) / np.sqrt(2))))
             out[str(dt)]["coupling_input_krylov"] = c_err
+            out[str(dt)]["coupling_input_krylov_increment"] = c_inc
     return out
 
 
@@ -261,8 +283,9 @@ def main():
         if args.lattice_state:
             states.append(("fcc_jitter0.05", C.fcc_positions(256, L, 0.05, np.random.default_rng(5)), None, "constructed",
                            None))
-        key = tc._digest(dict(protocol=PROTOCOL, pppm=pp, model=mdl, L=L, law=law,
-                              states=[(s[0], tc._digest(s[1].round(12).tolist())) for s in states],
+        dig = lambda a: None if a is None else tc._digest(np.asarray(a).round(12).tolist())   # noqa: E731
+        key = tc._digest(dict(protocol=PROTOCOL, pppm=pp, model=mdl, L=L, law=law, budget=r["operator_budget"],
+                              states=[(s[0], dig(s[1]), dig(s[2]), dig(s[4])) for s in states],
                               ranks=getattr(args, f"ranks_{law}")))
         outf = C.OUT / f"verify_{args.tag}_{law}{'_' + '_'.join(map(str, ov)) if ov else ''}.json"
         if outf.exists() and json.loads(outf.read_text()).get("cache_key") == key:
@@ -307,6 +330,10 @@ def main():
                 max(v for k, v in req.items() if k.startswith("damp")),
                 max(v for k, v in req.items() if k.startswith("couple")))
         chosen = getattr(args, f"ranks_{law}") or auto
+        if any(c not in RANKS for c in chosen):
+            raise SystemExit(f"explicit ranks must be in the scanned set {RANKS}")
+        res["required_rank_strict_increment"] = required({n: v["krylov_increment"] for n, v in per.items()},
+                                                         r["operator_budget"], 0.1)
         res["chosen_ranks"] = dict(noise=chosen[0], damp=chosen[1], couple=chosen[2],
                                    rule="explicit" if getattr(args, f"ranks_{law}") else "max strict requirement over dt")
         res["chosen_checks"] = {n: chosen_checks(r, *kept[n], *chosen) for n in per}
@@ -325,7 +352,23 @@ def main():
             ostep_krylov=max(c[d]["ostep_krylov"] for c in cc.values() for d in c) <= b / 10,
             ostep_vs_reference=max(c[d]["ostep_vs_reference"] for c in cc.values() for d in c) <= b,
             fdt_lanczos=max(c[d]["fdt_lanczos"] for c in cc.values() for d in c) <= b / 10,
-            coupling=max(c[d].get("coupling_input_krylov", 0) for c in cc.values() for d in c) <= b / 10)
+            coupling=max(c[d].get("coupling_input_krylov", 0) for c in cc.values() for d in c) <= b / 10,
+            chosen_ranks_meet_strict_rule=all(
+                _mx(per[n]["krylov"][fn][str(chosen[0] if fn.startswith("noise") else chosen[1] if fn.startswith("damp")
+                                              else chosen[2])]) <= b / 10 for n in per for fn in per[n]["krylov"]))
+        # reported, not part of 'passed' (the budgets are defined relative to the full norm, as in the project):
+        res["operator_vs_k_nonzero_part_max"] = max(v["op_err_vs_k_nonzero_part"] for v in per.values())
+        res["operator_vs_k_nonzero_within_budget"] = res["operator_vs_k_nonzero_part_max"] <= b
+        res["increment_normalised"] = dict(
+            ostep_pppm_only_increment_max=max(c[d]["ostep_pppm_only_increment"] for c in cc.values() for d in c),
+            ostep_krylov_increment_max=max(c[d]["ostep_krylov_increment"] for c in cc.values() for d in c),
+            ostep_vs_reference_increment_max=max(c[d]["ostep_vs_reference_increment"] for c in cc.values() for d in c),
+            fdt_lanczos_increment_max=max(c[d]["fdt_lanczos_increment"] for c in cc.values() for d in c),
+            coupling_increment_max=max(c[d].get("coupling_input_krylov_increment", 0) for c in cc.values() for d in c),
+            chosen_ranks_meet_strict_rule_increment=all(
+                per[n]["krylov_increment"][fn][str(chosen[0] if fn.startswith("noise") else chosen[1]
+                                                  if fn.startswith("damp") else chosen[2])] <= b / 10
+                for n in per for fn in per[n]["krylov_increment"]))
         res["passed"] = all(res["checks"].values())
         res["cpu_s"], res["wall_s"] = C.cpu_seconds() - cpu0, time.perf_counter() - wall0
         C.write_json(outf, res)
@@ -341,6 +384,11 @@ def runner_entry(law, dt, tag="representative"):
     res = json.loads((C.OUT / f"verify_{tag}_{law}.json").read_text())
     if res["pppm"] != r["pppm"]:
         raise ValueError(f"verify result PPPM {res['pppm']} != configuration {r['pppm']}")
+    if (abs(res["L"] - r["L"]) > 1e-12 * r["L"] or res["model"] != r["model"] or res["budget"] != r["operator_budget"]
+            or res["protocol"]["version"] != PROTOCOL["version"] or res["mesh"]["pair_search"] != r["pair_search"]
+            or not res["passed"]):
+        raise ValueError("verify result does not bind to the current configuration (L, model, budget, protocol, "
+                         "pair search) or did not pass")
     ch = res["chosen_ranks"]
     if (r["rank_noise"], r["rank_damp"]) != (ch["noise"], ch["damp"]):
         raise ValueError(f"configuration ranks {r['rank_noise']}/{r['rank_damp']} != verified {ch}")
@@ -354,7 +402,7 @@ def runner_entry(law, dt, tag="representative"):
                  source=f"lj075_results/verify_{tag}_{law}.json", dt=dt, ranks=ch)
     f = HERE / tc.CONFIGS[CONFIG]["verification_file"]
     db = json.loads(f.read_text()) if f.exists() else {}
-    db[f"{CONFIG}_{law}_N256"] = entry
+    db[f"{CONFIG}_{law}_N256_dt{dt:g}"] = entry          # one entry per dt (operator_hash includes dt)
     C.write_json(f, db)
     return entry
 

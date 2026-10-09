@@ -34,7 +34,13 @@ def main():
                          "vacf_sampling_results/REPORT.md)")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
-    rows = []
+    if tc.CONFIGS[args.config].get("state_point", "toy_v2") != "toy_v2":
+        given = {o for o in ("--burn-in", "--production", "--save-every", "--seeds") if any(
+            x == o or x.startswith(o + "=") for x in sys.argv)}
+        if given != {"--burn-in", "--production", "--save-every", "--seeds"}:
+            raise SystemExit(f"{args.config}: the defaults (burn-in 140, production 60, save 0.005, seeds 101-105) "
+                             "belong to the toy_v2 state point; pass --burn-in, --production, --save-every and --seeds "
+                             "explicitly (see lj075_results/REPORT.md)")
     for N in args.N:                                                  # contiguous ids per (N, kernel) group
         for ker in args.kernels:
             for pot in args.potentials:

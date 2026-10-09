@@ -198,23 +198,35 @@ def initial_state(r, args):
     rec = dict(method=method, rng=f"numpy default_rng([seed, 2]) (seed {args.seed})", equilibrated=False)
     if method == "from_state":
         f = Path(args.from_state)
+        sources = {}
         with np.load(f) as d:
             q, p = np.array(d["q"], float), np.array(d["p"], float)
-            meta = {k: (float(d[k]) if np.ndim(d[k]) == 0 and np.issubdtype(d[k].dtype, np.number) else None)
-                    for k in ("L", "kT", "N") if k in d.files}
+            own = {}
+            for k in ("L", "kT", "N"):
+                if k in d.files:
+                    if np.ndim(d[k]) != 0 or not np.issubdtype(d[k].dtype, np.number):
+                        raise tc.ConfigError(f"--from-state {f}: key {k} is not a scalar number")
+                    own[k] = float(d[k])
+            if own:
+                sources["file keys"] = own
+            if "config" in d.files:                              # toy_run checkpoints embed their configuration
+                er = json.loads(str(d["config"]))["resolved"]
+                sources["embedded config"] = dict(L=er["L"], kT=er["model"]["kT"], N=er["N"])
         if q.shape != (N, 3):
             raise tc.ConfigError(f"--from-state has shape {q.shape}, expected ({N}, 3)")
         src_cfg = f.parent / "config.json"
         if src_cfg.exists():
             sr = json.loads(src_cfg.read_text())["resolved"]
-            meta.update(L=sr["L"], kT=sr["model"]["kT"], N=sr["N"], density=sr["model"]["density"],
-                        source_config=sr["config"])
-        if not {"L", "kT"} <= set(meta):
-            raise tc.ConfigError(f"--from-state {f}: no state-point record (config.json next to it, or keys L, kT in "
-                                 "the file); refusing a state of unknown box and temperature")
-        if abs(meta["L"] - L) > 1e-9 * L or abs(meta["kT"] - kT) > 1e-12:
-            raise tc.ConfigError(f"--from-state {f} is at L {meta['L']}, kT {meta['kT']}; this configuration has "
-                                 f"L {L}, kT {kT}")
+            sources["adjacent config.json"] = dict(L=sr["L"], kT=sr["model"]["kT"], N=sr["N"],
+                                                   source_config=sr["config"])
+        if not any({"L", "kT"} <= set(v) for v in sources.values()):
+            raise tc.ConfigError(f"--from-state {f}: no state-point record (keys L, kT in the file, an embedded config "
+                                 "or a config.json next to it); refusing a state of unknown box and temperature")
+        for name, v in sources.items():                        # every record present must agree with the target
+            if "L" in v and abs(v["L"] - L) > 1e-6 * L or "kT" in v and abs(v["kT"] - kT) > 1e-9:
+                raise tc.ConfigError(f"--from-state {f}: {name} gives L {v.get('L')}, kT {v.get('kT')}; this "
+                                     f"configuration has L {L}, kT {kT}")
+        meta = dict(sources)
         kin = float(np.sum((p - p.mean(0)) ** 2) / (m * 3 * (N - 1)))
         rec.update(source=str(f.resolve()), source_sha256=_sha256(f), source_state_point=meta,
                    source_kinetic_temperature=kin,
@@ -289,7 +301,10 @@ def verification_status(r):
     VERIFICATION = HERE / vf if vf else VERIFICATION_DEFAULT
     if not VERIFICATION.exists():
         return dict(key=key, verified=False, reason="no verification file")
-    e = json.loads(VERIFICATION.read_text()).get(key)
+    db = json.loads(VERIFICATION.read_text())
+    if f"{key}_dt{r['dt']:g}" in db:                     # per-dt entries (lj075 configurations)
+        key = f"{key}_dt{r['dt']:g}"
+    e = db.get(key)
     if e is None:
         return dict(key=key, verified=False, reason="no verification entry for this config / law / N")
     if e.get("operator_hash") != tc.operator_hash(r):

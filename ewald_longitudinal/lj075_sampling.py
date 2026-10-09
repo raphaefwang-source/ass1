@@ -11,8 +11,14 @@ Metrics vs the every-step reference of the same trajectory (paired; 95% t-CI ove
   VACF: tau_1/2 (linear interpolation), number of stored lags before C/C0 = 1/2;
   GK:   D_GK(T) = (1/3) int_0^T C dt by trapezoid, T = 0.1, 0.5, 2, 8;
   MSD:  MSD(t) at t = 0.1, 0.5, 2, 8 and D_MSD from the fit window [2, 8].
-Rule (as vacf_sampling_check.py, the project's existing save-interval rule): GK quadrature bias <= 0.2% at every T,
-  >= 5 stored lags before 1/2, tau_1/2 within 2%; plus MSD / D_MSD production-like difference CI within 0.2%.
+Rule (the project's existing save-interval rule of vacf_sampling_check.py, applied to EVERY run): GK quadrature bias
+  <= 0.2% at every T, >= 5 stored lags before 1/2, tau_1/2 within 2%; extended here by: production-like MSD(t) and
+  D_MSD[2, 8] relative difference with the whole 95% t-CI over runs within +-0.2%.
+Reference: the every-step trapezoid GK. For this integrator it equals the chain's own long-time MSD diffusion (the
+  force term of the position update telescopes), so it has no quadrature error relative to the simulated dynamics;
+  its distance from the dt -> 0 limit is a time-step effect (estimated by the Richardson offset (D_s1 - D_s2)/3 and
+  judged in the dt study), not a save-interval effect. If even stride 1 fails the lag rule, the VACF is NOT resolved
+  at this dt and this is stated.
 Writes lj075_results/sampling.json and sampling_interval.png. Does not touch vacf_sampling_results/.
 """
 import json
@@ -89,7 +95,7 @@ def main():
     for law in ("A", "B"):
         if law not in eq:
             continue
-        burn = eq[law]["burn_in_estimate"]
+        burn = eq[law]["burn_in"]["estimate"]
         runs = [RUNS / n for n in eq[law]["runs"]]
         per = {}
         dt = None
@@ -107,17 +113,30 @@ def main():
                          D_msd=C.t_ci(rel(lambda y: y["D_msd"])))
                 row[variant] = v
             q, pr = row["quadrature"], row["production"]
-            ok = (max(abs(x[0]) for x in q["gk"].values()) <= RULE["gk_bias"]
-                  and q["lags_before_half"] >= RULE["lags_before_half"]
-                  and abs(q["tau_half"][0]) <= RULE["tau_half_rel"]
-                  and all(abs(x[1]) <= RULE["msd_rel"] and abs(x[2]) <= RULE["msd_rel"] for x in pr["msd"].values()))
-            row["passes_rule"] = bool(ok)
+            per_run_gk = [abs(p[str(s)]["quadrature"]["gk"][T] / p["1"]["quadrature"]["gk"][T] - 1)
+                          for p in per.values() for T in map(str, GK_T)]
+            per_run_tau = [abs(p[str(s)]["quadrature"]["tau_half"] / p["1"]["quadrature"]["tau_half"] - 1)
+                           for p in per.values()]
+            ok_vacf = (max(per_run_gk) <= RULE["gk_bias"] and q["lags_before_half"] >= RULE["lags_before_half"]
+                       and max(per_run_tau) <= RULE["tau_half_rel"])
+            ok_msd = (all(-RULE["msd_rel"] <= x[1] and x[2] <= RULE["msd_rel"] for x in pr["msd"].values())
+                      and -RULE["msd_rel"] <= pr["D_msd"][1] and pr["D_msd"][2] <= RULE["msd_rel"])
+            row["passes_vacf_gk_rule"] = bool(ok_vacf)
+            row["passes_msd_rule"] = bool(ok_msd)
+            row["passes_rule"] = bool(ok_vacf and ok_msd)
+            row["max_run_gk_bias"] = float(max(per_run_gk))
             row["save_interval"] = s * dt
             summ[str(s)] = row
         ref = {k: C.t_ci([p["1"]["quadrature"][k] for p in per.values()]) for k in ("tau_half",)}
         ref["gk"] = {T: C.t_ci([p["1"]["quadrature"]["gk"][T] for p in per.values()]) for T in map(str, GK_T)}
+        rich = {T: C.t_ci([(p["1"]["quadrature"]["gk"][T] - p["2"]["quadrature"]["gk"][T]) / 3
+                           / p["1"]["quadrature"]["gk"][T] for p in per.values()]) for T in map(str, GK_T)}
         res[law] = dict(dt=dt, burn_in=burn, runs=[r.name for r in runs], every_step_reference=ref, by_stride=summ,
-                        largest_passing=max([s for s in STRIDES if summ[str(s)]["passes_rule"]], default=None))
+                        largest_passing=max([s for s in STRIDES if summ[str(s)]["passes_rule"]], default=None),
+                        largest_passing_msd_only=max([s for s in STRIDES if summ[str(s)]["passes_msd_rule"]], default=None),
+                        vacf_resolved_at_every_step=bool(summ["1"]["quadrature"]["lags_before_half"]
+                                                         >= RULE["lags_before_half"]),
+                        richardson_offset_rel=rich)
         print(f"[{law}] tau_half {ref['tau_half']}; passing strides "
               f"{[s for s in STRIDES if summ[str(s)]['passes_rule']]}", flush=True)
         for s in STRIDES:

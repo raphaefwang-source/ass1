@@ -44,6 +44,7 @@ def main():
         picks = {f"t{x:g}": min(nmax, int(np.argmin(np.abs(t - x)))) for x in (0, 0.25, 1, 5, 20, 50)}
         picks["rmin"] = min(nmax, int(np.argmin(diag[:-1, 6])))
         picks["ritzmax"] = min(nmax, int(np.nanargmax(diag[1:, 9])))     # diag ritz of step k+1 = O-step at k
+        picks["ritzmin"] = min(nmax, int(np.nanargmin(diag[1:, 8])))     # smallest Ritz value: hardest for Lanczos
         seed = d["config"]["plan"]["seed"]
         rng = np.random.default_rng([seed, 1])
         xis = {}
