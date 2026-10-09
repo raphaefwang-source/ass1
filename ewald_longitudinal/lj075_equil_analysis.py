@@ -34,7 +34,9 @@ Diffusion (after burn-in, every-step frames): D_GK(tau) = (1/3) int_0^tau C_v (e
   integrator it equals the chain's own long-time MSD diffusion, so it carries the chain's dt bias but no quadrature
   error), D_MSD from linear fits on windows [1,2], [2,4], [4,8], [8,16]. Plateau test with paired per-run differences:
   GK: D(2 tau) - D(tau); MSD: adjacent windows. A plateau is declared only if the whole 95% t-CI of the relative change
-  lies within +-2%. If no plateau is found, long-time D is reported as NOT determined (values are lower/upper bounds
+  lies within +-2% (status "plateau"); "drift" if the whole CI lies beyond +-2% (a resolved change), else
+  "undetermined" (CI too wide: under-sampled). Long-time D counts as determined only if every step from some limit /
+  window up to the longest one is "plateau" (for GK and MSD alike); otherwise it is reported as NOT determined (values are lower/upper bounds
   of the running estimate only).
 """
 import json
@@ -177,8 +179,24 @@ def plateau(per_run, keys, label):
             continue
         m, lo, hi = C.t_ci(rows)
         out.append(dict(**{label: f"{a} -> {b}"}, rel_change=m, ci95=[lo, hi], n=len(rows),
-                        plateau=bool(-0.02 <= lo and hi <= 0.02)))
+                        plateau=bool(-0.02 <= lo and hi <= 0.02), status=plateau_status(lo, hi)))
     return out
+
+
+def settled(pl):
+    """Plateau entries followed only by plateau entries (an undetermined later step could hide a slow drift)."""
+    return [p for i, p in enumerate(pl) if all(q["status"] == "plateau" for q in pl[i:])]
+
+
+def plateau_status(lo, hi, tol=0.02):
+    """plateau: CI inside +-tol; drift: CI entirely outside (a resolved change > tol); else undetermined (CI too
+    wide to decide, i.e. under-sampled)."""
+    if -tol <= lo and hi <= tol:
+        return "plateau"
+    if lo > tol or hi < -tol:
+        return "drift"
+    return "undetermined"
+
 
 
 def analyze_law(law):
@@ -261,8 +279,8 @@ def analyze_law(law):
     D_msd = {k: C.t_ci([x["msd_fit"][k] for x in dif.values()]) for k in msd_keys}
     gk_pl = plateau({n: x["gk"] for n, x in dif.items()}, gk_keys, "tau")
     msd_pl = plateau({n: x["msd_fit"] for n, x in dif.items()}, msd_keys, "windows")
-    gk_det = [p for p in gk_pl if p["plateau"]]
-    msd_det = [p for p in msd_pl if p["plateau"]]
+    gk_det = settled(gk_pl)
+    msd_det = settled(msd_pl)
     determined = bool(gk_det) and bool(msd_det)
     # --- sampling requirements
     T_run = (nw * W) - burn

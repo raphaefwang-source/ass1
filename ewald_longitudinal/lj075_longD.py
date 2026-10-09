@@ -6,9 +6,12 @@ required: short-time agreement is not used as evidence for the long-time D).
 Data: coupled chains of lj075_dt_study.py run with --frame-every 0.01 and t_end 100 (law A: dt 0.005 and 0.01; law B:
 0.0025, 0.005 and 0.01), started from independent canonical states (dtinit_s113-115), noise coupled across dt.
 For every level: MSD (all origins, COM removed) after T0 = 10 (burn-in margin; the starts are canonical), from frames
-every 0.01; D_MSD on windows [1,2], [2,4], [4,8], [8,16], [16,32] by linear fits.
-Plateau (per level): paired per-replica relative change between adjacent windows, whole 95% t-CI within +-2%;
-  long-time D is reported only for a window where a plateau holds, else "not determined".
+every 0.01; D_MSD on windows [1,2], [2,4], [4,8], [8,16], [16,32] by linear fits (a window is used only if its end lag
+is <= 0.4 of the analysed length; set before any long-D data were analysed).
+Plateau (per level): paired per-replica relative change between adjacent windows, whole 95% t-CI within +-2%
+  (status "plateau"; "drift" if the CI lies entirely beyond +-2%; else "undetermined" = under-sampled);
+  long-time D is reported only if a plateau holds from some window onward up to the longest window (every later
+  step also "plateau"); otherwise "not determined" (an undetermined later step could hide a slow drift).
 dt dependence: paired per-replica relative difference D_dt / D_ref - 1 at each window (ref = finest level), with
   95% t-CI, compared with the free-particle prior x coth x - 1, x = lambda dt / (2m), lambda in the measured
   spectrum (A [4.6, 12.1], B [63.7, 91.6]).
@@ -23,10 +26,12 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import lj075_common as C  # noqa: E402
+from lj075_equil_analysis import plateau_status, settled  # noqa: E402
 
 RAWDIR = C.RAW / "dt_study"
 T0 = 10.0
 WINDOWS = ((1.0, 2.0), (2.0, 4.0), (4.0, 8.0), (8.0, 16.0), (16.0, 32.0))
+MAX_LAG_FRAC = 0.4          # a window is used only if its end lag <= 0.4 of the analysed length (>= 60% origins)
 LAM = {"A": (4.6, 12.1), "B": (63.7, 91.6)}
 
 
@@ -56,7 +61,7 @@ def dmsd(Q, fdt):
     out = {}
     for a, b in WINDOWS:
         sel = (tm >= a - 1e-9) & (tm <= b + 1e-9)
-        if b <= tm[-1] + 1e-9 and b <= len(Qp) * fdt / 3:
+        if b <= tm[-1] + 1e-9 and b <= MAX_LAG_FRAC * (len(Qp) - 1) * fdt:
             out[f"{a:g}-{b:g}"] = float(np.polyfit(tm[sel], m[sel], 1)[0] / 6)
     return out, (tm[::20].tolist(), m[::20].tolist())
 
@@ -88,10 +93,12 @@ def main():
             for a, b in zip(keys[:-1], keys[1:]):
                 rows = [(per[r][str(dt)][b] - per[r][str(dt)][a]) / per[r][str(dt)][a] for r in per]
                 mm, lo, hi = C.t_ci(rows)
-                pl.append(dict(windows=f"{a} -> {b}", rel_change=mm, ci95=[lo, hi], plateau=bool(-0.02 <= lo and hi <= 0.02)))
-            det = [p for p in pl if p["plateau"]]
+                pl.append(dict(windows=f"{a} -> {b}", rel_change=mm, ci95=[lo, hi], plateau=bool(-0.02 <= lo and hi <= 0.02),
+                           status=plateau_status(lo, hi)))
+            det = settled(pl)
             lev[str(dt)] = dict(D_MSD=D, plateau=pl, long_time_D_determined=bool(det),
-                                D_long=(D[det[0]["windows"].split(" -> ")[1]] if det else None),
+                                D_long=(D[det[-1]["windows"].split(" -> ")[1]] if det else None),
+                                D_long_window=(det[-1]["windows"].split(" -> ")[1] if det else None),
                                 T_kin=C.t_ci([per[r]["_T"][str(dt)] for r in per]))
         ref = str(levels[0])
         cmp_ = {}
@@ -104,7 +111,7 @@ def main():
         print(f"[{law}] levels {levels}, n {len(per)}:", flush=True)
         for dt in levels:
             print(f"   dt {dt}: D_MSD {[(k, round(v[0], 6)) for k, v in lev[str(dt)]['D_MSD'].items()]}; plateau "
-                  f"{[(p['windows'], round(p['rel_change'], 4), p['plateau']) for p in lev[str(dt)]['plateau']]}",
+                  f"{[(p['windows'], round(p['rel_change'], 4), p['status']) for p in lev[str(dt)]['plateau']]}",
                   flush=True)
         for k, v in cmp_.items():
             print(f"   {k}: {[(w, round(x[0], 4), round(x[1], 4), round(x[2], 4)) for w, x in v['rel_diff'].items()]}; "
