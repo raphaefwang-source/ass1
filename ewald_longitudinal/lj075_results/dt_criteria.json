@@ -1,0 +1,22 @@
+{
+ "registered": "2026-10-09T17:38:18+0000",
+ "reference": "the finest level present in every replica used for a comparison (0.00125 where run, else 0.0025)",
+ "averaging": "per replica: time average over t in [1.0, t_end] of each level; differences are paired by replica (same q0, p0, coupled noise); 95% Student-t CI over replicas unless stated",
+ "tolerance": {
+  "T_kin": "relative 1% of the reference mean",
+  "U_per_N": "relative 1% of |reference mean|",
+  "pressure": "absolute 0.01 * rho * kT = 0.0075 (relative 1% is ill-conditioned if P is small); relative difference also reported",
+  "rdf": "E_g = ||mean_dg||_w / ||g_ref - 1||_w with w = 4 pi rho r^2 dr on [0.5, L/2); 1% on the 95% bootstrap upper bound (replica resampling). Noise inflates E_g, so this is conservative",
+  "rdf_first_peak": "height and position: relative 1%",
+  "vacf": "E_V = max over the common grid t_j = j * 0.01, t_j <= t_max (A 2.0, B 0.5) of |mean dC(t_j)| / C_ref(0) (absolute, normalised by the reference C(0): the VACF crosses zero); 1% on the 95% bootstrap upper bound",
+  "msd": "relative 1% at t = 0.1, 0.5, 1, 2, 5",
+  "D": "long-time D is NOT judged from these short runs; it is studied separately (lj075_equilibration.py); the dt-study D estimates are reported for information only"
+ },
+ "verdict": {
+  "PASS": "the whole 95% interval lies inside the tolerance band",
+  "FAIL": "the whole 95% interval lies outside the tolerance band",
+  "INCONCLUSIVE": "otherwise (an interval containing 0 is NOT taken as equivalence)"
+ },
+ "decision": "first compare the finest two levels; if every criterion PASSES, the finest level is an adequate reference. Then the recommended dt is the largest level for which EVERY criterion PASSES against the reference. INCONCLUSIVE results lead to more replicas, not to a relaxed tolerance.",
+ "operator_control": "PPPM set and Lanczos ranks verified by lj075_verify.py for all four dt and the coupling maps (strict rule budget/10); on-line Lanczos estimates on actual inputs every 200 steps"
+}
