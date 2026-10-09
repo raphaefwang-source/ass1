@@ -1,0 +1,641 @@
+{
+ "fcc_s1": {
+  "name": "fcc_s1",
+  "start": "fcc",
+  "seed": 1,
+  "t": 40.0,
+  "wall_s": 17.969647947,
+  "cpu_s": 17.682812091,
+  "U_per_N_last_quarter": -4.6586292745434115,
+  "T_last_quarter": 1.0066701707484231,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "fcc_s1_x1": {
+  "name": "fcc_s1_x1",
+  "start": "fcc",
+  "seed": 1,
+  "t": 45.0,
+  "wall_s": 17.969647947,
+  "cpu_s": 17.682812091,
+  "U_per_N_last_quarter": -4.6586292745434115,
+  "T_last_quarter": 1.0066701707484231,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "fcc_s1"
+ },
+ "fcc_s1_x2": {
+  "name": "fcc_s1_x2",
+  "start": "fcc",
+  "seed": 1,
+  "t": 50.0,
+  "wall_s": 17.969647947,
+  "cpu_s": 17.682812091,
+  "U_per_N_last_quarter": -4.6586292745434115,
+  "T_last_quarter": 1.0066701707484231,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "fcc_s1"
+ },
+ "_provenance": {
+  "command": "/usr/local/bin/python3 lj075_prepare_states.py --t 30 --names dtinit_s101 dtinit_s102 dtinit_s103 dtinit_s104 dtinit_s105 dtinit_s106 dtinit_s107 dtinit_s108 dtinit_s109 dtinit_s110 dtinit_s111 dtinit_s112 dtinit_s113 dtinit_s114 dtinit_s115 dtinit_s116",
+  "cwd": "/home/user/ass1/ewald_longitudinal",
+  "git_commit": "91e20d412af6bb3ee7561db3fb9c7ea956b584d3",
+  "git_dirty": true,
+  "host": "vm",
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "started": "2026-10-09T17:39:11+0000"
+ },
+ "fcc_s2": {
+  "name": "fcc_s2",
+  "start": "fcc",
+  "seed": 2,
+  "t": 40.0,
+  "wall_s": 17.193718419999982,
+  "cpu_s": 16.990743072999997,
+  "U_per_N_last_quarter": -4.693383420205554,
+  "T_last_quarter": 0.9769982948641645,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "fcc_s2_x1": {
+  "name": "fcc_s2_x1",
+  "start": "fcc",
+  "seed": 2,
+  "t": 45.0,
+  "wall_s": 17.193718419999982,
+  "cpu_s": 16.990743072999997,
+  "U_per_N_last_quarter": -4.693383420205554,
+  "T_last_quarter": 0.9769982948641645,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "fcc_s2"
+ },
+ "fcc_s2_x2": {
+  "name": "fcc_s2_x2",
+  "start": "fcc",
+  "seed": 2,
+  "t": 50.0,
+  "wall_s": 17.193718419999982,
+  "cpu_s": 16.990743072999997,
+  "U_per_N_last_quarter": -4.693383420205554,
+  "T_last_quarter": 0.9769982948641645,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "fcc_s2"
+ },
+ "fcc_s3": {
+  "name": "fcc_s3",
+  "start": "fcc",
+  "seed": 3,
+  "t": 40.0,
+  "wall_s": 17.88917500399998,
+  "cpu_s": 17.669565526,
+  "U_per_N_last_quarter": -4.652293122775706,
+  "T_last_quarter": 1.0212379027974314,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "fcc_s3_x1": {
+  "name": "fcc_s3_x1",
+  "start": "fcc",
+  "seed": 3,
+  "t": 45.0,
+  "wall_s": 17.88917500399998,
+  "cpu_s": 17.669565526,
+  "U_per_N_last_quarter": -4.652293122775706,
+  "T_last_quarter": 1.0212379027974314,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "fcc_s3"
+ },
+ "fcc_s3_x2": {
+  "name": "fcc_s3_x2",
+  "start": "fcc",
+  "seed": 3,
+  "t": 50.0,
+  "wall_s": 17.88917500399998,
+  "cpu_s": 17.669565526,
+  "U_per_N_last_quarter": -4.652293122775706,
+  "T_last_quarter": 1.0212379027974314,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "fcc_s3"
+ },
+ "rsa_s4": {
+  "name": "rsa_s4",
+  "start": "rsa",
+  "seed": 4,
+  "t": 40.0,
+  "wall_s": 18.29530137100005,
+  "cpu_s": 17.941058921999996,
+  "U_per_N_last_quarter": -4.655304757691209,
+  "T_last_quarter": 1.0087083724378163,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "rsa_s4_x1": {
+  "name": "rsa_s4_x1",
+  "start": "rsa",
+  "seed": 4,
+  "t": 45.0,
+  "wall_s": 18.29530137100005,
+  "cpu_s": 17.941058921999996,
+  "U_per_N_last_quarter": -4.655304757691209,
+  "T_last_quarter": 1.0087083724378163,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "rsa_s4"
+ },
+ "rsa_s4_x2": {
+  "name": "rsa_s4_x2",
+  "start": "rsa",
+  "seed": 4,
+  "t": 50.0,
+  "wall_s": 18.29530137100005,
+  "cpu_s": 17.941058921999996,
+  "U_per_N_last_quarter": -4.655304757691209,
+  "T_last_quarter": 1.0087083724378163,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "rsa_s4"
+ },
+ "rsa_s5": {
+  "name": "rsa_s5",
+  "start": "rsa",
+  "seed": 5,
+  "t": 40.0,
+  "wall_s": 18.301027829999953,
+  "cpu_s": 17.940122439999996,
+  "U_per_N_last_quarter": -4.679393250435419,
+  "T_last_quarter": 0.982606094235142,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "rsa_s5_x1": {
+  "name": "rsa_s5_x1",
+  "start": "rsa",
+  "seed": 5,
+  "t": 45.0,
+  "wall_s": 18.301027829999953,
+  "cpu_s": 17.940122439999996,
+  "U_per_N_last_quarter": -4.679393250435419,
+  "T_last_quarter": 0.982606094235142,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "rsa_s5"
+ },
+ "rsa_s5_x2": {
+  "name": "rsa_s5_x2",
+  "start": "rsa",
+  "seed": 5,
+  "t": 50.0,
+  "wall_s": 18.301027829999953,
+  "cpu_s": 17.940122439999996,
+  "U_per_N_last_quarter": -4.679393250435419,
+  "T_last_quarter": 0.982606094235142,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "rsa_s5"
+ },
+ "rsa_s6": {
+  "name": "rsa_s6",
+  "start": "rsa",
+  "seed": 6,
+  "t": 40.0,
+  "wall_s": 18.045244533000073,
+  "cpu_s": 17.754728371999988,
+  "U_per_N_last_quarter": -4.668982484677929,
+  "T_last_quarter": 1.0009376003068795,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "rsa_s6_x1": {
+  "name": "rsa_s6_x1",
+  "start": "rsa",
+  "seed": 6,
+  "t": 45.0,
+  "wall_s": 18.045244533000073,
+  "cpu_s": 17.754728371999988,
+  "U_per_N_last_quarter": -4.668982484677929,
+  "T_last_quarter": 1.0009376003068795,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "rsa_s6"
+ },
+ "rsa_s6_x2": {
+  "name": "rsa_s6_x2",
+  "start": "rsa",
+  "seed": 6,
+  "t": 50.0,
+  "wall_s": 18.045244533000073,
+  "cpu_s": 17.754728371999988,
+  "U_per_N_last_quarter": -4.668982484677929,
+  "T_last_quarter": 1.0009376003068795,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  },
+  "parent": "rsa_s6"
+ },
+ "dtinit_s101": {
+  "name": "dtinit_s101",
+  "start": "dtinit",
+  "seed": 101,
+  "t": 30.0,
+  "wall_s": 13.755743265000092,
+  "cpu_s": 13.489138494999999,
+  "U_per_N_last_quarter": -4.624045572301241,
+  "T_last_quarter": 1.0414153850958114,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s102": {
+  "name": "dtinit_s102",
+  "start": "dtinit",
+  "seed": 102,
+  "t": 30.0,
+  "wall_s": 13.280134690000068,
+  "cpu_s": 13.144443486,
+  "U_per_N_last_quarter": -4.673254103661424,
+  "T_last_quarter": 0.9914901407252593,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s103": {
+  "name": "dtinit_s103",
+  "start": "dtinit",
+  "seed": 103,
+  "t": 30.0,
+  "wall_s": 13.395432423000102,
+  "cpu_s": 13.271530185000003,
+  "U_per_N_last_quarter": -4.687685105898861,
+  "T_last_quarter": 0.9906193598430549,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s104": {
+  "name": "dtinit_s104",
+  "start": "dtinit",
+  "seed": 104,
+  "t": 30.0,
+  "wall_s": 13.389343000999816,
+  "cpu_s": 13.168164757,
+  "U_per_N_last_quarter": -4.670263217189423,
+  "T_last_quarter": 0.9888537722158899,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s105": {
+  "name": "dtinit_s105",
+  "start": "dtinit",
+  "seed": 105,
+  "t": 30.0,
+  "wall_s": 13.624745296000128,
+  "cpu_s": 13.344052169999998,
+  "U_per_N_last_quarter": -4.658316199376726,
+  "T_last_quarter": 1.006204537803198,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s106": {
+  "name": "dtinit_s106",
+  "start": "dtinit",
+  "seed": 106,
+  "t": 30.0,
+  "wall_s": 13.146695574999967,
+  "cpu_s": 13.011098572000009,
+  "U_per_N_last_quarter": -4.663982585875552,
+  "T_last_quarter": 1.0016490459483594,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s107": {
+  "name": "dtinit_s107",
+  "start": "dtinit",
+  "seed": 107,
+  "t": 30.0,
+  "wall_s": 13.206709796000041,
+  "cpu_s": 13.133975448000001,
+  "U_per_N_last_quarter": -4.685827810117733,
+  "T_last_quarter": 0.9988692132903202,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s108": {
+  "name": "dtinit_s108",
+  "start": "dtinit",
+  "seed": 108,
+  "t": 30.0,
+  "wall_s": 13.508398325999906,
+  "cpu_s": 13.333398508999991,
+  "U_per_N_last_quarter": -4.649977431770727,
+  "T_last_quarter": 1.0219853216570238,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s109": {
+  "name": "dtinit_s109",
+  "start": "dtinit",
+  "seed": 109,
+  "t": 30.0,
+  "wall_s": 13.297970600000099,
+  "cpu_s": 13.156713977999999,
+  "U_per_N_last_quarter": -4.688074835416324,
+  "T_last_quarter": 0.9850669132901853,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s110": {
+  "name": "dtinit_s110",
+  "start": "dtinit",
+  "seed": 110,
+  "t": 30.0,
+  "wall_s": 12.590275827999903,
+  "cpu_s": 12.552330317000013,
+  "U_per_N_last_quarter": -4.696791330009532,
+  "T_last_quarter": 0.9730499464131761,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s111": {
+  "name": "dtinit_s111",
+  "start": "dtinit",
+  "seed": 111,
+  "t": 30.0,
+  "wall_s": 12.346686421000186,
+  "cpu_s": 12.340357640000008,
+  "U_per_N_last_quarter": -4.680963010270678,
+  "T_last_quarter": 0.9732447870009999,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s112": {
+  "name": "dtinit_s112",
+  "start": "dtinit",
+  "seed": 112,
+  "t": 30.0,
+  "wall_s": 12.976836370000001,
+  "cpu_s": 12.822087030000006,
+  "U_per_N_last_quarter": -4.6574856372573175,
+  "T_last_quarter": 1.0020732428626924,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s113": {
+  "name": "dtinit_s113",
+  "start": "dtinit",
+  "seed": 113,
+  "t": 30.0,
+  "wall_s": 13.510384096000053,
+  "cpu_s": 13.28041630200002,
+  "U_per_N_last_quarter": -4.666007233832242,
+  "T_last_quarter": 1.0026138441800747,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s114": {
+  "name": "dtinit_s114",
+  "start": "dtinit",
+  "seed": 114,
+  "t": 30.0,
+  "wall_s": 12.870093384000029,
+  "cpu_s": 12.693011184,
+  "U_per_N_last_quarter": -4.641385640876914,
+  "T_last_quarter": 1.027060305755799,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s115": {
+  "name": "dtinit_s115",
+  "start": "dtinit",
+  "seed": 115,
+  "t": 30.0,
+  "wall_s": 13.371904198000038,
+  "cpu_s": 13.260410474999986,
+  "U_per_N_last_quarter": -4.691034986018232,
+  "T_last_quarter": 0.9771865962384421,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ },
+ "dtinit_s116": {
+  "name": "dtinit_s116",
+  "start": "dtinit",
+  "seed": 116,
+  "t": 30.0,
+  "wall_s": 13.3686511530002,
+  "cpu_s": 13.155753774999994,
+  "U_per_N_last_quarter": -4.6612543469552925,
+  "T_last_quarter": 1.0153031118449447,
+  "generation": {
+   "method": "scalar Langevin BAOAB, conservative LJ forces only",
+   "gamma": 1.0,
+   "dt": 0.005,
+   "fcc_jitter": 0.05,
+   "rsa_dmin": 0.9,
+   "rng": "default_rng([20261009, seed])"
+  }
+ }
+}

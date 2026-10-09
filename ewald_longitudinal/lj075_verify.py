@@ -317,5 +317,31 @@ def main():
               f"{ {k: v for k, v in res['checks'].items() if not v} or 'all pass'}; cpu {res['cpu_s']:.0f} s", flush=True)
 
 
+
+def runner_entry(law, dt, tag="representative"):
+    """Write the toy_run.verification_status entry for the configuration at (law, dt) from a verify result whose
+    PPPM set and ranks equal the configuration's (refuses otherwise)."""
+    r = tc.resolve(CONFIG, law, 256, "lj", dt=dt, allow_unverified=True)
+    res = json.loads((C.OUT / f"verify_{tag}_{law}.json").read_text())
+    if res["pppm"] != r["pppm"]:
+        raise ValueError(f"verify result PPPM {res['pppm']} != configuration {r['pppm']}")
+    ch = res["chosen_ranks"]
+    if (r["rank_noise"], r["rank_damp"]) != (ch["noise"], ch["damp"]):
+        raise ValueError(f"configuration ranks {r['rank_noise']}/{r['rank_damp']} != verified {ch}")
+    if not any(abs(dt - d) < 1e-15 for d in DTS):
+        raise ValueError(f"dt {dt} not covered by the verification")
+    per = res["per_state"]
+    entry = dict(passed=res["passed"], operator_hash=tc.operator_hash(r), budget=res["budget"],
+                 op_err=max(v["op_err"] for v in per.values()), checks=res["checks"],
+                 lam_min=min(v["lam_min"] for v in per.values()), ritz_min=min(v["ritz_min"] for v in per.values()),
+                 per_state={k: dict(op_err=v["op_err"], lam_min=v["lam_min"]) for k, v in per.items()},
+                 source=f"lj075_results/verify_{tag}_{law}.json", dt=dt, ranks=ch)
+    f = HERE / tc.CONFIGS[CONFIG]["verification_file"]
+    db = json.loads(f.read_text()) if f.exists() else {}
+    db[f"{CONFIG}_{law}_N256"] = entry
+    C.write_json(f, db)
+    return entry
+
+
 if __name__ == "__main__":
     main()

@@ -105,7 +105,13 @@ def run(args):
     r = resolved(law, levels[0], ranks)
     if ranks:
         r["rank_noise"], r["rank_damp"] = ranks[0], ranks[1]
-    rc = ranks[2] if ranks else None
+    if ranks:
+        rc = ranks[2]
+    else:                                     # verified coupling rank (lj075_verify.py, all dt, strict rule)
+        ver = json.loads((C.OUT / f"verify_representative_{law}.json").read_text())
+        if ver["pppm"] != r["pppm"] or ver["chosen_ranks"]["noise"] != r["rank_noise"]:
+            raise RuntimeError("verification result does not match the configuration")
+        rc = int(ver["chosen_ranks"]["couple"])
     N = 256
     nsave = {k: int(round(args.t_end / dt)) + 1 for k, dt in enumerate(levels)}
     Qs = {k: np.empty((n, N, 3), np.float32) for k, n in nsave.items()}

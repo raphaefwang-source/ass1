@@ -77,11 +77,15 @@ CONFIGS = {
         pair_search="tree",
         force_method="neighbor",
         operator_budget={"A": 2e-7, "B": 5e-8},
-        pppm={"A": dict(xi=0.85, s=4.1, eta=0.6779116381586452, p=7),
+        # A: p raised 7 -> 8 at this state point (costopt set with p = 7 gives 2.0-2.15e-7 > 2e-7 on fcc-lattice states
+        # at rho 0.75; p = 8 gives <= 7.0e-8 on lattice and liquid states, same mesh M = 24). B unchanged.
+        pppm={"A": dict(xi=0.85, s=4.1, eta=0.6779116381586452, p=8),
               "B": dict(xi=1.0, s=3.9, eta=0.6827747058642308, p=7)},
-        # provisional: the costopt_hiacc N <= 256 row, NOT verified at this state point (verified_N empty)
-        ranks={"A": ((256, 32, 5),), "B": ((256, 16, 6),)},
-        verified_N=(),
+        # strict Krylov rule (overall, k = 2 pi/L, lowest 3 / 12 eigenmode errors <= budget/10) on 28 (A) / 19 (B)
+        # canonical LJ states at this state point, for dt 0.00125-0.01 (lj075_results/verify_representative_*.json).
+        # Coupling maps of the dt study (not used in production): rank 4 (A), 6 (B).
+        ranks={"A": ((256, 12, 5),), "B": ((256, 8, 6),)},
+        verified_N=(256,),
     ),
     "baseline_hiacc": dict(
         description="original high-accuracy PPPM + Lanczos 40/16, image-enumerated pairs, all-pair forces "

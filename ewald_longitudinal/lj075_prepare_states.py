@@ -37,7 +37,12 @@ def prepare(name, t, extra_snapshots=0, snap_gap=5.0):
     N, kT, m = C.STATE["N"], C.STATE["kT"], C.STATE["mass"]
     L = C.box_length(N, C.STATE["rho"])
     rng = np.random.default_rng([20261009, seed])
-    q = C.fcc_positions(N, L, GEN["fcc_jitter"], rng) if kind == "fcc" else C.rsa_positions(N, L, GEN["rsa_dmin"], rng)
+    if kind == "fcc":
+        q = C.fcc_positions(N, L, GEN["fcc_jitter"], rng)
+    elif kind in ("rsa", "dtinit", "eqinit"):                  # dtinit / eqinit: RSA starts for the dt / burn-in studies
+        q = C.rsa_positions(N, L, GEN["rsa_dmin"], rng)
+    else:
+        raise ValueError(f"unknown start kind {kind}")
     p = C.maxwell(rng, N, kT, m)
     t0, c0 = time.perf_counter(), time.process_time()
     q, p, tr = C.langevin_prepare(q, p, L, kT, m, t, GEN["dt"], GEN["gamma"], rng)
