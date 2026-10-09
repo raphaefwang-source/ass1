@@ -9,7 +9,7 @@ from the same canonical state, fresh Level) so that background load affects all 
 rounds is reported with the min-max range.
 Writes lj075_results/pppm_cost.json.
 
-    python3 lj075_pppm_cost.py [--rounds 6] [--steps 40]
+    python3 lj075_pppm_cost.py [--rounds 6] [--steps 40] [--laws A]
 """
 import os
 
@@ -48,10 +48,12 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--rounds", type=int, default=6)
     ap.add_argument("--steps", type=int, default=40)
+    ap.add_argument("--laws", nargs="+", default=["A"])
     args = ap.parse_args()
     out = dict(config=CONFIG, dt=0.005, rounds=args.rounds, steps_per_round=args.steps, states=STATES,
                provenance=C.provenance(), laws={})
-    for law, cands in CANDS.items():
+    for law in args.laws:
+        cands = CANDS[law]
         base = tc.resolve(CONFIG, law, 256, "lj", dt=0.005, allow_unverified=True)
         setups = []
         for cand in cands:

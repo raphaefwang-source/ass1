@@ -81,7 +81,11 @@ def main():
         print(f"{name}: U/N last quarter {recs[0]['U_per_N_last_quarter']:.4f}, T {recs[0]['T_last_quarter']:.4f}, "
               f"{recs[0]['cpu_s']:.0f} cpu s; U/N at t = 1, 2, 5, 10, 20: "
               + ", ".join(f"{np.interp(x, tr[:, 0], tr[:, 1]):.3f}" for x in (1, 2, 5, 10, 20)), flush=True)
-        summ["_provenance"] = C.provenance()
+        prov = C.provenance()
+        hist = summ.setdefault("_provenance_history", [summ["_provenance"]] if "_provenance" in summ else [])
+        if not hist or hist[-1].get("command") != prov["command"]:
+            hist.append(prov)
+        summ["_provenance"] = prov
         C.write_json(summ_f, summ)
 
 
