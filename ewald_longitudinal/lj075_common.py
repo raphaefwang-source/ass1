@@ -51,7 +51,19 @@ def provenance(extra=None):
                                     capture_output=True, text=True).stdout.strip())
     except OSError:
         sha, dirty = None, None
+    import hashlib
+    mods = sorted(HERE.glob("lj075_*.py")) + [HERE / f for f in ("toy_configs.py", "toy_run.py", "toy_dynamics.py",
+                                                                 "radial_kernels.py", "test_lanczos_fdt.py",
+                                                                 "test_true_dynamics.py", "test_equal_accuracy_xi.py",
+                                                                 "toy_models/prl_toy_models.py")]
+    hashes = {m.name: hashlib.sha256(m.read_bytes()).hexdigest()[:16] for m in mods if m.exists()}
+    try:
+        untracked = subprocess.run(["git", "ls-files", "--others", "--exclude-standard", "*.py"], cwd=HERE,
+                                   capture_output=True, text=True).stdout.split()
+    except OSError:
+        untracked = None
     rec = dict(command=" ".join([sys.executable] + sys.argv), cwd=str(Path.cwd()), git_commit=sha, git_dirty=dirty,
+               untracked_py=untracked, script_sha256_16=hashes,
                host=platform.node(), python=platform.python_version(), numpy=np.__version__,
                threads={k: os.environ.get(k) for k in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS")},
                started=time.strftime("%Y-%m-%dT%H:%M:%S%z"))

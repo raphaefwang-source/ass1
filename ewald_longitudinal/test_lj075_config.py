@@ -60,7 +60,7 @@ class Config(unittest.TestCase):
             tc.resolve(NEW, "A", 512, "lj", dt=0.005, allow_unverified=True)
         with self.assertRaises(tc.ConfigError):
             tc.resolve(NEW, "A", 256, "double_well", dt=0.005, allow_unverified=True)
-        if tc.validated_dt(NEW) is None:
+        if tc.validated_dt(NEW, "A") is None:
             with self.assertRaises(tc.ConfigError):
                 tc.resolve(NEW, "A", 256, "lj")
         with self.assertRaises(tc.ConfigError):
@@ -99,6 +99,56 @@ class Config(unittest.TestCase):
             r = np.linalg.norm(dd, axis=-1)
             np.fill_diagonal(r, np.inf)
             self.assertGreaterEqual(r.min(), 0.9 - 1e-12)
+
+
+class Physics(unittest.TestCase):
+    def test_lj_force_finite_difference_inside_switch(self):
+        """Pair distances inside [r_on, r_cut] = [2, 2.5]: the force must include S'(r) u0(r)."""
+        sys.path.insert(0, str(HERE / "toy_models"))
+        import toy_dynamics as td
+        L = (256 / 0.75) ** (1 / 3)
+        rng = np.random.default_rng(4)
+        q = np.array([[1.0, 1.0, 1.0], [3.1, 1.2, 1.0], [1.3, 3.25, 1.4], [4.0, 3.6, 3.2]])
+        F, U, _ = td.conservative_force_neighbor(q, L, "lj")
+        d = q[:, None] - q[None]
+        r = np.linalg.norm(d - L * np.round(d / L), axis=-1)[np.triu_indices(4, 1)]
+        self.assertTrue(np.any((r > 2.0) & (r < 2.5)), r)
+        h = 1e-6
+        num = np.zeros_like(q)
+        for i in range(4):
+            for c in range(3):
+                qp, qm = q.copy(), q.copy()
+                qp[i, c] += h
+                qm[i, c] -= h
+                num[i, c] = -(td.conservative_force_neighbor(qp, L, "lj")[1]
+                              - td.conservative_force_neighbor(qm, L, "lj")[1]) / (2 * h)
+        self.assertLess(np.abs(F - num).max(), 1e-7 * max(1.0, np.abs(F).max()))
+        _ = rng
+
+    def test_kT_propagates_to_noise_and_coupling(self):
+        """kT = 1 would hide a beta = 1 bug: check E|S z|^2 and the coupled O-step at kT = 1 and 2."""
+        sys.path.insert(0, str(HERE / "toy_models"))
+        import toy_dynamics as td
+        import lj075_common as C
+        import lj075_coupled as LC
+        from test_lanczos_fdt import DenseRef, proj
+        out = {}
+        for kT in (1.0, 2.0):
+            r = tc.resolve(NEW, "B", 256, "lj", dt=0.01, allow_unverified=True)
+            r["model"] = dict(r["model"], kT=kT)
+            q = C.fcc_positions(256, r["L"], 0.1, np.random.default_rng(1))
+            th = td.Thermostat("pppm_lanczos", r["L"], "B", 0.5, 0.7, 1.3, 0.01, kT, 1.0, pppm=r["pppm"],
+                               rank_noise=r["rank_noise"], rank_damp=r["rank_damp"], pair_search="tree")
+            D = DenseRef(th.fast.gamma_h(q).dense(), 256)
+            z = proj(np.random.default_rng(2).standard_normal(768))
+            p_new, _ = th.o_step(q, np.zeros((256, 3)), z.reshape(256, 3))
+            ref = D.apply(lambda l: np.sqrt(kT * -np.expm1(-0.02 * l)), z)
+            self.assertLess(np.linalg.norm(p_new.ravel() - ref) / np.linalg.norm(ref), 1e-8)
+            out[kT] = np.linalg.norm(p_new)
+            st = LC.selftest(r, q)
+            self.assertLess(st["dense_two_fine_vs_one_coarse"], 1e-13)
+            self.assertLess(st["lanczos_two_fine_vs_one_coarse"], 1e-9)
+        self.assertAlmostEqual(out[2.0] / out[1.0], np.sqrt(2.0), places=12)
 
 
 if __name__ == "__main__":

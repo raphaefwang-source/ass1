@@ -107,7 +107,7 @@ def functions(kT, m):
     return F
 
 
-def verify_state(r, fast, lat, q, p_actual, rng):
+def verify_state(r, fast, lat, q, p_actual, rng, xi_actual=None):
     N, L = r["N"], r["L"]
     kT, m = r["model"]["kT"], r["model"]["mass"]
     op = fast.gamma_h(q)
@@ -120,6 +120,8 @@ def verify_state(r, fast, lat, q, p_actual, rng):
     probes.update({f"maxwell{k}": proj(rng.normal(0, np.sqrt(kT * m), 3 * N)) for k in range(4)})
     if p_actual is not None:
         probes["actual_p"] = proj(np.asarray(p_actual, float).ravel())
+    if xi_actual is not None:
+        probes["actual_xi"] = proj(np.asarray(xi_actual, float).ravel())
     probes.update(plane_waves(q % L, L))
     for k in range(2):
         c = rng.standard_normal(12)
@@ -193,8 +195,9 @@ def chosen_checks(r, op, Dh, Dr, probes, rn, rd, rc):
     """O-step, FDT consistency and coupling at the chosen ranks, every dt."""
     kT, m, N = r["model"]["kT"], r["model"]["mass"], r["N"]
     out = {}
-    pv = [v for k, v in probes.items() if k.startswith("maxwell") or k == "actual_p"][:3]
-    xv = [v for k, v in probes.items() if k.startswith("gauss")][:3]
+    pv = ([probes["actual_p"]] if "actual_p" in probes else []) + [v for k, v in probes.items() if k.startswith("maxwell")]
+    xv = ([probes["actual_xi"]] if "actual_xi" in probes else []) + [v for k, v in probes.items() if k.startswith("gauss")]
+    pv, xv = pv[:3], xv[:3]                       # actual O-step inputs first where available
     for dt in DTS:
         fn = lambda l, dt=dt: np.sqrt(kT * m * -np.expm1(-2 * dt * l / m))   # noqa: E731
         fd = lambda l, dt=dt: np.exp(-dt * l / m)                            # noqa: E731
@@ -229,7 +232,8 @@ def load_states(patterns, L):
             with np.load(f) as d:
                 if abs(float(d["L"]) - L) > 1e-9 * L or abs(float(d["kT"]) - 1.0) > 1e-12:
                     raise ValueError(f"{f}: state at L {float(d['L'])}, kT {float(d['kT'])}, not the lj075 state point")
-                out.append((Path(f).stem, d["q"].copy(), d["p"].copy() if "p" in d.files else None, str(f)))
+                out.append((Path(f).stem, d["q"].copy(), d["p"].copy() if "p" in d.files else None, str(f),
+                            d["xi"].copy() if "xi" in d.files else None))
     return out
 
 
@@ -255,7 +259,8 @@ def main():
         L = r["L"]
         states = load_states(args.states, L)
         if args.lattice_state:
-            states.append(("fcc_jitter0.05", C.fcc_positions(256, L, 0.05, np.random.default_rng(5)), None, "constructed"))
+            states.append(("fcc_jitter0.05", C.fcc_positions(256, L, 0.05, np.random.default_rng(5)), None, "constructed",
+                           None))
         key = tc._digest(dict(protocol=PROTOCOL, pppm=pp, model=mdl, L=L, law=law,
                               states=[(s[0], tc._digest(s[1].round(12).tolist())) for s in states],
                               ranks=getattr(args, f"ranks_{law}")))
@@ -278,8 +283,8 @@ def main():
         res["pair_set_tree_equals_images"] = bool(len(k1) == len(k2) and np.array_equal(
             k1[np.lexsort(k1.T[::-1])], k2[np.lexsort(k2.T[::-1])]))
         per, kept = {}, {}
-        for name, q, p_act, src in states:
-            rec, op, Dh, Dr, probes = verify_state(r, fast, lat, q, p_act, rng)
+        for name, q, p_act, src, xi_act in states:
+            rec, op, Dh, Dr, probes = verify_state(r, fast, lat, q, p_act, rng, xi_act)
             rec["source"] = src
             per[name] = rec
             kept[name] = (op, Dh, Dr, probes)
@@ -292,6 +297,12 @@ def main():
         res["required_rank_strict"] = required(kry, r["operator_budget"], 0.1)
         res["required_rank_budget"] = required(kry, r["operator_budget"], 1.0)
         req = res["required_rank_strict"]
+        if any(v is None for v in req.values()):
+            res["passed"] = False
+            res["failure"] = f"no rank <= {RANKS[-1]} meets the strict rule for {[k for k, v in req.items() if v is None]}"
+            C.write_json(outf, res)
+            print(f"[{law}] FAIL: {res['failure']}", flush=True)
+            continue
         auto = (max(v for k, v in req.items() if k.startswith("noise")),
                 max(v for k, v in req.items() if k.startswith("damp")),
                 max(v for k, v in req.items() if k.startswith("couple")))

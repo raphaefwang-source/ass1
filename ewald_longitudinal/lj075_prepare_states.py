@@ -36,7 +36,7 @@ def prepare(name, t, extra_snapshots=0, snap_gap=5.0):
     seed = int(seed)
     N, kT, m = C.STATE["N"], C.STATE["kT"], C.STATE["mass"]
     L = C.box_length(N, C.STATE["rho"])
-    rng = np.random.default_rng([20261009, seed])
+    rng = np.random.default_rng([20261009, seed])     # seed ranges are disjoint per family (see prepared_states.json)
     if kind == "fcc":
         q = C.fcc_positions(N, L, GEN["fcc_jitter"], rng)
     elif kind in ("rsa", "dtinit", "eqinit"):                  # dtinit / eqinit: RSA starts for the dt / burn-in studies
@@ -54,8 +54,12 @@ def prepare(name, t, extra_snapshots=0, snap_gap=5.0):
              generation=np.array(json.dumps(rec)))
     out = [rec]
     for k in range(extra_snapshots):
+        t1, c1 = time.perf_counter(), time.process_time()
         q, p, tr2 = C.langevin_prepare(q, p, L, kT, m, snap_gap, GEN["dt"], GEN["gamma"], rng)
-        r2 = dict(rec, name=f"{name}_x{k + 1}", t=t + (k + 1) * snap_gap, parent=name)
+        r2 = dict(rec, name=f"{name}_x{k + 1}", t=t + (k + 1) * snap_gap, parent=name,
+                  wall_s=time.perf_counter() - t1, cpu_s=time.process_time() - c1,
+                  U_per_N_last_quarter=float(tr2[:, 1].mean()), T_last_quarter=float(tr2[:, 2].mean()),
+                  note=f"continuation of {name} by {snap_gap}; cpu/wall/U/T refer to this segment only")
         np.savez(STATES / f"{name}_x{k + 1}.npz", q=q, p=p, L=L, kT=kT, N=N, trace=tr2,
                  generation=np.array(json.dumps(r2)))
         out.append(r2)

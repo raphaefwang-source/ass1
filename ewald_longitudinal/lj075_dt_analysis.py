@@ -39,13 +39,21 @@ def load(law):
     return reps
 
 
+N_WIN = 3                                     # stationarity check: equal windows of [T_DISCARD, t_end]
+
+
 def per_level(npz, dt, law, L):
-    """Per-replica, per-level observables."""
+    """Per-replica, per-level observables (full averaging window and N_WIN sub-windows for scalars and RDF peak)."""
     S = npz[f"S_{dt}"]
     t = S[:, 0]
     keep = t >= T_DISCARD - 1e-12
     out = dict(T_kin=S[keep, 1].mean(), U_per_N=S[keep, 2].mean(), pressure=S[keep, 3].mean(),
                max_P_total=float(S[:, 4].max()), rmin=float(S[:, 5].min()))
+    edges = np.linspace(T_DISCARD, t[-1], N_WIN + 1)
+    win = [(t >= edges[w] - 1e-12) & (t < edges[w + 1] - 1e-12 if w < N_WIN - 1 else t <= edges[-1] + 1e-12)
+           for w in range(N_WIN)]
+    out["win"] = {k: np.array([S[m, c].mean() for m in win]) for k, c in (("T_kin", 1), ("U_per_N", 2), ("pressure", 3))}
+    out["win_edges"] = edges
     V = npz[f"V_{dt}"][keep].astype(float)
     Q = npz[f"Q_{dt}"][keep].astype(float)
     step_grid = int(round(GRID / dt))
@@ -55,11 +63,18 @@ def per_level(npz, dt, law, L):
     out["vacf_full"] = c
     out["D_GK_info"] = float(np.trapezoid(c, dx=dt) / 3)
     nlag_m = int(round(max(MSD_TIMES) / dt)) + 1
+    if nlag_m > len(Q) // 2:
+        raise ValueError(f"t_end too short for MSD at t = {max(MSD_TIMES)}")
     m = C.msd(Q, nlag_m)
     out["msd"] = np.array([m[int(round(x / dt))] for x in MSD_TIMES])
     rs = int(round(RDF_STRIDE_T / dt))
+    tq = t[keep][::rs]
+    hs = [C.rdf_counts(Q[::rs][(tq >= edges[w] - 1e-12) & (tq <= edges[w + 1] + 1e-12)], L, RDF_EDGES)
+          for w in range(N_WIN)]
+    nf = [int(((tq >= edges[w] - 1e-12) & (tq <= edges[w + 1] + 1e-12)).sum()) for w in range(N_WIN)]
     h = C.rdf_counts(Q[::rs], L, RDF_EDGES)
     out["rdf"] = C.rdf_from_counts(h, len(Q[::rs]), Q.shape[1], L, RDF_EDGES)
+    out["win"]["rdf_peak"] = np.array([C.rdf_from_counts(hw, n, Q.shape[1], L, RDF_EDGES).max() for hw, n in zip(hs, nf)])
     return out
 
 
@@ -144,11 +159,12 @@ def analyze_law(law, rng):
             w = 4 * np.pi * 0.75 * rc ** 2 * np.diff(RDF_EDGES)
             den = np.sqrt(np.sum(w * (gref - 1) ** 2))
             Eg, Eg_up = boot_upper(Dg, lambda x: np.sqrt(np.sum(w * x ** 2)) / den, rng)
-            # noise floor of E_g: split the replicas randomly into two halves of the REFERENCE level
+            flips_g = np.array([np.sqrt(np.sum(w * ((Dg * rng.choice([-1, 1], len(Dg))[:, None]).mean(0)) ** 2)) / den
+                                for _ in range(400)])
             ipk = int(np.argmax(gref))
             ph = [(o[dt]["rdf"][ipk] - o[ref]["rdf"][ipk]) / gref[ipk] for o in obs]
             m, lo, hi = ci_t(ph)
-            cmp_["rdf"] = dict(E_g=Eg, E_g_upper95=Eg_up, tol=TOL, verdict="PASS" if Eg_up <= TOL else
+            cmp_["rdf"] = dict(E_g=Eg, E_g_upper95=Eg_up, tol=TOL, noise_floor_median=float(np.median(flips_g)), verdict="PASS" if Eg_up <= TOL else
                                ("FAIL" if Eg > TOL else "INCONCLUSIVE"),
                                first_peak_height=dict(rel_diff=m, ci95=[lo, hi], verdict=verdict(lo, hi, TOL),
                                                       r_peak=float(rc[ipk]), g_peak=float(gref[ipk])))
@@ -156,7 +172,11 @@ def analyze_law(law, rng):
             Dv = np.array([o[dt]["vacf_grid"] - o[ref]["vacf_grid"] for o in obs])
             c0 = np.mean([o[ref]["vacf_grid"][0] for o in obs])
             Ev, Ev_up = boot_upper(Dv, lambda x: np.max(np.abs(x)) / c0, rng)
+            # noise floor of the sup-norm measure: same statistic on replica-sign-flipped differences (zero mean)
+            flips = np.array([np.max(np.abs((Dv * rng.choice([-1, 1], len(Dv))[:, None]).mean(0))) / c0
+                              for _ in range(400)])
             cmp_["vacf"] = dict(E_V=Ev, E_V_upper95=Ev_up, tol=TOL, t_max=VACF_TMAX[law],
+                                noise_floor_median=float(np.median(flips)),
                                 verdict="PASS" if Ev_up <= TOL else ("FAIL" if Ev > TOL else "INCONCLUSIVE"))
             # MSD
             msd_c = []
@@ -168,6 +188,19 @@ def analyze_law(law, rng):
             d = [(o[dt]["D_GK_info"] - o[ref]["D_GK_info"]) / np.mean([oo[ref]["D_GK_info"] for oo in obs]) for o in obs]
             m, lo, hi = ci_t(d)
             cmp_["D_GK_info_short"] = dict(rel_diff=m, ci95=[lo, hi], note="GK to t_max only; information")
+            # stationarity of the paired differences (they start at 0 from the common state): per-window CIs and a
+            # late-minus-early trend; a diagnostic, not a change of the pre-registered criteria
+            st = {}
+            for k in ("T_kin", "U_per_N", "pressure", "rdf_peak"):
+                scale = 1.0 if k == "pressure" else abs(np.mean([o[ref]["win"][k].mean() for o in obs]))
+                dw = np.array([(o[dt]["win"][k] - o[ref]["win"][k]) / scale for o in obs])
+                st[k] = dict(windows=[list(map(float, obs[0][ref]["win_edges"][w:w + 2])) for w in range(N_WIN)],
+                             per_window=[ci_t(dw[:, w]) for w in range(N_WIN)],
+                             late_minus_early=ci_t(dw[:, -1] - dw[:, 0]),
+                             last_window_verdict=verdict(*ci_t(dw[:, -1])[1:],
+                                                         0.0075 if k == "pressure" else TOL),
+                             unit="absolute" if k == "pressure" else "relative")
+            cmp_["stationarity"] = st
             allv = [cmp_[k]["verdict"] for k in ("T_kin", "U_per_N", "pressure", "rdf", "vacf")]
             allv += [cmp_["rdf"]["first_peak_height"]["verdict"]] + [x["verdict"] for x in msd_c]
             cmp_["all_pass"] = all(v == "PASS" for v in allv)

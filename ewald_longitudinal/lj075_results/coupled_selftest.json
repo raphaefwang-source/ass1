@@ -1,0 +1,120 @@
+{
+ "A": {
+  "ranks": {
+   "noise": 12,
+   "damp": 5
+  },
+  "states": {
+   "fcc_s1": {
+    "dense_two_fine_vs_one_coarse": 2.9023914265380152e-15,
+    "a2_plus_b2_minus_1": 4.440892098500626e-16,
+    "lanczos_two_fine_vs_one_coarse": 3.316011324167029e-11,
+    "lanczos_coupling_input_err": 3.09843095353124e-15,
+    "lam_min": 4.6853106573883565,
+    "lam_max": 11.9259657984244
+   },
+   "rsa_s4": {
+    "dense_two_fine_vs_one_coarse": 3.0816820517123414e-15,
+    "a2_plus_b2_minus_1": 4.440892098500626e-16,
+    "lanczos_two_fine_vs_one_coarse": 3.550895467677885e-11,
+    "lanczos_coupling_input_err": 3.1831573247921323e-15,
+    "lam_min": 4.689313914535964,
+    "lam_max": 12.05616015786819
+   },
+   "dtinit_s101": {
+    "dense_two_fine_vs_one_coarse": 2.908667618490406e-15,
+    "a2_plus_b2_minus_1": 4.440892098500626e-16,
+    "lanczos_two_fine_vs_one_coarse": 2.2323856864345117e-11,
+    "lanczos_coupling_input_err": 2.8884433943461564e-15,
+    "lam_min": 4.718624858840394,
+    "lam_max": 11.893452080917063
+   },
+   "fcc_jitter0.1": {
+    "dense_two_fine_vs_one_coarse": 2.8499577867656855e-15,
+    "a2_plus_b2_minus_1": 3.3306690738754696e-16,
+    "lanczos_two_fine_vs_one_coarse": 8.046207147685996e-12,
+    "lanczos_coupling_input_err": 3.011348290824076e-15,
+    "lam_min": 4.824971303331252,
+    "lam_max": 11.367870256163165
+   }
+  }
+ },
+ "B": {
+  "ranks": {
+   "noise": 8,
+   "damp": 6
+  },
+  "states": {
+   "fcc_s1": {
+    "dense_two_fine_vs_one_coarse": 2.6897062740437846e-15,
+    "a2_plus_b2_minus_1": 4.440892098500626e-16,
+    "lanczos_two_fine_vs_one_coarse": 2.5353187306846926e-11,
+    "lanczos_coupling_input_err": 4.424147467686831e-15,
+    "lam_min": 63.81322713594937,
+    "lam_max": 91.4956170483471
+   },
+   "rsa_s4": {
+    "dense_two_fine_vs_one_coarse": 2.547449999104308e-15,
+    "a2_plus_b2_minus_1": 4.440892098500626e-16,
+    "lanczos_two_fine_vs_one_coarse": 3.8443781627746394e-11,
+    "lanczos_coupling_input_err": 4.4256322099006285e-15,
+    "lam_min": 63.83941797719927,
+    "lam_max": 91.4662673299265
+   },
+   "dtinit_s101": {
+    "dense_two_fine_vs_one_coarse": 2.540098475784321e-15,
+    "a2_plus_b2_minus_1": 4.440892098500626e-16,
+    "lanczos_two_fine_vs_one_coarse": 2.2117309777862645e-11,
+    "lanczos_coupling_input_err": 4.033171514704114e-15,
+    "lam_min": 63.94494655367752,
+    "lam_max": 91.35356574756393
+   },
+   "fcc_jitter0.1": {
+    "dense_two_fine_vs_one_coarse": 2.741386635644941e-15,
+    "a2_plus_b2_minus_1": 4.440892098500626e-16,
+    "lanczos_two_fine_vs_one_coarse": 1.1990829419188938e-11,
+    "lanczos_coupling_input_err": 3.2230852366204475e-15,
+    "lam_min": 64.23340044205483,
+    "lam_max": 91.028626224715
+   }
+  }
+ },
+ "description": "frozen Gamma, no conservative motion: one coarse O-step (dt 0.01) with the coupled input equals two fine O-steps (0.005); dense and Lanczos at the configured noise/damping ranks (coupling at rank_noise)",
+ "provenance": {
+  "command": "/usr/local/bin/python3 -c",
+  "cwd": "/home/user/ass1/ewald_longitudinal",
+  "git_commit": "941bcfc67d903182a9df031b2d33255e04077def",
+  "git_dirty": true,
+  "untracked_py": [],
+  "script_sha256_16": {
+   "lj075_common.py": "3936dac0eaf81905",
+   "lj075_coupled.py": "c9f26edea49d35d2",
+   "lj075_dt_analysis.py": "87e1ffa134fd7bca",
+   "lj075_dt_study.py": "3dd2269dd64e3d45",
+   "lj075_equil_analysis.py": "aef1723b5a870dbe",
+   "lj075_equilibration.py": "1ec70796c478980e",
+   "lj075_pppm_screen.py": "4e5804f3355fb4de",
+   "lj075_prepare_states.py": "a4f1c1de543278a5",
+   "lj075_sampling.py": "0530851dcdbae7ca",
+   "lj075_verify.py": "94225e4378713556",
+   "lj075_visited.py": "703e0bbec806a850",
+   "toy_configs.py": "f692659b97a7717a",
+   "toy_run.py": "845d02d8c9fa8766",
+   "toy_dynamics.py": "28f70bea0511ea91",
+   "radial_kernels.py": "f160a24d8f946e95",
+   "test_lanczos_fdt.py": "073614431017921a",
+   "test_true_dynamics.py": "3b39532a9f2917b1",
+   "test_equal_accuracy_xi.py": "03db2074c7890bf2",
+   "prl_toy_models.py": "404f9f23ee0d2da6"
+  },
+  "host": "vm",
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "started": "2026-10-09T18:00:10+0000"
+ }
+}

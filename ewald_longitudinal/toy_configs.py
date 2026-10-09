@@ -73,7 +73,7 @@ CONFIGS = {
         verification_file="lj075_results/verification_runner.json",
         potentials=("lj",),
         N_allowed=(256,),
-        dt_validated=None,                    # set only after lj075_dt_study.py
+        dt_validated={"A": None, "B": None},  # per law; set only after lj075_dt_study.py
         pair_search="tree",
         force_method="neighbor",
         operator_budget={"A": 2e-7, "B": 5e-8},
@@ -114,9 +114,15 @@ def model_of(name):
     return dict(STATE_POINTS[CONFIGS[name].get("state_point", "toy_v2")])
 
 
-def validated_dt(name):
-    """The dt validated for this configuration's state point, or None if none has been validated yet."""
-    return CONFIGS[name].get("dt_validated", DT_VALIDATED)
+def validated_dt(name, law=None):
+    """The dt validated for this configuration's state point (and law, if dt_validated is per law), or None if none
+    has been validated yet."""
+    v = CONFIGS[name].get("dt_validated", DT_VALIDATED)
+    if isinstance(v, dict):
+        if law is None:
+            raise ConfigError(f"{name}: dt_validated is per law; give the law")
+        return v.get(law)
+    return v
 
 
 def select_ranks(name, law, N, override=None):
@@ -161,7 +167,7 @@ def resolve(name, law, N, potential, dt=None, rank_override=None, allow_unverifi
         raise ConfigError(f"N = {N} gives L = {L:.4f}: the neighbour list needs r_cut < L/2")
     if "N_allowed" in cfg and N not in cfg["N_allowed"]:
         raise ConfigError(f"{name} is defined for N in {cfg['N_allowed']} only (got {N})")
-    dt_ok = validated_dt(name)
+    dt_ok = validated_dt(name, law)
     if dt is None:
         if dt_ok is None:
             raise ConfigError(f"{name} has no validated dt yet: pass dt explicitly with allow_unverified")
@@ -208,6 +214,6 @@ if __name__ == "__main__":
         for law in KERNELS:
             for N in CONFIGS[name].get("N_allowed", (64, 256, 512)):
                 pot = CONFIGS[name].get("potentials", POTENTIALS)[0]
-                r = resolve(name, law, N, pot, dt=validated_dt(name) or 0.005, allow_unverified=True)
+                r = resolve(name, law, N, pot, dt=validated_dt(name, law) or 0.005, allow_unverified=True)
                 print(f"{name:15s} {law} N={N:5d} {r['model']['kT']} {r['model']['density']:.4f} L={r['L']:.5f}: pppm {r['pppm']} ranks {r['rank_noise']}/{r['rank_damp']} "
                       f"pairs {r['pair_search']} forces {r['force_method']} op-hash {operator_hash(r)}")

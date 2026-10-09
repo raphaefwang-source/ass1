@@ -553,7 +553,7 @@ def new_config(args):
     need = [k for k in ("config", "potential", "kernel", "N", "seed") if getattr(args, k) is None]
     if need:
         raise tc.ConfigError("missing for a new run: " + ", ".join("--" + k for k in need))
-    dt = tc.validated_dt(args.config) if args.dt is None else args.dt
+    dt = tc.validated_dt(args.config, args.kernel) if args.dt is None else args.dt
     if dt is None:
         raise tc.ConfigError(f"{args.config} has no validated dt yet; pass --dt (with --allow-unverified)")
     r = tc.resolve(args.config, args.kernel, args.N, args.potential, dt=dt, rank_override=args.ranks,
