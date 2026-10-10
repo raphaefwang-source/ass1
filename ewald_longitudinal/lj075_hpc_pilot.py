@@ -776,23 +776,24 @@ def write_report(res, out):
                    "path difference comes mainly from the PPPM operator approximation." if ratio > 10 else
                    f"The two terms are within a factor {ratio:.1f} of each other in at least one function; the path "
                    "difference cannot be attributed to one of them."),
-                  "", "The difference grows roughly exponentially from its first-step size (`pilot_fast_vs_dense.png`). "
-                  "One initial state and one noise path per dt: these numbers describe this path pair only and are "
-                  "not a statistical comparison of the two methods."]
+                  "", "The differences grow over t ≤ 1 (`pilot_fast_vs_dense.png`); the fitted exponential rates "
+                  "above summarise the growth over t ∈ [0.1, 1] only and are not Lyapunov exponents. One initial state "
+                  "and one noise path per dt: these numbers describe this path pair only and are not a statistical "
+                  "comparison of the two methods."]
     lines += ["", "## 5. Momentum, temperature, potential energy", ""]
     for c, e in E.items():
         mo = e["momentum"]
         lines.append(f"- {c}: max |P(t) − P(0)| = {mo['max_dev']:.1e} (relative to √(NmkT) = {mo['scale_sqrt_NmkT']:.0f}: "
                      f"{mo['rel_max_dev']:.1e}); first / second half {mo['max_dev_first_half']:.1e} / "
-                     f"{mo['max_dev_second_half']:.1e}; ε Σ|p| = {mo['roundoff_per_step']:.1e}. **Drift: {mo['verdict']}.** "
+                     f"{mo['max_dev_second_half']:.1e}; ε Σ|p| = {mo['roundoff_per_step']:.1e}. **{mo['verdict'][0].upper() + mo['verdict'][1:]}.** "
                      f"T_kin mean {e['T_kin']['mean']:.4f} (range {e['T_kin']['min']:.3f}–{e['T_kin']['max']:.3f}), "
                      f"U/N mean {e['U_per_N']['mean']:.4f}; all values finite: {e['finite']}.")
     p0n = float(np.linalg.norm(any_e["momentum"]["P0"]))
     lines += ["", f"|P(0)| = {p0n:.1e} (round-off of the source run). The O-step carries the mean momentum exactly and "
               "projects the friction update, and the pair forces cancel in pairs, so P changes only by floating-point "
               "round-off. ε Σ|p| is the round-off of forming Σp once; a deviation within ε Σ|p| √n (n steps) cannot be "
-              "told apart from round-off, and no drift is detectable then. A systematic error of 1e-14 per step would "
-              "already exceed that scale within t = 1. T_kin over t = 1 from one state is a single correlated sample; "
+              "told apart from round-off, and no drift is detectable then. A systematic error of 2e-14 per step (0.15 ε Σ|p|) "
+              "would exceed that scale within t = 1 at both step sizes. T_kin over t = 1 from one state is a single correlated sample; "
               "its mean is not a temperature test.", "", "## 6. Lanczos error monitor (fast runs)", ""]
     for c, rows in res["lanczos_check"].items():
         if not rows:
