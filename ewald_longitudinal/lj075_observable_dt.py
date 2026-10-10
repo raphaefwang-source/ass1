@@ -111,6 +111,17 @@ BASE = dict(
 )
 
 RULES = dict(
+    rules_version=3,
+    amendments=[dict(
+        version=3, made="after the v2 freeze (protocol_v2_frozen.json, hash a835d753e199f747) and BEFORE any step-size "
+                        "difference of these observables was computed (results.json absent)",
+        change="lobes: removed the rule 'from the first unresolved lobe on, the rest of the curve is one unresolved "
+               "tail'; every sign lobe is judged on its own. Thresholds, bands and tolerances unchanged",
+        reason="reference-only diagnostic: C_b(0) = -1/(N-1) makes the first lobe of every VCCF a tiny unresolved "
+               "negative transient, which under v2 marked the whole VCCF (including its resolved positive peak, 0.029 "
+               "at t = 0.1, relative half-width 0.046) as unresolved. Under v3 only that peak lobe changes status; the "
+               "primary VACF dip (0.104 > 0.1) and the C_L / C_T negative lobes stay unresolved",
+        reporting="results are reported under both v2 (results_v2.json) and v3 (results.json)")],
     tolerance=dict(tol=0.01, scale_resolution=0.1, count_min_per_replica=100),
     bootstrap=dict(method="re-studentized sign-flip max-t: for sign vectors e, Y_r = e_r (D_r - mean D); T* = max over "
                           "grid points of |mean Y| / se(Y) with se recomputed per draw; c_boot = quantile of T*. All "
@@ -125,9 +136,9 @@ RULES = dict(
         signal="deviation from the uncorrelated value: Z, C_b, C_L, C_T -> 0; g_d -> 1",
         lobes="the reference mean curve (t in (0, 2], or r for g_d - 1) is cut into sign lobes; each lobe gets the "
               "scale S = sup over the lobe of |reference mean| with simultaneous bounds S_lo, S_hi; a lobe is resolved "
-              "if (S_hi - S_lo)/(S_hi + S_lo) <= scale_resolution; from the first unresolved lobe on, the rest of the "
-              "curve is one 'tail' segment (unresolved). Every grid point is judged against the scale of its own lobe, "
-              "so weak lobes are judged against their own size and no relative error is formed at a zero crossing",
+              "if (S_hi - S_lo)/(S_hi + S_lo) <= scale_resolution. Every lobe is judged on its own (amendment v3). "
+              "Every grid point is judged against the scale of its own lobe, so weak lobes are judged against their own "
+              "size and no relative error is formed at a zero crossing",
         E_abs="sup over the window of |mean paired difference| in the units of the displayed quantity (VACF / C_L / "
               "C_T: fraction of the same level's t = 0 value; VCCF: fraction of <|v|^2>; g_d: g units)",
         E_sig="sup over the window of |mean difference(t)| / S_lobe(t); upper bound sup (|m| + c se) / S_lo(t), lower "
@@ -438,29 +449,16 @@ def lobes(m, se_band, resolution):
             segs.append(cur)
             cur = [i]
     segs.append(cur)
-    out, tail = [], None
-    for k, sg in enumerate(segs):
+    out = []
+    for sg in segs:                       # amendment v3: every lobe is judged on its own (no tail merging)
         sg = np.array(sg)
-        if tail is not None:
-            tail = np.concatenate([tail, sg])
-            continue
         hat = float(np.max(np.abs(m[sg])))
         lo = float(np.max(np.maximum(np.abs(m[sg]) - se_band[sg], 0)))
         hi = float(np.max(np.abs(m[sg]) + se_band[sg]))
-        ok = lo > 0 and (hi - lo) / (hi + lo) <= resolution
-        if not ok:
-            tail = sg
-            continue
-        s_hat[sg], s_lo[sg], s_hi[sg], res[sg], lid[sg] = hat, lo, hi, True, len(out)
+        ok = bool(lo > 0 and (hi - lo) / (hi + lo) <= resolution)
+        s_hat[sg], s_lo[sg], s_hi[sg], res[sg], lid[sg] = hat, lo, hi, ok, len(out)
         out.append(dict(start=int(sg[0]), end=int(sg[-1]), sign=int(np.sign(m[sg[0]])), S=hat, S_lo=lo, S_hi=hi,
-                        resolved=True))
-    if tail is not None:
-        hat = float(np.max(np.abs(m[tail])))
-        lo = float(np.max(np.maximum(np.abs(m[tail]) - se_band[tail], 0)))
-        hi = float(np.max(np.abs(m[tail]) + se_band[tail]))
-        s_hat[tail], s_lo[tail], s_hi[tail], res[tail], lid[tail] = hat, lo, hi, False, len(out)
-        out.append(dict(start=int(tail[0]), end=int(tail[-1]), sign=0, S=hat, S_lo=lo, S_hi=hi, resolved=False,
-                        note="tail: from the first unresolved lobe on"))
+                        resolved=ok, rel_halfwidth=(hi - lo) / (hi + lo)))
     return s_hat, s_lo, s_hi, res, lid, out
 
 
@@ -781,10 +779,11 @@ def stage_protocol():
     print(f"wrote {PROTOCOL_F} (hash {rec['hash']})")
 
 
-def load_protocol(allow_deviation=None):
-    if not PROTOCOL_F.exists():
-        raise SystemExit("protocol.json missing: run the 'protocol' stage first")
-    rec = json.loads(PROTOCOL_F.read_text())
+def load_protocol(allow_deviation=None, pfile=None):
+    pfile = pfile or PROTOCOL_F
+    if not pfile.exists():
+        raise SystemExit(f"{pfile.name} missing: run the 'protocol' stage first")
+    rec = json.loads(pfile.read_text())
     if rec["hash"] != proto_hash(rec["protocol"]):
         raise SystemExit("protocol.json was modified after it was written")
     if rec["base_hash"] != BASE_HASH:
@@ -1045,7 +1044,7 @@ def tag(v):
     return "P" if v == "PASS" else "F" if v.startswith("FAIL") else ("I*" if "unresolved" in v else "I")
 
 
-def conclusions(R, support):
+def conclusions(R, support, path=None):
     L_ = ["# lj075 law A: dt comparison of VACF, VCCF, C_L / C_T and distinct van Hove",
           "",
           "Generated by lj075_observable_dt.py from results.json (protocol.json frozen before any difference). "
@@ -1099,18 +1098,23 @@ def conclusions(R, support):
         ex = v["exact_bound_p1_descriptive"]
         L_.append(f"| {v['dt']} | {v['observable']} | {v['window']} | {v['support']} | {v['primary']} | "
                   f"{v['reference_sensitivity']} | {v['secondary']} | {'-' if ex is None else f'{100 * ex:.2f}'} |")
-    (OUT / "conclusions_table.md").write_text("\n".join(L_) + "\n")
+    (path or OUT / "conclusions_table.md").write_text("\n".join(L_) + "\n")
 
 
-def stage_analyze(allow_deviation=None):
-    P, ph = load_protocol(allow_deviation)
+def stage_analyze(allow_deviation=None, pfile=None, suffix=""):
+    P, ph = load_protocol(allow_deviation, pfile)
     cpu0, wall0 = C.cpu_seconds(), time.perf_counter()
     pp = BASE["comparisons"]["primary"]
     R = dict(protocol_hash=ph, provenance=C.provenance(),
              primary=analyze_group(P, "primary", [tuple(x) for x in pp["pairs"] + pp["reference_sensitivity"]]),
              secondary=analyze_group(P, "secondary", [tuple(x) for x in BASE["comparisons"]["secondary"]["pairs"]]))
     R["display_support"] = display_support(R)
-    C.write_json(OUT / "results.json", R)
+    R["protocol_file"] = (pfile or PROTOCOL_F).name
+    C.write_json(OUT / f"results{suffix}.json", R)
+    if suffix:
+        conclusions(R, R["display_support"], OUT / f"conclusions_table{suffix}.md")
+        log_time(dict(stage=f"analyze{suffix}", cpu_s=C.cpu_seconds() - cpu0, wall_s=time.perf_counter() - wall0))
+        return
     arrays = {}
     for m, f, kind in chains():
         for dt in m["levels"]:
@@ -1174,9 +1178,14 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("stage", choices=["inventory", "compute", "selftest", "protocol", "analyze", "timing"])
     ap.add_argument("--allow-deviation", default=None, help="reason (logged) for running analyze after a code change")
+    ap.add_argument("--protocol-file", default=None, help="analyze with another frozen protocol (e.g. v2)")
+    ap.add_argument("--suffix", default="", help="output suffix for results / conclusions (e.g. _v2)")
     args = ap.parse_args()
-    dict(inventory=stage_inventory, compute=stage_compute, selftest=stage_selftest, protocol=stage_protocol,
-         timing=stage_timing)[args.stage]() if args.stage != "analyze" else stage_analyze(args.allow_deviation)
+    if args.stage == "analyze":
+        stage_analyze(args.allow_deviation, OUT / args.protocol_file if args.protocol_file else None, args.suffix)
+    else:
+        dict(inventory=stage_inventory, compute=stage_compute, selftest=stage_selftest, protocol=stage_protocol,
+             timing=stage_timing)[args.stage]()
 
 
 if __name__ == "__main__":
