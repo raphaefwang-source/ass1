@@ -169,8 +169,10 @@ less $RUN_ROOT/lj075_pilot/<tag>/report/pilot_report.md
   functions;
 - fast and dense at the same dt share the seed and therefore every standard-normal input;
 - the two dt are not coupled: different seeds, no pathwise cross-dt comparison;
-- every step saves q, v and the diagnostics; the monitor runs every 10 steps and checkpoints are written every 25
-  steps.
+- every step saves q, v and the diagnostics; the monitor runs every 10 steps; checkpoints are written every 25
+  steps counted from each segment's start, and at every stop. `toy_run.py --resume` takes the checkpoint cadence
+  from its own command line (default 2000 steps), so the pilot passes it to every segment. Production resumes
+  (`array.sbatch`) must do the same if they need a cadence other than the default.
 
 **Each case job** (`lj075_pilot_case.sbatch`, 1 task, 1 core, threads 1, 2 GB) runs, in `$RUN_ROOT/lj075_pilot/<tag>/<case>/`:
 1. env and lock checks;
