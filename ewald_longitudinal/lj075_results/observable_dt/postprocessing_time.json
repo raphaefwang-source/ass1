@@ -1,0 +1,13 @@
+{
+ "runs": [
+  {
+   "stage": "compute",
+   "new_level_files": 86,
+   "jobs": 4,
+   "cpu_s": 665.483622,
+   "wall_s": 231.88221063699984,
+   "note": "cpu_s includes the worker processes (RUSAGE_CHILDREN)",
+   "at": "2026-10-10T06:14:44+0000"
+  }
+ ]
+}
