@@ -1,6 +1,7 @@
 # Running the toy friction dynamics on an HPC cluster (Slurm)
 
-**What has and has not been run.** Nothing in this directory has been run on an HPC system yet. The development
+**What has and has not been run.** Nothing in this directory has been run on an HPC system yet, including the
+lj075 law A short pilot (Section 2b). The development
 container has no cluster connection (no ssh target, no Slurm), so the two pilot jobs of Section 2 have **not** been
 submitted. Locally, with no Slurm, the following have been checked:
 - the runner tests (`../test_toy_run.py`, 10 tests, including the directory lock and `status.py`);
@@ -38,6 +39,7 @@ k = 0, g(r_ref) = 0.5, kT = 0.7, dt = 0.005, density 64/5.5³. No random batch.
 | `restart_check.py` | continuous vs stopped-and-resumed run, bitwise |
 | `estimate_resources.py` | `--time` / `--mem` / core-hours / disk from pilot runs |
 | `env_report.py` | CPU, cores, Python, NumPy/SciPy, BLAS, threads |
+| `lj075_pilot_case.sbatch`, `lj075_pilot_analyze.sbatch`, `lj075_pilot_local.sh` | LJ law A short pilot (Section 2b): one case per job, analysis job, local emulation |
 | `tasks/production_N256_N512.tsv` | default plan, 40 tasks (see below) |
 
 ## Configurations (`toy_configs.py`)
@@ -144,6 +146,50 @@ were accepted:
 |---|---|---|---|---|---|
 | A, ranks 40/5, M 36 | 649 ms (727) | 129 MB | 0 | 9.6e-11 (budget 2e-7) | 219 s |
 | B, ranks 24/8, M 40 | 463 ms (529) | 128 MB | 0 | 1.3e-14 (budget 5e-8) | 160 s |
+
+## 2b. LJ law A short pilot (lj075): dense reference vs fast, dt 0.005 / 0.01, t = 1
+
+**Status: not submitted. This container has no cluster connection.** Only the local emulation below has been run.
+Its report labels itself LOCAL and is not an HPC result.
+
+```bash
+cd ass1/ewald_longitudinal
+bash hpc/submit.sh lj075-pilot --dry-run   # prints 5 sbatch commands: 4 case jobs + 1 analysis job (afterany)
+bash hpc/submit.sh lj075-pilot             # submits them; prints the job ids and the pilot root
+squeue --me
+sacct -j <ids> --format=JobID,JobName,State,ExitCode,Elapsed,TotalCPU,MaxRSS,ReqMem,NodeList
+less $RUN_ROOT/lj075_pilot/<tag>/report/pilot_report.md
+```
+
+**Experiment.** Fixed in `../lj075_hpc_pilot.py`:
+- model `lj_rho0.75_kT1.0_A_prod`: LJ, law A, N 256, ρ* 0.75, kT 1, PPPM mesh M 24, Lanczos ranks 14/5;
+- four cases: `dense_dt0.005`, `fast_dt0.005`, `dense_dt0.01`, `fast_dt0.01`, each to t = 1 from the shared
+  canonical state `lj075_results/hpc_pilot/init_state_eqA_lgv_s305_t50.npz`;
+- "dense" is `toy_run.py --method reference`: the full periodic lattice-sum Γ (k = 0 kept) with dense matrix
+  functions;
+- fast and dense at the same dt share the seed and therefore every standard-normal input;
+- the two dt are not coupled: different seeds, no pathwise cross-dt comparison;
+- every step saves q, v and the diagnostics; the monitor runs every 10 steps and checkpoints are written every 25
+  steps.
+
+**Each case job** (`lj075_pilot_case.sbatch`, 1 task, 1 core, threads 1, 2 GB) runs, in `$RUN_ROOT/lj075_pilot/<tag>/<case>/`:
+1. env and lock checks;
+2. segment 1, stopped by SIGUSR1 after its first checkpoint (exit 75);
+3. segment 2, with a 30-step limit (exit 75); during it, a duplicate `--resume` must exit 3;
+4. resume to t = 1 (exit 0);
+5. a continuous twin to 10 steps past the second restart, compared bitwise.
+
+Slurm's own `--signal=B:USR1@120` is forwarded to the running segment.
+
+Time limits: dense_dt0.005 1 h, dense_dt0.01 40 min, fast 20 / 15 min, analysis 30 min. They are about 3× the local
+case times. **The analysis job** (`lj075_pilot_analyze.sbatch`) writes `report/` with:
+- `pilot_report.md`, `pilot_table.md`, `pilot_results.json`, `pilot_differences.npz`, figures;
+- `sacct.txt`.
+
+Copy `report/` back to `lj075_results/hpc_pilot/` and commit it. Do not add replicas from this pilot.
+
+**Local emulation (not HPC):** `TOY_ENV_FILE=<local env> bash hpc/lj075_pilot_local.sh` runs the same job scripts
+under bash, with the cases one after another. Result: `../lj075_results/hpc_pilot/local_20261010/`.
 
 ## 3. Production plan and resources (prepare; do not submit yet)
 

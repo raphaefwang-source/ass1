@@ -9,6 +9,11 @@ Unified, restartable runner for the toy friction dynamics (local and HPC entry p
 Model and step:
 - the step is that of toy_dynamics.run, B(dt/2) A(dt/2) O(dt) A(dt/2) B(dt/2): finite-time FDT O-step of
   toy_dynamics.Thermostat("pppm_lanczos"), with damping and noise from the same Gamma_h;
+- --method reference replaces only the O-step operator: the full periodic lattice-sum Gamma (v2.LatticeFriction,
+  k = 0 retained) with exact (dense eigendecomposition) matrix functions, toy_dynamics.Thermostat("reference").
+  Same conservative force, same noise stream: with the same --seed and initial state, a reference run and a
+  pppm_lanczos run receive identical standard-normal inputs at every step. Cost about 2 s per step at N = 256;
+  meant for short comparisons, not production;
 - one standard-normal (N, 3) draw per step. With the same state and noise stream, the trajectory is bitwise that of
   toy_dynamics.run (test_toy_run.py);
 - every parameter comes from a named configuration in toy_configs.py. The resolved set is printed at start-up and
@@ -35,7 +40,12 @@ Output directory:
                                chunk_000000000 holds the initial state.
                                On resume, chunks ending past the checkpoint are moved to chunks/stale/
 
-Accuracy monitor (every --monitor-every-steps, own RNG keyed by step, so the trajectory is unchanged):
+Timing (status.json segments): init_wall_s (process entry to the first step, without the initial output),
+step_wall_s_sum (integration steps), monitor_wall_s, output_wall_s (chunks, checkpoints, status, log), wall_s, cpu_s,
+peak_rss_mb, os_threads (threads of the process at the end of the segment).
+
+Accuracy monitor (every --monitor-every-steps, own RNG keyed by step, so the trajectory is unchanged; pppm_lanczos
+only, the reference method has no Lanczos approximation and records S(k_min) alone):
 - Lanczos error estimates of the noise sqrt-action and the damping action at the configured ranks:
   |f_r - f_(r+8)| / |f_(r+8)| (damping: r+4), overall and in the k = 2 pi / L plane-wave components;
 - extreme Ritz values;
@@ -74,6 +84,9 @@ import sys  # noqa: E402
 import time  # noqa: E402
 from pathlib import Path  # noqa: E402
 
+_T_IMPORT = time.monotonic()                           # before NumPy / SciPy imports
+_T_MAIN = [None]
+
 import numpy as np  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
@@ -92,6 +105,7 @@ MON_COLS = ("step", "noise_err_est", "noise_err_est_kmin", "damp_err_est", "damp
             "ritz_max_mon", "S_kmin_max")
 MON_EXTRA = (8, 4)                  # extra Lanczos steps of the error estimate (noise, damping)
 EXIT_COMPLETE, EXIT_USAGE, EXIT_FAILED, EXIT_LOCKED, EXIT_INCOMPLETE = 0, 1, 2, 3, 75
+METHODS = ("pppm_lanczos", "reference")
 STOP = {"signal": None}
 
 
@@ -297,6 +311,10 @@ def initial_state(r, args):
 # ----------------------------------------------------------------------------
 def verification_status(r):
     key = f"{r['config']}_{r['law']}_N{r['N']}"
+    if r.get("thermostat_method", "pppm_lanczos") == "reference":
+        return dict(key=key, verified=None, not_applicable=True,
+                    reason="reference method: full periodic lattice-sum Gamma with dense matrix functions (no PPPM, "
+                           "no Lanczos); the PPPM/Lanczos verification does not apply")
     vf = tc.CONFIGS[r["config"]].get("verification_file")
     VERIFICATION = HERE / vf if vf else VERIFICATION_DEFAULT
     if not VERIFICATION.exists():
@@ -316,8 +334,24 @@ def verification_status(r):
                 lambda_min_verified=min(lam) if lam else None, states=list(e.get("per_state", {})))
 
 
+def _os_threads():
+    try:
+        with open("/proc/self/status") as fh:
+            return int(next(ln.split()[1] for ln in fh if ln.startswith("Threads:")))
+    except (OSError, StopIteration, ValueError):
+        return None
+
+
 def build_thermostat(r):
     m = r["model"]
+    if r.get("thermostat_method", "pppm_lanczos") == "reference":
+        th = td.Thermostat("reference", r["L"], r["law"], m["gamma"], m["kappa"], m["r_ref"], r["dt"], m["kT"],
+                           m["mass"])
+        rec = th.record["operator"]
+        if not (rec["images"] == "lattice" and th.lat.kwargs == dict(kernel=r["law"], gamma=m["gamma"],
+                                                                      kappa=m["kappa"], r_ref=m["r_ref"])):
+            raise RuntimeError(f"reference thermostat built with {th.lat.kwargs}, {rec}")
+        return th
     th = td.Thermostat("pppm_lanczos", r["L"], r["law"], m["gamma"], m["kappa"], m["r_ref"], r["dt"], m["kT"],
                        m["mass"], pppm=r["pppm"], rank_noise=r["rank_noise"], rank_damp=r["rank_damp"],
                        pair_search=r["pair_search"])
@@ -345,8 +379,10 @@ class Runner:
         plan = cfg["plan"]
         self.burn, self.total = plan["burn_steps"], plan["burn_steps"] + plan["prod_steps"]
         self.save_every, self.save_burnin = plan["save_every"], plan["save_burnin"]
+        self.method = r.get("thermostat_method", "pppm_lanczos")
         self.th = build_thermostat(r)
         self.monitor_every = cfg["runtime"].get("monitor_every_steps") or 0
+        self.t_out = 0.0
         self.n_warn = 0
         (out / "chunks").mkdir(parents=True, exist_ok=True)
 
@@ -370,9 +406,12 @@ class Runner:
 
     def monitor(self, q, p, step):
         """Accuracy monitor row (MON_COLS); see the module docstring. Does not touch the noise RNG."""
+        x = q % self.L
+        if self.method == "reference":                            # exact matrix functions: nothing to estimate
+            S = np.abs(np.exp(1j * 2 * np.pi / self.L * x).sum(axis=0)) ** 2 / self.n
+            return [step] + [np.nan] * 6 + [float(S.max())]
         op = self.th.fast.gamma_h(q)
         rng = np.random.default_rng([self.cfg["plan"]["seed"], 3, int(step)])
-        x = q % self.L
         ph = np.exp(1j * 2 * np.pi / self.L * x)
         row = [step]
         ritz = [np.inf, 0.0]
@@ -411,15 +450,18 @@ class Runner:
                 self.write_status(accuracy_warnings=(st.get("accuracy_warnings") or []) + msgs)
 
     def write_status(self, **kw):
+        t0 = time.perf_counter()
         st = json.loads((self.out / "status.json").read_text()) if (self.out / "status.json").exists() else {}
         st.update(kw, updated=_now(), total_steps=self.total, burn_steps=self.burn,
                   physics_hash=self.cfg["physics_hash"])
         _atomic_write_text(self.out / "status.json", json.dumps(st, indent=1, default=float) + "\n")
+        self.t_out += time.perf_counter() - t0
         return st
 
     def checkpoint(self, q, p, step, rng, chunk_start, rows, frames, mon):
         """Chunk (start, step] first, then the checkpoint (both atomic): a kill in between only leaves a chunk ending
         past the checkpoint, which the next resume moves to stale/ and recomputes."""
+        t0 = time.perf_counter()
         D = np.array(rows, float).reshape(-1, len(DIAG_COLS))
         fs = np.array([f[0] for f in frames], np.int64)
         Q = np.array([f[1] for f in frames], float).reshape(-1, self.n, 3)
@@ -432,6 +474,7 @@ class Runner:
         _atomic_savez(self.out / "checkpoint.npz", **state)
         if step == self.burn and self.burn > 0:
             _atomic_savez(self.out / "checkpoint_burnin_end.npz", **state)
+        self.t_out += time.perf_counter() - t0
 
     def run(self, q, p, rng, step, fresh, max_wall_s=None, max_segment_steps=None, previous_state=None):
         cpu0 = time.process_time()
@@ -442,6 +485,11 @@ class Runner:
         segments = st.get("segments", [])
         t_seg = time.monotonic()
         force, energy, rmin = self.force_fn(q, self.L, self.pot, **self.fkw)
+        t_entry = _T_MAIN[0] if _T_MAIN[0] is not None else t_seg
+        seg.update(import_wall_s=(t_entry - _T_IMPORT) if _T_MAIN[0] is not None else None,
+                   init_wall_s=time.monotonic() - t_entry - self.t_out, init_cpu_s=time.process_time())
+        self.t_out = 0.0
+        t_mon = 0.0
         rows, frames, walls, mon = [], [], [], []
         chunk_start = step
         if fresh:
@@ -449,8 +497,10 @@ class Runner:
             if self.frame_due(step):
                 frames.append((step, q.copy(), p / self.m))
             if self.monitor_every:
+                tm = time.perf_counter()
                 mon.append(self.monitor(q, p, step))
                 self.check_monitor(mon[-1])
+                t_mon += time.perf_counter() - tm
             self.checkpoint(q, p, step, rng, chunk_start, rows, frames, mon)     # resumable from step 0
             rows, frames, mon = [], [], []
         last_ckpt_step, last_ckpt_wall = step, time.monotonic()
@@ -476,8 +526,10 @@ class Runner:
                 if self.frame_due(step):
                     frames.append((step, q.copy(), p / m))
                 if self.monitor_every and step % self.monitor_every == 0:
+                    tm = time.perf_counter()
                     mon.append(self.monitor(q, p, step))
                     self.check_monitor(mon[-1])
+                    t_mon += time.perf_counter() - tm
                 elapsed = time.monotonic() - t_seg
                 if STOP["signal"]:
                     stop_reason = f"signal {STOP['signal']}"
@@ -490,11 +542,13 @@ class Runner:
                        or step == self.burn or step == self.total)
                 if due or stop_reason:
                     self.checkpoint(q, p, step, rng, chunk_start, rows, frames, mon)
+                    tl = time.perf_counter()
                     D = np.array(rows)
                     self.log(f"checkpoint step {step}/{self.total} ({'burn-in' if step <= self.burn else 'production'}) "
                              f"T {D[:, 2].mean():.4f} U/N {D[-1, 3]:+.4f} |P| {D[:, 5].max():.1e} rmin {D[:, 6].min():.3f} "
                              f"step {1e3 * np.median(D[:, 7]):.1f} ms, Ritz [{np.nanmin(D[:, 8]):.3f}, {np.nanmax(D[:, 9]):.1f}]"
                              + (f"; monitor err {max(max(x[1:5]) for x in mon):.1e} S(kmin) {mon[-1][7]:.1f}" if mon else ""))
+                    self.t_out += time.perf_counter() - tl
                     st = self.write_status(state="running", step=int(step), last_checkpoint_step=int(step),
                                            peak_rss_mb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024)
                     chunk_start, rows, frames, mon = step, [], [], []
@@ -512,6 +566,8 @@ class Runner:
                    cpu_s=time.process_time() - cpu0,
                    stop_reason=stop_reason or "complete",
                    median_step_wall_s=float(np.median(walls)) if walls else None,
+                   steps_run=len(walls), step_wall_s_sum=float(np.sum(walls)), monitor_wall_s=t_mon,
+                   output_wall_s=self.t_out, method=self.method, os_threads=_os_threads(),
                    peak_rss_mb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024)
         state = {EXIT_COMPLETE: "complete", EXIT_INCOMPLETE: "incomplete", EXIT_FAILED: "failed"}[rc]
         peak = max([s.get("peak_rss_mb") or 0 for s in segments] + [seg["peak_rss_mb"]])
@@ -546,6 +602,9 @@ def parse(argv=None):
     ap.add_argument("--init-jitter", type=float)
     ap.add_argument("--from-state", help=".npz with q, p arrays (overrides --init)")
     ap.add_argument("--ranks", type=int, nargs=2, metavar=("NOISE", "DAMP"), help="override (unverified)")
+    ap.add_argument("--method", choices=METHODS,
+                    help="O-step operator: pppm_lanczos (default, production) or reference (full periodic "
+                         "lattice-sum Gamma, dense matrix functions; short comparisons only)")
     ap.add_argument("--allow-unverified", action="store_true")
     ap.add_argument("--checkpoint-every-steps", type=int, default=2000)
     ap.add_argument("--checkpoint-every-minutes", type=float, default=15.0)
@@ -573,6 +632,7 @@ def new_config(args):
         raise tc.ConfigError(f"{args.config} has no validated dt yet; pass --dt (with --allow-unverified)")
     r = tc.resolve(args.config, args.kernel, args.N, args.potential, dt=dt, rank_override=args.ranks,
                    allow_unverified=args.allow_unverified)
+    r["thermostat_method"] = args.method or "pppm_lanczos"
     burn = _steps(args.burn_in, args.burn_in_steps, dt, "burn-in")
     prod = _steps(args.production, args.production_steps, dt, "production", required=True)
     se = _steps(args.save_every, args.save_every_steps if (args.save_every is not None or args.save_every_steps
@@ -601,6 +661,8 @@ def check_resume_args(args, cfg):
         if t is not None or k is not None:
             if _steps(t, k, dt, what) != plan[key]:
                 diff.append(f"{what}: given {_steps(t, k, dt, what)} steps, stored {plan[key]}")
+    if args.method is not None and args.method != r.get("thermostat_method", "pppm_lanczos"):
+        diff.append(f"method: given {args.method}, stored {r.get('thermostat_method', 'pppm_lanczos')}")
     if args.ranks is not None and list(args.ranks) != [r["rank_noise"], r["rank_damp"]]:
         diff.append(f"ranks: given {args.ranks}, stored {[r['rank_noise'], r['rank_damp']]}")
     if diff:
@@ -630,6 +692,7 @@ def load_run(out):
 
 
 def main(argv=None):
+    _T_MAIN[0] = time.monotonic()
     args = parse(argv)
     STOP["signal"] = None
     out = Path(args.out)
@@ -719,16 +782,27 @@ def main(argv=None):
                      f"  potential {r['potential']}, kernel {r['law']}, N {r['N']}, L {r['L']:.6f}, density "
                      f"{r['model']['density']:.6f}, dt {r['dt']}, kT {r['model']['kT']}, gamma {r['model']['gamma']}, "
                      f"kappa {r['model']['kappa']}, r_ref {r['model']['r_ref']}",
-                     f"  PPPM xi {r['pppm']['xi']} s {r['pppm']['s']} eta {r['pppm']['eta']} p {r['pppm']['p']} -> "
-                     f"M {cfg['operator_record']['M']}, eta_actual {cfg['operator_record']['eta_actual']:.4f}, "
-                     f"rc {cfg['operator_record']['rc']:.3f}, kc {cfg['operator_record']['kc']:.3f}, "
-                     f"k0 retained {cfg['operator_record']['k0_retained']}",
-                     f"  pair search {r['pair_search']}, conservative force {r['force_method']}",
-                     f"  Lanczos ranks noise {r['rank_noise']} / damping {r['rank_damp']} ({r['rank_provenance']['rule']}; "
-                     f"verified at this N: {r['rank_provenance']['verified_at_this_N']})",
-                     f"  static verification {v['key']}: {'PASS' if v['verified'] else 'NOT VERIFIED'}"
-                     + (f" (operator error {v['operator_error']:.2e} <= {v['budget']:.0e})" if v.get("verified") else
-                        f" ({v.get('reason', v.get('failed_checks'))})"),
+                     f"  O-step method {r.get('thermostat_method', 'pppm_lanczos')}"]
+            orec = cfg["operator_record"]
+            if r.get("thermostat_method", "pppm_lanczos") == "reference":
+                lines += [f"  full periodic lattice-sum Gamma: {orec['near_images']} near + {orec['far_images']} far "
+                          f"images (Chebyshev degree {orec['chebyshev_degree']}), tail estimate "
+                          f"{orec['tail_estimate_per_pair']:.1e} per pair, k=0 mode retained "
+                          f"(ghat0/(3V) = {orec['zero_mode_per_pair']:.4f} per pair); dense matrix functions",
+                          f"  conservative force {r['force_method']}",
+                          f"  static verification: not applicable ({v.get('reason')})"]
+            else:
+                lines += [f"  PPPM xi {r['pppm']['xi']} s {r['pppm']['s']} eta {r['pppm']['eta']} p {r['pppm']['p']} -> "
+                          f"M {orec['M']}, eta_actual {orec['eta_actual']:.4f}, rc {orec['rc']:.3f}, kc {orec['kc']:.3f}, "
+                          f"k0 retained {orec['k0_retained']}",
+                          f"  pair search {r['pair_search']}, conservative force {r['force_method']}",
+                          f"  Lanczos ranks noise {r['rank_noise']} / damping {r['rank_damp']} "
+                          f"({r['rank_provenance']['rule']}; verified at this N: "
+                          f"{r['rank_provenance']['verified_at_this_N']})",
+                          f"  static verification {v['key']}: {'PASS' if v['verified'] else 'NOT VERIFIED'}"
+                          + (f" (operator error {v['operator_error']:.2e} <= {v['budget']:.0e})" if v.get("verified")
+                             else f" ({v.get('reason', v.get('failed_checks'))})")]
+            lines += [
                      f"  plan: burn-in {cfg['plan']['burn_steps']} steps (t {cfg['plan']['burn_in_time']}), production "
                      f"{cfg['plan']['prod_steps']} steps (t {cfg['plan']['production_time']}), frames every "
                      f"{cfg['plan']['save_every']} steps; init {cfg['init']['method']} (equilibrated: "

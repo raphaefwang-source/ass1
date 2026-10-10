@@ -40,7 +40,9 @@ def check(d, expect_config=None, allow_incomplete=False):
                                                                "rank_damp", "model", "dt"))
     if r["config"] == "costopt_hiacc":
         c["tree_pairs_and_neighbour_forces"] = r["pair_search"] == "tree" and r["force_method"] == "neighbor"
-    c["static_verification_for_these_parameters"] = bool(cfg["verification"].get("verified"))
+    reference = r.get("thermostat_method", "pppm_lanczos") == "reference"     # dense full-periodic O-step
+    c["static_verification_for_these_parameters"] = bool(cfg["verification"].get("verified")) or (
+        reference and bool(cfg["verification"].get("not_applicable")))
     c["steps_contiguous"] = np.array_equal(D[:, col["step"]], np.arange(steps_done + 1))
     c["finite"] = bool(np.all(np.isfinite(D[:, :col["step_wall_s"] + 1])))
     c["momentum_conserved"] = float(np.abs(P - P[0]).max()) <= 1e-9 * np.sqrt(n * m * kT)
@@ -49,13 +51,14 @@ def check(d, expect_config=None, allow_incomplete=False):
     c["ritz_positive"] = float(np.nanmin(D[:, col["ritz_min"]])) > 0 if len(D) > 1 else False
     if expect_frames is not None:
         c["frames_complete"] = len(R["frame_step"]) == expect_frames
-    if len(M):
+    if len(M) and not reference:
         c["monitor_error_within_budget"] = float(M[:, 1:5].max()) <= r["operator_budget"]
     c["no_accuracy_warnings"] = not st.get("accuracy_warnings")
     walls = D[6:, col["step_wall_s"]] if len(D) > 6 else D[1:, col["step_wall_s"]]
     info = dict(run=str(d), config=r["config"], potential=r["potential"], kernel=r["law"], N=n,
                 ranks=f"{r['rank_noise']}/{r['rank_damp']}", pair_search=r["pair_search"], force=r["force_method"],
-                mesh_M=cfg["operator_record"]["M"], steps=steps_done, total_steps=total,
+                method=r.get("thermostat_method", "pppm_lanczos"), mesh_M=cfg["operator_record"].get("M"),
+                steps=steps_done, total_steps=total,
                 init=cfg["init"]["method"], init_equilibrated=cfg["init"]["equilibrated"],
                 step_ms_median=1e3 * float(np.median(walls)) if len(walls) else None,
                 step_ms_p90=1e3 * float(np.percentile(walls, 90)) if len(walls) else None,
@@ -63,7 +66,7 @@ def check(d, expect_config=None, allow_incomplete=False):
                 U_per_N_last=float(D[-1, col["U_per_N"]]), rmin_min=float(D[:, col["rmin"]].min()),
                 P_drift_max=float(np.abs(P - P[0]).max()),
                 ritz_range=[float(np.nanmin(D[:, col["ritz_min"]])), float(np.nanmax(D[:, col["ritz_max"]]))],
-                monitor_err_max=float(M[:, 1:5].max()) if len(M) else None,
+                monitor_err_max=float(M[:, 1:5].max()) if len(M) and not reference else None,
                 S_kmin_max=float(M[:, 7].max()) if len(M) else None,
                 frames=len(R["frame_step"]), segments=len(st.get("segments") or []),
                 verification=cfg["verification"].get("key"), code=cfg["code"]["git"],

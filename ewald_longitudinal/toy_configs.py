@@ -229,9 +229,13 @@ def operator_hash(r):
 
 
 def physics_hash(r):
-    """Key of everything a trajectory depends on, except run length and output settings."""
-    return _digest({k: r[k] for k in ("config", "law", "potential", "N", "dt", "model", "pppm", "pair_search",
-                                      "force_method", "rank_noise", "rank_damp")})
+    """Key of everything a trajectory depends on, except run length and output settings. The O-step method enters
+    only when it is not the production pppm_lanczos (hashes of existing runs are unchanged)."""
+    d = {k: r[k] for k in ("config", "law", "potential", "N", "dt", "model", "pppm", "pair_search",
+                           "force_method", "rank_noise", "rank_damp")}
+    if r.get("thermostat_method", "pppm_lanczos") != "pppm_lanczos":
+        d["thermostat_method"] = r["thermostat_method"]
+    return _digest(d)
 
 
 if __name__ == "__main__":

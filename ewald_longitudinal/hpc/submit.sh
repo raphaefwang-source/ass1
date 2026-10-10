@@ -2,6 +2,7 @@
 # Submission wrapper. Reads hpc/cluster.env (copy of cluster.env.example with every FILL_ME replaced).
 #
 #   hpc/submit.sh pilot [--dry-run]        (two pilot jobs: kernels A and B, N = 512)
+#   hpc/submit.sh lj075-pilot [--dry-run]  (LJ law A short pilot: 4 single-core case jobs + 1 analysis job)
 #   hpc/submit.sh array TASKLIST --time HH:MM:SS --mem 2G [--ids 1-40] [--max-parallel 20] [--submit]
 #
 # "array" only prints the sbatch command unless --submit is given (long runs are never submitted by default).
@@ -22,6 +23,25 @@ pilot)
              --export="ALL,TOY_ENV_FILE=$ENV_FILE,TOY_HPC_DIR=$HERE,KERNEL=$K" "$HERE/pilot_task.sbatch")
         if [ "${1:-}" = "--dry-run" ]; then echo "${cmd[*]}"; else "${cmd[@]}"; fi
     done
+    ;;
+lj075-pilot)
+    # LJ law A, N = 256: dense / fast O-step x dt 0.005 / 0.01 to t = 1 (lj075_hpc_pilot.py), then the analysis job.
+    # Short jobs only; no array, no replicas. Time limits: about 3x the local estimate (hpc/README.md).
+    root="$RUN_ROOT/lj075_pilot/$(date +%Y%m%dT%H%M%S)"
+    dry=0; [ "${1:-}" = "--dry-run" ] && dry=1
+    ids=()
+    for spec in dense_dt0.005:01:00:00 fast_dt0.005:00:20:00 dense_dt0.01:00:40:00 fast_dt0.01:00:15:00; do
+        C="${spec%%:*}"; T="${spec#*:}"
+        cmd=(sbatch --parsable "${common[@]}" --job-name="lj075_pilot_$C" --time="$T" --output="$LOG_ROOT/%x-%j.out"
+             --export="ALL,TOY_ENV_FILE=$ENV_FILE,TOY_HPC_DIR=$HERE,CASE=$C,PILOT_ROOT=$root" "$HERE/lj075_pilot_case.sbatch")
+        if [ "$dry" = 1 ]; then echo "${cmd[*]}"; ids+=("JOBID_$C"); else id="$("${cmd[@]}")"; id="${id%%;*}"; ids+=("$id"); echo "$C: job $id"; fi
+    done
+    dep="$(IFS=:; echo "${ids[*]}")"                  # colons: a comma would split sbatch --export
+    cmd=(sbatch --parsable "${common[@]}" --job-name=lj075_pilot_analyze --dependency="afterany:$dep"
+         --output="$LOG_ROOT/%x-%j.out"
+         --export="ALL,TOY_ENV_FILE=$ENV_FILE,TOY_HPC_DIR=$HERE,PILOT_ROOT=$root,PILOT_JOB_IDS=$dep" "$HERE/lj075_pilot_analyze.sbatch")
+    if [ "$dry" = 1 ]; then echo "${cmd[*]}"; else id="$("${cmd[@]}")"; echo "analysis: job ${id%%;*} (after $dep)"; fi
+    echo "pilot root: $root (report: $root/report/pilot_report.md)"
     ;;
 array)
     tasks="${1:?task list}"; shift
@@ -51,5 +71,5 @@ array)
     if [ "$submit" = 1 ]; then "${cmd[@]}"; else echo "(not submitted; add --submit to submit)"; fi
     ;;
 *)
-    sed -n '2,8p' "$0"; exit 1 ;;
+    sed -n '2,9p' "$0"; exit 1 ;;
 esac

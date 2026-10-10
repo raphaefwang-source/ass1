@@ -14,7 +14,9 @@
   after the holder stops (signal) or is SIGKILLed the lock is free and the resume is bitwise equal to a continuous
   run; two simultaneous fresh starts leave exactly one writer;
 - hpc/status.py classification with a fake Slurm queue and without Slurm ('running' never assumed dead);
-- initial-state records (replicate64 / fcc are marked not equilibrated).
+- initial-state records (replicate64 / fcc are marked not equilibrated);
+- --method reference (full periodic Gamma, dense matrix functions): bitwise vs toy_dynamics.run, same noise stream as
+  the fast method for the same seed, its own physics hash.
 """
 import json
 import os
@@ -112,6 +114,42 @@ class MatchesToyDynamics(unittest.TestCase):
                     self.assertTrue(np.array_equal(c["q"], ref["q_final"]) and np.array_equal(c["p"], ref["p_final"]), name)
                 self.assertTrue(np.array_equal(R["Q"], ref["Q"]) and np.array_equal(R["V"], ref["V"]), name)
                 np.testing.assert_array_equal(R["diag"][::4, 1:7], ref["diagnostics"])    # t, T, U/N, K/N, |P|, rmin
+
+
+class ReferenceMethod(unittest.TestCase):
+    def test_reference_matches_toy_dynamics_and_shares_noise_with_fast(self):
+        """--method reference: bitwise equal to toy_dynamics.run with Thermostat("reference") (full periodic Gamma,
+        dense matrix functions); same seed as a pppm_lanczos run -> same noise stream; own physics hash; a resume with
+        another method is refused."""
+        init = HERE / "lj075_results" / "hpc_pilot" / "init_state_eqA_lgv_s305_t50.npz"
+        base = ["--config", "lj_rho0.75_kT1.0_A_prod", "--potential", "lj", "--kernel", "A", "--N", 256, "--seed", 11,
+                "--dt", 0.005, "--allow-unverified", "--production-steps", 3, "--save-every-steps", 1,
+                "--from-state", init]
+        with tempfile.TemporaryDirectory() as tmp:
+            ref_out, fast_out = Path(tmp) / "ref", Path(tmp) / "fast"
+            self.assertEqual(run(*base, "--method", "reference", "--out", ref_out), 0)
+            self.assertEqual(run(*base, "--out", fast_out), 0)
+            r = tc.resolve("lj_rho0.75_kT1.0_A_prod", "A", 256, "lj", dt=0.005, allow_unverified=True)
+            m = r["model"]
+            th = td.Thermostat("reference", r["L"], "A", m["gamma"], m["kappa"], m["r_ref"], 0.005, m["kT"], m["mass"])
+            with np.load(init) as c:
+                q0, p0 = c["q"], c["p"]
+            ref = td.run("lj", th, q0, p0, steps=3, stride=1, seed=[11, 1], force_method=r["force_method"])
+            R = tr.load_run(ref_out)
+            self.assertTrue(np.array_equal(R["Q"], ref["Q"]) and np.array_equal(R["V"], ref["V"]))
+            cr, cf = (json.loads((o / "config.json").read_text()) for o in (ref_out, fast_out))
+            self.assertEqual(cr["resolved"]["thermostat_method"], "reference")
+            self.assertNotEqual(cr["physics_hash"], cf["physics_hash"])
+            self.assertEqual(cf["physics_hash"], tc.physics_hash({k: v for k, v in cf["resolved"].items()
+                                                                  if k != "thermostat_method"}))
+            with np.load(ref_out / "checkpoint.npz") as a, np.load(fast_out / "checkpoint.npz") as b:
+                self.assertEqual(str(a["rng_state"]), str(b["rng_state"]))
+                self.assertGreater(np.abs(a["p"] - b["p"]).max(), 0)          # different operators
+                self.assertLess(np.abs(a["p"] - b["p"]).max(), 1e-6)
+            seg = json.loads((ref_out / "status.json").read_text())["segments"][0]
+            for k in ("init_wall_s", "step_wall_s_sum", "monitor_wall_s", "output_wall_s", "os_threads"):
+                self.assertIn(k, seg)
+            self.assertEqual(run("--resume", "--method", "pppm_lanczos", "--out", ref_out), tr.EXIT_USAGE)
 
 
 class Restart(unittest.TestCase):
