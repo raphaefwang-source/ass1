@@ -27,8 +27,9 @@ Initial-state dependence after burn-in: one-way ANOVA of the per-run means acros
 Errors of single series: tau_int by Sokal's window AND by block averaging (blocks of >= 10 tau, plateau of the block
   SE); the larger SE is used; flagged unreliable if T < 50 tau.
 Sampling requirements (after burn-in): per observable, s_run = standard deviation over runs of the per-run means
-  (run length T_run). Total production time for a 95% half-width eps: T_tot = (1.96 s_run)^2 T_run / eps^2 (valid if
-  T_run >> tau). Targets: T_kin and U/N 0.2% (well below the 1% dt tolerance), pressure 0.0075 (= the dt-study
+  (run length T_run). Replicas needed at this run length for a 95% half-width eps: the smallest n with
+  t_{0.975, n-1} s_run / sqrt(n) <= eps; total production time n T_run (the normal approximation
+  (1.96 s_run)^2 T_run / eps^2 is also reported). Targets: T_kin and U/N 0.2% (well below the 1% dt tolerance), pressure 0.0075 (= the dt-study
   tolerance), RDF first peak 0.5%, D 5%.
 Diffusion (after burn-in, every-step frames): D_GK(tau) = (1/3) int_0^tau C_v (every-step trapezoid; for this
   integrator it equals the chain's own long-time MSD diffusion, so it carries the chain's dt bias but no quadrature
@@ -290,8 +291,11 @@ def analyze_law(law):
         s_run = vals.std(ddof=1)
         mu = vals.mean()
         eps = TARGETS[k] * abs(mu) if REL[k] else TARGETS[k]
+        n_need = next((n for n in range(2, 1000) if stats.t.ppf(0.975, n - 1) * s_run / np.sqrt(n) <= eps), None)
         req[k] = dict(target_half_width=float(eps), s_run=float(s_run), run_length=float(T_run),
-                      total_time_needed=float((1.96 * s_run) ** 2 * T_run / eps ** 2), n_runs=len(vals))
+                      replicas_needed_at_this_length=n_need,
+                      total_time_needed=float(n_need * T_run) if n_need else None,
+                      total_time_needed_normal_approx=float((1.96 * s_run) ** 2 * T_run / eps ** 2), n_runs=len(vals))
     # D: use the longest GK limit and MSD window available
     dreq = {}
     for lab, kk, src in (("D_GK", gk_keys[-1] if gk_keys else None, "gk"),
@@ -307,7 +311,8 @@ def analyze_law(law):
                 break
         dreq[lab] = dict(at=kk, mean=float(mu), s_run=float(s_run), run_length=float(T_run), n_runs=len(vals),
                          replicas_needed_at_this_length=n_need,
-                         total_time_needed=float((1.96 * s_run) ** 2 * T_run / (TARGETS["D"] * mu) ** 2),
+                         total_time_needed=float(n_need * T_run) if n_need else None,
+                         total_time_needed_normal_approx=float((1.96 * s_run) ** 2 * T_run / (TARGETS["D"] * mu) ** 2),
                          note="valid only if D at this limit is the long-time D (see plateau)")
     req["D"] = dreq
     res = dict(runs=sorted(data), n_runs=len(data), start_types=ics, dt=dt, L=L, config=key[0],

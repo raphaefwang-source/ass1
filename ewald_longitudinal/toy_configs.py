@@ -97,9 +97,11 @@ CONFIGS = {
         potentials=("lj",),
         laws=("A",),
         N_allowed=(256,),
-        # lj075 dt study (REPORT.md section 3): 0.005 validated for T, U/N, RDF, VACF (t <= 2) and MSD(0.1) vs dt 0.00125
-        # (16 coupled replicas); MSD(t >= 0.5), pressure and long-time D under-sampled (not validated).
-        dt_validated={"A": 0.005},
+        # lj075 dt study (REPORT.md section 3): the pre-registered decision rule is NOT met by any dt at n = 16, so no dt
+        # is validated; runs need --dt and --allow-unverified. dt 0.005 is the provisional recommendation (T, U/N,
+        # RDF first peak, VACF t <= 2, MSD(0.1) PASS; RDF norm, MSD(t >= 0.5), pressure, long-time D unresolved).
+        dt_validated={"A": None},
+        dt_provisional={"A": 0.005},
         pair_search="tree",
         force_method="neighbor",
         operator_budget={"A": 2e-7},

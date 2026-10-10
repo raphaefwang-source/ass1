@@ -33,7 +33,7 @@ def fmt(x, nd=3, pct=False):
 def ci(c, pct=True, nd=3):
     """c = (mean, lo, hi) or dict with rel_diff / abs_diff and ci95."""
     if isinstance(c, dict):
-        m = c.get("rel_diff", c.get("abs_diff"))
+        m = c["abs_diff"] if (not pct and "abs_diff" in c) else c.get("rel_diff", c.get("abs_diff"))
         lo, hi = c["ci95"]
     else:
         m, lo, hi = c
@@ -116,6 +116,9 @@ def sec_dt(law, md, missing):
             f"{fmt(r['comparisons'][c]['rdf']['E_g_debiased'], pct=True)} [{fmt(r['comparisons'][c]['rdf']['E_g_lower95'], pct=True)}, "
             f"{fmt(r['comparisons'][c]['rdf']['E_g_upper95'], pct=True)}] **{r['comparisons'][c]['rdf']['verdict']}**"
             for c in comps])
+        rows.append(["RDF E_g, pre-registered bootstrap 95% upper bound (tol 1%)"] + [
+            f"{fmt(r['comparisons'][c]['rdf']['E_g_bootstrap_p95'], pct=True)} **"
+            f"{'PASS' if r['comparisons'][c]['rdf']['E_g_bootstrap_p95'] <= 0.01 else 'INCONCLUSIVE'}**" for c in comps])
         for k, nm in (("first_peak_height", "RDF first-peak height"), ("first_peak_position", "RDF first-peak position")):
             rows.append([nm + " (rel.)"] + [f"{ci(r['comparisons'][c]['rdf'][k])} **{r['comparisons'][c]['rdf'][k]['verdict']}**"
                                              for c in comps])
@@ -181,9 +184,10 @@ def sec_equil(law, md, missing):
     md.append("")
     s = r["sampling_requirements"]
     rows = [[k, f"{v['target_half_width']:.3g}", f"{v['s_run']:.3g}", f"{v['run_length']:g}", f"{v['n_runs']}",
-             f"{v['total_time_needed']:.0f}"] for k, v in s.items() if k != "D"]
+             f"{v.get('replicas_needed_at_this_length')}", f"{v['total_time_needed']:.0f}"]
+            for k, v in s.items() if k != "D"]
     md.append(table(["observable", "target 95% half-width", "sd of run means", "run length", "runs",
-                     "total production time needed"], rows))
+                     "replicas needed (t-rule)", "total production time needed"], rows))
     md.append("")
     for lab, v in s.get("D", {}).items():
         md.append(f"- {lab} at {v['at']}: mean {v['mean']:.4g}, sd over runs {v['s_run']:.3g} ({100 * v['s_run'] / v['mean']:.1f}%), "

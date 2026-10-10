@@ -2,26 +2,27 @@
  "provenance": {
   "command": "/usr/local/bin/python3 lj075_equil_analysis.py --laws A",
   "cwd": "/home/user/ass1/ewald_longitudinal",
-  "git_commit": "501b5792983591881c5f5ce7c4ba6c2ef37e8b7a",
+  "git_commit": "64583cdee8c4114695f6e074d8c5edc222e21f80",
   "git_dirty": true,
   "untracked_py": [],
   "script_sha256_16": {
    "lj075_common.py": "3936dac0eaf81905",
    "lj075_coupled.py": "c9f26edea49d35d2",
    "lj075_dt_analysis.py": "d58faaec7b210525",
+   "lj075_dt_diagnostic.py": "8c2cc4c58a59c363",
    "lj075_dt_study.py": "08d86c5c7aa66ada",
-   "lj075_equil_analysis.py": "00aeccc2e1e8887c",
+   "lj075_equil_analysis.py": "1ee42fe293ac0bce",
    "lj075_equilibration.py": "1ec70796c478980e",
    "lj075_longD.py": "12724c59e8b9bd3b",
    "lj075_operator_sensitivity.py": "c2e31244b9979436",
-   "lj075_pppm_cost.py": "9e5fd9a0ee2504a2",
+   "lj075_pppm_cost.py": "f7decc37a991d439",
    "lj075_pppm_screen.py": "3bfd2a79a4c07338",
    "lj075_prepare_states.py": "e77a1d8425d42323",
    "lj075_sampling.py": "1d3df6b7d580a625",
-   "lj075_summary.py": "1d68b99d57f8d58a",
-   "lj075_verify.py": "18aff6d8efa571b6",
+   "lj075_summary.py": "9c1adb7314932427",
+   "lj075_verify.py": "1fbcd9768d1475ba",
    "lj075_visited.py": "4184807fc7d48354",
-   "toy_configs.py": "f64631f956dee239",
+   "toy_configs.py": "a0e3b239f91c86fc",
    "toy_run.py": "99f0baf867aaec7e",
    "toy_dynamics.py": "28f70bea0511ea91",
    "radial_kernels.py": "f160a24d8f946e95",
@@ -38,7 +39,7 @@
    "OPENBLAS_NUM_THREADS": null,
    "MKL_NUM_THREADS": null
   },
-  "started": "2026-10-09T22:00:15+0000"
+  "started": "2026-10-10T00:23:07+0000"
  },
  "A": {
   "runs": [
@@ -966,28 +967,36 @@
     "target_half_width": 0.0019990548923162843,
     "s_run": 0.0019073504468547424,
     "run_length": 48.0,
-    "total_time_needed": 167.86684639201326,
+    "replicas_needed_at_this_length": 7,
+    "total_time_needed": 336.0,
+    "total_time_needed_normal_approx": 167.86684639201326,
     "n_runs": 8
    },
    "U_per_N": {
     "target_half_width": 0.00934117949873382,
     "s_run": 0.005192611015278059,
     "run_length": 48.0,
-    "total_time_needed": 56.97987939636442,
+    "replicas_needed_at_this_length": 4,
+    "total_time_needed": 192.0,
+    "total_time_needed_normal_approx": 56.97987939636442,
     "n_runs": 8
    },
    "pressure": {
     "target_half_width": 0.0075,
     "s_run": 0.017817327554850874,
     "run_length": 48.0,
-    "total_time_needed": 1040.6770606539196,
+    "replicas_needed_at_this_length": 25,
+    "total_time_needed": 1200.0,
+    "total_time_needed_normal_approx": 1040.6770606539196,
     "n_runs": 8
    },
    "rdf_peak": {
     "target_half_width": 0.012804351179555253,
     "s_run": 0.005910338290589719,
     "run_length": 48.0,
-    "total_time_needed": 39.28826994209975,
+    "replicas_needed_at_this_length": 4,
+    "total_time_needed": 192.0,
+    "total_time_needed_normal_approx": 39.28826994209975,
     "n_runs": 8
    },
    "D": {
@@ -998,7 +1007,8 @@
      "run_length": 48.0,
      "n_runs": 8,
      "replicas_needed_at_this_length": 10,
-     "total_time_needed": 350.1096780966937,
+     "total_time_needed": 480.0,
+     "total_time_needed_normal_approx": 350.1096780966937,
      "note": "valid only if D at this limit is the long-time D (see plateau)"
     },
     "D_MSD": {
@@ -1008,7 +1018,8 @@
      "run_length": 48.0,
      "n_runs": 8,
      "replicas_needed_at_this_length": 9,
-     "total_time_needed": 293.57527468554605,
+     "total_time_needed": 432.0,
+     "total_time_needed_normal_approx": 293.57527468554605,
      "note": "valid only if D at this limit is the long-time D (see plateau)"
     }
    }

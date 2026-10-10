@@ -6,8 +6,11 @@ lj075_results/dt_criteria.json. Writes lj075_results/dt_study.json and dt_study_
 All comparisons are PAIRED by replica (same q0, p0, coupled noise) against the reference level (the finest level
 common to the replicas used). Scalars: Student-t 95% CI over replicas of the per-replica difference of time
 averages over [T_DISCARD, t_end].
-Function-valued observables (amendment after code review, before any multi-replica analysis; more conservative than
-the registered percentile bootstrap, which is anti-conservative for few replicas and is still reported):
+Function-valued observables (amendment after code review, before any multi-replica analysis; it replaces the
+registered percentile bootstrap, which is still computed and reported. For the VACF the pointwise-t envelope is
+more conservative than the bootstrap. For the RDF norm the debiased jackknife bound is LESS strict than the registered
+bootstrap bound, because it removes the upward noise bias of the norm; RDF-norm verdicts are therefore reported
+under both. The VACF lower bound is a max of pointwise lower bounds, not a simultaneous bound):
   per grid point / bin j: mean difference Dbar_j and Student-t 95% half-width h_j = t_{0.975,n-1} s_j / sqrt(n);
   VACF: upper bound max_j (|Dbar_j| + h_j) / C_ref(0); lower bound max_j max(|Dbar_j| - h_j, 0) / C_ref(0);
   RDF:  the squared weighted norm of the mean difference is biased upward by the bin noise (it grows with the

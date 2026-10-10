@@ -7,6 +7,7 @@
 | verify_representative_A.json | 42 | 0.85, 4.1, 0.6779, 8 (M 24) | 6.13e-08 – 7.33e-08 | 1.53e-07 | 8.8e-08 | 2e-17 / 2e-15 / 4.632 | 12/5/4 | 5.3e-11 / 1.2e-10 | 4.3e-11 | 3.1e-10 | PASS | 0.15 |
 | verify_representative_A_0.85_4.1_0.6_7.0.json | 42 | 0.85, 4.1, 0.6, 7 (M 27) | 6.06e-08 – 7.60e-08 | 1.59e-07 | 8.8e-08 | 2e-17 / 2e-15 / 4.632 | 12/5/4 | 5.3e-11 / 1.2e-10 | 4.3e-11 | 3.1e-10 | PASS | 0.17 |
 | verify_representative_A_0.85_4.4_0.6_7.0.json | 42 | 0.85, 4.4, 0.6, 7 (M 30) | 1.39e-08 – 1.63e-08 | 3.32e-08 | 7.9e-09 | 2e-17 / 2e-15 / 4.632 | 12/5/4 | 5.3e-11 / 1.2e-10 | 4.3e-11 | 3.1e-10 | PASS | 0.19 |
+| verify_visited_dt_A.json | 38 | 0.85, 4.1, 0.6779, 8 (M 24) | 6.68e-08 – 7.40e-08 | 1.59e-07 | 8.7e-08 | 2e-17 / 2e-15 / 4.632 | 12/5/4 | 6.3e-11 / 1.5e-10 | 5.5e-11 | 3.1e-10 | PASS | 0.19 |
 | verify_visited_eq_A.json | 72 | 0.85, 4.1, 0.6779, 8 (M 24) | 6.06e-08 – 7.57e-08 | 1.60e-07 | 8.9e-08 | 2e-17 / 2e-15 / 4.578 | 14/5/5 | 1.8e-11 / 4.4e-11 | 3.1e-11 | 2.6e-12 | PASS | 0.27 |
 
 ### Physical effect of the operator error (production vs tight PPPM, lock-step, same noise; n = 2)
@@ -28,8 +29,9 @@ Pathwise RMS position difference: t=0.1 1.0e-09, t=1 1.1e-08, t=5 5.5e-06, t=10 
 |---|---|---|---|
 | T_kin (rel., tol 1%) | -0.11% [-0.32, +0.09] **PASS** | -0.12% [-0.30, +0.07] **PASS** | -0.52% [-0.78, -0.26] **PASS** |
 | U/N (rel., tol 1%) | -0.12% [-0.23, -0.01] **PASS** | -0.05% [-0.14, +0.04] **PASS** | -0.16% [-0.29, -0.03] **PASS** |
-| pressure (abs., tol 0.0075) | -0.0329 [-0.0491, -0.00299] **INCONCLUSIVE** | +0.000793 [-0.0179, +0.0192] **INCONCLUSIVE** | -0.0301 [-0.0501, +0.00238] **INCONCLUSIVE** |
+| pressure (abs., tol 0.0075) | -0.0261 [-0.0491, -0.00299] **INCONCLUSIVE** | +0.000629 [-0.0179, +0.0192] **INCONCLUSIVE** | -0.0239 [-0.0501, +0.00238] **INCONCLUSIVE** |
 | RDF E_g: debiased [lower, upper] (tol 1%) | +0.27% [+0.00%, +1.02%] **INCONCLUSIVE** | +0.45% [+0.00%, +0.98%] **PASS** | +0.40% [+0.00%, +1.02%] **INCONCLUSIVE** |
+| RDF E_g, pre-registered bootstrap 95% upper bound (tol 1%) | +1.78% **INCONCLUSIVE** | +1.68% **INCONCLUSIVE** | +1.82% **INCONCLUSIVE** |
 | RDF first-peak height (rel.) | +0.01% [-0.44, +0.47] **PASS** | -0.05% [-0.50, +0.41] **PASS** | +0.02% [-0.60, +0.64] **PASS** |
 | RDF first-peak position (rel.) | +0.03% [-0.22, +0.28] **PASS** | -0.00% [-0.23, +0.22] **PASS** | -0.04% [-0.23, +0.16] **PASS** |
 | VACF E_V = max|ΔC|/C(0), t ≤ 2.0: [lower, upper] | [+0.00%, +0.39%] (noise floor +0.20%) **PASS** | [+0.00%, +0.41%] (noise floor +0.19%) **PASS** | [+0.26%, +0.78%] (noise floor +0.24%) **PASS** |
@@ -126,15 +128,15 @@ MSER truncation (information): eq_A_fcc_s301: U_per_N 1, T_kin 1, pressure 2.5, 
 | S_kmin | fcc 0.074639, hot 0.090071, lgv 0.090794, rsa 0.077812 | 2.4 | 0.208 | False | 0.00959 | 0.00597 | 0.581 | True |
 | cell_var | fcc 0.25759, hot 0.25789, lgv 0.25583, rsa 0.25234 | 0.363 | 0.784 | False | 0.0051 | 0.00633 | 0.396 | True |
 
-| observable | target 95% half-width | sd of run means | run length | runs | total production time needed |
-|---|---|---|---|---|---|
-| T_kin | 0.002 | 0.00191 | 48 | 8 | 168 |
-| U_per_N | 0.00934 | 0.00519 | 48 | 8 | 57 |
-| pressure | 0.0075 | 0.0178 | 48 | 8 | 1041 |
-| rdf_peak | 0.0128 | 0.00591 | 48 | 8 | 39 |
+| observable | target 95% half-width | sd of run means | run length | runs | replicas needed (t-rule) | total production time needed |
+|---|---|---|---|---|---|---|
+| T_kin | 0.002 | 0.00191 | 48 | 8 | 7 | 336 |
+| U_per_N | 0.00934 | 0.00519 | 48 | 8 | 4 | 192 |
+| pressure | 0.0075 | 0.0178 | 48 | 8 | 25 | 1200 |
+| rdf_peak | 0.0128 | 0.00591 | 48 | 8 | 4 | 192 |
 
-- D_GK at 16: mean 0.02835, sd over runs 0.00195 (6.9%), run length 48; replicas needed at this length for ±5% (95%): 10; total time 350. valid only if D at this limit is the long-time D (see plateau)
-- D_MSD at 8-16: mean 0.02849, sd over runs 0.0018 (6.3%), run length 48; replicas needed at this length for ±5% (95%): 9; total time 294. valid only if D at this limit is the long-time D (see plateau)
+- D_GK at 16: mean 0.02835, sd over runs 0.00195 (6.9%), run length 48; replicas needed at this length for ±5% (95%): 10; total time 480. valid only if D at this limit is the long-time D (see plateau)
+- D_MSD at 8-16: mean 0.02849, sd over runs 0.0018 (6.3%), run length 48; replicas needed at this length for ±5% (95%): 9; total time 432. valid only if D at this limit is the long-time D (see plateau)
 
 | GK upper limit τ | D_GK(τ) mean [95% CI] |
 |---|---|
@@ -194,6 +196,7 @@ Largest passing stride: 1 (MSD only: 20); VACF resolved at every step: True.
 | static verification verify_representative_A | 0.149 |
 | static verification verify_representative_A_0.85_4.1_0.6_7.0 | 0.174 |
 | static verification verify_representative_A_0.85_4.4_0.6_7.0 | 0.186 |
+| static verification verify_visited_dt_A | 0.194 |
 | static verification verify_visited_eq_A | 0.272 |
 | state preparation (all prepared states, both laws' inputs) | 0.131 |
 | dt study levels_0.00125_0.0025_0.005_0.01_T10 | 10.335 |
@@ -201,5 +204,5 @@ Largest passing stride: 1 (MSD only: 20); VACF resolved at every step: True.
 | equilibration / production-runner runs | 2.934 |
 | operator sensitivity runs | 0.329 |
 | PPPM step-cost benchmark (estimated from the medians, 984 steps) | 0.035 |
-| **total recorded** | **18.21** |
+| **total recorded** | **18.40** |
 
