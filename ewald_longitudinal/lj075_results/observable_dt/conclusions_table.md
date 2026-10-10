@@ -84,50 +84,50 @@ Curve cells: verdict of E_sig (sup |paired mean difference| / scale of the refer
 
 | scalar | scale | 0.01 vs 0.00125 | 0.005 vs 0.00125 | 0.0025 vs 0.00125 |
 |---|---|---|---|---|
-| vacf_C0 | 2.993 (|mean reference|) | -0.0113 [-0.02, -0.00267]; rel -0.38% [-0.67, -0.09] **PASS** | -0.00151 [-0.0107, +0.0077]; rel -0.05% [-0.36, +0.26] **PASS** | -0.00105 [-0.00712, +0.00502]; rel -0.04% [-0.24, +0.17] **PASS** |
-| vacf_D2 | 0.06859 (int_0^2 |mean reference curve| dt) | +0.00101 [-0.000164, +0.00218]; rel +1.47% [-0.24, +3.19] **INCONCLUSIVE** | +0.00073 [-0.000453, +0.00191]; rel +1.06% [-0.66, +2.79] **INCONCLUSIVE** | +0.000745 [-0.000183, +0.00167]; rel +1.09% [-0.27, +2.44] **INCONCLUSIVE** |
-| vacf_Zmin | 0.07003 (|mean reference|) | +0.00177 [-0.00156, +0.0051]; rel +2.53% [-2.22, +7.29] **INCONCLUSIVE** | +0.000986 [-0.00135, +0.00332]; rel +1.41% [-1.93, +4.74] **INCONCLUSIVE** | +0.00092 [-0.00056, +0.0024]; rel +1.31% [-0.80, +3.43] **INCONCLUSIVE** |
-| vacf_tmin | 0.1765 (|mean reference|) | +0.00114 [-0.00298, +0.00526]; rel +0.64% [-1.69, +2.98] **INCONCLUSIVE** | -0.000198 [-0.00415, +0.00376]; rel -0.11% [-2.35, +2.13] **INCONCLUSIVE** | -0.000703 [-0.00536, +0.00395]; rel -0.40% [-3.03, +2.24] **INCONCLUSIVE** |
-| vacf_tzero | 0.117 (|mean reference|) | +0.000918 [-0.000113, +0.00195]; rel +0.78% [-0.10, +1.67] **INCONCLUSIVE** | -3.16e-05 [-0.000789, +0.000726]; rel -0.03% [-0.67, +0.62] **PASS** | +5.06e-05 [-0.000689, +0.00079]; rel +0.04% [-0.59, +0.68] **PASS** |
-| vccf_b1_ext | 0.02913 (|mean reference|) | +0.000539 [-0.000301, +0.00138]; rel +1.85% [-1.03, +4.73] **INCONCLUSIVE** | +0.000338 [-0.000331, +0.00101]; rel +1.16% [-1.14, +3.46] **INCONCLUSIVE** | +0.000555 [+6.88e-05, +0.00104]; rel +1.91% [+0.24, +3.58] **INCONCLUSIVE** |
-| vccf_b1_text | 0.1021 (|mean reference|) | +0.000257 [-0.00208, +0.00259]; rel +0.25% [-2.04, +2.54] **INCONCLUSIVE** | +0.000843 [-0.0018, +0.00349]; rel +0.83% [-1.77, +3.42] **INCONCLUSIVE** | -0.000279 [-0.00235, +0.00179]; rel -0.27% [-2.30, +1.75] **INCONCLUSIVE** |
-| vccf_b2_ext | 0.003306 (|mean reference|) | +4.58e-05 [-0.000272, +0.000364]; rel +1.39% [-8.23, +11.00] **INCONCLUSIVE (reference not resolved)** | -0.00015 [-0.000498, +0.000199]; rel -4.52% [-15.06, +6.01] **INCONCLUSIVE (reference not resolved)** | +6.08e-05 [-0.000213, +0.000334]; rel +1.84% [-6.43, +10.11] **INCONCLUSIVE (reference not resolved)** |
-| vccf_b2_text | 0.2047 (|mean reference|) | +0.00407 [-0.0162, +0.0243]; rel +1.99% [-7.91, +11.89] **INCONCLUSIVE** | -0.000234 [-0.0147, +0.0142]; rel -0.11% [-7.17, +6.94] **INCONCLUSIVE** | +0.00369 [-0.0127, +0.0201]; rel +1.80% [-6.23, +9.83] **INCONCLUSIVE** |
-| CL_k1_tzero | 0.1985 (|mean reference|) | -0.00577 [-0.0208, +0.00927]; rel -2.91% [-10.49, +4.67] **INCONCLUSIVE** | -0.00724 [-0.0241, +0.00964]; rel -3.65% [-12.15, +4.86] **INCONCLUSIVE** | +0.00538 [-0.0103, +0.021]; rel +2.71% [-5.18, +10.60] **INCONCLUSIVE** |
+| vacf_C0 | 2.993 (\|mean reference\|) | -0.0113 [-0.02, -0.00267]; rel -0.38% [-0.67, -0.09] **PASS** | -0.00151 [-0.0107, +0.0077]; rel -0.05% [-0.36, +0.26] **PASS** | -0.00105 [-0.00712, +0.00502]; rel -0.04% [-0.24, +0.17] **PASS** |
+| vacf_D2 | 0.06859 (int_0^2 \|mean reference curve\| dt) | +0.00101 [-0.000164, +0.00218]; rel +1.47% [-0.24, +3.19] **INCONCLUSIVE** | +0.00073 [-0.000453, +0.00191]; rel +1.06% [-0.66, +2.79] **INCONCLUSIVE** | +0.000745 [-0.000183, +0.00167]; rel +1.09% [-0.27, +2.44] **INCONCLUSIVE** |
+| vacf_Zmin | 0.07003 (\|mean reference\|) | +0.00177 [-0.00156, +0.0051]; rel +2.53% [-2.22, +7.29] **INCONCLUSIVE** | +0.000986 [-0.00135, +0.00332]; rel +1.41% [-1.93, +4.74] **INCONCLUSIVE** | +0.00092 [-0.00056, +0.0024]; rel +1.31% [-0.80, +3.43] **INCONCLUSIVE** |
+| vacf_tmin | 0.1765 (\|mean reference\|) | +0.00114 [-0.00298, +0.00526]; rel +0.64% [-1.69, +2.98] **INCONCLUSIVE** | -0.000198 [-0.00415, +0.00376]; rel -0.11% [-2.35, +2.13] **INCONCLUSIVE** | -0.000703 [-0.00536, +0.00395]; rel -0.40% [-3.03, +2.24] **INCONCLUSIVE** |
+| vacf_tzero | 0.117 (\|mean reference\|) | +0.000918 [-0.000113, +0.00195]; rel +0.78% [-0.10, +1.67] **INCONCLUSIVE** | -3.16e-05 [-0.000789, +0.000726]; rel -0.03% [-0.67, +0.62] **PASS** | +5.06e-05 [-0.000689, +0.00079]; rel +0.04% [-0.59, +0.68] **PASS** |
+| vccf_b1_ext | 0.02913 (\|mean reference\|) | +0.000539 [-0.000301, +0.00138]; rel +1.85% [-1.03, +4.73] **INCONCLUSIVE** | +0.000338 [-0.000331, +0.00101]; rel +1.16% [-1.14, +3.46] **INCONCLUSIVE** | +0.000555 [+6.88e-05, +0.00104]; rel +1.91% [+0.24, +3.58] **INCONCLUSIVE** |
+| vccf_b1_text | 0.1021 (\|mean reference\|) | +0.000257 [-0.00208, +0.00259]; rel +0.25% [-2.04, +2.54] **INCONCLUSIVE** | +0.000843 [-0.0018, +0.00349]; rel +0.83% [-1.77, +3.42] **INCONCLUSIVE** | -0.000279 [-0.00235, +0.00179]; rel -0.27% [-2.30, +1.75] **INCONCLUSIVE** |
+| vccf_b2_ext | 0.003306 (\|mean reference\|) | +4.58e-05 [-0.000272, +0.000364]; rel +1.39% [-8.23, +11.00] **INCONCLUSIVE (reference not resolved)** | -0.00015 [-0.000498, +0.000199]; rel -4.52% [-15.06, +6.01] **INCONCLUSIVE (reference not resolved)** | +6.08e-05 [-0.000213, +0.000334]; rel +1.84% [-6.43, +10.11] **INCONCLUSIVE (reference not resolved)** |
+| vccf_b2_text | 0.2047 (\|mean reference\|) | +0.00407 [-0.0162, +0.0243]; rel +1.99% [-7.91, +11.89] **INCONCLUSIVE** | -0.000234 [-0.0147, +0.0142]; rel -0.11% [-7.17, +6.94] **INCONCLUSIVE** | +0.00369 [-0.0127, +0.0201]; rel +1.80% [-6.23, +9.83] **INCONCLUSIVE** |
+| CL_k1_tzero | 0.1985 (\|mean reference\|) | -0.00577 [-0.0208, +0.00927]; rel -2.91% [-10.49, +4.67] **INCONCLUSIVE** | -0.00724 [-0.0241, +0.00964]; rel -3.65% [-12.15, +4.86] **INCONCLUSIVE** | +0.00538 [-0.0103, +0.021]; rel +2.71% [-5.18, +10.60] **INCONCLUSIVE** |
 | CL_k1_min | nan (-) | INCONCLUSIVE (undefined in 1/16 at dt, 4/16 at reference) | INCONCLUSIVE (undefined in 1/16 at dt, 4/16 at reference) | INCONCLUSIVE (undefined in 3/16 at dt, 4/16 at reference) |
 | CL_k1_tmin | nan (-) | INCONCLUSIVE (undefined in 1/16 at dt, 4/16 at reference) | INCONCLUSIVE (undefined in 1/16 at dt, 4/16 at reference) | INCONCLUSIVE (undefined in 3/16 at dt, 4/16 at reference) |
-| CT_k1_thalf | 0.1142 (|mean reference|) | +0.00412 [+0.000718, +0.00752]; rel +3.61% [+0.63, +6.59] **INCONCLUSIVE** | +0.00168 [-0.00179, +0.00514]; rel +1.47% [-1.56, +4.50] **INCONCLUSIVE** | +0.00155 [-0.00156, +0.00467]; rel +1.36% [-1.37, +4.09] **INCONCLUSIVE** |
-| CL_k2_tzero | 0.1365 (|mean reference|) | -0.0011 [-0.00601, +0.00381]; rel -0.81% [-4.40, +2.79] **INCONCLUSIVE** | +0.000404 [-0.00398, +0.00479]; rel +0.30% [-2.92, +3.51] **INCONCLUSIVE** | +0.00114 [-0.00379, +0.00608]; rel +0.84% [-2.78, +4.45] **INCONCLUSIVE** |
+| CT_k1_thalf | 0.1142 (\|mean reference\|) | +0.00412 [+0.000718, +0.00752]; rel +3.61% [+0.63, +6.59] **INCONCLUSIVE** | +0.00168 [-0.00179, +0.00514]; rel +1.47% [-1.56, +4.50] **INCONCLUSIVE** | +0.00155 [-0.00156, +0.00467]; rel +1.36% [-1.37, +4.09] **INCONCLUSIVE** |
+| CL_k2_tzero | 0.1365 (\|mean reference\|) | -0.0011 [-0.00601, +0.00381]; rel -0.81% [-4.40, +2.79] **INCONCLUSIVE** | +0.000404 [-0.00398, +0.00479]; rel +0.30% [-2.92, +3.51] **INCONCLUSIVE** | +0.00114 [-0.00379, +0.00608]; rel +0.84% [-2.78, +4.45] **INCONCLUSIVE** |
 | CL_k2_min | nan (-) | INCONCLUSIVE (undefined in 1/16 at dt, 1/16 at reference) | INCONCLUSIVE (undefined in 0/16 at dt, 1/16 at reference) | INCONCLUSIVE (undefined in 0/16 at dt, 1/16 at reference) |
 | CL_k2_tmin | nan (-) | INCONCLUSIVE (undefined in 1/16 at dt, 1/16 at reference) | INCONCLUSIVE (undefined in 0/16 at dt, 1/16 at reference) | INCONCLUSIVE (undefined in 0/16 at dt, 1/16 at reference) |
-| CT_k2_thalf | 0.08628 (|mean reference|) | +0.00139 [-0.000838, +0.00362]; rel +1.61% [-0.97, +4.20] **INCONCLUSIVE** | +0.000256 [-0.00163, +0.00214]; rel +0.30% [-1.89, +2.48] **INCONCLUSIVE** | +3.78e-05 [-0.00212, +0.00219]; rel +0.04% [-2.45, +2.54] **INCONCLUSIVE** |
-| CL_k4_tzero | 0.1029 (|mean reference|) | +0.000336 [-0.00416, +0.00483]; rel +0.33% [-4.04, +4.70] **INCONCLUSIVE** | +0.00406 [-0.000548, +0.00867]; rel +3.95% [-0.53, +8.43] **INCONCLUSIVE** | +0.00129 [-0.00239, +0.00497]; rel +1.25% [-2.32, +4.83] **INCONCLUSIVE** |
+| CT_k2_thalf | 0.08628 (\|mean reference\|) | +0.00139 [-0.000838, +0.00362]; rel +1.61% [-0.97, +4.20] **INCONCLUSIVE** | +0.000256 [-0.00163, +0.00214]; rel +0.30% [-1.89, +2.48] **INCONCLUSIVE** | +3.78e-05 [-0.00212, +0.00219]; rel +0.04% [-2.45, +2.54] **INCONCLUSIVE** |
+| CL_k4_tzero | 0.1029 (\|mean reference\|) | +0.000336 [-0.00416, +0.00483]; rel +0.33% [-4.04, +4.70] **INCONCLUSIVE** | +0.00406 [-0.000548, +0.00867]; rel +3.95% [-0.53, +8.43] **INCONCLUSIVE** | +0.00129 [-0.00239, +0.00497]; rel +1.25% [-2.32, +4.83] **INCONCLUSIVE** |
 | CL_k4_min | nan (-) | INCONCLUSIVE (undefined in 1/16 at dt, 0/16 at reference) | INCONCLUSIVE (undefined in 2/16 at dt, 0/16 at reference) | INCONCLUSIVE (undefined in 1/16 at dt, 0/16 at reference) |
 | CL_k4_tmin | nan (-) | INCONCLUSIVE (undefined in 1/16 at dt, 0/16 at reference) | INCONCLUSIVE (undefined in 2/16 at dt, 0/16 at reference) | INCONCLUSIVE (undefined in 1/16 at dt, 0/16 at reference) |
-| CT_k4_thalf | 0.0666 (|mean reference|) | +5.06e-05 [-0.00224, +0.00234]; rel +0.08% [-3.36, +3.51] **INCONCLUSIVE** | +0.000562 [-0.00139, +0.00251]; rel +0.84% [-2.08, +3.77] **INCONCLUSIVE** | -0.000688 [-0.00293, +0.00156]; rel -1.03% [-4.40, +2.34] **INCONCLUSIVE** |
-| vh_t0.1_peak_excess | 1.423 (|mean reference|) | -7.61e-05 [-0.0171, +0.0169]; rel -0.01% [-1.20, +1.19] **INCONCLUSIVE** | -0.000478 [-0.00704, +0.00609]; rel -0.03% [-0.50, +0.43] **PASS** | -0.00257 [-0.0128, +0.00764]; rel -0.18% [-0.90, +0.54] **PASS** |
-| vh_t0.1_rpeak | 1.104 (|mean reference|) | +0.000441 [-0.000844, +0.00172]; rel +0.04% [-0.08, +0.16] **PASS** | +0.000122 [-0.000471, +0.000714]; rel +0.01% [-0.04, +0.06] **PASS** | +0.000169 [-0.00062, +0.000957]; rel +0.02% [-0.06, +0.09] **PASS** |
-| vh_t0.5_peak_excess | 0.5968 (|mean reference|) | +0.000233 [-0.0126, +0.0131]; rel +0.04% [-2.11, +2.19] **INCONCLUSIVE** | -0.00405 [-0.0166, +0.00849]; rel -0.68% [-2.78, +1.42] **INCONCLUSIVE** | +0.000673 [-0.00755, +0.0089]; rel +0.11% [-1.27, +1.49] **INCONCLUSIVE** |
-| vh_t0.5_rpeak | 1.156 (|mean reference|) | -0.00144 [-0.00655, +0.00366]; rel -0.12% [-0.57, +0.32] **PASS** | +0.00147 [-0.00276, +0.0057]; rel +0.13% [-0.24, +0.49] **PASS** | +0.000805 [-0.00428, +0.00589]; rel +0.07% [-0.37, +0.51] **PASS** |
-| vh_t1_peak_excess | 0.3368 (|mean reference|) | -0.00323 [-0.0156, +0.00918]; rel -0.96% [-4.64, +2.73] **INCONCLUSIVE** | -0.00226 [-0.0141, +0.00963]; rel -0.67% [-4.20, +2.86] **INCONCLUSIVE** | -0.000962 [-0.00882, +0.00689]; rel -0.29% [-2.62, +2.05] **INCONCLUSIVE** |
-| vh_t1_rpeak | 1.168 (|mean reference|) | +0.00289 [-0.00572, +0.0115]; rel +0.25% [-0.49, +0.98] **PASS** | +0.00125 [-0.00873, +0.0112]; rel +0.11% [-0.75, +0.96] **PASS** | -5.07e-05 [-0.00828, +0.00818]; rel -0.00% [-0.71, +0.70] **PASS** |
-| vh_t2_peak_excess | 0.1282 (|mean reference|) | -0.00341 [-0.0131, +0.00628]; rel -2.66% [-10.22, +4.90] **INCONCLUSIVE** | -0.00563 [-0.0189, +0.00767]; rel -4.39% [-14.77, +5.98] **INCONCLUSIVE** | -0.00443 [-0.013, +0.00409]; rel -3.46% [-10.10, +3.19] **INCONCLUSIVE** |
-| vh_t2_rpeak | 1.187 (|mean reference|) | -0.000176 [-0.0159, +0.0156]; rel -0.01% [-1.34, +1.31] **INCONCLUSIVE** | +0.0168 [+0.00221, +0.0313]; rel +1.41% [+0.19, +2.64] **INCONCLUSIVE** | +0.00729 [-0.013, +0.0275]; rel +0.61% [-1.09, +2.32] **INCONCLUSIVE** |
+| CT_k4_thalf | 0.0666 (\|mean reference\|) | +5.06e-05 [-0.00224, +0.00234]; rel +0.08% [-3.36, +3.51] **INCONCLUSIVE** | +0.000562 [-0.00139, +0.00251]; rel +0.84% [-2.08, +3.77] **INCONCLUSIVE** | -0.000688 [-0.00293, +0.00156]; rel -1.03% [-4.40, +2.34] **INCONCLUSIVE** |
+| vh_t0.1_peak_excess | 1.423 (\|mean reference\|) | -7.61e-05 [-0.0171, +0.0169]; rel -0.01% [-1.20, +1.19] **INCONCLUSIVE** | -0.000478 [-0.00704, +0.00609]; rel -0.03% [-0.50, +0.43] **PASS** | -0.00257 [-0.0128, +0.00764]; rel -0.18% [-0.90, +0.54] **PASS** |
+| vh_t0.1_rpeak | 1.104 (\|mean reference\|) | +0.000441 [-0.000844, +0.00172]; rel +0.04% [-0.08, +0.16] **PASS** | +0.000122 [-0.000471, +0.000714]; rel +0.01% [-0.04, +0.06] **PASS** | +0.000169 [-0.00062, +0.000957]; rel +0.02% [-0.06, +0.09] **PASS** |
+| vh_t0.5_peak_excess | 0.5968 (\|mean reference\|) | +0.000233 [-0.0126, +0.0131]; rel +0.04% [-2.11, +2.19] **INCONCLUSIVE** | -0.00405 [-0.0166, +0.00849]; rel -0.68% [-2.78, +1.42] **INCONCLUSIVE** | +0.000673 [-0.00755, +0.0089]; rel +0.11% [-1.27, +1.49] **INCONCLUSIVE** |
+| vh_t0.5_rpeak | 1.156 (\|mean reference\|) | -0.00144 [-0.00655, +0.00366]; rel -0.12% [-0.57, +0.32] **PASS** | +0.00147 [-0.00276, +0.0057]; rel +0.13% [-0.24, +0.49] **PASS** | +0.000805 [-0.00428, +0.00589]; rel +0.07% [-0.37, +0.51] **PASS** |
+| vh_t1_peak_excess | 0.3368 (\|mean reference\|) | -0.00323 [-0.0156, +0.00918]; rel -0.96% [-4.64, +2.73] **INCONCLUSIVE** | -0.00226 [-0.0141, +0.00963]; rel -0.67% [-4.20, +2.86] **INCONCLUSIVE** | -0.000962 [-0.00882, +0.00689]; rel -0.29% [-2.62, +2.05] **INCONCLUSIVE** |
+| vh_t1_rpeak | 1.168 (\|mean reference\|) | +0.00289 [-0.00572, +0.0115]; rel +0.25% [-0.49, +0.98] **PASS** | +0.00125 [-0.00873, +0.0112]; rel +0.11% [-0.75, +0.96] **PASS** | -5.07e-05 [-0.00828, +0.00818]; rel -0.00% [-0.71, +0.70] **PASS** |
+| vh_t2_peak_excess | 0.1282 (\|mean reference\|) | -0.00341 [-0.0131, +0.00628]; rel -2.66% [-10.22, +4.90] **INCONCLUSIVE** | -0.00563 [-0.0189, +0.00767]; rel -4.39% [-14.77, +5.98] **INCONCLUSIVE** | -0.00443 [-0.013, +0.00409]; rel -3.46% [-10.10, +3.19] **INCONCLUSIVE** |
+| vh_t2_rpeak | 1.187 (\|mean reference\|) | -0.000176 [-0.0159, +0.0156]; rel -0.01% [-1.34, +1.31] **INCONCLUSIVE** | +0.0168 [+0.00221, +0.0313]; rel +1.41% [+0.19, +2.64] **INCONCLUSIVE** | +0.00729 [-0.013, +0.0275]; rel +0.61% [-1.09, +2.32] **INCONCLUSIVE** |
 | vccf_b1_C0 | 0.003922 (1/(N-1) (information only)) | +0.000873 [-0.000282, +0.00203]; rel +22.25% [-7.20, +51.70] **information** | +0.000473 [-0.000638, +0.00158]; rel +12.06% [-16.28, +40.40] **information** | +0.000407 [-0.000535, +0.00135]; rel +10.37% [-13.65, +34.39] **information** |
-| vccf_b1_int | 0.005176 (int_0^2 |mean reference curve| dt) | +0.000167 [-0.000385, +0.00072]; rel +3.24% [-7.44, +13.91] **INCONCLUSIVE** | -0.00015 [-0.000465, +0.000164]; rel -2.90% [-8.98, +3.17] **INCONCLUSIVE** | +5.26e-05 [-0.000228, +0.000333]; rel +1.02% [-4.40, +6.43] **INCONCLUSIVE** |
+| vccf_b1_int | 0.005176 (int_0^2 \|mean reference curve\| dt) | +0.000167 [-0.000385, +0.00072]; rel +3.24% [-7.44, +13.91] **INCONCLUSIVE** | -0.00015 [-0.000465, +0.000164]; rel -2.90% [-8.98, +3.17] **INCONCLUSIVE** | +5.26e-05 [-0.000228, +0.000333]; rel +1.02% [-4.40, +6.43] **INCONCLUSIVE** |
 | vccf_b2_C0 | 0.003922 (1/(N-1) (information only)) | +0.000476 [-0.000108, +0.00106]; rel +12.13% [-2.76, +27.02] **information** | +0.000467 [+0.000126, +0.000808]; rel +11.91% [+3.22, +20.60] **information** | +0.000399 [-2.12e-05, +0.00082]; rel +10.18% [-0.54, +20.91] **information** |
-| vccf_b2_int | 0.001006 (int_0^2 |mean reference curve| dt) | +0.00017 [-6.69e-05, +0.000408]; rel +16.94% [-6.66, +40.53] **INCONCLUSIVE (reference not resolved)** | +9.07e-05 [-0.00014, +0.000322]; rel +9.02% [-13.96, +32.00] **INCONCLUSIVE (reference not resolved)** | +0.000116 [-9.35e-05, +0.000325]; rel +11.49% [-9.30, +32.28] **INCONCLUSIVE (reference not resolved)** |
+| vccf_b2_int | 0.001006 (int_0^2 \|mean reference curve\| dt) | +0.00017 [-6.69e-05, +0.000408]; rel +16.94% [-6.66, +40.53] **INCONCLUSIVE (reference not resolved)** | +9.07e-05 [-0.00014, +0.000322]; rel +9.02% [-13.96, +32.00] **INCONCLUSIVE (reference not resolved)** | +0.000116 [-9.35e-05, +0.000325]; rel +11.49% [-9.30, +32.28] **INCONCLUSIVE (reference not resolved)** |
 | vccf_b3_C0 | 0.003922 (1/(N-1) (information only)) | -0.000215 [-0.000525, +9.42e-05]; rel -5.49% [-13.39, +2.40] **information** | -0.00016 [-0.000628, +0.000308]; rel -4.08% [-16.01, +7.85] **information** | -9.99e-05 [-0.000387, +0.000187]; rel -2.55% [-9.87, +4.77] **information** |
-| vccf_b3_int | 0.0006366 (int_0^2 |mean reference curve| dt) | -0.000115 [-0.0002, -3.04e-05]; rel -18.14% [-31.49, -4.78] **INCONCLUSIVE (reference not resolved)** | -4.71e-05 [-0.000162, +6.74e-05]; rel -7.40% [-25.39, +10.59] **INCONCLUSIVE (reference not resolved)** | -0.000114 [-0.000208, -1.92e-05]; rel -17.84% [-32.68, -3.01] **INCONCLUSIVE (reference not resolved)** |
-| CT_k1_int | 0.1613 (int_0^2 |mean reference curve| dt) | +0.00104 [-0.0236, +0.0257]; rel +0.64% [-14.63, +15.91] **INCONCLUSIVE (reference not resolved)** | +0.000519 [-0.0209, +0.0219]; rel +0.32% [-12.95, +13.60] **INCONCLUSIVE (reference not resolved)** | -0.00244 [-0.0173, +0.0124]; rel -1.51% [-10.73, +7.70] **INCONCLUSIVE (reference not resolved)** |
-| CL0_k1 | 0.003892 (|mean reference|) | -2.63e-06 [-9.94e-05, +9.41e-05]; rel -0.07% [-2.55, +2.42] **INCONCLUSIVE** | +3.74e-05 [-6.47e-05, +0.00014]; rel +0.96% [-1.66, +3.58] **INCONCLUSIVE** | +5.25e-05 [-7.03e-05, +0.000175]; rel +1.35% [-1.81, +4.51] **INCONCLUSIVE** |
-| CT0_k1 | 0.003794 (|mean reference|) | +0.000108 [-3.68e-05, +0.000253]; rel +2.85% [-0.97, +6.66] **INCONCLUSIVE** | +9.25e-05 [-1.43e-06, +0.000187]; rel +2.44% [-0.04, +4.92] **INCONCLUSIVE** | +4.29e-05 [-5.56e-05, +0.000141]; rel +1.13% [-1.47, +3.73] **INCONCLUSIVE** |
-| CT_k2_int | 0.1161 (int_0^2 |mean reference curve| dt) | +0.0039 [-0.0125, +0.0203]; rel +3.36% [-10.75, +17.47] **INCONCLUSIVE** | -0.00621 [-0.0128, +0.000358]; rel -5.35% [-11.00, +0.31] **INCONCLUSIVE** | +0.00627 [-0.00399, +0.0165]; rel +5.40% [-3.44, +14.23] **INCONCLUSIVE** |
-| CL0_k2 | 0.003885 (|mean reference|) | +6.11e-06 [-8.6e-05, +9.82e-05]; rel +0.16% [-2.21, +2.53] **INCONCLUSIVE** | +1.08e-05 [-8.74e-05, +0.000109]; rel +0.28% [-2.25, +2.81] **INCONCLUSIVE** | -1.35e-06 [-6.64e-05, +6.36e-05]; rel -0.03% [-1.71, +1.64] **INCONCLUSIVE** |
-| CT0_k2 | 0.00394 (|mean reference|) | +4.58e-05 [-6.58e-05, +0.000157]; rel +1.16% [-1.67, +3.99] **INCONCLUSIVE** | +1.47e-05 [-6.98e-05, +9.91e-05]; rel +0.37% [-1.77, +2.52] **INCONCLUSIVE** | +5.16e-05 [-4.86e-05, +0.000152]; rel +1.31% [-1.23, +3.85] **INCONCLUSIVE** |
-| CT_k4_int | 0.1019 (int_0^2 |mean reference curve| dt) | +0.00576 [-0.0112, +0.0227]; rel +5.66% [-10.94, +22.25] **INCONCLUSIVE (reference not resolved)** | +0.00694 [-0.00792, +0.0218]; rel +6.81% [-7.77, +21.39] **INCONCLUSIVE (reference not resolved)** | +0.00492 [-0.00414, +0.014]; rel +4.83% [-4.07, +13.72] **INCONCLUSIVE (reference not resolved)** |
-| CL0_k4 | 0.003829 (|mean reference|) | +0.000102 [-5.99e-05, +0.000263]; rel +2.66% [-1.56, +6.88] **INCONCLUSIVE** | +5.95e-05 [-6.91e-05, +0.000188]; rel +1.55% [-1.81, +4.91] **INCONCLUSIVE** | +0.000115 [-3.79e-05, +0.000268]; rel +3.00% [-0.99, +7.00] **INCONCLUSIVE** |
-| CT0_k4 | 0.003882 (|mean reference|) | +5.96e-06 [-0.000146, +0.000158]; rel +0.15% [-3.76, +4.07] **INCONCLUSIVE** | +6.79e-05 [-6.93e-05, +0.000205]; rel +1.75% [-1.79, +5.28] **INCONCLUSIVE** | -1.14e-07 [-0.00013, +0.00013]; rel -0.00% [-3.34, +3.34] **INCONCLUSIVE** |
+| vccf_b3_int | 0.0006366 (int_0^2 \|mean reference curve\| dt) | -0.000115 [-0.0002, -3.04e-05]; rel -18.14% [-31.49, -4.78] **INCONCLUSIVE (reference not resolved)** | -4.71e-05 [-0.000162, +6.74e-05]; rel -7.40% [-25.39, +10.59] **INCONCLUSIVE (reference not resolved)** | -0.000114 [-0.000208, -1.92e-05]; rel -17.84% [-32.68, -3.01] **INCONCLUSIVE (reference not resolved)** |
+| CT_k1_int | 0.1613 (int_0^2 \|mean reference curve\| dt) | +0.00104 [-0.0236, +0.0257]; rel +0.64% [-14.63, +15.91] **INCONCLUSIVE (reference not resolved)** | +0.000519 [-0.0209, +0.0219]; rel +0.32% [-12.95, +13.60] **INCONCLUSIVE (reference not resolved)** | -0.00244 [-0.0173, +0.0124]; rel -1.51% [-10.73, +7.70] **INCONCLUSIVE (reference not resolved)** |
+| CL0_k1 | 0.003892 (\|mean reference\|) | -2.63e-06 [-9.94e-05, +9.41e-05]; rel -0.07% [-2.55, +2.42] **INCONCLUSIVE** | +3.74e-05 [-6.47e-05, +0.00014]; rel +0.96% [-1.66, +3.58] **INCONCLUSIVE** | +5.25e-05 [-7.03e-05, +0.000175]; rel +1.35% [-1.81, +4.51] **INCONCLUSIVE** |
+| CT0_k1 | 0.003794 (\|mean reference\|) | +0.000108 [-3.68e-05, +0.000253]; rel +2.85% [-0.97, +6.66] **INCONCLUSIVE** | +9.25e-05 [-1.43e-06, +0.000187]; rel +2.44% [-0.04, +4.92] **INCONCLUSIVE** | +4.29e-05 [-5.56e-05, +0.000141]; rel +1.13% [-1.47, +3.73] **INCONCLUSIVE** |
+| CT_k2_int | 0.1161 (int_0^2 \|mean reference curve\| dt) | +0.0039 [-0.0125, +0.0203]; rel +3.36% [-10.75, +17.47] **INCONCLUSIVE** | -0.00621 [-0.0128, +0.000358]; rel -5.35% [-11.00, +0.31] **INCONCLUSIVE** | +0.00627 [-0.00399, +0.0165]; rel +5.40% [-3.44, +14.23] **INCONCLUSIVE** |
+| CL0_k2 | 0.003885 (\|mean reference\|) | +6.11e-06 [-8.6e-05, +9.82e-05]; rel +0.16% [-2.21, +2.53] **INCONCLUSIVE** | +1.08e-05 [-8.74e-05, +0.000109]; rel +0.28% [-2.25, +2.81] **INCONCLUSIVE** | -1.35e-06 [-6.64e-05, +6.36e-05]; rel -0.03% [-1.71, +1.64] **INCONCLUSIVE** |
+| CT0_k2 | 0.00394 (\|mean reference\|) | +4.58e-05 [-6.58e-05, +0.000157]; rel +1.16% [-1.67, +3.99] **INCONCLUSIVE** | +1.47e-05 [-6.98e-05, +9.91e-05]; rel +0.37% [-1.77, +2.52] **INCONCLUSIVE** | +5.16e-05 [-4.86e-05, +0.000152]; rel +1.31% [-1.23, +3.85] **INCONCLUSIVE** |
+| CT_k4_int | 0.1019 (int_0^2 \|mean reference curve\| dt) | +0.00576 [-0.0112, +0.0227]; rel +5.66% [-10.94, +22.25] **INCONCLUSIVE (reference not resolved)** | +0.00694 [-0.00792, +0.0218]; rel +6.81% [-7.77, +21.39] **INCONCLUSIVE (reference not resolved)** | +0.00492 [-0.00414, +0.014]; rel +4.83% [-4.07, +13.72] **INCONCLUSIVE (reference not resolved)** |
+| CL0_k4 | 0.003829 (\|mean reference\|) | +0.000102 [-5.99e-05, +0.000263]; rel +2.66% [-1.56, +6.88] **INCONCLUSIVE** | +5.95e-05 [-6.91e-05, +0.000188]; rel +1.55% [-1.81, +4.91] **INCONCLUSIVE** | +0.000115 [-3.79e-05, +0.000268]; rel +3.00% [-0.99, +7.00] **INCONCLUSIVE** |
+| CT0_k4 | 0.003882 (\|mean reference\|) | +5.96e-06 [-0.000146, +0.000158]; rel +0.15% [-3.76, +4.07] **INCONCLUSIVE** | +6.79e-05 [-6.93e-05, +0.000205]; rel +1.75% [-1.79, +5.28] **INCONCLUSIVE** | -1.14e-07 [-0.00013, +0.00013]; rel -0.00% [-3.34, +3.34] **INCONCLUSIVE** |
 
 ## secondary: 11 replicas, reference 0.005
 
@@ -209,50 +209,50 @@ Curve cells: verdict of E_sig (sup |paired mean difference| / scale of the refer
 
 | scalar | scale | 0.01 vs 0.005 |
 |---|---|---|
-| vacf_C0 | 2.985 (|mean reference|) | -0.0102 [-0.0172, -0.00329]; rel -0.34% [-0.58, -0.11] **PASS** |
-| vacf_D2 | 0.06741 (int_0^2 |mean reference curve| dt) | +0.000161 [-0.000231, +0.000552]; rel +0.24% [-0.34, +0.82] **PASS** |
-| vacf_Zmin | 0.0679 (|mean reference|) | -0.000498 [-0.0022, +0.0012]; rel -0.73% [-3.23, +1.77] **INCONCLUSIVE** |
-| vacf_tmin | 0.1765 (|mean reference|) | +0.000112 [-0.00251, +0.00273]; rel +0.06% [-1.42, +1.55] **INCONCLUSIVE** |
-| vacf_tzero | 0.1175 (|mean reference|) | +8.6e-05 [-0.000395, +0.000567]; rel +0.07% [-0.34, +0.48] **PASS** |
-| vccf_b1_ext | 0.02964 (|mean reference|) | -4.84e-05 [-0.000568, +0.000471]; rel -0.16% [-1.92, +1.59] **INCONCLUSIVE** |
-| vccf_b1_text | 0.1011 (|mean reference|) | +0.00184 [+2.91e-06, +0.00368]; rel +1.82% [+0.00, +3.64] **INCONCLUSIVE** |
-| vccf_b2_ext | 0.003189 (|mean reference|) | +9.49e-05 [-0.000168, +0.000358]; rel +2.98% [-5.26, +11.22] **INCONCLUSIVE** |
-| vccf_b2_text | 0.2036 (|mean reference|) | -0.00496 [-0.0168, +0.00687]; rel -2.44% [-8.25, +3.38] **INCONCLUSIVE** |
-| CL_k1_tzero | 0.1917 (|mean reference|) | +0.0027 [-0.0153, +0.0207]; rel +1.41% [-7.98, +10.80] **INCONCLUSIVE** |
+| vacf_C0 | 2.985 (\|mean reference\|) | -0.0102 [-0.0172, -0.00329]; rel -0.34% [-0.58, -0.11] **PASS** |
+| vacf_D2 | 0.06741 (int_0^2 \|mean reference curve\| dt) | +0.000161 [-0.000231, +0.000552]; rel +0.24% [-0.34, +0.82] **PASS** |
+| vacf_Zmin | 0.0679 (\|mean reference\|) | -0.000498 [-0.0022, +0.0012]; rel -0.73% [-3.23, +1.77] **INCONCLUSIVE** |
+| vacf_tmin | 0.1765 (\|mean reference\|) | +0.000112 [-0.00251, +0.00273]; rel +0.06% [-1.42, +1.55] **INCONCLUSIVE** |
+| vacf_tzero | 0.1175 (\|mean reference\|) | +8.6e-05 [-0.000395, +0.000567]; rel +0.07% [-0.34, +0.48] **PASS** |
+| vccf_b1_ext | 0.02964 (\|mean reference\|) | -4.84e-05 [-0.000568, +0.000471]; rel -0.16% [-1.92, +1.59] **INCONCLUSIVE** |
+| vccf_b1_text | 0.1011 (\|mean reference\|) | +0.00184 [+2.91e-06, +0.00368]; rel +1.82% [+0.00, +3.64] **INCONCLUSIVE** |
+| vccf_b2_ext | 0.003189 (\|mean reference\|) | +9.49e-05 [-0.000168, +0.000358]; rel +2.98% [-5.26, +11.22] **INCONCLUSIVE** |
+| vccf_b2_text | 0.2036 (\|mean reference\|) | -0.00496 [-0.0168, +0.00687]; rel -2.44% [-8.25, +3.38] **INCONCLUSIVE** |
+| CL_k1_tzero | 0.1917 (\|mean reference\|) | +0.0027 [-0.0153, +0.0207]; rel +1.41% [-7.98, +10.80] **INCONCLUSIVE** |
 | CL_k1_min | nan (-) | INCONCLUSIVE (undefined in 0/11 at dt, 3/11 at reference) |
 | CL_k1_tmin | nan (-) | INCONCLUSIVE (undefined in 0/11 at dt, 3/11 at reference) |
-| CT_k1_thalf | 0.1183 (|mean reference|) | +0.000295 [-0.00214, +0.00273]; rel +0.25% [-1.81, +2.31] **INCONCLUSIVE** |
-| CL_k2_tzero | 0.1396 (|mean reference|) | -0.000975 [-0.00592, +0.00397]; rel -0.70% [-4.24, +2.85] **INCONCLUSIVE** |
-| CL_k2_min | 0.1182 (|mean reference|) | -0.00357 [-0.0189, +0.0117]; rel -3.02% [-15.98, +9.94] **INCONCLUSIVE (reference not resolved)** |
-| CL_k2_tmin | 0.2692 (|mean reference|) | -0.0295 [-0.0782, +0.0192]; rel -10.96% [-29.07, +7.14] **INCONCLUSIVE (reference not resolved)** |
-| CT_k2_thalf | 0.08629 (|mean reference|) | -0.000497 [-0.00179, +0.000795]; rel -0.58% [-2.07, +0.92] **INCONCLUSIVE** |
-| CL_k4_tzero | 0.1037 (|mean reference|) | +3.44e-05 [-0.00394, +0.00401]; rel +0.03% [-3.80, +3.87] **INCONCLUSIVE** |
-| CL_k4_min | 0.1581 (|mean reference|) | -0.00148 [-0.0185, +0.0155]; rel -0.94% [-11.69, +9.82] **INCONCLUSIVE** |
-| CL_k4_tmin | 0.185 (|mean reference|) | -0.00322 [-0.0293, +0.0229]; rel -1.74% [-15.85, +12.37] **INCONCLUSIVE (reference not resolved)** |
-| CT_k4_thalf | 0.06798 (|mean reference|) | -9.33e-05 [-0.00254, +0.00236]; rel -0.14% [-3.74, +3.47] **INCONCLUSIVE** |
-| vh_t0.1_peak_excess | 1.425 (|mean reference|) | +0.000725 [-0.00545, +0.0069]; rel +0.05% [-0.38, +0.48] **PASS** |
-| vh_t0.1_rpeak | 1.104 (|mean reference|) | +0.000358 [-0.000307, +0.00102]; rel +0.03% [-0.03, +0.09] **PASS** |
-| vh_t0.5_peak_excess | 0.5929 (|mean reference|) | +0.00319 [-0.00258, +0.00897]; rel +0.54% [-0.44, +1.51] **INCONCLUSIVE** |
-| vh_t0.5_rpeak | 1.155 (|mean reference|) | -0.000418 [-0.00246, +0.00163]; rel -0.04% [-0.21, +0.14] **PASS** |
-| vh_t1_peak_excess | 0.3304 (|mean reference|) | -0.00059 [-0.00737, +0.00619]; rel -0.18% [-2.23, +1.87] **INCONCLUSIVE** |
-| vh_t1_rpeak | 1.166 (|mean reference|) | +0.000382 [-0.00917, +0.00994]; rel +0.03% [-0.79, +0.85] **PASS** |
-| vh_t2_peak_excess | 0.1194 (|mean reference|) | -0.00314 [-0.00719, +0.000922]; rel -2.63% [-6.02, +0.77] **INCONCLUSIVE** |
-| vh_t2_rpeak | 1.194 (|mean reference|) | -0.00617 [-0.0204, +0.00809]; rel -0.52% [-1.71, +0.68] **INCONCLUSIVE** |
+| CT_k1_thalf | 0.1183 (\|mean reference\|) | +0.000295 [-0.00214, +0.00273]; rel +0.25% [-1.81, +2.31] **INCONCLUSIVE** |
+| CL_k2_tzero | 0.1396 (\|mean reference\|) | -0.000975 [-0.00592, +0.00397]; rel -0.70% [-4.24, +2.85] **INCONCLUSIVE** |
+| CL_k2_min | 0.1182 (\|mean reference\|) | -0.00357 [-0.0189, +0.0117]; rel -3.02% [-15.98, +9.94] **INCONCLUSIVE (reference not resolved)** |
+| CL_k2_tmin | 0.2692 (\|mean reference\|) | -0.0295 [-0.0782, +0.0192]; rel -10.96% [-29.07, +7.14] **INCONCLUSIVE (reference not resolved)** |
+| CT_k2_thalf | 0.08629 (\|mean reference\|) | -0.000497 [-0.00179, +0.000795]; rel -0.58% [-2.07, +0.92] **INCONCLUSIVE** |
+| CL_k4_tzero | 0.1037 (\|mean reference\|) | +3.44e-05 [-0.00394, +0.00401]; rel +0.03% [-3.80, +3.87] **INCONCLUSIVE** |
+| CL_k4_min | 0.1581 (\|mean reference\|) | -0.00148 [-0.0185, +0.0155]; rel -0.94% [-11.69, +9.82] **INCONCLUSIVE** |
+| CL_k4_tmin | 0.185 (\|mean reference\|) | -0.00322 [-0.0293, +0.0229]; rel -1.74% [-15.85, +12.37] **INCONCLUSIVE (reference not resolved)** |
+| CT_k4_thalf | 0.06798 (\|mean reference\|) | -9.33e-05 [-0.00254, +0.00236]; rel -0.14% [-3.74, +3.47] **INCONCLUSIVE** |
+| vh_t0.1_peak_excess | 1.425 (\|mean reference\|) | +0.000725 [-0.00545, +0.0069]; rel +0.05% [-0.38, +0.48] **PASS** |
+| vh_t0.1_rpeak | 1.104 (\|mean reference\|) | +0.000358 [-0.000307, +0.00102]; rel +0.03% [-0.03, +0.09] **PASS** |
+| vh_t0.5_peak_excess | 0.5929 (\|mean reference\|) | +0.00319 [-0.00258, +0.00897]; rel +0.54% [-0.44, +1.51] **INCONCLUSIVE** |
+| vh_t0.5_rpeak | 1.155 (\|mean reference\|) | -0.000418 [-0.00246, +0.00163]; rel -0.04% [-0.21, +0.14] **PASS** |
+| vh_t1_peak_excess | 0.3304 (\|mean reference\|) | -0.00059 [-0.00737, +0.00619]; rel -0.18% [-2.23, +1.87] **INCONCLUSIVE** |
+| vh_t1_rpeak | 1.166 (\|mean reference\|) | +0.000382 [-0.00917, +0.00994]; rel +0.03% [-0.79, +0.85] **PASS** |
+| vh_t2_peak_excess | 0.1194 (\|mean reference\|) | -0.00314 [-0.00719, +0.000922]; rel -2.63% [-6.02, +0.77] **INCONCLUSIVE** |
+| vh_t2_rpeak | 1.194 (\|mean reference\|) | -0.00617 [-0.0204, +0.00809]; rel -0.52% [-1.71, +0.68] **INCONCLUSIVE** |
 | vccf_b1_C0 | 0.003922 (1/(N-1) (information only)) | +0.000637 [+6.56e-05, +0.00121]; rel +16.25% [+1.67, +30.82] **information** |
-| vccf_b1_int | 0.005406 (int_0^2 |mean reference curve| dt) | -1.19e-05 [-0.000236, +0.000212]; rel -0.22% [-4.37, +3.93] **INCONCLUSIVE** |
+| vccf_b1_int | 0.005406 (int_0^2 \|mean reference curve\| dt) | -1.19e-05 [-0.000236, +0.000212]; rel -0.22% [-4.37, +3.93] **INCONCLUSIVE** |
 | vccf_b2_C0 | 0.003922 (1/(N-1) (information only)) | +0.000105 [-0.000505, +0.000714]; rel +2.67% [-12.89, +18.22] **information** |
-| vccf_b2_int | 0.001031 (int_0^2 |mean reference curve| dt) | +4.26e-05 [-0.000123, +0.000208]; rel +4.13% [-11.94, +20.21] **INCONCLUSIVE** |
+| vccf_b2_int | 0.001031 (int_0^2 \|mean reference curve\| dt) | +4.26e-05 [-0.000123, +0.000208]; rel +4.13% [-11.94, +20.21] **INCONCLUSIVE** |
 | vccf_b3_C0 | 0.003922 (1/(N-1) (information only)) | -8.38e-05 [-0.000332, +0.000165]; rel -2.14% [-8.47, +4.20] **information** |
-| vccf_b3_int | 0.0005768 (int_0^2 |mean reference curve| dt) | -2.13e-05 [-8.88e-05, +4.62e-05]; rel -3.69% [-15.39, +8.00] **INCONCLUSIVE (reference not resolved)** |
-| CT_k1_int | 0.1589 (int_0^2 |mean reference curve| dt) | +0.00057 [-0.0115, +0.0127]; rel +0.36% [-7.26, +7.97] **INCONCLUSIVE** |
-| CL0_k1 | 0.00388 (|mean reference|) | +1.89e-05 [-0.000169, +0.000207]; rel +0.49% [-4.36, +5.34] **INCONCLUSIVE** |
-| CT0_k1 | 0.003884 (|mean reference|) | +5.02e-05 [-9.73e-05, +0.000198]; rel +1.29% [-2.51, +5.09] **INCONCLUSIVE** |
-| CT_k2_int | 0.1209 (int_0^2 |mean reference curve| dt) | +0.0011 [-0.00591, +0.00811]; rel +0.91% [-4.89, +6.71] **INCONCLUSIVE** |
-| CL0_k2 | 0.003904 (|mean reference|) | +1.72e-05 [-6.31e-05, +9.75e-05]; rel +0.44% [-1.62, +2.50] **INCONCLUSIVE** |
-| CT0_k2 | 0.003893 (|mean reference|) | +2.29e-05 [-4.95e-05, +9.52e-05]; rel +0.59% [-1.27, +2.45] **INCONCLUSIVE** |
-| CT_k4_int | 0.09788 (int_0^2 |mean reference curve| dt) | -0.00665 [-0.0155, +0.00218]; rel -6.79% [-15.81, +2.23] **INCONCLUSIVE** |
-| CL0_k4 | 0.003889 (|mean reference|) | +3.27e-05 [-0.000155, +0.000221]; rel +0.84% [-3.99, +5.68] **INCONCLUSIVE** |
-| CT0_k4 | 0.003901 (|mean reference|) | -3.09e-05 [-0.000145, +8.32e-05]; rel -0.79% [-3.72, +2.13] **INCONCLUSIVE** |
+| vccf_b3_int | 0.0005768 (int_0^2 \|mean reference curve\| dt) | -2.13e-05 [-8.88e-05, +4.62e-05]; rel -3.69% [-15.39, +8.00] **INCONCLUSIVE (reference not resolved)** |
+| CT_k1_int | 0.1589 (int_0^2 \|mean reference curve\| dt) | +0.00057 [-0.0115, +0.0127]; rel +0.36% [-7.26, +7.97] **INCONCLUSIVE** |
+| CL0_k1 | 0.00388 (\|mean reference\|) | +1.89e-05 [-0.000169, +0.000207]; rel +0.49% [-4.36, +5.34] **INCONCLUSIVE** |
+| CT0_k1 | 0.003884 (\|mean reference\|) | +5.02e-05 [-9.73e-05, +0.000198]; rel +1.29% [-2.51, +5.09] **INCONCLUSIVE** |
+| CT_k2_int | 0.1209 (int_0^2 \|mean reference curve\| dt) | +0.0011 [-0.00591, +0.00811]; rel +0.91% [-4.89, +6.71] **INCONCLUSIVE** |
+| CL0_k2 | 0.003904 (\|mean reference\|) | +1.72e-05 [-6.31e-05, +9.75e-05]; rel +0.44% [-1.62, +2.50] **INCONCLUSIVE** |
+| CT0_k2 | 0.003893 (\|mean reference\|) | +2.29e-05 [-4.95e-05, +9.52e-05]; rel +0.59% [-1.27, +2.45] **INCONCLUSIVE** |
+| CT_k4_int | 0.09788 (int_0^2 \|mean reference curve\| dt) | -0.00665 [-0.0155, +0.00218]; rel -6.79% [-15.81, +2.23] **INCONCLUSIVE** |
+| CL0_k4 | 0.003889 (\|mean reference\|) | +3.27e-05 [-0.000155, +0.000221]; rel +0.84% [-3.99, +5.68] **INCONCLUSIVE** |
+| CT0_k4 | 0.003901 (\|mean reference\|) | -3.09e-05 [-0.000145, +8.32e-05]; rel -0.79% [-3.72, +2.13] **INCONCLUSIVE** |
 
 ## display support (shape-normalized display; E_sig verdicts and scalar FAILs only)
 

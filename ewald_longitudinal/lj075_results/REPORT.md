@@ -470,13 +470,23 @@ undetermined (−1.0% [−3.4, +1.5]).
 Supplementary analysis of the existing trajectories (`observable_dt/REPORT_observable_dt.md`,
 `lj075_observable_dt.py`). The protocol was frozen before any difference was computed. The verdicts above are unchanged.
 
-- At 1% of each feature's own amplitude (simultaneous 95%), dt = 0.01 is certified only for the van Hove core at
-  t = 0.1. The same holds for dt = 0.005.
-- No systematic dt dependence is detected. Differences 0.01 − 0.00125 are at the noise floor set by 0.0025 − 0.00125.
-- 5 isolated FAIL cells out of 224 are non-systematic and consistent with chance.
-- The limit is statistical: weak reference lobes are not resolved, and the difference bands are 3–15% of the lobe
-  amplitudes.
-- Amplitude: dt = 0.01 lowers ⟨|v|²⟩ by −0.38% [−0.67, −0.09].
-- Measured saving of dt = 0.01 over 0.005 per physical time: 49–50%.
-- A minimal burst design (about 170 coupled bursts of 0.5 time units, about 6.8 core-h) would decide the t ≤ 0.5
-  features. It is not run. Longer lags and the long-time D stay unresolved.
+- At 1% of each feature's own amplitude (simultaneous 97.5% bounds, jointly ≥ 95%), nothing of substance is
+  certified for dt = 0.01 or 0.005. The only SUPPORTED cell is a single r bin (r = 0.84) at the edge of the van Hove
+  core at t = 0.1, where g_d ≈ 0.01; it says nothing about the van Hove structure.
+- No whole-curve deviation is resolved in the primary group, but this is not equivalence: dt = 0.01 effects up to
+  the simultaneous upper bounds (e.g. VACF 1.0e-2 of C(0), C_L(k1) 0.092) are not excluded. Resolved deviations at
+  dt = 0.01 vs 0.00125 include ⟨|v|²⟩ −0.38% [−0.67, −0.09], a slower C_T(k1) decay for t ≤ 0.5 (half-decay time
+  +3.6% [+0.6, +6.6]) and g_d(r < 0.9, t = 2). All are INCONCLUSIVE against 1% except ⟨|v|²⟩ (PASS).
+- 7 FAIL cells (5 of 224 windows, 2 of 60 whole-curve cells), 6 of them involving dt = 0.01 and 5 in the secondary
+  0.01 vs 0.005 comparison. They are reported as observed. At this sample size the counts cannot separate chance from
+  a dt effect.
+- Most cells are undecided for statistical reasons: weak reference lobes are not resolved, and where they are, the
+  difference bands reach 1.5–8.5% of the lobe amplitude.
+- D_GK(t = 2): 0.01 vs 0.005 PASSes on the protocol scale (1/3)∫|C|dt ≈ 2.3 D_GK. Relative to D_GK itself the
+  difference is +0.55% [−0.78, +1.88], so 1% agreement of D_GK is not shown.
+- Measured saving of dt = 0.01 over 0.005 per physical time: 48.7% (ranks 12/5) and 50.4% (14/5), close to the 50%
+  step-count estimate.
+- A minimal burst design (about 170 coupled bursts of 0.5 time units, about 6.8 core-h) is sized for t ≤ 0.5 features
+  at a true difference of 0. At the pilot differences the VACF dip needs about 1650 bursts (about 67 core-h), and the
+  dip cannot PASS while its reference lobe is unresolved. It is not run. Longer lags and the long-time D stay
+  unresolved.

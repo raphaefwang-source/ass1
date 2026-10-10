@@ -1,0 +1,19 @@
+{
+ "purpose": "check that lj075_observable_dt.level_observables reproduces prl_toy_models.compute_observables (project definitions) on a real trajectory",
+ "trajectory": "raw/dt_study/A_rep101_L4_T10.npz, level dt 0.01 (frames every 0.01), frames 100-500",
+ "settings": "origins t0 = 1, 2, 3 (compute_observables origins=3 on the slice, starts 0/100/200); lags 0-200 frames (0-2); VCCF edges [0, 1.59, 2.55, L/2]; current shells k1, k2, k4 (per-mode normalized, shell mean); van Hove 60 bins to L/2 at t = 0, 0.1, 0.5, 1, 2",
+ "max_abs_difference": {
+  "vacf": 8.881784197001252e-16,
+  "vccf (normalized by <|v|^2>)": 4.85722573273506e-17,
+  "CL_k1": 2.7755575615628914e-16,
+  "CT_k1": 3.3306690738754696e-16,
+  "CL_k2": 3.3306690738754696e-16,
+  "CT_k2": 2.220446049250313e-16,
+  "CL_k4": 4.440892098500626e-16,
+  "CT_k4": 4.0592529337857286e-16,
+  "g_d": 0.0
+ },
+ "note": "run for the report revision after the analysis (the original development check had not been saved); read-only, uses the analysis code unchanged in level_observables",
+ "at": "2026-10-10T07:34:18+0000",
+ "script": "# Re-check: lj075_observable_dt.level_observables vs prl_toy_models.compute_observables on a real trajectory.\nimport sys, json, numpy as np\nsys.path.insert(0, \"/home/user/ass1/ewald_longitudinal\")\nsys.path.insert(0, \"/home/user/ass1/ewald_longitudinal/toy_models\")\nimport lj075_observable_dt as O\nimport prl_toy_models as P\nf = O.RAWDIR / \"A_rep101_L4_T10.npz\"\ndt = 0.01\nwith np.load(f) as z:\n    Q, V = z[f\"Q_{dt}\"], z[f\"V_{dt}\"]\na0, T = 100, 401          # frames 100..500 (t = 1..5); limit 200 lags; starts 0,100,200 -> origins t = 1, 2, 3\nQs, Vs = Q[a0:a0 + T].astype(float), V[a0:a0 + T].astype(float)\nt = np.arange(T) * dt\nref = {}\nfor name, modes in O.BASE[\"observables\"][\"currents\"][\"shells\"].items():\n    ref[name] = P.compute_observables(Qs, Vs, t, O.L, max_lag=200, n_lags=201, origins=3, r_bins=60,\n                                      vccf_edges=O.BASE[\"observables\"][\"vccf\"][\"bins\"], modes=modes)\nr0 = ref[\"k1\"]\nassert list(r0[\"time_origins\"]) == [0, 100, 200] and len(r0[\"lag_frames\"]) == 201\nmine = O.level_observables(Q, V, dt, np.array([1.0, 2.0, 3.0]))\nout = {}\nout[\"vacf\"] = float(np.max(np.abs(mine[\"vacf\"] - r0[\"vacf\"])))\nout[\"vccf\"] = float(np.max(np.abs(mine[\"vccf\"] - r0[\"vccf_normalized\"].T)))\nfor name in ref:\n    out[f\"CL_{name}\"] = float(np.max(np.abs(mine[f\"CL_{name}\"] - ref[name][\"hydro_L\"].mean(1))))\n    out[f\"CT_{name}\"] = float(np.max(np.abs(mine[f\"CT_{name}\"] - ref[name][\"hydro_T\"].mean(1))))\nvh_t = O.BASE[\"observables\"][\"van_hove\"][\"times\"]\nout[\"gd\"] = float(np.max(np.abs(mine[\"gd\"] - r0[\"van_hove_distinct\"][[int(round(x / 0.01)) for x in vh_t]])))\nprint(json.dumps(out, indent=1))\nprint(\"scale vacf\", np.abs(r0[\"vacf\"]).max(), \"gd max\", r0[\"van_hove_distinct\"].max())\n"
+}
