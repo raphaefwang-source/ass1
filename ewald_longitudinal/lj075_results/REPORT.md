@@ -88,7 +88,7 @@ sha256 of the scripts, untracked files, library versions and thread settings.
 |---|---|---|---|---|---|---|
 | representative (`verify_representative_A.json`): 16 dtinit, 7 eqinit/eqhot, 18 fcc/RSA-prepared canonical states, 1 jittered fcc lattice | 42 | 6.1e-8 – 7.3e-8 | 1.53e-7 | 4.632 – 12.20 | 12 / 5 / 4 | PASS |
 | visited, equilibration runs (`verify_visited_eq_A.json`): t = 0, 0.25, 1, 5, 20, 50, min r, max and min Ritz value per run; exact O-step inputs (q_half, p', ξ regenerated from the run's RNG stream) | 72 | ≤ 7.6e-8 | 1.60e-7 | 4.578 – 12.50 | **14** / 5 / **5** | PASS at 14/5/5 |
-| visited, dt-study and long-D chains (`verify_visited_dt_A.json`): final and min-r frame of the dt = 0.01 level | 38 | VISITED_DT_OP | VISITED_DT_K | VISITED_DT_LAM | VISITED_DT_RANKS | VISITED_DT_RESULT |
+| visited, dt-study and long-D chains (`verify_visited_dt_A.json`): final and min-r frame of the dt = 0.01 level | 38 | 6.7e-8 – 7.4e-8 | 1.59e-7 | 4.632 – 12.44 | 12 / 5 / 4 | PASS |
 
 Rank finding:
 - On the representative states the strict rule needs noise rank 12.
@@ -96,7 +96,9 @@ Rank finding:
   k_min plane-wave probe. That exceeds budget/10 = 2e-8 but is 0.14 of the budget. The O-step increment error at
   rank 12 is ≤ 2e-10.
 - The coupling map (only used by the dt study) at rank 4 gives 2.4e-8 at dt 0.01 on the same state.
-- Hence the recommendation is **noise rank 14**, which costs +8% per step (§8).
+- Hence the recommendation is **noise rank 14**, which costs +8% per step (§8). At ranks 14/5 the worst Lanczos error over
+  all 152 states at dt 0.005 is 6.4e-10 (noise) and 2.8e-11 (damping); this is checked by `runner_entry_ranks` and
+  recorded in `verification_runner.json` (`lj_rho0.75_kT1.0_A_prod_A_N256_dt0.005`).
 - The runs of this study used rank 12 (and coupling rank 4). Their own on-line monitor on actual inputs (every 500
   steps; 168 samples in the equilibration runs; every 200 steps in the dt study) never exceeded these values:
   - noise: 1.6e-10 overall and 1.8e-9 in the k_min component;
@@ -104,8 +106,8 @@ Rank finding:
   - coupling: 3.5e-10.
 
 Structural checks (all states): symmetry ≤ 2e-17, null space ≤ 2e-15, literal matvec vs dense ≤ 8e-16, λ_min > 0, Ritz
-values > 0, k = 0 retained. Dense O-step vs reference O-step ≤ 1e-8. FDT (damping and noise built from the same
-Γ_h, finite-time FDT residual) for Lanczos ≤ 4.3e-11. Exact-OU coupling: 2 fine steps = 1 coarse step to 3e-15
+values > 0, k = 0 retained. O-step with Γ_h vs O-step with Γ_ref ≤ 1.0e-8. FDT (damping and noise built from the same
+Γ_h, finite-time FDT residual) for Lanczos ≤ 5.5e-11. Exact-OU coupling: 2 fine steps = 1 coarse step to 3e-15
 (dense) and ≤ 4e-11 (Lanczos).
 
 ### 2.3 PPPM parameters
