@@ -1,0 +1,16 @@
+{
+ "dir": "/home/user/ass1/ewald_longitudinal/lj075_results/raw/hpc_pilot/lj075_pilot/local-20261010b/fast_dt0.005",
+ "host": "vm",
+ "mount": {
+  "target": "/",
+  "fstype": "ext4",
+  "options": "rw,relatime,discard,no_prefetch_block_bitmaps,resv_strict,resuid=65534,resgid=65534"
+ },
+ "holder_acquired": true,
+ "second_refused": true,
+ "probe_while_held": "held",
+ "probe_after_kill": "free",
+ "acquire_after_kill": true,
+ "warnings": [],
+ "passed": true
+}

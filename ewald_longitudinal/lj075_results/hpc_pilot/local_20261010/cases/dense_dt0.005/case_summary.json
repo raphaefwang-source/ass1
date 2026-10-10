@@ -1,0 +1,79 @@
+{
+ "case": "dense_dt0.005",
+ "method": "reference",
+ "dt": 0.005,
+ "seed": 7005,
+ "root": "/home/user/ass1/ewald_longitudinal/lj075_results/raw/hpc_pilot/lj075_pilot/local-20261010b",
+ "start": "2026-10-10T08:15:45+00:00",
+ "slurm_job_id": null,
+ "host": "vm",
+ "threads": {
+  "OPENBLAS_NUM_THREADS": "1",
+  "OMP_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1"
+ },
+ "init_state": "/home/user/ass1/ewald_longitudinal/lj075_results/hpc_pilot/init_state_eqA_lgv_s305_t50.npz",
+ "init_sha256": "fb55f1e1119aa10a3193883e49e78f1fcf48938b91fc887cc9c45ab5d4337047",
+ "phases": [
+  {
+   "phase": "segment1_signal_stop",
+   "exit_code": 75,
+   "expected_exit_code": 75,
+   "process_wall_s": 44.642749893000655,
+   "process_cpu_s": 44.14769,
+   "children_peak_rss_mb_so_far": 603.4375,
+   "sigusr1_sent_after_s": 42.032004382001105
+  },
+  {
+   "phase": "segment2_step_limit",
+   "exit_code": 75,
+   "expected_exit_code": 75,
+   "process_wall_s": 51.06326468299994,
+   "process_cpu_s": 51.651484,
+   "children_peak_rss_mb_so_far": 603.5,
+   "duplicate_exit_code": 3,
+   "duplicate_expected_exit_code": 3,
+   "duplicate_stderr": "ass1/ewald_longitudinal/lj075_results/raw/hpc_pilot/lj075_pilot/local-20261010b/dense_dt0.005/run: locked by another live process (holder note: {'host': 'vm', 'pid': 18754, 'slurm_job_id': None, 'slurm_array_task': None, 'since': '2026-10-10T08:16:32+0000'}); this process changes nothing and exits 3",
+   "segment2_running_after_duplicate": true
+  },
+  {
+   "phase": "segment3_to_end_0",
+   "exit_code": 0,
+   "expected_exit_code": 0,
+   "process_wall_s": 233.0137771869995,
+   "process_cpu_s": 230.05171099999995,
+   "children_peak_rss_mb_so_far": 603.671875
+  },
+  {
+   "phase": "twin_continuous",
+   "exit_code": 0,
+   "expected_exit_code": 0,
+   "process_wall_s": 103.62045394099914,
+   "process_cpu_s": 102.37241100000006,
+   "children_peak_rss_mb_so_far": 603.69921875
+  }
+ ],
+ "lock_check_exit_code": 0,
+ "restart": {
+  "restart_steps": [
+   26,
+   56
+  ],
+  "twin_steps": 66,
+  "diag_bitwise_except_wall": true,
+  "frames_bitwise": true,
+  "monitor_bitwise": true,
+  "q_p_at_twin_end_bitwise": true,
+  "twin_exit_code": 0,
+  "twin_complete": true,
+  "covers_both_restarts": true,
+  "note": "mass 1: the saved velocity V = p / m equals p bitwise",
+  "passed": true
+ },
+ "end": "2026-10-10T08:22:59+00:00",
+ "case_wall_s": 433.850944830001,
+ "run_state": "complete",
+ "children_cpu_s": 428.496977,
+ "children_peak_rss_mb": 603.69921875,
+ "external_stop": null
+}

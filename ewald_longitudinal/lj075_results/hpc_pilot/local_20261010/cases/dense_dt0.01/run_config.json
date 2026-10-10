@@ -1,0 +1,166 @@
+{
+ "resolved": {
+  "config": "lj_rho0.75_kT1.0_A_prod",
+  "description": "LJ rho 0.75, kT 1.0, law A only: recommended production configuration of the lj075 study (lj075_results/REPORT.md); PPPM set of lj_rho0.75_kT1.0_costopt, noise rank 14",
+  "law": "A",
+  "potential": "lj",
+  "N": 256,
+  "L": 6.98864371789039,
+  "dt": 0.01,
+  "model": {
+   "gamma": 0.5,
+   "kappa": 0.7,
+   "r_ref": 1.3,
+   "kT": 1.0,
+   "mass": 1.0,
+   "density": 0.75,
+   "epsilon": 1.0,
+   "sigma": 1.0,
+   "r_on": 2.0,
+   "r_cut": 2.5,
+   "stop_rmin": 0.45
+  },
+  "pppm": {
+   "xi": 0.85,
+   "s": 4.1,
+   "eta": 0.6779116381586452,
+   "p": 8
+  },
+  "pair_search": "tree",
+  "force_method": "neighbor",
+  "rank_noise": 14,
+  "rank_damp": 5,
+  "rank_provenance": {
+   "rule": "strict Krylov rule, table row N <= 256",
+   "table_row_N_max": 256,
+   "verified_at_this_N": true,
+   "verified_N": [
+    256
+   ]
+  },
+  "operator_budget": 2e-07,
+  "warnings": [
+   "dt = 0.01: no dt has been validated for lj_rho0.75_kT1.0_A_prod yet"
+  ],
+  "thermostat_method": "reference"
+ },
+ "plan": {
+  "seed": 7010,
+  "burn_steps": 0,
+  "prod_steps": 100,
+  "save_every": 1,
+  "save_burnin": false,
+  "init": "from_state",
+  "init_source_seed": null,
+  "init_jitter": null,
+  "from_state": "/home/user/ass1/ewald_longitudinal/lj075_results/hpc_pilot/init_state_eqA_lgv_s305_t50.npz",
+  "burn_in_time": 0.0,
+  "production_time": 1.0,
+  "save_interval_time": 0.01,
+  "burn_in_note": "initial run plan, not an equilibration guarantee; check the diagnostics"
+ },
+ "init": {
+  "method": "from_state",
+  "rng": "numpy default_rng([seed, 2]) (seed 7010)",
+  "equilibrated": false,
+  "source": "/home/user/ass1/ewald_longitudinal/lj075_results/hpc_pilot/init_state_eqA_lgv_s305_t50.npz",
+  "source_sha256": "fb55f1e1119aa10a3193883e49e78f1fcf48938b91fc887cc9c45ab5d4337047",
+  "source_state_point": {
+   "file keys": {
+    "L": 6.98864371789039,
+    "kT": 1.0,
+    "N": 256.0
+   }
+  },
+  "source_kinetic_temperature": 0.92030910293161,
+  "note": "state supplied by the user; its equilibration status is the user's responsibility"
+ },
+ "physics_hash": "42cab59c384efc56",
+ "operator_hash": "b91db846f62fd7d6",
+ "verification": {
+  "key": "lj_rho0.75_kT1.0_A_prod_A_N256",
+  "verified": null,
+  "not_applicable": true,
+  "reason": "reference method: full periodic lattice-sum Gamma with dense matrix functions (no PPPM, no Lanczos); the PPPM/Lanczos verification does not apply"
+ },
+ "runtime": {
+  "checkpoint_every_steps": 25,
+  "checkpoint_every_minutes": 600.0,
+  "monitor_every_steps": 10
+ },
+ "noise_rng": "numpy default_rng([seed, 1]) = PCG64 (seed 7010)",
+ "command": [
+  "/usr/local/bin/python3",
+  "/home/user/ass1/ewald_longitudinal/toy_run.py",
+  "--config",
+  "lj_rho0.75_kT1.0_A_prod",
+  "--potential",
+  "lj",
+  "--kernel",
+  "A",
+  "--N",
+  "256",
+  "--seed",
+  "7010",
+  "--dt",
+  "0.01",
+  "--allow-unverified",
+  "--save-every-steps",
+  "1",
+  "--checkpoint-every-steps",
+  "25",
+  "--checkpoint-every-minutes",
+  "600",
+  "--monitor-every-steps",
+  "10",
+  "--from-state",
+  "/home/user/ass1/ewald_longitudinal/lj075_results/hpc_pilot/init_state_eqA_lgv_s305_t50.npz",
+  "--method",
+  "reference",
+  "--out",
+  "/home/user/ass1/ewald_longitudinal/lj075_results/raw/hpc_pilot/lj075_pilot/local-20261010b/dense_dt0.01/run",
+  "--quiet",
+  "--production",
+  "1.0"
+ ],
+ "state_point": "lj_rho0.75_kT1.0",
+ "code": {
+  "git": {
+   "commit": "2e8576741f3e20f165767c90852862b686f0d4b9",
+   "dirty": false
+  },
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "host": "vm",
+  "created": "2026-10-10T08:24:18+00:00",
+  "threads": {
+   "OPENBLAS_NUM_THREADS": "1",
+   "OMP_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ },
+ "diag_cols": [
+  "step",
+  "t",
+  "T_kin",
+  "U_per_N",
+  "KE_per_N",
+  "P_norm",
+  "rmin",
+  "step_wall_s",
+  "ritz_min",
+  "ritz_max"
+ ],
+ "operator_record": {
+  "images": "lattice",
+  "rel_tol": 1e-10,
+  "r_tail": 37.62,
+  "tail_estimate_per_pair": 1.2132455886272403e-11,
+  "near_images": 33,
+  "far_images": 988,
+  "chebyshev_degree": 16,
+  "ghat0": 41.41284998382907,
+  "zero_mode_per_pair": 0.04044223631233308
+ }
+}

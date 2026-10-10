@@ -1,0 +1,23 @@
+[2026-10-10T08:15:51+00:00] run /home/user/ass1/ewald_longitudinal/lj075_results/raw/hpc_pilot/lj075_pilot/local-20261010b/dense_dt0.005/run (new)
+[2026-10-10T08:15:51+00:00]   config lj_rho0.75_kT1.0_A_prod: LJ rho 0.75, kT 1.0, law A only: recommended production configuration of the lj075 study (lj075_results/REPORT.md); PPPM set of lj_rho0.75_kT1.0_costopt, noise rank 14
+[2026-10-10T08:15:51+00:00]   potential lj, kernel A, N 256, L 6.988644, density 0.750000, dt 0.005, kT 1.0, gamma 0.5, kappa 0.7, r_ref 1.3
+[2026-10-10T08:15:51+00:00]   O-step method reference
+[2026-10-10T08:15:51+00:00]   full periodic lattice-sum Gamma: 33 near + 988 far images (Chebyshev degree 16), tail estimate 1.2e-11 per pair, k=0 mode retained (ghat0/(3V) = 0.0404 per pair); dense matrix functions
+[2026-10-10T08:15:51+00:00]   conservative force neighbor
+[2026-10-10T08:15:51+00:00]   static verification: not applicable (reference method: full periodic lattice-sum Gamma with dense matrix functions (no PPPM, no Lanczos); the PPPM/Lanczos verification does not apply)
+[2026-10-10T08:15:51+00:00]   plan: burn-in 0 steps (t 0.0), production 200 steps (t 1.0), frames every 1 steps; init from_state (equilibrated: False)
+[2026-10-10T08:15:51+00:00]   hashes: physics 9de40ef4e275d05c, operator 83455edc21578662; code 2e8576741f3e20f165767c90852862b686f0d4b9 dirty=False; threads {'OPENBLAS_NUM_THREADS': '1', 'OMP_NUM_THREADS': '1', 'MKL_NUM_THREADS': '1'}
+[2026-10-10T08:15:51+00:00]   WARNING: dt = 0.005: no dt has been validated for lj_rho0.75_kT1.0_A_prod yet
+[2026-10-10T08:16:29+00:00] checkpoint step 25/200 (production) T 0.9472 U/N -4.8466 |P| 6.6e-13 rmin 0.922 step 978.8 ms, Ritz [4.656, 12.1]; monitor err nan S(kmin) 0.1
+[2026-10-10T08:16:31+00:00] checkpoint step 26/200 (production) T 0.9984 U/N -4.8402 |P| 6.3e-13 rmin 0.948 step 2328.5 ms, Ritz [4.678, 12.1]
+[2026-10-10T08:16:31+00:00] segment end: incomplete at step 26/200 (signal SIGUSR1); exit 75
+[2026-10-10T08:17:15+00:00] checkpoint step 51/200 (production) T 0.9332 U/N -4.7954 |P| 6.5e-13 rmin 0.921 step 1005.8 ms, Ritz [4.679, 12.1]; monitor err nan S(kmin) 0.1
+[2026-10-10T08:17:22+00:00] checkpoint step 56/200 (production) T 0.9745 U/N -4.7457 |P| 6.5e-13 rmin 0.899 step 1019.2 ms, Ritz [4.710, 12.0]
+[2026-10-10T08:17:22+00:00] segment end: incomplete at step 56/200 (segment step limit 30); exit 75
+[2026-10-10T08:18:05+00:00] checkpoint step 81/200 (production) T 0.9758 U/N -4.7206 |P| 6.4e-13 rmin 0.877 step 1140.6 ms, Ritz [4.678, 12.0]; monitor err nan S(kmin) 0.2
+[2026-10-10T08:18:43+00:00] checkpoint step 106/200 (production) T 1.0459 U/N -4.5956 |P| 6.4e-13 rmin 0.895 step 1097.6 ms, Ritz [4.672, 12.2]; monitor err nan S(kmin) 0.2
+[2026-10-10T08:19:24+00:00] checkpoint step 131/200 (production) T 0.9989 U/N -4.5298 |P| 6.5e-13 rmin 0.906 step 1269.5 ms, Ritz [4.653, 12.3]; monitor err nan S(kmin) 0.2
+[2026-10-10T08:20:06+00:00] checkpoint step 156/200 (production) T 0.9450 U/N -4.5692 |P| 6.7e-13 rmin 0.920 step 1762.9 ms, Ritz [4.656, 12.1]; monitor err nan S(kmin) 0.1
+[2026-10-10T08:20:45+00:00] checkpoint step 181/200 (production) T 1.0063 U/N -4.6413 |P| 6.5e-13 rmin 0.917 step 1099.6 ms, Ritz [4.672, 12.1]; monitor err nan S(kmin) 0.1
+[2026-10-10T08:21:15+00:00] checkpoint step 200/200 (production) T 1.0180 U/N -4.5984 |P| 6.2e-13 rmin 0.908 step 1257.7 ms, Ritz [4.672, 12.0]; monitor err nan S(kmin) 0.1
+[2026-10-10T08:21:15+00:00] segment end: complete at step 200/200 (complete); exit 0

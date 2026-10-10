@@ -490,3 +490,29 @@ Supplementary analysis of the existing trajectories (`observable_dt/REPORT_obser
   at a true difference of 0. At the pilot differences the VACF dip needs about 1650 bursts (about 67 core-h), and the
   dip cannot PASS while its reference lobe is unresolved. It is not run. Longer lags and the long-time D stay
   unresolved.
+
+## 12. Supplement: HPC short pilot (local emulation only, not run on HPC)
+
+The pilot is in `hpc_pilot/README.md` and `hpc_pilot/local_20261010/pilot_report.md`. It runs dense and fast
+O-steps at dt 0.005 and 0.01, each to t = 1 from one canonical state. The dense case uses the full periodic Γ with
+dense matrix functions; the fast case uses PPPM with Lanczos 14/5. Fast and dense share the noise at each dt.
+
+It was run only under bash on the development VM, without Slurm. Every workflow check passed:
+- three-segment restart, bitwise against a continuous twin;
+- lock refusal;
+- checkpoint cadence;
+- every-step frames;
+- the Lanczos monitor sampled at 21 / 11 points, with actual error ≤ 1.5e-11 against a budget of 2e-7;
+- |P(t) − P(0)| at round-off;
+- one thread.
+
+Fast − dense rms velocity difference at t = 1 is 7.4e-8 / 7.8e-8 of the rms velocity (dt 0.005 / 0.01). This
+is mainly the PPPM operator approximation (≈ 4e-8 in Γ), not Lanczos truncation.
+
+Measured cost on this VM per time unit:
+- fast: 43 core-s at dt 0.005 and 21 core-s at dt 0.01;
+- dense: 317 and 150 core-s;
+- peak RSS 121 MB (fast) and 604 MB (dense).
+
+This is one state, one path pair and t = 1. It makes no statement on statistical equivalence or equilibrium, and the
+cluster run is still open (`hpc/submit.sh lj075-pilot`).
