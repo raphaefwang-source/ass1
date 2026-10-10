@@ -353,8 +353,9 @@ undetermined (−1.0% [−3.4, +1.5]).
   - The free-particle prior x coth x − 1 (+0.1% at dt 0.01 relative to dt 0.005) is far smaller than the
     resolution reached.
   - The paths at the two dt decorrelate by t ≈ 2, so the long windows are effectively unpaired.
-- **Requirement.** The sd of the per-run window changes is ≈ 2–4%, so a confirmed ±2% plateau at [8,16] → [16,32]
-  would need ≈ 25–40 runs of 100 time units at one dt, ≈ 6–10 core-h at dt 0.005.
+- **Requirement.** The sd of the per-run change [8,16] → [16,32] is ≈ 3.9%. Confirming a ±2% plateau there needs
+  ≈ 16 runs of 100 time units at one dt if the true change is 0, and ≈ 60 at the observed +1%. That is ≈ 12–45
+  core-h at dt 0.005.
 - **Cost of this study:** 17.6 core-h (11 coupled two-level chains).
 
 ## 6. Save interval
@@ -454,8 +455,8 @@ undetermined (−1.0% [−3.4, +1.5]).
 - dt effect on MSD(t ≥ 0.5) (on MSD(t ≥ 2) even at dt 0.0025) and on pressure.
 - Initial-state independence after burn-in (not detected, 2 runs per start type).
 - dt effect on long-time D (§5).
-- Plateau of D at the 2% level: not confirmed with 11 × 90 + 8 × 48 time units (§5); ≈ 25–40 more runs of
-  100 time units needed.
+- Plateau of D at the 2% level: not confirmed with 11 × 90 + 8 × 48 time units (§5); ≈ 16–60 runs of 100 time
+  units needed.
 - Pressure to ±0.0075 within the recommended 500 time units.
 
 **Unverified**
