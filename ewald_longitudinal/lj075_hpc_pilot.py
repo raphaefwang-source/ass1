@@ -22,7 +22,7 @@ Fixed experiment (nothing here is a command-line option):
   (lj075_coupled.py) makes the dt = 0.01 input depend on Gamma, which would break the identical fast / dense inputs.
   No cross-dt pathwise comparison is made;
 - every step: positions (unwrapped), velocities and diagnostics saved; accuracy monitor every 10 steps; checkpoints
-  every 25 steps.
+  every 25 steps counted from each segment's start (the cadence is passed to every segment) and at every stop.
 
 Per case (subcommand "case"), in DIR/<case>/:
   run/      the trajectory, in three segments: (1) stopped by SIGUSR1 sent after its first checkpoint (exit 75 expected),
@@ -74,6 +74,8 @@ CASES = {
 }
 PAIRS = {0.005: ("fast_dt0.005", "dense_dt0.005"), 0.01: ("fast_dt0.01", "dense_dt0.01")}
 CHECKPOINT_EVERY, MONITOR_EVERY, SEGMENT2_STEPS, TWIN_EXTRA = 25, 10, 30, 10
+CADENCE = ["--checkpoint-every-steps", str(CHECKPOINT_EVERY), "--checkpoint-every-minutes", "15"]   # every segment:
+# toy_run.py --resume takes the checkpoint cadence from its own command line (default 2000 steps), not config.json
 ENV1 = dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", MKL_NUM_THREADS="1")
 STOP = {"signal": None, "child": None}
 
@@ -86,7 +88,7 @@ def toy_args(case, out, steps=None):
     c = CASES[case]
     a = ["--config", CONFIG, "--potential", POT, "--kernel", LAW, "--N", str(N), "--seed", str(SEEDS[c["dt"]]),
          "--dt", str(c["dt"]), "--allow-unverified", "--save-every-steps", "1",
-         "--checkpoint-every-steps", str(CHECKPOINT_EVERY), "--monitor-every-steps", str(MONITOR_EVERY),
+         *CADENCE, "--monitor-every-steps", str(MONITOR_EVERY),
          "--from-state", str(INIT), "--method", c["method"], "--out", str(out), "--quiet"]
     return a + (["--production-steps", str(steps)] if steps is not None else ["--production", str(T_END)])
 
@@ -163,23 +165,29 @@ def run_case(case, root):
         if proc.poll() is not None:
             return dict(duplicate_exit_code=None, duplicate_note="segment 2 ended before the duplicate could start")
         r = subprocess.run([sys.executable, str(HERE / "toy_run.py"), "--resume", "--out", str(run), "--lock-wait", "0",
-                            "--quiet"], env=ENV1, capture_output=True, text=True)
+                            *CADENCE, "--quiet"], env=ENV1, capture_output=True, text=True)
         return dict(duplicate_exit_code=r.returncode, duplicate_expected_exit_code=tr.EXIT_LOCKED,
                     duplicate_stderr=r.stderr.strip()[-300:], segment2_running_after_duplicate=proc.poll() is None)
 
     _phase(rec, "segment1_signal_stop", toy_args(case, run), tr.EXIT_INCOMPLETE, wait_until=first_checkpoint)
     _phase(rec, "segment2_step_limit", ["--resume", "--out", str(run), "--max-segment-steps", str(SEGMENT2_STEPS),
-                                        "--quiet"], tr.EXIT_INCOMPLETE, on_running=duplicate)
+                                        *CADENCE, "--quiet"], tr.EXIT_INCOMPLETE, on_running=duplicate)
     for attempt in range(4):                                  # a stray external signal would stop it with 75
-        rc = _phase(rec, f"segment3_to_end_{attempt}", ["--resume", "--out", str(run), "--quiet"], tr.EXIT_COMPLETE)
+        rc = _phase(rec, f"segment3_to_end_{attempt}", ["--resume", "--out", str(run), *CADENCE, "--quiet"],
+                    tr.EXIT_COMPLETE)
         if rc != tr.EXIT_INCOMPLETE:
             break
     st = json.loads((run / "status.json").read_text())
     seg = st.get("segments", [])
     if len(seg) >= 2 and not STOP["signal"]:
         n_twin = int(seg[1]["end_step"]) + TWIN_EXTRA
-        _phase(rec, "twin_continuous", toy_args(case, twin, steps=n_twin), tr.EXIT_COMPLETE)
-        rec["restart"] = compare_restart(run, twin, [int(s["end_step"]) for s in seg[:2]])
+        rc_twin = _phase(rec, "twin_continuous", toy_args(case, twin, steps=n_twin), tr.EXIT_COMPLETE)
+        if (twin / "checkpoint.npz").exists():
+            rec["restart"] = compare_restart(run, twin, [int(s["end_step"]) for s in seg[:2]], n_twin, rc_twin)
+        else:
+            rec["restart"] = dict(passed=False, reason=f"twin not run (exit {rc_twin})")
+    else:
+        rec["restart"] = dict(passed=False, reason=f"{len(seg)} segment(s), external stop {STOP['signal']}")
     rec.update(end=_now(), case_wall_s=time.monotonic() - t0, run_state=st.get("state"),
                children_cpu_s=_child_usage()[0], children_peak_rss_mb=_child_usage()[1], external_stop=STOP["signal"])
     (d / "case_summary.json").write_text(json.dumps(rec, indent=1, default=float) + "\n")
@@ -190,8 +198,9 @@ def run_case(case, root):
     return 0 if ok else 1
 
 
-def compare_restart(run, twin, restart_steps):
-    """Bitwise: the twin's continuous trajectory against the restarted run over the twin's steps."""
+def compare_restart(run, twin, restart_steps, n_twin, rc_twin):
+    """Bitwise: the twin's continuous trajectory against the restarted run over the twin's steps. Passes only if the
+    twin completed (exit 0) past both restart points."""
     A, B = tr.load_run(twin), tr.load_run(run)
     n = len(A["diag"])
     keep = [i for i, c in enumerate(tr.DIAG_COLS) if c != "step_wall_s"]
@@ -204,6 +213,8 @@ def compare_restart(run, twin, restart_steps):
                                    and np.array_equal(A["frame_step"], B["frame_step"][:n])),
                monitor_bitwise=bool(np.array_equal(mA, mB, equal_nan=True)),
                q_p_at_twin_end_bitwise=bool(np.array_equal(qT, B["Q"][sT]) and np.array_equal(pT, B["V"][sT])),
+               twin_exit_code=rc_twin, twin_complete=rc_twin == tr.EXIT_COMPLETE and sT == n_twin,
+               covers_both_restarts=bool(sT > max(restart_steps)),
                note="mass 1: the saved velocity V = p / m equals p bitwise")
     res["passed"] = all(v for k, v in res.items() if isinstance(v, bool))
     return res
@@ -287,20 +298,32 @@ def analyze(root, out):
     root, out = Path(root), Path(out)
     out.mkdir(parents=True, exist_ok=True)
     t_an = time.monotonic()
-    R, S, ENV = {}, {}, {}
-    missing = []
+    R, S, ENV, LOCK, CHUNKS = {}, {}, {}, {}, {}
+    missing, failed = [], {}
     for c in CASES:
         d = root / c
         if not (d / "run" / "config.json").exists():
             missing.append(c)
             continue
-        R[c] = tr.load_run(d / "run")
-        S[c] = json.loads((d / "case_summary.json").read_text()) if (d / "case_summary.json").exists() else {}
+        X = tr.load_run(d / "run")
+        S_c = json.loads((d / "case_summary.json").read_text()) if (d / "case_summary.json").exists() else {}
+        if len(X["diag"]) < 2 or len(X["frame_step"]) < 2:
+            seg = X["status"].get("segments") or [{}]
+            missing.append(c)
+            failed[c] = dict(state=X["status"].get("state"), step=X["status"].get("step"),
+                             stop_reason=seg[-1].get("stop_reason"),
+                             failure_diag=[p.name for p in (d / "run").glob("failure_diag_*.npz")],
+                             phases=S_c.get("phases"))
+            continue
+        R[c], S[c] = X, S_c
         ENV[c] = json.loads((d / "env_report.json").read_text()) if (d / "env_report.json").exists() else {}
+        LOCK[c] = json.loads((d / "lock_check.json").read_text()) if (d / "lock_check.json").exists() else {}
+        CHUNKS[c] = sorted(int(p.stem.split("_")[1]) for p in (d / "run" / "chunks").glob("chunk_*.npz"))
     with np.load(INIT) as z:
         q0, p0 = z["q"], z["p"]
         init_prov = json.loads(str(z["provenance"]))
-    res = dict(created=_now(), root=str(root.resolve()), missing_cases=missing, init_state=str(INIT.relative_to(HERE)),
+    res = dict(created=_now(), root=str(root.resolve()), missing_cases=missing, failed_cases=failed,
+               init_state=str(INIT.relative_to(HERE)),
                init_provenance=init_prov, cases={}, pairs={}, checks={})
     git = {c: R[c]["config"]["code"]["git"] for c in R}
     on_slurm = {c: all(j not in ("None", "") for j in _segments_cost(R[c]["status"])["slurm_job_ids"]) for c in R}
@@ -328,6 +351,21 @@ def analyze(root, out):
         # round-off scale of one step's total momentum: eps * sum_i |p_i| (median over frames); a random walk of n
         # steps gives about sqrt(n) times that
         eps_sum = float(np.finfo(float).eps * np.median(np.abs(X["V"] * m).sum(axis=(1, 2))))
+        walk = eps_sum * np.sqrt(n_exp)
+        if dP.max() <= walk:
+            p_verdict = (f"no drift detectable: max |ΔP| = {dP.max() / eps_sum:.1f} ε Σ|p|, within the round-off of "
+                         f"forming Σp (random-walk scale over {n_exp} steps: {np.sqrt(n_exp):.0f} ε Σ|p|)")
+        else:
+            p_verdict = (f"above the round-off scale: max |ΔP| = {dP.max() / walk:.1f} × ε Σ|p| √n; second / first "
+                         f"half max = {dP[half:].max() / max(dP[:half].max(), 1e-300):.1f}; growth exponent "
+                         f"{_f(alpha, '.2f')}")
+        segs = st.get("segments", [])
+        contiguous = (bool(segs) and int(segs[0].get("start_step", -1)) == 0
+                      and all(int(b.get("start_step", -1)) == int(a.get("end_step", -2)) for a, b in zip(segs, segs[1:]))
+                      and sum(int(x.get("steps_run") or 0) for x in segs) == n_exp)
+        # toy_run checkpoints every CHECKPOINT_EVERY steps counted from the segment start, and at the segment end
+        want = sorted({0} | {k for x in segs for k in range(int(x["start_step"]) + CHECKPOINT_EVERY, int(x["end_step"]),
+                                                              CHECKPOINT_EVERY)} | {int(x["end_step"]) for x in segs})
         finite = bool(np.all(np.isfinite(X["Q"])) and np.all(np.isfinite(X["V"]))
                       and np.all(np.isfinite(D[:, :cols["step_wall_s"] + 1])) and np.all(np.isfinite(D[1:, 8:10])))
         mon = X["monitor"]
@@ -348,7 +386,8 @@ def analyze(root, out):
                  init_identical_to_shared_state=same_init, finite=finite,
                  momentum=dict(P0=p0.sum(axis=0).tolist(), max_dev=float(dP.max()), end_dev=float(dP[-1]),
                                max_dev_first_half=float(dP[:half].max()), max_dev_second_half=float(dP[half:].max()),
-                               growth_exponent=alpha, roundoff_per_step=eps_sum,
+                               growth_exponent=alpha if dP.max() > walk else None, roundoff_per_step=eps_sum,
+                               verdict=p_verdict, within_roundoff_walk=bool(dP.max() <= walk),
                                max_dev_over_roundoff_walk=float(dP.max() / (eps_sum * np.sqrt(n_exp))),
                                linear_extrapolation_t55_rel=float(dP.max() / T_END * 55 / np.sqrt(N * m * r["model"]["kT"])),
                                scale_sqrt_NmkT=float(np.sqrt(N * m * r["model"]["kT"])),
@@ -365,6 +404,10 @@ def analyze(root, out):
                               max_err_est=float(np.nanmax(mon[:, 1:5])) if len(mon) and CASES[c]["method"] == "pppm_lanczos" else None,
                               budget=r["operator_budget"], S_kmin_max=float(mon[:, 7].max()) if len(mon) else None),
                  accuracy_warnings=st.get("accuracy_warnings") or [],
+                 segments_contiguous=contiguous, chunk_ends=CHUNKS[c], chunk_ends_expected=want,
+                 lock_check=dict(passed=LOCK[c].get("passed"), warnings=LOCK[c].get("warnings"),
+                                 mount=LOCK[c].get("mount")),
+                 hardware=res["environment"]["hardware"][c],
                  rng_state_final_sha=hashlib.sha256(rng_final.encode()).hexdigest()[:16],
                  cost=dict(**cost, step_s_median=float(np.median(walls)), step_s_p90=float(np.percentile(walls, 90)),
                            step_s_max=float(walls.max()), step_s_mean=float(walls.mean()),
@@ -430,7 +473,9 @@ def analyze(root, out):
             every_step_frames=e["frames_contiguous"] and e["frames"] == e["steps_expected"] + 1,
             shared_initial_state=e["init_identical_to_shared_state"],
             finite=e["finite"],
-            momentum_max_dev_below_1e_9_scale=e["momentum"]["rel_max_dev"] < 1e-9,
+            momentum_within_roundoff=e["momentum"]["within_roundoff_walk"],
+            segments_contiguous=e["segments_contiguous"],
+            checkpoint_cadence_in_all_segments=e["chunk_ends"] == e["chunk_ends_expected"],
             monitor_points_sampled=(e["monitor"]["points"] >= e["steps_expected"] // MONITOR_EVERY + 1),
             monitor_within_budget=(e["monitor"]["max_err_est"] is None or e["monitor"]["max_err_est"] <= e["monitor"]["budget"]),
             no_accuracy_warnings=not e["accuracy_warnings"],
@@ -440,6 +485,7 @@ def analyze(root, out):
             duplicate_refused_by_lock=any(p.get("duplicate_exit_code") == tr.EXIT_LOCKED for p in ph),
             restart_bitwise=bool(cs.get("restart", {}).get("passed")),
             lock_check=cs.get("lock_check_exit_code") == 0,
+            lock_check_without_warnings=not e["lock_check"]["warnings"],
             single_thread_env=all(v == "1" for v in e["threads"].values()),
             single_os_thread=e["cost"]["os_threads"] == [1])
         if e["method"] == "pppm_lanczos":
@@ -529,21 +575,31 @@ def _f(x, fmt=".3g"):
     return "–" if x is None else format(x, fmt)
 
 
+def _mem_request(rss_mb):
+    """--mem advice from a measured peak RSS: 1.5x plus 256 MB, rounded up to 0.5 GB, at least 1 GB."""
+    return max(1.0, np.ceil((1.5 * rss_mb + 256) / 512) / 2)
+
+
 def write_tables(res, out):
     E, est = res["cases"], res["estimates"]
     L = ["| | " + " | ".join(E) + " |", "|---|" + "---|" * len(E)]
 
     def row(name, fn):
         L.append(f"| {name} | " + " | ".join(fn(c, E[c]) for c in E) + " |")
+
+    def lc_max(c, key):
+        rows = res["lanczos_check"].get(c) or []
+        return f"{max(x[key] for x in rows):.1e}" if rows else "–"
     row("O-step operator", lambda c, e: "full periodic Γ (lattice sum, k=0 kept), dense eigendecomposition"
         if e["method"] == "reference" else f"PPPM Γ_h (M {e['mesh_M']}, k=0 kept), Lanczos {e['ranks'][0]}/{e['ranks'][1]}")
     row("dt / steps / frames", lambda c, e: f"{e['dt']:g} / {e['steps']} / {e['frames']}")
     row("seed (noise stream)", lambda c, e: f"{e['seed']}")
+    row("host / CPU", lambda c, e: f"{e['hardware'].get('host')} / {e['hardware'].get('cpu_model')}")
     row("state / all values finite", lambda c, e: f"{e['state']} / {'yes' if e['finite'] else 'NO'}")
     row("max \\|P(t)−P(0)\\| (1st half, 2nd half)", lambda c, e: f"{e['momentum']['max_dev']:.1e} "
         f"({e['momentum']['max_dev_first_half']:.1e}, {e['momentum']['max_dev_second_half']:.1e})")
-    row("\\|P−P0\\| growth exponent / max ÷ (ε Σ\\|p\\| √n)", lambda c, e: f"{_f(e['momentum']['growth_exponent'], '.2f')} / "
-        f"{e['momentum']['max_dev_over_roundoff_walk']:.2f}")
+    row("max \\|P−P0\\| / (ε Σ\\|p\\|); drift", lambda c, e: f"{e['momentum']['max_dev'] / e['momentum']['roundoff_per_step']:.1f}; "
+        + ("none detectable (round-off)" if e["momentum"]["within_roundoff_walk"] else "**above round-off**"))
     row("T_kin: t=0 / mean / min–max", lambda c, e: f"{e['T_kin']['t0']:.4f} / {e['T_kin']['mean']:.4f} / "
         f"{e['T_kin']['min']:.3f}–{e['T_kin']['max']:.3f}")
     row("U/N: t=0 / mean / end", lambda c, e: f"{e['U_per_N']['t0']:.4f} / {e['U_per_N']['mean']:.4f} / "
@@ -554,18 +610,20 @@ def write_tables(res, out):
         + (f"{e['monitor']['max_err_est']:.1e} ({e['monitor']['budget']:.0e})" if e["monitor"]["max_err_est"] is not None
            else "n/a (exact matrix functions)"))
     row("actual Lanczos error, max (noise, damping)", lambda c, e: "n/a" if e["method"] == "reference" else
-        f"{max(x['true_noise'] for x in res['lanczos_check'][c]):.1e}, {max(x['true_damp'] for x in res['lanczos_check'][c]):.1e}")
+        f"{lc_max(c, 'true_noise')}, {lc_max(c, 'true_damp')}")
     row("init (process start → first step) [s]", lambda c, e: f"{(e['cost']['import_s'] or 0) + (e['cost']['init_s'] or 0):.2f} "
         f"(imports {(e['cost']['import_s'] or 0):.2f})")
     row("integration step: median / p90 / max [s]", lambda c, e: f"{e['cost']['step_s_median']:.3f} / "
         f"{e['cost']['step_s_p90']:.3f} / {e['cost']['step_s_max']:.3f}")
     row("monitor per point [s]", lambda c, e: f"{e['cost']['monitor_s_per_point']:.3f}")
-    row("output per step (frame every step, chunk every 25) [s]", lambda c, e: f"{e['cost']['output_s_per_step']:.4f}")
+    row(f"output per step (frame every step, checkpoint every {CHECKPOINT_EVERY} steps) [s]",
+        lambda c, e: f"{e['cost']['output_s_per_step']:.4f}")
     row("full per step (integration + monitor + output) [s]", lambda c, e: f"{e['cost']['full_s_per_step']:.3f}")
     row("run CPU [s] / run process wall [s]", lambda c, e: f"{e['cost']['run_cpu_s']:.1f} / {_f(e['cost']['run_wall_s'], '.1f')}")
     row("peak RSS [MB]", lambda c, e: f"{e['cost']['peak_rss_mb']:.0f}")
-    row("segments / restart bitwise / duplicate refused", lambda c, e: f"{e['cost']['segments']} / "
-        f"{'yes' if res['checks'][c]['restart_bitwise'] else 'NO'} / {'yes' if res['checks'][c]['duplicate_refused_by_lock'] else 'NO'}")
+    row("segments / checkpoints at / restart bitwise / duplicate refused", lambda c, e: f"{e['cost']['segments']} / "
+        f"{e['chunk_ends']} / {'yes' if res['checks'][c]['restart_bitwise'] else 'NO'} / "
+        f"{'yes' if res['checks'][c]['duplicate_refused_by_lock'] else 'NO'}")
     row("threads (env / OS threads)", lambda c, e: f"{','.join(sorted(set(e['threads'].values())))} / {e['cost']['os_threads']}")
     row("raw output on disk [MB]", lambda c, e: f"{e['cost']['raw_bytes_on_disk'] / 1e6:.1f}")
     row("est. core-s per time unit (prod. monitor cadence)", lambda c, e: f"{est[c]['core_s_per_time_unit']:.0f}")
@@ -585,25 +643,38 @@ def write_report(res, out):
     E, chk, est, env = res["cases"], res["checks"], res["estimates"], res["environment"]
     t1, t2 = res.pop("_tables")
     local = not env["label"].startswith("HPC")
+    lines = ["# LJ law A: HPC short pilot (dense reference vs fast PPPM-Lanczos, dt 0.005 / 0.01, t = 1)", "",
+             f"**Where this ran: {env['label']}.**" + (
+                 " No Slurm job id is attached to any segment. Every number below is from this machine, not from the "
+                 "cluster; the cluster run is still to be done (commands in Section 9)." if local else ""), "",
+             "Scope: one shared initial state, t = 1 per case. This pilot checks that the runs, the comparison and the "
+             "restart machinery work and measures cost. It does not show statistical equivalence of the dynamics or "
+             "long-time equilibrium.", ""]
+    if res["failed_cases"]:
+        lines += ["**Cases without analysable output** (fewer than two frames):", ""]
+        for c, x in res["failed_cases"].items():
+            lines.append(f"- {c}: state {x['state']} at step {x['step']}, stop reason {x['stop_reason']}, "
+                         f"failure diagnostics {x['failure_diag']}; phases {[(p.get('phase'), p.get('exit_code')) for p in (x['phases'] or [])]}")
+        lines.append("")
+    if not E:
+        lines += [f"No case has analysable output; missing: {res['missing_cases']}."]
+        (out / "pilot_report.md").write_text("\n".join(lines) + "\n")
+        return
     any_e = next(iter(E.values()))
-    hw = next(iter(env["hardware"].values()))
+    fast_e = next((e for e in E.values() if e["method"] == "pppm_lanczos"), None)
+    hw = sorted({(h.get("host"), h.get("cpu_model"), h.get("cores_visible"), h.get("platform"), h.get("python"),
+                  h.get("numpy"), h.get("scipy"), str(h.get("blas"))) for h in env["hardware"].values()},
+                key=str)
     commits = sorted({f"{g.get('commit')} (dirty={g.get('dirty')})" for g in env["git"].values()})
     lc_all = [x for v in res["lanczos_check"].values() for x in v]
-    lines = [
-        "# LJ law A: HPC short pilot (dense reference vs fast PPPM-Lanczos, dt 0.005 / 0.01, t = 1)", "",
-        f"**Where this ran: {env['label']}.**" + (
-            " No Slurm job id is attached to any segment. Every number below is from this machine, not from the "
-            "cluster; the cluster run is still to be done (commands in Section 9)." if local else ""), "",
-        "Scope: one shared initial state, t = 1 per case. This pilot checks that the runs, the comparison and the "
-        "restart machinery work and measures cost. It does not show statistical equivalence of the dynamics or long-"
-        "time equilibrium.", "",
+    lines += [
         "## 1. Setup", "",
         f"- Model: `{any_e['config']}`, LJ, law {any_e['law']}, N {any_e['N']}, ρ* {any_e['model']['density']}, "
         f"kT {any_e['model']['kT']}, L {any_e['L']:.6f}, γ {any_e['model']['gamma']}, κ {any_e['model']['kappa']}, "
         f"r_ref {any_e['model']['r_ref']}; full periodic friction, k = 0 mode kept in both operators.",
-        f"- Fast: PPPM ξ {any_e['pppm']['xi']}, s {any_e['pppm']['s']}, η {any_e['pppm']['eta']:.4f}, p {any_e['pppm']['p']} "
-        f"→ mesh M {E.get('fast_dt0.005', any_e)['mesh_M']}; Lanczos ranks noise/damping "
-        f"{E.get('fast_dt0.005', any_e)['ranks']}; one Γ_h(q_half) for damping and noise.",
+        (f"- Fast: PPPM ξ {fast_e['pppm']['xi']}, s {fast_e['pppm']['s']}, η {fast_e['pppm']['eta']:.4f}, "
+         f"p {fast_e['pppm']['p']} → mesh M {fast_e['mesh_M']}; Lanczos ranks noise/damping {fast_e['ranks']}; one "
+         "Γ_h(q_half) for damping and noise." if fast_e else "- Fast: no fast case analysed."),
         "- Dense: full periodic lattice-sum Γ (`v2.LatticeFriction`: 33 near + 988 Chebyshev far images, tail "
         "≈ 1e-11 per pair, k = 0 coefficient retained), exact matrix functions by eigendecomposition on Range(Π) "
         "(`DenseRef`). Not an eigendecomposition of the PPPM Γ_h.",
@@ -611,7 +682,7 @@ def write_report(res, out):
         f"force (`{any_e['force_method']}` = `toy_dynamics.conservative_force_neighbor`).",
         f"- Initial state: `{res['init_state']}` = end of law A run `eq_A_lgv_s305` at t = 50 (Langevin-prepared "
         f"canonical start; REPORT.md §4: canonical starts need no burn-in). T_kin of this snapshot "
-        f"{res['init_provenance']['T_kin']:.3f}, U/N {res['init_provenance']['U_per_N']:.4f}. Identical in all four "
+        f"{res['init_provenance']['T_kin']:.3f}, U/N {res['init_provenance']['U_per_N']:.4f}. Identical in all "
         "cases (checked bitwise).",
         "- Noise: fast and dense at the same dt share the seed, so they receive the same standard-normal input at "
         "every step (checked: identical final RNG state, identical state at t = 0). dt 0.005 and dt 0.01 use "
@@ -619,15 +690,18 @@ def write_report(res, out):
         "made. (A shared seed would not couple different step sizes. The verified OU coupling of `lj075_coupled.py` "
         "makes the dt 0.01 input depend on Γ, so fast and dense at 0.01 would no longer get identical inputs.)",
         "- Output: positions (unwrapped), velocities and diagnostics every step; accuracy monitor every "
-        f"{MONITOR_EVERY} steps; checkpoint every {CHECKPOINT_EVERY} steps.",
+        f"{MONITOR_EVERY} steps; checkpoint every {CHECKPOINT_EVERY} steps counted from each segment's start, and at "
+        "every stop (`--checkpoint-every-steps` is passed to every segment, since `toy_run.py --resume` takes the "
+        "cadence from its command line).",
         f"- Threads: OPENBLAS/OMP/MKL_NUM_THREADS = 1; OS threads per process at segment end: "
-        f"{sorted({tuple(e['cost']['os_threads']) for e in E.values()})}.",
-        f"- Hardware: {hw.get('cpu_model')}, {hw.get('cores_visible')} cores visible, {hw.get('platform')}; "
-        f"Python {hw.get('python')}, NumPy {hw.get('numpy')}, SciPy {hw.get('scipy')}, BLAS {hw.get('blas')}.",
-        f"- Code: git {', '.join(commits)}.", "",
-        "## 2. Workflow checks", "",
-        "| check | " + " | ".join(k for k in chk if isinstance(chk[k], dict)) + " |",
-    ]
+        f"{sorted({tuple(e['cost']['os_threads']) for e in E.values()})}."]
+    for h in hw:
+        lines.append(f"- Hardware: host {h[0]}, {h[1]}, {h[2]} cores visible, {h[3]}; Python {h[4]}, NumPy {h[5]}, "
+                     f"SciPy {h[6]}, BLAS {h[7]}.")
+    if len({(h[0], h[1]) for h in hw}) > 1:
+        lines.append("- **The cases ran on different hosts or CPU models**: cost ratios between cases mix hardware.")
+    lines += [f"- Code: git {', '.join(commits)}.", "", "## 2. Workflow checks", "",
+              "| check | " + " | ".join(k for k in chk if isinstance(chk[k], dict)) + " |"]
     keys = []
     for k, v in chk.items():
         if isinstance(v, dict):
@@ -636,47 +710,66 @@ def write_report(res, out):
     lines.append("|---|" + "---|" * len(cols))
     for x in keys:
         lines.append(f"| {x} | " + " | ".join(("PASS" if chk[c][x] else "**FAIL**") if x in chk[c] else "" for c in cols) + " |")
+    lw = {c: e["lock_check"] for c, e in E.items() if e["lock_check"].get("warnings")}
     lines += ["", f"All checks passed: **{chk['all_passed']}**." + (f" Missing cases: {res['missing_cases']}."
                                                                    if res["missing_cases"] else ""), "",
+              "`lock_check` runs `hpc/lock_check.py` on the case directory; `duplicate_refused_by_lock` starts a second "
+              "`--resume` on the same node while a segment runs. Neither shows that locks exclude processes on *other* "
+              "nodes (Lustre `localflock`, NFS `nolock`); `lock_check.py` warns about such mounts"
+              + (": " + "; ".join(f"{c}: {v['warnings']} (mount {v['mount']})" for c, v in lw.items()) if lw else
+                 ", and it gave no warning here") + ".", "",
               "## 3. Four cases", "", t1, "",
               "Init = process start to the first step (imports, configuration, initial state, operator set-up, initial "
               "force), first segment. Integration step = one BAOAB step without monitor or output. Output = chunk and "
               "checkpoint files, status and log writes. Run CPU / wall: the three run segments (the twin restart check "
-              "is extra).", "",
-              "## 4. Fast vs dense at the same dt", "", t2, ""]
+              "is extra)."]
+    wide = [f"{c} (p90 / median {e['cost']['step_s_p90'] / e['cost']['step_s_median']:.1f})" for c, e in E.items()
+            if e["cost"]["step_s_p90"] > 1.5 * e["cost"]["step_s_median"]]
+    if wide:
+        lines.append(f"Integration step times vary widely in {', '.join(wide)}; the cost estimates use the mean step. "
+                     "The cause was not investigated (the dense step builds and diagonalises a 768 × 768 matrix with "
+                     "large temporaries).")
+    lines += ["", "## 4. Fast vs dense at the same dt", "", t2, ""]
     for dt, pr in res["pairs"].items():
+        a1 = pr["at"].get("1", {})
         lines.append(f"- dt {dt}: identical at t = 0 ({pr['identical_at_t0']}); max over t ≤ 1: |Δq| {pr['max_dq']:.1e}, "
                      f"|Δv| {pr['max_dv']:.1e}, |ΔT_kin| {pr['max_abs_dT']:.1e}, |ΔU/N| {pr['max_abs_dU_per_N']:.1e}; "
-                     f"fitted growth rate of the rms difference for t ≥ 0.1: Δq {_f(pr['growth_rate_dq'], '.2f')}, "
+                     f"at t = 1 the rms velocity difference is {_f(a1.get('dv_rel'), '.1e')} of the rms velocity; "
+                     f"fitted exponential growth rate of the rms difference for t ≥ 0.1: Δq {_f(pr['growth_rate_dq'], '.2f')}, "
                      f"Δv {_f(pr['growth_rate_dv'], '.2f')} per time unit.")
-    op = [x["operator_frobenius"] for x in lc_all]
-    opn = [max(x["operator_noise"], x["operator_damp"]) for x in lc_all]
-    lines += ["", "The source of the difference is the operator: the PPPM Γ_h differs from the full periodic Γ by "
-              f"{min(op):.1e}–{max(op):.1e} (relative Frobenius norm) at the fast runs' monitor configurations, and "
-              f"the O-step matrix functions applied to the monitor inputs by {min(opn):.1e}–{max(opn):.1e}. The "
-              "Lanczos error is smaller (Section 6). The figure `pilot_fast_vs_dense.png` shows the differences "
-              "against t. One initial state and one noise path: this says the two operators give nearly the same "
-              "path over t = 1 here; it is not a statistical comparison.", "",
-              "## 5. Momentum, temperature, potential energy", ""]
+    if lc_all:
+        op = [x["operator_frobenius"] for x in lc_all]
+        opn, opd = [x["operator_noise"] for x in lc_all], [x["operator_damp"] for x in lc_all]
+        ln, ld = [x["true_noise"] for x in lc_all], [x["true_damp"] for x in lc_all]
+        ratio = min(min(opn) / max(max(ln), 1e-300), min(opd) / max(max(ld), 1e-300))
+        lines += ["", "The fast and dense O-steps differ by two approximations, measured at the fast runs' monitor "
+                  "configurations and inputs (Section 6):",
+                  f"- PPPM Γ_h vs full periodic Γ: {min(op):.1e}–{max(op):.1e} (relative Frobenius norm on Range(Π)); "
+                  f"in the O-step matrix functions noise {min(opn):.1e}–{max(opn):.1e}, damping {min(opd):.1e}–{max(opd):.1e};",
+                  f"- Lanczos truncation (ranks {fast_e['ranks'] if fast_e else '–'}) against exact f(Γ_h): noise ≤ "
+                  f"{max(ln):.1e}, damping ≤ {max(ld):.1e}.",
+                  (f"The operator term is the larger one by at least a factor {ratio:.0f} in both functions, so the "
+                   "path difference comes mainly from the PPPM operator approximation." if ratio > 10 else
+                   f"The two terms are within a factor {ratio:.1f} of each other in at least one function; the path "
+                   "difference cannot be attributed to one of them."),
+                  "", "The difference grows roughly exponentially from its first-step size (`pilot_fast_vs_dense.png`). "
+                  "One initial state and one noise path per dt: these numbers describe this path pair only and are "
+                  "not a statistical comparison of the two methods."]
+    lines += ["", "## 5. Momentum, temperature, potential energy", ""]
     for c, e in E.items():
         mo = e["momentum"]
-        lines.append(f"- {c}: max |P(t) − P(0)| = {mo['max_dev']:.1e} (scale √(NmkT) = {mo['scale_sqrt_NmkT']:.0f}, "
-                     f"relative {mo['rel_max_dev']:.1e}); first / second half {mo['max_dev_first_half']:.1e} / "
-                     f"{mo['max_dev_second_half']:.1e}; growth |ΔP| ∝ t^{_f(mo['growth_exponent'], '.2f')}; max "
-                     f"= {mo['max_dev_over_roundoff_walk']:.2f} × ε Σ|p| √n (round-off random-walk scale, ε Σ|p| = "
-                     f"{mo['roundoff_per_step']:.1e}); linear extrapolation to t = 55: "
-                     f"{mo['linear_extrapolation_t55_rel']:.0e} of √(NmkT). T_kin mean {e['T_kin']['mean']:.4f} (range {e['T_kin']['min']:.3f}–"
-                     f"{e['T_kin']['max']:.3f}), U/N mean {e['U_per_N']['mean']:.4f}; all values finite: {e['finite']}.")
+        lines.append(f"- {c}: max |P(t) − P(0)| = {mo['max_dev']:.1e} (relative to √(NmkT) = {mo['scale_sqrt_NmkT']:.0f}: "
+                     f"{mo['rel_max_dev']:.1e}); first / second half {mo['max_dev_first_half']:.1e} / "
+                     f"{mo['max_dev_second_half']:.1e}; ε Σ|p| = {mo['roundoff_per_step']:.1e}. **Drift: {mo['verdict']}.** "
+                     f"T_kin mean {e['T_kin']['mean']:.4f} (range {e['T_kin']['min']:.3f}–{e['T_kin']['max']:.3f}), "
+                     f"U/N mean {e['U_per_N']['mean']:.4f}; all values finite: {e['finite']}.")
     p0n = float(np.linalg.norm(any_e["momentum"]["P0"]))
-    lines += ["", f"Momentum: |P(0)| = {p0n:.1e} (round-off of the source run). The O-step carries the mean momentum "
-              "exactly and projects the friction update, and the pair forces cancel in pairs, so P changes only by "
-              "floating-point round-off. Three readings: size (max |ΔP| in units of the round-off scale ε Σ|p| √n), "
-              "trend (exponent a of |ΔP| ∝ t^a: about 0.5 for a random walk, about 1 for steady accumulation, which "
-              "at this size is a rounding bias, not physics) and relevance (the linear extrapolation to a 55-unit "
-              "production run against √(NmkT) and the 1e-9 acceptance threshold of `hpc/check_run.py`). The exponent "
-              "from one t = 1 run is rough. T_kin over t = 1 from one state is a single correlated "
-              "sample; its mean is not a temperature test.", "",
-              "## 6. Lanczos error monitor (fast runs)", ""]
+    lines += ["", f"|P(0)| = {p0n:.1e} (round-off of the source run). The O-step carries the mean momentum exactly and "
+              "projects the friction update, and the pair forces cancel in pairs, so P changes only by floating-point "
+              "round-off. ε Σ|p| is the round-off of forming Σp once; a deviation within ε Σ|p| √n (n steps) cannot be "
+              "told apart from round-off, and no drift is detectable then. A systematic error of 1e-14 per step would "
+              "already exceed that scale within t = 1. T_kin over t = 1 from one state is a single correlated sample; "
+              "its mean is not a temperature test.", "", "## 6. Lanczos error monitor (fast runs)", ""]
     for c, rows in res["lanczos_check"].items():
         if not rows:
             continue
@@ -688,43 +781,46 @@ def write_report(res, out):
                      f"Smallest eigenvalue of Γ_h / Γ: {min(x['lam_min_h'] for x in rows):.3f} / "
                      f"{min(x['lam_min_ref'] for x in rows):.3f}.")
     lines += ["", "The monitor points include steps after both restarts. The dense runs have no Lanczos step; their "
-              "monitor rows hold S(k_min) only.", "",
-              "## 7. Checkpoint save and restore", ""]
+              "monitor rows hold S(k_min) only.", "", "## 7. Checkpoint save and restore", ""]
     for c, e in E.items():
         cs = e["case_summary"]
         rs = cs.get("restart", {})
         ph = {p["phase"]: p for p in cs.get("phases", []) if "exit_code" in p}
         s1 = ph.get("segment1_signal_stop", {})
         s2 = ph.get("segment2_step_limit", {})
-        lines.append(f"- {c}: segment 1 stopped by SIGUSR1 → exit {s1.get('exit_code')} at step "
-                     f"{rs.get('restart_steps', ['?'])[0]}; segment 2 (30-step limit) exit {s2.get('exit_code')} at step "
-                     f"{rs.get('restart_steps', ['?', '?'])[1]}, duplicate resume during it exit "
-                     f"{s2.get('duplicate_exit_code')} (3 = refused by the lock); final exit "
-                     f"{[p['exit_code'] for k, p in ph.items() if k.startswith('segment3')]}. Continuous twin to step "
-                     f"{rs.get('twin_steps')}: diagnostics {rs.get('diag_bitwise_except_wall')}, frames "
+        rst = rs.get("restart_steps") or ["?", "?"]
+        lines.append(f"- {c}: segment 1 stopped by SIGUSR1 → exit {s1.get('exit_code')} at step {rst[0]}; segment 2 "
+                     f"({SEGMENT2_STEPS}-step limit) exit {s2.get('exit_code')} at step {rst[1]}, duplicate resume during "
+                     f"it exit {s2.get('duplicate_exit_code')} (3 = refused by the lock); final exit "
+                     f"{[p['exit_code'] for k, p in ph.items() if k.startswith('segment3')]}; checkpoints at "
+                     f"{e['chunk_ends']} (expected {e['chunk_ends_expected']}). Continuous twin to step "
+                     f"{rs.get('twin_steps')} (exit {rs.get('twin_exit_code')}, past both restarts: "
+                     f"{rs.get('covers_both_restarts')}): diagnostics {rs.get('diag_bitwise_except_wall')}, frames "
                      f"{rs.get('frames_bitwise')}, monitor rows {rs.get('monitor_bitwise')}, q/p "
-                     f"{rs.get('q_p_at_twin_end_bitwise')} (bitwise).")
+                     f"{rs.get('q_p_at_twin_end_bitwise')} (bitwise)." + (f" {rs['reason']}" if rs.get("reason") else ""))
     lines += ["", "## 8. Cost and resource recommendation", "",
               "Cost per physical time unit, from the measured mean integration step, the measured output cost with a "
               "frame every step, and the monitor at the production cadence (every 500 steps):", "",
               "| case | steps / time unit | step [s] | core-s / time unit | storage MB / time unit (every-step frames) | "
-              "core-h per 100 time units | core-h, 10 replicas × 55 | peak RSS [MB] |", "|---|---|---|---|---|---|---|---|"]
+              "core-h per 100 time units | core-h, 10 replicas × 55 | peak RSS [MB] | --mem |",
+              "|---|---|---|---|---|---|---|---|---|"]
     for c, x in est.items():
         lines.append(f"| {c} | {x['steps_per_time_unit']:.0f} | {x['step_s_mean']:.3f} | {x['core_s_per_time_unit']:.0f} | "
                      f"{x['storage_mb_per_time_unit_every_step_frames']:.1f} | {x['core_h_per_100_time_units']:.2f} | "
-                     f"{x['core_h_10x55']:.1f} | {x['peak_rss_mb']:.0f} |")
-    f5 = est.get("fast_dt0.005", {})
-    f10 = est.get("fast_dt0.01", {})
+                     f"{x['core_h_10x55']:.1f} | {x['peak_rss_mb']:.0f} | {_mem_request(x['peak_rss_mb']):g}G |")
+    f5, f10, d5 = est.get("fast_dt0.005"), est.get("fast_dt0.01"), est.get("dense_dt0.005")
     if f5:
-        wall = f5["wall_h_one_replica_55"]
-        lines += ["", "Recommendation for the formal law A runs (fast method only; the dense reference costs about "
-                  f"{est['dense_dt0.005']['core_s_per_time_unit'] / f5['core_s_per_time_unit']:.0f}× more and is for "
-                  "spot checks):" if "dense_dt0.005" in est else "", "",
+        lines += ["", "Recommendation for the formal law A runs (fast method only"
+                  + (f"; the dense reference costs about {d5['core_s_per_time_unit'] / f5['core_s_per_time_unit']:.0f}× "
+                     "more per time unit at dt 0.005 and is for spot checks" if d5 else "") + "):", "",
                   f"- one replica = one single-core task, OPENBLAS/OMP/MKL threads 1; 5 + 50 time units at dt 0.005 "
-                  f"≈ {wall:.2f} h of compute on this CPU. Request `--time` ≈ 1.5 × the cluster-measured estimate + 10 "
-                  "min, with `--signal=B:USR1@600` and `--resume` so a job stopped at the limit continues;",
-                  f"- `--mem=1G` is enough for the fast runs (peak RSS {f5['peak_rss_mb']:.0f} MB here); the dense "
-                  "reference needs about 0.6–0.7 GB (lattice set-up), request 2G;",
+                  f"≈ {f5['wall_h_one_replica_55']:.2f} h of compute on this CPU. Request `--time` ≈ 1.5 × the "
+                  "cluster-measured estimate + 10 min, with `--signal=B:USR1@600` and `--resume` so a job stopped at the "
+                  "limit continues;",
+                  f"- `--mem={_mem_request(f5['peak_rss_mb']):g}G` for the fast runs (1.5 × peak RSS "
+                  f"{f5['peak_rss_mb']:.0f} MB + 256 MB, rounded up)"
+                  + (f"; `--mem={_mem_request(d5['peak_rss_mb']):g}G` for the dense reference (peak RSS "
+                     f"{d5['peak_rss_mb']:.0f} MB, lattice set-up)" if d5 else "") + ";",
                   f"- storage with every-step frames: {f5['storage_mb_per_time_unit_every_step_frames']:.1f} MB per "
                   f"time unit at dt 0.005 ({f5['storage_mb_per_time_unit_every_step_frames'] * 55:.0f} MB per replica "
                   "of 55);",
@@ -748,6 +844,7 @@ def write_report(res, out):
               "path per dt, t = 1.",
               "- No long-time equilibrium or stationarity: T_kin and U/N over t = 1 are single correlated samples.",
               "- dt 0.005 and dt 0.01 are not pathwise coupled; nothing here compares them pathwise.",
+              "- Locking across nodes: the duplicate test runs on one node (see Section 2).",
               "- " + ("Nothing about the cluster: scheduler signals, the cluster file system's locking, its Python/BLAS "
                       "build and its step times are tested only when these jobs run there." if local else
                       "Single cluster run; node-to-node speed variation is not sampled."), "",
