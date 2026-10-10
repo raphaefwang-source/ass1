@@ -1,0 +1,172 @@
+{
+ "results": {
+  "n11_p20_independent": {
+   "coverage_used": 0.945,
+   "coverage_boot": 0.942,
+   "coverage_bonf": 0.944,
+   "reps": 1000
+  },
+  "n11_p20_smooth_ell5": {
+   "coverage_used": 0.985,
+   "coverage_boot": 0.953,
+   "coverage_bonf": 0.985,
+   "reps": 1000
+  },
+  "n11_p30_independent": {
+   "coverage_used": 0.956,
+   "coverage_boot": 0.951,
+   "coverage_bonf": 0.954,
+   "reps": 1000
+  },
+  "n11_p30_smooth_ell5": {
+   "coverage_used": 0.988,
+   "coverage_boot": 0.96,
+   "coverage_bonf": 0.988,
+   "reps": 1000
+  },
+  "n11_p50_independent": {
+   "coverage_used": 0.959,
+   "coverage_boot": 0.956,
+   "coverage_bonf": 0.958,
+   "reps": 1000
+  },
+  "n11_p50_smooth_ell5": {
+   "coverage_used": 0.98,
+   "coverage_boot": 0.957,
+   "coverage_bonf": 0.98,
+   "reps": 1000
+  },
+  "n11_p100_independent": {
+   "coverage_used": 0.954,
+   "coverage_boot": 0.951,
+   "coverage_bonf": 0.95,
+   "reps": 1000
+  },
+  "n11_p100_smooth_ell5": {
+   "coverage_used": 0.988,
+   "coverage_boot": 0.953,
+   "coverage_bonf": 0.988,
+   "reps": 1000
+  },
+  "n11_p200_independent": {
+   "coverage_used": 0.957,
+   "coverage_boot": 0.951,
+   "coverage_bonf": 0.954,
+   "reps": 1000
+  },
+  "n11_p200_smooth_ell5": {
+   "coverage_used": 0.981,
+   "coverage_boot": 0.958,
+   "coverage_bonf": 0.981,
+   "reps": 1000
+  },
+  "n16_p20_independent": {
+   "coverage_used": 0.95,
+   "coverage_boot": 0.945,
+   "coverage_bonf": 0.949,
+   "reps": 1000
+  },
+  "n16_p20_smooth_ell5": {
+   "coverage_used": 0.985,
+   "coverage_boot": 0.951,
+   "coverage_bonf": 0.985,
+   "reps": 1000
+  },
+  "n16_p30_independent": {
+   "coverage_used": 0.96,
+   "coverage_boot": 0.959,
+   "coverage_bonf": 0.958,
+   "reps": 1000
+  },
+  "n16_p30_smooth_ell5": {
+   "coverage_used": 0.984,
+   "coverage_boot": 0.944,
+   "coverage_bonf": 0.984,
+   "reps": 1000
+  },
+  "n16_p50_independent": {
+   "coverage_used": 0.956,
+   "coverage_boot": 0.949,
+   "coverage_bonf": 0.954,
+   "reps": 1000
+  },
+  "n16_p50_smooth_ell5": {
+   "coverage_used": 0.977,
+   "coverage_boot": 0.948,
+   "coverage_bonf": 0.977,
+   "reps": 1000
+  },
+  "n16_p100_independent": {
+   "coverage_used": 0.94,
+   "coverage_boot": 0.937,
+   "coverage_bonf": 0.937,
+   "reps": 1000
+  },
+  "n16_p100_smooth_ell5": {
+   "coverage_used": 0.981,
+   "coverage_boot": 0.951,
+   "coverage_bonf": 0.981,
+   "reps": 1000
+  },
+  "n16_p200_independent": {
+   "coverage_used": 0.941,
+   "coverage_boot": 0.939,
+   "coverage_bonf": 0.94,
+   "reps": 1000
+  },
+  "n16_p200_smooth_ell5": {
+   "coverage_used": 0.989,
+   "coverage_boot": 0.958,
+   "coverage_bonf": 0.989,
+   "reps": 1000
+  }
+ },
+ "worst_coverage_used": 0.94,
+ "nominal": 0.95,
+ "requirement": ">= 0.93 for the band actually used (max of the two)",
+ "passed": true,
+ "note": "n = 16 uses 4096 random sign vectors here (speed); the analysis enumerates all 2^15",
+ "provenance": {
+  "command": "/usr/local/bin/python3 lj075_observable_dt.py selftest",
+  "cwd": "/home/user/ass1/ewald_longitudinal",
+  "git_commit": "fe97813d586b6865761a14cb5f191f209d3063c2",
+  "git_dirty": false,
+  "untracked_py": [],
+  "script_sha256_16": {
+   "lj075_common.py": "3936dac0eaf81905",
+   "lj075_coupled.py": "c9f26edea49d35d2",
+   "lj075_dt_analysis.py": "e2959a39e12d86dc",
+   "lj075_dt_diagnostic.py": "8c2cc4c58a59c363",
+   "lj075_dt_study.py": "08d86c5c7aa66ada",
+   "lj075_equil_analysis.py": "1ee42fe293ac0bce",
+   "lj075_equilibration.py": "1ec70796c478980e",
+   "lj075_longD.py": "12724c59e8b9bd3b",
+   "lj075_observable_dt.py": "a0656fb8a0fb67ac",
+   "lj075_operator_sensitivity.py": "c2e31244b9979436",
+   "lj075_pppm_cost.py": "f7decc37a991d439",
+   "lj075_pppm_screen.py": "3bfd2a79a4c07338",
+   "lj075_prepare_states.py": "e77a1d8425d42323",
+   "lj075_sampling.py": "1d3df6b7d580a625",
+   "lj075_summary.py": "9c1adb7314932427",
+   "lj075_verify.py": "1fbcd9768d1475ba",
+   "lj075_visited.py": "4184807fc7d48354",
+   "toy_configs.py": "8b516c14498b085b",
+   "toy_run.py": "99f0baf867aaec7e",
+   "toy_dynamics.py": "28f70bea0511ea91",
+   "radial_kernels.py": "f160a24d8f946e95",
+   "test_lanczos_fdt.py": "073614431017921a",
+   "test_true_dynamics.py": "3b39532a9f2917b1",
+   "test_equal_accuracy_xi.py": "03db2074c7890bf2",
+   "prl_toy_models.py": "404f9f23ee0d2da6"
+  },
+  "host": "vm",
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "started": "2026-10-10T06:28:26+0000"
+ }
+}
