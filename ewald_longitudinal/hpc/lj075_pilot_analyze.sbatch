@@ -7,7 +7,8 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=2G
-#SBATCH --time=00:30:00
+#SBATCH --time=00:20:00
+#SBATCH --no-requeue
 set -uo pipefail
 : "${TOY_ENV_FILE:?TOY_ENV_FILE not set (use hpc/submit.sh)}" "${PILOT_ROOT:?PILOT_ROOT not set}"
 source "${TOY_HPC_DIR:?TOY_HPC_DIR not set (use hpc/submit.sh)}/common.sh"

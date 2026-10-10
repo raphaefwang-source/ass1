@@ -26,11 +26,12 @@ pilot)
     ;;
 lj075-pilot)
     # LJ law A, N = 256: dense / fast O-step x dt 0.005 / 0.01 to t = 1 (lj075_hpc_pilot.py), then the analysis job.
-    # Short jobs only; no array, no replicas. Time limits: about 3x the local estimate (hpc/README.md).
+    # Short jobs only; no array, no replicas. Time limits: about 4x the local case wall time, at least 10 min
+    # (local: dense_dt0.005 7.3 min, dense_dt0.01 4.7 min, fast 1.2 / 0.8 min; hpc/README.md).
     root="$RUN_ROOT/lj075_pilot/$(date +%Y%m%dT%H%M%S)"
     dry=0; [ "${1:-}" = "--dry-run" ] && dry=1
     ids=()
-    for spec in dense_dt0.005:01:00:00 fast_dt0.005:00:20:00 dense_dt0.01:00:40:00 fast_dt0.01:00:15:00; do
+    for spec in dense_dt0.005:00:30:00 fast_dt0.005:00:10:00 dense_dt0.01:00:20:00 fast_dt0.01:00:10:00; do
         C="${spec%%:*}"; T="${spec#*:}"
         cmd=(sbatch --parsable "${common[@]}" --job-name="lj075_pilot_$C" --time="$T" --output="$LOG_ROOT/%x-%j.out"
              --export="ALL,TOY_ENV_FILE=$ENV_FILE,TOY_HPC_DIR=$HERE,CASE=$C,PILOT_ROOT=$root" "$HERE/lj075_pilot_case.sbatch")

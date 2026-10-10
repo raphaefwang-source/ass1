@@ -9,13 +9,18 @@
 #   twin/  a continuous run to 10 steps past the second restart, compared bitwise with run/;
 #   env_report.json, lock_check.json, case_summary.json.
 # Slurm's own USR1 (--signal, 120 s before the limit) goes to this shell and is forwarded: the running segment
-# checkpoints and exits 75, no further phase starts. Nothing is resubmitted automatically.
+# checkpoints and exits 75, no further phase starts. Nothing is resubmitted automatically. The job exits 0 only if the
+# run completed, every exit code was as expected, the duplicate was refused, lock_check passed and the restart check
+# passed.
 #
 # Local emulation without Slurm (not an HPC validation): hpc/lj075_pilot_local.sh
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=2G
 #SBATCH --signal=B:USR1@120
+#SBATCH --no-requeue
+# --no-requeue: a requeued job would find its case directory in use and stop; resubmit a failed pilot by hand with a
+# new PILOT_ROOT (hpc/submit.sh lj075-pilot) after looking at the Slurm output.
 set -uo pipefail
 : "${TOY_ENV_FILE:?TOY_ENV_FILE not set (use hpc/submit.sh)}" "${CASE:?CASE not set}" "${PILOT_ROOT:?PILOT_ROOT not set}"
 source "${TOY_HPC_DIR:?TOY_HPC_DIR not set (use hpc/submit.sh)}/common.sh"

@@ -74,7 +74,7 @@ CASES = {
 }
 PAIRS = {0.005: ("fast_dt0.005", "dense_dt0.005"), 0.01: ("fast_dt0.01", "dense_dt0.01")}
 CHECKPOINT_EVERY, MONITOR_EVERY, SEGMENT2_STEPS, TWIN_EXTRA = 25, 10, 30, 10
-CADENCE = ["--checkpoint-every-steps", str(CHECKPOINT_EVERY), "--checkpoint-every-minutes", "15"]   # every segment:
+CADENCE = ["--checkpoint-every-steps", str(CHECKPOINT_EVERY), "--checkpoint-every-minutes", "600"]  # every segment:
 # toy_run.py --resume takes the checkpoint cadence from its own command line (default 2000 steps), not config.json
 ENV1 = dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", MKL_NUM_THREADS="1")
 STOP = {"signal": None, "child": None}
@@ -177,7 +177,7 @@ def run_case(case, root):
                     tr.EXIT_COMPLETE)
         if rc != tr.EXIT_INCOMPLETE:
             break
-    st = json.loads((run / "status.json").read_text())
+    st = json.loads((run / "status.json").read_text()) if (run / "status.json").exists() else {}
     seg = st.get("segments", [])
     if len(seg) >= 2 and not STOP["signal"]:
         n_twin = int(seg[1]["end_step"]) + TWIN_EXTRA
@@ -193,7 +193,8 @@ def run_case(case, root):
     (d / "case_summary.json").write_text(json.dumps(rec, indent=1, default=float) + "\n")
     ok = (st.get("state") == "complete" and all(p.get("exit_code") == p.get("expected_exit_code")
                                                 for p in rec["phases"] if "exit_code" in p)
-          and rec.get("restart", {}).get("passed", False))
+          and rec.get("restart", {}).get("passed", False) and rec["lock_check_exit_code"] == 0
+          and any(p.get("duplicate_exit_code") == tr.EXIT_LOCKED for p in rec["phases"]))
     print(f"case {case}: {'OK' if ok else 'NOT OK'} (see {d / 'case_summary.json'})", flush=True)
     return 0 if ok else 1
 
@@ -304,6 +305,12 @@ def analyze(root, out):
         d = root / c
         if not (d / "run" / "config.json").exists():
             missing.append(c)
+            if d.exists():
+                cs = json.loads((d / "case_summary.json").read_text()) if (d / "case_summary.json").exists() else {}
+                lk = json.loads((d / "lock_check.json").read_text()) if (d / "lock_check.json").exists() else {}
+                failed[c] = dict(state="no run directory state", step=None, stop_reason=None, failure_diag=[],
+                                 phases=cs.get("phases"), lock_check=dict(passed=lk.get("passed"),
+                                                                          warnings=lk.get("warnings"), mount=lk.get("mount")))
             continue
         X = tr.load_run(d / "run")
         S_c = json.loads((d / "case_summary.json").read_text()) if (d / "case_summary.json").exists() else {}
@@ -370,8 +377,21 @@ def analyze(root, out):
                       and np.all(np.isfinite(D[:, :cols["step_wall_s"] + 1])) and np.all(np.isfinite(D[1:, 8:10])))
         mon = X["monitor"]
         cost = _segments_cost(st)
+        # cost statistics without segment 2: the duplicate lock test runs during it and, on a one-CPU allocation,
+        # shares the core with it
+        segs_all = st.get("segments", [])
+        keep = [x for i, x in enumerate(segs_all) if i != 1] or segs_all
+        step_no = D[:, cols["step"]]
+        in_keep = np.zeros(len(D), bool)
+        for x in keep:
+            in_keep |= (step_no > int(x.get("start_step", 0))) & (step_no <= int(x.get("end_step", -1)))
+        walls = D[in_keep, cols["step_wall_s"]]
+        if len(walls) == 0:
+            walls = D[1:, cols["step_wall_s"]]
+        steps_k = max(sum(int(x.get("steps_run") or 0) for x in keep), 1)
+        sum_k = {k: float(sum(x.get(k) or 0.0 for x in keep)) for k in ("step_wall_s_sum", "monitor_wall_s",
+                                                                        "output_wall_s")}
         steps = max(cost["steps_run"], 1)
-        walls = D[1:, cols["step_wall_s"]]
         with np.load(root / c / "run" / "checkpoint.npz") as ck:
             rng_final = str(ck["rng_state"])
         with np.load(root / c / "run" / "init_state.npz") as z:
@@ -412,9 +432,11 @@ def analyze(root, out):
                  cost=dict(**cost, step_s_median=float(np.median(walls)), step_s_p90=float(np.percentile(walls, 90)),
                            step_s_max=float(walls.max()), step_s_mean=float(walls.mean()),
                            init_s=cost["first_segment_init_wall_s"], import_s=cost["first_segment_import_wall_s"],
-                           output_s_per_step=cost["output_wall_s"] / steps, monitor_s_per_point=(
+                           steps_in_cost_statistics=int(len(walls)),
+                           output_s_per_step=sum_k["output_wall_s"] / steps_k, monitor_s_per_point=(
                                cost["monitor_wall_s"] / max(len(mon), 1)),
-                           full_s_per_step=(cost["step_wall_s_sum"] + cost["monitor_wall_s"] + cost["output_wall_s"]) / steps,
+                           full_s_per_step=(sum_k["step_wall_s_sum"] + sum_k["monitor_wall_s"] + sum_k["output_wall_s"])
+                           / steps_k,
                            run_cpu_s=cost["init_cpu_s"] + cost["cpu_s"],
                            run_wall_s=sum((s.get("phase") or "").startswith("segment") and s.get("process_wall_s") or 0
                                           for s in S[c].get("phases", [])) or None,
@@ -654,7 +676,8 @@ def write_report(res, out):
         lines += ["**Cases without analysable output** (fewer than two frames):", ""]
         for c, x in res["failed_cases"].items():
             lines.append(f"- {c}: state {x['state']} at step {x['step']}, stop reason {x['stop_reason']}, "
-                         f"failure diagnostics {x['failure_diag']}; phases {[(p.get('phase'), p.get('exit_code')) for p in (x['phases'] or [])]}")
+                         f"failure diagnostics {x['failure_diag']}; phases {[(p.get('phase'), p.get('exit_code')) for p in (x['phases'] or [])]}"
+                         + (f"; lock check {x['lock_check']}" if x.get("lock_check") else ""))
         lines.append("")
     if not E:
         lines += [f"No case has analysable output; missing: {res['missing_cases']}."]
@@ -721,8 +744,9 @@ def write_report(res, out):
               "## 3. Four cases", "", t1, "",
               "Init = process start to the first step (imports, configuration, initial state, operator set-up, initial "
               "force), first segment. Integration step = one BAOAB step without monitor or output. Output = chunk and "
-              "checkpoint files, status and log writes. Run CPU / wall: the three run segments (the twin restart check "
-              "is extra)."]
+              "checkpoint files, status and log writes. Step, output and full per-step costs leave out segment 2, "
+              "during which the duplicate lock test runs (on a one-CPU allocation it shares the core). Run CPU / wall: "
+              "the three run segments (the twin restart check is extra)."]
     wide = [f"{c} (p90 / median {e['cost']['step_s_p90'] / e['cost']['step_s_median']:.1f})" for c, e in E.items()
             if e["cost"]["step_s_p90"] > 1.5 * e["cost"]["step_s_median"]]
     if wide:

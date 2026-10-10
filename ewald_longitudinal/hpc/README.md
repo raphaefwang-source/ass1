@@ -183,8 +183,12 @@ less $RUN_ROOT/lj075_pilot/<tag>/report/pilot_report.md
 
 Slurm's own `--signal=B:USR1@120` is forwarded to the running segment.
 
-Time limits: dense_dt0.005 1 h, dense_dt0.01 40 min, fast 20 / 15 min, analysis 30 min. They are about 3× the local
-case times. **The analysis job** (`lj075_pilot_analyze.sbatch`) writes `report/` with:
+Time limits:
+- dense_dt0.005 30 min, dense_dt0.01 20 min, fast 10 min each, analysis 20 min;
+- about 4× the local case wall times (7.3, 4.7, 1.2 and 0.8 min), with a 10 min floor;
+- the jobs are not requeued (`--no-requeue`): resubmit by hand with a new pilot root.
+
+**The analysis job** (`lj075_pilot_analyze.sbatch`) writes `report/` with:
 - `pilot_report.md`, `pilot_table.md`, `pilot_results.json`, `pilot_differences.npz`, figures;
 - `sacct.txt`.
 
