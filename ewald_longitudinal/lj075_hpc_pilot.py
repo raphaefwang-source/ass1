@@ -814,7 +814,7 @@ def write_report(res, out):
         s1 = ph.get("segment1_signal_stop", {})
         s2 = ph.get("segment2_step_limit", {})
         rst = rs.get("restart_steps") or ["?", "?"]
-        lines.append(f"- {c}: segment 1 stopped by SIGUSR1 → exit {s1.get('exit_code')} at step {rst[0]}; segment 2 "
+        lines.append(f"- {c}: segment 1 stopped by SIGUSR1 (sent by the pilot) → exit {s1.get('exit_code')} at step {rst[0]}; segment 2 "
                      f"({SEGMENT2_STEPS}-step limit) exit {s2.get('exit_code')} at step {rst[1]}, duplicate resume during "
                      f"it exit {s2.get('duplicate_exit_code')} (3 = refused by the lock); final exit "
                      f"{[p['exit_code'] for k, p in ph.items() if k.startswith('segment3')]}; checkpoints at "
@@ -870,8 +870,11 @@ def write_report(res, out):
               "- No long-time equilibrium or stationarity: T_kin and U/N over t = 1 are single correlated samples.",
               "- dt 0.005 and dt 0.01 are not pathwise coupled; nothing here compares them pathwise.",
               "- Locking across nodes: the duplicate test runs on one node (see Section 2).",
-              "- " + ("Nothing about the cluster: scheduler signals, the cluster file system's locking, its Python/BLAS "
-                      "build and its step times are tested only when these jobs run there." if local else
+              "- Slurm's own time-limit signal: segment 1 is stopped by a SIGUSR1 that the pilot sends itself. The "
+              "path from `--signal=B:USR1@120` through the batch-shell trap to the run is used only if a job nears its "
+              "limit; this pilot does not force it (the older N = 512 pilot, `hpc/pilot_task.sbatch`, does).",
+              "- " + ("Nothing about the cluster: its file system's locking, its Python/BLAS build and its step times "
+                      "are tested only when these jobs run there." if local else
                       "Single cluster run; node-to-node speed variation is not sampled."), "",
               f"Analysis wall time {res['analysis_wall_s']:.0f} s (Lanczos/operator check {res['lanczos_check_wall_s']:.0f} s)."]
     if (out / "sacct.txt").exists():
