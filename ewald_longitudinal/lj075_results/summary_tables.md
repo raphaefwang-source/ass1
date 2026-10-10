@@ -51,50 +51,50 @@ On-line Lanczos error estimates on actual inputs (max over replicas; damp / nois
 
 Stationarity of the paired differences (late-minus-early window, 95% CI): 0.0025_vs_0.00125: T_kin -0.21% [-0.82, +0.40], U_per_N -0.18% [-0.45, +0.08], pressure -0.0478 [-0.115, +0.0194], rdf_peak -0.88% [-1.61, -0.14]; 0.005_vs_0.00125: T_kin -0.01% [-0.64, +0.62], U_per_N -0.07% [-0.21, +0.06], pressure +0.00125 [-0.0333, +0.0358], rdf_peak -0.20% [-1.42, +1.03]; 0.01_vs_0.00125: T_kin +0.04% [-0.75, +0.83], U_per_N -0.13% [-0.32, +0.05], pressure -0.0102 [-0.0535, +0.0331], rdf_peak -0.31% [-1.65, +1.02]
 
-### Long-time diffusion, law A: levels [0.005, 0.01], n = 3 (replicas [113, 114, 115]), T0 = 10.0, 3.66 core-h
+### Long-time diffusion, law A: levels [0.005, 0.01], n = 11 (replicas [113, 114, 115, 121, 122, 123, 124, 125, 126, 127, 128]), T0 = 10.0, 17.61 core-h
 
-dt 0.005: T_kin +1.0006 [+0.99595, +1.0053]
+dt 0.005: T_kin +0.99925 [+0.9976, +1.0009]
 | MSD window | D_MSD [95% CI] |
 |---|---|
-| 1-2 | +0.0294 [+0.0288, +0.0299] |
-| 2-4 | +0.0288 [+0.0277, +0.0299] |
-| 4-8 | +0.0282 [+0.0273, +0.029] |
-| 8-16 | +0.0283 [+0.0273, +0.0293] |
-| 16-32 | +0.0293 [+0.027, +0.0316] |
+| 1-2 | +0.0294 [+0.0291, +0.0298] |
+| 2-4 | +0.0289 [+0.0284, +0.0293] |
+| 4-8 | +0.0286 [+0.0281, +0.029] |
+| 8-16 | +0.0283 [+0.0279, +0.0287] |
+| 16-32 | +0.0286 [+0.0279, +0.0293] |
 | step | relative change [95% CI] | status |
 |---|---|---|
-| 1-2 -> 2-4 | -1.89% [-4.43, +0.65] | undetermined |
-| 2-4 -> 4-8 | -2.20% [-5.20, +0.80] | undetermined |
-| 4-8 -> 8-16 | +0.50% [-5.80, +6.81] | undetermined |
-| 8-16 -> 16-32 | +3.65% [-3.74, +11.04] | undetermined |
+| 1-2 -> 2-4 | -1.93% [-2.67, -1.19] | undetermined |
+| 2-4 -> 4-8 | -1.12% [-2.01, -0.23] | undetermined |
+| 4-8 -> 8-16 | -0.78% [-2.17, +0.61] | undetermined |
+| 8-16 -> 16-32 | +1.06% [-1.54, +3.65] | undetermined |
 
 Long-time D determined: **False**
 
-dt 0.01: T_kin +0.9962 [+0.99143, +1.001]
+dt 0.01: T_kin +0.99482 [+0.9935, +0.99614]
 | MSD window | D_MSD [95% CI] |
 |---|---|
-| 1-2 | +0.0295 [+0.0285, +0.0305] |
-| 2-4 | +0.0286 [+0.0272, +0.0301] |
-| 4-8 | +0.0281 [+0.0266, +0.0296] |
-| 8-16 | +0.0284 [+0.0276, +0.0292] |
-| 16-32 | +0.0286 [+0.0266, +0.0305] |
+| 1-2 | +0.0297 [+0.0293, +0.03] |
+| 2-4 | +0.0291 [+0.0286, +0.0296] |
+| 4-8 | +0.0286 [+0.0279, +0.0293] |
+| 8-16 | +0.0287 [+0.0279, +0.0294] |
+| 16-32 | +0.0284 [+0.0272, +0.0297] |
 | step | relative change [95% CI] | status |
 |---|---|---|
-| 1-2 -> 2-4 | -2.87% [-4.57, -1.17] | undetermined |
-| 2-4 -> 4-8 | -1.74% [-4.58, +1.11] | undetermined |
-| 4-8 -> 8-16 | +0.96% [-3.43, +5.35] | undetermined |
-| 8-16 -> 16-32 | +0.63% [-5.66, +6.93] | undetermined |
+| 1-2 -> 2-4 | -2.04% [-2.76, -1.33] | undetermined |
+| 2-4 -> 4-8 | -1.55% [-2.33, -0.77] | undetermined |
+| 4-8 -> 8-16 | +0.16% [-1.11, +1.42] | plateau |
+| 8-16 -> 16-32 | -0.96% [-3.41, +1.50] | undetermined |
 
 Long-time D determined: **False**
 
 0.01_vs_0.005: free-particle prior x coth x − 1 (vs continuum) for dt: 0.018%, 0.122%; reference: 0.004%, 0.031%
 | window | D_dt / D_ref − 1 [95% CI] |
 |---|---|
-| 1-2 | +0.41% [-3.77, +4.59] |
-| 2-4 | -0.58% [-6.08, +4.91] |
-| 4-8 | -0.12% [-4.55, +4.31] |
-| 8-16 | +0.33% [-1.75, +2.42] |
-| 16-32 | -2.58% [-7.04, +1.89] |
+| 1-2 | +0.80% [+0.05, +1.55] |
+| 2-4 | +0.70% [-0.80, +2.20] |
+| 4-8 | +0.28% [-1.79, +2.35] |
+| 8-16 | +1.26% [-1.48, +4.00] |
+| 16-32 | -0.56% [-5.68, +4.57] |
 
 ### Equilibration, law A: 8 runs, start types ['fcc', 'hot', 'lgv', 'rsa'], dt 0.005, 2.93 core-h
 
@@ -200,9 +200,9 @@ Largest passing stride: 1 (MSD only: 20); VACF resolved at every step: True.
 | static verification verify_visited_eq_A | 0.272 |
 | state preparation (all prepared states, both laws' inputs) | 0.131 |
 | dt study levels_0.00125_0.0025_0.005_0.01_T10 | 10.335 |
-| long-D | 3.663 |
+| long-D | 17.605 |
 | equilibration / production-runner runs | 2.934 |
 | operator sensitivity runs | 0.329 |
 | PPPM step-cost benchmark (estimated from the medians, 984 steps) | 0.035 |
-| **total recorded** | **18.40** |
+| **total recorded** | **32.34** |
 

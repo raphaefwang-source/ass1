@@ -15,7 +15,7 @@ Law B was stopped at the user's request partway through the campaign (§9). Ever
 | time step | **dt = 0.005, provisional** (no dt is validated under the pre-registered rule, §3.4) | vs dt 0.00125, 16 coupled replicas: T −0.12% [−0.30, +0.07], U/N −0.05% [−0.14, +0.04], first peak height −0.05% [−0.50, +0.41], peak position 0.00% [−0.23, +0.22], VACF max\|ΔC\|/C(0) ≤ 0.41% (t ≤ 2), MSD(0.1) +0.04% [−0.19, +0.27]: PASS. RDF norm: registered bootstrap bound 1.68% (INCONCLUSIVE) | PASS for T, U/N, RDF first peak, VACF, MSD(0.1). RDF norm, MSD(t ≥ 0.5), pressure and long-time D are under-sampled at every dt (§3.3, §5) |
 | | dt = 0.01 also passes the same decidable criteria | T −0.52% [−0.78, −0.26], U/N −0.16% [−0.29, −0.03]: resolved but within 1%. VACF E_V 0.52% (noise floor 0.24%). MSD(0.5–2) point estimates +0.5% to +1.8% (unresolved) | acceptable for static quantities (T, U/N, RDF peak) with the quoted biases; not recommended for transport while MSD(t ≥ 0.5) and long-time D are unresolved |
 | burn-in | **5 time units** (2 measured); start production from canonical (Langevin-prepared) states | last block deviating > 4σ from the stationary pool: 2.0 (fcc and RSA starts; hot-start T). Canonical starts need 0. Start-type dependence after burn-in not detected (ANOVA p = 0.21–0.78), but only 2 runs per start type (low power) | burn-in verified by the 4σ block rule; initial-state independence under-sampled |
-| production | **≥ 10 independent replicas × 50 time units** after burn-in (500 time units). For pressure to ±0.0075: ≈ 25 replicas × 48 (1200 time units) | replicas of 48 time units needed for the 95% half-width (Student-t rule): T_kin ±0.2% 7; U/N ±0.2% 4; RDF peak ±0.5% 4; D_GK(τ = 16) ±5% 10; D_MSD[8, 16] ±5% 9; pressure ±0.0075 25 | static targets from 8 runs of 48. D: §5 (plateau not confirmed) |
+| production | **≥ 10 independent replicas × 50 time units** after burn-in (500 time units); D_MSD from windows [4, 16]. For pressure to ±0.0075: ≈ 25 replicas × 48 (1200 time units) | replicas of 48 time units needed for the 95% half-width (Student-t rule): T_kin ±0.2% 7; U/N ±0.2% 4; RDF peak ±0.5% 4; D_GK(τ = 16) ±5% 10; D_MSD[8, 16] ±5% 9; pressure ±0.0075 25 | static targets from 8 runs of 48. D ≈ 0.0285 ± 2%; the long-time D plateau is not confirmed (§5) |
 | save interval | **every step (Δ = dt) for VACF/GK**; **Δ ≤ 0.1 for MSD** | Δ = 0.01: GK quadrature bias up to 0.23% (rule ≤ 0.2%). MSD: every Δ ≤ 0.1 within ±0.1% (95% CI) | verified at dt 0.005 |
 | PPPM | **ξ 0.85, s 4.1, η* 0.6779, p 8 (M = 24)** | ε_op ≤ 7.6e-8 (budget 2e-7) on 42 representative + 110 visited states; ≤ 1.6e-7 relative to the k ≠ 0 part | verified |
 | Lanczos ranks | **noise 14, damping 5** (coupled-dt chains: coupling rank 5) | strict rule (≤ budget/10) on all 152 states: worst 6.4e-10 at rank 14. Rank 12 (used in this study) gave 2.9e-8 on one visited state | verified (§2) |
@@ -300,7 +300,62 @@ the ratio of between-run sd to single-run SE is 0.8–1.6 across observables, e.
 
 ## 5. Diffusion coefficient
 
-LONGD_SECTION
+Two independent data sets, analysed separately (§5.1, §5.2). Short-time agreement in §3 is not used as evidence
+for the long-time D.
+
+Plateau rule (stated before the long runs were analysed):
+- Paired per-run relative change of D between consecutive GK upper limits or consecutive MSD windows.
+- "plateau": the whole 95% CI lies within ±2%.
+- "drift": the whole CI lies beyond ±2%.
+- "undetermined": neither.
+- Long-time D counts as determined only if every step from some limit up to the longest one is "plateau".
+
+### 5.1 GK upper limit and MSD window (8 equilibration runs, dt 0.005, 48 time units after burn-in)
+
+- D_GK(τ) (every-step trapezoid):
+  - 0.0302 at τ = 1, 0.0290 at τ = 2, 0.0284 at τ = 4, 0.0285 at τ = 8, 0.0283 [0.0267, 0.0300] at τ = 16;
+  - steps up to τ = 2 are "drift" (1 → 2: −3.9% [−4.9, −2.8]);
+  - 2 → 4: −2.2% [−3.1, −1.2]; 4 → 8 and 8 → 16: ±3.5–4.4%; all "undetermined".
+- D_MSD: [1,2] 0.0293, [2,4] 0.0285, [4,8] 0.0285, [8,16] 0.0285. The window steps are "undetermined"
+  ([2,4] → [4,8]: 0.0% [−2.2, +2.2]).
+
+### 5.2 Long coupled chains (11 replicas, dt 0.005 and 0.01, 100 time units, frames every 0.01, analysed after T0 = 10)
+
+| window | D_MSD dt 0.005 | D_MSD dt 0.01 | D(0.01)/D(0.005) − 1 |
+|---|---|---|---|
+| [1, 2] | 0.0294 [0.0291, 0.0298] | 0.0297 [0.0293, 0.0300] | +0.80% [+0.05, +1.55] |
+| [2, 4] | 0.0289 [0.0284, 0.0293] | 0.0291 [0.0286, 0.0296] | +0.70% [−0.80, +2.20] |
+| [4, 8] | 0.0286 [0.0281, 0.0290] | 0.0286 [0.0279, 0.0293] | +0.28% [−1.79, +2.35] |
+| [8, 16] | 0.0283 [0.0279, 0.0287] | 0.0287 [0.0279, 0.0294] | +1.26% [−1.48, +4.00] |
+| [16, 32] | 0.0286 [0.0279, 0.0293] | 0.0284 [0.0272, 0.0297] | −0.56% [−5.68, +4.57] |
+
+Window steps (relative change, dt 0.005):
+- [1,2] → [2,4]: −1.9% [−2.7, −1.2]
+- [2,4] → [4,8]: −1.1% [−2.0, −0.2]
+- [4,8] → [8,16]: −0.8% [−2.2, +0.6]
+- [8,16] → [16,32]: +1.1% [−1.5, +3.7]
+
+All four are "undetermined". At dt 0.01 only [4,8] → [8,16] is a "plateau" (+0.2% [−1.1, +1.4]); the last step is
+undetermined (−1.0% [−3.4, +1.5]).
+
+### 5.3 Conclusion on D
+
+- **The long-time D is not determined at the ±2% level.**
+  - D_MSD decreases by about 2% and then 1% per window doubling up to [4, 8]; both decreases are resolved (their CIs
+    exclude 0).
+  - Beyond that, the changes are within about ±1% but have CIs of ±1.4–2.6%, so no confirmed plateau extends to the
+    longest window.
+  - The best current estimate is D ≈ 0.0284–0.0286 (dt 0.005, windows [4,8]–[16,32], each ±1.5–2.5%). It should
+    be read as an estimate, not as a converged long-time value.
+- **dt dependence.**
+  - D(0.01)/D(0.005) − 1 is resolved only in the shortest window (+0.8% [+0.05, +1.55]).
+  - In the long windows it is within ±1.3% but the CIs are ±2–5%, so the long-time dt effect is under-sampled.
+  - The free-particle prior x coth x − 1 (+0.1% at dt 0.01 relative to dt 0.005) is far smaller than the
+    resolution reached.
+  - The paths at the two dt decorrelate by t ≈ 2, so the long windows are effectively unpaired.
+- **Requirement.** The sd of the per-run window changes is ≈ 2–4%, so a confirmed ±2% plateau at [8,16] → [16,32]
+  would need ≈ 25–40 runs of 100 time units at one dt, ≈ 6–10 core-h at dt 0.005.
+- **Cost of this study:** 17.6 core-h (11 coupled two-level chains).
 
 ## 6. Save interval
 
@@ -357,7 +412,15 @@ LONGD_SECTION
 - **Recorded core-hours** (process CPU time) are listed by component in `summary_tables.md`. The runs shared 4 cores,
   so wall times were 1–46% longer than the CPU times.
 
-COST_TOTAL
+- **Total recorded for law A: 32.3 core-h.** Of this:
+  - dt study (16 four-level chains): 10.3;
+  - long-D (11 two-level chains): 17.6;
+  - equilibration runs: 2.9;
+  - static verification (5 sets): 0.98;
+  - operator sensitivity: 0.33;
+  - state preparation: 0.13;
+  - benchmark: 0.04.
+- Not counted: the analyses (minutes each) and the stopped law-B runs.
 
 ## 9. Law B (stopped)
 
@@ -391,7 +454,8 @@ COST_TOTAL
 - dt effect on MSD(t ≥ 0.5) (on MSD(t ≥ 2) even at dt 0.0025) and on pressure.
 - Initial-state independence after burn-in (not detected, 2 runs per start type).
 - dt effect on long-time D (§5).
-- Plateau of D at the 2% level (§5).
+- Plateau of D at the 2% level: not confirmed with 11 × 90 + 8 × 48 time units (§5); ≈ 25–40 more runs of
+  100 time units needed.
 - Pressure to ±0.0075 within the recommended 500 time units.
 
 **Unverified**
