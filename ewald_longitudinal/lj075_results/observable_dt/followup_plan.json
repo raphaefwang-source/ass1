@@ -1,0 +1,534 @@
+{
+ "note": "Planning only (post hoc, not a verdict): paired-difference spread of single-origin bursts (origin t0 = 0, the\n    shared initial state of every coupled chain) versus the all-origin estimates of the analysis, and the number of\n    independent bursts needed for a 1%-of-lobe decision.",
+ "chain_wall_s_per_step_mean": 0.17325448094835416,
+ "targets": [
+  {
+   "observable": "vacf",
+   "feature": "head lobe",
+   "t_range": [
+    0.01,
+    0.11
+   ],
+   "lobe_scale": 0.8994522464442765,
+   "dt": 0.01,
+   "sd_paired_burst_max": 0.0015571599448097166,
+   "sd_paired_all_origins_max": 0.004981947025376991,
+   "burst_mean_abs_diff_max": 0.0018172216035740874,
+   "tolerance_abs": 0.008994522464442765,
+   "bursts_needed": {
+    "if the true difference is 0": 4,
+    "at the burst mean difference": 5
+   },
+   "burst_length": 0.12,
+   "core_h_per_burst": 0.012273835158528819,
+   "core_h_needed": {
+    "if the true difference is 0": 0.049095340634115275,
+    "at the burst mean difference": 0.061369175792644094
+   }
+  },
+  {
+   "observable": "vacf",
+   "feature": "head lobe",
+   "t_range": [
+    0.01,
+    0.11
+   ],
+   "lobe_scale": 0.8994522464442765,
+   "dt": 0.005,
+   "sd_paired_burst_max": 0.0008613037448595721,
+   "sd_paired_all_origins_max": 0.003694634095406057,
+   "burst_mean_abs_diff_max": 0.0005500483972821144,
+   "tolerance_abs": 0.008994522464442765,
+   "bursts_needed": {
+    "if the true difference is 0": 4,
+    "at the burst mean difference": 4
+   },
+   "burst_length": 0.12,
+   "core_h_per_burst": 0.012273835158528819,
+   "core_h_needed": {
+    "if the true difference is 0": 0.049095340634115275,
+    "at the burst mean difference": 0.049095340634115275
+   }
+  },
+  {
+   "observable": "vacf",
+   "feature": "dip lobe",
+   "t_range": [
+    0.12,
+    0.5
+   ],
+   "lobe_scale": 0.06944237895569771,
+   "dt": 0.01,
+   "sd_paired_burst_max": 0.002578839827060114,
+   "sd_paired_all_origins_max": 0.0060599633111563045,
+   "burst_mean_abs_diff_max": 0.0009117803699997529,
+   "tolerance_abs": 0.0006944237895569772,
+   "bursts_needed": {
+    "if the true difference is 0": 167,
+    "at the burst mean difference": 1647
+   },
+   "burst_length": 0.51,
+   "core_h_per_burst": 0.04042768831263637,
+   "core_h_needed": {
+    "if the true difference is 0": 6.751423948210274,
+    "at the burst mean difference": 66.58440265091211
+   }
+  },
+  {
+   "observable": "vacf",
+   "feature": "dip lobe",
+   "t_range": [
+    0.12,
+    0.5
+   ],
+   "lobe_scale": 0.06944237895569771,
+   "dt": 0.005,
+   "sd_paired_burst_max": 0.0011634544288011426,
+   "sd_paired_all_origins_max": 0.004979051675546731,
+   "burst_mean_abs_diff_max": 0.0004604819149711011,
+   "tolerance_abs": 0.0006944237895569772,
+   "bursts_needed": {
+    "if the true difference is 0": 39,
+    "at the burst mean difference": 295
+   },
+   "burst_length": 0.51,
+   "core_h_per_burst": 0.04042768831263637,
+   "core_h_needed": {
+    "if the true difference is 0": 1.5766798441928185,
+    "at the burst mean difference": 11.92616805222773
+   }
+  },
+  {
+   "observable": "vccf_b1",
+   "feature": "first-shell peak",
+   "t_range": [
+    0.02,
+    0.34
+   ],
+   "lobe_scale": 0.029050736640422625,
+   "dt": 0.01,
+   "sd_paired_burst_max": 0.00059707637404643,
+   "sd_paired_all_origins_max": 0.0017641686745635038,
+   "burst_mean_abs_diff_max": 0.00020925077218152254,
+   "tolerance_abs": 0.00029050736640422626,
+   "bursts_needed": {
+    "if the true difference is 0": 54,
+    "at the burst mean difference": 619
+   },
+   "burst_length": 0.35000000000000003,
+   "core_h_per_burst": 0.028877389582746094,
+   "core_h_needed": {
+    "if the true difference is 0": 1.559379037468289,
+    "at the burst mean difference": 17.87510415171983
+   }
+  },
+  {
+   "observable": "vccf_b1",
+   "feature": "first-shell peak",
+   "t_range": [
+    0.02,
+    0.34
+   ],
+   "lobe_scale": 0.029050736640422625,
+   "dt": 0.005,
+   "sd_paired_burst_max": 0.00036353435934604266,
+   "sd_paired_all_origins_max": 0.0016092952320109087,
+   "burst_mean_abs_diff_max": 8.661172152402674e-05,
+   "tolerance_abs": 0.00029050736640422626,
+   "bursts_needed": {
+    "if the true difference is 0": 24,
+    "at the burst mean difference": 43
+   },
+   "burst_length": 0.35000000000000003,
+   "core_h_per_burst": 0.028877389582746094,
+   "core_h_needed": {
+    "if the true difference is 0": 0.6930573499859063,
+    "at the burst mean difference": 1.241727752058082
+   }
+  },
+  {
+   "observable": "CL_k1",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.19
+   ],
+   "lobe_scale": 0.9077817636130048,
+   "dt": 0.01,
+   "sd_paired_burst_max": 0.01047392849356762,
+   "sd_paired_all_origins_max": 0.03727052076013044,
+   "burst_mean_abs_diff_max": 0.004953719285142009,
+   "tolerance_abs": 0.009077817636130048,
+   "bursts_needed": {
+    "if the true difference is 0": 20,
+    "at the burst mean difference": 73
+   },
+   "burst_length": 0.2,
+   "core_h_per_burst": 0.018048984523473956,
+   "core_h_needed": {
+    "if the true difference is 0": 0.3609796904694791,
+    "at the burst mean difference": 1.3175758702135987
+   }
+  },
+  {
+   "observable": "CL_k1",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.19
+   ],
+   "lobe_scale": 0.9077817636130048,
+   "dt": 0.005,
+   "sd_paired_burst_max": 0.0078984489207264,
+   "sd_paired_all_origins_max": 0.04233126875102797,
+   "burst_mean_abs_diff_max": 0.004053368068919691,
+   "tolerance_abs": 0.009077817636130048,
+   "bursts_needed": {
+    "if the true difference is 0": 14,
+    "at the burst mean difference": 32
+   },
+   "burst_length": 0.2,
+   "core_h_per_burst": 0.018048984523473956,
+   "core_h_needed": {
+    "if the true difference is 0": 0.2526857833286354,
+    "at the burst mean difference": 0.5775675047511666
+   }
+  },
+  {
+   "observable": "CT_k1",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.41
+   ],
+   "lobe_scale": 0.9518529814231682,
+   "dt": 0.01,
+   "sd_paired_burst_max": 0.013677980043733025,
+   "sd_paired_all_origins_max": 0.02855069696376349,
+   "burst_mean_abs_diff_max": 0.005194761048405971,
+   "tolerance_abs": 0.009518529814231682,
+   "bursts_needed": {
+    "if the true difference is 0": 31,
+    "at the burst mean difference": 124
+   },
+   "burst_length": 0.42,
+   "core_h_per_burst": 0.03393064527707309,
+   "core_h_needed": {
+    "if the true difference is 0": 1.0518500035892657,
+    "at the burst mean difference": 4.207400014357063
+   }
+  },
+  {
+   "observable": "CT_k1",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.41
+   ],
+   "lobe_scale": 0.9518529814231682,
+   "dt": 0.005,
+   "sd_paired_burst_max": 0.006031172075134302,
+   "sd_paired_all_origins_max": 0.032616912180405945,
+   "burst_mean_abs_diff_max": 0.002522887264868263,
+   "tolerance_abs": 0.009518529814231682,
+   "bursts_needed": {
+    "if the true difference is 0": 11,
+    "at the burst mean difference": 15
+   },
+   "burst_length": 0.42,
+   "core_h_per_burst": 0.03393064527707309,
+   "core_h_needed": {
+    "if the true difference is 0": 0.373237098047804,
+    "at the burst mean difference": 0.5089596791560963
+   }
+  },
+  {
+   "observable": "CL_k2",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.13
+   ],
+   "lobe_scale": 0.8915981143697979,
+   "dt": 0.01,
+   "sd_paired_burst_max": 0.03645194641066615,
+   "sd_paired_all_origins_max": 0.026678040552855393,
+   "burst_mean_abs_diff_max": 0.00477784291205886,
+   "tolerance_abs": 0.008915981143697979,
+   "bursts_needed": {
+    "if the true difference is 0": 167,
+    "at the burst mean difference": 752
+   },
+   "burst_length": 0.14,
+   "core_h_per_burst": 0.013717622499765107,
+   "core_h_needed": {
+    "if the true difference is 0": 2.290842957460773,
+    "at the burst mean difference": 10.31565211982336
+   }
+  },
+  {
+   "observable": "CL_k2",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.13
+   ],
+   "lobe_scale": 0.8915981143697979,
+   "dt": 0.005,
+   "sd_paired_burst_max": 0.014629270336609886,
+   "sd_paired_all_origins_max": 0.018828250561437797,
+   "burst_mean_abs_diff_max": 0.0028566049020358345,
+   "tolerance_abs": 0.008915981143697979,
+   "bursts_needed": {
+    "if the true difference is 0": 32,
+    "at the burst mean difference": 62
+   },
+   "burst_length": 0.14,
+   "core_h_per_burst": 0.013717622499765107,
+   "core_h_needed": {
+    "if the true difference is 0": 0.4389639199924834,
+    "at the burst mean difference": 0.8504925949854366
+   }
+  },
+  {
+   "observable": "CT_k2",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.31
+   ],
+   "lobe_scale": 0.9348758016300688,
+   "dt": 0.01,
+   "sd_paired_burst_max": 0.008038651921385843,
+   "sd_paired_all_origins_max": 0.022360952996618135,
+   "burst_mean_abs_diff_max": 0.0036776784361915896,
+   "tolerance_abs": 0.009348758016300689,
+   "bursts_needed": {
+    "if the true difference is 0": 14,
+    "at the burst mean difference": 29
+   },
+   "burst_length": 0.32,
+   "core_h_per_burst": 0.026711708570891668,
+   "core_h_needed": {
+    "if the true difference is 0": 0.37396391999248335,
+    "at the burst mean difference": 0.7746395485558584
+   }
+  },
+  {
+   "observable": "CT_k2",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.31
+   ],
+   "lobe_scale": 0.9348758016300688,
+   "dt": 0.005,
+   "sd_paired_burst_max": 0.004337192944636259,
+   "sd_paired_all_origins_max": 0.020186061261695695,
+   "burst_mean_abs_diff_max": 0.0019872356947229775,
+   "tolerance_abs": 0.009348758016300689,
+   "bursts_needed": {
+    "if the true difference is 0": 8,
+    "at the burst mean difference": 10
+   },
+   "burst_length": 0.32,
+   "core_h_per_burst": 0.026711708570891668,
+   "core_h_needed": {
+    "if the true difference is 0": 0.21369366856713334,
+    "at the burst mean difference": 0.2671170857089167
+   }
+  },
+  {
+   "observable": "CL_k4",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.1
+   ],
+   "lobe_scale": 0.8836658132513496,
+   "dt": 0.01,
+   "sd_paired_burst_max": 0.03207076946715935,
+   "sd_paired_all_origins_max": 0.03910377434209968,
+   "burst_mean_abs_diff_max": 0.011914429294135023,
+   "tolerance_abs": 0.008836658132513496,
+   "bursts_needed": {
+    "if the true difference is 0": 126,
+    "at the burst mean difference": 998
+   },
+   "burst_length": 0.11,
+   "core_h_per_burst": 0.011551941487910678,
+   "core_h_needed": {
+    "if the true difference is 0": 1.4555446274767454,
+    "at the burst mean difference": 11.528837604934857
+   }
+  },
+  {
+   "observable": "CL_k4",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.1
+   ],
+   "lobe_scale": 0.8836658132513496,
+   "dt": 0.005,
+   "sd_paired_burst_max": 0.017023574114513766,
+   "sd_paired_all_origins_max": 0.03547227746874077,
+   "burst_mean_abs_diff_max": 0.005576366771000085,
+   "tolerance_abs": 0.008836658132513496,
+   "bursts_needed": {
+    "if the true difference is 0": 39,
+    "at the burst mean difference": 255
+   },
+   "burst_length": 0.11,
+   "core_h_per_burst": 0.011551941487910678,
+   "core_h_needed": {
+    "if the true difference is 0": 0.4505257180285165,
+    "at the burst mean difference": 2.945745079417223
+   }
+  },
+  {
+   "observable": "CT_k4",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.22
+   ],
+   "lobe_scale": 0.9208081928223438,
+   "dt": 0.01,
+   "sd_paired_burst_max": 0.01590921804602094,
+   "sd_paired_all_origins_max": 0.039113270354988246,
+   "burst_mean_abs_diff_max": 0.007312378930046877,
+   "tolerance_abs": 0.009208081928223439,
+   "bursts_needed": {
+    "if the true difference is 0": 38,
+    "at the burst mean difference": 752
+   },
+   "burst_length": 0.23,
+   "core_h_per_burst": 0.020214665535328386,
+   "core_h_needed": {
+    "if the true difference is 0": 0.7681572903424787,
+    "at the burst mean difference": 15.201428482566946
+   }
+  },
+  {
+   "observable": "CT_k4",
+   "feature": "first lobe",
+   "t_range": [
+    0.01,
+    0.22
+   ],
+   "lobe_scale": 0.9208081928223438,
+   "dt": 0.005,
+   "sd_paired_burst_max": 0.0062303369564441985,
+   "sd_paired_all_origins_max": 0.03483225223419067,
+   "burst_mean_abs_diff_max": 0.0024162994912130887,
+   "tolerance_abs": 0.009208081928223439,
+   "bursts_needed": {
+    "if the true difference is 0": 11,
+    "at the burst mean difference": 15
+   },
+   "burst_length": 0.23,
+   "core_h_per_burst": 0.020214665535328386,
+   "core_h_needed": {
+    "if the true difference is 0": 0.22236132088861224,
+    "at the burst mean difference": 0.3032199830299258
+   }
+  },
+  {
+   "observable": "vacf",
+   "feature": "t in (0.5, 1]",
+   "t_range": [
+    0.51,
+    1.0
+   ],
+   "lobe_scale": 0.06944237895569771,
+   "dt": 0.01,
+   "sd_paired_burst_max": 0.005299748688702045,
+   "sd_paired_all_origins_max": 0.005208447998164992,
+   "burst_mean_abs_diff_max": 0.0011989250046898195,
+   "tolerance_abs": 0.0006944237895569772,
+   "bursts_needed": {
+    "if the true difference is 0": 713,
+    "at the burst mean difference": 1344
+   },
+   "burst_length": 1.01,
+   "core_h_per_burst": 0.07652237184354348,
+   "core_h_needed": {
+    "if the true difference is 0": 54.5604511244465,
+    "at the burst mean difference": 102.84606775772244
+   }
+  },
+  {
+   "observable": "vacf",
+   "feature": "t in (0.5, 1]",
+   "t_range": [
+    0.51,
+    1.0
+   ],
+   "lobe_scale": 0.06944237895569771,
+   "dt": 0.005,
+   "sd_paired_burst_max": 0.0024906212147743434,
+   "sd_paired_all_origins_max": 0.0044709674535547235,
+   "burst_mean_abs_diff_max": 0.0013751730530921092,
+   "tolerance_abs": 0.0006944237895569772,
+   "bursts_needed": {
+    "if the true difference is 0": 163,
+    "at the burst mean difference": 169
+   },
+   "burst_length": 1.01,
+   "core_h_per_burst": 0.07652237184354348,
+   "core_h_needed": {
+    "if the true difference is 0": 12.473146610497587,
+    "at the burst mean difference": 12.932280841558848
+   }
+  },
+  {
+   "observable": "vacf",
+   "feature": "t in (1, 2]",
+   "t_range": [
+    1.01,
+    2.0
+   ],
+   "lobe_scale": 0.06944237895569771,
+   "dt": 0.01,
+   "sd_paired_burst_max": 0.018107541759780396,
+   "sd_paired_all_origins_max": 0.005219625241939127,
+   "burst_mean_abs_diff_max": 0.005338523945269458,
+   "tolerance_abs": 0.0006944237895569772,
+   "bursts_needed": {
+    "if the true difference is 0": null,
+    "at the burst mean difference": 212
+   },
+   "burst_length": 2.01,
+   "core_h_per_burst": 0.1487117389053577,
+   "core_h_needed": {
+    "if the true difference is 0": null,
+    "at the burst mean difference": 31.52688864793583
+   }
+  },
+  {
+   "observable": "vacf",
+   "feature": "t in (1, 2]",
+   "t_range": [
+    1.01,
+    2.0
+   ],
+   "lobe_scale": 0.06944237895569771,
+   "dt": 0.005,
+   "sd_paired_burst_max": 0.009112478164728002,
+   "sd_paired_all_origins_max": 0.004848564677813935,
+   "burst_mean_abs_diff_max": 0.0024711525118990734,
+   "tolerance_abs": 0.0006944237895569772,
+   "bursts_needed": {
+    "if the true difference is 0": 2317,
+    "at the burst mean difference": 360
+   },
+   "burst_length": 2.01,
+   "core_h_per_burst": 0.1487117389053577,
+   "core_h_needed": {
+    "if the true difference is 0": 344.56509904371376,
+    "at the burst mean difference": 53.53622600592877
+   }
+  }
+ ]
+}

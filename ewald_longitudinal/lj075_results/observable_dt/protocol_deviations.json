@@ -1,0 +1,17 @@
+{
+ "deviations": [
+  {
+   "at": "2026-10-10T06:34:00+0000",
+   "files": [
+    "lj075_observable_dt.py"
+   ],
+   "reason": "reproduce the v2 verdicts from its frozen derived arrays; the only code change since v2 is the lobes() amendment (v3), which analyze does not call",
+   "frozen": {
+    "lj075_observable_dt.py": "a0656fb8a0fb67ac3efeedf441cfde87b1014249ea93902c70e8da82c3ab0c70"
+   },
+   "current": {
+    "lj075_observable_dt.py": "b17d61a537825567a4194b8c6e547fee0668031bd72ed0b029b43c4b0bb6d153"
+   }
+  }
+ ]
+}

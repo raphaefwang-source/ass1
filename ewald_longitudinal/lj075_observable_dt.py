@@ -50,6 +50,7 @@ PROTOCOL_F = OUT / "protocol.json"
 N = 256
 L = C.box_length(N, 0.75)
 REF = {"primary": 0.00125, "secondary": 0.005}
+LEVELS_PLAN = (0.00125, 0.0025, 0.005, 0.01)
 
 # --------------------------------------------------------------------------------------------------------------------
 # BASE: a-priori settings that the per-level computation needs (fixed before anything was computed)
@@ -1129,6 +1130,62 @@ def stage_analyze(allow_deviation=None, pfile=None, suffix=""):
     log_time(dict(stage="analyze", cpu_s=C.cpu_seconds() - cpu0, wall_s=time.perf_counter() - wall0))
 
 
+# ---------------------------------------------------------------------------------------------------- follow-up plan
+PLAN_TARGETS = [("vacf", "head lobe", 0.01, 0.11), ("vacf", "dip lobe", 0.12, 0.5), ("vccf_b1", "first-shell peak", 0.02, 0.34),
+                ("CL_k1", "first lobe", 0.01, 0.19), ("CT_k1", "first lobe", 0.01, 0.41),
+                ("CL_k2", "first lobe", 0.01, 0.13), ("CT_k2", "first lobe", 0.01, 0.31),
+                ("CL_k4", "first lobe", 0.01, 0.10), ("CT_k4", "first lobe", 0.01, 0.22),
+                ("vacf", "t in (0.5, 1]", 0.51, 1.0), ("vacf", "t in (1, 2]", 1.01, 2.0)]
+
+
+def stage_plan():
+    """Planning only (post hoc, not a verdict): paired-difference spread of single-origin bursts (origin t0 = 0, the
+    shared initial state of every coupled chain) versus the all-origin estimates of the analysis, and the number of
+    independent bursts needed for a 1%-of-lobe decision."""
+    rec = json.loads(PROTOCOL_F.read_text())["protocol"]["derived"]["primary"]
+    files = [(m, f) for m, f, k in chains() if k == "primary"]
+    lev = (0.00125, 0.005, 0.01)
+    burst = {dt: [] for dt in lev}
+    for m, f in files:
+        with np.load(f) as z:
+            for dt in lev:
+                burst[dt].append(level_observables(z[f"Q_{dt}"], z[f"V_{dt}"], dt, np.array([0.0])))
+    R = json.loads((OUT / "results.json").read_text())["primary"]
+    tau = np.array(R["tau"])
+    timing = json.loads((OUT / "timing.json").read_text())["summary"]
+    per_step = np.mean([m["wall_s"] / sum(m["steps"]) for m, _ in files])           # coupled 4-level chain, per step
+    out = dict(note=stage_plan.__doc__, chain_wall_s_per_step_mean=per_step, targets=[])
+    for key, label, a, b in PLAN_TARGETS:
+        get = dict(curve_specs())[key]
+        msk = (tau >= a - 1e-9) & (tau <= b + 1e-9)
+        S = float(np.max(np.abs(np.array(rec["curves"][key]["s_hat"])[msk])))
+        for dt in (0.01, 0.005):
+            Db = np.array([get(o1, 1.0) - get(o0, 1.0) for o1, o0 in zip(burst[dt], burst[0.00125])])[:, msk]
+            sd_b = Db.std(0, ddof=1)
+            m_b = np.abs(Db.mean(0))
+            Da = np.array(R["curves"][key]["_diff"][f"{dt}_vs_0.00125"]["se"])[msk] * np.sqrt(R["n_replicas"])
+            p = int(msk.sum())
+            need = {}
+            for lab, mu in (("if the true difference is 0", 0.0), ("at the burst mean difference", float(m_b.max()))):
+                n_ok = None
+                for n in range(3, 5001):
+                    c = stats.t.ppf(1 - 0.025 / (2 * p), n - 1)
+                    if mu + c * sd_b.max() / np.sqrt(n) <= 0.01 * S or (mu > 0.01 * S and mu - c * sd_b.max() / np.sqrt(n) > 0.01 * S):
+                        n_ok = n
+                        break
+                need[lab] = n_ok
+            T_b = b + 0.01
+            steps = T_b * sum(1 / d for d in LEVELS_PLAN)
+            cost_h = (steps * per_step + 13.0) / 3600
+            out["targets"].append(dict(observable=key, feature=label, t_range=[a, b], lobe_scale=S, dt=dt,
+                                       sd_paired_burst_max=float(sd_b.max()), sd_paired_all_origins_max=float(Da.max()),
+                                       burst_mean_abs_diff_max=float(m_b.max()), tolerance_abs=0.01 * S,
+                                       bursts_needed=need, burst_length=T_b, core_h_per_burst=cost_h,
+                                       core_h_needed={k: (None if v is None else v * cost_h) for k, v in need.items()}))
+            print(key, label, dt, "sd burst %.2e vs all-origins %.2e; tol %.2e; n %s" % (sd_b.max(), Da.max(), 0.01 * S, need))
+    C.write_json(OUT / "followup_plan.json", out)
+
+
 # -------------------------------------------------------------------------------------------------------- timing
 def stage_timing(rounds=3, steps=300):
     """Measured production-runner step cost at dt 0.005 and 0.01 (single level, no coupling), interleaved."""
@@ -1176,7 +1233,7 @@ def stage_timing(rounds=3, steps=300):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("stage", choices=["inventory", "compute", "selftest", "protocol", "analyze", "timing"])
+    ap.add_argument("stage", choices=["inventory", "compute", "selftest", "protocol", "analyze", "timing", "plan"])
     ap.add_argument("--allow-deviation", default=None, help="reason (logged) for running analyze after a code change")
     ap.add_argument("--protocol-file", default=None, help="analyze with another frozen protocol (e.g. v2)")
     ap.add_argument("--suffix", default="", help="output suffix for results / conclusions (e.g. _v2)")
@@ -1185,7 +1242,7 @@ def main():
         stage_analyze(args.allow_deviation, OUT / args.protocol_file if args.protocol_file else None, args.suffix)
     else:
         dict(inventory=stage_inventory, compute=stage_compute, selftest=stage_selftest, protocol=stage_protocol,
-             timing=stage_timing)[args.stage]()
+             timing=stage_timing, plan=stage_plan)[args.stage]()
 
 
 if __name__ == "__main__":

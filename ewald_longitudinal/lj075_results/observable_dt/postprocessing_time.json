@@ -8,6 +8,18 @@
    "wall_s": 231.88221063699984,
    "note": "cpu_s includes the worker processes (RUSAGE_CHILDREN)",
    "at": "2026-10-10T06:14:44+0000"
+  },
+  {
+   "stage": "analyze",
+   "cpu_s": 131.418155,
+   "wall_s": 132.85911367799963,
+   "at": "2026-10-10T06:33:58+0000"
+  },
+  {
+   "stage": "analyze_v2",
+   "cpu_s": 128.839687,
+   "wall_s": 130.2703516849997,
+   "at": "2026-10-10T06:36:11+0000"
   }
  ]
 }

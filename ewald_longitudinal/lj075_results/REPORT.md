@@ -464,3 +464,19 @@ undetermined (−1.0% [−3.4, +1.5]).
 - Law B recommendations.
 - The cheaper PPPM alternative under dynamics (static verification only).
 - dt = 0.01 for production.
+
+## 11. Supplement: dt comparison of VACF, VCCF, C_L / C_T and the distinct van Hove function
+
+Supplementary analysis of the existing trajectories (`observable_dt/REPORT_observable_dt.md`,
+`lj075_observable_dt.py`). The protocol was frozen before any difference was computed. The verdicts above are unchanged.
+
+- At 1% of each feature's own amplitude (simultaneous 95%), dt = 0.01 is certified only for the van Hove core at
+  t = 0.1. The same holds for dt = 0.005.
+- No systematic dt dependence is detected. Differences 0.01 − 0.00125 are at the noise floor set by 0.0025 − 0.00125.
+- 5 isolated FAIL cells out of 224 are non-systematic and consistent with chance.
+- The limit is statistical: weak reference lobes are not resolved, and the difference bands are 3–15% of the lobe
+  amplitudes.
+- Amplitude: dt = 0.01 lowers ⟨|v|²⟩ by −0.38% [−0.67, −0.09].
+- Measured saving of dt = 0.01 over 0.005 per physical time: 49–50%.
+- A minimal burst design (about 170 coupled bursts of 0.5 time units, about 6.8 core-h) would decide the t ≤ 0.5
+  features. It is not run. Longer lags and the long-time D stay unresolved.
