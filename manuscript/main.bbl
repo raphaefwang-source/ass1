@@ -1,0 +1,102 @@
+\begin{thebibliography}{15}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Espa{\~n}ol and Warren(1995)]{EspanolWarren1995}
+P.~Espa{\~n}ol and P.~Warren.
+\newblock Statistical mechanics of dissipative particle dynamics.
+\newblock \emph{Europhysics Letters}, 30:\penalty0 191--196, 1995.
+
+\bibitem[Lyu and Lei(2023)]{LyuLei2023}
+L.~Lyu and H.~Lei.
+\newblock Construction of coarse-grained molecular dynamics with many-body
+  non-{M}arkovian memory.
+\newblock \emph{Physical Review Letters}, 131:\penalty0 177301, 2023.
+\newblock TODO: verify title; volume, page and year are taken from the project
+  notes.
+
+\bibitem[Ewald(1921)]{Ewald1921}
+P.~P. Ewald.
+\newblock Die berechnung optischer und elektrostatischer gitterpotentiale.
+\newblock \emph{Annalen der Physik}, 369\penalty0 (3):\penalty0 253--287, 1921.
+
+\bibitem[Hockney and Eastwood(1988)]{HockneyEastwood1988}
+R.~W. Hockney and J.~W. Eastwood.
+\newblock \emph{Computer Simulation Using Particles}.
+\newblock Adam Hilger, Bristol, 1988.
+
+\bibitem[Darden et~al.(1993)Darden, York, and Pedersen]{Darden1993}
+T.~Darden, D.~York, and L.~Pedersen.
+\newblock Particle mesh {E}wald: An {$N\log(N)$} method for {E}wald sums in
+  large systems.
+\newblock \emph{The Journal of Chemical Physics}, 98:\penalty0 10089--10092,
+  1993.
+
+\bibitem[Essmann et~al.(1995)Essmann, Perera, Berkowitz, Darden, Lee, and
+  Pedersen]{Essmann1995}
+U.~Essmann, L.~Perera, M.~L. Berkowitz, T.~Darden, H.~Lee, and L.~G. Pedersen.
+\newblock A smooth particle mesh {E}wald method.
+\newblock \emph{The Journal of Chemical Physics}, 103:\penalty0 8577--8593,
+  1995.
+
+\bibitem[Deserno and Holm(1998)]{DesernoHolm1998}
+M.~Deserno and C.~Holm.
+\newblock How to mesh up {E}wald sums. {I}. {A} theoretical and numerical
+  comparison of various particle mesh routines.
+\newblock \emph{The Journal of Chemical Physics}, 109:\penalty0 7678--7693,
+  1998.
+
+\bibitem[Hasimoto(1959)]{Hasimoto1959}
+H.~Hasimoto.
+\newblock On the periodic fundamental solutions of the {S}tokes equations and
+  their application to viscous flow past a cubic array of spheres.
+\newblock \emph{Journal of Fluid Mechanics}, 5:\penalty0 317--328, 1959.
+
+\bibitem[Lindbo and Tornberg(2010)]{LindboTornberg2010}
+D.~Lindbo and A.-K. Tornberg.
+\newblock Spectrally accurate fast summation for periodic {S}tokes potentials.
+\newblock \emph{Journal of Computational Physics}, 229:\penalty0 8994--9010,
+  2010.
+
+\bibitem[Saad(1992)]{Saad1992}
+Y.~Saad.
+\newblock Analysis of some {K}rylov subspace approximations to the matrix
+  exponential operator.
+\newblock \emph{SIAM Journal on Numerical Analysis}, 29:\penalty0 209--228,
+  1992.
+
+\bibitem[Higham(2008)]{Higham2008}
+N.~J. Higham.
+\newblock \emph{Functions of Matrices: Theory and Computation}.
+\newblock SIAM, Philadelphia, 2008.
+
+\bibitem[Ando et~al.(2012)Ando, Chow, Saad, and Skolnick]{Ando2012}
+T.~Ando, E.~Chow, Y.~Saad, and J.~Skolnick.
+\newblock Krylov subspace methods for computing hydrodynamic interactions in
+  {B}rownian dynamics simulations.
+\newblock \emph{The Journal of Chemical Physics}, 137:\penalty0 064106, 2012.
+
+\bibitem[Chow and Saad(2014)]{ChowSaad2014}
+E.~Chow and Y.~Saad.
+\newblock Preconditioned {K}rylov subspace methods for sampling multivariate
+  {G}aussian distributions.
+\newblock \emph{SIAM Journal on Scientific Computing}, 36:\penalty0 A588--A608,
+  2014.
+
+\bibitem[Zhao et~al.(n.d.)Zhao, Dou, and Lei]{ZhaoDouLei}
+Y.~Zhao, S.~Dou, and H.~Lei.
+\newblock A fast conservative particle method for the free-space {L}andau
+  equation, n.d.
+\newblock Preprint. TODO: add arXiv identifier and year.
+
+\bibitem[Leimkuhler and Matthews(2013)]{LeimkuhlerMatthews2013}
+B.~Leimkuhler and C.~Matthews.
+\newblock Rational construction of stochastic numerical methods for molecular
+  sampling.
+\newblock \emph{Applied Mathematics Research eXpress}, 2013:\penalty0 34--56,
+  2013.
+
+\end{thebibliography}
