@@ -17,6 +17,8 @@
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=green!40!black,urlcolor=blue!60!black]{hyperref}
 \usepackage[capitalise,noabbrev]{cleveref}
+% Allow line breaks after underscores in file and script names (\texttt{...}).
+\DeclareRobustCommand{\_}{\textunderscore\allowbreak}
 
 \graphicspath{{figures/}}
 
@@ -480,8 +482,8 @@ $R_h\Pi\bp$ and $S_h\Pi\boldsymbol\zeta$ are evaluated by \cref{alg:lanczos} wit
 (damping) and $f(\lambda)=[\kT m(1-e^{-2h\lambda/m})]^{1/2}$ (noise), using only $\Gh$ actions.
 
 \begin{algorithm}[t]
-\caption{Direct-start Lanczos approximation of $f(\Gh)\bv$ on $\Ran(\Pi)$ (\texttt{test\_lanczos\_fdt.lanczos},
-\texttt{test\_true\_dynamics.lanczos\_apply})}\label{alg:lanczos}
+\caption{Direct-start Lanczos approximation of $f(\Gh)\bv$ on $\Ran(\Pi)$ (\texttt{test\_lanczos\_fdt.\allowbreak lanczos},
+\texttt{test\_true\_dynamics.\allowbreak lanczos\_apply})}\label{alg:lanczos}
 \begin{algorithmic}[1]
 \Require $\bv\in\Ran(\Pi)$, rank $r$, action $X\mapsto\Gh X$
 \State $\mathbf w_1=\bv/\|\bv\|$
