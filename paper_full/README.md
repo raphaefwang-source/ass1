@@ -1,38 +1,29 @@
-# Full paper (restructured Section 6, rewritten localization proofs)
+# Full paper: theory and methods + operator experiment
 
-Source: the complete LaTeX project from `~/papers/my-paper` at commit `44e4886` (Overleaf copy, unchanged there).
-Build: `latexmk -pdf main.tex` (pdfLaTeX, see `.latexmkrc`). `main.pdf` is the compiled version (40 pages, no warnings).
+Entry point: `main.tex` (pdfLaTeX, `latexmk -pdf main.tex`). Compiled: `main.pdf` (24 pages, log free of warnings).
+Overleaf: `overleaf_upload.zip` = `main.tex`, `references.bib`, `figures/` (only the four figures used).
+Source of the text before this revision: Overleaf project at commit `7b428ef` (= this directory on branch
+`claude/paper-structure-ibp`, commit `f3160c6`).
 
-## Section 6 mapping
+## Contents (this version)
 
-| new | content | former experiments |
-|---|---|---|
-| 6.1 Operator accuracy and structural checks (`sec:pm-validation`) | mesh response, predictors, spectrum/positivity | 1, 3 |
-| 6.2 Lanczos accuracy and production-rank selection (`sec:lanczos-exp`) | rank growth at 1e-8; fixed noise rank at 1e-3; damping rank; reference convergence | 4, 5, 8 |
-| 6.3 Conservation, equilibrium, and dynamical accuracy (`sec:dyn-exp`) | momentum, equilibrium; Krylov / spatial / temporal / sampling separation; step sensitivity | 6, 7, 9 |
-| 6.4 Computational cost and scaling (`sec:exp-timing`) | complete-step timing at ranks 40/16 | 10 |
-| Appendix G (`app:equal-accuracy`) | equal-accuracy timing vs xi, summarized in Sec. 5.2 | 2 |
+- Sections 1-5: kernel, Ewald splitting, PPPM graph-Laplacian action, finite-time FDT thermostat with Lanczos, time
+  integration, error budget and parameter selection. The rewritten proofs of Appendix C are kept.
+- Section 6: the operator experiment (former Experiment 1), rewritten from `ewald_longitudinal/exp1_results/` after
+  the |k|-rounding fix (`run_2026-10-13_exact_k.log`, exit 0; `integrity.json` all row counts ok, no NaN/Inf):
+  configurations, reference, parameter sets, separate error sources, complete production action, probes,
+  spectrum, box length. Technical details in Appendix G.
+- Parameter-set status (`parameter_set_status.json`): T5 10/14, max 1.2875e-5; T7 39/44, max 2.1056e-7;
+  T9 10/14, max 2.5451e-9.
 
-- Results of 6.2-6.4 are labelled as the earlier setting (rounded |k|, s = 4.100).
-- `\pending{...}` marks the places where the Section 6 recomputation (branch `claude/new-session-nmi9ux`,
-  `ewald_longitudinal/sec6_results/`) will insert results. No recomputed number has been inserted.
-- The dynamics used damping rank 12 (noise 40/48); the timing used 40/16 (56 actions). Earlier 40/12 timing
-  (52 actions) is superseded. Source: `ewald_longitudinal/dynamics_results/REPORT.md`.
-- Section 7 keeps its own parameters. Its subsection titles no longer carry experiment numbers 11-15.
+## Removed in this version
 
-## Mathematical changes (Appendix C)
+Former Experiments 2-10 (equal-accuracy timing, spectrum study on old mesh operators, Lanczos ranks, dynamics,
+timing), the Lennard-Jones application (Section 7, former Experiments 11-15, its appendix and supplementary
+figures), the old mesh-decomposition study that formed the earlier Experiment 1, and every figure, table, cross
+reference and conclusion that depended on them. Result files stay in `ewald_longitudinal/` and in Git history.
 
-- Real-space decay: one integration by parts; explicit bound
-  0 <= theta_S - rho(xi^2) e^{-xi^2 r^2} <= e^{-xi^2 r^2}/(sqrt(pi) xi r^2). Replaces the stretched-variable and
-  dominated-convergence argument. Eq. (10) unchanged.
-- Endpoint asymptotics: integration by parts in I_m (existing symbol kept; m = 5/2, 7/2), boundary term at s = 0
-  shown to vanish, remainder bounded by 16(1+2|m-2|) xi^{7-2m} e^{-k^2/(4 xi^2)} / (sqrt(pi) k^4). Coefficients,
-  signs and the spectral norm of Eqs. (14)-(15) re-derived; statements unchanged.
+## Figures
 
-## Other edits
-
-- Sec. 5.3: T_step = (r_noise + r_damp) T_Gamma_h + ...; 40/16 (56 actions) named as the earlier setting.
-- Conclusion: Section 6 items rewritten to the four groups and qualified.
-- Sec. 7: smallest eigenvalue on Range Pi corrected to 4.58-4.84 (`lj075_results/verify_*_A.json`, 152 states).
-- Layout: overfull formulas split, breakable underscores in file names, ragged table columns, brace characters in
-  a typewriter file name; log free of warnings.
+`scripts/make_exp1_figures.py` regenerates `figures/exp1_{cutoffs,mesh,operator,probes_box}.pdf` (vector PDF,
+6.5 in wide = text width, 8-9 pt text) from the CSV files; it reads only `exp1_results/` and writes only here.

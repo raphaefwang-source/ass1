@@ -27,8 +27,6 @@
 \newcommand{\Range}{\operatorname{Range}}
 % Allow line breaks after underscores in file and script names.
 \DeclareRobustCommand{\_}{\textunderscore\allowbreak}
-% Marks results that await the recomputation of Section 6.
-\newcommand{\pending}[1]{\textit{[Pending\if\relax\detokenize{#1}\relax\else: #1\fi]}}
 
 \title{Notebook}
 \author{}
@@ -521,8 +519,8 @@ $\Gamma_h t=0$ for every $t\in\cT$, and obeys
 \end{proposition}
 
 The proof is given in Appendix~\ref{app:pair-response}. The conservative choice $\delta_h=\epsilon_{\mathrm{op}}$ is always
-certified, but the numerical tests in Section~\ref{sec:pm-validation} show
-that it is usually much more conservative than the actual spectral shift.
+certified; in the tests of Section~\ref{sec:exp-action} the smallest eigenvalue on $\Range\Pi$ moved by at most
+$41\%$ of $\|\widetilde\Gamma_h-\Gamma\|_2$.
 
 \subsection{Complete off-grid mesh-response decomposition}
 
@@ -682,9 +680,8 @@ It is useful to write the measured asymptotic law in dimensionless form as
 C_M(\kappa,\xi,p,k_c,\text{configuration})
 (\xi h)^p.
 \end{equation}
-The coefficient in Eq.~\eqref{eq:CM} is not universal; the experiments in
-Section~\ref{sec:pm-validation} show a modest dependence on configuration
-and reciprocal cutoff. Parameter selection should therefore use a
+The coefficient in Eq.~\eqref{eq:CM} is not universal; it depends on the
+configuration and on the reciprocal cutoff. Parameter selection should therefore use a
 conservative envelope $C_M^{\max}(p)$ rather than a single universal
 constant.
 
@@ -697,7 +694,8 @@ The matrix-free Ewald--PPPM formulation of Section~\ref{sec:pm} provides a fast 
 \begin{equation}
 \bm{x} \mapsto \Gamma_h \bm{x},
 \end{equation}
-with measured cost consistent with
+whose cost at fixed splitting parameters and fixed density, with a mesh of
+$M^3\propto N$ points, is
 \begin{equation}
 T_{\Gamma_h}(N)=\mathcal{O}(N\log N).
 \end{equation}
@@ -735,7 +733,7 @@ T_{\mathrm{noise}}(N)
 =
 \mathcal{O}\!\left(r(N)N\log N\right).
 \end{equation}
-Consequently, a measured $\mathcal{O}(N\log N)$ production cost requires that the rank remain effectively constant under a fixed accuracy budget.
+Consequently, an $\mathcal{O}(N\log N)$ cost per step requires that the rank remain effectively constant under a fixed accuracy budget.
 
 \subsection{Lanczos evaluation of the correlated noise}
 \label{sec:lanczos}
@@ -785,7 +783,7 @@ because
 f_{\Delta t}(\lambda)\sim C\sqrt{\lambda},
 \end{equation}
 with $C=(2\beta^{-1}\Delta t)^{1/2}$ (Appendix~\ref{app:thermostat}).
-The increased singularity of $g$ more than offsets the spectral reweighting.
+The increased singularity of $g$ can offset the spectral reweighting.
 
 \subsection{Full symmetric splitting}
 \label{sec:splitting}
@@ -935,10 +933,6 @@ M
 \end{equation}
 and round upward to an FFT-friendly size. This last rounding decreases the
 actual mesh spacing and therefore does not weaken the accuracy condition.
-In equal-accuracy timings at $\kappa=1$ (Appendix~\ref{app:equal-accuracy}),
-the accepted Ewald scale was $1.0$--$1.075$ times the initial choice above,
-and the cost per action was lowest near $\xi=0.5$--$0.7$; that accuracy was
-measured on two reference configurations only.
 
 Once a complete pair-response estimate is available, accuracy is certified
 through
@@ -974,985 +968,349 @@ T_{\mathrm{small\ matrix}}
 +
 T_{\mathrm{vector}}.
 \end{equation}
-In the earlier setting of Section~\ref{sec:experiments} the ranks were
-$r_{\mathrm{noise}}=40$ and $r_{\mathrm{damp}}=16$, i.e.\ $56$ actions per
-step. Because the measured $\Gamma_h$ action is $\mathcal{O}(N\log N)$-like
-(Section~\ref{sec:exp-timing}) and the remaining costs are subdominant over
-the tested regime, the numerical evidence supports the following
-accuracy-qualified statement.
+If the ranks remain bounded under a fixed accuracy budget and
+$T_{\Gamma_h}=\mathcal O(N\log N)$, the cost per step is
+$\mathcal O(N\log N)$; if the ranks must grow with $N$, the cost grows with
+$r_{\mathrm{noise}}+r_{\mathrm{damp}}$. Whether the ranks remain bounded is
+not established here.
 
-\begin{remark}[Measured complexity]
-\label{rem:complexity}
-Under the tested fixed physical-accuracy budget, using the fixed Lanczos ranks $r_{\mathrm{noise}}=40$ and $r_{\mathrm{damp}}=16$ of the earlier setting, the measured PPPM--Lanczos thermostat cost is consistent with $\mathcal{O}(N\log N)$ scaling for system sizes up to $N=16000$.
-\end{remark}
-
-Remark~\ref{rem:complexity} is deliberately finite-range and accuracy-qualified. It is \emph{not} an asymptotic theorem that the rank remains bounded as $N\to\infty$. In particular, the static rank-$40$ noise error already reaches approximately $9.1\times10^{-4}$
-at $N=16000$, close to the $10^{-3}$ production budget; if the ranks must grow with $N$, so does the cost per step.
-
-\section{Numerical experiments}
+\section{Numerical experiment: the particle--mesh operator}
 \label{sec:experiments}
 
-This section tests the components of the method on the screened
-longitudinal kernel of Eq.~\eqref{eq:kernel} with $\kappa=1$, in a fully
-periodic cube with the $k=0$ term retained, and with
-$\beta=m=1$. The evidence is organized in four groups:
-operator accuracy and structural checks
-(Section~\ref{sec:pm-validation}); Lanczos accuracy and the choice of
-production ranks (Section~\ref{sec:lanczos-exp}); conservation, equilibrium
-and dynamical accuracy of the ideal-gas thermostat
-(Section~\ref{sec:dyn-exp}); and computational cost
-(Section~\ref{sec:exp-timing}). The Lennard-Jones application of
-Section~\ref{sec:lj} has its own kernel amplitude, screening length,
-density, time step and ranks, and none of its parameters are used here.
+This section tests whether the operator applied by the method,
+$X\mapsto\widetilde\Gamma_hX$, reproduces the periodic friction operator
+$\Gamma$ of the kernel of Eq.~\eqref{eq:kernel} with the accuracy expected
+from $(\xi,r_c,k_c,h,p)$. The kernel is used as defined, with $\kappa=1$; the
+friction is fully periodic and the $k=0$ Fourier mode is retained in both the
+reference and the particle--mesh operator. The configurations are static, so
+no time-discretization or Lanczos error enters. Each error source of
+Eq.~\eqref{eq:op-budget} is first measured on its own
+(Section~\ref{sec:exp-components}); the complete production action is then
+compared with the reference (Section~\ref{sec:exp-action}). All numbers come
+from the result files of the project repository
+(\texttt{ewald\_longitudinal/exp1\_results/}), computed after the correction of
+a wave-number rounding in the coefficient routine described in
+Appendix~\ref{app:exp-details}.
 
-\paragraph{Status of the reported numbers.}
-The results of
-Sections~\ref{sec:lanczos-exp}--\ref{sec:exp-timing} were obtained with an
-earlier version of the code, in which $A_{\kappa,\xi}(k)$ and
-$B_{\kappa,\xi}(k)$ were evaluated at $|\kk|$ rounded to twelve decimals
-and the spatial set used $s=4.100$ instead of the accepted
-$s=4.100151562$. Each is reported with its original setting. A
-recomputation with the corrected code is in progress; entries marked
-\pending{} will be replaced by its results, and nothing from the
-recomputation is reported before it is complete and checked.
-
-\subsection{Operator accuracy and structural checks}
+\subsection{Configurations, reference and parameter sets}
 \label{sec:pm-validation}
 
-\pending{Experiment~1 is being rerun: the complete production action
-$X\mapsto\widetilde\Gamma_hX$ on static configurations against the unsplit
-full-periodic reference, with each error source of
-Eq.~\eqref{eq:op-budget} measured alone. Its results will replace or
-supplement the mesh-decomposition study below.}
-
-\paragraph{Mesh response.}
-The error model of Sections~\ref{sec:kernel} and~\ref{sec:pm} was tested
-on two periodic configurations with dense references, $\kappa=\xi=1$,
-$k_c\in\{4,6\}$: case A with $N=30$, $L=6$, and case B with $N=40$,
-$L=10$. The literal spread--FFT--influence--gather implementation agreed
-with its matrix representation to approximately $1.4\times10^{-15}$, and
-the pair-response error reconstructed from the $D_h$ and $\alpha_h$ terms
-of Eq.~\eqref{eq:pair-error} agreed with $K_h-K_F$ to approximately
-$1.8\times10^{-15}$ relative to the maximum retained pair response.
-
-For ideal deconvolution the largest observed influence defect was
-$\|D_h\|/\|\widehat K_\kappa^L\|\lesssim1.8\times10^{-16}$, and its
-graph-operator contribution was at most $4.7\times10^{-17}$, so the
-observed off-grid error is carried by the alias cross terms. An earlier
-alias diagnostic retained only the matched quadratic terms $n=n'\ne0$,
-which scale as $h^{2p}$, and omitted the dominant linear terms, which
-scale as $h^p$; this explains discrepancies by factors of approximately
-$22$ to $2\times10^5$ between that diagnostic and the complete mesh
-response.
-
-On the finest meshes the RMS phase-averaged mesh errors have fitted slopes
-between $p$ and $p+1.5$ (Fig.~\ref{fig:exp1-mesh}). The excess above $p$
-decreases as $h\to0$; the slopes are consistent with the $h^p$ law of
-Section~\ref{sec:pm} for approximately $0.1\lesssim\xi h\lesssim0.4$ when
-$p\le6$, with a narrower interval for $p=7,8$, but finite-mesh fits do not
-establish the asymptotic order. The normalized quantity
-$C_M(h)=\epsilon_{\mathrm{mesh}}/(\xi h)^p$ was nearly constant on the
-finest meshes, typically within factors $1.04$--$1.4$, and within about a
-factor $2$ for $p\ge7$ in the larger box. Across the tested cases $C_M$
-decreased from roughly $2\times10^{-2}$--$3.5\times10^{-2}$ at $p=2$ to
-$1.6\times10^{-4}$--$1.1\times10^{-3}$ at $p=8$, with up to a factor of
-about three dependence on configuration and $k_c$.
-
-The predictor $C_M(\xi h)^p$ was substantially more accurate than the
-edge-of-band heuristic $q^p$, $q=\eta_N/(2-\eta_N)$
-(Fig.~\ref{fig:exp1-predictors}). Over 181 mesh runs the ratio of the
-$C_M(\xi h)^p$ prediction to the measured error had median approximately
-$0.93$ and range $0.25$--$2.1$, whereas $q^p$ overpredicted by a median
-factor of approximately $1.9\times10^3$, with range $37$ to
-$4\times10^5$. The heuristic uses the retained spectral edge, while the
-complete error is weighted toward smaller $k$, where the long-range
-multiplier is larger and the alias ratio much smaller.
-
-\paragraph{Spectrum and positivity.}
-No negative graph eigenvalue was observed among 13\,195 mesh operators or
-among the 44 accepted equal-accuracy runs of
-Appendix~\ref{app:equal-accuracy}. The smallest observed ratio was
-$\lambda_h/\lambda_*\approx0.970$ (Fig.~\ref{fig:exp3}). The spectral-gap
-certificate was conservative: the actual gap shift was a median of about
-$2.4\%$ and at most $7\%$ of $\|\Gamma_h-\Gamma\|_2$. Stabilization
-therefore remains a valid fallback, but it was not required in the tested
-regime. Symmetry and the translation null space hold by construction
-(Section~\ref{sec:pm}); their residuals in the dynamic runs are reported
-in Sections~\ref{sec:dyn-exp} and~\ref{sec:exp-timing}.
-
-These tests predate the correction of the $|\kk|$ rounding, which
-perturbs the multiplier at the level of $10^{-13}$ relative to
-$\|\Gamma\|_2$ and does not affect the mesh errors quoted above.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.62\textwidth]{exp1_eps_vs_h.png}
-\includegraphics[width=0.36\textwidth]{exp1_slope_vs_p.png}
-\caption{Mesh response, $\kappa=\xi=1$, $k_c\in\{4,6\}$, configurations A ($N=30$, $L=6$) and B ($N=40$, $L=10$). Left: RMS phase-averaged mesh error versus $h$ for $p=2$--$8$. Right: fitted slope on the finest valid meshes versus $p$; the line is slope $=p$. Source: \texttt{mesh\_error\_decomposition\_results/plot01, plot02}.}
-\label{fig:exp1-mesh}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.32\textwidth]{exp1_full_vs_reconstructed.png}
-\includegraphics[width=0.32\textwidth]{exp1_actual_vs_CM.png}
-\includegraphics[width=0.32\textwidth]{exp1_actual_vs_qp.png}
-\caption{Mesh response, configurations A and B. Left: error reconstructed from the $D_h$ and $\alpha_h$ terms of Eq.~\eqref{eq:pair-error} versus the literal mesh error. Middle: measured error versus $C_M(\xi h)^p$. Right: measured error versus $q^p$, $q=\eta_N/(2-\eta_N)$. Source: \texttt{mesh\_error\_decomposition\_results/plot04, plot08, plot09}.}
-\label{fig:exp1-predictors}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.8\textwidth]{exp3_lambda_vs_h.png}
-\caption{Smallest eigenvalue $\lambda_h$ of the particle--mesh graph on $\cT^\perp$ and the perturbation lower bound versus $h$; the horizontal line is $\lambda_*$. Configurations A and B, $k_c\in\{4,6\}$, several $p$. Source: \texttt{mesh\_error\_decomposition\_results/plot10\_lambda\_vs\_h.png}.}
-\label{fig:exp3}
-\end{figure}
-
-\subsection{Lanczos accuracy and production-rank selection}
-\label{sec:lanczos-exp}
-
-The thermostat applies two matrix functions of the same
-$\widetilde\Gamma_h$: the noise factor $f_{\Delta t}$, which behaves like
-a square root near $\lambda=0$, and the damping factor
-$e^{-\Delta t\widetilde\Gamma_h/m}$. Lanczos errors are measured as relative
-action errors against converged high-rank Lanczos references of the same
-operator, so they contain no spatial error. A reference was accepted only
-when both the successive-rank difference and the rank-$r$ versus
-rank-$(r-20)$ difference satisfied stringent convergence criteria; for
-$N=8000$ and $16000$ this required references up to rank $360$. Two
-questions are kept apart: how the rank grows at a fixed high accuracy, and
-whether one fixed rank meets the production budget over the tested range.
-
-\paragraph{Rank growth at high accuracy.}
-At relative noise-action tolerance $10^{-8}$ the required direct-start rank
-grows with $N$ (Table~\ref{tab:rank-growth}, Fig.~\ref{fig:exp4}),
-approximately as $r(N)\sim N^{0.34}$. A claim
-$T_{\mathrm{thermostat}}=\mathcal O(N\log N)$ at fixed $10^{-8}$
-matrix-function accuracy is therefore not supported. The range start of
-Section~\ref{sec:range-start} required more steps than the direct start:
-at $N=4000$ and $10^{-8}$, about $166$--$169$ versus $126$--$128$, and
-typically $20\%$--$35\%$ more $\Gamma_h$ actions across the tested sizes.
-The direct start is retained.
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{ccccccc}
-\toprule
-$N$ & 128 & 256 & 512 & 1024 & 2048 & 4000\\
-\midrule
-$r$ & 39 & 50 & 64 & 83 & 102 & 127\\
-\bottomrule
-\end{tabular}
-\caption{Representative direct-start Lanczos ranks at relative noise-action tolerance $10^{-8}$ (earlier setting).}
-\label{tab:rank-growth}
-\end{table}
-
-\paragraph{Fixed noise rank under the production budget.}
-The production target is a relative noise-action error
-$\varepsilon_{\mathrm{root}}\le10^{-3}$. Table~\ref{tab:fixed-rank-small}
-lists the largest error over the tested Gaussian seeds at
-$\Delta t\lambda_{\max}/m=0.5$ for $N\le4000$, and
-Table~\ref{tab:fixed-rank-large} extends the study to $N=8000$ and
-$16000$ with three seeds per size. Rank $24$ does not meet the budget
-uniformly; rank $32$ meets it through $N=4000$ but fails at $N=8000$ and
-$16000$. Rank $40$ is the smallest single tested rank that stays below
-$10^{-3}$ at every tested size, with a thin margin at $N=16000$ (largest
-error $9.1\times10^{-4}$). This is a finite-range statement at fixed
-accuracy, not a bound on the rank as $N\to\infty$.
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{rcccc}
-\toprule
-$N$ & $r=16$ & $r=24$ & $r=32$ & $r=40$\\
-\midrule
-128  & $1.8\times10^{-4}$ & $6.1\times10^{-6}$ & $1.5\times10^{-7}$ & $4.6\times10^{-9}$\\
-256  & $4.8\times10^{-4}$ & $4.3\times10^{-5}$ & $3.4\times10^{-6}$ & $2.6\times10^{-7}$\\
-512  & $1.4\times10^{-3}$ & $1.8\times10^{-4}$ & $2.0\times10^{-5}$ & $3.3\times10^{-6}$\\
-1024 & $2.2\times10^{-3}$ & $4.8\times10^{-4}$ & $9.6\times10^{-5}$ & $1.8\times10^{-5}$\\
-2048 & $3.8\times10^{-3}$ & $1.0\times10^{-3}$ & $2.6\times10^{-4}$ & $7.8\times10^{-5}$\\
-4000 & $4.6\times10^{-3}$ & $1.4\times10^{-3}$ & $5.2\times10^{-4}$ & $2.0\times10^{-4}$\\
-\bottomrule
-\end{tabular}
-\caption{Fixed-rank direct-start noise-action errors for $N\le4000$ (maximum over seeds, earlier setting).}
-\label{tab:fixed-rank-small}
-\end{table}
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{rccc}
-\toprule
-$N$ & $r=32$ & $r=40$ & $r=48$\\
-\midrule
-128   & $1.5\times10^{-7}$ & $4.6\times10^{-9}$ & $\le 4.6\times10^{-9}$\\
-256   & $3.4\times10^{-6}$ & $2.6\times10^{-7}$ & $\le 2.6\times10^{-7}$\\
-512   & $2.0\times10^{-5}$ & $3.3\times10^{-6}$ & $\le 3.3\times10^{-6}$\\
-1024  & $9.6\times10^{-5}$ & $1.8\times10^{-5}$ & $\le 1.8\times10^{-5}$\\
-2048  & $2.6\times10^{-4}$ & $7.8\times10^{-5}$ & $\le 7.8\times10^{-5}$\\
-4000  & $5.2\times10^{-4}$ & $2.0\times10^{-4}$ & $\le 2.0\times10^{-4}$\\
-8000  & $1.04\times10^{-3}$ & $4.5\times10^{-4}$ & $2.2\times10^{-4}$\\
-16000 & $1.78\times10^{-3}$ & $9.1\times10^{-4}$ & $4.8\times10^{-4}$\\
-\bottomrule
-\end{tabular}
-\caption{Extended fixed-rank noise-action errors (earlier setting). For $N\le4000$ the rank-$48$ entries are upper bounds from the monotone decrease with rank; rank $48$ was not evaluated there.}
-\label{tab:fixed-rank-large}
-\end{table}
-
-\paragraph{Damping rank.}
-The damping factor is smoother than the noise factor. Against a converged
-$e^{-\Delta t\widetilde\Gamma_h/m}\Pi p$, rank $12$ gave relative errors of
-at most $7\times10^{-7}$ up to $\Delta t\lambda_{\max}=10$, but
-$1.8\times10^{-4}$ at $\Delta t\lambda_{\max}=20$; rank $16$ stayed below
-about $6\times10^{-7}$ at $\Delta t\lambda_{\max}=20$. Against the damping
-budget $10^{-6}$, rank $12$ is therefore adequate but marginal for
-close-pair spikes of $\lambda_{\max}$, and rank $16$ leaves a margin.
-
-\paragraph{Production ranks.}
-In the earlier setting the outcome of this section was
-$r_{\mathrm{noise}}=40$ and $r_{\mathrm{damp}}=16$ for the budgets
-$10^{-3}$ (noise) and $10^{-6}$ (damping) through $N=16000$. These values
-belong to that setting only. \pending{Recommended ranks for the corrected
-operator are determined by the rank-selection stage of the recomputation.}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.49\textwidth]{exp4_rank_vs_N.png}
-\includegraphics[width=0.49\textwidth]{exp4_range_ratio_vs_N.png}
-\caption{Rank growth at high accuracy. Left: required direct-start rank versus $N$ at fixed density for tolerances $10^{-6}$ and $10^{-8}$ and $\Delta t\lambda_{\max}/m=0.5$, $2.0$, against converged references. Right: ratio of range-start to direct-start rank. Source: \texttt{lanczos\_fdt\_results/plot09}, \texttt{lanczos\_range\_start\_results/plot07}.}
-\label{fig:exp4}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.45\textwidth]{exp5_fixed_rank_vs_N.png}
-\includegraphics[width=0.53\textwidth]{exp5_fixed_rank_large_n.png}
-\caption{Fixed-rank noise-action error versus $N$ at $\Delta t\lambda_{\max}/m=0.5$ (maximum over seeds). Left: $N\le4000$, ranks 16--40, with the $10^{-3}$ budget. Right: extension to $N=8000$ and $16000$ (right of the dashed line) for ranks 32, 40, 48, and the rank-40 noise-action time. Source: \texttt{fixed\_rank\_budget\_results/}.}
-\label{fig:exp5}
-\end{figure}
-
-\subsection{Conservation, equilibrium, and dynamical accuracy}
-\label{sec:dyn-exp}
-
-\paragraph{Setting.}
-The dynamic tests use the ideal gas ($U=0$) at density $30/216$ with the
-splitting of Section~\ref{sec:splitting}, the PPPM set $\xi=0.7$,
-$s=4.10$, $\eta_N=0.7$, $p=7$, and
-$\Delta t=0.0429=0.2\,m/\mathrm{median}\,\lambda_{\max}(q_0)$ over the 16
-initial configurations at $N=64$; the same physical $\Delta t$ is used at
-every $N$. The ranks are noise $40$ (and $48$ for comparison) with damping
-rank $12$; the high-rank Lanczos runs use $90$ and $24$. These runs
-therefore used damping rank $12$, not the $16$ adopted afterwards in
-Section~\ref{sec:lanczos-exp} and used for the timings of
-Section~\ref{sec:exp-timing}. At $N=64$ the coupled methods share initial
-states and Gaussian streams: dense eigendecomposition of the same
-$\widetilde\Gamma_h$ (the reference), the same with the $10^{-9}$ spatial
-set, high-rank Lanczos, ranks $40$ and $48$, and dense runs at $2\Delta t$,
-$\Delta t/2$ and $\Delta t/4$, 16 trajectories to $T_{\mathrm{end}}=6$.
-Because there is no repulsive potential, close pairs make $\lambda_{\max}$
-spike: $\Delta t\lambda_{\max}(t)$ reached about $3.7$ at $N=64$ and $10$ at
-$N=16000$; the exponential damping step is unconditionally stable and
-remained so.
-
-\paragraph{Momentum and thermal equilibrium.}
-Total momentum was preserved pathwise to round-off in every run, with
-largest relative defect $3.8\times10^{-14}$
-(Fig.~\ref{fig:exp6-mom}, left). A control run with independent,
-uncorrelated noise drifted by $\mathcal O(1)$ (defects $1$--$1.7$). From the
-deliberately anisotropic start $T_x\approx1.96$, $T_y\approx T_z\approx0.5$
-the component temperatures relaxed toward $T=1$ by $t\approx3$--$4$ at
-$N=64$ (Fig.~\ref{fig:exp6-temp}). The window $t\in[3,6]$ had not yet
-equilibrated the slowest mode, so 16 longer trajectories to $T=30$ with
-burn-in to $t=15$ were added; in these runs the $95\%$ confidence interval
-of every component temperature contains $1$, and the normalized
-conditional-Maxwell diagnostics are variance $0.9995\pm0.010$, skewness
-$-0.006\pm0.007$ and excess kurtosis $-0.023\pm0.025$
-(Fig.~\ref{fig:exp6-mom}, right). At $N=4000$ and $16000$ relaxation is
-visible but equilibrium was not tested.
-
-\paragraph{Separation of error sources.}
-Table~\ref{tab:dyn-differences} lists paired differences of the
-observables at $N=64$. The comparisons isolate four contributions:
-\begin{itemize}
-\item Krylov error on the same $\widetilde\Gamma_h$: high-rank Lanczos
-  minus dense is at most $1.1\times10^{-13}$, rank $48$ minus dense at
-  most $1.2\times10^{-11}$, rank $40$ minus dense at most $1.0\times10^{-9}$
-  (Fig.~\ref{fig:exp7});
-\item spatial discretization: replacing the production set by the
-  $10^{-9}$ set changes the observables by at most $5.6\times10^{-7}$. This
-  is a proxy obtained by tightening the set, not a comparison with the
-  exact $\Gamma$;
-\item time discretization: paired differences between dense runs at
-  successive step sizes are about $10^{-2}$ to $3\times10^{-2}$;
-\item sampling: the standard error of the mean over 16 trajectories is
-  $3\times10^{-2}$ to $8\times10^{-2}$.
-\end{itemize}
-At larger $N$, on the same seed and stream, rank $48$ minus rank $40$ is
-at most $4.1\times10^{-5}$ at $N=4000$ and $1.4\times10^{-4}$ at
-$N=16000$, compared with seed-to-seed standard deviations of the late-time
-temperatures of $0.009$--$0.019$ and $0.002$--$0.007$, respectively. Within
-the resolution of these observables, rank $40$ is indistinguishable from
-rank $48$ through $N=16000$ and from the dense reference at $N=64$.
+Every error is measured against a dense $3N\times3N$ reference and its
+spectrum, which restricts the test to $N\le256$. Table~\ref{tab:exp-configs}
+lists the 44 configurations. Cases A and B are the two boxes on which the
+parameter sets below were accepted. The main set has $N=128$ at the density
+$n_A=30/216$ of case A, with three families and three seeds each: independent
+uniform positions, perturbed lattices, and clusters; one configuration per
+family at $N=256$ forms a check set. Two box-length sets use uniform
+positions with three seeds per box: at fixed $N=64$, where the density changes
+with $L$, and at fixed density $n_A$, where $N$ changes with $L$. The
+generators are described in Appendix~\ref{app:exp-details}.
 
 \begin{table}[htbp]
 \centering
 \small
-\begin{tabular}{lccccc}
+\begin{tabular}{llrlllr}
 \toprule
-comparison & $T_x$ & $T_y$ & $T_z$ & $T_{\mathrm{kin}}$ & $O_k$ \\
+set & generation & $N$ & $L$ & $N/L^3$ & $d_{\min}$ & seeds \\
 \midrule
-rank 40 $-$ dense & $6.6\times10^{-10}$ & $6.1\times10^{-10}$ & $1.0\times10^{-9}$ & $4.1\times10^{-10}$ & $5.6\times10^{-11}$ \\
-rank 48 $-$ dense & $1.2\times10^{-11}$ & $7.3\times10^{-12}$ & $5.1\times10^{-12}$ & $3.7\times10^{-12}$ & $4.3\times10^{-13}$ \\
-high rank $-$ dense & $3.0\times10^{-14}$ & $1.1\times10^{-13}$ & $5.7\times10^{-14}$ & $2.3\times10^{-14}$ & $7.6\times10^{-15}$ \\
-$10^{-9}$ set $-$ dense & $2.4\times10^{-7}$ & $3.1\times10^{-7}$ & $5.6\times10^{-7}$ & $1.7\times10^{-7}$ & $4.2\times10^{-8}$ \\
-$\Delta t$ $-$ $\Delta t/2$ & $2.8\times10^{-2}$ & $3.3\times10^{-2}$ & $3.4\times10^{-2}$ & $1.1\times10^{-2}$ & $1.5\times10^{-2}$ \\
- \quad (SE) & $2.3\times10^{-2}$ & $1.9\times10^{-2}$ & $2.4\times10^{-2}$ & $1.1\times10^{-2}$ & $9\times10^{-3}$ \\
-$\Delta t/2$ $-$ $\Delta t/4$ & $2.6\times10^{-2}$ & $1.7\times10^{-2}$ & $3.5\times10^{-2}$ & $1.1\times10^{-2}$ & $2.5\times10^{-3}$ \\
- \quad (SE) & $1.8\times10^{-2}$ & $1.6\times10^{-2}$ & $2.4\times10^{-2}$ & $1.0\times10^{-2}$ & $5\times10^{-3}$ \\
-$2\Delta t$ $-$ $\Delta t$ & $2.8\times10^{-2}$ & $2.7\times10^{-2}$ & $4.1\times10^{-2}$ & $2.7\times10^{-2}$ & $2.9\times10^{-3}$ \\
- \quad (SE) & $2.9\times10^{-2}$ & $2.6\times10^{-2}$ & $3.1\times10^{-2}$ & $1.3\times10^{-2}$ & $9\times10^{-3}$ \\
-sampling SE of the mean & $8.4\times10^{-2}$ & $4.9\times10^{-2}$ & $6.1\times10^{-2}$ & $3.1\times10^{-2}$ & $2.9\times10^{-2}$ \\
+A & uniform & 30 & 6 & 0.139 & 0.395 & 1 \\
+B & uniform & 40 & 10 & 0.040 & 0.589 & 1 \\
+uniform & uniform & 128 & 9.73 & 0.139 & 0.142--0.411 & 3 \\
+lattice & perturbed bcc & 128 & 9.73 & 0.139 & 1.208--1.366 & 3 \\
+clustered & 8 clusters of 16 & 128 & 9.73 & 0.139 & 0.251--0.255 & 3 \\
+check & one per family & 256 & 12.26 & 0.139 & 0.148--1.011 & 1 \\
+fixed $N$ & uniform & 64 & 4--16 (6 values) & 0.016--1.00 & 0.090--0.723 & 3 \\
+fixed density & uniform & 30--240 & 6--12 (4 values) & 0.139 & 0.055--0.924 & 3 \\
 \bottomrule
 \end{tabular}
-\caption{Paired differences at $N=64$, 16 trajectories, noise/damping ranks $40/12$ and $48/12$ (earlier setting). Each entry is the largest over time of the absolute trajectory mean of the paired difference; $O_k=\langle\cos(2\pi x/L)\rangle$. ``Dense'' is the eigendecomposition of the same $\widetilde\Gamma_h$. Source: \texttt{dynamics\_results/REPORT.md}, \texttt{summary.json}.}
-\label{tab:dyn-differences}
+\caption{Static configurations, $\kappa=1$. $L$ is the edge of the periodic cube and $d_{\min}$ the smallest periodic
+pair distance (range over seeds). The lattices are bcc with $4^3$ cells at $N=128$ and fcc with $4^3$ cells at $N=256$.
+Source: \texttt{configs.csv}.}
+\label{tab:exp-configs}
 \end{table}
 
-\paragraph{Time-step sensitivity.}
-The nested noise streams are exact in distribution but couple the paths
-only approximately while $\widetilde\Gamma_h(q)$ moves. The step-refinement
-differences in Table~\ref{tab:dyn-differences} are comparable to their own
-standard errors (Fig.~\ref{fig:exp9}). They therefore do not resolve the
-time-discretization error beyond about $10^{-2}$ to $3\times10^{-2}$:
-neither its size nor a convergence order can be inferred from them. What
-the data do establish is the ordering of the resolved contributions,
-Krylov ($\le10^{-9}$) below spatial ($\le6\times10^{-7}$) below the
-combined level of time-step differences and sampling uncertainty (about
-$10^{-2}$). \pending{The recomputation repeats these comparisons with the
-corrected operator and the new ranks.}
+\paragraph{Reference.}
+The reference for $\Gamma$ is assembled from the unsplit kernel by a direct
+periodic lattice sum over the images $|\rr_{ij}+\bm mL|\le R$,
+$\bm m\in\mathbb Z^3$, with no minimum-image approximation and no splitting;
+nothing is removed from the sum, so the $k=0$ mode is included. Increasing $R$
+from $15$ to $45$, the largest change relative to $R=45$, in
+$\|\cdot\|_2/\|\Gamma\|_2$ over all 44 configurations, is
+$2.5\times10^{-12}$ at $R=30$, $2.0\times10^{-14}$ at $R=35$ and
+$4.3\times10^{-16}$ at $R=40$; $R=45$ is used. This ladder is numerical
+evidence of convergence, not a bound on the truncation error. An independent
+construction (the split identity below) reproduces the reference to
+$1.1\times10^{-15}$. The reference is symmetric to $1.0\times10^{-16}$ and
+annihilates $\cT$ to $1.9\times10^{-16}$, both relative; $\|\Gamma\|_2$ ranges
+from $0.72$ to $35$ over the configurations.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.9\textwidth]{exp6_component_temperatures.png}
-\caption{Component temperatures, noise/damping ranks $40/12$. (a) $N=64$, mean over 16 trajectories with $\pm1$ standard error, dense and rank 40. (b) $N=4000$ and $16000$, rank 40. Source: \texttt{dynamics\_results/plot1\_component\_temperatures.png}.}
-\label{fig:exp6-temp}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.42\textwidth]{exp6_momentum.png}
-\includegraphics[width=0.56\textwidth]{exp6_maxwell.png}
-\caption{Left: relative total-momentum defect (maximum over trajectories) for all methods, including the control with independent noise. Right: QQ plot and histogram of normalized momenta against the conditional Maxwell law, long runs at $N=64$. Source: \texttt{dynamics\_results/plot3, plot7}.}
-\label{fig:exp6-mom}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.49\textwidth]{exp7_rank40_error.png}
-\includegraphics[width=0.49\textwidth]{exp7_rank48_error.png}
-\caption{Paired differences of $T_x$ and $O_k$ at $N=64$: rank 40 minus dense (left) and rank 48 minus dense (right), damping rank 12, with the temporal difference dense$(\Delta t/2)-$dense$(\Delta t)$ and the sampling standard error for comparison. Source: \texttt{dynamics\_results/plot4, plot5}.}
-\label{fig:exp7}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.9\textwidth]{exp9_temporal_refinement.png}
-\caption{Step refinement at $N=64$: paired differences between dense runs at $2\Delta t$, $\Delta t$, $\Delta t/2$ and $\Delta t/4$, compared with rank 40 minus dense. Source: \texttt{dynamics\_results/plot6\_temporal\_refinement.png}.}
-\label{fig:exp9}
-\end{figure}
-
-\subsection{Computational cost and scaling}
-\label{sec:exp-timing}
-
-The cost is the measured time of a complete thermostat step at the
-accuracy targets of Section~\ref{sec:lanczos-exp}: PPPM set $\xi=0.7$,
-$s=4.10$, $\eta_N=0.7$, $p=7$, noise rank $40$ (noise-action error
-$\le10^{-3}$ through $N=16000$) and damping rank $16$ (damping-action
-error $\le6\times10^{-7}$ up to $\Delta t\lambda_{\max}=20$). The ranks are
-the same at every size, so each step uses exactly
-$r_{\mathrm{noise}}+r_{\mathrm{damp}}=56$ actions of $\widetilde\Gamma_h$.
-Each size was run in a single process with one thread, three warm-up steps
-and ten timed steps; Table~\ref{tab:production-timing} reports medians.
-An earlier timing with damping rank $12$ ($52$ actions per step, four
-timed steps, a different session) is superseded and not combined with
-these numbers.
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{rccccc}
-\toprule
-$N$ & step [s] & setup [s] & $\Gamma_h$ actions [s] & reorth. [s] & $T/(N\ln N)$ [s]\\
-\midrule
-512   & 0.789 & 0.024 & 0.754 & 0.003 & $2.47\times10^{-4}$\\
-4000  & 6.35  & 0.18  & 6.12  & 0.027 & $1.91\times10^{-4}$\\
-16000 & 37.4  & 0.94  & 36.0  & 0.12  & $2.41\times10^{-4}$\\
-\bottomrule
-\end{tabular}
-\caption{Single-process time per complete thermostat step, noise rank $40$, damping rank $16$ (earlier setting).}
-\label{tab:production-timing}
-\end{table}
-
-About $96\%$ of the step time is spent in the $\Gamma_h$ actions. The
-tridiagonal eigensolve and matrix-function evaluation take less than
-$0.5$~ms per step, and projection and other vector operations at most
-about $0.7\%$. The normalized time $T(N)/(N\ln N)$ stays between about
-$1.9\times10^{-4}$ and $2.5\times10^{-4}$~s with no systematic trend
-(Fig.~\ref{fig:exp10}). A descriptive power-law fit to the three points
-gives $T\propto N^{1.11}$, while $N\ln N$ itself behaves like $N^{1.13}$
-over the same range. The measured cost is therefore consistent with
-$N\log N$ growth for $N=512$--$16000$ at these fixed ranks. Since the
-rank-$40$ margin is thin at $N=16000$, a larger $N$ may require a larger
-noise rank, and the cost per step then grows in proportion to
-$r_{\mathrm{noise}}+r_{\mathrm{damp}}$.
-
-The timing runs also passed the structural checks: no negative Ritz values
-(smallest $\approx1.7\times10^{-2}$), total-momentum residual at most
-$5.9\times10^{-15}$, and $\|(I-\Pi)\eta\|/\|\eta\|\le8.1\times10^{-17}$.
-\pending{Equal-accuracy full-step timing with the ranks of the
-recomputation.}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.75\textwidth]{exp10_production_timing.png}
-\caption{Left: median single-process time per complete step versus $N$, noise rank 40, damping rank 16, with reference slopes $N$ and $N\ln N$. Right: $T/(N\ln N)$. Source: \texttt{dynamics\_results/production\_timing\_rank40\_16.png}.}
-\label{fig:exp10}
-\end{figure}
-
-\section{Application: Lennard-Jones liquid with kernel A}
-\label{sec:lj}
-
-The experiments of Section~\ref{sec:experiments} use $\kappa=1$ test
-configurations and an ideal gas. This section applies the same operator and
-thermostat to a liquid with a conservative pair potential, at a single
-state point. All numbers come from the result files of the project
-repository (\texttt{ewald\_longitudinal/lj075\_results/}, commit
-\texttt{39bb4f6}). Error bars are $95\%$ Student-$t$ intervals over
-independent replicas unless stated otherwise, and an interval that contains
-zero is never read as equivalence. Earlier toy studies at a lower density
-($N=64$, $L=5.5$, $\beta^{-1}=0.7$) and with a second radial law were also
-carried out in the project; they are not used here.
-
-\subsection{Particle model}
-\label{sec:lj-model}
-
-\paragraph{Friction kernel.}
-Kernel A is the screened longitudinal kernel of Eq.~\eqref{eq:kernel} with
-an amplitude,
-\begin{equation}
-\label{eq:kernelA}
-K^{A}(\rr)
-=
-\gamma\,r_{\mathrm{ref}}\,e^{\kappa r_{\mathrm{ref}}}\,K_\kappa(\rr),
-\end{equation}
-chosen so that the radial profile equals $\gamma$ at $r=r_{\mathrm{ref}}$.
-We use $\gamma=0.5$, $\kappa=0.7$, $r_{\mathrm{ref}}=1.3$, so the amplitude
-is $\gamma r_{\mathrm{ref}}e^{\kappa r_{\mathrm{ref}}}=1.6148$. Between
-particles the kernel is summed over all periodic images,
-\begin{equation}
-\label{eq:Kper}
-K_\kappa^{\mathrm{per}}(\rr)
-=
-\sum_{n\in\mathbb Z^3}K_\kappa(\rr+nL),
-\end{equation}
-which converges absolutely for $\rr\notin L\mathbb Z^3$ because
-$\|K_\kappa(\rr)\|_2=e^{-\kappa r}/r$. Its Fourier coefficients are
-$V^{-1}\widehat K_\kappa(\kk)$, $\kk\in\mathcal K$, and the $k=0$
-coefficient
-\begin{equation}
-\label{eq:k0}
-\widehat K_\kappa(\bm 0)
-=
-\int_{\mathbb R^3}K_\kappa(\rr)\,d\rr
-=
-\frac{4\pi}{3\kappa^2}\,\Id
-\end{equation}
-is finite because $\kappa>0$; it is \emph{retained}, i.e.\ nothing is
-subtracted from the lattice sum. Eq.~\eqref{eq:k0} follows from
-$\int_{S^2}\PP\,d\Omega=\tfrac{4\pi}{3}\Id$ and
-$\int_0^\infty r\,e^{-\kappa r}\,dr=\kappa^{-2}$. The friction matrix is the
-degree-minus-weight graph of the pair responses
-\begin{equation}
-\label{eq:Gamma-lj}
-(\Gamma(q)X)_i
-=
-\sum_{j\ne i}K_{ij}(x_i-x_j),
-\qquad
-K_{ij}
-=
-\gamma\,r_{\mathrm{ref}}\,e^{\kappa r_{\mathrm{ref}}}\,
-K_\kappa^{\mathrm{per}}(q_i-q_j).
-\end{equation}
-Self images ($j=i$, $n\ne0$) would act on $x_i-x_i=0$ and do not enter.
-
-\paragraph{Equations of motion.}
-With positions $q$, momenta $p$, mass $m$ and a standard Wiener process
-$W_t$ in $\mathbb R^{3N}$,
-\begin{equation}
-\label{eq:sde-lj}
-dq=\frac{p}{m}\,dt,
-\qquad
-dp=-\nabla U(q)\,dt-\frac1m\Gamma(q)p\,dt
-+\left(2\beta^{-1}\Gamma(q)\right)^{1/2}dW_t ,
-\end{equation}
-where $U(q)=\sum_{i<j}u(|q_i-q_j|)$ under the minimum-image convention and
-\begin{equation}
-\label{eq:lj}
-\begin{gathered}
-u(r)
-=
-S(r)\,4\varepsilon\left[\left(\frac{\sigma}{r}\right)^{12}
--\left(\frac{\sigma}{r}\right)^{6}\right],
-\\
-S(r)=1-10x^3+15x^4-6x^5,
-\qquad
-x=\min\left\{1,\max\left\{0,\frac{r/\sigma-r_{\mathrm{on}}}
-{r_{\mathrm{cut}}-r_{\mathrm{on}}}\right\}\right\},
-\end{gathered}
-\end{equation}
-with $r_{\mathrm{on}}=2$ and $r_{\mathrm{cut}}=2.5$. The force includes the
-switch derivative. Reduced units $m=\sigma=\varepsilon=1$ are used. Since
-$r_{\mathrm{cut}}\sigma<L/2$, the minimum image is exact for the forces;
-only the friction uses the full image sum.
-
-\begin{proposition}[Structure of the friction and invariance]
-\label{prop:lj-structure}
-For pairwise distinct positions:
-\begin{enumerate}
-\item $\Gamma(q)$ is symmetric and positive semidefinite, with
-$X^{\mathsf T}\Gamma X=\sum_{i<j}(x_i-x_j)^{\mathsf T}K_{ij}(x_i-x_j)$;
-\item $\Gamma(q)t=0$ for every $t\in\cT$, so $\Gamma\Pi=\Pi\Gamma=\Gamma$;
-\item the $k=0$ Fourier term contributes
-$\gamma r_{\mathrm{ref}}e^{\kappa r_{\mathrm{ref}}}\frac{4\pi}{3\kappa^2V}
-(N I_N-\mathbf1\mathbf1^{\mathsf T})\otimes I_3$ to $\Gamma$, which acts on
-$\Range\Pi$ as the multiple
-$\gamma r_{\mathrm{ref}}e^{\kappa r_{\mathrm{ref}}}\frac{4\pi N}{3\kappa^2V}$
-of the identity;
-\item total momentum is conserved pathwise by Eq.~\eqref{eq:sde-lj};
-\item the density
-$\pi(q,p)\propto\exp\{-\beta[U(q)+|p|^2/(2m)]\}$, restricted to a fixed
-total momentum, is stationary for Eq.~\eqref{eq:sde-lj}.
-\end{enumerate}
-\end{proposition}
-
-\begin{proof}
-(1) $K_\kappa(\rr)=K_\kappa(-\rr)=K_\kappa(\rr)^{\mathsf T}$, so
-$K_{ij}=K_{ji}=K_{ij}^{\mathsf T}$; pairing the $(i,j)$ and $(j,i)$ terms
-gives the quadratic form. Each image term
-$e^{-\kappa|\rr+nL|}|\rr+nL|^{-1}\PP(\rr+nL)$ is positive semidefinite, so
-$K_{ij}\succeq0$ and every pair term is nonnegative. (2) Block-row sums of
-Eq.~\eqref{eq:Gamma-lj} vanish. (3) Insert the $k=0$ coefficient
-$V^{-1}\widehat K_\kappa(\bm0)$ of Eq.~\eqref{eq:k0} into
-Eq.~\eqref{eq:Gamma-lj}; on $\Range\Pi$ the term
-$\mathbf1\mathbf1^{\mathsf T}\otimes I_3$ vanishes. (4) Pair forces sum to
-zero, $t^{\mathsf T}\Gamma=0$, and $t^{\mathsf T}\Gamma^{1/2}=0$ because
-$\Gamma^{1/2}$ has the null space of $\Gamma$. (5) The Hamiltonian part
-preserves $\pi$. The friction and noise part of the Fokker--Planck operator
-is $\nabla_p\cdot[\Gamma(q)(\frac pm\pi+\beta^{-1}\nabla_p\pi)]$, which
-vanishes because $\beta^{-1}\nabla_p\pi=-\frac pm\pi$; there is no spurious
-drift because $\Gamma$ depends on $q$ only.
-\end{proof}
-
-Positivity in item~1 rests on the pointwise positivity of the real-space
-kernel, as in Section~\ref{sec:kernel}; strict positivity on $\Range\Pi$ is
-not proved and is checked numerically below. Item~5 concerns the continuous
-model. Unlike a conservative collision model, $\Gamma p\ne0$ in general, so
-kinetic energy is not conserved; the discrete scheme preserves the
-conditional Maxwell law in its O-step (Appendix~\ref{app:thermostat}), but its
-configurational stationary law carries a time-step bias.
-
-The numerical scheme is the splitting $\Psi_{\Delta t}$ of
-Section~\ref{sec:splitting} with the conservative $B$ steps restored and
-with $\widetilde\Gamma_h$ evaluated once per step at the midpoint positions
-for both damping and noise. The particle--mesh operator of
-Section~\ref{sec:pm} is applied to the long-range part including the $k=0$
-mode, and the real-space part sums all pair images within $r_c$. No
-stabilization was needed in any test of this section ($\delta_h=0$ in
-Eq.~\eqref{eq:stabilized}, so $\Gamma_h=\widetilde\Gamma_h$), and the Lanczos
-evaluation is the direct-start method of Section~\ref{sec:lanczos} with fixed
-ranks; a nonpositive Ritz value aborts the run.
-
-\subsection{Exact noise coupling across time steps}
-\label{sec:lj-coupling}
-
-To compare time steps pathwise, levels $\Delta t$ and $2\Delta t$ are driven
-by coupled noise. The finest level draws $\xi\sim\mathcal N(0,\Pi)$. A
-coarse step forms its input from two successive fine inputs $\xi_1,\xi_2$
-with its own friction matrix $\Gamma_c=\widetilde\Gamma_h(q^{c})$ at its own
-midpoint positions:
-\begin{equation}
-\label{eq:coupling}
-\xi_c=a(\Gamma_c)\xi_1+b(\Gamma_c)\xi_2,
-\qquad
-a(\lambda)=\frac{e^{-x}}{\sqrt{1+e^{-2x}}},
-\quad
-b(\lambda)=\frac{1}{\sqrt{1+e^{-2x}}},
-\quad
-x=\frac{\Delta t\,\lambda}{m}.
-\end{equation}
-Since $a^2+b^2=1$ and $a(\Gamma_c)$, $b(\Gamma_c)$ commute with $\Pi$,
-$\xi_c\sim\mathcal N(0,\Pi)$ conditionally on the past, so every level
-samples its own correct law. For a frozen matrix, two fine O-steps give
-$R_{\Delta t}^2p+R_{\Delta t}f_{\Delta t}\xi_1+f_{\Delta t}\xi_2$, and
-$f_{2\Delta t}\xi_c$ equals the noise part because
-$f_{\Delta t}(\lambda)^2/f_{2\Delta t}(\lambda)^2=(1+e^{-2x})^{-1}$; hence one
-coarse step equals two fine ones. In the implementation this identity holds
-to $3\times10^{-15}$ with dense matrix functions and to
-$\le4\times10^{-11}$ with Lanczos. Equal seeds alone would not couple the
-levels.
-
-\subsection{State point and runs}
-\label{sec:lj-setup}
-
-The state point is $\rho^*=N\sigma^3/V=0.75$, $\beta^{-1}=1$, $N=256$,
-$L=6.98864$. The Ewald--PPPM set is $\xi=0.85$, $s=4.1$ ($r_c=4.824$,
-$k_c=6.97$), requested $\eta_N=0.6779$, B-spline order $p=8$, $M=24$
-(realised $k_ch/\pi=0.646$), 1935 retained modes and none excluded. Here
-$r_c>L/2=3.49$, so the real-space sum includes several images per pair. The
-$k=0$ shift of Proposition~\ref{prop:lj-structure}(3) equals $10.35$. An
-initial set with $p=7$, cost-optimized at the earlier toy state, gave relative
-operator errors $2.04$--$2.15\times10^{-7}$ on lattice-like states at this
-density, above the budget $2\times10^{-7}$, so $p$ was raised to $8$.
-Table~\ref{tab:lj-runs} lists the runs.
+\paragraph{Parameter sets.}
+Three sets were tested (Table~\ref{tab:exp-params}). They are the cheapest sets
+at $\xi=0.7$ that met the relative operator tolerances $10^{-5}$, $10^{-7}$ and
+$10^{-9}$ on cases A and B, and are called T5, T7 and T9. Their tolerances
+were calibrated on these two boxes only; whether they hold elsewhere is what
+Section~\ref{sec:exp-action} tests.
 
 \begin{table}[htbp]
 \centering
 \small
-\begin{tabular}{>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{1.4cm}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{2.6cm}}
+\begin{tabular}{llllll}
 \toprule
-experiment & $\Delta t$ & ranks & initial states / replicas & length, burn-in, output \\
+set & $s$ & $r_c=s/\xi$ & $k_c=2\xi s$ & $\eta_N$, $p$ & $M$ (A / B / $N=128$ / $N=256$) \\
 \midrule
-static verification & -- & scan 2--56 & 42 representative states; 72 + 38 states visited by the runs below (exact O-step inputs) & static \\
-equilibration & 0.005 & 12/5 & 8 runs: fcc, random sequential addition, canonical, canonical with $\beta^{-1}=2$ momenta (2 each) & 50; burn-in measured 2, recommended 5; every step \\
-time-step study & 0.00125, 0.0025, 0.005, 0.01, coupled & 12/5 (4) & 16 canonical starts & $t_{\mathrm{end}}=10$; window $[1,10]$; every step \\
-long chains & 0.005, 0.01, coupled & 12/5 (4) & 11 canonical starts & 100; after $t=10$; every 0.01 \\
-operator sensitivity & 0.005 & 12/5 & 2 replicas, production vs.\ tighter PPPM set, same noise & 10 \\
-step cost & 0.005 & 12/5, 14/5 & 6 interleaved rounds of 40 steps, one thread & -- \\
+T5 & 3.494 & 4.991 & 4.891 & 0.8, 6 & 12 / 20 / 20 / 24 \\
+T7 & 4.100 & 5.857 & 5.740 & 0.7, 7 & 16 / 27 / 27 / 36 \\
+T9 & 4.628 & 6.611 & 6.479 & 0.6, 8 & 24 / 36 / 36 / 45 \\
 \bottomrule
 \end{tabular}
-\caption{Runs for the Lennard-Jones state point ($N=256$, $\rho^*=0.75$,
-$\beta^{-1}=1$, PPPM $\xi=0.85$, $s=4.1$, $p=8$, $M=24$). Canonical starts:
-fcc or random sequential addition followed by $30$--$50$ time units of
-scalar Langevin dynamics with conservative forces only. Ranks are
-noise/damping (coupling).}
-\label{tab:lj-runs}
+\caption{Parameter sets, $\xi=0.7$. $M$ is the smallest $2,3,5$-smooth mesh size with $h\le\eta_N\pi/k_c$, so the
+realised $k_ch/\pi$ is at most $\eta_N$ and depends on $L$. All sets retain $\kk=0$ and exclude no influence mode.
+Source: \texttt{action.csv}.}
+\label{tab:exp-params}
 \end{table}
 
-\subsection{Operator accuracy on static and visited states}
-\label{sec:lj-operator}
+\subsection{Error sources measured separately}
+\label{sec:exp-components}
 
-The reference is the dense full-periodic matrix $\Gamma$ of
-Eq.~\eqref{eq:Gamma-lj}, computed by a real-space lattice sum (near images
-directly, far images by a tensor Chebyshev fit; brute-force self-check
-$9.4\times10^{-16}$ of the largest entry) with the $k=0$ term retained. The
-measured quantity is the relative spectral error
-$\|\widetilde\Gamma_h-\Gamma\|_2/\|\Gamma\|_2$, with budget
-$2\times10^{-7}$. Because the exact $k=0$ shift dominates $\|\Gamma\|_2$
-($\lambda_{\max}\approx12$), the error is also reported relative to the
-norm of $\Gamma$ minus its $k=0$ term.
+\paragraph{Split identity.}
+With $\theta_S$ in closed form and $\theta_L$ from its own $s$-integral, the
+identity $\theta_S+\theta_L=e^{-\kappa r}/r$ holds to a relative error
+$2.5\times10^{-15}$ for $\xi\in\{0.5,0.7,1,1.4,2\}$, on a radial grid
+$10^{-3}\le r\le20$ and on every pair image with $r\le12$. At operator
+level, the real-space lattice sum of $\theta_S$ plus the mesh-free lattice
+Fourier sum of $\widehat K_\kappa^L$ (including $\kk=0$, $k_c=13\xi$)
+reproduces the reference to $1.4\times10^{-16}$--$1.1\times10^{-15}$ of
+$\|\Gamma\|_2$ on cases A, B and the main set for $\xi\in\{0.5,0.7,1,1.4\}$.
+The largest numerical discrepancy found in these checks and in the floor
+analysis of Appendix~\ref{app:exp-details} is $1.1\times10^{-15}$; in all fits
+below, only errors of at least $100$ times this value,
+$1.1\times10^{-13}$, are used (the fit floor).
 
-Over 152 states---42 representative states, 72 frames visited by the
-equilibration runs (including frames of minimal pair distance and of extreme
-Ritz values) and 38 frames of the time-step and long chains---the relative
-error is at most $7.6\times10^{-8}$, and at most $1.60\times10^{-7}$
-relative to the $k\ne0$ part (Fig.~\ref{fig:lj-operator}a). Structural
-checks on all states: symmetry residual $\le2\times10^{-17}$, null-space
-residual $\le2\times10^{-15}$ for both matrices, literal FFT action versus
-independent dense assembly $\le8\times10^{-16}$, and smallest eigenvalue on
-$\Range\Pi$ between $4.58$ and $4.84$ (Fig.~\ref{fig:lj-operator}c). Two
-cheaper or tighter PPPM sets also pass on the 42 representative states
-($\eta_N=0.6$, $p=7$, $M=27$: $\le7.6\times10^{-8}$; $s=4.4$, $\eta_N=0.6$,
-$p=7$, $M=30$: $\le1.6\times10^{-8}$).
-
-\paragraph{Lanczos ranks.}
-The Lanczos error is the relative 2-norm error of the rank-$r$
-approximation against the dense matrix function of the same
-$\widetilde\Gamma_h$, for damping and noise functions, over Gaussian and
-Maxwell vectors, the actual momentum and noise of the step, longitudinal and
-transverse plane waves at $|\kk|=2\pi/L$ and $\sqrt2\,2\pi/L$, and
-slow-mode-dominated vectors. The strict rule requires the overall error and
-its projections on the $|\kk|=2\pi/L$ modes and on the lowest 3 and 12
-eigenmodes to be at most one tenth of the operator budget. Rank $12$
-suffices on the representative states, but on one visited state (a melting
-fcc start at $t=5$) it leaves $2.88\times10^{-8}$ in the $|\kk|=2\pi/L$
-projection, driven by a transverse plane wave. The recommendation is
-therefore $r_{\mathrm{noise}}=14$, $r_{\mathrm{damp}}=5$, with worst errors
-$6.4\times10^{-10}$ and $2.8\times10^{-11}$ at $\Delta t=0.005$ over all 152
-states (Fig.~\ref{fig:lj-operator}b). These ranks are far below the
-$40/16$ of the earlier setting of Section~\ref{sec:lanczos-exp}, which were set for the ideal gas
-with a $10^{-3}$ root-action budget up to $N=16000$; the present spectrum is
-narrow ($\lambda\in[4.6,12.5]$ on $\Range\Pi$, largely because of the $k=0$
-shift). The dynamic runs below used $12/5$; their on-line monitor on the
-actual inputs never exceeded $1.6\times10^{-10}$ overall and
-$1.8\times10^{-9}$ in the $|\kk|=2\pi/L$ projection for the noise.
-
-\paragraph{Physical effect of the operator error.}
-Two replicas were run in lock-step with the same noise and start, once with
-the production set and once with the tighter set (relative error
-$\le1.6\times10^{-8}$), at $\Delta t=0.005$ for 10 time units. The largest
-differences of time averages were $5.9\times10^{-5}$ (kinetic temperature,
-relative), $1.4\times10^{-5}$ ($U/N$), $1.3\times10^{-4}$ (mean-square
-displacement at $t=0.5$--$5$) and $4.5\times10^{-4}$ (pressure, absolute).
-With two replicas these are observed maxima, not confidence intervals.
+\paragraph{Truncation.}
+Figure~\ref{fig:exp-cutoffs} shows the real-space error, the
+operator-norm distance between the real-space lattice sum of $\theta_S$
+truncated at $r_c$ and the untruncated one, and the Fourier error
+$\|\Gamma_L^{k_c}-\Gamma_L\|_2$, each with no other approximation present and
+normalized by $\|\Gamma\|_2$. Fitting $\log E=a-cx^2$ with $x=\xi r_c$ or
+$x=k_c/(2\xi)$ on the points above the fit floor gives, at $\xi=0.7$, median
+rates $c=0.99$ (real space, range $0.98$--$1.02$ over cases A, B and the main
+set) and $c=0.97$ (Fourier, $0.96$--$1.00$); at $\xi=1$ the medians are $0.99$
+and $0.98$. Both truncations therefore decay at the Gaussian rate
+$e^{-x^2}$ of Eq.~\eqref{eq:tails} over the fitted window. Dividing by the
+continuum prefactor $x$ overcorrects (medians $1.03$--$1.05$), so the
+algebraic prefactor of the operator-norm error is not that of the continuum
+tail, and $c$ is not interpreted as an asymptotic constant.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{fig_operator_lanczos.pdf}
-\caption{Static verification at the Lennard-Jones state point (kernel A,
-$N=256$, $\rho^*=0.75$, $\beta^{-1}=1$, PPPM $\xi=0.85$, $s=4.1$, $p=8$,
-$M=24$), 152 configurations; each point is one configuration, no error bars.
-(a) Relative spectral error of $\widetilde\Gamma_h$ against the full-periodic
-matrix, full norm and relative to the $k\ne0$ part; dashed: budget.
-(b) Strict Lanczos error (maximum over probe types and states) versus rank;
-dashed: budget/10. (c) Extreme eigenvalues on $\Range\Pi$; dotted: $k=0$
-shift $10.35$. Data: \texttt{verify\_\char123 representative,visited\_eq,visited\_dt\char125\_A.json}.}
-\label{fig:lj-operator}
+\includegraphics[width=\textwidth]{exp1_cutoffs.pdf}
+\caption{Truncation errors at $\xi=0.7$, each with no other approximation. (a) Real-space cutoff; (b) Fourier cutoff
+$\|\Gamma_L^{k_c}-\Gamma_L\|_2$. Both are normalized by $\|\Gamma\|_2$. Solid curves: median over three seeds of each
+main-set family; bands: range over seeds; dotted: cases A and B; dashed: $e^{-x^2}$; horizontal dotted line: fit floor.
+Below the fit floor the Fourier error levels off at the numerical floor of Appendix~\ref{app:exp-details}.}
+\label{fig:exp-cutoffs}
 \end{figure}
 
-\subsection{Time-step dependence}
-\label{sec:lj-dt}
+\paragraph{Mesh.}
+At the T7 cutoff $k_c=5.74$ the long-range particle--mesh operator
+$\widetilde\Gamma_h^L$ of Eq.~\eqref{eq:pm-graph} is compared with the
+mesh-free sum $\Gamma_L^{k_c}$ over the same modes, so the difference is the
+mesh error alone. The scan covers $p=3,\dots,8$, nine meshes from
+$k_ch/\pi\approx0.91$--$0.99$ down to $0.23$--$0.25$, and eight grid shifts per mesh
+(the unshifted grid and seven random global offsets), on cases A, B and the
+main set (Fig.~\ref{fig:exp-mesh}a). On the four finest meshes above the fit
+floor ($k_ch/\pi\approx0.23$--$0.50$) the median fitted slopes in $h$ are
+$3.09$, $4.07$, $5.24$, $6.19$, $7.46$, $8.50$ for $p=3,\dots,8$
+(Fig.~\ref{fig:exp-mesh}b); a repetition at the larger cutoff $s=5.5$ gives
+$4.10$, $6.25$, $8.51$ for $p=4,6,8$. These slopes are consistent with the
+$h^p$ law of Section~\ref{sec:pm}. On coarser meshes the fitted exponent is
+$1.10$--$1.27\,p$, consistent with the factor $q^p$ of the leading alias, whose
+local exponent approaches $p$ only as $h\to0$. A fit over finitely many meshes
+does not establish the asymptotic order, and no asymptotic constant is
+reported. Over the eight grid shifts the largest error is at most $1.30$
+times the RMS.
 
-Four levels $\Delta t\in\{0.01,0.005,0.0025,0.00125\}$ were integrated in
-lock-step with the coupling of Eq.~\eqref{eq:coupling} from 16 independent
-canonical starts to $t_{\mathrm{end}}=10$. Differences are paired by
-replica; time averages use $[1,10]$. The acceptance criteria were committed
-before any run: $1\%$ relative for kinetic temperature, $U/N$, the first
-peak of the radial distribution function and the mean-square displacement
-at $t=0.1,0.5,1,2,5$; $0.0075$ absolute for pressure; $1\%$ for a weighted
-norm of the radial-distribution difference; $1\%$ of the initial value for
-the maximum velocity-autocorrelation difference up to $t=2$. PASS requires
-the whole $95\%$ interval inside the band, FAIL the whole interval outside,
-otherwise INCONCLUSIVE. The decision rule was to accept the largest
-$\Delta t$ whose criteria all PASS.
+In the exact off-grid decomposition of Eq.~\eqref{eq:pair-error}, evaluated
+on the unshifted grid for $p=4,7$ and two meshes on cases A, B and one seed of
+each main family, the linear terms $\alpha_i^*+\alpha_j$ carry
+$0.996$--$1.003$ of the mesh error in the spectral norm, the quadratic term
+$\alpha_i^*\alpha_j$ at most $0.9\%$, and $D_h$ at most $4.3\times10^{-9}$ of
+it, as expected for ideal deconvolution. A diagnostic that kept only the
+quadratic term would miss the mesh error almost entirely.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{exp1_mesh.pdf}
+\caption{Mesh error at $k_c=5.74$ ($s=4.1$, $\xi=0.7$). (a) $\|\widetilde\Gamma_h^L-\Gamma_L^{k_c}\|_2/\|\Gamma\|_2$ versus
+$\xi h$ for the uniform configuration $N=128$, seed 1: RMS over eight grid shifts (points) and range over shifts (bands);
+dotted: fit floor. (b) Fitted slopes in $h$ on the four finest meshes above the fit floor, one point per configuration and
+$p$ (filled: $s=4.1$; open: $s=5.5$, five configurations); line: slope $p$.}
+\label{fig:exp-mesh}
+\end{figure}
+
+\subsection{The complete production action}
+\label{sec:exp-action}
+
+The production code path (real-space pair loop, B-spline spreading,
+FFT, multiplication by the influence function on $|\kk|\le k_c$, inverse
+FFT, adjoint gathering and the degree correction) is applied to the $3N$ unit
+vectors, giving $\widetilde\Gamma_h$ column by column, and to probe vectors.
+The columns agree with an independent mode-space assembly to
+$1.1\times10^{-15}$, and the separately measured terms
+$\epsilon_S$, $\epsilon_F$, $\epsilon_{\mathrm{mesh}}$ of
+Eq.~\eqref{eq:op-budget} add up to $1.2$--$2.0$ times the measured error.
+Three quantities are kept apart: the relative operator error
+$\|\widetilde\Gamma_h-\Gamma\|_2/\|\Gamma\|_2$, on which the sets were
+accepted; the absolute operator error $\|\widetilde\Gamma_h-\Gamma\|_2$; and
+the relative action error $\|(\widetilde\Gamma_h-\Gamma)X\|/\|\Gamma X\|$ for a
+given vector $X$.
+
+\paragraph{Relative operator error.}
+Table~\ref{tab:exp-status} and Fig.~\ref{fig:exp-operator}a compare the
+relative operator error with the tolerance for which each set was accepted.
+T5 and T9 were tested on the 14 configurations of cases A, B, the main and the
+check sets, T7 also on the 30 box-length configurations. Cases A and B meet
+their tolerances, as selected. The other configurations do not all do so: T5
+meets $10^{-5}$ on 10 of 14 configurations, with largest relative operator
+error $1.2875\times10^{-5}$; T7 meets $10^{-7}$ on 39 of 44, with largest
+$2.1056\times10^{-7}$; T9 meets $10^{-9}$ on 10 of 14, with largest
+$2.5451\times10^{-9}$. The exceedances are at most a factor $2.55$. They occur
+on the perturbed lattices for all three sets, and at T7 also on one uniform
+box of the fixed-density set ($N=30$, $L=6$, seed 3; $1.40\times10^{-7}$),
+which has the size, density and generator of case A and differs from it only
+in the seed. The nominal tolerances are therefore not guaranteed beyond the
+two configurations on which they were calibrated. For the production set T7
+the measured statement is: on the 44 static configurations tested, the
+relative operator error does not exceed $2.2\times10^{-7}$.
 
 \begin{table}[htbp]
 \centering
 \small
-\resizebox{\textwidth}{!}{\begin{tabular}{lccc}
+\begin{tabular}{lllllll}
 \toprule
-criterion & $0.0025$ & $0.005$ & $0.01$ \\
+set & tolerance & meets / tested & largest rel.\ error & absolute error & exceeding \\
 \midrule
-kinetic temperature & $-0.11\%$ $[-0.32,0.09]$ P & $-0.12\%$ $[-0.30,0.07]$ P & $-0.52\%$ $[-0.78,-0.26]$ P \\
-$U/N$ & $-0.12\%$ $[-0.23,-0.01]$ P & $-0.05\%$ $[-0.14,0.04]$ P & $-0.16\%$ $[-0.29,-0.03]$ P \\
-pressure (abs.) & $-0.026$ $[-0.049,-0.003]$ I & $0.0006$ $[-0.018,0.019]$ I & $-0.024$ $[-0.050,0.002]$ I \\
-RDF norm, registered bound & $1.78\%$ I & $1.68\%$ I & $1.82\%$ I \\
-RDF first-peak height & $0.01\%$ $[-0.44,0.47]$ P & $-0.05\%$ $[-0.50,0.41]$ P & $0.02\%$ $[-0.60,0.64]$ P \\
-RDF first-peak position & $0.03\%$ $[-0.22,0.28]$ P & $0.00\%$ $[-0.23,0.22]$ P & $-0.04\%$ $[-0.23,0.16]$ P \\
-VACF, bounds & $[0,0.39\%]$ P & $[0.004\%,0.41\%]$ P & $[0.26\%,0.78\%]$ P \\
-MSD$(0.1)$ & $-0.03\%$ $[-0.28,0.22]$ P & $0.04\%$ $[-0.19,0.27]$ P & $0.14\%$ $[-0.20,0.48]$ P \\
-MSD$(0.5)$ & $0.13\%$ $[-0.23,0.50]$ P & $0.41\%$ $[-0.36,1.18]$ I & $0.47\%$ $[-0.45,1.40]$ I \\
-MSD$(1)$ & $0.25\%$ $[-0.40,0.90]$ P & $0.52\%$ $[-0.63,1.67]$ I & $0.87\%$ $[-0.54,2.28]$ I \\
-MSD$(2)$ & $0.69\%$ $[-0.59,1.98]$ I & $0.89\%$ $[-1.08,2.85]$ I & $1.80\%$ $[-0.15,3.75]$ I \\
-MSD$(5)$ & $3.44\%$ $[1.03,5.86]$ \textbf{F} & $3.08\%$ $[-0.20,6.36]$ I & $2.99\%$ $[-0.32,6.31]$ I \\
+T5 & $10^{-5}$ & 10 / 14 & $1.2875\times10^{-5}$ & $7.7\times10^{-6}$--$3.3\times10^{-5}$ & lattices \\
+T7 & $10^{-7}$ & 39 / 44 & $2.1056\times10^{-7}$ & $5.7\times10^{-8}$--$5.5\times10^{-7}$ & lattices, one uniform box \\
+T9 & $10^{-9}$ & 10 / 14 & $2.5451\times10^{-9}$ & $1.3\times10^{-9}$--$7.1\times10^{-9}$ & lattices \\
 \bottomrule
-\end{tabular}}
-\caption{Pre-registered time-step comparison against $\Delta t=0.00125$
-(16 coupled replicas, ranks $12/5$; mean $[95\%$ CI$]$, relative unless
-stated). P/I/F = PASS/INCONCLUSIVE/FAIL. Data: \texttt{dt\_study.json}.}
-\label{tab:lj-dt}
+\end{tabular}
+\caption{Relative operator error $\|\widetilde\Gamma_h-\Gamma\|_2/\|\Gamma\|_2$ against the tolerance for which the set was
+accepted on cases A and B. ``Lattices'': the three perturbed lattices at $N=128$ and the one at $N=256$. Source:
+\texttt{parameter\_set\_status.json}.}
+\label{tab:exp-status}
 \end{table}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{fig_dt_forest.pdf}
-\caption{Scalar time-step criteria of Table~\ref{tab:lj-dt}: each level
-against $\Delta t=0.00125$, 16 coupled replicas, paired $95\%$ Student-$t$
-intervals; grey bands are the registered tolerances.}
-\label{fig:lj-forest}
-\end{figure}
-
-Under the registered rule \emph{no time step is validated} with 16 replicas
-(Table~\ref{tab:lj-dt}, Fig.~\ref{fig:lj-forest}). The finest-two comparison
-is not all-PASS, and no coarser level passes every criterion; pressure, the
-RDF norm and the mean-square displacement for $t\ge0.5$ are undecided at
-every level. On the criteria that are decidable at this sample size, all
-three coarse levels PASS; a rule restricted to that subset would select
-$\Delta t=0.01$, but it is post hoc and is not used as validation. At
-$\Delta t=0.01$ the kinetic-temperature ($-0.52\%$) and $U/N$ ($-0.16\%$)
-biases are resolved, though within $1\%$, and the velocity-autocorrelation
-difference bound lies above its noise floor; at $\Delta t=0.005$ neither
-bias is resolved. We therefore take $\Delta t=0.005$ as a
-\emph{provisional} step and regard $\Delta t=0.01$ as acceptable for static
-averages with the quoted biases.
-
-The registered MSD$(5)$ verdict at $\Delta t=0.0025$ is FAIL. A post-hoc
-comparison shows the same $\approx3\%$ offset for every coarse level while
-the coarse levels agree with one another ($0.005$ vs.\ $0.0025$:
-$-0.35\%$ $[-3.6,2.9]$), which points to a fluctuation of the reference
-level; this reading is post hoc and does not change the verdict. Pairing
-loses its benefit after $t\approx1$--$2$: the median RMS velocity difference
-to the finest path is $0.025$, $0.057$, $0.12$ at $t=1$ for the three coarse
-levels and $0.80$--$0.86$ at $t=5$ (Fig.~\ref{fig:lj-dtstudy}). A $1\%$
-verdict would need about 25 replicas for MSD$(0.5)$, 80 for MSD$(1)$ and
-60--100 for the pressure tolerance.
-
-\paragraph{Diffusion.}
-Eleven coupled two-level chains ($\Delta t=0.005$ and $0.01$, 100 time
-units, analysed after $t=10$) give windowed mean-square-displacement
-diffusion coefficients (Fig.~\ref{fig:lj-diffusion}). With a plateau rule
-fixed before these runs were analysed (paired change between consecutive
-windows within $\pm2\%$ over the whole interval), no plateau is confirmed:
-the coefficient decreases by $1.9\%$ $[1.2,2.7]$ and then $1.1\%$
-$[0.2,2.0]$ per window doubling up to $[4,8]$, and later steps have
-intervals of $\pm1.4$--$2.6\%$. The best estimate is
-$D\approx0.0284$--$0.0286$ at $\Delta t=0.005$, not a converged long-time
-value. The time-step effect is resolved only in the shortest window
-($+0.80\%$ $[0.05,1.55]$).
+Both the numerator and the denominator of the relative error depend on the
+configuration (Fig.~\ref{fig:exp-operator}b). At T7 the absolute error varies
+by about a factor ten over the 44 configurations, from $5.7\times10^{-8}$ to
+$5.5\times10^{-7}$, and is largest for the densest fixed-$N$ boxes ($L=4$) and the clustered configurations.
+$\|\Gamma\|_2$ is strongly influenced by close pairs, but not set by the
+nearest pair alone: with $\theta(r)=e^{-\kappa r}/r$, the ratio
+$\|\Gamma\|_2/\theta(d_{\min})$ is $2.0$--$4.1$, whereas an isolated pair gives
+$2$. Every configuration that exceeds its tolerance has a small norm
+($0.72$--$0.94$ for the lattices, $1.50$ for the uniform box) and a moderate
+absolute error. A small norm is not sufficient, however: the fixed-$N$ box
+with $L=16$, seed 1, has $\|\Gamma\|_2=1.34$ and meets $10^{-7}$ because its
+absolute error is smaller.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{fig_diffusion.pdf}
-\caption{(a) Windowed mean-square-displacement diffusion coefficient,
-11 coupled chains of 100 time units, ranks $12/5$, $95\%$ intervals over
-chains. (b) Paired relative difference between $\Delta t=0.01$ and $0.005$;
-grey band: $\pm2\%$ plateau tolerance. Data: \texttt{longD.json}.}
-\label{fig:lj-diffusion}
+\includegraphics[width=\textwidth]{exp1_operator.pdf}
+\caption{The production operator against the reference, 44 static configurations, one point per configuration. (a)
+Relative operator error divided by the tolerance for which the set was accepted on cases A and B; dashed: tolerance.
+Box-length sets were tested with T7 only. (b) Absolute operator error against $\|\Gamma\|_2$ at T7; the line marks a
+relative error $10^{-7}$.}
+\label{fig:exp-operator}
 \end{figure}
 
-\subsection{Equilibration and static quantities}
+\paragraph{Error budget.}
+For cases A, B and the main set at T7 the mesh term is the largest
+($\epsilon_{\mathrm{mesh}}\le1.5\times10^{-7}$ relative), followed by the
+real-space and Fourier truncations ($\le1.05\times10^{-7}$ and
+$\le7\times10^{-8}$, largest for the lattices). The real-space term is the
+largest for the $N=256$ lattice and for five boxes at the smallest realised
+$k_ch/\pi=0.61$.
 
-Eight runs from four start types give, for $t\ge25$, $U/N=-4.6697$, kinetic
-temperature $1.0003$, pressure $0.770$ and first RDF peak $2.558$
-(Fig.~\ref{fig:lj-equil}). The kinetic temperature is
-$|p-\bar p|^2/(3m(N-1))$ and the pressure uses the conservative virial
-only. A block rule fixed before the analysis gives a burn-in of 2 time
-units; 5 are recommended. Start-type dependence after burn-in was not
-detected (one-way ANOVA $p=0.21$--$0.78$), but with two runs per type
-initial-state independence is under-sampled. Velocity autocorrelation and
-Green--Kubo integrals require output at every step at $\Delta t=0.005$
-(quadrature bias $0.23\%$ at interval $0.01$ against a $0.2\%$ rule),
-whereas the mean-square displacement is unaffected up to interval $0.1$.
+\paragraph{Action on probe vectors.}
+The probes are sixteen mean-free Gaussian vectors, the modes of the lowest
+nonzero wave number $2\pi/L$ along each axis (longitudinal and transverse,
+projected onto $\Range\Pi$), and the translations
+(Fig.~\ref{fig:exp-probes}a). A relative action error can exceed the relative
+operator error by the factor $\|\Gamma\|_2\|X\|/\|\Gamma X\|$, which is large
+for slowly varying vectors: $\|\Gamma X\|/(\|\Gamma\|_2\|X\|)$ is as small as
+$2.5\times10^{-2}$ (longitudinal) and $1.1\times10^{-2}$ (transverse) on cases A,
+B and the main set, where these probes exceed their configuration's relative
+operator error by factors up to $14$ and $18$. Meeting the operator tolerance
+therefore does not imply meeting it for every action. At T7, all 39
+configurations with relative operator error at most $10^{-7}$ have a
+transverse probe with relative action error above $10^{-7}$; 32 have such a
+longitudinal and 21 such a Gaussian probe. Among these 39, the largest
+relative action errors are $2.2$, $3.7$ and $4.5$ times $10^{-7}$ (Gaussian,
+longitudinal, transverse). At T5 and T9, 8 and 10 of the 10 configurations
+within the operator tolerance have a transverse probe above it, by up to
+factors $2.5$ and $4.9$. The production operator annihilates the translations
+exactly in floating point, because the degree correction cancels the constant
+field term by term; the reference residual is at most $1.9\times10^{-16}$.
 
-\subsection{Dynamical correlation functions}
-\label{sec:lj-obs}
+\paragraph{Symmetry and spectrum.}
+$\widetilde\Gamma_h$ is symmetric to $1.0\times10^{-16}$ (relative Frobenius
+norm). The smallest eigenvalue of $\Gamma$ on $\Range\Pi$ ranges from
+$7.9\times10^{-4}$ to $1.92$ over the configurations, and
+$\lambda_{\min}(\widetilde\Gamma_h|_{\Range\Pi})$ differs from it by at most
+$4.2\times10^{-5}$ (T5), $1.6\times10^{-6}$ (T7) and $2.6\times10^{-8}$ (T9),
+relative. In every one of the 72 tested pairs of configuration and set,
+$\|\widetilde\Gamma_h-\Gamma\|_2<\lambda_{\min}(\Gamma|_{\Range\Pi})$, so the
+raw particle--mesh graph is positive semidefinite on these configurations
+without stabilization; the observed shift of the smallest eigenvalue is a
+median $13\%$ and at most $41\%$ of $\|\widetilde\Gamma_h-\Gamma\|_2$. These are
+observations on finitely many configurations, not a general positivity
+result.
 
-With $v_i=p_i/m$ and time origins $t_0$, the observables are
-\begin{align}
-\label{eq:obs-vacf}
-Z(t)&=\frac{\langle v_i(t_0)\cdot v_i(t_0+t)\rangle}{\langle|v|^2\rangle},
-\qquad
-C_b(t)=\frac{\langle v_i(t_0)\cdot v_j(t_0+t)\rangle_{|q_i(t_0)-q_j(t_0)|\in b}}{\langle|v|^2\rangle},
-\\
-\label{eq:obs-current}
-j(\kk,t)&=\frac1N\sum_iv_i(t)e^{i\kk\cdot q_i(t)},
-\qquad
-C_{L,T}(k,t)=\frac{\langle j_{L,T}(\kk,t_0+t)\,\overline{j_{L,T}(\kk,t_0)}\rangle}
-{\langle|j_{L,T}(\kk,t_0)|^2\rangle},
-\\
-\label{eq:obs-vanhove}
-g_d(r,t)&=\frac{V}{N(N-1)}\left\langle\sum_{i\ne j}
-\frac{\delta\bigl(r-|q_j(t_0+t)-q_i(t_0)|\bigr)}{4\pi r^2}\right\rangle ,
-\end{align}
-where $j_L$ and $j_T$ are the components of $j$ along and across $\kk$.
-The shells $b$ are $[0,1.59)$, $[1.59,2.55)$ and $[2.55,L/2)$, the first and
-second minima of the radial distribution function; $C_L$, $C_T$ are averaged
-over the modes with $|\kk|=0.899$, $1.271$, $1.798$; $g_d$ is evaluated at
-$t=0.1,0.5,1,2$. Zero total momentum gives $\sum_{j\ne i}v_i\cdot v_j=-|v_i|^2$,
-so each $C_b$ starts near $-1/(N-1)$; nothing is subtracted.
-
-Two groups are analysed separately and never pooled: the 16 four-level
-chains (origins $t_0\in[1,8]$, lags $\le2$) and the 11 long chains
-(only $\Delta t=0.01$ vs.\ $0.005$, origins $t_0\in[10,98]$). Curves are
-normalized by each level's own $t=0$ value. For a window of a curve with
-paired mean difference $\overline{\Delta}(t)$, the reference mean curve is
-cut into sign lobes and
-\begin{equation}
-\label{eq:Esig}
-E_{\mathrm{sig}}=\sup_{t\in\mathrm{window}}\frac{|\overline{\Delta}(t)|}{S(t)},
-\end{equation}
-where $S(t)$ is the amplitude of the lobe containing $t$. Difference bands
-are simultaneous at $97.5\%$ over the window (maximum of a sign-flip
-max-$t$ and Bonferroni-$t$ constant), lobe amplitudes simultaneous at
-$97.5\%$, jointly $\ge95\%$. A window PASSes if the upper bound of
-$E_{\mathrm{sig}}$ is $\le1\%$ and every lobe in it is resolved to $\pm10\%$,
-FAILs if the lower bound exceeds $1\%$, and is INCONCLUSIVE otherwise. The
-protocol was frozen and amended once (each lobe judged on its own) before
-any difference was computed.
+\paragraph{Box length and density.}
+At T7 the two box-length sets separate different effects
+(Fig.~\ref{fig:exp-probes}b; medians over three seeds). At fixed $N=64$ the
+density and $\kappa L$ change together; the absolute error falls from
+$5.3\times10^{-7}$ ($L=4$, density $1$) to $1.0\times10^{-7}$ ($L=16$, density
+$0.016$), with all three budget terms decreasing, though not monotonically.
+At fixed density $N$ grows with $L$, and the absolute error is
+$2.1\times10^{-7}$, $1.1\times10^{-7}$, $2.5\times10^{-7}$ and
+$2.5\times10^{-7}$ for $L=6$, $8$, $10$, $12$, a change of at most a factor
+$2.2$. In both sets the dip at $L=8$ coincides with the smaller realised
+$k_ch/\pi=0.61$ caused by rounding $M$ to a smooth size; for $p=7$ the $h^p$
+trend predicts a factor $(0.61/0.68)^7\approx0.45$ in the mesh term. This was
+not rerun at matched $k_ch/\pi$, and the set does not separate the effect of
+$L$ from that of $N$ and the particle arrangement.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.55\textwidth]{obs_vacf_primary.png}\\
-\includegraphics[width=0.85\textwidth]{obs_vccf_primary.png}
-\caption{$Z(t)$ (top) and $C_b(t)$ for the three shells (bottom), 16
-coupled four-level replicas, ranks $12/5$. Upper rows: level means; lower
-rows: paired differences against $\Delta t=0.00125$; shading: pointwise
-$95\%$ interval (not used for verdicts); dashed: simultaneous $97.5\%$ band
-over $(0,2]$. Dotted line: all-pair mean $-Z/(N-1)$.}
-\label{fig:lj-vacf}
+\includegraphics[width=\textwidth]{exp1_probes_box.pdf}
+\caption{(a) Relative action errors $\|(\widetilde\Gamma_h-\Gamma)X\|/\|\Gamma X\|$ of probe vectors at T7 through the
+production action, cases A, B and the main set; dashed: $10^{-7}$. For the translations $t\in\cT$, where $\Gamma t=0$, the
+quantity shown is $\|(\widetilde\Gamma_h-\Gamma)t\|/(\|\Gamma\|_2\|t\|)$, which equals the reference residual because
+$\widetilde\Gamma_ht=0$ exactly. (b) Absolute operator error at T7 against box length; points: median over three seeds,
+bars: range; top row: realised $k_ch/\pi$, which is the same in both sets at equal $L$.}
+\label{fig:exp-probes}
 \end{figure}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{obs_currents_primary.png}\\[4pt]
-\includegraphics[width=\textwidth]{obs_van_hove_primary.png}
-\caption{$C_L$, $C_T$ at $|\kk|=0.899$, $1.271$, $1.798$ (top) and
-$g_d(r,t)$ at $t=0,0.1,0.5,1,2$ (bottom; $t=0$ shown only); data and bands
-as in Fig.~\ref{fig:lj-vacf}. The $g_d$ band covers only bins with at least
-100 reference pairs per replica.}
-\label{fig:lj-currents}
-\end{figure}
+\subsection{Summary}
+\label{sec:exp-summary}
 
-Results at $1\%$ of the lobe amplitude (Figs.~\ref{fig:lj-vacf},
-\ref{fig:lj-currents}; second group in Appendix~\ref{app:lj}):
-\begin{itemize}
-\item Of 71 observable-window cells, one supports display at
-$\Delta t=0.01$ (and $0.005$): a single $g_d$ bin at $r=0.84$, $t=0.1$, where
-$g_d\approx0.012$; it says nothing about the van Hove structure. Five cells
-are not supported because of FAILs and 65 are INCONCLUSIVE.
-\item Resolved deviations at $\Delta t=0.01$ vs.\ $0.00125$:
-$\langle|v|^2\rangle$ lower by $0.38\%$ $[0.09,0.67]$ (PASS); slower decay of
-$C_T$ at $|\kk|=0.899$ (half-decay time $+3.6\%$ $[0.6,6.6]$);
-$g_d(r<0.9,t=2)$ with $E_{\mathrm{sig}}=1.9\%$ $[0.14,4.6]$; all but the first
-are INCONCLUSIVE against $1\%$.
-\item Seven of 284 cells FAIL, six involving $\Delta t=0.01$ and five in the
-$0.01$ vs.\ $0.005$ group; all lie in windows whose reference lobes are
-unresolved, and at this sample size the counts cannot separate chance from a
-time-step effect.
-\item No whole-curve deviation is resolved in the four-level group, which is
-not equivalence: the simultaneous upper bounds at $\Delta t=0.01$ are
-$1.0\times10^{-2}$ of $Z(0)$, $3.2\times10^{-3}$ of $\langle|v|^2\rangle$ for
-the first VCCF shell, $0.092$ and $0.068$ for $C_L$, $C_T$ at
-$|\kk|=0.899$, and $0.030$, $0.045$ for $g_d$ at $t=1,2$.
-\item Most cells are undecided because weak reference lobes are not
-resolved to $\pm10\%$, or because the difference bands reach $1.5$--$8.5\%$
-of the lobe amplitude.
-\end{itemize}
-Decay of a correlation function to zero is not used as evidence of model
-correctness, and long-lag differences are not attributed to a mechanism.
-
-\subsection{Cost}
-\label{sec:lj-cost}
-
-All timings in this subsection come from one virtual machine (one thread)
-and are not combined with the timings of Section~\ref{sec:experiments}. The
-median CPU time of a full step at $\Delta t=0.005$ (forces, operator setup,
-damping and noise) was $124.8$~ms at ranks $12/5$ and $134.9$~ms at $14/5$,
-i.e.\ $0.0075$ core-hours per time unit at $14/5$; the two alternative PPPM
-sets took $117.9$ and $140.0$~ms. In a separate session, $\Delta t=0.01$
-saved $48.7\%$ ($12/5$) and $50.4\%$ ($14/5$) per physical time relative to
-$\Delta t=0.005$. A local single-path run of the cluster scripts (one
-state, $t\le1$, shared noise, not run on a cluster) gave median steps of
-$0.208$~s with PPPM and Lanczos $14/5$ versus $1.129$~s with the dense
-full-periodic matrix and eigendecomposition, peak memory $121$ versus
-$604$~MB; the velocity difference at $t=1$ was $7.4\times10^{-8}$ of the RMS
-velocity, dominated by the operator error (Appendix~\ref{app:lj}). No size
-scan was performed at this state point.
-
-\subsection{Scope}
-
-At this state point the following are established: the operator budget and
-positivity on $\Range\Pi$ on 152 static and visited states; the Lanczos
-ranks $14/5$ under the strict rule; momentum conservation to round-off; a
-negligible effect of the operator error on time averages in two replicas;
-and $1\%$ agreement of temperature, $U/N$, the first RDF peak, the velocity
-autocorrelation for $t\le2$ and MSD$(0.1)$ at all three coarse time steps.
-Provisional or under-sampled: the time step itself, the time-step effect on
-the RDF norm, MSD$(t\ge0.5)$, pressure and diffusion, the diffusion
-plateau, initial-state independence, and most $1\%$ comparisons of the
-correlation functions. Not addressed: other $N$, a convergence theorem for
-the scheme with configuration-dependent friction and Lanczos noise, an
-optimized influence function, a cluster run, and comparison with molecular
-dynamics or experiment. Raw trajectories of these runs are not in the
-repository; all figures and tables above are regenerated from cached
-analysis files.
+On static configurations with $\kappa=1$ and $N\le256$ the experiment
+establishes the following. The dense reference converges numerically under
+image refinement and is reproduced by the split construction to
+$1.1\times10^{-15}$. Both truncations decay at the Gaussian rate over the
+fitted window, and the mesh error has slopes consistent with $h^p$ on the
+finest meshes, carried almost entirely by the linear alias terms. The
+production action reproduces the separately measured budget, is symmetric,
+annihilates the translations exactly and remained positive semidefinite in
+every tested case. The parameter sets calibrated on cases A and B do not meet
+their nominal relative tolerance on every configuration: 4 of 14 (T5), 5 of
+44 (T7) and 4 of 14 (T9) exceed it, by up to a factor $2.55$. Even where the
+operator tolerance is met, relative action errors of slowly varying vectors
+exceed it by up to a factor $4.9$. Parameters therefore have to be checked on
+configurations representative of their use, and the action on slow modes has
+to be checked separately from the operator norm.
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -2004,53 +1362,22 @@ operator bound, while
 provides a sufficient, although conservative, certificate that the raw
 discrete graph remains positive semidefinite.
 
-The experiments of Section~\ref{sec:experiments}, obtained in the earlier
-setting described there, support the following conclusions.
-\begin{enumerate}
-\item On the tested configurations the mesh error is carried by the linear
-  alias cross terms, the fitted mesh slopes are consistent with the $h^p$
-  law, and no negative graph eigenvalue occurred
-  (Section~\ref{sec:pm-validation}).
-\item At a fixed high accuracy $10^{-8}$ the direct-start Lanczos rank
-  grows with $N$, approximately as $N^{0.34}$, so a fixed-rank statement at
-  that accuracy is not supported; the range start is more expensive.
-\item Under the production budgets ($10^{-3}$ for the noise action,
-  $10^{-6}$ for the damping action) the fixed ranks $40$ and $16$ sufficed
-  through $N=16000$, with a thin noise margin at the largest size
-  (Section~\ref{sec:lanczos-exp}).
-\item The ideal-gas dynamics preserve total momentum pathwise to round-off,
-  relax anisotropic temperatures toward equipartition, and reproduce the
-  conditional Maxwell law in the long $N=64$ runs. Krylov differences on the
-  same $\widetilde\Gamma_h$ ($\le10^{-9}$) are below the spatial proxy
-  ($\le6\times10^{-7}$), which is below the combined level of step-refinement
-  differences and sampling uncertainty (about $10^{-2}$); the time
-  discretization error itself is not resolved (Section~\ref{sec:dyn-exp}).
-\item With ranks $40/16$ a complete step uses $56$ actions of
-  $\widetilde\Gamma_h$, and its measured cost is consistent with $N\log N$
-  growth for $N=512$--$16000$ (Section~\ref{sec:exp-timing}).
-\end{enumerate}
-The large-$N$ runs verify relaxation and coupled fixed-rank accuracy but do
-not establish large-$N$ equilibrium. The dynamic runs used damping rank
-$12$, the timings damping rank $16$. Production ranks for the corrected
-operator are determined by the recomputation in progress, and the ranks
-above should not be transferred to it. The experiments of
-Section~\ref{sec:experiments} contain no conservative potential; dynamics
-with a Lennard-Jones potential are treated separately in
-Section~\ref{sec:lj}.
-
-Section~\ref{sec:lj} extends the validation to a Lennard-Jones liquid with
-the amplitude-scaled kernel A at $\rho^*=0.75$, $\beta^{-1}=1$, $N=256$.
-There the particle--mesh operator meets a $2\times10^{-7}$ relative
-spectral budget against the full-periodic matrix with the $k=0$ term
-retained on 152 static and visited configurations, remains positive on
-$\Range\Pi$ without stabilization, and Lanczos ranks
-$r_{\mathrm{noise}}=14$, $r_{\mathrm{damp}}=5$ suffice under a strict
-error rule; these ranks are specific to that state point and accuracy
-budget. A pre-registered, pathwise-coupled time-step study validates no time
-step at 16 replicas: $\Delta t=0.005$ is provisional, and $\Delta t=0.01$
-shows resolved sub-percent biases in temperature and potential energy. The
-long-time diffusion plateau and most $1\%$ comparisons of the dynamical
-correlation functions remain under-sampled.
+The operator experiment of Section~\ref{sec:experiments}, on static
+configurations with $\kappa=1$ and $N\le256$, supports the components of this
+error model: both truncations decay at the Gaussian rate, the mesh error has
+slopes consistent with $h^p$ on the finest meshes and is carried by the linear
+alias terms, and the production action reproduces the separately measured
+budget, preserves symmetry and the translation null space, and remained
+positive semidefinite in every tested case. It also shows the limits of a
+calibration on few configurations. Parameter sets accepted for the relative
+tolerances $10^{-5}$, $10^{-7}$ and $10^{-9}$ on two boxes met them on 10 of 14,
+39 of 44 and 10 of 14 configurations, respectively, with largest relative
+operator errors $1.2875\times10^{-5}$, $2.1056\times10^{-7}$ and
+$2.5451\times10^{-9}$; for the set T7 the measured statement is a relative
+operator error of at most $2.2\times10^{-7}$ on the 44 configurations tested.
+Relative action errors on slowly varying vectors can exceed the relative
+operator error severalfold. These are finite-sample observations; positivity
+and the observed slopes are not general results.
 
 \appendix
 
@@ -2736,112 +2063,79 @@ as $\lambda\to0^+$. Hence the constant in the range-start analysis is
 $C=(2\beta^{-1}\Delta t)^{1/2}$, and $g(\lambda)=f_{\Delta t}(\lambda)/\lambda$
 has the stated $\lambda^{-1/2}$ singularity.
 
-\section{Equal-accuracy timing of the splitting parameter}
-\label{app:equal-accuracy}
+\section{Technical details of the operator experiment}
+\label{app:exp-details}
 
-This appendix keeps the equal-accuracy timing study that informs the
-parameter choice of Section~\ref{sec:error}. Every run was required to meet
-the same measured relative operator tolerance on the two dense reference
-configurations A ($N=30$, $L=6$) and B ($N=40$, $L=10$), $\kappa=1$; the
-cost per graph action was then timed on an $N=4000$ configuration
-(Table~\ref{tab:equal-accuracy}, Fig.~\ref{fig:exp2}). All 44 accepted runs
-met the tolerance on both configurations and were positive semidefinite and
-certified. The required Ewald scale was only
-$1.0$--$1.075\times\sqrt{\log(2/\mathrm{tol})}$, and for the tested density,
-hardware and tolerances the lowest cost occurred near $\xi=0.5$--$0.7$.
-This is an empirical work-balance result, not a universal optimum. The
-accuracy is established on cases A and B only; it is not a guarantee for
-other configurations.
+\paragraph{Configurations.}
+Cases A and B are single draws of independent uniform positions (seeds 7 and
+13) with no minimum distance. The perturbed lattices displace every site of a
+bcc lattice of $4^3$ cells ($N=128$; fcc for $N=256$) by an isotropic Gaussian
+of standard deviation $0.1$ times the nearest-neighbour distance and add a
+random global shift. The clustered configurations draw $N/16$ centres
+uniformly and 16 particles per centre from an isotropic Gaussian of width
+$0.5$, rejecting any draw closer than $0.25$ to a particle already placed; this
+avoids near-coincident pairs, whose $1/r$ kernel would make $\|\Gamma\|_2$
+arbitrarily large. All generators are seeded, and the seeds are stored with
+the positions.
+
+\paragraph{Wave-number rounding and the numerical floor.}
+An earlier version of the coefficient routine evaluated
+$A_{\kappa,\xi}(k)$ and $B_{\kappa,\xi}(k)$ at $|\kk|$ rounded to twelve
+decimals, which perturbs the input by up to $5\times10^{-13}$ and produced an
+artificial floor near $10^{-13}$ in every Fourier-side comparison. The
+routine now uses the unrounded $|\kk|$, and all Fourier-side quantities of
+Section~\ref{sec:experiments}, including the production operator, were
+recomputed; the reference, the configurations and the quadrature checks do
+not involve the routine. Table~\ref{tab:exp-floor} compares the mesh-free
+Fourier sum ($k_c=13\xi$) with the real-space image sum of $\theta_L$ on case
+A, one perturbed lattice and one uniform configuration at $\xi=0.7$ and $1$.
+The remaining floor, at most $7.6\times10^{-16}$, has the size of the float64
+round-off of the Fourier sum and of the numerical uncertainty of the image
+sum; these two contributions were not separated further. It lies far below
+the fit floor $1.1\times10^{-13}$ and every production error
+($\ge2.3\times10^{-10}$).
 
 \begin{table}[htbp]
 \centering
-\begin{tabular}{cccccc}
+\small
+\begin{tabular}{lll}
 \toprule
-Tolerance & $\xi=0.5$ & $0.7$ & $1.0$ & $1.4$ & $2.0$ \\
+variant & range & source probed \\
 \midrule
-$10^{-5}$ & 164 & 129 & 270 & 663 & 1999 \\
-$10^{-7}$ & 332 & 311 & 532 & 1366 & 8145 \\
-$10^{-9}$ & 592 & 739 & 2791 & 12704 & --- \\
+$|\kk|$ rounded to 12 decimals (earlier) & $2.3\times10^{-14}$--$1.5\times10^{-13}$ & wave-number rounding \\
+unrounded $|\kk|$, float64 (current) & $6.3\times10^{-17}$--$7.6\times10^{-16}$ & baseline \\
+$k$ from the integer shell $|\bm m|^2$ & $5.4\times10^{-17}$--$8.5\times10^{-16}$ & wave-number input \\
+refined quadrature of $A_{\kappa,\xi}$, $B_{\kappa,\xi}$ & $6.5\times10^{-17}$--$7.9\times10^{-16}$ & quadrature \\
+sum evaluated in 80-bit arithmetic & $3.5\times10^{-17}$--$4.0\times10^{-16}$ & floating point \\
+float64 minus 80-bit sum & $4.2\times10^{-17}$--$6.7\times10^{-16}$ & floating point \\
+image sum, $R=40$ against $R=45$ & $4.1\times10^{-17}$--$4.3\times10^{-16}$ & reference \\
 \bottomrule
 \end{tabular}
-\caption{Milliseconds per graph action at equal operator accuracy (accuracy measured on cases A and B, timing at $N=4000$).}
-\label{tab:equal-accuracy}
+\caption{Distance between the mesh-free Fourier sum and the real-space image sum of the long-range part, relative to
+$\|\Gamma\|_2$. Source: \texttt{fourier\_precision.csv}.}
+\label{tab:exp-floor}
 \end{table}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.95\textwidth]{exp2_min_cost_vs_xi.png}
-\caption{Cheapest accepted run (minimum measured time per graph action) versus $\xi$ at tolerances $10^{-5}$, $10^{-7}$, $10^{-9}$, for configurations A and B and the $N=4000$ timing configuration ($L=30$). Source: \texttt{equal\_accuracy\_xi\_results/min\_cost\_vs\_xi.png}.}
-\label{fig:exp2}
-\end{figure}
+\paragraph{Cutoff sweeps.}
+The real-space error is computed against the real-space lattice sum of
+$\theta_S$ over $|\rr+\bm mL|\le45$, and the Fourier error against the
+real-space lattice sum of $\theta_L$ over the same images. The fits use
+$x\ge1$ and points above the fit floor, and exclude steps at which a larger
+cutoff admits no new pair image or lattice shell (on the perturbed lattices
+for $\xi r_c\le1.25$, and for case A for $k_c/(2\xi)\le1$); seven such points
+fell inside a fit window. Below the fit floor the Fourier error levels off
+near $x=6$ at the floor of Table~\ref{tab:exp-floor}; the real-space error,
+which compares two real-space sums over the same images, keeps falling in 25
+of 28 curves.
 
-\section{Supplementary figures for Section~\ref{sec:lj}}
-\label{app:lj}
+\paragraph{Mesh scans.}
+At $s=4.1$ no mesh falls below the fit floor (smallest error
+$4.5\times10^{-13}$). At $s=5.5$ the finest mesh for $p=8$ does in two
+configurations, and the fit then takes the next four meshes. The three $N=256$
+checks ($p=5,7$, six meshes, four shifts) give slopes $5.12$--$5.39$ and
+$7.44$--$7.58$, inside the ranges of the main set.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{dt_study_A.png}
-\caption{Time-step study, 16 coupled replicas. Left: median RMS velocity
-difference to the $\Delta t=0.00125$ path. Middle and right: mean
-velocity-autocorrelation and radial-distribution differences (means only;
-verdicts use Table~\ref{tab:lj-dt}).}
-\label{fig:lj-dtstudy}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{equilibration_A.png}
-\caption{Equilibration: 8 runs of 50 time units at $\Delta t=0.005$ (ranks
-$12/5$), four start types; dashed: measured burn-in $2$. Bottom right:
-Green--Kubo and windowed mean-square-displacement diffusion coefficients
-with $95\%$ intervals over runs; no plateau is confirmed.}
-\label{fig:lj-equil}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.55\textwidth]{obs_vacf_secondary.png}\\
-\includegraphics[width=0.85\textwidth]{obs_vccf_secondary.png}
-\caption{Second group: 11 coupled chains, $\Delta t=0.01$ versus $0.005$
-only, origins $t_0\in[10,98]$, ranks $12/5$; conventions as in
-Fig.~\ref{fig:lj-vacf}. This group holds five of the seven FAIL cells and,
-lacking a finer level, cannot support display by itself.}
-\label{fig:lj-secondary}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{obs_currents_secondary.png}\\[4pt]
-\includegraphics[width=\textwidth]{obs_van_hove_secondary.png}
-\caption{Second group, current correlations and $g_d(r,t)$; conventions as
-in Figs.~\ref{fig:lj-currents} and~\ref{fig:lj-secondary}.}
-\label{fig:lj-secondary2}
-\end{figure}
-
-\paragraph{Local run of the cluster scripts.}
-The cluster workflow was exercised locally with bash on the development
-machine, without a scheduler; it is not a cluster result. One canonical
-state was integrated to $t=1$ with $\Delta t=0.005$ and $0.01$, once with
-PPPM and Lanczos $14/5$ and once with the dense full-periodic matrix and its
-eigendecomposition, sharing the noise at each $\Delta t$. Restart, locking,
-checkpoint and output checks passed. The RMS position and velocity
-differences at $t=1$ were $1.96\times10^{-8}$ and $1.28\times10^{-7}$
-($\Delta t=0.005$), $2.22\times10^{-8}$ and $1.35\times10^{-7}$
-($\Delta t=0.01$), and the total-momentum change stayed below
-$1.3\times10^{-13}$. A single path pair supports no statistical statement.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.49\textwidth]{pilot_fast_vs_dense.png}
-\includegraphics[width=0.49\textwidth]{pilot_diagnostics.png}
-\caption{Local run of the cluster scripts (one state, one paired noise path
-per $\Delta t$, $t\le1$). Left: PPPM--Lanczos minus dense differences of
-positions and velocities. Right: kinetic temperature, $U/N$ and total
-momentum change for the four cases.}
-\label{fig:lj-pilot}
-\end{figure}
-
-% \bibliographystyle{unsrtnat}
+\bibliographystyle{unsrtnat}
 % \bibliography{references}  % re-enable once the introduction cites references
 
 \end{document}
