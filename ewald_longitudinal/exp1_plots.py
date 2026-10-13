@@ -23,6 +23,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
+import matplotlib.ticker  # noqa: E402,F401
 from matplotlib.lines import Line2D  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
@@ -156,10 +157,10 @@ def components_figure(cut, mesh, msum, split_op, split_pairs, quad):
     ax.plot([num(r, "xi") for r in pr], [num(r, "max_rel") for r in pr], "-", color=INK2, lw=1,
             label=r"pair level, max over $r$")
     ax.set_yscale("log")
-    ax.set_ylim(1e-17, 1e-12)
+    ax.set_ylim(3e-17, 3e-12)
     ax.set_xlabel(r"splitting parameter $\xi$")
     ax.set_ylabel("relative error")
-    ax.legend(loc="upper left", ncol=2, handletextpad=0.3, columnspacing=0.6)
+    ax.legend(loc="lower center", ncol=2, handletextpad=0.2, columnspacing=0.5, fontsize=6.3, markerscale=0.9)
     panel_label(ax, r"(a) $K=K^S+K^L$ against $\Gamma_{\rm ref}$")
     # (b), (c) cutoffs at the production xi = 0.7, family median with seed range; legacy cases thin
     for ax, part, xl, tt in ((axs[0, 1], "real", r"$\xi r_c$", r"(b) real-space cutoff, $\xi=0.7$"),
@@ -184,7 +185,7 @@ def components_figure(cut, mesh, msum, split_op, split_pairs, quad):
         ax.set_ylabel(r"$\|\Delta\Gamma\|_2/\|\Gamma_{\rm ref}\|_2$")
         panel_label(ax, tt)
         if part == "real":
-            ax.legend(loc="lower left", handlelength=1.6)
+            ax.legend(loc="lower left", handlelength=1.6, fontsize=6.5)
     # (d) mesh error vs xi h at production kc, representative configuration, p ramp, RMS and shift range
     ax = axs[1, 0]
     rep = "uniform_N128_s1"
@@ -204,10 +205,13 @@ def components_figure(cut, mesh, msum, split_op, split_pairs, quad):
             ax.plot(xx, y[0] * (xx / x[0]) ** p * 0.35, "-", color=INK2, lw=0.6)
     ax.set_xscale("log")
     ax.set_yscale("log")
+    ax.set_xticks([0.1, 0.2, 0.3, 0.4])
+    ax.set_xticklabels(["0.1", "0.2", "0.3", "0.4"])
+    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
     ax.set_xlabel(r"$\xi h$")
     ax.set_ylabel(r"$\|\Gamma_L^{\rm mesh}-\Gamma_L^{k_c}\|_2/\|\Gamma_{\rm ref}\|_2$")
     ax.legend(loc="lower right", ncol=2, handlelength=1.2, columnspacing=0.6)
-    panel_label(ax, r"(d) mesh error, uniform $N\!=\!128$ s1")
+    panel_label(ax, r"(d) mesh error, uniform $N\!=\!128$, seed 1")
     # (e) fitted mesh slope vs p over configurations
     ax = axs[1, 1]
     for fam in ("caseA", "caseB", "uniform", "lattice", "cluster"):
@@ -237,44 +241,66 @@ def components_figure(cut, mesh, msum, split_op, split_pairs, quad):
                 ms=2.5, alpha=0.6, mec="none", label=lab)
     ax.set_xlabel(r"$\eta = k_c h/\pi$")
     ax.set_ylabel("max / RMS over grid shifts")
-    ax.legend(loc="upper left", handletextpad=0.2, markerscale=1.6)
-    panel_label(ax, "(f) phase sensitivity of the mesh error")
+    panel_label(ax, "(f) grid-shift spread (8 shifts)")
     for a in axs.ravel():
         a.grid(True, which="major")
     return fig
 
 
-def action_figure(act, probes, box):
-    fig, axs = plt.subplots(1, 3, figsize=(7.0, 2.6), constrained_layout=True)
-    # (a) spectral-norm error for T5/T7/T9 per configuration group
-    ax = axs[0]
-    groups = [("A", "caseA"), ("B", "caseB"), ("uniform", "uniform"), ("lattice", "lattice"), ("cluster", "cluster")]
+def action_figure(act, probes, box, refn):
+    fig, axs = plt.subplots(2, 2, figsize=(7.0, 5.0), constrained_layout=True)
+    fams = ("caseA", "caseB", "uniform", "lattice", "cluster")
     tolv = {"T5": 1e-5, "T7": 1e-7, "T9": 1e-9}
-    for gi, (g, fam) in enumerate(groups):
+    jit = {"caseA": 0.80, "caseB": 0.89, "uniform": 1.0, "lattice": 1.12, "cluster": 1.26}
+    # (a) achieved relative spectral error against the tolerance the set was accepted for (on A and B)
+    ax = axs[0, 0]
+    for fam in fams:
         col, mk, lab = fam_style(fam)
-        for pname, dx in (("T5", -0.22), ("T7", 0.0), ("T9", 0.22)):
+        for pname, t in tolv.items():
             for sets, fill in ((("legacy", "main"), True), (("check",), False)):
                 v = [num(r, "err_spec_rel") for r in act if r["family"] == fam and r["params"] == pname
                      and r["set"] in sets]
                 if v:
-                    ax.plot([gi + dx] * len(v), v, mk, color=col, ms=4, mfc=col if fill else "white",
-                            mec="white" if fill else col, mew=0.5 if fill else 0.8)
-    for pname, t in tolv.items():
-        ax.axhline(t, color=INK2, lw=0.6, ls="--")
-        ax.text(4.45, t * 1.25, f"tol {t:.0e}", fontsize=6.5, color=INK2, ha="right", va="bottom")
-    ax.set_xticks(range(len(groups)))
-    ax.set_xticklabels(["A", "B", "unif.", "latt.", "clust."])
+                    ax.plot([t * jit[fam]] * len(v), v, mk, color=col, ms=4.5, mfc=col if fill else "white",
+                            mec="white" if fill else col, mew=0.5 if fill else 0.9,
+                            label=lab if (pname == "T7" and fill) else None)
+    tt = np.array([4e-10, 2.5e-5])
+    ax.plot(tt, tt, "-", color=INK2, lw=0.8)
+    ax.text(3e-6, 2.0e-6, "error = tol", rotation=33, fontsize=6.5, color=INK2, ha="center", va="top")
+    ax.set_xscale("log")
     ax.set_yscale("log")
+    ax.set_xticks([1e-9, 1e-7, 1e-5])
+    ax.set_xticklabels(["T9\n$10^{-9}$", "T7\n$10^{-7}$", "T5\n$10^{-5}$"])
+    ax.set_xlabel("parameter set (tolerance accepted on A and B)")
     ax.set_ylabel(r"$\|\Gamma_h-\Gamma_{\rm ref}\|_2/\|\Gamma_{\rm ref}\|_2$")
-    ax.legend(handles=[Line2D([], [], marker="o", ls="", color=INK2, ms=4, label=r"$N\le128$"),
-                       Line2D([], [], marker="o", ls="", color=INK2, mfc="white", ms=4, label=r"$N=256$")],
-              loc="upper right", bbox_to_anchor=(1.0, 0.93))
-    panel_label(ax, r"(a) spectral error, three accepted sets")
-    # (b) probe errors at T7
-    ax = axs[1]
-    kinds = [("gauss", "Gauss"), ("long", r"long. $k_{\min}$"), ("trans", r"trans. $k_{\min}$"),
+    ax.legend(loc="upper left", handletextpad=0.2, fontsize=6.5, ncol=1)
+    panel_label(ax, "(a) relative spectral error (open: $N=256$)")
+    # (b) absolute error against ||Gamma_ref||_2 at T7
+    ax = axs[0, 1]
+    allr = [r for r in act + box if r["params"] == "T7"]
+    nG = {r["name"]: refn[r["name"]] for r in allr}
+    for r in [r for r in allr if r["set"].startswith("box")]:
+        ax.plot(nG[r["name"]], num(r, "err_spec_rel") * nG[r["name"]], "x", color="#a3a29d", ms=3.5, mew=0.8)
+    for fam in fams:
+        col, mk, lab = fam_style(fam)
+        sub = [r for r in allr if r["family"] == fam and not r["set"].startswith("box")]
+        ax.plot([nG[r["name"]] for r in sub], [num(r, "err_spec_rel") * nG[r["name"]] for r in sub], mk, color=col,
+                ms=4.5, mec="white", mew=0.5)
+    g = np.array([0.5, 40.0])
+    ax.plot(g, 1e-7 * g, "-", color=INK2, lw=0.8)
+    ax.text(27, 1e-7 * 27 * 0.62, r"relative $10^{-7}$", fontsize=6.5, color=INK2, ha="right", va="top", rotation=28)
+    ax.plot([], [], "x", color="#a3a29d", label="box-length sets")
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlabel(r"$\|\Gamma_{\rm ref}\|_2$ (set by the closest pairs)")
+    ax.set_ylabel(r"$\|\Gamma_h-\Gamma_{\rm ref}\|_2$")
+    ax.legend(loc="lower right", fontsize=6.5)
+    panel_label(ax, "(b) absolute error, set T7")
+    # (c) probes at T7
+    ax = axs[1, 0]
+    kinds = [("gauss", "Gaussian"), ("long", r"long. $k_{\min}$"), ("trans", r"transv. $k_{\min}$"),
              ("translation", "translation")]
-    for gi, (g, fam) in enumerate(groups):
+    for gi, fam in enumerate(fams):
         col, mk, lab = fam_style(fam)
         for ki, (kind, _) in enumerate(kinds):
             sub = [r for r in probes if r["family"] == fam and r["params"] == "T7" and r["probe"] == kind
@@ -284,31 +310,34 @@ def action_figure(act, probes, box):
             else:
                 v = [num(r, "rel_err") for r in sub]
             if v:
-                ax.plot([ki + (gi - 2) * 0.13] * len(v), v, mk, color=col, ms=2.8, alpha=0.75, mec="none",
-                        label=lab if ki == 0 else None)
+                ax.plot([ki + (gi - 2) * 0.14] * len(v), v, mk, color=col, ms=3, alpha=0.8, mec="none")
     ax.axhline(1e-7, color=INK2, lw=0.6, ls="--")
     ax.set_xticks(range(len(kinds)))
     ax.set_xticklabels([k[1] for k in kinds], fontsize=6.5)
     ax.set_yscale("log")
-    ax.set_ylim(5e-19, 1e-5)
-    ax.set_ylabel("relative action error\n(translation: operator-normalized)")
-    ax.legend(loc="center right", handletextpad=0.2, markerscale=1.4, fontsize=6.5)
-    panel_label(ax, r"(b) probes of $\Gamma_h X$, set T7")
-    # (c) box-length sensitivity at T7
-    ax = axs[2]
-    for setn, col, mk, lab in (("box_fixedN", "#2a78d6", "o", r"fixed $N=64$ ($n$ varies)"),
-                               ("box_fixedn", "#eb6834", "s", r"fixed $n=n_A$ ($N$ varies)")):
+    ax.set_ylim(5e-19, 3e-6)
+    ax.set_ylabel(r"$\|(\Gamma_h-\Gamma_{\rm ref})X\|/\|\Gamma_{\rm ref}X\|$" + "\n" +
+                  r"translation: $/(\|\Gamma_{\rm ref}\|_2\|X\|)$")
+    panel_label(ax, r"(c) probes through $\Gamma_h X$, set T7")
+    # (d) box length at T7: absolute error, with the realised eta (M is rounded to a 2,3,5-smooth size)
+    ax = axs[1, 1]
+    for setn, col, mk, lab, dx in (("box_fixedN", "#2a78d6", "o", r"fixed $N=64$ ($n$ varies)", -0.12),
+                                   ("box_fixedn", "#eb6834", "s", r"fixed $n=n_A$ ($N$ varies)", 0.12)):
         sub = [r for r in box if r["set"] == setn]
         Ls = sorted({num(r, "L") for r in sub})
-        v = [[num(r, "err_spec_rel") for r in sub if num(r, "L") == L] for L in Ls]
-        ax.plot(Ls, [np.median(x) for x in v], mk + "-", color=col, ms=4, label=lab)
-        ax.vlines(Ls, [min(x) for x in v], [max(x) for x in v], color=col, lw=1.2)
-    ax.axhline(1e-7, color=INK2, lw=0.6, ls="--")
+        v = [[num(r, "err_spec_rel") * refn[r["name"]] for r in sub if num(r, "L") == L] for L in Ls]
+        ax.plot(np.array(Ls) + dx, [np.median(x) for x in v], mk + "-", color=col, ms=4, label=lab)
+        ax.vlines(np.array(Ls) + dx, [min(x) for x in v], [max(x) for x in v], color=col, lw=1.2)
+        if setn == "box_fixedN":
+            for L, x in zip(Ls, v):
+                eta = num([r for r in sub if num(r, "L") == L][0], "eta_actual")
+                ax.text(L + dx, max(x) * 1.25, rf"$\eta$={eta:.2f}", fontsize=5.8, color=INK2, ha="center")
     ax.set_yscale("log")
+    ax.set_ylim(3e-8, 2e-6)
     ax.set_xlabel(r"box length $L$")
-    ax.set_ylabel(r"$\|\Gamma_h-\Gamma_{\rm ref}\|_2/\|\Gamma_{\rm ref}\|_2$")
-    ax.legend(loc="lower right")
-    panel_label(ax, r"(c) box length, set T7 (3 seeds)")
+    ax.set_ylabel(r"$\|\Gamma_h-\Gamma_{\rm ref}\|_2$")
+    ax.legend(loc="lower right", fontsize=6.5)
+    panel_label(ax, "(d) box length, set T7 (3 seeds)")
     return fig
 
 
@@ -320,13 +349,13 @@ def tables(cfg, act):
                                                                        ("box_fixedn", "uniform")]
     gen_txt = {"caseA": "uniform, seed 7", "caseB": "uniform, seed 13",
                "uniform": "uniform i.i.d.", "lattice": r"bcc/fcc, $\sigma=0.1\,d_{\rm nn}$",
-               "cluster": r"Gaussian clusters, $\sigma_c=0.5$, $d\ge0.25$"}
+               "cluster": r"clusters of 16, $\sigma_c=0.5$, $d\ge0.25$"}
     name_txt = {("legacy", "caseA"): "A", ("legacy", "caseB"): "B", ("main", "uniform"): "U128",
                 ("main", "lattice"): "L128", ("main", "cluster"): "C128", ("check", "uniform"): "U256",
                 ("check", "lattice"): "L256", ("check", "cluster"): "C256", ("box_fixedN", "uniform"): "box-$N$",
                 ("box_fixedn", "uniform"): "box-$n$"}
-    lines = [r"\begin{tabular}{llrllllr}", r"\toprule",
-             r"set & generation & $N$ & $L$ & $n=N/L^3$ & $\kappa L$ & $d_{\min}$ & seeds \\", r"\midrule"]
+    lines = [r"\begin{tabular}{llrlllr}", r"\toprule",
+             r"set & generation & $N$ & $L=\kappa L$ & $n=N/L^3$ & $d_{\min}$ & seeds \\", r"\midrule"]
     for sset, fam in groups:
         sub = [r for r in cfg if r["set"] == sset and r["family"] == fam]
         if not sub:
@@ -337,12 +366,15 @@ def tables(cfg, act):
         dm = [float(r["d_min"]) for r in sub]
         fmtL = lambda v: f"{v:.3g}" if v != int(v) else f"{int(v)}"                      # noqa: E731
         Ntxt = str(Ns[0]) if len(Ns) == 1 else f"{Ns[0]}--{Ns[-1]}"
-        Ltxt = fmtL(Ls[0]) if len(Ls) == 1 else ", ".join(fmtL(v) for v in Ls)
+        Ltxt = fmtL(Ls[0]) if len(Ls) == 1 else f"{fmtL(Ls[0])}--{fmtL(Ls[-1])} ({len(Ls)} values)"
         ntxt = f"{ns[0]:.3f}" if len(ns) == 1 or (max(ns) - min(ns)) < 1e-3 else f"{min(ns):.3f}--{max(ns):.2f}"
         kL = Ltxt
         dtxt = f"{min(dm):.3f}" if len(dm) == 1 else f"{min(dm):.3f}--{max(dm):.3f}"
         seeds = sorted({int(r["seed"]) for r in sub})
-        lines.append(f"{name_txt[(sset, fam)]} & {gen_txt[fam]} & {Ntxt} & {Ltxt} & {ntxt} & {kL} & {dtxt} & "
+        gtxt = gen_txt[fam]
+        if fam == "lattice":
+            gtxt = (r"bcc $4^3$" if Ns == [128] else r"fcc $4^3$") + r", $\sigma=0.1\,d_{\rm nn}$"
+        lines.append(f"{name_txt[(sset, fam)]} & {gtxt} & {Ntxt} & {Ltxt} & {ntxt} & {dtxt} & "
                      f"{len(seeds)} \\\\")
     lines += [r"\bottomrule", r"\end{tabular}"]
     (PAPER / "tab_exp1_configs.tex").write_text("\n".join(lines) + "\n")
@@ -454,8 +486,9 @@ def main():
     write_csv(OUT / "fits_mesh.csv", msum)
     S = summary(ref, quad, sp, so, cutfits, msum, dec, act, probes, cfg)
     f1 = components_figure(cut, mesh, msum, so, sp, quad)
+    refn = {r["name"]: num(r, "norm2") for r in ref if num(r, "R") == 45.0}
     f2 = action_figure([r for r in act if r["set"] in ("legacy", "main", "check")], probes,
-                       [r for r in act if r["set"].startswith("box") and r["params"] == "T7"])
+                       [r for r in act if r["set"].startswith("box") and r["params"] == "T7"], refn)
     for fig, nm in ((f1, "exp1_components"), (f2, "exp1_action")):
         fig.savefig(FIG / f"{nm}.pdf")
         fig.savefig(FIG / f"{nm}.png")

@@ -74,3 +74,170 @@
   operator split B xi 1.0: 4.39e-14
   operator split B xi 1.4: 5.83e-14
   operator split uniform_N128_s1 xi 0.5: 1.49e-14
+  operator split uniform_N128_s1 xi 0.7: 2.34e-14
+  operator split uniform_N128_s1 xi 1.0: 3.65e-14
+  operator split uniform_N128_s1 xi 1.4: 4.59e-14
+  operator split uniform_N128_s2 xi 0.5: 2.03e-14
+  operator split uniform_N128_s2 xi 0.7: 3.19e-14
+  operator split uniform_N128_s2 xi 1.0: 4.66e-14
+  operator split uniform_N128_s2 xi 1.4: 5.51e-14
+  operator split uniform_N128_s3 xi 0.5: 6.73e-15
+  operator split uniform_N128_s3 xi 0.7: 9.94e-15
+  operator split uniform_N128_s3 xi 1.0: 1.47e-14
+  operator split uniform_N128_s3 xi 1.4: 1.80e-14
+  operator split lattice_N128_s1 xi 0.5: 7.88e-14
+  operator split lattice_N128_s1 xi 0.7: 1.17e-13
+  operator split lattice_N128_s1 xi 1.0: 1.55e-13
+  operator split lattice_N128_s1 xi 1.4: 2.00e-13
+  operator split lattice_N128_s2 xi 0.5: 7.76e-14
+  operator split lattice_N128_s2 xi 0.7: 1.17e-13
+  operator split lattice_N128_s2 xi 1.0: 1.55e-13
+  operator split lattice_N128_s2 xi 1.4: 2.07e-13
+  operator split lattice_N128_s3 xi 0.5: 8.45e-14
+  operator split lattice_N128_s3 xi 0.7: 1.24e-13
+  operator split lattice_N128_s3 xi 1.0: 1.61e-13
+  operator split lattice_N128_s3 xi 1.4: 2.17e-13
+  operator split cluster_N128_s1 xi 0.5: 1.99e-14
+  operator split cluster_N128_s1 xi 0.7: 3.66e-14
+  operator split cluster_N128_s1 xi 1.0: 5.30e-14
+  operator split cluster_N128_s1 xi 1.4: 6.03e-14
+  operator split cluster_N128_s2 xi 0.5: 1.88e-14
+  operator split cluster_N128_s2 xi 0.7: 3.45e-14
+  operator split cluster_N128_s2 xi 1.0: 5.12e-14
+  operator split cluster_N128_s2 xi 1.4: 6.03e-14
+  operator split cluster_N128_s3 xi 0.5: 1.61e-14
+  operator split cluster_N128_s3 xi 0.7: 2.55e-14
+  operator split cluster_N128_s3 xi 1.0: 3.82e-14
+  operator split cluster_N128_s3 xi 1.4: 4.48e-14
+[2026-10-13T04:14:42+00:00] stage split done in 417 s
+[2026-10-13T04:14:42+00:00] stage cutoffs
+  cutoffs A done
+  cutoffs B done
+  cutoffs uniform_N128_s1 done
+  cutoffs uniform_N128_s2 done
+  cutoffs uniform_N128_s3 done
+  cutoffs uniform_N256_s1 done
+  cutoffs lattice_N128_s1 done
+  cutoffs lattice_N128_s2 done
+  cutoffs lattice_N128_s3 done
+  cutoffs lattice_N256_s1 done
+  cutoffs cluster_N128_s1 done
+  cutoffs cluster_N128_s2 done
+  cutoffs cluster_N128_s3 done
+  cutoffs cluster_N256_s1 done
+[2026-10-13T04:17:05+00:00] stage cutoffs done in 143 s
+[2026-10-13T04:17:05+00:00] stage mesh
+  mesh A s_F 4.10: 54 rows
+  mesh B s_F 4.10: 54 rows
+  mesh uniform_N128_s1 s_F 4.10: 54 rows
+  mesh uniform_N128_s2 s_F 4.10: 54 rows
+  mesh uniform_N128_s3 s_F 4.10: 54 rows
+  mesh lattice_N128_s1 s_F 4.10: 54 rows
+  mesh lattice_N128_s2 s_F 4.10: 54 rows
+  mesh lattice_N128_s3 s_F 4.10: 54 rows
+  mesh cluster_N128_s1 s_F 4.10: 54 rows
+  mesh cluster_N128_s2 s_F 4.10: 54 rows
+  mesh cluster_N128_s3 s_F 4.10: 54 rows
+  mesh A s_F 5.50: 21 rows
+  mesh B s_F 5.50: 21 rows
+  mesh uniform_N128_s1 s_F 5.50: 21 rows
+  mesh lattice_N128_s1 s_F 5.50: 21 rows
+  mesh cluster_N128_s1 s_F 5.50: 21 rows
+  mesh uniform_N256_s1 s_F 4.10: 12 rows
+  mesh lattice_N256_s1 s_F 4.10: 12 rows
+  mesh cluster_N256_s1 s_F 4.10: 12 rows
+  decomposition A M 12 p 4: identity 1.7e-12, linear/total 0.999
+  decomposition A M 12 p 7: identity 8.4e-11, linear/total 1.000
+  decomposition A M 24 p 4: identity 3.9e-11, linear/total 1.000
+  decomposition A M 24 p 7: identity 2.9e-08, linear/total 1.000
+  decomposition B M 20 p 4: identity 1.3e-12, linear/total 0.996
+  decomposition B M 20 p 7: identity 7.4e-11, linear/total 0.999
+  decomposition B M 40 p 4: identity 2.7e-11, linear/total 1.000
+  decomposition B M 40 p 7: identity 2.0e-08, linear/total 1.000
+  decomposition uniform_N128_s1 M 18 p 4: identity 1.1e-12, linear/total 0.998
+  decomposition uniform_N128_s1 M 18 p 7: identity 4.0e-11, linear/total 1.003
+  decomposition uniform_N128_s1 M 36 p 4: identity 2.5e-11, linear/total 1.000
+  decomposition uniform_N128_s1 M 36 p 7: identity 1.5e-08, linear/total 1.000
+  decomposition lattice_N128_s1 M 18 p 4: identity 1.3e-12, linear/total 1.003
+  decomposition lattice_N128_s1 M 18 p 7: identity 4.7e-11, linear/total 1.001
+  decomposition lattice_N128_s1 M 36 p 4: identity 2.6e-11, linear/total 1.000
+  decomposition lattice_N128_s1 M 36 p 7: identity 1.7e-08, linear/total 1.000
+  decomposition cluster_N128_s1 M 18 p 4: identity 1.1e-12, linear/total 1.002
+  decomposition cluster_N128_s1 M 18 p 7: identity 4.2e-11, linear/total 0.999
+  decomposition cluster_N128_s1 M 36 p 4: identity 2.3e-11, linear/total 1.000
+  decomposition cluster_N128_s1 M 36 p 7: identity 1.5e-08, linear/total 1.000
+[2026-10-13T04:20:07+00:00] stage mesh done in 182 s
+[2026-10-13T04:20:07+00:00] stage action
+  action A T5: spec 2.98e-06, gauss max 8.12e-06, trans 0.0e+00, lam* 0.1190/0.1190
+  action A T7: spec 5.43e-08, gauss max 1.32e-07, trans 0.0e+00, lam* 0.1190/0.1190
+  action A T9: spec 3.25e-10, gauss max 7.77e-10, trans 0.0e+00, lam* 0.1190/0.1190
+  action B T5: spec 3.97e-06, gauss max 1.09e-05, trans 0.0e+00, lam* 0.0085/0.0085
+  action B T7: spec 9.69e-08, gauss max 1.58e-07, trans 0.0e+00, lam* 0.0085/0.0085
+  action B T9: spec 8.67e-10, gauss max 2.25e-09, trans 0.0e+00, lam* 0.0085/0.0085
+  action uniform_N128_s1 T5: spec 1.97e-06, gauss max 6.81e-06, trans 0.0e+00, lam* 0.0607/0.0607
+  action uniform_N128_s1 T7: spec 4.36e-08, gauss max 1.06e-07, trans 0.0e+00, lam* 0.0607/0.0607
+  action uniform_N128_s1 T9: spec 4.56e-10, gauss max 1.27e-09, trans 0.0e+00, lam* 0.0607/0.0607
+  action uniform_N128_s2 T5: spec 2.70e-06, gauss max 6.51e-06, trans 0.0e+00, lam* 0.0686/0.0686
+  action uniform_N128_s2 T7: spec 4.96e-08, gauss max 1.03e-07, trans 0.0e+00, lam* 0.0686/0.0686
+  action uniform_N128_s2 T9: spec 6.83e-10, gauss max 1.31e-09, trans 0.0e+00, lam* 0.0686/0.0686
+  action uniform_N128_s3 T5: spec 9.84e-07, gauss max 6.14e-06, trans 0.0e+00, lam* 0.0661/0.0661
+  action uniform_N128_s3 T7: spec 1.55e-08, gauss max 9.19e-08, trans 0.0e+00, lam* 0.0661/0.0661
+  action uniform_N128_s3 T9: spec 2.62e-10, gauss max 1.21e-09, trans 0.0e+00, lam* 0.0661/0.0661
+  action uniform_N256_s1 T5: spec 1.33e-06, gauss max 7.21e-06, trans 0.0e+00, lam* 0.0482/0.0482
+  action uniform_N256_s1 T7: spec 1.33e-08, gauss max 6.56e-08, trans 0.0e+00, lam* 0.0482/0.0482
+  action uniform_N256_s1 T9: spec 2.30e-10, gauss max 1.20e-09, trans 0.0e+00, lam* 0.0482/0.0482
+  action lattice_N128_s1 T5: spec 1.19e-05, gauss max 1.19e-05, trans 0.0e+00, lam* 0.0980/0.0980
+  action lattice_N128_s1 T7: spec 1.98e-07, gauss max 1.50e-07, trans 0.0e+00, lam* 0.0980/0.0980
+  action lattice_N128_s1 T9: spec 2.26e-09, gauss max 1.83e-09, trans 0.0e+00, lam* 0.0980/0.0980
+  action lattice_N128_s2 T5: spec 1.16e-05, gauss max 1.12e-05, trans 0.0e+00, lam* 0.1002/0.1002
+  action lattice_N128_s2 T7: spec 1.94e-07, gauss max 1.72e-07, trans 0.0e+00, lam* 0.1002/0.1002
+  action lattice_N128_s2 T9: spec 2.55e-09, gauss max 1.86e-09, trans 0.0e+00, lam* 0.1002/0.1002
+  action lattice_N128_s3 T5: spec 1.29e-05, gauss max 1.12e-05, trans 0.0e+00, lam* 0.0989/0.0989
+  action lattice_N128_s3 T7: spec 2.11e-07, gauss max 1.55e-07, trans 0.0e+00, lam* 0.0989/0.0989
+  action lattice_N128_s3 T9: spec 2.42e-09, gauss max 1.82e-09, trans 0.0e+00, lam* 0.0989/0.0989
+  action lattice_N256_s1 T5: spec 1.17e-05, gauss max 1.14e-05, trans 0.0e+00, lam* 0.0696/0.0696
+  action lattice_N256_s1 T7: spec 1.09e-07, gauss max 1.13e-07, trans 0.0e+00, lam* 0.0696/0.0696
+  action lattice_N256_s1 T9: spec 1.96e-09, gauss max 1.92e-09, trans 0.0e+00, lam* 0.0696/0.0696
+  action cluster_N128_s1 T5: spec 1.90e-06, gauss max 2.31e-06, trans 0.0e+00, lam* 0.0108/0.0108
+  action cluster_N128_s1 T7: spec 4.57e-08, gauss max 4.55e-08, trans 0.0e+00, lam* 0.0108/0.0108
+  action cluster_N128_s1 T9: spec 5.64e-10, gauss max 6.43e-10, trans 0.0e+00, lam* 0.0108/0.0108
+  action cluster_N128_s2 T5: spec 2.24e-06, gauss max 2.44e-06, trans 0.0e+00, lam* 0.0150/0.0150
+  action cluster_N128_s2 T7: spec 3.75e-08, gauss max 4.57e-08, trans 0.0e+00, lam* 0.0150/0.0150
+  action cluster_N128_s2 T9: spec 6.22e-10, gauss max 6.46e-10, trans 0.0e+00, lam* 0.0150/0.0150
+  action cluster_N128_s3 T5: spec 1.94e-06, gauss max 2.37e-06, trans 0.0e+00, lam* 0.0210/0.0210
+  action cluster_N128_s3 T7: spec 4.38e-08, gauss max 4.48e-08, trans 0.0e+00, lam* 0.0210/0.0210
+  action cluster_N128_s3 T9: spec 5.10e-10, gauss max 6.23e-10, trans 0.0e+00, lam* 0.0210/0.0210
+  action cluster_N256_s1 T5: spec 2.98e-06, gauss max 3.19e-06, trans 0.0e+00, lam* 0.0117/0.0117
+  action cluster_N256_s1 T7: spec 3.05e-08, gauss max 3.32e-08, trans 0.0e+00, lam* 0.0117/0.0117
+  action cluster_N256_s1 T9: spec 6.46e-10, gauss max 7.02e-10, trans 0.0e+00, lam* 0.0117/0.0117
+  action fixN64_L4_s1 T7: spec 4.13e-08, gauss max 6.01e-08, trans 0.0e+00, lam* 1.8683/1.8683
+  action fixN64_L4_s2 T7: spec 3.22e-08, gauss max 6.00e-08, trans 0.0e+00, lam* 1.9240/1.9240
+  action fixN64_L4_s3 T7: spec 1.96e-08, gauss max 6.22e-08, trans 0.0e+00, lam* 1.9009/1.9009
+  action fixN64_L6_s1 T7: spec 5.95e-08, gauss max 1.01e-07, trans 0.0e+00, lam* 0.3103/0.3103
+  action fixN64_L6_s2 T7: spec 4.00e-08, gauss max 9.86e-08, trans 0.0e+00, lam* 0.3287/0.3287
+  action fixN64_L6_s3 T7: spec 2.27e-08, gauss max 9.54e-08, trans 0.0e+00, lam* 0.3124/0.3124
+  action fixN64_L8_s1 T7: spec 2.88e-08, gauss max 7.44e-08, trans 0.0e+00, lam* 0.0707/0.0707
+  action fixN64_L8_s2 T7: spec 2.12e-08, gauss max 6.97e-08, trans 0.0e+00, lam* 0.0785/0.0785
+  action fixN64_L8_s3 T7: spec 1.26e-08, gauss max 8.49e-08, trans 0.0e+00, lam* 0.0721/0.0721
+  action fixN64_L10_s1 T7: spec 5.55e-08, gauss max 1.48e-07, trans 0.0e+00, lam* 0.0196/0.0196
+  action fixN64_L10_s2 T7: spec 3.82e-08, gauss max 1.39e-07, trans 0.0e+00, lam* 0.0226/0.0226
+  action fixN64_L10_s3 T7: spec 2.14e-08, gauss max 1.71e-07, trans 0.0e+00, lam* 0.0203/0.0203
+  action fixN64_L12_s1 T7: spec 6.92e-08, gauss max 2.02e-07, trans 0.0e+00, lam* 0.0062/0.0062
+  action fixN64_L12_s2 T7: spec 5.56e-08, gauss max 1.82e-07, trans 0.0e+00, lam* 0.0074/0.0074
+  action fixN64_L12_s3 T7: spec 2.48e-08, gauss max 2.22e-07, trans 0.0e+00, lam* 0.0065/0.0065
+  action fixN64_L16_s1 T7: spec 7.50e-08, gauss max 1.84e-07, trans 0.0e+00, lam* 0.0008/0.0008
+  action fixN64_L16_s2 T7: spec 5.65e-08, gauss max 1.59e-07, trans 0.0e+00, lam* 0.0010/0.0010
+  action fixN64_L16_s3 T7: spec 1.44e-08, gauss max 1.72e-07, trans 0.0e+00, lam* 0.0009/0.0009
+  action fixn_L6_N30_s1 T7: spec 4.19e-08, gauss max 1.36e-07, trans 0.0e+00, lam* 0.1184/0.1184
+  action fixn_L6_N30_s2 T7: spec 3.11e-08, gauss max 1.19e-07, trans 0.0e+00, lam* 0.1165/0.1165
+  action fixn_L6_N30_s3 T7: spec 1.40e-07, gauss max 1.78e-07, trans 0.0e+00, lam* 0.1305/0.1305
+  action fixn_L8_N71_s1 T7: spec 3.71e-08, gauss max 7.82e-08, trans 0.0e+00, lam* 0.0759/0.0759
+  action fixn_L8_N71_s2 T7: spec 2.90e-08, gauss max 7.52e-08, trans 0.0e+00, lam* 0.0792/0.0792
+  action fixn_L8_N71_s3 T7: spec 3.86e-08, gauss max 8.23e-08, trans 0.0e+00, lam* 0.0924/0.0924
+  action fixn_L10_N139_s1 T7: spec 3.62e-08, gauss max 1.01e-07, trans 0.0e+00, lam* 0.0630/0.0630
+  action fixn_L10_N139_s2 T7: spec 5.10e-08, gauss max 1.10e-07, trans 0.0e+00, lam* 0.0654/0.0654
+  action fixn_L10_N139_s3 T7: spec 5.84e-08, gauss max 1.10e-07, trans 0.0e+00, lam* 0.0575/0.0575
+  action fixn_L12_N240_s1 T7: spec 1.96e-08, gauss max 9.51e-08, trans 0.0e+00, lam* 0.0449/0.0449
+  action fixn_L12_N240_s2 T7: spec 6.99e-09, gauss max 1.28e-07, trans 0.0e+00, lam* 0.0481/0.0481
+  action fixn_L12_N240_s3 T7: spec 2.70e-08, gauss max 1.13e-07, trans 0.0e+00, lam* 0.0495/0.0495
+[2026-10-13T04:21:29+00:00] stage action done in 82 s
