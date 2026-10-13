@@ -1,0 +1,171 @@
+{
+ "provenance": {
+  "time": "2026-10-13T17:30:23+00:00",
+  "git": {
+   "commit": "8777731167ca7f633247c5a7199c979faccab833",
+   "dirty": true,
+   "dirty_files": [
+    "ewald_longitudinal/__pycache__/test_mesh_error_decomposition.cpython-311.pyc",
+    "ewald_longitudinal/__pycache__/test_parameter_selection.cpython-311.pyc",
+    "ewald_longitudinal/__pycache__/verify_ewald_longitudinal.cpython-311.pyc",
+    "ewald_longitudinal/__pycache__/verify_periodic_graph_psd.cpython-311.pyc"
+   ]
+  },
+  "config_hash": "69e23b991db39a74",
+  "include_ranks": false,
+  "ranks": [
+   null,
+   null
+  ],
+  "code_hash": "571118ae06c756fd",
+  "code_files": [
+   "exp1_finalize.py",
+   "sec6_common.py",
+   "test_equal_accuracy_xi.py",
+   "test_lanczos_fdt.py",
+   "test_parameter_selection.py",
+   "verify_ewald_longitudinal.py",
+   "verify_periodic_graph_psd.py"
+  ],
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "host": "vm",
+  "cpu": "x86_64",
+  "threads": {
+   "OMP_NUM_THREADS": null,
+   "OPENBLAS_NUM_THREADS": null,
+   "MKL_NUM_THREADS": null
+  }
+ },
+ "files": {
+  "configs.csv": {
+   "rows": 44,
+   "expected": 44,
+   "ok": true,
+   "nan_inf_cells": 0
+  },
+  "reference_ladder.csv": {
+   "rows": 308,
+   "expected": 308,
+   "ok": true,
+   "nan_inf_cells": 0
+  },
+  "split_operator.csv": {
+   "rows": 44,
+   "expected": 44,
+   "ok": true,
+   "nan_inf_cells": 0
+  },
+  "cutoffs.csv": {
+   "rows": 1428,
+   "expected": 1428,
+   "ok": true,
+   "nan_inf_cells": 0
+  },
+  "mesh.csv": {
+   "rows": 735,
+   "expected": null,
+   "ok": true,
+   "nan_inf_cells": 0,
+   "note": "designed size depends on the admissible meshes per box; checked per scan below",
+   "rows_per_(set,s_F,p)": {
+    "check|4.10|5": 18,
+    "check|4.10|7": 18,
+    "legacy|4.10|3": 18,
+    "legacy|4.10|4": 18,
+    "legacy|4.10|5": 18,
+    "legacy|4.10|6": 18,
+    "legacy|4.10|7": 18,
+    "legacy|4.10|8": 18,
+    "legacy|5.5|4": 14,
+    "legacy|5.5|6": 14,
+    "legacy|5.5|8": 14,
+    "main|4.10|3": 81,
+    "main|4.10|4": 81,
+    "main|4.10|5": 81,
+    "main|4.10|6": 81,
+    "main|4.10|7": 81,
+    "main|4.10|8": 81,
+    "main|5.5|4": 21,
+    "main|5.5|6": 21,
+    "main|5.5|8": 21
+   }
+  },
+  "mesh_decomposition.csv": {
+   "rows": 20,
+   "expected": 20,
+   "ok": true,
+   "nan_inf_cells": 0
+  },
+  "action.csv": {
+   "rows": 72,
+   "expected": 72,
+   "ok": true,
+   "nan_inf_cells": 0
+  },
+  "action_probes.csv": {
+   "rows": 2664,
+   "expected": 2664,
+   "ok": true,
+   "nan_inf_cells": 0
+  },
+  "fourier_precision.csv": {
+   "rows": 6,
+   "expected": 6,
+   "ok": true,
+   "nan_inf_cells": 0
+  }
+ },
+ "all_row_counts_ok": true,
+ "nan_inf_cells_total": 0,
+ "rerun_log": {
+  "file": "exp1_results/run_2026-10-13_exact_k.log",
+  "exit_zero": true,
+  "stages_done": [
+   "split",
+   "cutoffs",
+   "mesh",
+   "action",
+   "precision"
+  ],
+  "error_lines": []
+ },
+ "khat_AB": {
+  "source_has_round": false,
+  "dedup_line": [
+   "ku, inv = np.unique(kn, return_inverse=True)"
+  ]
+ },
+ "fourier_precision_after_fix": {
+  "floor_rounded12": [
+   2.3349915605822543e-14,
+   1.549470566199376e-13
+  ],
+  "floor_float64": [
+   6.342948096635747e-17,
+   7.56905567070709e-16
+  ],
+  "floor_int_shell": [
+   5.394872217812077e-17,
+   8.467491669291314e-16
+  ],
+  "floor_refined_coeffs": [
+   6.537858618488113e-17,
+   7.875689758825881e-16
+  ],
+  "floor_longdouble": [
+   3.4679278131876905e-17,
+   4.0446192457739e-16
+  ],
+  "float64_vs_longdouble": [
+   4.176398460491816e-17,
+   6.715159029135669e-16
+  ],
+  "GL_images_R40_vs_R45": [
+   4.1133589886022304e-17,
+   4.321072836053226e-16
+  ]
+ },
+ "fourier_precision_note": "Mesh-free Fourier sum against the real-space image sum Gamma_L (relative to ||Gamma_ref||_2), case A, lattice_N128_s1, uniform_N128_s1 at xi = 0.7 and 1. floor_rounded12 reproduces the removed rounded-|k| routine; the former ~1e-13 plateau is NOT a float64 summation floor."
+}

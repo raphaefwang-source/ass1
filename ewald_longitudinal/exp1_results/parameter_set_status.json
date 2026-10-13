@@ -1,0 +1,485 @@
+{
+ "provenance": {
+  "time": "2026-10-13T17:30:23+00:00",
+  "git": {
+   "commit": "8777731167ca7f633247c5a7199c979faccab833",
+   "dirty": true,
+   "dirty_files": [
+    "ewald_longitudinal/__pycache__/test_mesh_error_decomposition.cpython-311.pyc",
+    "ewald_longitudinal/__pycache__/test_parameter_selection.cpython-311.pyc",
+    "ewald_longitudinal/__pycache__/verify_ewald_longitudinal.cpython-311.pyc",
+    "ewald_longitudinal/__pycache__/verify_periodic_graph_psd.cpython-311.pyc"
+   ]
+  },
+  "config_hash": "69e23b991db39a74",
+  "include_ranks": false,
+  "ranks": [
+   null,
+   null
+  ],
+  "code_hash": "571118ae06c756fd",
+  "code_files": [
+   "exp1_finalize.py",
+   "sec6_common.py",
+   "test_equal_accuracy_xi.py",
+   "test_lanczos_fdt.py",
+   "test_parameter_selection.py",
+   "verify_ewald_longitudinal.py",
+   "verify_periodic_graph_psd.py"
+  ],
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "host": "vm",
+  "cpu": "x86_64",
+  "threads": {
+   "OMP_NUM_THREADS": null,
+   "OPENBLAS_NUM_THREADS": null,
+   "MKL_NUM_THREADS": null
+  }
+ },
+ "source": "exp1_results/action.csv, action_probes.csv, reference_ladder.csv (rerun with unrounded |k|, run_2026-10-13_exact_k.log)",
+ "measure": "relative operator error ||Gamma_h - Gamma_ref||_2 / ||Gamma_ref||_2 against the nominal tolerance; probe columns are relative action errors ||(Gamma_h-Gamma_ref)X||/||Gamma_ref X||",
+ "production_set": "T7",
+ "sets": {
+  "T5": {
+   "spatial": {
+    "xi": 0.7,
+    "s": 3.493719027845567,
+    "eta_N": 0.8,
+    "p": 6
+   },
+   "nominal_tol": 1e-05,
+   "accepted_on": [
+    "A",
+    "B"
+   ],
+   "accepted_note": "accepted on cases A and B only; not a guarantee elsewhere",
+   "n_tested": 14,
+   "n_pass": 10,
+   "n_fail": 4,
+   "err_rel_max": 1.2874676090046782e-05,
+   "err_rel_min": 9.84089239321027e-07,
+   "err_abs_range": [
+    7.734709834622565e-06,
+    3.2816533988279056e-05
+   ],
+   "failures": [
+    {
+     "name": "lattice_N128_s3",
+     "set": "main",
+     "family": "lattice",
+     "N": 128,
+     "L": 9.73152319291744,
+     "err_rel": 1.2874676090046782e-05,
+     "ratio_to_tol": 1.2874676090046782,
+     "norm2_ref": 0.7200241027925919
+    },
+    {
+     "name": "lattice_N128_s1",
+     "set": "main",
+     "family": "lattice",
+     "N": 128,
+     "L": 9.73152319291744,
+     "err_rel": 1.1856072157455002e-05,
+     "ratio_to_tol": 1.1856072157455,
+     "norm2_ref": 0.7754025591135723
+    },
+    {
+     "name": "lattice_N256_s1",
+     "set": "check",
+     "family": "lattice",
+     "N": 256,
+     "L": 12.260950918296848,
+     "err_rel": 1.1728364786125135e-05,
+     "ratio_to_tol": 1.1728364786125134,
+     "norm2_ref": 0.942037119134903
+    },
+    {
+     "name": "lattice_N128_s2",
+     "set": "main",
+     "family": "lattice",
+     "N": 128,
+     "L": 9.73152319291744,
+     "err_rel": 1.1599037037525374e-05,
+     "ratio_to_tol": 1.1599037037525373,
+     "norm2_ref": 0.7605330546867937
+    }
+   ],
+   "by_set": {
+    "check": {
+     "n": 3,
+     "n_fail": 1,
+     "err_rel_max": 1.1728364786125135e-05,
+     "err_abs_max": 3.2816533988279056e-05
+    },
+    "legacy": {
+     "n": 2,
+     "n_fail": 0,
+     "err_rel_max": 3.967573977412732e-06,
+     "err_abs_max": 1.1719082041582606e-05
+    },
+    "main": {
+     "n": 9,
+     "n_fail": 3,
+     "err_rel_max": 1.2874676090046782e-05,
+     "err_abs_max": 2.2388312326751853e-05
+    }
+   },
+   "by_family": {
+    "caseA": {
+     "n": 1,
+     "n_fail": 0,
+     "err_rel_range": [
+      2.9769755762898813e-06,
+      2.9769755762898813e-06
+     ]
+    },
+    "caseB": {
+     "n": 1,
+     "n_fail": 0,
+     "err_rel_range": [
+      3.967573977412732e-06,
+      3.967573977412732e-06
+     ]
+    },
+    "cluster": {
+     "n": 4,
+     "n_fail": 0,
+     "err_rel_range": [
+      1.9009336656473866e-06,
+      2.977829199686833e-06
+     ]
+    },
+    "lattice": {
+     "n": 4,
+     "n_fail": 4,
+     "err_rel_range": [
+      1.1599037037525374e-05,
+      1.2874676090046782e-05
+     ]
+    },
+    "uniform": {
+     "n": 4,
+     "n_fail": 0,
+     "err_rel_range": [
+      9.84089239321027e-07,
+      2.7007974568072386e-06
+     ]
+    }
+   },
+   "probe_rel_action_max": {
+    "gauss": 1.1932674292442202e-05,
+    "long": 2.2268014026074987e-05,
+    "trans": 2.5843241277685595e-05
+   },
+   "probe_rel_action_max_where_operator_ok": {
+    "gauss": 1.0882823523889535e-05,
+    "long": 2.2268014026074987e-05,
+    "trans": 2.5181966351281434e-05
+   },
+   "n_operator_ok_with_trans_probe_over_tol": 8,
+   "scope": "relative operator error <= nominal tolerance on 10 of 14 tested static configurations (rho = 30/216 unless the set is legacy B or box_fixedN); fails on: lattice_N128_s1, lattice_N128_s2, lattice_N128_s3, lattice_N256_s1"
+  },
+  "T7": {
+   "spatial": {
+    "xi": 0.7,
+    "s": 4.100151562017953,
+    "eta_N": 0.7,
+    "p": 7
+   },
+   "nominal_tol": 1e-07,
+   "accepted_on": [
+    "A",
+    "B"
+   ],
+   "accepted_note": "accepted on cases A and B only; not a guarantee elsewhere",
+   "n_tested": 44,
+   "n_pass": 39,
+   "n_fail": 5,
+   "err_rel_max": 2.1056229875856872e-07,
+   "err_rel_min": 6.98954743257334e-09,
+   "err_abs_range": [
+    5.7179373150799613e-08,
+    5.47737729505419e-07
+   ],
+   "failures": [
+    {
+     "name": "lattice_N128_s3",
+     "set": "main",
+     "family": "lattice",
+     "N": 128,
+     "L": 9.73152319291744,
+     "err_rel": 2.1056229875856872e-07,
+     "ratio_to_tol": 2.1056229875856873,
+     "norm2_ref": 0.7200241027925919
+    },
+    {
+     "name": "lattice_N128_s1",
+     "set": "main",
+     "family": "lattice",
+     "N": 128,
+     "L": 9.73152319291744,
+     "err_rel": 1.9785882550367086e-07,
+     "ratio_to_tol": 1.9785882550367087,
+     "norm2_ref": 0.7754025591135723
+    },
+    {
+     "name": "lattice_N128_s2",
+     "set": "main",
+     "family": "lattice",
+     "N": 128,
+     "L": 9.73152319291744,
+     "err_rel": 1.9368184831733388e-07,
+     "ratio_to_tol": 1.9368184831733388,
+     "norm2_ref": 0.7605330546867937
+    },
+    {
+     "name": "fixn_L6_N30_s3",
+     "set": "box_fixedn",
+     "family": "uniform",
+     "N": 30,
+     "L": 6.0,
+     "err_rel": 1.397025139361625e-07,
+     "ratio_to_tol": 1.3970251393616249,
+     "norm2_ref": 1.496453259967513
+    },
+    {
+     "name": "lattice_N256_s1",
+     "set": "check",
+     "family": "lattice",
+     "N": 256,
+     "L": 12.260950918296848,
+     "err_rel": 1.0903944258712413e-07,
+     "ratio_to_tol": 1.0903944258712415,
+     "norm2_ref": 0.942037119134903
+    }
+   ],
+   "by_set": {
+    "box_fixedN": {
+     "n": 18,
+     "n_fail": 0,
+     "err_rel_max": 7.50097216556899e-08,
+     "err_abs_max": 5.47737729505419e-07
+    },
+    "box_fixedn": {
+     "n": 12,
+     "n_fail": 1,
+     "err_rel_max": 1.397025139361625e-07,
+     "err_abs_max": 2.705451607023532e-07
+    },
+    "check": {
+     "n": 3,
+     "n_fail": 1,
+     "err_rel_max": 1.0903944258712413e-07,
+     "err_abs_max": 3.362572919518982e-07
+    },
+    "legacy": {
+     "n": 2,
+     "n_fail": 0,
+     "err_rel_max": 9.691334292250287e-08,
+     "err_abs_max": 2.1387577521048259e-07
+    },
+    "main": {
+     "n": 9,
+     "n_fail": 3,
+     "err_rel_max": 2.1056229875856872e-07,
+     "err_abs_max": 5.181698031833612e-07
+    }
+   },
+   "by_family": {
+    "caseA": {
+     "n": 1,
+     "n_fail": 0,
+     "err_rel_range": [
+      5.4330446437909556e-08,
+      5.4330446437909556e-08
+     ]
+    },
+    "caseB": {
+     "n": 1,
+     "n_fail": 0,
+     "err_rel_range": [
+      9.691334292250287e-08,
+      9.691334292250287e-08
+     ]
+    },
+    "cluster": {
+     "n": 4,
+     "n_fail": 0,
+     "err_rel_range": [
+      3.051256975948828e-08,
+      4.5686011455273694e-08
+     ]
+    },
+    "lattice": {
+     "n": 4,
+     "n_fail": 4,
+     "err_rel_range": [
+      1.0903944258712413e-07,
+      2.1056229875856872e-07
+     ]
+    },
+    "uniform": {
+     "n": 34,
+     "n_fail": 1,
+     "err_rel_range": [
+      6.98954743257334e-09,
+      1.397025139361625e-07
+     ]
+    }
+   },
+   "probe_rel_action_max": {
+    "gauss": 2.2169745656589323e-07,
+    "long": 3.740480087972177e-07,
+    "trans": 4.525323406449761e-07
+   },
+   "probe_rel_action_max_where_operator_ok": {
+    "gauss": 2.2169745656589323e-07,
+    "long": 3.740480087972177e-07,
+    "trans": 4.525323406449761e-07
+   },
+   "n_operator_ok_with_trans_probe_over_tol": 39,
+   "scope": "relative operator error <= nominal tolerance on 39 of 44 tested static configurations (rho = 30/216 unless the set is legacy B or box_fixedN); fails on: lattice_N128_s1, lattice_N128_s2, lattice_N128_s3, lattice_N256_s1, fixn_L6_N30_s3"
+  },
+  "T9": {
+   "spatial": {
+    "xi": 0.7,
+    "s": 4.627787054036341,
+    "eta_N": 0.6,
+    "p": 8
+   },
+   "nominal_tol": 1e-09,
+   "accepted_on": [
+    "A",
+    "B"
+   ],
+   "accepted_note": "accepted on cases A and B only; not a guarantee elsewhere",
+   "n_tested": 14,
+   "n_pass": 10,
+   "n_fail": 4,
+   "err_rel_max": 2.545115091703164e-09,
+   "err_rel_min": 2.2994680787658766e-10,
+   "err_abs_range": [
+    1.2796839826155817e-09,
+    7.120173779793224e-09
+   ],
+   "failures": [
+    {
+     "name": "lattice_N128_s2",
+     "set": "main",
+     "family": "lattice",
+     "N": 128,
+     "L": 9.73152319291744,
+     "err_rel": 2.545115091703164e-09,
+     "ratio_to_tol": 2.5451150917031637,
+     "norm2_ref": 0.7605330546867937
+    },
+    {
+     "name": "lattice_N128_s3",
+     "set": "main",
+     "family": "lattice",
+     "N": 128,
+     "L": 9.73152319291744,
+     "err_rel": 2.4240661546107133e-09,
+     "ratio_to_tol": 2.424066154610713,
+     "norm2_ref": 0.7200241027925919
+    },
+    {
+     "name": "lattice_N128_s1",
+     "set": "main",
+     "family": "lattice",
+     "N": 128,
+     "L": 9.73152319291744,
+     "err_rel": 2.257849186419875e-09,
+     "ratio_to_tol": 2.257849186419875,
+     "norm2_ref": 0.7754025591135723
+    },
+    {
+     "name": "lattice_N256_s1",
+     "set": "check",
+     "family": "lattice",
+     "N": 256,
+     "L": 12.260950918296848,
+     "err_rel": 1.9614234245672066e-09,
+     "ratio_to_tol": 1.9614234245672064,
+     "norm2_ref": 0.942037119134903
+    }
+   ],
+   "by_set": {
+    "check": {
+     "n": 3,
+     "n_fail": 1,
+     "err_rel_max": 1.9614234245672066e-09,
+     "err_abs_max": 7.120173779793224e-09
+    },
+    "legacy": {
+     "n": 2,
+     "n_fail": 0,
+     "err_rel_max": 8.674879145137337e-10,
+     "err_abs_max": 1.6911511523172797e-09
+    },
+    "main": {
+     "n": 9,
+     "n_fail": 3,
+     "err_rel_max": 2.545115091703164e-09,
+     "err_abs_max": 6.396172053862868e-09
+    }
+   },
+   "by_family": {
+    "caseA": {
+     "n": 1,
+     "n_fail": 0,
+     "err_rel_range": [
+      3.2507562862845917e-10,
+      3.2507562862845917e-10
+     ]
+    },
+    "caseB": {
+     "n": 1,
+     "n_fail": 0,
+     "err_rel_range": [
+      8.674879145137337e-10,
+      8.674879145137337e-10
+     ]
+    },
+    "cluster": {
+     "n": 4,
+     "n_fail": 0,
+     "err_rel_range": [
+      5.09712779491094e-10,
+      6.460969155330571e-10
+     ]
+    },
+    "lattice": {
+     "n": 4,
+     "n_fail": 4,
+     "err_rel_range": [
+      1.9614234245672066e-09,
+      2.545115091703164e-09
+     ]
+    },
+    "uniform": {
+     "n": 4,
+     "n_fail": 0,
+     "err_rel_range": [
+      2.2994680787658766e-10,
+      6.82853490923796e-10
+     ]
+    }
+   },
+   "probe_rel_action_max": {
+    "gauss": 2.252483488065318e-09,
+    "long": 3.746687923574838e-09,
+    "trans": 4.8509533664085865e-09
+   },
+   "probe_rel_action_max_where_operator_ok": {
+    "gauss": 2.252483488065318e-09,
+    "long": 3.0158379003959775e-09,
+    "trans": 4.8509533664085865e-09
+   },
+   "n_operator_ok_with_trans_probe_over_tol": 10,
+   "scope": "relative operator error <= nominal tolerance on 10 of 14 tested static configurations (rho = 30/216 unless the set is legacy B or box_fixedN); fails on: lattice_N128_s1, lattice_N128_s2, lattice_N128_s3, lattice_N256_s1"
+  }
+ }
+}
