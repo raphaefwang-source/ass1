@@ -426,7 +426,7 @@ def stage_split(args):
     allr = np.concatenate([pair_images(c["x"], c["L"], 12.0)[3] for c in cfgs])
     for xi in XI_SPLIT:
         K = EwaldLongitudinal(KAPPA, xi)
-        for label, r in (("pair images (all configs, r <= 12)", allr), ("radial grid 1e-3..20", rgrid)):
+        for label, r in (("pair images (legacy + main configs, r <= 12)", allr), ("radial grid 1e-3..20", rgrid)):
             thS = K.theta_S_scaled_closed(r) * np.exp(-(xi * r) ** 2)
             thL = K.theta_L(r)                                       # s-integral, no subtraction
             err = np.abs(thS + thL - theta_full(r)) / theta_full(r)
@@ -733,8 +733,48 @@ def stage_action(args):
     log_run("action", dict(params=PARAM_SETS))
 
 
+def stage_precision(args):
+    """Floor of the untruncated lattice Fourier sum of K^L (k_c = 2 xi 6.5) against the real-space image sum Gamma_L:
+    float64 accumulation, 80-bit (np.longdouble) accumulation of the same float64 inputs, and float64 with the refined
+    quadrature coefficients. Identical floors mean the floor is not set by the accumulation or by the coefficient rules."""
+    rows = []
+    for name in ("A", "lattice_N128_s1", "uniform_N128_s1"):
+        c = load_configs(names=[name])[0]
+        ref = load_ref(name)
+        pi, pj, d = pair_geometry(c["x"], c["L"])
+        nG = float(ref["norm2"])
+        for xi in XI_SWEEP:
+            GL = laplacian(ref[f"KL_{xi:g}"], pi, pj, c["N"])
+            K, Kr = EwaldLongitudinal(KAPPA, xi), RefinedEwald(KAPPA, xi)
+            kc = 2 * xi * 6.5
+            mv, kv, _ = lattice_modes(c["L"], kc)
+            kn = np.linalg.norm(kv, axis=1)
+            V = c["L"] ** 3
+
+            def fsum(dtype, A, B):
+                dd, kk = d.astype(dtype), kv.astype(dtype)
+                out = np.zeros((len(d), 3, 3), dtype)
+                for c0 in range(0, len(kv), 2048):
+                    k = kk[c0:c0 + 2048]
+                    C = np.cos(dd @ k.T)
+                    out += np.einsum("pk,k->p", C, A[c0:c0 + 2048].astype(dtype))[:, None, None] * np.eye(3, dtype=dtype) \
+                        + np.einsum("pk,k,ki,kj->pij", C, B[c0:c0 + 2048].astype(dtype), k, k)
+                return (out / V).astype(float)
+            A, B = khat_AB(K, kn)
+            Ar, Br = khat_AB(Kr, kn)
+            K64, K80, Kref = fsum(np.float64, A, B), fsum(np.longdouble, A, B), fsum(np.float64, Ar, Br)
+            e = lambda Kp: specnorm_sym(laplacian(Kp, pi, pj, c["N"]) - GL) / nG          # noqa: E731
+            rows.append(dict(name=name, xi=xi, kc=kc, n_modes=len(kv), floor_float64=e(K64), floor_longdouble=e(K80),
+                             floor_refined_coeffs=e(Kref),
+                             float64_vs_longdouble=specnorm_sym(laplacian(K64 - K80, pi, pj, c["N"])) / nG,
+                             longdouble_type=str(np.finfo(np.longdouble).dtype), longdouble_eps=float(np.finfo(np.longdouble).eps)))
+            print(f"  precision {name} xi {xi}: {rows[-1]}", flush=True)
+    write_csv(OUT / "fourier_precision.csv", rows)
+    log_run("precision")
+
+
 STAGES = dict(configs=stage_configs, reference=stage_reference, quadrature=stage_quadrature, split=stage_split,
-              cutoffs=stage_cutoffs, mesh=stage_mesh, action=stage_action)
+              cutoffs=stage_cutoffs, mesh=stage_mesh, action=stage_action, precision=stage_precision)
 
 
 def main():

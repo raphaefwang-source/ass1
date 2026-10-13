@@ -79,11 +79,16 @@ def fit_cutoffs(rows):
         x = np.array([num(r, "x") for r in rr])
         e = np.array([num(r, "err") for r in rr])
         nn = np.array([r["no_new"] == "True" for r in rr])
-        m = (x >= 1.0) & (e >= FIT_FLOOR)
+        cnt = np.array([num(r, "count") for r in rr])
+        win = (x >= 1.0) & (e >= FIT_FLOOR)
+        m = win & ~nn & (cnt > 0)                      # flat or empty staircase steps carry no decay information
+        tail = e[x >= x.max() - 0.6]
         rec = dict(name=name, set=rr[0]["set"], family=rr[0]["family"], N=int(num(rr[0], "N")), part=part, xi=xi,
                    n_fit=int(m.sum()), x_fit_min=float(x[m].min()) if m.any() else np.nan,
-                   x_fit_max=float(x[m].max()) if m.any() else np.nan, flat_steps_in_window=int((nn & m).sum()),
-                   floor=float(e[x >= x.max() - 0.6].max()))
+                   x_fit_max=float(x[m].max()) if m.any() else np.nan, flat_steps_total=int(nn.sum()),
+                   flat_or_empty_in_window_excluded=int((win & ~m).sum()),
+                   err_at_xmax=float(e[-1]), tail_max=float(tail.max()),
+                   plateau=bool(tail.min() > 0.3 * tail.max()))
         if m.sum() >= 3:
             c, a = np.polyfit(x[m] ** 2, np.log(e[m]), 1)
             rec.update(c=float(-c), a=float(a))
@@ -111,11 +116,19 @@ def fit_mesh(rows):
                    eta_range=[num(rr[-1], "eta"), num(rr[0], "eta")],
                    shift_max_over_rms=float(np.nanmax(emax / e)), shift_max_over_min=float(np.nanmax(emax / emin)),
                    min_err=float(e.min()), eps_F=num(rr[0], "eps_F"))
+        eta = np.array([num(r, "eta") for r in rr])
         if len(idx) >= 3:
             q, a = np.polyfit(np.log(h[idx]), np.log(e[idx]), 1)
-            rec.update(slope=float(q), CM=float(np.exp(a)))
+            qmax, _ = np.polyfit(np.log(h[idx]), np.log(emax[idx]), 1)
+            rec.update(slope=float(q), CM=float(np.exp(a)), slope_of_max=float(qmax),
+                       eta_fit=[float(eta[idx].min()), float(eta[idx].max())])
             loc = np.diff(np.log(e)) / np.diff(np.log(h))
             rec["local_slopes"] = [float(v) for v in loc]
+        coarse = np.where(eta >= 0.5)[0]
+        if len(coarse) >= 3:
+            qc, _ = np.polyfit(np.log(h[coarse]), np.log(e[coarse]), 1)
+            rec.update(slope_coarse=float(qc), eta_coarse=[float(eta[coarse].min()), float(eta[coarse].max())])
+        rec["h_steps"] = [float(v) for v in h[1:] / h[:-1] - 1]
         fits.append(rec)
     return fits
 
@@ -234,14 +247,15 @@ def components_figure(cut, mesh, msum, split_op, split_pairs, quad):
     ax = axs[1, 2]
     for fam in ("caseA", "caseB", "uniform", "lattice", "cluster"):
         col, mk, lab = fam_style(fam)
-        sub = [r for r in mesh if r["family"] == fam and abs(num(r, "s_F") - 4.100151562017953) < 1e-6]
+        sub = [r for r in mesh if r["family"] == fam and abs(num(r, "s_F") - 4.100151562017953) < 1e-6
+               and int(num(r, "shifts")) == 8]
         if not sub:
             continue
         ax.plot([num(r, "eta") for r in sub], [num(r, "err_max") / num(r, "err_rms") for r in sub], mk, color=col,
                 ms=2.5, alpha=0.6, mec="none", label=lab)
     ax.set_xlabel(r"$\eta = k_c h/\pi$")
     ax.set_ylabel("max / RMS over grid shifts")
-    panel_label(ax, "(f) grid-shift spread (8 shifts)")
+    panel_label(ax, r"(f) grid-shift spread (8 shifts, $N\leq128$)")
     for a in axs.ravel():
         a.grid(True, which="major")
     return fig
@@ -395,42 +409,75 @@ def tables(cfg, act):
     (PAPER / "tab_exp1_params.tex").write_text("\n".join(lines) + "\n")
 
 
-def summary(ref, quad, split_pairs, split_op, cutfits, msum, dec, act, probes, cfg):
+def summary(ref, quad, split_pairs, split_op, cutfits, msum, dec, act, probes, cfg, prec):
+    """Every number quoted in the LaTeX section."""
     S = {}
     rl = [r for r in ref]
+    nG = {r["name"]: num(r, "norm2") for r in rl if num(r, "R") == 45.0}
     S["reference"] = dict(
         n_configs=len({r["name"] for r in rl}),
         max_change_R40_to_R45=max(num(r, "spec_rel_vs_Rmax") for r in rl if num(r, "R") == 40.0),
         max_change_R35_to_R45=max(num(r, "spec_rel_vs_Rmax") for r in rl if num(r, "R") == 35.0),
         max_change_R30_to_R45=max(num(r, "spec_rel_vs_Rmax") for r in rl if num(r, "R") == 30.0),
         max_trans_resid=max(num(r, "trans_resid") for r in rl if num(r, "R") == 45.0),
-        max_sym_resid=max(num(r, "sym_resid") for r in rl if num(r, "R") == 45.0))
+        max_sym_resid=max(num(r, "sym_resid") for r in rl if num(r, "R") == 45.0),
+        norm2_range=[min(nG.values()), max(nG.values())],
+        lam_star_range=[min(num(r, "lam_star") for r in rl if num(r, "R") == 45.0),
+                        max(num(r, "lam_star") for r in rl if num(r, "R") == 45.0)])
     S["quadrature"] = {f"xi{r['xi']}": {k: num(r, k) for k in r if k != "xi"} for r in quad}
+    S["fourier_precision"] = [{k: (num(r, k) if k not in ("name", "longdouble_type") else r[k]) for k in r} for r in prec]
     S["split_pairs"] = {f"{r['xi']}|{r['points'][:4]}": num(r, "max_rel") for r in split_pairs}
     S["split_pairs_max"] = max(num(r, "max_rel") for r in split_pairs)
-    S["split_operator_max"] = max(num(r, "spec_rel") for r in split_op)
+    S["split_operator_range"] = [min(num(r, "spec_rel") for r in split_op), max(num(r, "spec_rel") for r in split_op)]
     S["split_operator_by_xi"] = {str(xi): max(num(r, "spec_rel") for r in split_op if float(r["xi"]) == xi)
                                  for xi in sorted({float(r["xi"]) for r in split_op})}
     for part in ("real", "fourier"):
         for xi in (0.7, 1.0):
             f = [r for r in cutfits if r["part"] == part and r["xi"] == xi and "c" in r and r["set"] in ("legacy", "main")]
             fc = [r for r in cutfits if r["part"] == part and r["xi"] == xi and "c" in r and r["set"] == "check"]
+            fa = [r for r in cutfits if r["part"] == part and r["xi"] == xi]
             S[f"cut_{part}_xi{xi:g}"] = dict(
                 c_median=float(np.median([r["c"] for r in f])), c_min=min(r["c"] for r in f),
                 c_max=max(r["c"] for r in f),
                 c_pref_removed_median=float(np.median([r["c_prefactor_removed"] for r in f])),
-                c_check=[round(r["c"], 3) for r in fc], floor_max=max(r["floor"] for r in f),
-                flat_steps=sum(r["flat_steps_in_window"] for r in f),
-                configs_with_flat=sorted({r["name"] for r in f if r["flat_steps_in_window"] > 0}))
+                c_check=[round(r["c"], 3) for r in fc],
+                err_at_xmax_max=max(r["err_at_xmax"] for r in fa), tail_max=max(r["tail_max"] for r in fa),
+                plateau_configs=sorted({r["name"] for r in fa if r["plateau"]}),
+                flat_steps_total=sum(r["flat_steps_total"] for r in fa),
+                excluded_from_fit=sum(r["flat_or_empty_in_window_excluded"] for r in fa),
+                configs_with_flat=sorted({r["name"] for r in fa if r["flat_steps_total"] > 0}))
     for sF in sorted({r["s_F"] for r in msum}):
-        sub = [r for r in msum if r["s_F"] == sF and "slope" in r]
-        S[f"mesh_sF{sF:.3g}"] = {str(p): dict(slope_median=float(np.median([r["slope"] for r in sub if r["p"] == p])),
-                                               slope_min=min(r["slope"] for r in sub if r["p"] == p),
-                                               slope_max=max(r["slope"] for r in sub if r["p"] == p),
-                                               n=len([r for r in sub if r["p"] == p]))
-                                  for p in sorted({r["p"] for r in sub})}
-        S[f"mesh_sF{sF:.3g}_shift_max_over_rms"] = max(r["shift_max_over_rms"] for r in sub)
-        S[f"mesh_sF{sF:.3g}_shift_max_over_min"] = max(r["shift_max_over_min"] for r in sub)
+        sub = [r for r in msum if r["s_F"] == sF and "slope" in r and r["set"] in ("legacy", "main")]
+        chk = [r for r in msum if r["s_F"] == sF and "slope" in r and r["set"] == "check"]
+        key = f"mesh_sF{sF:.3g}"
+        S[key] = {str(p): dict(slope_median=float(np.median([r["slope"] for r in sub if r["p"] == p])),
+                               slope_min=min(r["slope"] for r in sub if r["p"] == p),
+                               slope_max=max(r["slope"] for r in sub if r["p"] == p),
+                               n=len([r for r in sub if r["p"] == p]),
+                               configs=sorted(r["name"] for r in sub if r["p"] == p),
+                               check_slopes=[round(r["slope"], 2) for r in chk if r["p"] == p],
+                               coarse_slope_median=(float(np.median([r["slope_coarse"] for r in sub if r["p"] == p
+                                                                     and "slope_coarse" in r]))
+                                                    if any("slope_coarse" in r for r in sub if r["p"] == p) else None),
+                               coarse_slope_range=([min(r["slope_coarse"] for r in sub if r["p"] == p and "slope_coarse" in r),
+                                                    max(r["slope_coarse"] for r in sub if r["p"] == p and "slope_coarse" in r)]
+                                                   if any("slope_coarse" in r for r in sub if r["p"] == p) else None),
+                               slope_of_max_minus_rms=[min(r["slope_of_max"] - r["slope"] for r in sub if r["p"] == p),
+                                                       max(r["slope_of_max"] - r["slope"] for r in sub if r["p"] == p)])
+                     for p in sorted({r["p"] for r in sub})}
+        S[key + "_eta_fit"] = dict(min=min(r["eta_fit"][0] for r in sub + chk), max=max(r["eta_fit"][1] for r in sub + chk),
+                                   median_lo=float(np.median([r["eta_fit"][0] for r in sub])),
+                                   median_hi=float(np.median([r["eta_fit"][1] for r in sub])),
+                                   max_main=max(r["eta_fit"][1] for r in sub))
+        S[key + "_coarse_eta"] = [min(r["eta_coarse"][0] for r in sub if "eta_coarse" in r),
+                                  max(r["eta_coarse"][1] for r in sub if "eta_coarse" in r)]
+        S[key + "_h_steps"] = [min(min(r["h_steps"]) for r in sub + chk), max(max(r["h_steps"]) for r in sub + chk)]
+        allr = sub + chk
+        S[key + "_shift_max_over_rms"] = max(r["shift_max_over_rms"] for r in allr if r["set"] != "check")
+        S[key + "_shift_max_over_min"] = max(r["shift_max_over_min"] for r in allr if r["set"] != "check")
+        S[key + "_min_err"] = min(r["min_err"] for r in msum if r["s_F"] == sF)
+        S[key + "_threshold_moved_window"] = sorted({(r["name"], r["p"]) for r in msum if r["s_F"] == sF
+                                                     and r.get("eta_fit") and r["eta_fit"][0] > 0.3})
     S["mesh_no_fit"] = [(r["name"], r["s_F"], r["p"]) for r in msum if "slope" not in r]
     S["decomposition"] = dict(
         identity_resid_rel_to_K_max=max(num(r, "identity_resid_rel_to_K") for r in dec),
@@ -439,11 +486,14 @@ def summary(ref, quad, split_pairs, split_op, cutfits, msum, dec, act, probes, c
         quadratic_over_total=[min(num(r, "quadratic_over_total") for r in dec),
                               max(num(r, "quadratic_over_total") for r in dec)],
         Dh_over_total_max=max(num(r, "Dh_over_total") for r in dec),
-        literal_vs_modespace_max=max(num(r, "literal_vs_modespace") for r in dec if r.get("literal_vs_modespace")))
+        literal_vs_modespace_max=max(num(r, "literal_vs_modespace") for r in dec if r.get("literal_vs_modespace")),
+        eta=[min(num(r, "eta") for r in dec), max(num(r, "eta") for r in dec)], configs=sorted({r["name"] for r in dec}))
     for pname in ("T5", "T7", "T9"):
         sub = [r for r in act if r["params"] == pname]
         S[f"action_{pname}"] = {
             grp: dict(err_spec=[min(num(r, "err_spec_rel") for r in g), max(num(r, "err_spec_rel") for r in g)],
+                      err_abs=[min(num(r, "err_spec_rel") * nG[r["name"]] for r in g),
+                               max(num(r, "err_spec_rel") * nG[r["name"]] for r in g)],
                       gauss_rel_max=max(num(r, "gauss_rel_max") for r in g),
                       long_rel_max=max(num(r, "long_rel_max") for r in g),
                       trans_rel_max=max(num(r, "trans_rel_max") for r in g),
@@ -455,20 +505,53 @@ def summary(ref, quad, split_pairs, split_op, cutfits, msum, dec, act, probes, c
                       weyl_margin_min=min(num(r, "weyl_margin") / num(r, "lam_star_ref") for r in g),
                       eps_S=max(num(r, "eps_S") for r in g), eps_F=max(num(r, "eps_F") for r in g),
                       eps_mesh=max(num(r, "eps_mesh") for r in g),
+                      eps_S_gt_mesh=sorted(r["name"] for r in g if num(r, "eps_S") > num(r, "eps_mesh")),
                       budget_match=max(num(r, "real_matches_production") for r in g), n=len(g))
             for grp, g in (("legacy", [r for r in sub if r["set"] == "legacy"]),
                            ("main", [r for r in sub if r["set"] == "main"]),
                            ("check", [r for r in sub if r["set"] == "check"]),
                            ("box_fixedN", [r for r in sub if r["set"] == "box_fixedN"]),
                            ("box_fixedn", [r for r in sub if r["set"] == "box_fixedn"])) if g}
-    S["action_by_config_T7"] = {r["name"]: dict(err=num(r, "err_spec_rel"), eps_S=num(r, "eps_S"), eps_F=num(r, "eps_F"),
-                                                eps_mesh=num(r, "eps_mesh"), lam_star=num(r, "lam_star_ref"),
-                                                norm=None, M=int(num(r, "M")))
+        S[f"action_{pname}_by_family"] = {
+            f"{fam}|{st}": dict(err_spec=[min(num(r, "err_spec_rel") for r in g), max(num(r, "err_spec_rel") for r in g)],
+                                err_abs=[min(num(r, "err_spec_rel") * nG[r["name"]] for r in g),
+                                         max(num(r, "err_spec_rel") * nG[r["name"]] for r in g)])
+            for fam in ("caseA", "caseB", "uniform", "lattice", "cluster") for st in ("legacy", "main", "check")
+            for g in [[r for r in sub if r["family"] == fam and r["set"] == st]] if g}
+        S[f"action_{pname}_abs_all"] = [min(num(r, "err_spec_rel") * nG[r["name"]] for r in sub),
+                                        max(num(r, "err_spec_rel") * nG[r["name"]] for r in sub)]
+    S["action_by_config_T7"] = {r["name"]: dict(err=num(r, "err_spec_rel"), err_abs=num(r, "err_spec_rel") * nG[r["name"]],
+                                                eps_S=num(r, "eps_S"), eps_F=num(r, "eps_F"), eps_mesh=num(r, "eps_mesh"),
+                                                lam_star=num(r, "lam_star_ref"), norm=nG[r["name"]], M=int(num(r, "M")),
+                                                eta=num(r, "eta_actual"))
                                 for r in act if r["params"] == "T7"}
-    pr = [r for r in probes if r["probe"] in ("long", "trans")]
-    S["probe_ref_action_opnorm_min"] = min(num(r, "ref_action_opnorm") for r in pr)
+    # box length at T7: medians over seeds of the absolute total and of each absolute budget term
+    box = {}
+    for st in ("box_fixedN", "box_fixedn"):
+        g = [r for r in act if r["params"] == "T7" and r["set"] == st]
+        for L in sorted({num(r, "L") for r in g}):
+            gl = [r for r in g if num(r, "L") == L]
+            med = lambda k: float(np.median([num(r, k) * nG[r["name"]] for r in gl]))              # noqa: E731
+            box[f"{st}|L{L:g}"] = dict(N=int(num(gl[0], "N")), n=float(num(gl[0], "N")) / L ** 3,
+                                       eta=num(gl[0], "eta_actual"), total_median=med("err_spec_rel"),
+                                       total_range=[min(num(r, "err_spec_rel") * nG[r["name"]] for r in gl),
+                                                    max(num(r, "err_spec_rel") * nG[r["name"]] for r in gl)],
+                                       S_median=med("eps_S"), F_median=med("eps_F"), mesh_median=med("eps_mesh"))
+    S["box_T7"] = box
+    # probes at T7: maxima, smallest normalized reference action, and action error over the configuration's spectral error
+    spec = {(r["name"], r["params"]): num(r, "err_spec_rel") for r in act}
+    S["probes_T7"] = {}
+    for grp, sets in (("legacy+main", ("legacy", "main")), ("check", ("check",)), ("box", ("box_fixedN", "box_fixedn"))):
+        g = [r for r in probes if r["params"] == "T7" and r["set"] in sets]
+        S["probes_T7"][grp] = {kind: dict(rel_max=max(num(r, "rel_err") for r in g if r["probe"] == kind),
+                                          ref_action_min=min(num(r, "ref_action_opnorm") for r in g if r["probe"] == kind),
+                                          over_spec_max=max(num(r, "rel_err") / spec[(r["name"], "T7")]
+                                                            for r in g if r["probe"] == kind),
+                                          frac_over_spec=float(np.mean([num(r, "rel_err") > spec[(r["name"], "T7")]
+                                                                        for r in g if r["probe"] == kind])))
+                               for kind in ("gauss", "long", "trans")}
     S["configs"] = {r["name"]: dict(N=int(r["N"]), L=float(r["L"]), n=float(r["n"]), d_min=float(r["d_min"]),
-                                    nn_mean=float(r["nn_mean"])) for r in cfg}
+                                    nn_mean=float(r["nn_mean"]), generator=json.loads(r["generator"])) for r in cfg}
     (OUT / "summary.json").write_text(json.dumps(S, indent=1, default=float) + "\n")
     return S
 
@@ -484,7 +567,8 @@ def main():
     cutfits, msum = fit_cutoffs(cut), fit_mesh(mesh)
     write_csv(OUT / "fits_cutoffs.csv", cutfits)
     write_csv(OUT / "fits_mesh.csv", msum)
-    S = summary(ref, quad, sp, so, cutfits, msum, dec, act, probes, cfg)
+    prec = rd("fourier_precision.csv") if (OUT / "fourier_precision.csv").exists() else []
+    S = summary(ref, quad, sp, so, cutfits, msum, dec, act, probes, cfg, prec)
     f1 = components_figure(cut, mesh, msum, so, sp, quad)
     refn = {r["name"]: num(r, "norm2") for r in ref if num(r, "R") == 45.0}
     f2 = action_figure([r for r in act if r["set"] in ("legacy", "main", "check")], probes,
