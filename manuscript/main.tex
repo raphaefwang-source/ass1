@@ -53,7 +53,7 @@
 \title{Matrix-free Ewald--PPPM evaluation of configuration-dependent longitudinal friction and correlated noise in a Lennard-Jones liquid\\[4pt]
 \large Working draft assembled from the project code and results (not for distribution)}
 \author{\todo{author list and affiliations}}
-\date{Draft of 2026-10-12; evidence frozen at repository commit \texttt{39bb4f6}}
+\date{Draft of 2026-10-13; LJ+A evidence at repository commit \texttt{39bb4f6}; Experiment 1 ($\kappa=1$) at remote commit \texttt{dce9792}}
 
 \begin{document}
 \maketitle
@@ -226,7 +226,7 @@ $\Gamma$ need not be positive semidefinite, and positivity of the PPPM operator 
 
 \begin{remark}[Strict positivity on $\Ran(\Pi)$]
 \Cref{prop:structure} gives only $\Gamma\succeq0$. Whether $\ker\Gamma$ equals $\mathrm{span}\{T_\alpha\}$ is not
-proved here. Numerically, the smallest eigenvalue of the PPPM matrix on $\Ran(\Pi)$ was between $4.58$ and $4.69$
+proved here. Numerically, the smallest eigenvalue of the PPPM matrix on $\Ran(\Pi)$ was between $4.58$ and $4.84$
 on all 152 configurations of \cref{sec:numerics_space}, and item~4 shows that the $k=0$ term alone contributes
 $\rho\hat g(0)/3=10.35$ at $\rho=0.75$. On an earlier test system, removing the $k=0$ term made the matrix
 indefinite (\cref{app:history}).
@@ -331,9 +331,12 @@ B(k)&=-\frac{c\pi^{3/2}}{4}\int_0^{\xi^2}\rho_\kappa s^{-7/2}e^{-k^2/(4s)}\dd s 
 \end{equation}
 Both integrals converge at $s\to0$ because $\rho_\kappa(s)=O(s^{3/2}e^{-\kappa^2/(4s)})$ there; in particular
 $A(0)$ is finite, which is what allows the $k=0$ mode to be retained. Since $s\le\xi^2$ on the domain,
-$|A(k)|,|B(k)|k^2\le C e^{-k^2/(4\xi^2)}$; the leading asymptotics are
-$A\sim(4\pi ch/k^2)e^{-k^2/4\xi^2}$ and $Bk^2\sim-(2\pi ch/\xi^2)e^{-k^2/4\xi^2}$
-(project derivation note, checked numerically at $\kappa=\xi=1$; \cref{app:history}). The longitudinal eigenvalue
+$|A(k)|,|B(k)|k^2\le C e^{-k^2/(4\xi^2)}$; the leading asymptotics as $k\to\infty$ are
+$A\sim(4\pi c\,h(z)/k^2)e^{-k^2/4\xi^2}$ and $Bk^2\sim-(2\pi c\,h(z)/\xi^2)e^{-k^2/4\xi^2}$, with $h(z)$ as
+in~\eqref{eq:thetaS}. They follow from Laplace's method at the endpoint $s=\xi^2$ (project derivation note, checked
+numerically at $\kappa=\xi=1$, \cref{app:history}; at $\kappa=0.7$, $\xi=0.85$ the ratios to the leading terms are
+$0.93$, $0.98$ for $A$ and $1.08$, $1.02$ for $Bk^2$ at $k=4,8$, and within $1\%$ of one at $k=16$;
+\texttt{manuscript/scripts/verify\_closed\_forms.py}). The longitudinal eigenvalue
 $A+Bk^2$ of $\hat K_L$ is negative beyond some $k_0$, so $\hat K_L$ is not positive semidefinite even though
 $\theta_L\ge0$ pointwise.
 
@@ -365,8 +368,9 @@ the balanced choice
 \end{equation}
 both truncation tails scale as $e^{-s_\ast^2}$ to leading order. (We write $s_\ast$ for the dimensionless accuracy
 parameter, called $s$ in the code, to avoid confusion with the Gaussian scale $s$.) On the $\kappa=1$ test
-configurations the measured ratios were $\epsilon_S/e^{-s_\ast^2}=0.34$--$0.79$ and $\epsilon_F/e^{-s_\ast^2}=0.18$--$0.44$
-(\cref{app:history}).
+configurations the measured ratios were $\epsilon_S/e^{-s_\ast^2}=0.34$--$0.79$ and $\epsilon_F/e^{-s_\ast^2}=0.18$--$0.44$,
+and fits of $\log\epsilon=a-cx^2$ on 44 static $\kappa=1$ configurations gave median rates $c=0.99$ (real space) and $0.97$
+(Fourier) (\cref{app:history,app:exp1}). These are checks on the unit kernel, not at the LJ+A state point.
 
 \paragraph{Cost balance.}
 At fixed $s_\ast$ the number of real-space pair images per particle is about $\frac{4\pi}{3}\rho r_c^3\propto\xi^{-3}$,
@@ -408,8 +412,10 @@ is real, symmetric and even in $\bk$. The implementation is in
 We distinguish four spatial error sources and state the norm in which each is measured.
 \begin{description}
 \item[Truncation] real-space cutoff $r_c$ and Fourier cutoff $k_c$; analysed through~\eqref{eq:balance}.
-\item[Mesh] aliasing and position-dependent transfer errors of the PPPM action; on the $\kappa=1$ tests the
-deconvolution error was at round-off and the alias terms carried $0.92$--$1.03$ of the mesh error (\cref{app:history}).
+\item[Mesh] aliasing and position-dependent transfer errors of the PPPM action, measured against the mesh-free Fourier
+sum over the same modes. On static $\kappa=1$ configurations the deconvolution error was negligible, the linear cross terms
+between principal term and aliases carried $0.996$--$1.003$ of the mesh error, and the error decayed as $h^p$ for
+$\eta\approx0.23$--$0.50$ (\cref{app:exp1}; an earlier study gave $0.92$--$1.03$, \cref{app:history}).
 \item[Operator] the total $\eop=\|\Gh-\Gref\|_2/\|\Gref\|_2$ (spectral norm), where $\Gref$ is the dense full-periodic
 lattice-sum matrix~\eqref{eq:Gamma} with the $k=0$ term retained (near images summed directly, far images by a
 tensor Chebyshev fit, brute-force self-check $9.4\times10^{-16}$ of the largest entry). Because the $k=0$ term is
@@ -544,7 +550,7 @@ fcc-lattice states at $\rho=0.75$, so $p$ was raised to 8. \Cref{tab:runs} lists
 \begin{table}[t]
 \centering\small
 \caption{Runs used in this paper (LJ+A, $N=256$, $\rho^*=0.75$, $\kT=1$, $m=1$, PPPM $\xi=0.85$, $s_\ast=4.1$, $p=8$,
-$M=24$ in every row). ``Canonical start'': random sequential addition (RSA, $d_{\min}=0.9$) or jittered fcc, followed by
+$M=24$ in every row, except the comparators named in the row: the tight PPPM set of the sensitivity test and the dense $\Gref$ of the pilot). ``Canonical start'': random sequential addition (RSA, $d_{\min}=0.9$) or jittered fcc, followed by
 scalar Langevin BAOAB ($\gamma=1$, conservative forces only, $\mathrm dt=0.005$) for 30--50 time units.
 Ranks are noise/damping (coupling).}
 \label{tab:runs}
@@ -569,12 +575,15 @@ local pilot (\cref{app:pilot}) & 0.005, 0.01 & 14/5 vs dense $\Gref$ & 1 state (
 \paragraph{Operator error.}
 \Cref{fig:operator}(a) and \cref{tab:operator} show $\eop$ for 42 representative states, 72 states visited by the
 equilibration runs (including frames at $t=0,0.25,1,5,20,50$, the frame of minimal pair distance and the frames of
-extreme Ritz values) and 38 frames of the dt and long-D chains. Over all 152 states $\eop\le7.6\times10^{-8}$, below the
+extreme Ritz values) and 38 frames of the dt chains and of long-D chains 113--115 (the long-D chains 121--128 were not checked on visited states). Over all 152 states $\eop\le7.6\times10^{-8}$, below the
 budget $2\times10^{-7}$; relative to the $k\neq0$ part the maximum is $1.60\times10^{-7}$. The error on Gaussian
-probe vectors and on the lowest 12 eigenvalues is of the same size ($\le8.9\times10^{-8}$). Structural checks on all
-states: symmetry residual $\le2\times10^{-17}$, momentum null-space residual $\le2\times10^{-15}$ for both $\Gh$ and
+probe vectors ($\le9.4\times10^{-8}$) and on the lowest 12 eigenvalues ($\le8.9\times10^{-8}$) is of the same size. Structural checks on all
+states: symmetry residual $\le2\times10^{-17}$, momentum null-space residual $\le2.4\times10^{-15}$ for both $\Gh$ and
 $\Gref$, literal FFT action versus independent dense assembly of $\Gh$ $\le8\times10^{-16}$, and $\lambda_{\min}(\Gh|_{\Ran\Pi})\ge4.58$
 (\cref{fig:operator}(c)). Two alternative PPPM sets also pass the 42-state test (\cref{tab:operator}).
+The reference here is the model matrix $\Gref$, not a dense assembly of $\Gh$. A component-by-component analysis of the
+same error (truncation, mesh, complete action) exists only for the unit kernel with $\kappa=1$ on static synthetic
+configurations (\cref{app:exp1}); it was not repeated at the LJ+A parameters.
 
 \begin{table}[t]
 \centering\small
@@ -601,8 +610,8 @@ representative, alt.\ 2 ($s_\ast=4.4$) & 42 & 0.6, 7, 30 & $1.4$--$1.6\times10^{
 152 configurations (42 representative, 72 equilibration-visited, 38 dt/long-D-visited); no error bars (each point is
 one configuration). (a) Spectral operator error $\eop$ against the full-periodic lattice-sum matrix, full norm and
 relative to the $k\neq0$ part; dashed: budget. (b) Lanczos ``strict'' error, i.e.\ the maximum over probe types
-(overall, $|k|=2\pi/L$ projection, lowest 3 and lowest 12 eigenmodes) and over all 152 states, relative to the input
-vector, against the dense matrix function of the same $\Gh$; dashed: budget/10. (c) Extreme eigenvalues of $\Gh$ on
+(overall, $|k|=2\pi/L$ projection, lowest 3 and lowest 12 eigenmodes) and over all 152 states, relative to the exact output $f(\Gh)\bv$ (or to its $k_{\min}$ or low-mode projection for the
+component errors), against the dense matrix function of the same $\Gh$; dashed: budget/10. (c) Extreme eigenvalues of $\Gh$ on
 $\Ran(\Pi)$; dotted: $k=0$ contribution $\rho\hat g(0)/3=10.35$. Data: \texttt{lj075\_results/verify\_\{representative,visited\_eq,visited\_dt\}\_A.json};
 script \texttt{manuscript/scripts/make\_figures.py}.}
 \label{fig:operator}
@@ -617,17 +626,18 @@ components to be $\le$ budget$/10=2\times10^{-8}$. On the representative states 
 visited state (a melting fcc start at $t=5$) rank 12 gives a $k_{\min}$ component of $2.88\times10^{-8}$, driven by the
 transverse (1,1,0) plane wave. The noise rank was therefore raised to 14 (\cref{fig:operator}(b)). At ranks 14/5 the
 worst Lanczos error over all 152 states at $\mathrm dt=0.005$ is $6.4\times10^{-10}$ (noise) and
-$2.8\times10^{-11}$ (damping). The dynamic runs used 12/5; their on-line monitor on actual inputs (every 200--500 steps)
-never exceeded $1.6\times10^{-10}$ overall and $1.8\times10^{-9}$ in the $k_{\min}$ component for the noise, $1.6\times10^{-11}$
-for damping and $3.5\times10^{-10}$ for the coupling maps. Replacing $\Gh$ by $\Gref$ in the O-step changes its output by
-$\le1.0\times10^{-8}$; the finite-time FDT residual (damping and noise from the same $\Gh$) is $\le5.5\times10^{-11}$.
+$2.8\times10^{-11}$ (damping). The dt-study runs used 12/5; their on-line monitor on actual inputs (every 200--500 steps; \texttt{dt\_study.json})
+never exceeded $1.6\times10^{-10}$ for the noise, $1.6\times10^{-11}$ for damping and $3.5\times10^{-10}$ for the coupling maps (overall
+norm); a $k_{\min}$-component maximum of $1.8\times10^{-9}$ for the noise is stated in \texttt{REPORT.md} but is not stored in any
+result file. Monitor values for the equilibration and long-D runs are only in the raw (unavailable) output. Replacing $\Gh$ by $\Gref$ in the O-step changes its output by
+at most $1.02\times10^{-8}$; the finite-time FDT residual (damping and noise from the same $\Gh$) is $\le5.5\times10^{-11}$.
 
 \paragraph{Physical effect of the operator error.}
 Two replicas were run in lock-step with the same noise from the same start, once with the production set and once with
 a tighter set ($\eop\le1.6\times10^{-8}$), at $\mathrm dt=0.005$ for 10 time units. The largest differences of time
 averages were $5.9\times10^{-5}$ ($T_{\rm kin}$, relative), $1.4\times10^{-5}$ ($U/N$), $1.3\times10^{-4}$ (MSD at
 $t=0.5$--$5$) and $4.5\times10^{-4}$ (pressure, absolute). The RMS position difference grew from $10^{-9}$ at $t=0.1$
-to $1$--$2\times10^{-2}$ at $t=10$. With $n=2$ these are observed maxima, not confidence intervals; the growth of the
+to $1.0$--$1.6\times10^{-2}$ at $t=10$. With $n=2$ these are observed maxima, not confidence intervals; the growth of the
 pathwise difference is not by itself evidence of a bias.
 
 \subsection{Time discretisation}\label{sec:numerics_time}
@@ -646,21 +656,23 @@ a single path pair and supports no statement on statistical equivalence. A stati
 \paragraph{(ii) Time-step dependence: design.}
 Four levels $\mathrm dt\in\{0.01,0.005,0.0025,0.00125\}$ were integrated in lock-step from the same state to $t_{\rm end}=10$
 with the coupling~\eqref{eq:coupling}, for 16 independent canonical starts (\cref{tab:runs}). Analysis is paired by
-replica; time averages use $[1,10]$; the VACF uses all origins on the common $0.01$ grid; the MSD uses all origins with
-centre-of-mass motion removed. The acceptance criteria were committed (commit \texttt{91e20d4}) before any dt-study run
-(\texttt{df43e2d}): 1\% relative for $T_{\rm kin}$, $U/N$, the RDF first-peak height and position and MSD at
+replica; time averages use $[1,10]$; the VACF uses every native step $t\ge1$ as an origin, with lags on the common $0.01$ grid; the MSD uses all origins with
+centre-of-mass motion removed. The acceptance criteria were committed (commit \texttt{91e20d4}) before the dt-study results were committed
+(\texttt{df43e2d}); that no run preceded the criteria is recorded only in the commit message: 1\% relative for $T_{\rm kin}$, $U/N$, the RDF first-peak height and position and MSD at
 $t=0.1,0.5,1,2,5$; $0.0075$ absolute for pressure; $E_g\le1\%$ for the RDF ($w=4\pi\rho r^2\dd r$ on $[0.5,L/2)$);
 $\max_{t\le2}|\Delta C|/C_{\rm ref}(0)\le1\%$ for the VACF. PASS means the entire 95\% interval lies inside the band, FAIL
 that it lies entirely outside, otherwise INCONCLUSIVE. The rule was: compare the finest two levels first, then accept the
 largest $\mathrm dt$ whose criteria all PASS. One amendment was made before any multi-replica analysis (Student-$t$ instead of
-bootstrap bounds for function-valued criteria); for the RDF norm the amended (debiased jackknife) bound is less strict, so the
-registered bootstrap verdict is the one used in the decision. A Bonferroni family-wise view over 36 tests was added
+bootstrap bounds for function-valued criteria). Only after the results were in (commit \texttt{80f8191}) was it found that for
+the RDF norm the amended (debiased jackknife) bound is less strict; the registered bootstrap verdict is therefore the one used in
+the decision, although \texttt{dt\_study.json} stores the amended verdict (PASS at 0.005). A Bonferroni family-wise view over 36 tests was added
 after an interim look and is secondary.
 
 \begin{table}[t]
 \centering\small
-\caption{Pre-registered dt comparison against $\mathrm{dt}=0.00125$ (16 coupled replicas; mean [95\% CI]; relative
-unless stated). P/I/F = PASS/INCONCLUSIVE/FAIL. Source: \texttt{lj075\_results/dt\_study.json}, \texttt{summary\_tables.md}.}
+\caption{Pre-registered dt comparison against $\mathrm{dt}=0.00125$ (16 coupled replicas; mean [95\% paired Student-$t$ CI];
+relative unless stated). RDF $E_g$ rows give one-sided 95\% upper bounds; the VACF row gives the maximum over $t\le2$ of
+pointwise lower and upper bounds, not a simultaneous band. P/I/F = PASS/INCONCLUSIVE/FAIL. Source: \texttt{lj075\_results/dt\_study.json}, \texttt{summary\_tables.md}.}
 \label{tab:dt}
 \resizebox{\textwidth}{!}{\begin{tabular}{lccc}
 \toprule
@@ -687,8 +699,9 @@ MSD(5) & $+3.44\%$ $[+1.03,+5.86]$ \textbf{F} & $+3.08\%$ $[-0.20,+6.36]$ I & $+
 \centering
 \includegraphics[width=\textwidth]{fig_dt_forest.pdf}
 \caption{Pre-registered scalar dt criteria, LJ+A, $N=256$; each level against $\mathrm{dt}=0.00125$, 16 coupled replicas
-(ranks 12/5, coupling 4), paired 95\% Student-$t$ intervals. Grey bands: registered tolerances. The VACF and RDF criteria
-are function-valued and listed in \cref{tab:dt}. Data: \texttt{lj075\_results/dt\_study.json}; script
+(ranks 12/5, coupling 4), paired 95\% Student-$t$ intervals. Grey bands: registered tolerances. Shown: $T_{\rm kin}$, $U/N$,
+pressure, MSD at five times; the VACF and RDF criteria (including the scalar RDF first-peak height and position) are listed in
+\cref{tab:dt} only. Data: \texttt{lj075\_results/dt\_study.json}; script
 \texttt{manuscript/scripts/make\_figures.py}.}
 \label{fig:dtforest}
 \end{figure}
@@ -701,31 +714,36 @@ for $t\le2$, MSD(0.1)), all three coarse levels PASS; a rule restricted to that 
 post hoc and is not used as validation.
 
 \emph{dt = 0.005 versus 0.01.} At $\mathrm{dt}=0.01$ the biases in $T_{\rm kin}$ ($-0.52\%$) and $U/N$ ($-0.16\%$) are resolved
-(intervals exclude zero) though within 1\%, and the VACF difference bound lies above its noise floor (lower bound $0.26\%$
-against a floor of $0.24\%$). At $\mathrm{dt}=0.005$ no interval of $T_{\rm kin}$ or $U/N$ excludes zero, and only the
+(intervals exclude zero) though within 1\%, and the VACF point statistic $E_V=0.52\%$ exceeds its sign-flip noise floor
+($0.24\%$); its pointwise lower bound is $0.26\%$. At $\mathrm{dt}=0.005$ no interval of $T_{\rm kin}$ or $U/N$ excludes zero, and only the
 pointwise VACF lower bound ($0.004\%$) is nonzero. The MSD point estimates at $t=0.5$--2 are larger at 0.01 than at 0.005
 but unresolved. We therefore keep $\mathrm{dt}=0.005$ as a \emph{provisional}, precautionary choice and regard
 $\mathrm{dt}=0.01$ as acceptable for static averages ($T$, $U/N$, RDF first peak) with the quoted biases. The configuration
 file records \texttt{dt\_validated = None}, \texttt{dt\_provisional = 0.005}.
 
 \emph{The MSD(5) FAIL.} The registered verdict for $\mathrm{dt}=0.0025$ is FAIL. A post-hoc diagnostic shows the same $\approx+3\%$
-offset for every coarse level against 0.00125, while the coarse levels agree with one another (0.005 vs 0.0025:
-$-0.35\%$ $[-3.6,+2.9]$; 0.01 vs 0.005: $-0.09\%$ $[-3.6,+3.4]$). This pattern is more consistent with a fluctuation of the
-reference level than with a dt effect, but this reading is post hoc and does not change the registered verdict.
+point estimate for every coarse level against 0.00125 (resolved only at 0.0025), while the differences among the coarse levels
+are small but not resolved (0.005 vs 0.0025: $-0.35\%$ $[-3.6,+2.9]$; 0.01 vs 0.005: $-0.09\%$ $[-3.6,+3.4]$); these intervals
+cannot exclude a 3\% difference. The pattern would be compatible with a fluctuation of the reference level, but this reading is post
+hoc, is not established, and does not change the registered verdict.
 
 \emph{Why the intervals are wide.} The median RMS velocity difference against the 0.00125 path is 0.025/0.057/0.12 at $t=1$
 and 0.10/0.20/0.40 at $t=2$ (for 0.0025/0.005/0.01), reaching 0.80--0.86 at $t=5$ (\cref{fig:dtstudy} in \cref{app:extra}).
-Pairing therefore loses its benefit after $t\approx1$--2, and long-lag quantities are nearly as noisy as unpaired runs. We
-do not attribute this decorrelation to a specific mechanism. Reaching a 1\% verdict would need roughly 25 replicas for MSD(0.5)
+At $t=5$ this is about 60\% of the value $\sqrt{2\kT/m}\approx1.41$ for fully independent velocities, so pairing loses much of
+its variance reduction after $t\approx1$--2; a paired-versus-unpaired variance comparison was not made. We do not attribute this
+decorrelation to a specific mechanism. Reaching a 1\% verdict would need roughly 25 replicas for MSD(0.5)
 and 80 for MSD(1), and resolving the pressure tolerance roughly 60--100.
 
 \paragraph{Long-time diffusion.}
 Eleven coupled two-level chains ($\mathrm{dt}=0.005$ and 0.01, 100 time units, frames every 0.01) give windowed MSD diffusion
 coefficients (\cref{fig:diffusion}). With a plateau rule fixed before the long runs were analysed (paired relative change between
-consecutive windows within $\pm2\%$ over the whole 95\% CI), no plateau is confirmed up to the longest window at either
-dt: $D_{\rm MSD}$ decreases by $1.9\%$ $[1.2,2.7]$ and then $1.1\%$ $[0.2,2.0]$ per window doubling up to $[4,8]$, and later
-steps have intervals of $\pm1.4$--$2.6\%$. The best current estimate is $D\approx0.0284$--$0.0286$ ($\mathrm{dt}=0.005$, windows
-$[4,8]$--$[16,32]$, each $\pm1.5$--$2.5\%$), not a converged long-time value. The paired dt effect $D(0.01)/D(0.005)-1$ is resolved
+consecutive windows within $\pm2\%$ over the whole 95\% CI, required for every step up to the longest window), no plateau
+is confirmed at either dt. At $\mathrm{dt}=0.005$, $D_{\rm MSD}$ decreases by $1.9\%$ $[1.2,2.7]$ and then $1.1\%$ $[0.2,2.0]$
+per window doubling up to $[4,8]$, and later steps have intervals of $\pm1.4$--$2.6\%$. At $\mathrm{dt}=0.01$ the
+decreases are $2.0\%$ $[1.3,2.8]$ and $1.6\%$ $[0.8,2.3]$, one later step meets the plateau condition ($+0.16\%$
+$[-1.11,+1.42]$) and the last does not ($-0.96\%$ $[-3.41,+1.50]$). The best current estimate is
+$D\approx0.0283$--$0.0286$ ($\mathrm{dt}=0.005$, windows $[4,8]$--$[16,32]$, 95\% half-widths $1.4$--$2.4\%$), not a converged
+long-time value. The paired dt effect $D(0.01)/D(0.005)-1$ is resolved
 only in the shortest window ($+0.80\%$ $[+0.05,+1.55]$).
 
 \begin{figure}[t]
@@ -733,8 +751,8 @@ only in the shortest window ($+0.80\%$ $[+0.05,+1.55]$).
 \includegraphics[width=\textwidth]{fig_diffusion.pdf}
 \caption{Windowed diffusion coefficient, LJ+A, $N=256$; 11 coupled two-level chains of 100 time units, frames every 0.01,
 analysis after $T_0=10$, ranks 12/5. (a) $D_{\rm MSD}$ from linear fits of the MSD on the indicated windows; 95\% Student-$t$
-intervals over chains. (b) Paired relative difference between the two time steps, 95\% CI; grey band: $\pm2\%$ plateau
-tolerance. Data: \texttt{lj075\_results/longD.json}; script \texttt{manuscript/scripts/make\_figures.py}.}
+intervals over chains. (b) Paired relative difference between the two time steps, 95\% CI; grey band: $\pm2\%$ for orientation
+only (there is no registered dt tolerance for $D$; the $\pm2\%$ plateau rule concerns window-to-window changes). Data: \texttt{lj075\_results/longD.json}; script \texttt{manuscript/scripts/make\_figures.py}.}
 \label{fig:diffusion}
 \end{figure}
 
@@ -761,8 +779,11 @@ Z(t)&=\frac{\langle\bv_i(t_0)\cdot\bv_i(t_0+t)\rangle}{\langle|\bv|^2\rangle},\q
 C_b(t)=\frac{\langle\bv_i(t_0)\cdot\bv_j(t_0+t)\rangle_{r_{ij}(t_0)\in b}}{\langle|\bv|^2\rangle},\\
 \mathbf j(\bk,t)&=\frac1N\sum_i\bv_i(t)e^{i\bk\cdot\bq_i(t)},\qquad
 C_{L}(k,t),\,C_T(k,t)\ \text{from}\ \langle j_{L,T}(\bk,t_0+t)\,j_{L,T}(\bk,t_0)^*\rangle,\\
-g_d(r,t)&=\frac{V}{n_0N(N-1)}\Big\langle\sum_{i\neq j}\frac{\delta(r-|\bq_j(t_0+t)-\bq_i(t_0)|)}{4\pi r^2}\Big\rangle .
+g_d(r,t)&=\frac{V}{N(N-1)}\Big\langle\sum_{i\neq j}\frac{\delta(r-|\bq_j(t_0+t)-\bq_i(t_0)|_{\rm mi})}{4\pi r^2}\Big\rangle_{t_0},
 \end{align}
+where $\langle\cdot\rangle_{t_0}$ is the average over time origins, $|\cdot|_{\rm mi}$ the minimum-image distance, and the
+$\delta$ function is realised as a histogram divided by the shell volume. Averages without subscript in $Z$, $C_b$ run over
+origins and particles (or pairs).
 The VCCF shells $b$ are $[0,1.59)$, $[1.59,2.55)$, $[2.55,L/2)$ (first and second minima of $g(r)$). $C_L$, $C_T$ are normalised
 mode by mode by their $t=0$ values and averaged over the shells $|\bk|=0.899$ ($k_1$, 3 modes), 1.271 ($k_2$, 6 modes) and
 1.798 ($k_4$, 3 modes). $g_d$ is evaluated at $t=0.1,0.5,1,2$; $g_d(r,0)=g(r)$ is shown only. Zero total momentum implies
@@ -773,11 +794,15 @@ positions; this is not a per-bin baseline and nothing is subtracted.
 The \emph{primary group} is the 16 four-level chains of the dt study: common grid 0.01, lags $\le2$, origins $t_0\in[1,8]$ every
 0.05. The \emph{secondary group} is the 11 long-D chains (dt 0.005 and 0.01 only): origins $t_0\in[10,98]$ every 0.25. The
 statistical unit is the replica; origins, particles and bins are averaged inside a replica. Curves are normalised by each
-level's own $t=0$ value, so curve verdicts are shape-only; amplitude is judged through the scalars $C(0)$, $C_L(0)$, $C_T(0)$.
+level's own $t=0$ value, so these curve verdicts are shape-only, with two exceptions: the ``vacf\_amp'' curve is normalised by
+the \emph{reference} level's $C(0)$, and the VCCF is normalised by $\langle|\bv|^2\rangle$, not by $C_b(0)$, so offsets of $C_b(0)$ enter
+its differences. Amplitude is otherwise judged through the scalars $C(0)$, $C_L(0)$, $C_T(0)$, whose intervals are per-scalar 97.5\%
+paired Student-$t$ intervals over replicas.
 
 \paragraph{Protocol and error definition.}
 The protocol was frozen before any difference was computed (v2, commit \texttt{c0434df}) and amended once (v3, commit
-\texttt{7484b7d}), also before any difference was computed: every sign lobe of the reference curve is judged on its own. For each
+\texttt{7484b7d}), also before any difference of the new observables was computed (the protocol itself lists two exceptions that
+were not blind: the $C(0)$-scaled VACF and $g(r)$, whose dt differences had been seen in the earlier dt study): every sign lobe of the reference curve is judged on its own. For each
 window, $E_{\rm sig}=\sup|\overline{\Delta}|/S$ with $S$ the amplitude of the lobe containing the point; the difference band is
 simultaneous at 97.5\% over the window (maximum of a re-studentised sign-flip max-$t$ over all $2^{n-1}$ sign vectors and
 Bonferroni-$t$), and the lobe amplitude band is simultaneous at 97.5\%, so both hold jointly at $\ge95\%$. A curve window PASSes
@@ -795,7 +820,8 @@ in figures.
 and distance-conditioned VCCF $C_b(t)$ for the three shells (bottom), LJ+A, $N=256$, primary group: 16 coupled replicas,
 dt $\in\{0.00125,0.0025,0.005,0.01\}$, ranks 12/5, origins $t_0\in[1,8]$. Upper rows: level means. Lower rows: paired differences
 against $\mathrm{dt}=0.00125$; shading: pointwise 95\% $t$-interval (not used for verdicts); dashed: simultaneous 97.5\% band of the
-whole-curve cell over $(0,2]$. Dotted line in the VCCF panels: all-pair mean $-Z/(N-1)$, not a per-bin baseline. Source:
+whole-curve cell over $(0,2]$. Dotted line in the VCCF panels: all-pair mean $-Z/(N-1)$; light dashed line: $-1/(N-1)$; neither is a per-bin baseline.
+Shading uses $n=16$; the dashed band is centred on the mean difference and is also drawn at $t=0$. Source:
 \texttt{lj075\_results/observable\_dt/\{vacf,vccf\}\_dt.png}, from \texttt{results.json} (protocol v3).}
 \label{fig:vacf_vccf}
 \end{figure}
@@ -825,9 +851,10 @@ $E_{\rm sig}=1.9\%$ $[0.14,4.6]$. All except $\langle|\bv|^2\rangle$ are INCONCL
 0.0025 and 0.005 give the same offset, which suggests a low reference mean rather than a dt trend; this is not established.
 \item \emph{FAIL cells.} Seven of 284 cells FAIL (5 of 224 window cells, 2 of 60 whole-curve cells), six involving
 $\mathrm{dt}=0.01$ and five in the secondary 0.01 vs 0.005 comparison (VCCF far shell for $t\in(0.2,0.5]$; $C_L(k_1)$ for
-$t\in(0.5,1]$; $C_L(k_2)$ for $t\in(1,2]$, and the corresponding whole-curve cells). All lie in windows whose reference lobes are
-unresolved. One primary FAIL (0.005 vs 0.00125, VCCF second shell, $t\le0.2$) is driven mainly by an offset of the shared reference
-at $t=0$ ($C_b(0)=-0.00437$, 2.5 replica-SE below $-1/(N-1)$). At this sample size the FAIL counts cannot separate chance from a dt
+$t\in(0.5,1]$; $C_L(k_2)$ for $t\in(1,2]$; and the whole-curve cells of the far shell and of $C_L(k_1)$). All lie in windows whose
+reference lobes are unresolved. One primary FAIL (0.005 vs 0.00125, VCCF second shell, $t\le0.2$) appears to be driven mainly by an
+offset of the shared reference at $t=0$ ($C_b(0)=-0.00437$, 2.5 replica-SE below $-1/(N-1)$, while all three coarser levels lie
+$4$--$5\times10^{-4}$ above it). At this sample size the FAIL counts cannot separate chance from a dt
 effect; the counts are reported as observed.
 \item \emph{No whole-curve deviation is resolved in the primary group; this is not equivalence.} The simultaneous upper bounds at
 $\mathrm{dt}=0.01$ are $1.0\times10^{-2}$ of $C(0)$ (VACF), $3.2\times10^{-3}$ of $\langle|\bv|^2\rangle$ (first-shell VCCF), 0.092
@@ -841,13 +868,17 @@ agreement of $D_{\rm GK}$ is not shown. The VACF zero crossing and the $g_d$ fir
 agreements between 0.01 and 0.005 only and cannot by themselves confer display support.
 \end{itemize}
 A decay of a correlation function to zero is not used as evidence that the model is correct, and long-lag differences are not
-attributed to chaos or sampling noise without a test that separates them. A burst design that would decide the $t\le0.5$ features
-(about 170 coupled bursts, 6.8 core-hours, sized at a true difference of zero) is described in \texttt{followup\_plan.json} and was not
-run.
+attributed to chaos or sampling noise without a test that separates them. A burst design for the $t\le0.5$ features (about 170
+coupled bursts, 6.8 core-hours) is described in \texttt{followup\_plan.json} and was not run. Its sizing assumes a true difference of
+zero, uses the lobe amplitude rather than its lower bound (about 207 rather than 167 bursts for the VACF dip), ignores the lobe-resolution
+requirement (the primary VACF dip lobe is unresolved, so that cell cannot PASS by more bursts alone), and grows to about 1000--1650
+bursts at the differences observed so far.
 
 \subsection{Cost}\label{sec:numerics_cost}
 
-All LJ+A timings below were measured on one virtual machine (Xeon, single thread, OpenBLAS/OMP/MKL threads = 1); we do
+All LJ+A timings below were recorded on the development virtual machine (host ``vm''; the CPU model, Xeon 2.80\,GHz, is recorded only
+for the pilot), single thread (OpenBLAS/OMP/MKL threads = 1). \Cref{tab:cost} reports CPU time per step; the dt comparison and the
+pilot report wall-clock step times. We do
 not combine them with timings from other machines, and queue or scheduling time never enters.
 
 \paragraph{Production step.}
@@ -861,7 +892,7 @@ one time unit costs $0.0075$ core-hours at $\mathrm{dt}=0.005$.
 \label{tab:cost}
 \resizebox{\textwidth}{!}{\begin{tabular}{lcccc}
 \toprule
-PPPM set & ranks & max $\eop$ (verification set) & ms/step, median [min, max] & core-h per time unit \\
+PPPM set & ranks & max $\eop$ (verification set)$^{a}$ & ms/step, median [min, max] & core-h per time unit \\
 \midrule
 $\eta$ 0.6779, $p$ 8 (production) & 12/5 & $7.3\times10^{-8}$ & 124.8 [122.4, 130.1] & 0.0069 \\
 $\eta$ 0.6779, $p$ 8 (production) & 14/5 & $7.6\times10^{-8}$ & 134.9 [133.2, 136.8] & 0.0075 \\
@@ -869,6 +900,8 @@ $\eta$ 0.6, $p$ 7 & 12/5 & $7.6\times10^{-8}$ & 117.9 [113.4, 124.8] & 0.0065 \\
 $s_\ast$ 4.4, $\eta$ 0.6, $p$ 7 & 12/5 & $1.6\times10^{-8}$ & 140.0 [132.4, 155.6] & 0.0078 \\
 \bottomrule
 \end{tabular}}
+\par\smallskip\raggedright\footnotesize $^{a}$ The two production rows differ only in the state set used for verification
+(representative for 12/5, equilibration-visited for 14/5), not in the operator.
 \end{table}
 
 \paragraph{dt = 0.01 versus 0.005.}
@@ -882,7 +915,7 @@ the two measurements are not mixed.
 The local pilot (\cref{app:pilot}) timed both O-steps for the same model and state on the same machine, in the same session:
 median integration-step time $0.208$ s (fast, PPPM + Lanczos 14/5) versus $1.129$ s (dense $\Gref$ with eigendecomposition) at
 $\mathrm{dt}=0.005$, and $0.204$ versus $1.034$ s at $\mathrm{dt}=0.01$; peak resident memory 121 MB versus 604 MB. The accuracy is not
-matched in the strict sense: the dense step is the model ($\eop=0$), the fast step carries $\eop\approx7\times10^{-8}$. The dense step
+matched in the strict sense: the dense step is the model ($\eop\approx0$; lattice-sum truncation $\sim10^{-11}$ per pair), the fast step carries $\eop\approx7\times10^{-8}$. The dense step
 times varied strongly (90th percentile 2.3--2.5 times the median), for reasons not investigated. A same-model comparison of dense,
 direct-sum and PPPM with operator construction, single $\Gamma\bv$ and full step timed separately, at matched accuracy and over
 $N=64$--1728, exists only for the earlier toy state point (\cref{app:history}); a size scan at the LJ+A state point has not been run.
@@ -916,12 +949,12 @@ at $t\ge0.5$, on pressure and on the long-time diffusion coefficient is unresolv
 confirmed plateau at the $\pm2\%$ level. Initial-state independence after burn-in is not verified (2 runs per start type). Most
 comparisons of the dynamical correlation functions at 1\% of lobe amplitude are INCONCLUSIVE; several resolved deviations at
 $\mathrm{dt}=0.01$ (kinetic temperature, transverse current at $k_1$) and seven FAIL cells are reported as observed without a
-mechanism. The dynamic runs used ranks 12/5, below the later recommendation 14/5; their own on-line Lanczos monitor stayed below
-$2\times10^{-9}$.
+mechanism. The dynamic runs used ranks 12/5, below the later recommendation 14/5; the on-line Lanczos monitor of the dt-study runs stayed below
+$4\times10^{-10}$ (overall norm); the equilibration and long-D monitors are not available.
 
 \paragraph{What is not addressed.}
 No size scan at the LJ+A state point (only $N=256$), so the $O(N\log N)$ scaling is supported only by earlier toy and ideal-gas
-tests at fixed rank (\cref{app:history}), where the adaptive-tolerance rank grew as $N^{0.34}$. No weak-order or strong-order
+tests at fixed rank (\cref{app:history}); on frozen random $\kappa=1$ configurations the adaptive-tolerance rank grew as $N^{0.34}$. No weak-order or strong-order
 convergence theorem is proved for the scheme with configuration-dependent matrix friction and Lanczos noise; the stationary
 distribution of the discrete scheme is not characterised. The influence function is not optimised. The cheaper PPPM alternative
 of \cref{tab:operator} is verified statically only. No HPC run has been performed: the HPC scripts were exercised by local
@@ -977,7 +1010,7 @@ $\pi\propto e^{-|\bp|^2/(2m\kT)}$. This is the same mechanism as in dissipative 
 \section{Additional figures for the LJ+A study}\label{app:extra}
 %======================================================================
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{dt_study_A.png}
 \caption{dt study, LJ+A, 16 coupled replicas, levels 0.00125--0.01, $t_{\rm end}=10$, ranks 12/5. Left: median over replicas of the
@@ -986,7 +1019,7 @@ and right panels show means only, without intervals; verdicts use \cref{tab:dt}.
 \label{fig:dtstudy}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{equilibration_A.png}
 \caption{Equilibration, LJ+A, 8 runs of 50 time units at $\mathrm{dt}=0.005$ (ranks 12/5), four start types (two runs each); dashed line:
@@ -1016,6 +1049,7 @@ and \cref{fig:currents_vanhove}. Source: \texttt{lj075\_results/observable\_dt/\
 \label{fig:secondary2}
 \end{figure}
 
+\clearpage
 %======================================================================
 \section{Local emulation of the HPC pilot}\label{app:pilot}
 %======================================================================
@@ -1028,16 +1062,18 @@ dense O-step = $\Gref$ with dense eigendecomposition; $\mathrm{dt}=0.005$ (200 s
 coupled; one thread.
 
 All workflow checks passed (three-segment restart bitwise equal to a continuous twin, lock refusal, checkpoint cadence, every-step
-frames, Lanczos monitor below $1.5\times10^{-11}$ against the budget $2\times10^{-7}$). Fast$-$dense differences at $t=1$: RMS
+frames; Lanczos monitor self-estimate below $4.9\times10^{-11}$ against the budget $2\times10^{-7}$). Fast$-$dense differences at $t=1$: RMS
 position $1.96\times10^{-8}$/$2.22\times10^{-8}$, RMS velocity $1.28\times10^{-7}$/$1.35\times10^{-7}$
 ($7.4\times10^{-8}$/$7.8\times10^{-8}$ of the RMS velocity) for $\mathrm{dt}=0.005$/0.01; $\max_t|\Delta T_{\rm kin}|\le1.3\times10^{-8}$.
 $|P(t)-P(0)|\le1.3\times10^{-13}$ in all four cases. The difference is dominated by the PPPM operator error (relative Frobenius
 $4.1$--$4.3\times10^{-8}$), not by Lanczos truncation. Fitted growth rates of the differences over $[0.1,1]$ (1.45--2.42) are fits,
-not Lyapunov exponents. Two monitor columns of the pilot give different Lanczos error estimates ($4.9\times10^{-11}$ versus
-$4.3\times10^{-12}$); which one is the noise-function error is \todo{resolve monitor column in \texttt{lj075\_hpc\_pilot.py}}; both are far
-below the budget.
+not Lyapunov exponents. The value $4.9\times10^{-11}$ is the maximum of the run monitor's self-estimates
+$\|f_r-f_{r+e}\|/\|f_{r+e}\|$ over four columns (noise and damping, full and $k_{\min}$-projected; \texttt{toy\_run.MON\_COLS});
+which column attains it cannot be recovered because the raw monitor files are not in the repository. The actual noise-function Lanczos
+error, against the dense matrix function of the same $\Gh$ on the monitor's own random input, is $\le4.3\times10^{-12}$ (damping
+$\le1.5\times10^{-11}$; \texttt{pilot\_results.json}, key \texttt{lanczos\_check}).
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.49\textwidth]{pilot_fast_vs_dense.png}
 \includegraphics[width=0.49\textwidth]{pilot_diagnostics.png}
@@ -1047,6 +1083,7 @@ No error bars (single path). Source: \texttt{hpc\_pilot/local\_20261010/pilot\_\
 \label{fig:pilot}
 \end{figure}
 
+\clearpage
 %======================================================================
 \section{Historical and auxiliary evidence (not the main model)}\label{app:history}
 %======================================================================
@@ -1055,7 +1092,7 @@ The following studies used other systems. They support the algorithmic component
 verification of the LJ+A state point. ``Config A/B'' in the Lanczos studies denotes two frozen random configurations, not the
 kernels.
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering\footnotesize
 \caption{Earlier studies and their scope.}
 \label{tab:history}
@@ -1066,9 +1103,9 @@ directory & system & main result (scope) \\
 \path{results/}, \path{figures/} & unit kernel, $\kappa=\xi=1$; random configs $N=30$, $L=6$ and $N=40$, $L=10$ & split error $3.6\times10^{-15}$ (scalar), $1.9\times10^{-15}$ (tensor); $\Gamma_{\rm full}$, $\Gamma_S$, $\Gamma_L$ PSD; periodic convolution with $\hat K_L$ not PSD; Fourier-truncated $\Gamma_L$ indefinite at small $k_c$ \\
 \path{parameter_selection_results/} & same, $\kappa=1$ & balanced rule $\xi r_c=k_c/(2\xi)=s_\ast$; $\epsilon_S/e^{-s_\ast^2}=0.34$--$0.79$, $\epsilon_F/e^{-s_\ast^2}=0.18$--$0.44$; mesh transfer error floors accuracy near $10^{-5}$ at $\eta=0.7$, $p=4$ \\
 \path{equal_accuracy_xi_results/} & same, plus $N=4000$ timing & at tolerance $10^{-7}$, one $\Gh$ action at $N=4000$: 332, 311, 532, 1366, 8145 ms for $\xi=0.5,0.7,1,1.4,2$ (machine not recorded) \\
-\path{mesh_error_decomposition_results/} & $\kappa=\xi=1$, 13\,195 mesh operators & deconvolution error at round-off; alias terms 0.92--1.03 of the mesh error; slopes $p$ to $p+1.5$ \\
+\path{mesh_error_decomposition_results/} & $\kappa=\xi=1$, 13\,195 mesh operators & deconvolution error at round-off; alias terms 0.92--1.03 of the mesh error; slopes $p-0.1$ to $p+1.55$ (superseded by \cref{app:exp1}) \\
 \path{radial_kernel_static_results/} & toy state $N=64$, $L=5.5$, $\kT=0.7$; kernels A and B & $\eop=1.27\times10^{-7}$ (LJ, A, $p=7$); $k=0$ share of $\|\Gamma\|$ 0.377; removing $k=0$ gives $\lambda_{\min}=-0.867$ \\
-\path{lanczos_fdt_results/} & unit kernel $\kappa=1$, $\rho=30/216$, frozen configs & median rank at $10^{-8}$: 25 (config A), 48 (config B); rank $\propto N^{0.34}$ up to $N=4000$; adaptive-tolerance cost $\propto N^{1.43}$; stopping rule $d_1\le$ tol/10 had no false stops \\
+\path{lanczos_fdt_results/} & unit kernel $\kappa=1$, $\rho=30/216$, frozen configs; PPPM $\xi=0.7$, $s_\ast=4.1$, $\eta=0.7$, $p=7$ & median rank at $10^{-8}$: 25 (config A), 48 (config B); rank $\propto N^{0.34}$ up to $N=4000$; adaptive-tolerance cost $\propto N^{1.43}$; stopping rule $d_1\le$ tol/10 had no false stops \\
 \path{lanczos_range_start_results/} & same & range start needs 1.13--1.43$\times$ more rank, 20--35\% slower; direct start adopted \\
 \path{fixed_rank_budget_results/} & same, $N\le16000$ & rank 40: max error $9.1\times10^{-4}$ at $N=16000$ against a rank-360 reference (thin margin to $10^{-3}$) \\
 \path{dynamics_results/} & ideal gas, $\kappa=1$, A--O--A, $N=64$--16000 & rank-40 vs dense $\le1.0\times10^{-9}$ (N=64); production step 0.79/6.35/37.4 s at $N=512$/4000/16000 (rank 40/16) \\
@@ -1079,7 +1116,34 @@ directory & system & main result (scope) \\
 \end{tabularx}
 \end{table}
 
-\begin{figure}[h]
+\begin{table}[htbp]
+\centering\scriptsize
+\caption{Parameters of the earlier studies (n/r: not recorded in the result files). ``Exp1'' is the newer $\kappa=1$ operator study of
+\cref{app:exp1}; the LJ+A production row is repeated for contrast. Amplitudes: kernel A $c=1.615$, kernel B $0.956$, unit kernel 1.}
+\label{tab:history_params}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{1.4cm}>{\raggedright\arraybackslash}p{1.3cm}l>{\raggedright\arraybackslash}p{1.3cm}>{\raggedright\arraybackslash}p{1.6cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{1.6cm}>{\raggedright\arraybackslash}p{1.4cm}}
+\toprule
+study & $N$ & $L$ / density & $\kT$ & potential & kernel, $\kappa$ & PPPM $\xi$ / $s_\ast$ / $\eta$ / $p$ & rank (n/d) & machine \\
+\midrule
+\path{results/}, \path{parameter_selection_results/} & 30, 40 (4000 timing) & $L=6$, 10 (30) & -- & static & unit, 1 & $\xi=1$ (scan 0.5--2), $s_\ast$ 2.5--5, $\eta$ 0.3--0.8, $p$ 2--8 & dense & n/r \\
+\path{equal_accuracy_xi_results/} & 30, 40, 4000 & as above & -- & static & unit, 1 & $\xi$ 0.5--2, per-tolerance search & -- & n/r \\
+\path{mesh_error_decomposition_results/} & 30, 40 & $L=6$, 10 & -- & static & unit, 1 & $\xi=1$, $k_c$ 4/6, $p$ 2--8 & -- & n/r \\
+\path{radial_kernel_static_results/} & 64 & $L=5.5$ & 0.7 & LJ, DW, uniform & A, B; 0.7 & 0.7 / 4.1 / 0.7 / 7 ($M=15$) & 40/16 & n/r \\
+\path{lanczos_fdt_results/}, \path{lanczos_range_start_results/}, \path{fixed_rank_budget_results/} & 128--16000 & $\rho=30/216$ & 1 & frozen random & unit, 1 & 0.7 / 4.1 / 0.7 / 7 & adaptive; 16--48 & n/r \\
+\path{dynamics_results/} & 64--16000 & $\rho=30/216$ & 1 & ideal gas & unit, 1 & 0.7 / 4.1 / 0.7 / 7 & 40/12, 48/16 & 1 thread, CPU n/r \\
+\path{toy_fixed_time_results/}, \path{toy_dynamics_results/} & 64 & $L=5.5$ & 0.7 & DW; LJ and DW & A (and B); 0.7 & 0.7 / 4.1 / 0.7 / 7 & 40/16 & n/r \\
+\path{cost_optimization_results/} & 64--4096 & $64/5.5^3$ & 0.7 & DW & A, B; 0.7 & A at $2\times10^{-7}$: 0.85 / 4.1 / 0.678 / 7 & 32/4 (A) & Xeon 2.30\,GHz, 1 thread \\
+\path{fft_vs_direct_results/} & 64--1728 & $64/5.5^3$ & 0.7 & DW & A, B; 0.7 & high-accuracy sets of the cost study & 32/5--64/5 (A) & Xeon 2.10\,GHz, 1 thread \\
+Exp1 (\path{exp1_results/}) & 30--256 & see \cref{tab:exp1_configs} & -- & static & unit, 1 & T5/T7/T9, \cref{tab:exp1_params} & dense & host ``vm'', 1 thread \\
+law B at LJ point & 256 & $\rho^*=0.75$ & 1 & LJ & B; 0.7 & 1.0 / 3.9 / 0.683 / 7 & -- & host ``vm'' \\
+\midrule
+LJ+A production & 256 & $\rho^*=0.75$ & 1 & LJ & A; 0.7 & 0.85 / 4.1 / 0.6779 / 8 ($M=24$) & 12/5 used, 14/5 rec. & host ``vm'' \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.45\textwidth]{hist_kappa1_splitting.png}
 \includegraphics[width=0.53\textwidth]{hist_toy_error_budget_xi.png}\\
@@ -1094,12 +1158,126 @@ rank versus $N$ for the unit kernel at $\rho=30/216$ (\texttt{lanczos\_fdt\_resu
 \label{fig:history}
 \end{figure}
 
-\paragraph{Kernel B (stopped).}
+\subsection{Kernel B (stopped)}\label{app:lawB}
 Law B, $g(r)=c_Br\,e^{-\kappa r}$ with $c_B=\gamma e^{\kappa r_{\rm ref}}/r_{\rm ref}$, has Gaussian-scale weight $w_\kappa$ instead of
 $\rho_\kappa$. At the LJ state point it was verified statically on 42 states ($\eop\le2.4\times10^{-8}$ full norm, $1.4\times10^{-7}$
 relative to the $k\neq0$ part, which exceeds its $5\times10^{-8}$ budget under that definition; a tighter set passes both). The campaign
 was stopped at the user's request; dynamic runs exist only as raw data and were not analysed.
 
+\clearpage
+\subsection{Operator-level verification on the unit kernel (Experiment 1, $\kappa=1$)}\label{app:exp1}
+
+This study is the most recent and most complete check of the spatial operator, but it is \emph{not} at the LJ+A state
+point: the kernel is the unit-amplitude $K_\kappa$ with $\kappa=1$, the configurations are static and synthetic, and the
+PPPM sets use $\xi=0.7$ (\cref{tab:exp1_params}), not the production set of \cref{sec:setup}. It supersedes the $\kappa=1$
+operator checks in \path{results/}, \path{parameter_selection_results/} and \path{mesh_error_decomposition_results/} as
+evidence for the error components of \cref{sec:errors}. Source: \path{exp1_results/} (\texttt{summary.json} and CSV files),
+scripts \texttt{exp1\_operator\_action.py}, \texttt{exp1\_plots.py}; at the time of writing these exist only on the remote
+branch (commits \texttt{7b8049f}--\texttt{dce9792}).
+
+\paragraph{Configurations and reference.}
+\Cref{tab:exp1_configs} lists the 44 configurations: the two original test boxes (A, B), three families at $N=128$ and
+$N=256$ at the density $n_A=30/216$ of case A (uniform, perturbed bcc/fcc lattice, clustered), and two box-length sets.
+$\Gref$ is the unsplit periodic lattice sum over images $|\br_{ij}+\bn L|\le R$, with nothing removed (so $k=0$ is included).
+Increasing $R$ from 15 to 45, the largest change relative to $R=45$ is $2.5\times10^{-12}$ at $R=30$, $2.0\times10^{-14}$ at
+$R=35$ and $4.3\times10^{-16}$ at $R=40$ (spectral norm relative to $\|\Gref\|_2$); $R=45$ is used.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Static configurations of Experiment 1 ($\kappa=1$, so $L=\kappa L$). $n=N/L^3$; $d_{\min}$ is the smallest periodic pair
+distance (range over seeds). Source: \texttt{exp1\_results/configs.csv}.}
+\label{tab:exp1_configs}
+\begin{tabular}{llrlllr}
+\toprule
+set & generation & $N$ & $L$ & $n$ & $d_{\min}$ & seeds \\
+\midrule
+A & uniform, seed 7 & 30 & 6 & 0.139 & 0.395 & 1 \\
+B & uniform, seed 13 & 40 & 10 & 0.040 & 0.589 & 1 \\
+U128 & uniform i.i.d. & 128 & 9.73 & 0.139 & 0.142--0.411 & 3 \\
+L128 & bcc $4^3$, $\sigma=0.1\,d_{\rm nn}$ & 128 & 9.73 & 0.139 & 1.208--1.366 & 3 \\
+C128 & clusters of 16, $\sigma_c=0.5$, $d\ge0.25$ & 128 & 9.73 & 0.139 & 0.251--0.255 & 3 \\
+U256 & uniform i.i.d. & 256 & 12.3 & 0.139 & 0.148 & 1 \\
+L256 & fcc $4^3$, $\sigma=0.1\,d_{\rm nn}$ & 256 & 12.3 & 0.139 & 1.011 & 1 \\
+C256 & clusters of 16, $\sigma_c=0.5$, $d\ge0.25$ & 256 & 12.3 & 0.139 & 0.259 & 1 \\
+box-$N$ & uniform i.i.d. & 64 & 4--16 (6 values) & 0.016--1.00 & 0.090--0.723 & 3 \\
+box-$n$ & uniform i.i.d. & 30--240 & 6--12 (4 values) & 0.139 & 0.055--0.924 & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering\small
+\caption{PPPM sets of Experiment 1, accepted at $\xi=0.7$ for relative tolerances $10^{-5}$, $10^{-7}$, $10^{-9}$ on cases A and B.
+$M$ is the next $2,3,5$-smooth mesh size with $h\le\eta_N\pi/k_c$. Source: \texttt{exp1\_results/action.csv}.}
+\label{tab:exp1_params}
+\begin{tabular}{lllllll}
+\toprule
+set & $\xi$ & $s_\ast$ & $r_c$ & $k_c$ & $\eta_N$, $p$ & $M$ (A / B / $N\!=\!128$ / $N\!=\!256$) \\
+\midrule
+T5 & 0.7 & 3.494 & 4.991 & 4.891 & 0.8, 6 & 12 / 20 / 20 / 24 \\
+T7 & 0.7 & 4.100 & 5.857 & 5.740 & 0.7, 7 & 16 / 27 / 27 / 36 \\
+T9 & 0.7 & 4.628 & 6.611 & 6.479 & 0.6, 8 & 24 / 36 / 36 / 45 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Error components, each measured alone.}
+(i) \emph{Split identity.} With $\theta_S$ in closed form and $\theta_L$ from its own $s$-integral, $\theta_S+\theta_L=e^{-\kappa r}/r$
+holds to $2.5\times10^{-15}$ for $\xi\in\{0.5,0.7,1,1.4,2\}$; at operator level, $\Gamma_S$ (real-space lattice sum) plus the
+mesh-free Fourier lattice sum of $\hat K_L$ (including $\bk=0$) reproduces $\Gref$ to $6.7\times10^{-15}$--$2.2\times10^{-13}$, a floor
+of the float64 Fourier lattice sum that is unchanged by 80-bit accumulation or refined quadrature of $A,B$.
+(ii) \emph{Truncation.} Fitting $\log E=a-cx^2$ with $x=\xi r_c$ or $k_c/(2\xi)$ gives median rates $c=0.99$ (real space, range
+$0.98$--$1.03$) and $0.97$ (Fourier, $0.96$--$1.00$) at $\xi=0.7$ and $\xi=1$, consistent with the $e^{-s_\ast^2}$ balance
+of~\eqref{eq:balance}; the algebraic prefactor of the operator-norm error is not that of the continuum tail.
+(iii) \emph{Mesh.} Against the mesh-free sum over the same modes, the mesh error decays as $h^p$ on $\eta\approx0.23$--$0.50$ (median
+fitted slopes $3.09$, $4.07$, $5.24$, $6.19$, $7.46$, $8.50$ for $p=3,\dots,8$) and faster on coarser meshes ($1.1$--$1.3\,p$); the
+asymptotic constant is not reached. Over eight random grid shifts the maximum error is at most $1.30$ times the RMS. In an exact
+alias decomposition the linear cross terms between the principal term and the aliases carry $0.996$--$1.003$ of the mesh error and the
+alias--alias term at most $0.9\%$; the deconvolution error vanishes to $5\times10^{-9}$ of it.
+
+\paragraph{The complete production action.}
+Applying the production spread--FFT--influence--gather code with the degree correction to the $3N$ unit vectors gives $\Gh$ column by
+column; it agrees with an independent mode-space assembly to $1.1\times10^{-15}$, so $\varepsilon_S$, $\varepsilon_F$ and
+$\varepsilon_{\rm mesh}$ telescope to the production error. Cases A and B meet their tolerances, as selected; uniform and clustered
+configurations at $N=128$, 256 meet them with margin; the perturbed lattices exceed them by up to a factor $2.5$ (T7:
+$1.94$--$2.11\times10^{-7}$ at $N=128$). The reason is the normalisation: at T7 the absolute error $\|\Gh-\Gref\|_2$ lies in
+$5.7\times10^{-8}$--$5.5\times10^{-7}$ over all 44 configurations, whereas $\|\Gref\|_2$ ranges over $0.72$--$35$, set by the closest pair.
+A tolerance relative to $\|\Gref\|_2$ calibrated on configurations with close pairs therefore does not transfer to configurations
+without them. Probe vectors at the lowest wave number $2\pi/L$ have relative action errors up to $14$ (longitudinal) and $18$
+(transverse) times the configuration's relative spectral error, because $\|\Gref X\|/(\|\Gref\|_2\|X\|)$ is small for such modes.
+$\Gh T_\alpha=0$ exactly in floating point, $\Gh$ is symmetric to $1.0\times10^{-16}$, and $\|\Gh-\Gref\|_2<\lambda_{\min}(\Gref|_{\Ran\Pi})$ in
+every case.
+
+\paragraph{Relevance for LJ+A.}
+The configuration dependence of the relative error is consistent with what was observed at the LJ+A point, where the $p=7$ set inherited
+from the toy state failed the budget on fcc-lattice states (\cref{sec:setup}); for this reason the LJ+A operator was verified on its own
+representative and visited states (\cref{sec:numerics_space}) rather than on transferred calibrations. Experiment 1 was not repeated at
+$\kappa=0.7$ with the production set.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{exp1_components.pdf}
+\caption{Experiment 1 ($\kappa=1$, unit amplitude, static configurations of \cref{tab:exp1_configs}; \emph{not} LJ+A). (a) Split identity at
+operator level against $\Gref$; line: pair-level error. (b) Real-space and (c) Fourier truncation at $\xi=0.7$ alone; curves: median over
+three seeds, bands: range over seeds; dotted: cases A, B; dashed: $e^{-x^2}$. (d) Mesh error against the mesh-free sum over the same modes,
+$k_c=5.74$, uniform $N=128$ seed 1; curves: RMS over eight grid shifts, bands: range over shifts. (e) Fitted slopes in $h$ (filled:
+$s_\ast=4.1$; open: $s_\ast=5.5$, five configurations). (f) Max over RMS error across eight grid shifts. Source:
+\texttt{exp1\_results/figures/exp1\_components.pdf} (commit \texttt{dce9792}).}
+\label{fig:exp1_components}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{exp1_action.pdf}
+\caption{Experiment 1: the production action $X\mapsto\Gh X$ against the unsplit full-periodic reference, $\kappa=1$, 44 static configurations;
+one point per configuration, no error bars. (a) Relative spectral error for T9, T7, T5 (filled: $N\le128$; open: $N=256$). (b) Absolute error
+against $\|\Gref\|_2$ at T7; diagonal: relative $10^{-7}$. (c) Probe errors at T7 through the production matvec; translations as
+operator-normalised residuals. (d) Absolute error against box length at T7, fixed $N=64$ (density varies) and fixed density $n_A$; realised $\eta$
+annotated. Source: \texttt{exp1\_results/figures/exp1\_action.pdf} (commit \texttt{dce9792}).}
+\label{fig:exp1_action}
+\end{figure}
+
+\clearpage
 \bibliographystyle{unsrtnat}
 \bibliography{references}
 

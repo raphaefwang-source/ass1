@@ -1,6 +1,8 @@
 # Evidence map for `main.tex`
 
-Repository `raphaefwang-source/ass1`, branch `claude/new-session-nmi9ux`, evidence frozen at HEAD `39bb4f6`.
+Repository `raphaefwang-source/ass1`, branch `claude/new-session-nmi9ux`. LJ+A evidence frozen at `39bb4f6`; Experiment 1
+(κ = 1) taken from the remote-only commits `7b8049f`–`dce9792` (not yet merged into the local branch, which carries the
+manuscript commit `e8ae9a3`). Revised 2026-10-13 after a full re-audit of every quoted number (see §9).
 Paths are relative to `ewald_longitudinal/` unless they start with `manuscript/`. "Commit" is the commit that added
 or last changed the result file (`git log -- <file>`). Configuration names refer to `toy_configs.py`.
 
@@ -31,8 +33,8 @@ point), **derived here** (computed for this draft by a script in `manuscript/scr
 | p raised 7 → 8 (p = 7 gave 2.04–2.15e-7 on fcc states) | `lj075_results/pppm_screen.json`; `toy_configs.py` comment | d43b322 | verified |
 | alternative sets (η 0.6 p 7 M 27; s 4.4 η 0.6 p 7 M 30) | `verify_representative_A_0.85_4.1_0.6_7.0.json`, `..._4.4_0.6_7.0.json` | b8ee2cc | verified (static only) |
 | rank 12 gives 2.88e-8 on `eq_A_fcc_s301_t5`; ranks 14/5 worst 6.4e-10 / 2.8e-11 | `verify_visited_eq_A.json`; `verification_runner.json` (entry `lj_rho0.75_kT1.0_A_prod_A_N256_dt0.005`) | 4559a5c, 80f8191 | verified |
-| on-line monitor of dynamic runs ≤ 1.6e-10 (noise overall), 1.8e-9 (k_min) | REPORT.md §2.2; `dt_study.json` (`lanczos_monitor_max`) | df43e2d | verified |
-| λ_min(Γ_h on RanΠ) 4.58–4.69; symmetry ≤ 2e-17; null ≤ 2e-15; literal vs dense ≤ 8e-16 | same verify JSONs (`lam_min`, `sym_resid`, `null_resid`, `literal_vs_dense`) | as above | verified |
+| on-line monitor of dt-study runs ≤ 1.6e-10 noise / 1.6e-11 damping / 3.5e-10 coupling (overall norm) | `dt_study.json` (`lanczos_monitor_max`) | df43e2d | verified; the k_min value 1.8e-9 is only in REPORT.md l.112 and is flagged as such; equilibration/long-D monitors only in raw files |
+| λ_min(Γ_h on RanΠ) 4.58–4.84; symmetry ≤ 2e-17; null ≤ 2.4e-15; literal vs dense ≤ 8e-16; probes ≤ 9.4e-8, low-12 eigenvalues ≤ 8.9e-8 | same verify JSONs (`lam_min`, `sym_resid`, `null_resid`, `literal_vs_dense`) | as above | verified |
 | operator-sensitivity differences (T 5.9e-5, U/N 1.4e-5, MSD ≤ 1.3e-4, P 4.5e-4) | `lj075_results/operator_sensitivity.json`; tight set in `lj075_operator_sensitivity.py:37` | f3797b1 | observed maxima, n = 2 |
 | Fig. 1 | `manuscript/figures/fig_operator_lanczos.pdf` from `manuscript/scripts/make_figures.py` | — | derived here (from cached JSON) |
 
@@ -45,7 +47,7 @@ point), **derived here** (computed for this draft by a script in `manuscript/scr
 | coarse levels agree with each other (post hoc) | `lj075_results/dt_diagnostic.json` | 29a9ee5 | post hoc only |
 | pathwise RMS dv 0.025/0.057/0.12 at t = 1 | `dt_study.json` (`pathwise_rms_dv`); REPORT.md §3.3 | df43e2d | verified |
 | replicas needed (25 for MSD(0.5), 80 for MSD(1), 60–100 for pressure) | REPORT.md §3.3–3.4 | 80f8191 | estimate |
-| D_MSD windows, plateau rule, dt ratio | `lj075_results/longD.json` | 199ab38 | **under-sampled** |
+| D_MSD windows, plateau rule, dt ratio; D ≈ 0.0283–0.0286 (dt 0.005, half-widths 1.4–2.4%); dt 0.01 has one plateau step | `lj075_results/longD.json` (`A/per_level/*/D_MSD`, `plateau`) | 199ab38 | **under-sampled** (REPORT §5.3 says 0.0284; corrected here) |
 | config records `dt_validated=None`, `dt_provisional=0.005` | `toy_configs.py` (`lj_rho0.75_kT1.0_A_prod`) | 64583cd | — |
 | Figs. 2, 3 | `manuscript/figures/fig_dt_forest.pdf`, `fig_diffusion.pdf` (script as above) | — | derived here |
 | Fig. 6 | copy of `lj075_results/dt_study_A.png` | df43e2d | — |
@@ -110,7 +112,8 @@ Protocol v3 (`results.json`) supersedes v2 (`results_v2.json`) for the observabl
 
 | item | in git | can be re-analysed here | note |
 |---|---|---|---|
-| LJ+A raw trajectories (`lj075_results/raw/`: dt study, long-D, equilibration, visited frames) | no (git-ignored) | **no** | SHA-256 in `observable_dt/inventory.json`; location TODO |
+| LJ+A raw trajectories (`lj075_results/raw/`: dt study, long-D, equilibration, visited frames) | no (git-ignored) | **no** | SHA-256 in `observable_dt/inventory.json`; not on this Mac (searched /Users/wfy666); produced on host "vm" |
+| Experiment 1 dense matrices (`exp1_results/raw/`) | no (git-ignored) | regenerable deterministically by the `reference` stage (≈16 min on 4 cores) | not run here |
 | LJ+A analysis caches (all JSON, `per_replica_observables.npz`) | yes | yes (figures, tables, re-binning of stored statistics) | — |
 | HPC pilot cases and logs | yes | yes | — |
 | `toy_dynamics_raw/` (76 files, 413.8 MB) | no | **no** | manifest `toy_dynamics_results/raw_trajectory_manifest.json` |
@@ -119,9 +122,38 @@ Protocol v3 (`results.json`) supersedes v2 (`results_v2.json`) for the observabl
 | `toy_fixed_time_results/paths/` (80 npz, 4.35 MB) | yes | yes | — |
 | real HPC/Slurm results | none exist | — | only local emulation |
 
-## 8. Open TODOs in the manuscript
+## 8. Experiment 1 (Appendix D.2, Tables 7–8, Figs. 12–13) — κ = 1, not LJ+A
+
+| claim | source (remote branch) | commit | status |
+|---|---|---|---|
+| reference ladder 2.5e-12 / 2.0e-14 / 4.3e-16 at R = 30/35/40 | `exp1_results/reference_ladder.csv`, `summary.json` | dce9792 | verified |
+| split identity 2.5e-15; operator-level 6.7e-15–2.2e-13 (Fourier lattice-sum floor) | `split_pairs.csv`, `split_operator.csv`, `fourier_precision.csv` | dce9792 | verified |
+| truncation rates median 0.99 / 0.97 | `fits_cutoffs.csv` | 7d4ddac | verified |
+| mesh slopes 3.09…8.50; linear alias cross terms 0.996–1.003; max/RMS over shifts ≤ 1.30 | `fits_mesh.csv`, `mesh_decomposition.csv`, `mesh.csv` | 7d4ddac | verified |
+| T5/T7/T9 action; lattices exceed tolerance by up to 2.5× (2.545); T7 absolute error 5.7e-8–5.5e-7; ‖Γ_ref‖ 0.72–35 | `action.csv`, `action_probes.csv` | dce9792 | verified (the remote LaTeX says 2.6; 2.5 is correct) |
+| Tables 7–8 | `paper/tab_exp1_configs.tex`, `paper/tab_exp1_params.tex` (generated by `exp1_plots.py`) | dce9792 | copied |
+| Figs. 11–12 | `paper/figures/exp1_{components,action}.pdf` | dce9792 | copied |
+
+Supersession: Exp1 supersedes `results/`, `parameter_selection_results/` and `mesh_error_decomposition_results/` as κ = 1
+evidence for the error components; it does not verify the LJ+A operator (different κ, amplitude and PPPM set).
+Run on host "vm", threads = 1; data stages at 39bb4f6/77e9a98 (dirty trees), precision stage at 7d4ddac (clean).
+
+## 9. Changes in the 2026-10-13 revision (from the re-audit)
+
+- g_d definition corrected to the code's normalisation (origin average once; minimum image), `lj075_observable_dt.py` `level_observables`.
+- λ_min range 4.58–4.84 (was 4.69); probe error ≤ 9.4e-8; null residual ≤ 2.4e-15; O-step Γ_h vs Γ_ref ≤ 1.02e-8; RMS Δq at t = 10 is 1.0–1.6e-2.
+- Fig. 1(b) normalisation: relative to the exact output f(Γ_h)v (or its projection), not the input (`lj075_verify.py` l.15–16, 178–181).
+- Long-D: D range 0.0283–0.0286, half-widths 1.4–2.4%; dt = 0.01 values given separately.
+- Wording: criteria committed before the *results* commit; RDF bound switch found after results (80f8191); MSD(5) coarse-level intervals not read as agreement; pairing-loss statement quantified; dt-effect band in Fig. 3(b) is not a tolerance; VACF row is pointwise; non-blind exceptions of the observable protocol; burst-sizing caveats; vacf_amp/VCCF are not shape-only.
+- Pilot monitor TODO resolved: 4.9e-11 = max of four monitor self-estimate columns (`toy_run.MON_COLS`); actual noise Lanczos error 4.3e-12, damping 1.5e-11 (`pilot_results.json` `lanczos_check`).
+- A(k), B(k) asymptotics written with h(z) (was the ambiguous `ch`), checked numerically at κ = 0.7, ξ = 0.85 by `scripts/verify_closed_forms.py`.
+- Cost section states CPU time (Table 4) vs wall-clock (dt comparison, pilot); only the pilot records the CPU model.
+- Added parameter table of all earlier studies (Table 6); kernel B moved to Appendix D.1; Exp1 is Appendix D.2.
+
+## 10. Open TODOs in the manuscript
 
 1. Author list and affiliations.
-2. Bibliographic data for Lyu & Lei PRL 131, 177301 (title to verify) and for the Zhao–Dou–Lei Landau preprint (arXiv id, year).
-3. Location of the raw LJ+A trajectories.
-4. Which `lj075_hpc_pilot.py` monitor column is the noise-function Lanczos error (4.9e-11 vs 4.3e-12).
+2. Bibliographic data: Lyu & Lei PRL (title/volume to verify); Zhao–Dou–Lei Landau preprint — title and authors confirmed from the
+   PDF (`~/Downloads/Project1HL/fast_particle_Landau_preprint.pdf`, version of 2026-10-05), arXiv id and year not in the PDF.
+3. Location of the raw LJ+A trajectories (searched this Mac: absent; produced on host "vm" under /home/user/ass1).
+4. Merge of the remote Experiment 1 commits with the local manuscript commit (paths are disjoint; no conflict expected).

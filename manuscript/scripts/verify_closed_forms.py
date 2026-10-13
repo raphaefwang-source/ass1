@@ -71,6 +71,17 @@ def main():
     for k, v in worst.items():
         print(f"{k:32s} max relative error {v:.2e}")
 
+    # Leading large-k asymptotics of the long-range coefficients (unit amplitude):
+    # A ~ 4 pi h(z)/k^2 e^{-k^2/4xi^2},  B k^2 ~ -2 pi h(z)/xi^2 e^{-k^2/4xi^2},  h(z) = e^{-z^2} - sqrt(pi) z erfc z
+    hz = np.exp(-z * z) - np.sqrt(np.pi) * z * special.erfc(z)
+    for k in (4.0, 8.0, 16.0):
+        q = lambda f: integrate.quad(f, 0, XI ** 2, limit=500, epsabs=0, epsrel=1e-12)[0]
+        A = np.pi ** 1.5 / 2 * q(lambda s: rho(s) * s ** -2.5 * np.exp(-k * k / (4 * s)))
+        B = -np.pi ** 1.5 / 4 * q(lambda s: rho(s) * s ** -3.5 * np.exp(-k * k / (4 * s)))
+        E = np.exp(-k * k / (4 * XI ** 2))
+        print(f"k = {k:4.0f}: A / leading = {A / (4 * np.pi * hz / k ** 2 * E):.3f}, "
+              f"B k^2 / leading = {B * k * k / (-2 * np.pi * hz / XI ** 2 * E):.3f}")
+
 
 if __name__ == "__main__":
     main()
