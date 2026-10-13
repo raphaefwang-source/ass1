@@ -1,0 +1,110 @@
+{
+ "runs": [
+  {
+   "stage": "configs",
+   "time": "2026-10-13T04:04:37+00:00",
+   "command": [
+    "/usr/local/bin/python3",
+    "exp1_operator_action.py",
+    "configs"
+   ],
+   "git": {
+    "commit": "39bb4f604772902ac28793b9a0d2b8af7c13a31d",
+    "dirty": true
+   },
+   "python": "3.11.15",
+   "numpy": "2.4.6",
+   "scipy": "1.17.1",
+   "host": "vm",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   },
+   "n_configs": 44
+  },
+  {
+   "stage": "configs",
+   "time": "2026-10-13T04:05:14+00:00",
+   "command": [
+    "/usr/local/bin/python3",
+    "exp1_operator_action.py",
+    "all",
+    "--workers",
+    "4"
+   ],
+   "git": {
+    "commit": "39bb4f604772902ac28793b9a0d2b8af7c13a31d",
+    "dirty": true
+   },
+   "python": "3.11.15",
+   "numpy": "2.4.6",
+   "scipy": "1.17.1",
+   "host": "vm",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   },
+   "n_configs": 44
+  },
+  {
+   "stage": "reference",
+   "time": "2026-10-13T04:07:43+00:00",
+   "command": [
+    "/usr/local/bin/python3",
+    "exp1_operator_action.py",
+    "all",
+    "--workers",
+    "4"
+   ],
+   "git": {
+    "commit": "39bb4f604772902ac28793b9a0d2b8af7c13a31d",
+    "dirty": true
+   },
+   "python": "3.11.15",
+   "numpy": "2.4.6",
+   "scipy": "1.17.1",
+   "host": "vm",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   },
+   "radii": [
+    15.0,
+    20.0,
+    25.0,
+    30.0,
+    35.0,
+    40.0,
+    45.0
+   ],
+   "n": 44
+  },
+  {
+   "stage": "quadrature",
+   "time": "2026-10-13T04:07:44+00:00",
+   "command": [
+    "/usr/local/bin/python3",
+    "exp1_operator_action.py",
+    "all",
+    "--workers",
+    "4"
+   ],
+   "git": {
+    "commit": "39bb4f604772902ac28793b9a0d2b8af7c13a31d",
+    "dirty": true
+   },
+   "python": "3.11.15",
+   "numpy": "2.4.6",
+   "scipy": "1.17.1",
+   "host": "vm",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  }
+ ]
+}
