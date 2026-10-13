@@ -12,9 +12,27 @@
   "not_this_model": "Lennard-Jones application parameters (lj075_*, toy_*: kernel amplitude, kappa, density, dt = 0.005) must not be mixed in"
  },
  "spatial_sets": {
-  "T5": {"xi": 0.7, "s": 3.493719027845567, "eta": 0.8, "p": 6, "nominal_tol": 1e-05},
-  "T7": {"xi": 0.7, "s": 4.100151562017953, "eta": 0.7, "p": 7, "nominal_tol": 1e-07},
-  "T9": {"xi": 0.7, "s": 4.627787054036341, "eta": 0.6, "p": 8, "nominal_tol": 1e-09}
+  "T5": {
+   "xi": 0.7,
+   "s": 3.493719027845567,
+   "eta": 0.8,
+   "p": 6,
+   "nominal_tol": 1e-05
+  },
+  "T7": {
+   "xi": 0.7,
+   "s": 4.100151562017953,
+   "eta": 0.7,
+   "p": 7,
+   "nominal_tol": 1e-07
+  },
+  "T9": {
+   "xi": 0.7,
+   "s": 4.627787054036341,
+   "eta": 0.6,
+   "p": 8,
+   "nominal_tol": 1e-09
+  }
  },
  "spatial_sets_note": "Accepted in test_equal_accuracy_xi.py on cases A and B only (equal_accuracy_xi_results/accepted_best.csv). Their measured scope after Experiment 1 is in exp1_results/parameter_set_status.json; the nominal tolerance is NOT a guarantee for other configurations.",
  "production": {
@@ -22,9 +40,9 @@
   "fine_spatial_set": "T9",
   "dt": 0.04291766180589189,
   "dt_source": "dynamics_results/params_small.json: dt = 0.2 m / median lambda_max(q0) over the 16 initial N = 64 ideal-gas configurations; the same physical dt is used at every N",
-  "noise_rank": null,
-  "damping_rank": null,
-  "ranks_source": "set by the Lanczos rank-selection stage (sec6_results/lanczos/rank_selection.json); null until that stage has run",
+  "noise_rank": 48,
+  "damping_rank": 10,
+  "ranks_source": "sec6_results/lanczos/rank_selection.json (2026-10-13T18:03:24, rule budgets.rank_rule)",
   "lanczos": {
    "start": "direct start q1 = Pi v / ||Pi v||",
    "reorthogonalisation": "full, two Gram-Schmidt passes per step",
@@ -38,11 +56,26 @@
  "budgets": {
   "noise_rel_action": 0.001,
   "damping_rel_action": 1e-06,
-  "noise_high_accuracy": [1e-06, 1e-08],
+  "noise_high_accuracy": [
+   1e-06,
+   1e-08
+  ],
   "reference_margin": 0.1,
-  "reference_margin_note": "a reference is accepted for a tolerance tol only if its non-adjacent self-differences (S vs S-20, S-40) are <= reference_margin * tol"
+  "reference_margin_note": "a reference is accepted for a tolerance tol only if its non-adjacent self-differences (S vs S-20, S-40) are <= reference_margin * tol",
+  "rank_margin_factor": 1.5,
+  "rank_robustness_tau": 5.0,
+  "rank_rule": "production rank = smallest r such that the sample-maximum relative action error over every tested case with an accepted reference stays <= budget / rank_margin_factor for all computed ranks >= r, both at the production dt and at the fixed-tau diagnostic tau = rank_robustness_tau (beyond the largest static dt*lambda_max observed); sample maxima, not bounds"
  },
- "n_scan": [128, 256, 512, 1024, 2048, 4000, 8000, 16000],
+ "n_scan": [
+  128,
+  256,
+  512,
+  1024,
+  2048,
+  4000,
+  8000,
+  16000
+ ],
  "experiment1": {
   "summary": "exp1_results/summary.json",
   "parameter_set_status": "exp1_results/parameter_set_status.json",

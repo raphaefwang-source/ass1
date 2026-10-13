@@ -25,6 +25,7 @@ def load():
 
 
 RANK_KEYS = ("noise_rank", "damping_rank", "ranks_source")
+RULE_KEYS = ("rank_margin_factor", "rank_robustness_tau", "rank_rule")      # selection post-processing only
 
 
 def config_hash(cfg=None, include_ranks=False):
@@ -34,6 +35,8 @@ def config_hash(cfg=None, include_ranks=False):
     if not include_ranks:
         for k in RANK_KEYS:
             cfg["production"].pop(k, None)
+        for k in RULE_KEYS:
+            cfg["budgets"].pop(k, None)
     blob = json.dumps({k: cfg[k] for k in ("model", "spatial_sets", "production", "budgets")}, sort_keys=True)
     return hashlib.sha256(blob.encode()).hexdigest()[:16]
 

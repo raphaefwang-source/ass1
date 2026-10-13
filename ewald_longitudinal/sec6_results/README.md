@@ -112,3 +112,117 @@ The affected directories are:
 They are therefore **not reused** as numbers. They stay in the repository unchanged for traceability, and the new
 stages recompute everything they report. Experiment 1 results (`exp1_results/`) match the current code and are the
 inputs of this configuration.
+
+## Stage 2: Lanczos accuracy and rank selection (former 4, 5, 8) (done)
+
+### Commands
+
+```bash
+python3 sec6_lanczos.py small --workers 4     # 54 s
+python3 sec6_lanczos.py large --workers 4     # 24 min on 4 cores
+python3 sec6_rank_select.py --write-config     # selection rule, writes the production ranks into sec6_config.json
+python3 sec6_lanczos.py report                 # tables and figure
+```
+
+- Log: `lanczos/run_lanczos.log`.
+- Raw per-case error curves, every rank, with Ritz data and provenance: `lanczos/raw/{small,large}_cases.json`.
+  These are committed.
+
+### Design
+
+**Functions.** Each recursion is evaluated for:
+
+- the noise action η = f_dt(Γ_h)Πz, with f_dt = √((m/β)(−expm1(−2dtλ/m)));
+- the damping action d = exp(−dtΓ_h/m)Πv.
+
+Both use the same Γ_h (production set T7), the same start vector and the same dt.
+
+**Lanczos.** Direct start, full two-pass reorthogonalisation, Π after every literal action. These are the unchanged
+`test_lanczos_fdt.lanczos`. One recursion per (Γ_h, vector) gives every rank and every dt, so ranks are never
+re-run. Both functions use the same Gaussian start vector; in equilibrium Πp has the same law as Πz.
+
+**Time step.**
+
+- Primary: the production dt = 0.0429177 from `sec6_config`.
+- Diagnostic only: fixed τ = dt·λ_max/m ∈ {0.2, 0.5, 2, 5}. Here λ_max is exact for the small cases. For the large
+  cases it is the top Ritz value of the reference recursion and is therefore an **estimate**.
+
+**Small cases** (dense reference on the same Γ_h).
+
+- The 14 Experiment 1 configurations: cases A and B, uniform, perturbed lattice and clustered at N = 128 (3 seeds
+  each), and one per family at N = 256. The densities are as in Experiment 1.
+- 4 Gaussian vectors each, 56 cases.
+- Reference: eigendecomposition on Range(Π).
+- The literal action agrees with the assembled Γ_h to ≤ 6.5e-16.
+
+**Large cases** (fixed density 30/216).
+
+- N = 512, 1024, 2048 and 8000: 1 position each. N = 4000 and 16000: 3 independent positions each.
+- 3 Gaussian vectors per position, 30 cases.
+- Position seeds `[20261014, N, pos]` and vector seeds `[20261015, 2, N, pos, k]` are separate.
+- Reference: the same recursion continued to S = 260 (N = 512) … 380 (N = 16000).
+- The reference is accepted for a tolerance tol only if ‖η_S − η_{S−20}‖ and ‖η_S − η_{S−40}‖ are both ≤ 0.1·tol.
+  Required ranks are then read only up to S − 40.
+- All 30 references are accepted for every budget, so nothing is unresolved:
+
+  | function | worst S−20 difference | worst S−40 difference |
+  |---|---|---|
+  | noise | 9.1e-13 | 3.1e-12 |
+  | damping | 3.4e-15 | 3.7e-15 |
+
+**Errors in coefficient space.** Errors against the reference are computed in the Lanczos coefficient space, using
+‖Q^TQ − I‖ ≤ 2.1e-15. They agree with vector-space errors to 1.2e-5 relative wherever the error is above 1e-12.
+
+**Negative Ritz values.** None, in 86 recursions and over every rank.
+
+**Spectral range.** dt·λ_max is 0.03–0.55 in the small cases (exact). In the large cases it is 0.38–3.83, estimated
+from Ritz values; 3.83 comes from one N = 4000 position with a close pair, λ_max ≈ 89.
+
+### Results
+
+The table gives the largest required rank over all tested cases at the production dt. The required rank is the
+smallest r after which the error stays ≤ tol for every computed rank. These are sample maxima, not bounds
+(`lanczos/rank_selection.json`, `required_ranks.csv`, `error_at_ranks.csv`).
+
+| budget | N=30 (A) | 40 (B) | 128 | 256 | 512 | 1024 | 2048 | 4000 | 8000 | 16000 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| noise 1e-3 | 9 | 15 | 22 | 23 | 18 | 21 | 24 | 32 | 34 | **42** |
+| damping 1e-6 | 4 | 4 | 5 | 5 | 5 | 5 | 5 | 6 | 6 | 6 |
+| noise 1e-6 | 19 | 36 | 75 | 85 | 46 | 59 | 71 | 94 | 114 | 140 |
+| noise 1e-8 | 25 | 48 | 111 | 128 | 65 | 82 | 103 | 134 | 169 | 216 |
+
+Notes on the table:
+
+- At N = 128 and 256 the maximum comes from the clustered configurations. The uniform configurations there need 13
+  and 16 for noise 1e-3.
+- The noise rank grows with N.
+- **Rank 40 is not sufficient at N = 16000.** At position 0 the sample maximum is 1.09e-3 > 1e-3.
+- The earlier "noise 40 / damping 16" choice was made at τ = 0.5, on one position per N. It is superseded.
+
+**Production ranks: noise 48, damping 10** (`sec6_config.json`).
+
+The rule is `budgets.rank_rule`: the smallest r such that the sample maximum stays ≤ budget/1.5 for all ranks ≥ r. It
+must hold both at the production dt and at the diagnostic τ = 5, which lies beyond the largest static dt·λ_max seen
+(3.83). Dynamics with close pairs reached dt·λ_max ≈ 10 in earlier large-N runs.
+
+| function | minimal at production dt | with margin, production dt | with margin, τ = 5 | chosen |
+|---|---|---|---|---|
+| noise | 42 | 47 | 48 | 48 |
+| damping | 6 | 6 | 10 | 10 |
+
+Sample maximum errors at the chosen ranks:
+
+- **Noise at rank 48, production dt:** 6.2e-4 (N = 16000), 2.8e-4 (8000), 1.3e-4 (4000), ≤ 6.0e-5 (N ≤ 2048).
+- **Damping at rank 10:** ≤ 3.4e-13 at the production dt, and ≤ 5.7e-7 at τ = 5.
+
+**Validated scope:**
+
+- static uniform configurations at ρ = 30/216 with N ≤ 16000;
+- the Experiment 1 families at N ≤ 256;
+- dt·λ_max up to 3.8 at the production dt, and up to the τ = 5 diagnostic.
+
+Larger N, or states with a larger spectral range, are not covered. Actual dynamics states are checked offline in
+stage 3.
+
+**High-accuracy cost.** At N = 16000 the noise needs rank 140 for 1e-6 and 216 for 1e-8. These are minimal ranks with
+no margin.
