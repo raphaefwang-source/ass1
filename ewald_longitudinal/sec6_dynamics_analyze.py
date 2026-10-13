@@ -321,6 +321,9 @@ def compare():
         R["momentum_max"] = dict(dense=float(max(np.max(dense[k]["dP"]) for k in ks)),
                                  hi=float(max(np.max(hi[k]["dP"]) for k in hi)) if hi else None,
                                  fine=float(max(np.max(fine[k]["dP"]) for k in fine)) if fine else None)
+        if hi:
+            R["prodrank_err_in_hi"] = dict(noise_max=float(max(np.nanmax(hi[k]["prodrank_noise_err"]) for k in hi)),
+                                           damp_max=float(max(np.nanmax(hi[k]["prodrank_damp_err"]) for k in hi)))
         R["lam_max_dense_range"] = [float(min(np.nanmin(dense[k]["lam_max"]) for k in ks)),
                                     float(max(np.nanmax(dense[k]["lam_max"]) for k in ks))]
         res[f"N{N}"] = R
@@ -368,6 +371,11 @@ def compare():
         st["tau_est_range"] = [float(a["meta"]["dt"] * x) for x in st["lam_max_est_range"]]
         st["momentum_max"] = dict(prod=float(np.max(a["dP"])), hi=float(np.max(b["dP"])))
         st["wall_s"] = dict(prod=float(a["wall_s"]), hi=float(b["wall_s"]))
+        st["prodrank_err_in_hi"] = dict(noise_max=float(np.nanmax(b["prodrank_noise_err"])),
+                                        noise_median=float(np.nanmedian(b["prodrank_noise_err"])),
+                                        damp_max=float(np.nanmax(b["prodrank_damp_err"])),
+                                        note="production ranks evaluated inside the hi recursion on the hi path, "
+                                             "relative to the hi result (same Gamma_h, vector, dt)")
         lg[f"N{N}_traj{a['meta']['traj']}"] = st
     if lg:
         res["large"] = lg

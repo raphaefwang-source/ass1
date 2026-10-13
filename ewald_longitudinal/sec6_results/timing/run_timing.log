@@ -1,0 +1,156 @@
+[21:24:52] pppm N=256: 0.788s (spread 0.15) actions 58 pairs 14949 pre 0.0s
+[21:25:32] direct N=256: 5.462s (spread 0.11) actions 58 pairs 1022122 pre 0.0s
+[21:25:41] pppm N=512: 1.235s (spread 0.29) actions 58 pairs 29787 pre 0.0s
+[21:27:24] direct N=512: 14.362s (spread 0.09) actions 58 pairs 2042224 pre 0.0s
+[21:27:41] pppm N=1024: 2.572s (spread 0.10) actions 58 pairs 59772 pre 0.1s
+[21:31:48] direct N=1024: 35.408s (spread 0.12) actions 58 pairs 4082686 pre 0.1s
+[21:32:32] pppm N=2048: 6.450s (spread 0.14) actions 58 pairs 119320 pre 0.1s
+[21:42:46] direct N=2048: 87.016s (spread 0.16) actions 58 pairs 8169312 pre 0.1s
+[21:43:55] pppm N=4000: 9.738s (spread 0.12) actions 58 pairs 233624 pre 0.1s
+[22:02:26] direct N=4000: 156.632s (spread 0.05) actions 58 pairs 15955968 pre 0.1s
+[22:04:43] pppm N=6000: 19.772s (spread 0.05) actions 58 pairs 350824 pre 0.2s
+[22:08:23] pppm N=8000: 31.944s (spread 0.07) actions 58 pairs 468413 pre 0.3s
+[22:13:34] pppm N=11000: 44.808s (spread 0.08) actions 58 pairs 641255 pre 0.4s
+[22:21:17] pppm N=16000: 66.106s (spread 0.06) actions 58 pairs 936295 pre 0.5s
+{'N': 64, 'assemble_median': 0.04942874200060032, 'eig_median': 0.008912659999623429}
+{'N': 128, 'assemble_median': 0.1982855730020674, 'eig_median': 0.04064694999760832}
+{'N': 256, 'assemble_median': 0.6065543639997486, 'eig_median': 0.2831961219999357}
+{'N': 512, 'assemble_median': 5.918344156998501, 'eig_median': 2.073868928000593}
+{'N': 1024, 'assemble_median': 51.55614836799941, 'eig_median': 18.711522854999203}
+{
+ "fits": {
+  "direct": {
+   "exponent": 1.2373404069145193,
+   "N_range": [
+    256,
+    4000
+   ],
+   "n_points": 5,
+   "note": "least-squares fit of log T on log N over the measured points only; describes this range, not an asymptotic complexity"
+  },
+  "pppm": {
+   "exponent": 1.1067537714297,
+   "N_range": [
+    256,
+    16000
+   ],
+   "n_points": 9,
+   "note": "least-squares fit of log T on log N over the measured points only; describes this range, not an asymptotic complexity",
+   "exponent_N_ge_2048": 1.2063848837325302
+  }
+ },
+ "rows": [
+  {
+   "method": "direct",
+   "N": 256,
+   "step_median_s": 5.462330751999616,
+   "spread_rel": 0.11479162585863377,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.0038478893982446917
+  },
+  {
+   "method": "direct",
+   "N": 512,
+   "step_median_s": 14.362285876000897,
+   "spread_rel": 0.08622129594766825,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.004496614281496549
+  },
+  {
+   "method": "direct",
+   "N": 1024,
+   "step_median_s": 35.40777835500012,
+   "spread_rel": 0.12125696695664795,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.004988537718911548
+  },
+  {
+   "method": "direct",
+   "N": 2048,
+   "step_median_s": 87.01562370799911,
+   "spread_rel": 0.16489961142095938,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.005572487961798225
+  },
+  {
+   "method": "direct",
+   "N": 4000,
+   "step_median_s": 156.63174306400106,
+   "spread_rel": 0.047796370273054445,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.004721208271610799
+  },
+  {
+   "method": "pppm",
+   "N": 256,
+   "step_median_s": 0.7875304139997752,
+   "spread_rel": 0.1534905114171309,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.0005547686634896035
+  },
+  {
+   "method": "pppm",
+   "N": 512,
+   "step_median_s": 1.234694295000736,
+   "spread_rel": 0.28742646778017555,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.0003865640921031807
+  },
+  {
+   "method": "pppm",
+   "N": 1024,
+   "step_median_s": 2.5722899659995164,
+   "spread_rel": 0.1013669168120185,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.00036240527125741627
+  },
+  {
+   "method": "pppm",
+   "N": 2048,
+   "step_median_s": 6.449949559999368,
+   "spread_rel": 0.13579150501119674,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.0004130553197884872
+  },
+  {
+   "method": "pppm",
+   "N": 4000,
+   "step_median_s": 9.737548909000907,
+   "spread_rel": 0.12453345152180044,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.0002935100864938012
+  },
+  {
+   "method": "pppm",
+   "N": 6000,
+   "step_median_s": 19.772203306001757,
+   "spread_rel": 0.050875127290207676,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.0003787989690281216
+  },
+  {
+   "method": "pppm",
+   "N": 8000,
+   "step_median_s": 31.943856014997436,
+   "spread_rel": 0.07159927342293147,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.0004442967124848799
+  },
+  {
+   "method": "pppm",
+   "N": 11000,
+   "step_median_s": 44.8077481390028,
+   "spread_rel": 0.07533686391756518,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.00043773743988493734
+  },
+  {
+   "method": "pppm",
+   "N": 16000,
+   "step_median_s": 66.1059766899998,
+   "spread_rel": 0.060349526801606324,
+   "gamma_calls": 58,
+   "T_over_NlogN": 0.0004268054464390384
+  }
+ ]
+}

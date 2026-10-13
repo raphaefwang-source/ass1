@@ -1,0 +1,122 @@
+[19:25:17] stage offline
+  offline prod_N256_traj00.npz: noise max 6.94e-08 damp max 3.11e-15 tau max 3.48
+  offline prod_N256_traj01.npz: noise max 6.62e-08 damp max 3.10e-15 tau max 7.13
+  offline prod_N256_traj02.npz: noise max 8.08e-08 damp max 4.05e-15 tau max 7.30
+  offline prod_N256_traj03.npz: noise max 5.35e-08 damp max 3.07e-15 tau max 4.63
+  offline prod_N256_traj04.npz: noise max 1.00e-07 damp max 3.13e-15 tau max 4.08
+  offline prod_N256_traj05.npz: noise max 1.07e-07 damp max 3.01e-15 tau max 5.45
+  offline prod_N256_traj06.npz: noise max 9.89e-08 damp max 3.13e-15 tau max 7.54
+  offline prod_N256_traj07.npz: noise max 8.42e-08 damp max 3.07e-15 tau max 3.48
+  offline prod_N64_traj00.npz: noise max 7.99e-12 damp max 2.39e-15 tau max 3.09
+  offline prod_N64_traj01.npz: noise max 2.00e-12 damp max 2.33e-15 tau max 4.21
+  offline prod_N64_traj02.npz: noise max 1.26e-12 damp max 2.31e-15 tau max 1.42
+  offline prod_N64_traj03.npz: noise max 3.36e-11 damp max 2.44e-15 tau max 2.20
+  offline prod_N64_traj04.npz: noise max 7.42e-11 damp max 2.23e-15 tau max 1.56
+  offline prod_N64_traj05.npz: noise max 1.65e-11 damp max 2.41e-15 tau max 5.19
+  offline prod_N64_traj06.npz: noise max 2.93e-12 damp max 2.26e-15 tau max 3.08
+  offline prod_N64_traj07.npz: noise max 1.18e-11 damp max 2.35e-15 tau max 1.78
+  offline prod_N64_traj08.npz: noise max 5.15e-12 damp max 2.40e-15 tau max 1.69
+  offline prod_N64_traj09.npz: noise max 1.72e-12 damp max 2.31e-15 tau max 3.15
+  offline prod_N64_traj10.npz: noise max 1.06e-11 damp max 2.83e-15 tau max 3.43
+  offline prod_N64_traj11.npz: noise max 4.07e-12 damp max 2.30e-15 tau max 1.22
+  offline prod_N64_traj12.npz: noise max 2.37e-12 damp max 2.47e-15 tau max 3.46
+  offline prod_N64_traj13.npz: noise max 3.79e-11 damp max 2.38e-15 tau max 3.32
+  offline prod_N64_traj14.npz: noise max 1.44e-11 damp max 2.30e-15 tau max 7.81
+  offline prod_N64_traj15.npz: noise max 3.33e-12 damp max 2.59e-15 tau max 2.88
+  offline prod_N64_traj16.npz: noise max 1.83e-12 damp max 2.37e-15 tau max 2.35
+  offline prod_N64_traj17.npz: noise max 1.38e-11 damp max 2.38e-15 tau max 1.65
+  offline prod_N64_traj18.npz: noise max 6.43e-12 damp max 2.39e-15 tau max 1.95
+  offline prod_N64_traj19.npz: noise max 4.99e-12 damp max 2.40e-15 tau max 3.14
+  offline prod_N64_traj20.npz: noise max 1.16e-11 damp max 2.84e-15 tau max 6.48
+  offline prod_N64_traj21.npz: noise max 2.44e-12 damp max 2.40e-15 tau max 8.81
+  offline prod_N64_traj22.npz: noise max 9.15e-12 damp max 2.30e-15 tau max 2.46
+  offline prod_N64_traj23.npz: noise max 3.54e-11 damp max 2.34e-15 tau max 2.15
+  offline prod_N64_traj24.npz: noise max 2.53e-12 damp max 2.56e-15 tau max 2.85
+  offline prod_N64_traj25.npz: noise max 1.44e-12 damp max 2.48e-15 tau max 2.25
+  offline prod_N64_traj26.npz: noise max 1.90e-12 damp max 2.42e-15 tau max 1.90
+  offline prod_N64_traj27.npz: noise max 3.69e-12 damp max 2.27e-15 tau max 2.77
+  offline prod_N64_traj28.npz: noise max 7.16e-12 damp max 2.50e-15 tau max 5.09
+  offline prod_N64_traj29.npz: noise max 1.56e-11 damp max 2.23e-15 tau max 0.80
+  offline prod_N64_traj30.npz: noise max 3.84e-11 damp max 2.57e-15 tau max 3.92
+  offline prod_N64_traj31.npz: noise max 1.93e-12 damp max 2.32e-15 tau max 1.91
+[19:27:11] stage offline done in 113 s
+[19:27:12] stage compare
+  dense_T7_N64_traj00: 9s
+  hi_T7_N64_traj00: 89s
+  dense_T7_N64_traj01: 9s
+  hi_T7_N64_traj01: 87s
+  dense_T7_N64_traj02: 10s
+  hi_T7_N64_traj02: 89s
+  dense_T7_N64_traj03: 11s
+  hi_T7_N64_traj03: 81s
+  dense_T7_N64_traj04: 8s
+  hi_T7_N64_traj04: 77s
+  dense_T7_N64_traj05: 9s
+  hi_T7_N64_traj05: 76s
+  dense_T7_N64_traj06: 8s
+  hi_T7_N64_traj06: 76s
+  dense_T7_N64_traj07: 8s
+  hi_T7_N64_traj07: 78s
+  dense_T7_N64_traj08: 9s
+  hi_T7_N64_traj08: 72s
+  dense_T7_N64_traj09: 8s
+  hi_T7_N64_traj09: 72s
+  dense_T7_N64_traj10: 9s
+  hi_T7_N64_traj10: 72s
+  dense_T7_N64_traj11: 8s
+  hi_T7_N64_traj11: 71s
+  dense_T7_N64_traj12: 8s
+  hi_T7_N64_traj12: 72s
+  dense_T7_N64_traj13: 8s
+  hi_T7_N64_traj13: 72s
+  dense_T7_N64_traj14: 8s
+  hi_T7_N64_traj14: 73s
+  dense_T7_N64_traj15: 8s
+  hi_T7_N64_traj15: 73s
+[19:33:12] stage compare done in 360 s
+[19:33:13] stage compare
+  dense_T7_N256_traj00: 139s
+  hi_T7_N256_traj00: 381s
+  dense_T7_N256_traj01: 140s
+  hi_T7_N256_traj01: 383s
+  dense_T7_N256_traj02: 147s
+  hi_T7_N256_traj02: 307s
+  dense_T7_N256_traj03: 149s
+  hi_T7_N256_traj03: 375s
+[19:45:50] stage compare done in 757 s
+[19:45:51] stage spatial
+  dense_T9_N64_traj00: 10s
+  dense_T9_N64_traj01: 10s
+  dense_T9_N64_traj02: 10s
+  dense_T9_N64_traj03: 10s
+  dense_T9_N64_traj04: 10s
+  dense_T9_N64_traj05: 10s
+  dense_T9_N64_traj06: 10s
+  dense_T9_N64_traj07: 10s
+  dense_T9_N64_traj08: 10s
+  dense_T9_N64_traj09: 10s
+  dense_T9_N64_traj10: 11s
+  dense_T9_N64_traj11: 11s
+  dense_T9_N64_traj12: 10s
+  dense_T9_N64_traj13: 10s
+  dense_T9_N64_traj14: 11s
+  dense_T9_N64_traj15: 11s
+[19:46:34] stage spatial done in 43 s
+[19:46:35] stage dtstudy
+  dt traj 0: final T {2: [1.1583683828161293, 0.993042090763946, 0.882275092254885], 1: [1.0481595588322203, 0.9451412576096735, 0.8592225485965546]}
+  dt traj 1: final T {2: [1.163326922351897, 0.7442901071306756, 0.9819975212598206], 1: [1.0355779957586455, 0.8353585911901794, 1.0731948056388472]}
+  dt traj 2: final T {2: [0.6387652570053057, 0.8320539524910424, 1.2138974937151294], 1: [0.6426084391679838, 0.9885647292580285, 1.0048475640505177]}
+  dt traj 3: final T {2: [0.8398529478010271, 1.1978485644419068, 1.0511164636388046], 1: [0.8600383662718603, 1.1680478439946569, 1.0427484107055098]}
+  dt traj 4: final T {2: [1.0960786161865221, 1.205527837346314, 0.8020438476189105], 1: [0.9844361247837239, 1.129716473817025, 1.0691049570859088]}
+  dt traj 5: final T {2: [1.0623661485922609, 1.0522518218611663, 0.997094068309435], 1: [1.0338135918426845, 0.912060056484752, 0.9704770981585514]}
+  dt traj 6: final T {2: [1.0536551842735415, 1.213245777495286, 1.1383019816749123], 1: [0.931693302625474, 1.1930895999925784, 1.1305049104134133]}
+  dt traj 7: final T {2: [0.9182945479029423, 0.8394094352157013, 0.9191113484769055], 1: [0.9374034564475631, 0.8982138204641125, 0.9759410043865326]}
+  dt traj 8: final T {2: [1.078664972244775, 0.8281056755430339, 1.3431762943151584], 1: [1.1086899322654118, 0.758726313060661, 1.386784769497436]}
+  dt traj 9: final T {2: [0.8074291141713409, 1.0269910207193629, 0.8892109525960223], 1: [0.7388217913956396, 1.0932926665981064, 0.8552922452722755]}
+  dt traj 10: final T {2: [1.0178823627791003, 1.0683991971756508, 0.693178873309347], 1: [1.0415179393255232, 1.0949863768297612, 0.7460515987971472]}
+  dt traj 11: final T {2: [1.3780521416204112, 1.1616741842277651, 1.123305770463844], 1: [1.3513566636902952, 1.281854714643012, 1.058555349323949]}
+  dt traj 12: final T {2: [1.0792340241677898, 0.9364406920529441, 0.8482274024898445], 1: [0.9611709570456403, 1.001414008619521, 0.8766952256251905]}
+  dt traj 13: final T {2: [1.0273548538985007, 0.8490450959906259, 1.036684670298838], 1: [1.0363966517208323, 0.7922996503549926, 1.0981951878855776]}
+  dt traj 14: final T {2: [0.8802220580642297, 1.15044649016265, 0.8444977051859505], 1: [0.8305992209780705, 0.990327764735443, 0.7921890852855339]}
+  dt traj 15: final T {2: [1.0730516226768145, 0.9147123316293562, 0.6765366437037671], 1: [1.2157190388554535, 0.7398773363609026, 0.7468509087392357]}
+[19:48:22] stage dtstudy done in 107 s

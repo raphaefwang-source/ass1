@@ -21,6 +21,8 @@ COMP = [("setup", ("setup_pairs", "setup_weights", "setup_stencil", "setup_degre
         ("tridiag + f, combine, vectors", ("damping_tridiag_feval", "noise_tridiag_feval", "damping_combine",
                                            "noise_combine", "damping_vector", "noise_vector"), "#1baf7a"),
         ("updates", ("q_half", "update"), "#52514e")]
+LABEL = {"Gamma_h real-space": r"$\Gamma_h$ real space", "Gamma_h PPPM": r"$\Gamma_h$ mesh (spread, FFT, gather)",
+         "tridiag + f, combine, vectors": "tridiag, $f$, combine"}
 
 
 def main():
@@ -75,7 +77,7 @@ def main():
     # figure
     plt.rcParams.update({"font.size": 8, "axes.spines.top": False, "axes.spines.right": False, "axes.grid": True,
                          "grid.color": "#e4e3df", "legend.frameon": False, "savefig.dpi": 200})
-    fig, axs = plt.subplots(1, 3, figsize=(7.2, 2.5), constrained_layout=True)
+    fig, axs = plt.subplots(1, 3, figsize=(7.2, 2.6), constrained_layout=True, gridspec_kw={"width_ratios": [1, 1, 1.5]})
     for m, col, mk in (("pppm", "#2a78d6", "o"), ("direct", "#eb6834", "s")):
         rr = [r for r in out_rows if r["method"] == m]
         if not rr:
@@ -89,7 +91,8 @@ def main():
     axs[0].set_yscale("log")
     axs[0].set_xlabel("$N$")
     axs[0].set_ylabel("time per step [s] (median, min-max)")
-    axs[0].legend(loc="upper left", fontsize=6.5)
+    axs[0].text(240, 140, "direct sum", color="#eb6834", fontsize=7)
+    axs[0].text(2500, 2.2, "PPPM", color="#2a78d6", fontsize=7)
     axs[0].set_title("full step, 1 thread", loc="left")
     axs[1].set_xscale("log")
     axs[1].set_xlabel("$N$")
@@ -101,13 +104,15 @@ def main():
     bottom = np.zeros(len(rr))
     for lab, keys, col in COMP:
         v = np.array([r[lab] / r["step_median_s"] for r in rr])
-        ax.bar(x, v, bottom=bottom, color=col, width=0.75, label=lab, edgecolor="white", linewidth=0.5)
+        ax.bar(x, v, bottom=bottom, color=col, width=0.75, label=LABEL.get(lab, lab), edgecolor="white", linewidth=0.5)
         bottom += v
     ax.set_xticks(x)
     ax.set_xticklabels([str(r["N"]) for r in rr], rotation=60, fontsize=6)
     ax.set_ylabel("fraction of step (pppm)")
-    ax.set_title("cost breakdown (median step)", loc="left")
-    ax.legend(loc="lower left", fontsize=5.4)
+    ax.set_ylim(0, 1)
+    ax.set_title("cost breakdown, PPPM", loc="left")
+    h, l = ax.get_legend_handles_labels()
+    ax.legend(h[::-1], l[::-1], loc="center left", bbox_to_anchor=(1.01, 0.5), fontsize=6)
     fig.savefig(OUT / "fig_timing.png")
     print(json.dumps(dict(fits=fits, rows=[{k: r[k] for k in ("method", "N", "step_median_s", "spread_rel",
                                                                "gamma_calls", "T_over_NlogN")} for r in out_rows]),

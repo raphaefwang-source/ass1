@@ -329,14 +329,40 @@ def stage_dense(args):
                                                          machine=dict(cpu=cpu_model())), indent=1) + "\n")
 
 
+def stage_spatial_check(args):
+    """Spatial accuracy proxy at every timed N (no dense reference possible at large N): relative action difference
+    between the production spatial set and the fine set on the timing state, ||(G_prod - G_fine) X|| / ||G_fine X||,
+    for 3 projected Gaussian vectors X. This is a refinement check, not an error against the exact operator."""
+    pr = sec6_config.production()
+    rows = []
+    for N in args.N or N_TIME:
+        bp, bf = Box(N, pr["spatial_set"]), Box(N, pr["fine_spatial_set"])
+        q, p = initial_state(N, bp.L, STATE_TRAJ)
+        qh = (q + 0.5 * pr["dt"] / MASS * p) % bp.L
+        gp, gf = bp.gamma(qh), bf.gamma(qh)
+        diffs = []
+        for k in range(3):
+            X = proj(np.random.default_rng([20261018, N, k]).normal(size=3 * N))
+            a, b = proj(gp.matvec(X)), proj(gf.matvec(X))
+            diffs.append(float(np.linalg.norm(a - b) / np.linalg.norm(b)))
+        rows.append(dict(N=N, prod=bp.describe(), fine=bf.describe(), rel_action_diff=diffs, max=max(diffs)))
+        print(f"N={N}: prod M={bp.mesh.M} fine M={bf.mesh.M} rel action diff max {max(diffs):.2e}", flush=True)
+    OUT.mkdir(parents=True, exist_ok=True)
+    (OUT / "spatial_check.json").write_text(json.dumps(dict(
+        provenance=sec6_config.provenance(SCRIPT), state="timing state (initial_state index 900) at q_half of step 1",
+        note="relative action difference production vs fine spatial set; a refinement indicator, not an exact error",
+        rows=rows), indent=1) + "\n")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("stage", choices=["direct_accuracy", "time", "dense", "report"])
+    ap.add_argument("stage", choices=["direct_accuracy", "time", "dense", "spatial_check", "report"])
     ap.add_argument("--N", type=int, nargs="*")
     ap.add_argument("--method", nargs="*", default=["pppm", "direct"])
     ap.add_argument("--fresh", action="store_true")
     args = ap.parse_args()
     {"direct_accuracy": stage_direct_accuracy, "time": stage_time, "dense": stage_dense,
+     "spatial_check": stage_spatial_check,
      "report": lambda a: __import__("sec6_timing_report").main()}[args.stage](args)
 
 

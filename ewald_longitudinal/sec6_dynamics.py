@@ -396,7 +396,9 @@ def main():
         jobs = []
         for N in args.N or [4000, 16000]:
             for k in (args.trajs if args.trajs is not None else [0]):
-                for m in ("prod", "hi"):
+                if N >= 16000 and k > 0:                       # one representative trajectory at N = 16000
+                    continue
+                for m in ("hi", "prod"):
                     jobs.append((N, k, args.nsteps, m, tuple(args.hi)))
         with ProcessPoolExecutor(args.workers) as ex:
             for r in ex.map(_large_job, jobs):

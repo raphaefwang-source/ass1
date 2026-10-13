@@ -1,0 +1,69 @@
+{
+ "provenance": {
+  "time": "2026-10-13T22:25:15+00:00",
+  "git": {
+   "commit": "a2f46d25537103e44039df23483a0592577f9fbd",
+   "dirty": true,
+   "dirty_files": [
+    "ewald_longitudinal/sec6_dynamics.py",
+    "ewald_longitudinal/sec6_timing.py"
+   ]
+  },
+  "config_hash": "69e23b991db39a74",
+  "include_ranks": false,
+  "ranks": [
+   48,
+   10
+  ],
+  "code_hash": "0b21c2ade2937f73",
+  "code_files": [
+   "sec6_common.py",
+   "sec6_timing.py",
+   "test_equal_accuracy_xi.py",
+   "test_lanczos_fdt.py",
+   "test_parameter_selection.py",
+   "verify_ewald_longitudinal.py",
+   "verify_periodic_graph_psd.py"
+  ],
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "host": "vm",
+  "cpu": "x86_64",
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ },
+ "rows": [
+  {
+   "N": 64,
+   "assemble_median": 0.04942874200060032,
+   "eig_median": 0.008912659999623429
+  },
+  {
+   "N": 128,
+   "assemble_median": 0.1982855730020674,
+   "eig_median": 0.04064694999760832
+  },
+  {
+   "N": 256,
+   "assemble_median": 0.6065543639997486,
+   "eig_median": 0.2831961219999357
+  },
+  {
+   "N": 512,
+   "assemble_median": 5.918344156998501,
+   "eig_median": 2.073868928000593
+  },
+  {
+   "N": 1024,
+   "assemble_median": 51.55614836799941,
+   "eig_median": 18.711522854999203
+  }
+ ],
+ "machine": {
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz"
+ }
+}
