@@ -53,7 +53,7 @@
 \title{Matrix-free Ewald--PPPM evaluation of configuration-dependent longitudinal friction and correlated noise in a Lennard-Jones liquid\\[4pt]
 \large Working draft assembled from the project code and results (not for distribution)}
 \author{\todo{author list and affiliations}}
-\date{Draft of 2026-10-13; LJ+A evidence at repository commit \texttt{39bb4f6}; Experiment 1 ($\kappa=1$) at remote commit \texttt{dce9792}}
+\date{Draft of 2026-10-13; LJ+A evidence at repository commit \texttt{39bb4f6}; Experiment 1 ($\kappa=1$) at commit \texttt{8777731}}
 
 \begin{document}
 \maketitle
@@ -89,7 +89,7 @@ earlier test systems.
 
 Coarse-grained particle models often replace eliminated degrees of freedom by a friction and a matching random force.
 When the friction couples different particles, the friction matrix $\Gamma(\bq)\in\R^{3N\times3N}$ is dense and
-depends on the configuration, and the fluctuation--dissipation theorem (FDT) requires noise with covariance
+depends on the configuration, and by the fluctuation--dissipation theorem (FDT) the noise covariance must be
 proportional to $\Gamma(\bq)$. Pairwise friction of dissipative-particle-dynamics type~\cite{EspanolWarren1995} has
 this structure with a short-ranged kernel; the observables used to characterise memory and correlated dissipation in
 coarse-grained liquids---the velocity autocorrelation function, distance-resolved velocity cross-correlations and
@@ -299,7 +299,7 @@ K(\br)=c\,\br\br^{\mathsf T}\int_0^\infty\rho_\kappa(s)\,e^{-sr^2}\dd s .
 The representation was checked numerically at $\kappa=0.7$ to round-off (relative error $\le10^{-15}$ at
 $r\in\{0.3,1,2.5,5\}$).
 
-\subsection{Splitting at $s=\xi^2$}
+\subsection{Splitting at \texorpdfstring{$s=\xi^2$}{s = xi\textasciicircum 2}}
 
 For $\xi>0$ define
 \begin{equation}\label{eq:split}
@@ -381,7 +381,7 @@ $\xi=0.85$ used here was chosen by an explicit cost search at the earlier toy st
 $N=256$, $\rho=0.75$ it gives $r_c=4.82>L/2=3.49$, so the real-space sum includes several images per pair. Its
 optimality at the present state point has not been re-established.
 
-\subsection{Particle--mesh action of $\Gamma_L$}\label{sec:pppm}
+\subsection{Particle--mesh action of \texorpdfstring{$\Gamma_L$}{Gamma\_L}}\label{sec:pppm}
 
 Let $W$ be the tensor-product cardinal B-spline of order $p$ on a mesh of spacing $h=L/M$, with Fourier transform
 $\hat W(\bk)=\prod_a\mathrm{sinc}^p(k_ah/2)$. For a vector $X=(\bx_1,\dots,\bx_N)$, one PPPM action is:
@@ -414,8 +414,8 @@ We distinguish four spatial error sources and state the norm in which each is me
 \item[Truncation] real-space cutoff $r_c$ and Fourier cutoff $k_c$; analysed through~\eqref{eq:balance}.
 \item[Mesh] aliasing and position-dependent transfer errors of the PPPM action, measured against the mesh-free Fourier
 sum over the same modes. On static $\kappa=1$ configurations the deconvolution error was negligible, the linear cross terms
-between principal term and aliases carried $0.996$--$1.003$ of the mesh error, and the error decayed as $h^p$ for
-$\eta\approx0.23$--$0.50$ (\cref{app:exp1}; an earlier study gave $0.92$--$1.03$, \cref{app:history}).
+between principal term and aliases carried $0.996$--$1.003$ of the mesh error, and the fitted slopes for
+$\eta\approx0.23$--$0.50$ were consistent with an $h^p$ trend (\cref{app:exp1}; an earlier study gave $0.92$--$1.03$, \cref{app:history}).
 \item[Operator] the total $\eop=\|\Gh-\Gref\|_2/\|\Gref\|_2$ (spectral norm), where $\Gref$ is the dense full-periodic
 lattice-sum matrix~\eqref{eq:Gamma} with the $k=0$ term retained (near images summed directly, far images by a
 tensor Chebyshev fit, brute-force self-check $9.4\times10^{-16}$ of the largest entry). Because the $k=0$ term is
@@ -474,7 +474,7 @@ B/A splitting and from freezing $\Gamma$ at $\bq_{1/2}$. Kinetic energy is not c
 with \cref{prop:invariance}. Momentum is carried exactly in the implementation (the centre-of-mass part is copied and
 both matrix-function outputs are projected by $\Pi$).
 
-\subsection{Fixed-rank Lanczos on $\Ran(\Pi)$}\label{sec:lanczos}
+\subsection{Fixed-rank Lanczos on \texorpdfstring{$\Ran(\Pi)$}{Ran(Pi)}}\label{sec:lanczos}
 
 $R_h\Pi\bp$ and $S_h\Pi\boldsymbol\zeta$ are evaluated by \cref{alg:lanczos} with $f(\lambda)=e^{-h\lambda/m}$
 (damping) and $f(\lambda)=[\kT m(1-e^{-2h\lambda/m})]^{1/2}$ (noise), using only $\Gh$ actions.
@@ -815,7 +815,7 @@ in figures.
 \begin{figure}[p]
 \centering
 \includegraphics[width=0.62\textwidth]{obs_vacf_primary.png}\\[2pt]
-\includegraphics[width=0.92\textwidth]{obs_vccf_primary.png}
+\includegraphics[width=0.88\textwidth]{obs_vccf_primary.png}
 \caption{VACF (top; left normalised by each level's $C(0)$, right ``vacf\_amp'' normalised by the reference level's $C(0)$)
 and distance-conditioned VCCF $C_b(t)$ for the three shells (bottom), LJ+A, $N=256$, primary group: 16 coupled replicas,
 dt $\in\{0.00125,0.0025,0.005,0.01\}$, ranks 12/5, origins $t_0\in[1,8]$. Upper rows: level means. Lower rows: paired differences
@@ -972,7 +972,7 @@ pilot. None of these were run for this draft.
 \section{Proofs and closed forms}\label{app:proofs}
 %======================================================================
 
-\subsection{Closed form of $\rho_\kappa$}
+\subsection{Closed form of \texorpdfstring{$\rho_\kappa$}{rho\_kappa}}
 With $a=\kappa^2/4$,
 \[\frac{\dd}{\dd s}\Big[2\sqrt{\tfrac{s}{\pi}}\,e^{-a/s}\Big]=w_\kappa(s)+\frac{\kappa^2}{2\sqrt\pi}s^{-3/2}e^{-a/s},\qquad
 \frac{\dd}{\dd s}\Big[-\kappa\erfc\Big(\frac{\kappa}{2\sqrt s}\Big)\Big]=-\frac{\kappa^2}{2\sqrt\pi}s^{-3/2}e^{-a/s}.\] The sum is $w_\kappa$; both
@@ -980,7 +980,7 @@ terms vanish as $s\to0^+$. Positivity follows from $\rho_\kappa=\int_0^sw_\kappa
 algebraically identical form $\rho_\kappa=\frac{2\sqrt s}{\sqrt\pi}e^{-a/s}\,p(\kappa/(2\sqrt s))$, $p(x)=1-\sqrt\pi x\,\mathrm{erfcx}(x)$,
 and checks it against the literal expression.
 
-\subsection{Hessian representation and $E_1$ closed forms}\label{app:hessian}
+\subsection{Hessian representation and \texorpdfstring{$E_1$}{E1} closed forms}\label{app:hessian}
 For each $s>0$, $\partial_i\partial_je^{-sr^2}=(4s^2x_ix_j-2s\delta_{ij})e^{-sr^2}$, hence
 $x_ix_je^{-sr^2}=\frac{1}{4s^2}\partial_i\partial_je^{-sr^2}+\frac{\delta_{ij}}{2s}e^{-sr^2}$. Multiplying by $\rho_\kappa(s)$ and
 integrating over any $s$-interval $I$ gives $\br\br^{\mathsf T}\int_I\rho_\kappa e^{-sr^2}=\nabla\nabla\varphi_I+\psi_I\Id$ with
@@ -1165,15 +1165,15 @@ relative to the $k\neq0$ part, which exceeds its $5\times10^{-8}$ budget under t
 was stopped at the user's request; dynamic runs exist only as raw data and were not analysed.
 
 \clearpage
-\subsection{Operator-level verification on the unit kernel (Experiment 1, $\kappa=1$)}\label{app:exp1}
+\subsection{Operator-level verification on the unit kernel (Experiment 1, \texorpdfstring{$\kappa=1$}{kappa = 1})}\label{app:exp1}
 
 This study is the most recent and most complete check of the spatial operator, but it is \emph{not} at the LJ+A state
 point: the kernel is the unit-amplitude $K_\kappa$ with $\kappa=1$, the configurations are static and synthetic, and the
 PPPM sets use $\xi=0.7$ (\cref{tab:exp1_params}), not the production set of \cref{sec:setup}. It supersedes the $\kappa=1$
 operator checks in \path{results/}, \path{parameter_selection_results/} and \path{mesh_error_decomposition_results/} as
 evidence for the error components of \cref{sec:errors}. Source: \path{exp1_results/} (\texttt{summary.json} and CSV files),
-scripts \texttt{exp1\_operator\_action.py}, \texttt{exp1\_plots.py}; at the time of writing these exist only on the remote
-branch (commits \texttt{7b8049f}--\texttt{dce9792}).
+scripts \texttt{exp1\_operator\_action.py}, \texttt{exp1\_plots.py}; these were produced on the remote
+branch (commits \texttt{7b8049f}--\texttt{8777731}, merged into this branch).
 
 \paragraph{Configurations and reference.}
 \Cref{tab:exp1_configs} lists the 44 configurations: the two original test boxes (A, B), three families at $N=128$ and
@@ -1224,27 +1224,32 @@ T9 & 0.7 & 4.628 & 6.611 & 6.479 & 0.6, 8 & 24 / 36 / 36 / 45 \\
 \paragraph{Error components, each measured alone.}
 (i) \emph{Split identity.} With $\theta_S$ in closed form and $\theta_L$ from its own $s$-integral, $\theta_S+\theta_L=e^{-\kappa r}/r$
 holds to $2.5\times10^{-15}$ for $\xi\in\{0.5,0.7,1,1.4,2\}$; at operator level, $\Gamma_S$ (real-space lattice sum) plus the
-mesh-free Fourier lattice sum of $\hat K_L$ (including $\bk=0$) reproduces $\Gref$ to $6.7\times10^{-15}$--$2.2\times10^{-13}$, a floor
-of the float64 Fourier lattice sum that is unchanged by 80-bit accumulation or refined quadrature of $A,B$.
+mesh-free Fourier lattice sum of $\hat K_L$ (including $\bk=0$) reproduces $\Gref$ to $1.4\times10^{-16}$--$1.1\times10^{-15}$. (A first run
+gave a floor of $2.3\times10^{-14}$--$1.5\times10^{-13}$; it came from evaluating $A(k),B(k)$ at $|\bk|$ rounded to twelve decimals, a bug
+fixed in commit \texttt{8777731}. The remaining floor mixes float64 round-off, up to $6.7\times10^{-16}$ against an 80-bit sum, with the
+uncertainty of the image-sum reference, up to $4.3\times10^{-16}$ between $R=40$ and $45$.)
 (ii) \emph{Truncation.} Fitting $\log E=a-cx^2$ with $x=\xi r_c$ or $k_c/(2\xi)$ gives median rates $c=0.99$ (real space, range
 $0.98$--$1.03$) and $0.97$ (Fourier, $0.96$--$1.00$) at $\xi=0.7$ and $\xi=1$, consistent with the $e^{-s_\ast^2}$ balance
 of~\eqref{eq:balance}; the algebraic prefactor of the operator-norm error is not that of the continuum tail.
-(iii) \emph{Mesh.} Against the mesh-free sum over the same modes, the mesh error decays as $h^p$ on $\eta\approx0.23$--$0.50$ (median
-fitted slopes $3.09$, $4.07$, $5.24$, $6.19$, $7.46$, $8.50$ for $p=3,\dots,8$) and faster on coarser meshes ($1.1$--$1.3\,p$); the
-asymptotic constant is not reached. Over eight random grid shifts the maximum error is at most $1.30$ times the RMS. In an exact
+(iii) \emph{Mesh.} Against the mesh-free sum over the same modes, the fitted slopes on the four finest meshes, $\eta\approx0.23$--$0.50$, are
+consistent with an $h^p$ trend (median slopes $3.09$, $4.07$, $5.24$, $6.19$, $7.46$, $8.50$ for $p=3,\dots,8$) and faster on coarser meshes ($1.1$--$1.3\,p$); finite-mesh
+fits do not establish the asymptotic order. Over eight random grid shifts the maximum error is at most $1.30$ times the RMS. In an exact
 alias decomposition the linear cross terms between the principal term and the aliases carry $0.996$--$1.003$ of the mesh error and the
-alias--alias term at most $0.9\%$; the deconvolution error vanishes to $5\times10^{-9}$ of it.
+alias--alias term at most $0.9\%$; the deconvolution error is at most $4.3\times10^{-9}$ of it.
 
 \paragraph{The complete production action.}
 Applying the production spread--FFT--influence--gather code with the degree correction to the $3N$ unit vectors gives $\Gh$ column by
 column; it agrees with an independent mode-space assembly to $1.1\times10^{-15}$, so $\varepsilon_S$, $\varepsilon_F$ and
 $\varepsilon_{\rm mesh}$ telescope to the production error. Cases A and B meet their tolerances, as selected; uniform and clustered
-configurations at $N=128$, 256 meet them with margin; the perturbed lattices exceed them by up to a factor $2.5$ (T7:
-$1.94$--$2.11\times10^{-7}$ at $N=128$). The reason is the normalisation: at T7 the absolute error $\|\Gh-\Gref\|_2$ lies in
-$5.7\times10^{-8}$--$5.5\times10^{-7}$ over all 44 configurations, whereas $\|\Gref\|_2$ ranges over $0.72$--$35$, set by the closest pair.
-A tolerance relative to $\|\Gref\|_2$ calibrated on configurations with close pairs therefore does not transfer to configurations
-without them. Probe vectors at the lowest wave number $2\pi/L$ have relative action errors up to $14$ (longitudinal) and $18$
-(transverse) times the configuration's relative spectral error, because $\|\Gref X\|/(\|\Gref\|_2\|X\|)$ is small for such modes.
+configurations at $N=128$, 256 meet them. In all, 13 of the 72 (configuration, set) pairs exceed the tolerance, by up to a factor
+$2.5$: the perturbed lattices at all three sets (T7: $1.94$--$2.11\times10^{-7}$ at $N=128$), and one uniform box with the size and
+density of case A at T7 ($1.40\times10^{-7}$). Much of this comes from the normalisation: at T7 the absolute error $\|\Gh-\Gref\|_2$
+lies in $5.7\times10^{-8}$--$5.5\times10^{-7}$ over all 44 configurations, whereas $\|\Gref\|_2$ ranges over $0.72$--$35$. Close pairs
+strongly influence $\|\Gref\|_2$, but the nearest pair alone does not set it ($\|\Gref\|_2/\theta(d_{\min})=2.0$--$4.1$; an isolated pair
+gives 2), and the absolute error itself varies with the configuration by about a factor ten. A tolerance relative to $\|\Gref\|_2$
+calibrated on cases A and B therefore does not, in general, transfer to other configurations. Probe vectors at the lowest wave number $2\pi/L$ have relative action errors up to $14$ (longitudinal) and $18$
+(transverse) times the configuration's relative spectral error, because $\|\Gref X\|/(\|\Gref\|_2\|X\|)$ is small for such modes. Among the configurations within the operator tolerance, the
+largest relative action error is $4.5$ times the tolerance at T7 and $4.9$ times at T9.
 $\Gh T_\alpha=0$ exactly in floating point, $\Gh$ is symmetric to $1.0\times10^{-16}$, and $\|\Gh-\Gref\|_2<\lambda_{\min}(\Gref|_{\Ran\Pi})$ in
 every case.
 
@@ -1258,11 +1263,12 @@ $\kappa=0.7$ with the production set.
 \centering
 \includegraphics[width=\textwidth]{exp1_components.pdf}
 \caption{Experiment 1 ($\kappa=1$, unit amplitude, static configurations of \cref{tab:exp1_configs}; \emph{not} LJ+A). (a) Split identity at
-operator level against $\Gref$; line: pair-level error. (b) Real-space and (c) Fourier truncation at $\xi=0.7$ alone; curves: median over
-three seeds, bands: range over seeds; dotted: cases A, B; dashed: $e^{-x^2}$. (d) Mesh error against the mesh-free sum over the same modes,
-$k_c=5.74$, uniform $N=128$ seed 1; curves: RMS over eight grid shifts, bands: range over shifts. (e) Fitted slopes in $h$ (filled:
-$s_\ast=4.1$; open: $s_\ast=5.5$, five configurations). (f) Max over RMS error across eight grid shifts. Source:
-\texttt{exp1\_results/figures/exp1\_components.pdf} (commit \texttt{dce9792}).}
+operator level against $\Gref$; line: pair-level error; grey crosses: the earlier Fourier sum with $|\bk|$ rounded to twelve decimals (a bug, since
+fixed). (b) Real-space and (c) Fourier truncation at $\xi=0.7$ alone; curves: median over three seeds, bands: range over seeds; dotted curves:
+cases A, B; dashed: $e^{-x^2}$; dotted horizontal line: fit floor $1.1\times10^{-13}$. (d) Mesh error against the mesh-free sum over the same
+modes, $k_c=5.74$, uniform $N=128$ seed 1; curves: RMS over eight grid shifts, bands: range over shifts, thin segments: slope $p$. (e) Fitted
+slopes in $h$ on the four finest meshes (filled: $s_\ast=4.1$; open: $s_\ast=5.5$, five configurations). (f) Max over RMS error across eight
+grid shifts. Source: \texttt{exp1\_results/figures/exp1\_components.pdf} (commit \texttt{8777731}).}
 \label{fig:exp1_components}
 \end{figure}
 
@@ -1270,10 +1276,11 @@ $s_\ast=4.1$; open: $s_\ast=5.5$, five configurations). (f) Max over RMS error a
 \centering
 \includegraphics[width=\textwidth]{exp1_action.pdf}
 \caption{Experiment 1: the production action $X\mapsto\Gh X$ against the unsplit full-periodic reference, $\kappa=1$, 44 static configurations;
-one point per configuration, no error bars. (a) Relative spectral error for T9, T7, T5 (filled: $N\le128$; open: $N=256$). (b) Absolute error
-against $\|\Gref\|_2$ at T7; diagonal: relative $10^{-7}$. (c) Probe errors at T7 through the production matvec; translations as
+one point per configuration, no error bars. (a) Relative spectral error divided by the tolerance for which T9, T7, T5 were accepted on cases
+A and B (filled: $N\le128$; open: $N=256$; grey crosses: box-length sets, T7 only). (b) Absolute error against $\|\Gref\|_2$ at T7; diagonal:
+relative $10^{-7}$; crosses: box-length sets. (c) Relative action errors of probes at T7 through the production matvec; translations as
 operator-normalised residuals. (d) Absolute error against box length at T7, fixed $N=64$ (density varies) and fixed density $n_A$; realised $\eta$
-annotated. Source: \texttt{exp1\_results/figures/exp1\_action.pdf} (commit \texttt{dce9792}).}
+annotated. Source: \texttt{exp1\_results/figures/exp1\_action.pdf} (commit \texttt{8777731}).}
 \label{fig:exp1_action}
 \end{figure}
 
