@@ -52,7 +52,80 @@
    "thetaS_quad_vs_closed": 8.304273191068231e-16
   }
  },
- "fourier_precision": [],
+ "fourier_precision": [
+  {
+   "name": "A",
+   "xi": 0.7,
+   "kc": 9.1,
+   "n_modes": 2777.0,
+   "floor_float64": 2.8710034565147713e-14,
+   "floor_longdouble": 2.871911930850791e-14,
+   "floor_refined_coeffs": 2.8719664171818083e-14,
+   "float64_vs_longdouble": 7.511668172978143e-17,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  },
+  {
+   "name": "A",
+   "xi": 1.0,
+   "kc": 13.0,
+   "n_modes": 8121.0,
+   "floor_float64": 4.450328914619361e-14,
+   "floor_longdouble": 4.450507373708012e-14,
+   "floor_refined_coeffs": 4.452323998893862e-14,
+   "float64_vs_longdouble": 1.0100073898046213e-16,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  },
+  {
+   "name": "lattice_N128_s1",
+   "xi": 0.7,
+   "kc": 9.1,
+   "n_modes": 11753.0,
+   "floor_float64": 1.1659961646821855e-13,
+   "floor_longdouble": 1.1660380646217562e-13,
+   "floor_refined_coeffs": 1.1659563163859566e-13,
+   "float64_vs_longdouble": 2.803568167891054e-16,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  },
+  {
+   "name": "lattice_N128_s1",
+   "xi": 1.0,
+   "kc": 13.0,
+   "n_modes": 34265.0,
+   "floor_float64": 1.549470566199376e-13,
+   "floor_longdouble": 1.549872050352473e-13,
+   "floor_refined_coeffs": 1.5481384825173578e-13,
+   "float64_vs_longdouble": 7.388762206465594e-16,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  },
+  {
+   "name": "uniform_N128_s1",
+   "xi": 0.7,
+   "kc": 9.1,
+   "n_modes": 11753.0,
+   "floor_float64": 2.3349915605822543e-14,
+   "floor_longdouble": 2.3349920093420718e-14,
+   "floor_refined_coeffs": 2.3350467240819943e-14,
+   "float64_vs_longdouble": 4.4023558528394426e-17,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  },
+  {
+   "name": "uniform_N128_s1",
+   "xi": 1.0,
+   "kc": 13.0,
+   "n_modes": 34265.0,
+   "floor_float64": 3.655535447773746e-14,
+   "floor_longdouble": 3.654400538345141e-14,
+   "floor_refined_coeffs": 3.653672569124885e-14,
+   "float64_vs_longdouble": 1.282391714127412e-16,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  }
+ ],
  "split_pairs": {
   "0.5|pair": 1.54435179900969e-15,
   "0.5|radi": 1.5208261885146291e-15,

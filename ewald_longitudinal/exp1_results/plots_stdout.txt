@@ -22,6 +22,10 @@
 'modified' timestamp seems very low; regarding as unix timestamp
 'created' timestamp seems very low; regarding as unix timestamp
 'modified' timestamp seems very low; regarding as unix timestamp
+'created' timestamp seems very low; regarding as unix timestamp
+'modified' timestamp seems very low; regarding as unix timestamp
+'created' timestamp seems very low; regarding as unix timestamp
+'modified' timestamp seems very low; regarding as unix timestamp
 {
  "reference": {
   "n_configs": 44,
@@ -29,7 +33,15 @@
   "max_change_R35_to_R45": 2.0096246400223394e-14,
   "max_change_R30_to_R45": 2.4595268327674654e-12,
   "max_trans_resid": 1.9490507841716994e-16,
-  "max_sym_resid": 1.0175468385333232e-16
+  "max_sym_resid": 1.0175468385333232e-16,
+  "norm2_range": [
+   0.7200241027925919,
+   35.07696820203962
+  ],
+  "lam_star_range": [
+   0.0007876679537116198,
+   1.9240377928968138
+  ]
  },
  "quadrature": {
   "xi0.5": {
@@ -68,6 +80,80 @@
    "thetaS_quad_vs_closed": 8.304273191068231e-16
   }
  },
+ "fourier_precision": [
+  {
+   "name": "A",
+   "xi": 0.7,
+   "kc": 9.1,
+   "n_modes": 2777.0,
+   "floor_float64": 2.8710034565147713e-14,
+   "floor_longdouble": 2.871911930850791e-14,
+   "floor_refined_coeffs": 2.8719664171818083e-14,
+   "float64_vs_longdouble": 7.511668172978143e-17,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  },
+  {
+   "name": "A",
+   "xi": 1.0,
+   "kc": 13.0,
+   "n_modes": 8121.0,
+   "floor_float64": 4.450328914619361e-14,
+   "floor_longdouble": 4.450507373708012e-14,
+   "floor_refined_coeffs": 4.452323998893862e-14,
+   "float64_vs_longdouble": 1.0100073898046213e-16,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  },
+  {
+   "name": "lattice_N128_s1",
+   "xi": 0.7,
+   "kc": 9.1,
+   "n_modes": 11753.0,
+   "floor_float64": 1.1659961646821855e-13,
+   "floor_longdouble": 1.1660380646217562e-13,
+   "floor_refined_coeffs": 1.1659563163859566e-13,
+   "float64_vs_longdouble": 2.803568167891054e-16,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  },
+  {
+   "name": "lattice_N128_s1",
+   "xi": 1.0,
+   "kc": 13.0,
+   "n_modes": 34265.0,
+   "floor_float64": 1.549470566199376e-13,
+   "floor_longdouble": 1.549872050352473e-13,
+   "floor_refined_coeffs": 1.5481384825173578e-13,
+   "float64_vs_longdouble": 7.388762206465594e-16,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  },
+  {
+   "name": "uniform_N128_s1",
+   "xi": 0.7,
+   "kc": 9.1,
+   "n_modes": 11753.0,
+   "floor_float64": 2.3349915605822543e-14,
+   "floor_longdouble": 2.3349920093420718e-14,
+   "floor_refined_coeffs": 2.3350467240819943e-14,
+   "float64_vs_longdouble": 4.4023558528394426e-17,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  },
+  {
+   "name": "uniform_N128_s1",
+   "xi": 1.0,
+   "kc": 13.0,
+   "n_modes": 34265.0,
+   "floor_float64": 3.655535447773746e-14,
+   "floor_longdouble": 3.654400538345141e-14,
+   "floor_refined_coeffs": 3.653672569124885e-14,
+   "float64_vs_longdouble": 1.282391714127412e-16,
+   "longdouble_type": "float128",
+   "longdouble_eps": 1.0842021724855044e-19
+  }
+ ],
  "split_pairs": {
   "0.5|pair": 1.54435179900969e-15,
   "0.5|radi": 1.5208261885146291e-15,
@@ -81,7 +167,10 @@
   "2.0|radi": 1.5208261885146291e-15
  },
  "split_pairs_max": 2.5474313254976945e-15,
- "split_operator_max": 2.1718695727116551e-13,
+ "split_operator_range": [
+  6.729524944612631e-15,
+  2.1718695727116551e-13
+ ],
  "split_operator_by_xi": {
   "0.5": 8.4491177350785e-14,
   "0.7": 1.2359824869574476e-13,
@@ -98,26 +187,42 @@
    0.98,
    1.005
   ],
-  "floor_max": 6.642962969288985e-16,
-  "flat_steps": 0,
-  "configs_with_flat": []
- },
- "cut_real_xi1": {
-  "c_median": 0.9909862046007493,
-  "c_min": 0.972451550439624,
-  "c_max": 1.0313562098491358,
-  "c_pref_removed_median": 1.0494163669712153,
-  "c_check": [
-   0.997,
-   0.983,
-   1.014
+  "err_at_xmax_max": 9.15173100187268e-17,
+  "tail_max": 6.642962969288985e-16,
+  "plateau_configs": [
+   "A",
+   "cluster_N128_s2"
   ],
-  "floor_max": 8.1440728326112855e-16,
-  "flat_steps": 5,
+  "flat_steps_total": 3,
+  "excluded_from_fit": 0,
   "configs_with_flat": [
    "lattice_N128_s1",
    "lattice_N128_s2",
    "lattice_N128_s3"
+  ]
+ },
+ "cut_real_xi1": {
+  "c_median": 0.9909862046007493,
+  "c_min": 0.9815045207833686,
+  "c_max": 1.0313562098491358,
+  "c_pref_removed_median": 1.0494163669712153,
+  "c_check": [
+   0.997,
+   0.984,
+   1.014
+  ],
+  "err_at_xmax_max": 4.029743060845254e-17,
+  "tail_max": 8.1440728326112855e-16,
+  "plateau_configs": [
+   "cluster_N256_s1"
+  ],
+  "flat_steps_total": 10,
+  "excluded_from_fit": 6,
+  "configs_with_flat": [
+   "lattice_N128_s1",
+   "lattice_N128_s2",
+   "lattice_N128_s3",
+   "lattice_N256_s1"
   ]
  },
  "cut_fourier_xi0.7": {
@@ -130,125 +235,16 @@
    0.967,
    0.996
   ],
-  "floor_max": 1.2358298736947108e-13,
-  "flat_steps": 1,
-  "configs_with_flat": [
-   "A"
-  ]
- },
- "cut_fourier_xi1": {
-  "c_median": 0.9737748522003656,
-  "c_min": 0.9605609142130689,
-  "c_max": 0.9965223556301771,
-  "c_pref_removed_median": 1.0322050145708315,
-  "c_check": [
-   0.978,
-   0.965,
-   0.998
-  ],
-  "floor_max": 1.6112178243796247e-13,
-  "flat_steps": 0,
-  "configs_with_flat": []
- },
- "mesh_sF4.1": {
-  "3": {
-   "slope_median": 3.0940401231435133,
-   "slope_min": 2.8987556382572075,
-   "slope_max": 3.218708386285518,
-   "n": 11
-  },
-  "4": {
-   "slope_median": 4.070392170394858,
-   "slope_min": 3.8459077124102343,
-   "slope_max": 4.360505421424805,
-   "n": 11
-  },
-  "5": {
-   "slope_median": 5.248252450428328,
-   "slope_min": 4.880031090254791,
-   "slope_max": 5.433156586263629,
-   "n": 14
-  },
-  "6": {
-   "slope_median": 6.191490219768633,
-   "slope_min": 6.125588062345463,
-   "slope_max": 6.442173507700152,
-   "n": 11
-  },
-  "7": {
-   "slope_median": 7.465334172305333,
-   "slope_min": 7.026566796336046,
-   "slope_max": 7.659931541750421,
-   "n": 14
-  },
-  "8": {
-   "slope_median": 8.504073990299423,
-   "slope_min": 8.419893418571586,
-   "slope_max": 8.880511774338665,
-   "n": 11
-  }
- },
- "mesh_sF4.1_shift_max_over_rms": 1.3028878797257843,
- "mesh_sF4.1_shift_max_over_min": 1.9226386852357575,
- "mesh_sF5.5": {
-  "4": {
-   "slope_median": 4.100480844842729,
-   "slope_min": 3.973386726887105,
-   "slope_max": 4.288466922210259,
-   "n": 5
-  },
-  "6": {
-   "slope_median": 6.250668787361409,
-   "slope_min": 6.159074377077863,
-   "slope_max": 6.350072411983463,
-   "n": 5
-  },
-  "8": {
-   "slope_median": 8.868080238673018,
-   "slope_min": 8.642851566349247,
-   "slope_max": 8.998339295623568,
-   "n": 5
-  }
- },
- "mesh_sF5.5_shift_max_over_rms": 1.2312566707877133,
- "mesh_sF5.5_shift_max_over_min": 1.5253424663969193,
- "mesh_no_fit": [],
- "decomposition": {
-  "identity_resid_rel_to_K_max": 3.0197111586432694e-15,
-  "identity_resid_rel_to_error_max": 2.8603415350266237e-08,
-  "linear_over_total": [
-   0.9962388087657813,
-   1.002573904188828
-  ],
-  "quadratic_over_total": [
-   1.0700094121870585e-06,
-   0.008909915057999256
-  ],
-  "Dh_over_total_max": 4.620630441666017e-09,
-  "literal_vs_modespace_max": 1.2777708084668375e-15
- },
- "action_T5": {
-  "legacy": {
-   "err_spec": [
-    2.9769755748980702e-06,
-    3.967573983301299e-06
-   ],
-   "gauss_rel_max": 1.0882823541355646e-05,
-   "long_rel_max": 2.2268014066960695e-05,
-   "trans_rel_max": 2.5181966360718038e-05,
-   "trans_resid_h": 0.0,
-   "trans_err_abs": 4.4669597260634844e-17,
-   "sym": 4.384517208835737e-17,
-   "literal_vs_modespace": 2.1411201556804345e-16,
-   "lam_rel_change": 3.252513505669352e-05,
-   "weyl_margin_min": 0.9990941830410641,
-   "eps_S": 1.9334850979972964e-06,
-   "eps_F": 1.2507623868238167e-06,
-   "eps_mesh": 3.389233822501842e-06,
-   "budget_match": 5.709653748481158e-16,
-   "n": 2
-  },
-  "main": {
-   "err_spec": [
-    9.840892433024734e-07,
- 
+  "err_at_xmax_max": 1.2356493419061928e-13,
+  "tail_max": 1.2358298736947108e-13,
+  "plateau_configs": [
+   "A",
+   "B",
+   "cluster_N128_s1",
+   "cluster_N128_s2",
+   "cluster_N128_s3",
+   "cluster_N256_s1",
+   "lattice_N128_s1",
+   "lattice_N128_s2",
+   "lattice_N128_s3",
+   "lattice_N2

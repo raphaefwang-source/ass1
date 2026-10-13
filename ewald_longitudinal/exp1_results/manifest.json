@@ -285,6 +285,28 @@
      "p": 8
     }
    }
+  },
+  {
+   "stage": "precision",
+   "time": "2026-10-13T05:16:04+00:00",
+   "command": [
+    "/usr/local/bin/python3",
+    "exp1_operator_action.py",
+    "precision"
+   ],
+   "git": {
+    "commit": "7d4ddac4085e34d2dcf909dcfad48eb8294fa542",
+    "dirty": false
+   },
+   "python": "3.11.15",
+   "numpy": "2.4.6",
+   "scipy": "1.17.1",
+   "host": "vm",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
   }
  ]
 }

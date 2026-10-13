@@ -101,9 +101,14 @@ At operator level we combine two independent constructions:
 Their sum reproduces $\Gamma_{\rm ref}$ to between $6.7\times10^{-15}$ and $2.2\times10^{-13}$
 (Fig.~\ref{fig:exp1-components}a). The largest values occur for the perturbed lattices, whose $\|\Gamma_{\rm ref}\|_2$ is
 smallest. The same level is the plateau of the Fourier-cutoff sweep below, and it grows with the number of retained
-modes. We therefore attribute it to the float64 Fourier lattice sum, not to the split. A recorded check (case~A, a
-perturbed lattice and a uniform configuration at $\xi=0.7$ and $1$) tests this attribution.
-% PRECISION-RESULT: sentence filled from exp1_results/fourier_precision.csv when the precision stage finishes.
+modes. It therefore belongs to the float64 comparison of a Fourier lattice sum with a real-space lattice sum, not to the
+split identity, which holds pointwise to $2.5\times10^{-15}$. A recorded check (case~A, a perturbed lattice and a uniform
+configuration at $\xi=0.7$ and $1$) narrows this down. The floor ($2.3\times10^{-14}$--$1.5\times10^{-13}$) agrees to
+within $0.2\%$ across three variants: float64 accumulation, 80-bit accumulation of the same inputs, and coefficients from
+the refined quadrature rules. The float64 and 80-bit sums differ by at most $7\times10^{-16}$. The floor is therefore
+set neither by the accumulation nor by the coefficient quadrature. Its remaining sources, the rounding of positions and
+wave vectors in the phases $\mathbf k\cdot\mathbf r$ and the real-space sum $\Gamma_L$ it is compared with, were not
+separated.
 The coefficients themselves are accurate. With the Gauss--Legendre rules for $A(k)$, $B(k)$ and $\theta_L$ refined (twice
 the panels, 30 nodes per panel), these change by at most $1.6\times10^{-15}$, relative to $\|\hat K^L(k)\|_2$ or to
 $e^{-\kappa r}/r$, for $\xi\le2$, $k\le14\xi$ and $10^{-3}\le r\le20$. The quadrature of $\theta_S$ agrees with its closed
