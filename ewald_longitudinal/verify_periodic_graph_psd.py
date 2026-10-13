@@ -192,7 +192,7 @@ def run(kappa, xi, N, L, seed, rcut, kcs, out):
     kv = 2 * np.pi / L * np.stack(np.meshgrid(m, m, m, indexing="ij"), axis=-1).reshape(-1, 3)
     kn = np.linalg.norm(kv, axis=1)
     kv, kn = kv[kn <= kmax + 1e-12], kn[kn <= kmax + 1e-12]
-    ku, kinv = np.unique(np.round(kn, 12), return_inverse=True)
+    ku, kinv = np.unique(kn, return_inverse=True)             # exact |k|, no rounding
     Au, Bu = K.AB_scaled(ku)
     dmp = np.exp(-ku ** 2 / (4 * xi ** 2))
     A, B = (Au * dmp)[kinv], (Bu * dmp)[kinv]
@@ -255,7 +255,7 @@ def sweep(kappa, xi, rcut, cases, kcs):
         m = np.arange(-nm, nm + 1)
         kv = 2 * np.pi / L * np.stack(np.meshgrid(m, m, m, indexing="ij"), axis=-1).reshape(-1, 3)
         kn = np.linalg.norm(kv, axis=1)
-        ku, kinv = np.unique(np.round(kn, 12), return_inverse=True)
+        ku, kinv = np.unique(kn, return_inverse=True)             # exact |k|, no rounding
         Au, Bu = K.AB_scaled(ku)
         dmp = np.exp(-ku ** 2 / (4 * xi ** 2))
         A, B = (Au * dmp)[kinv], (Bu * dmp)[kinv]

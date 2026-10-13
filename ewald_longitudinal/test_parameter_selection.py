@@ -178,7 +178,9 @@ def lattice_modes(L, kc):
 
 
 def khat_AB(K, kn):
-    ku, inv = np.unique(np.round(kn, 12), return_inverse=True)
+    # Deduplicate on the unrounded float64 |k|. Rounding |k| before evaluating A, B perturbs the kernel input by up to
+    # 5e-13 and was the dominant term of the Fourier-vs-real-space floor (about 1e-13 of ||Gamma||_2).
+    ku, inv = np.unique(kn, return_inverse=True)
     Au, Bu = K.AB_scaled(ku)
     dmp = np.exp(-ku ** 2 / (4 * K.xi ** 2))
     return (Au * dmp)[inv], (Bu * dmp)[inv]
