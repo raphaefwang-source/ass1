@@ -62,15 +62,17 @@ class NegativeRitzError(Exception):
 # ----------------------------------------------------------------------------
 # step
 # ----------------------------------------------------------------------------
-def lanczos_fun(op, v, rank, fun, backs=()):
-    """f(Gamma_h) v at the given rank from one recursion; also at rank-b for b in backs (self-check)."""
+def lanczos_fun(op, v, rank, fun, backs=(), extra=()):
+    """f(Gamma_h) v at the given rank from one recursion; also at rank-b for b in backs (self-check) and at the
+    absolute ranks in extra (e.g. the production rank evaluated inside a high-rank reference recursion)."""
     nv = np.linalg.norm(v)
     if nv == 0:
         return np.zeros_like(v), {}, {}
     Lz = lanczos(op, v, rank)
     s = Lz["s"]
     res, ritz = {}, {}
-    for r in (s,) + tuple(s - b for b in backs if s - b >= 1):
+    want = (s,) + tuple(s - b for b in backs if s - b >= 1) + tuple(r for r in extra if 1 <= r < s)
+    for r in dict.fromkeys(want):
         th, U = np.linalg.eigh(tridiag(Lz["al"], Lz["be"], r))
         if r == s:
             ritz = dict(min=float(th[0]), max=float(th[-1]), n_neg=int((th < 0).sum()))
@@ -78,7 +80,9 @@ def lanczos_fun(op, v, rank, fun, backs=()):
                 raise NegativeRitzError(f"negative Ritz value {th[0]:.3e} at rank {s}")
         res[r] = proj(Lz["nz"] * (Lz["Q"][:r].T @ (U @ (fun(th) * U[0]))))
     out = res[s]
-    chk = {f"back{s - r}": float(np.linalg.norm(res[r] - out) / np.linalg.norm(out)) for r in res if r != s}
+    chk = {f"back{s - r}": float(np.linalg.norm(res[r] - out) / np.linalg.norm(out)) for r in res
+           if r != s and r not in extra}
+    chk.update({f"rank{r}": float(np.linalg.norm(res[r] - out) / np.linalg.norm(out)) for r in res if r in extra})
     return out, ritz, chk
 
 
@@ -104,8 +108,9 @@ def o_step(box, qh, p, xi, dt, method, ranks, coarse=None):
         rn, rd = ranks
         rn, rd = min(rn, 3 * N - 3), min(rd, 3 * N - 3)
         backs = (20, 40) if method == "hi" else ()
-        damp, rit_d, chk_d = lanczos_fun(op, pp, rd, f_damp(dt), backs)
-        noise, rit_n, chk_n = lanczos_fun(op, proj(xi.ravel()), rn, f_noise(dt), backs)
+        pr_n, pr_d = prod_ranks() if method == "hi" else (None, None)
+        damp, rit_d, chk_d = lanczos_fun(op, pp, rd, f_damp(dt), backs, (pr_d,) if pr_d else ())
+        noise, rit_n, chk_n = lanczos_fun(op, proj(xi.ravel()), rn, f_noise(dt), backs, (pr_n,) if pr_n else ())
         info.update(lam_max=max(rit_d.get("max", 0), rit_n.get("max", 0)),
                     lam_min=min(rit_d.get("min", np.inf), rit_n.get("min", np.inf)), lam_source="Ritz (estimate)",
                     n_actions=op.n_actions, chk_noise=chk_n, chk_damp=chk_d)
@@ -142,7 +147,8 @@ def run(box, q0, p0, xis, dt, nsteps, method, ranks=None, coarse_stream=None, sa
     L = box.L
     P0 = p0.sum(axis=0)
     rec = {k: [] for k in ("t", "T", "Tkin", "Ok", "dP", "lam_max", "lam_min", "n_actions", "t_step",
-                           "chk_noise20", "chk_noise40", "chk_damp20", "chk_damp40")}
+                           "chk_noise20", "chk_noise40", "chk_damp20", "chk_damp40", "prodrank_noise_err",
+                           "prodrank_damp_err")}
     inputs = {k: [] for k in ("qh", "p", "xi")}
     path = {k: [] for k in ("q", "p")}
     built = []
@@ -161,6 +167,8 @@ def run(box, q0, p0, xis, dt, nsteps, method, ranks=None, coarse_stream=None, sa
             c = info.get(f"chk_{k}", {})
             rec[f"chk_{k}20"].append(c.get("back20", np.nan))
             rec[f"chk_{k}40"].append(c.get("back40", np.nan))
+            pr = [v for kk, v in c.items() if kk.startswith("rank")]
+            rec[f"prodrank_{k}_err"].append(pr[0] if pr else np.nan)
 
     push(0.0, observables(q, p, L, P0), {}, np.nan)
     if save_path:
@@ -335,12 +343,18 @@ def main():
     ap.add_argument("--levels", type=int, nargs="*", default=[1, 2])
     ap.add_argument("--nsteps", type=int, default=25)
     ap.add_argument("--trajs", type=int, nargs="*")
+    ap.add_argument("--spec", nargs="*", help="ideal stage: N:T_end:first_traj:count entries")
     args = ap.parse_args()
     t0 = time.perf_counter()
     print(f"[{time.strftime('%H:%M:%S')}] stage {args.stage}", flush=True)
     if args.stage == "ideal":
-        Ns, nt, Ts = args.N or [64, 256], args.ntraj or [16, 4], args.T or [40.0, 30.0]
-        jobs = [(N, k, T) for N, n, T in zip(Ns, nt, Ts) for k in range(n)]
+        if args.spec:
+            jobs = [(int(N), k, float(T)) for e in args.spec for N, T, a, n in [e.split(":")]
+                    for k in range(int(a), int(a) + int(n))]
+            jobs.sort(key=lambda j: -j[0] * j[2])                        # longest first
+        else:
+            Ns, nt, Ts = args.N or [64, 256], args.ntraj or [16, 4], args.T or [40.0, 30.0]
+            jobs = [(N, k, T) for N, n, T in zip(Ns, nt, Ts) for k in range(n)]
         with ProcessPoolExecutor(args.workers) as ex:
             for r in ex.map(_ideal_job, jobs):
                 print(f"  ideal N={r[0]} traj={r[1]}: {r[2]:.0f}s max dP {r[3]:.1e} final T {np.round(r[4], 3)}",

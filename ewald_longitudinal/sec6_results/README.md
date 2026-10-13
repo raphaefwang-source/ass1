@@ -226,3 +226,78 @@ stage 3.
 
 **High-accuracy cost.** At N = 16000 the noise needs rank 140 for 1e-6 and 216 for 1e-8. These are minimal ranks with
 no margin.
+
+## Stage 3: ideal-gas conservation and equilibrium (former 6) (done)
+
+### Commands
+
+```bash
+python3 sec6_dynamics.py ideal --workers 4                                  # N=64 x16 (t=40), N=256 x4 (t=30)
+python3 sec6_dynamics.py ideal --workers 4 --spec 256:80:0:8 64:40:16:16    # extension, see below
+python3 sec6_dynamics.py offline --workers 4                                # dense check of saved O-steps
+python3 sec6_dynamics.py analyze
+```
+
+### Setup
+
+- U = 0, periodic, κ = β = m = 1, ρ = 30/216, uniform initial positions.
+- Initial component temperatures (2, 0.5, 0.5), with the sample mean removed; centre-of-mass velocity
+  (0.3, −0.2, 0.1).
+- Production settings from `sec6_config`: spatial set T7, dt = 0.0429177, noise rank 48, damping rank 10. That is 58
+  Γ_h actions per step at every step.
+- Step A(dt/2) O(dt) A(dt/2), with Γ_h evaluated at q_half. Mean momentum copied.
+- Initial states use seed `[20261016, N, traj]`; noise streams use `[20261017, N, traj, 1]`.
+- Each step's O-step inputs (q_half, p, ξ) are saved in `ideal_gas/raw/` (git-ignored, 0.5 GB).
+- `ideal_gas/observables_N{64,256}.csv.gz` hold the per-step T_x, T_y, T_z, momentum error and Ritz λ estimates of
+  every trajectory.
+
+### Statistics
+
+- **Temperatures:** T_a = m Σ_i (v_ia − v_cm,a)² / (N − 1).
+- **Confidence intervals:** t-intervals across independent trajectories. For time averages, each trajectory's
+  post-burn-in average is one sample.
+- **Burn-in:** t_b = max(5 τ_fit, 3/(2λ*)).
+  - τ_fit comes from the initial contiguous decay of the ensemble-mean temperatures and anisotropy.
+  - λ* is the median Ritz estimate of the smallest eigenvalue on T⊥, so 3/(2λ*) is three e-folds of the slowest
+    momentum mode.
+  - The window after t_b is checked by comparing its two halves, paired over trajectories.
+- **Maxwell marginals:** u = (p_ia − P_a/N)/√(m kT (N−1)/N) at every post-burn-in step. Variance and excess kurtosis
+  are estimated per trajectory, then a t-CI is taken over trajectories. The pooled KS statistic is descriptive only,
+  because snapshots within a trajectory are correlated.
+
+### Results (`ideal_gas/summary.json`, `fig_ideal_gas.png`)
+
+| | N = 64 | N = 256 |
+|---|---|---|
+| trajectories × length | 32 × t = 40 (932 steps) | 8 × t = 80 (1864 steps) |
+| max ‖P(t) − P(0)‖/‖P(0)‖ | 1.4e-14 | 3.1e-14 |
+| τ_fit (anisotropy, components) | 1.2 | 1.3 |
+| λ* (Ritz estimate, median) | 0.089 | 0.048 |
+| burn-in t_b | 16.8 | 31.4 |
+| T_x, T_y, T_z after burn-in (95% CI) | 0.994 ± 0.023, 0.997 ± 0.016, 0.991 ± 0.016 | 1.001 ± 0.011, 0.993 ± 0.016, 0.992 ± 0.018 |
+| T_kin | 0.994 ± 0.010 | 0.996 ± 0.011 |
+| second half − first half | consistent with 0 in all three components | consistent with 0 in all three components |
+| Maxwell variance of u | 0.994 ± 0.010 | 0.996 ± 0.011 |
+| excess kurtosis of u | 0.009 ± 0.026 | 0.014 ± 0.018 |
+| dt·λ_max visited (Ritz estimate) | 0.06 – 8.8 | 0.12 – 7.5 |
+
+### Statistical gaps found and closed
+
+- With the first 16 N = 64 trajectories, the excess kurtosis was 0.034 ± 0.031, marginally excluding 0. With 32
+  trajectories it is 0.009 ± 0.026.
+- The first N = 256 runs (4 × t = 30) were shorter than the burn-in rule (3/(2λ*) = 31.3). They therefore showed
+  relaxation only, and equilibrium was not claimed. They were rerun as 8 × t = 80 with the same seeds, so the first
+  t = 30 are identical. The superseded files are kept in `raw/superseded_T30/`.
+- The first 16 N = 64 trajectories ran with `sec6_dynamics.py` as committed in ab94081. The later runs used a version
+  that differs only in argument parsing (`--spec`). The two code hashes are recorded per trajectory in `summary.json`.
+
+### Offline O-step checks (`ideal_gas/offline_ostep_checks.json`)
+
+- **Steps checked:** 718 actual O-steps, i.e. per trajectory 12 regularly spaced steps plus the 6 steps with the
+  largest Ritz λ_max.
+- **Method:** on the saved (q_half, p, ξ), dense f(Γ_h) is compared with the production ranks 48/10. The damping
+  vector is the actual momentum Πp, not a random vector.
+- **Noise relative error:** ≤ 7.4e-11 at N = 64 and ≤ 1.1e-7 at N = 256.
+- **Damping relative error:** ≤ 4.1e-15.
+- **Spectral range:** the checked states reach dt·λ_max = 8.8 (exact, dense), beyond the τ = 5 diagnostic used to
+  choose the damping rank.
