@@ -1,0 +1,2847 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{microtype}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage[numbers,sort&compress]{natbib}
+\graphicspath{{figures/}}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{assumption}[proposition]{Assumption}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{remark}[proposition]{Remark}
+
+\newcommand{\rr}{\bm r}
+\newcommand{\kk}{\bm k}
+\newcommand{\PP}{P}
+\newcommand{\Id}{I}
+\newcommand{\erfc}{\operatorname{erfc}}
+\newcommand{\erf}{\operatorname{erf}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\Range}{\operatorname{Range}}
+% Allow line breaks after underscores in file and script names.
+\DeclareRobustCommand{\_}{\textunderscore\allowbreak}
+% Marks results that await the recomputation of Section 6.
+\newcommand{\pending}[1]{\textit{[Pending\if\relax\detokenize{#1}\relax\else: #1\fi]}}
+
+\title{Notebook}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+% Introduction: to be written.
+
+\section{Screened longitudinal friction kernel}
+\label{sec:kernel}
+
+\subsection{Kernel and Gaussian-scale representation}
+
+We consider the purely longitudinal matrix-valued kernel
+\begin{equation}
+\label{eq:kernel}
+K_\kappa(\rr)
+=
+\frac{e^{-\kappa r}}{r}\,\PP(\rr),
+\qquad
+\PP(\rr)=\frac{\rr\rr^{\mathsf T}}{r^2},
+\qquad
+r=|\rr|,
+\qquad
+\kappa>0.
+\end{equation}
+Throughout, \(\kk\) denotes the Fourier wave vector, \(k=|\kk|\ge 0\), and
+\(\xi>0\) is the Ewald splitting parameter.
+
+\begin{proposition}[Gaussian-scale representation]
+\label{prop:gauss-scale}
+The kernel in Eq.~\eqref{eq:kernel} satisfies
+\begin{equation}
+\label{eq:gauss-scale}
+K_\kappa(\rr)
+=
+\rr\rr^{\mathsf T}
+\int_0^\infty
+\rho_\kappa(s)e^{-s r^2}\,ds,
+\end{equation}
+with the nonnegative weight
+\begin{equation}
+\label{eq:rho}
+\rho_\kappa(s)
+=
+\frac{1}{\sqrt{\pi}}
+\int_0^s
+t^{-1/2}
+e^{-\kappa^2/(4t)}\,dt
+=
+\frac{2\sqrt{s}}{\sqrt{\pi}}
+e^{-\kappa^2/(4s)}
++
+\kappa\left[
+\erf\!\left(
+\frac{\kappa}{2\sqrt{s}}
+\right)-1
+\right].
+\end{equation}
+\end{proposition}
+
+The proof is given in Appendix~\ref{app:gauss-scale}.
+
+\subsection{Ewald splitting}
+
+We split the Gaussian scales in Eq.~\eqref{eq:gauss-scale} at \(s=\xi^2\):
+\begin{align}
+K_\kappa^L(\rr)
+&=
+\rr\rr^{\mathsf T}
+\int_0^{\xi^2}
+\rho_\kappa(s)e^{-s r^2}\,ds,
+\\
+K_\kappa^S(\rr)
+&=
+\rr\rr^{\mathsf T}
+\int_{\xi^2}^{\infty}
+\rho_\kappa(s)e^{-s r^2}\,ds,
+\end{align}
+o that $K_\kappa=K_\kappa^S+K_\kappa^L$. Since
+\(\rr\rr^{\mathsf T}=r^2\PP(\rr)\), both pieces remain purely longitudinal,
+\begin{equation}
+K_\kappa^{S/L}(\rr)
+=
+\theta_{S/L}(r)\PP(\rr),
+\end{equation}
+where
+\begin{align}
+\theta_L(r)
+&=
+r^2
+\int_0^{\xi^2}
+\rho_\kappa(s)e^{-s r^2}\,ds,
+\\
+\theta_S(r)
+&=
+r^2
+\int_{\xi^2}^{\infty}
+\rho_\kappa(s)e^{-s r^2}\,ds.
+\end{align}
+Because \(\rho_\kappa(s)\ge 0\), both $\theta_L(r)\ge0$ and
+$\theta_S(r)\ge0$, so each real-space piece is pointwise positive
+semidefinite. Closed-form expressions for $\theta_L$ and $\theta_S$ are
+given in Appendix~\ref{app:closed-form}.
+
+\subsection{Localization in real and Fourier space}
+
+We use the Fourier convention
+\begin{equation}
+\widehat f(\kk)
+=
+\int_{\mathbb R^3}
+e^{-i\kk\cdot\rr}f(\rr)\,d\rr.
+\end{equation}
+
+\begin{proposition}[Gaussian localization]
+\label{prop:localization}
+The short-range kernel satisfies
+\begin{equation}
+\label{eq:KS-asym}
+K_\kappa^S(\rr)
+\sim
+\rho_\kappa(\xi^2)
+e^{-\xi^2r^2}
+\PP(\rr),
+\qquad
+r\to\infty.
+\end{equation}
+The long-range kernel has the Fourier transform
+\begin{equation}
+\label{eq:KL-fourier}
+\widehat K_\kappa^L(\kk)
+=
+A_{\kappa,\xi}(k)\Id
++
+B_{\kappa,\xi}(k)\kk\kk^{\mathsf T},
+\end{equation}
+where
+\begin{align}
+A_{\kappa,\xi}(k)
+&=
+\frac{\pi^{3/2}}{2}
+\int_0^{\xi^2}
+\rho_\kappa(s)s^{-5/2}
+e^{-k^2/(4s)}\,ds,
+\\
+B_{\kappa,\xi}(k)
+&=
+-\frac{\pi^{3/2}}{4}
+\int_0^{\xi^2}
+\rho_\kappa(s)s^{-7/2}
+e^{-k^2/(4s)}\,ds,
+\end{align}
+and $B_{\kappa,\xi}(k)=A'_{\kappa,\xi}(k)/k$ for $k>0$. As $k\to\infty$,
+\begin{equation}
+\label{eq:lambda-par-asym}
+A_{\kappa,\xi}(k)
+\sim
+\frac{2\pi^{3/2}}{\xi k^2}
+\rho_\kappa(\xi^2)
+e^{-k^2/(4\xi^2)},
+\qquad
+A_{\kappa,\xi}(k)
++
+k^2B_{\kappa,\xi}(k)
+\sim
+-
+\frac{\pi^{3/2}}{\xi^3}
+\rho_\kappa(\xi^2)
+e^{-k^2/(4\xi^2)},
+\end{equation}
+and consequently
+\begin{equation}
+\label{eq:KL-decay}
+\left\|
+\widehat K_\kappa^L(\kk)
+\right\|_2
+\sim
+\frac{\pi^{3/2}}{\xi^3}
+\rho_\kappa(\xi^2)
+e^{-k^2/(4\xi^2)},
+\qquad
+k\to\infty.
+\end{equation}
+\end{proposition}
+
+The proof is given in Appendix~\ref{app:localization}. The value of
+$\widehat K_\kappa^L$ at \(k=0\) is obtained directly from the integral
+formulas.
+
+The truncation errors of the two pieces are measured by the continuum
+tail quantities
+\begin{equation}
+\label{eq:EF}
+E_S(r_c)
+=
+\int_{|\rr|>r_c}
+\|K_\kappa^S(\rr)\|_2\,d\rr,
+\qquad
+E_F(k_c)
+=
+\frac{1}{(2\pi)^3}
+\int_{|\kk|>k_c}
+\left\|
+\widehat K_\kappa^L(\kk)
+\right\|_2\,d\kk.
+\end{equation}
+By Proposition~\ref{prop:localization} (see Appendix~\ref{app:localization}),
+\begin{equation}
+\label{eq:tails}
+E_S(r_c)
+\sim
+\frac{2\pi}{\xi^2}
+\rho_\kappa(\xi^2)
+r_c e^{-\xi^2r_c^2},
+\qquad
+E_F(k_c)
+\sim
+\frac{1}{\sqrt{\pi}\,\xi}
+\rho_\kappa(\xi^2)
+k_c
+e^{-k_c^2/(4\xi^2)}.
+\end{equation}
+The quantity \(E_F\) is only a continuum asymptotic proxy for the
+reciprocal tail. A fully discrete periodic PPPM error estimate also depends
+on the reciprocal lattice, mesh spacing, assignment order, aliasing, and
+interpolation; these effects are analyzed in Section~\ref{sec:pm}.
+
+\subsection{Leading-order balance}
+
+Balancing the dominant exponential rates
+$e^{-\xi^2r_c^2}$ and $e^{-k_c^2/(4\xi^2)}$ in Eq.~\eqref{eq:tails} gives
+\begin{equation}
+\xi r_c
+\approx
+\frac{k_c}{2\xi},
+\qquad\text{or equivalently}\qquad
+\xi^2
+\approx
+\frac{k_c}{2r_c}.
+\end{equation}
+Increasing \(\xi\) makes the real-space part more localized but broadens
+the reciprocal-space contribution, while decreasing \(\xi\) does the
+opposite.
+
+\subsection{Pointwise positivity versus Fourier-multiplier signs}
+
+The real-space positivity of the split kernels should not be confused with
+positive semidefiniteness of the Fourier multiplier. By
+Eq.~\eqref{eq:KL-fourier}, the eigenvalue of $\widehat K_\kappa^L(\kk)$ on
+vectors orthogonal to $\kk$ is $\lambda_\perp(k)=A_{\kappa,\xi}(k)$, whereas
+the eigenvalue in the $\kk$ direction is
+\begin{equation}
+\lambda_\parallel(k)
+=
+A_{\kappa,\xi}(k)+k^2B_{\kappa,\xi}(k)
+=
+A_{\kappa,\xi}(k)+kA'_{\kappa,\xi}(k).
+\end{equation}
+By Eq.~\eqref{eq:lambda-par-asym}, $\lambda_\parallel(k)<0$ for large $k$,
+so the Fourier multiplier is generally not positive semidefinite. This
+does not contradict the pointwise real-space property
+$K_\kappa^L(\rr)\succeq0$. Only the latter enters the graph-Laplacian
+argument below.
+
+\section{Fast periodic graph-Laplacian action}
+\label{sec:pm}
+
+This section concerns the particle graph and its particle--mesh
+discretization. We use only two properties established in
+Section~\ref{sec:kernel}: the periodic real-space long-range pair kernel
+$K_\kappa^{L,\mathrm{per}}$ is pointwise positive semidefinite, and its
+Fourier multiplier has the Gaussian decay of Eq.~\eqref{eq:KL-decay}.
+
+\subsection{Finite reciprocal truncation and a spectral-gap criterion}
+
+For a cubic periodic cell of volume $V=L^3$, let
+\begin{equation}
+\mathcal K
+=
+\frac{2\pi}{L}\mathbb Z^3.
+\end{equation}
+The exact periodic long-range kernel is represented by
+\begin{equation}
+K_\kappa^{L,\mathrm{per}}(\rr)
+=
+\frac1V
+\sum_{\kk\in\mathcal K}
+\widehat K_\kappa^L(\kk)e^{i\kk\cdot\rr}.
+\end{equation}
+After a reciprocal cutoff $k_c$,
+\begin{equation}
+K_\kappa^{L,k_c}(\rr)
+=
+\frac1V
+\sum_{|\kk|\le k_c}
+\widehat K_\kappa^L(\kk)e^{i\kk\cdot\rr}.
+\end{equation}
+Define the omitted tail
+\begin{equation}
+R_{k_c}(\rr)
+=
+K_\kappa^{L,k_c}(\rr)
+-
+K_\kappa^{L,\mathrm{per}}(\rr).
+\end{equation}
+Then
+\begin{equation}
+\|R_{k_c}(\rr)\|_2
+\le
+\frac1V
+\sum_{|\kk|>k_c}
+\|\widehat K_\kappa^L(\kk)\|_2.
+\end{equation}
+If $\Gamma_L^{k_c}$ is formed from the truncated pair response using the
+same degree-minus-weight construction, Lemma~\ref{lem:pair-response} in
+Appendix~\ref{app:pair-response} gives
+\begin{equation}
+\label{eq:trunc-bound}
+\|\Gamma_L^{k_c}-\Gamma_L\|_2
+\le
+2\max_i
+\sum_{j\ne i}
+\|R_{k_c}(q_i-q_j)\|_2.
+\end{equation}
+A configuration-independent but generally pessimistic consequence is
+\begin{equation}
+\label{eq:trunc-pessimistic}
+\|\Gamma_L^{k_c}-\Gamma_L\|_2
+\le
+\frac{2(N-1)}{V}
+\sum_{|\kk|>k_c}
+\|\widehat K_\kappa^L(\kk)\|_2.
+\end{equation}
+The Gaussian Fourier asymptotics imply the expected fixed-system rate
+\begin{equation}
+\|\Gamma_L^{k_c}-\Gamma_L\|_2
+=
+\mathcal{O}\!\left(
+k_c e^{-k_c^2/(4\xi^2)}
+\right),
+\end{equation}
+although the worst-case prefactor inherited from
+Eq.~\eqref{eq:trunc-pessimistic} can be very conservative.
+
+Let
+\begin{equation}
+\cT
+=
+\operatorname{span}
+\{\mathbf 1\otimes e_1,
+\mathbf 1\otimes e_2,
+\mathbf 1\otimes e_3\}.
+\end{equation}
+Assume for the moment that the exact graph has no null vectors beyond
+translations, and define the restricted spectral gap
+\begin{equation}
+\label{eq:gap}
+\lambda_*
+=
+\min_{\substack{X\perp\cT\\ \|X\|=1}}
+X^{\mathsf T}\Gamma_LX
+>0.
+\end{equation}
+
+\begin{proposition}[PSD preservation under a small reciprocal perturbation]
+\label{prop:psd-trunc}
+If $\Gamma_L^{k_c}$ preserves the translation nullspace and
+\begin{equation}
+\|\Gamma_L^{k_c}-\Gamma_L\|_2<\lambda_*,
+\end{equation}
+then $\Gamma_L^{k_c}\succeq0$.
+\end{proposition}
+
+\begin{proof}
+For $X\perp\cT$ with $\|X\|=1$,
+\begin{align}
+X^{\mathsf T}\Gamma_L^{k_c}X
+&=
+X^{\mathsf T}\Gamma_LX
++
+X^{\mathsf T}(\Gamma_L^{k_c}-\Gamma_L)X
+\\
+&\ge
+\lambda_*
+-
+\|\Gamma_L^{k_c}-\Gamma_L\|_2
+>0.
+\end{align}
+On $\cT$, both operators vanish.
+\end{proof}
+
+The condition in Proposition~\ref{prop:psd-trunc} is sufficient but not
+necessary. A truncated pair kernel
+can fail to be pointwise semidefinite while the corresponding graph
+Laplacian remains positive semidefinite.
+
+\subsection{Symmetric particle--mesh discretization}
+
+Let $P_h$ denote spreading from particles to a periodic mesh and let
+\begin{equation}
+I_h=P_h^{\mathsf T}
+\end{equation}
+be the adjoint gathering operator with consistent normalization. Let $F_h$
+be the discrete Fourier transform and let $G_h(\kk)$ be an even,
+real-symmetric tensor influence function. The particle response is
+\begin{equation}
+W_h
+=
+I_hF_h^{-1}G_hF_hP_h.
+\end{equation}
+Adjoint transfer and an even symmetric multiplier imply that $W_h$ is
+symmetric. Rather than using $W_h$ directly as a friction matrix, define
+\begin{equation}
+\label{eq:pm-graph}
+(\widetilde\Gamma_h^LX)_i
+=
+\left(\sum_j(W_h)_{ij}\right)x_i
+-
+\sum_j(W_h)_{ij}x_j.
+\end{equation}
+The self response cancels algebraically, so the block-row sums vanish
+exactly and the translation modes are preserved for every mesh and particle
+configuration. Symmetry and row-zero structure, however, do not by
+themselves guarantee positive semidefiniteness.
+
+If $K^h_{ij}$ denotes the complete approximate pair response and
+\begin{equation}
+E_{ij}=K^h_{ij}-K_{ij},
+\end{equation}
+define
+\begin{equation}
+\epsilon_{\mathrm{op}}
+=
+2\max_i\sum_{j\ne i}\|E_{ij}\|_2.
+\end{equation}
+Lemma~\ref{lem:pair-response} gives
+\begin{equation}
+\label{eq:op-bound}
+\|\widetilde\Gamma_h-\Gamma\|_2
+\le
+\epsilon_{\mathrm{op}}.
+\end{equation}
+Therefore, if the exact graph has restricted gap $\lambda_*$, defined in
+Eq.~\eqref{eq:gap}, and
+\begin{equation}
+\epsilon_{\mathrm{op}}<\lambda_*,
+\end{equation}
+then the raw particle--mesh graph is already positive semidefinite and no
+stabilization is required.
+
+If this sufficient certificate is not available, one may retain the
+translation-preserving fallback stabilization
+\begin{equation}
+\label{eq:stabilized}
+\Gamma_h
+=
+\widetilde\Gamma_h
++
+\delta_h\Pi,
+\qquad
+\Pi
+=
+\left(I_N-\frac1N\mathbf1\mathbf1^{\mathsf T}\right)\otimes I_3,
+\end{equation}
+with
+\begin{equation}
+\delta_h
+\ge
+\max\left\{
+0,-\lambda_{\min}
+\left(
+\widetilde\Gamma_h|_{\Range\Pi}
+\right)
+\right\}.
+\end{equation}
+
+\begin{proposition}[Stabilized operator]
+\label{prop:stabilized}
+The operator $\Gamma_h$ is symmetric positive semidefinite, satisfies
+$\Gamma_h t=0$ for every $t\in\cT$, and obeys
+\begin{equation}
+\|\Gamma_h-\Gamma\|_2\le\epsilon_{\mathrm{op}}+\delta_h.
+\end{equation}
+\end{proposition}
+
+The proof is given in Appendix~\ref{app:pair-response}. The conservative choice $\delta_h=\epsilon_{\mathrm{op}}$ is always
+certified, but the numerical tests in Section~\ref{sec:pm-validation} show
+that it is usually much more conservative than the actual spectral shift.
+
+\subsection{Complete off-grid mesh-response decomposition}
+
+The mesh error is most transparent when the aliases are kept explicitly.
+Let
+\begin{equation}
+\kk_n
+=
+\kk+\frac{2\pi}{h}n,
+\qquad n\in\mathbb Z^3,
+\end{equation}
+and let $\widehat W_h$ be the Fourier transform of the assignment window.
+For a particle at $q$, define the deposited amplitude
+\begin{equation}
+S_h(\kk,q)
+=
+\sum_{n\in\mathbb Z^3}
+\widehat W_h(\kk_n)e^{-i\kk_n\cdot q}.
+\end{equation}
+Separate the principal contribution and the aliases:
+\begin{align}
+S_0(\kk,q)
+&=
+\widehat W_h(\kk)e^{-i\kk\cdot q},
+\\
+A_h(\kk,q)
+&=
+\sum_{n\ne0}
+\widehat W_h(\kk_n)e^{-i\kk_n\cdot q}.
+\end{align}
+Define the relative alias factor
+\begin{equation}
+\alpha_h(\kk,q)
+=
+\frac{A_h(\kk,q)}
+{\widehat W_h(\kk)e^{-i\kk\cdot q}},
+\end{equation}
+so that
+\begin{equation}
+S_h(\kk,q)
+=
+\widehat W_h(\kk)e^{-i\kk\cdot q}
+\left[1+\alpha_h(\kk,q)\right].
+\end{equation}
+The phase factor
+\begin{equation}
+e^{-i(2\pi/h)n\cdot q}
+\end{equation}
+inside $\alpha_h$ shows explicitly that a finite mesh response depends on
+particle positions relative to the grid, not only on pair separation.
+
+Define
+\begin{equation}
+H_h(\kk)
+=
+|\widehat W_h(\kk)|^2G_h(\kk),
+\qquad
+D_h(\kk)
+=
+H_h(\kk)-\widehat K_\kappa^L(\kk).
+\end{equation}
+A direct computation (Appendix~\ref{app:alias}) gives the exact
+single-mode pair-response error
+\begin{equation}
+\label{eq:pair-error}
+E_{ij}^h(\kk)
+=
+e^{i\kk\cdot(q_i-q_j)}
+\left[
+D_h(\kk)
++
+H_h(\kk)
+\left(
+\alpha_i^*+\alpha_j+\alpha_i^*\alpha_j
+\right)
+\right],
+\end{equation}
+where $\alpha_i=\alpha_h(\kk,q_i)$ and similarly for $\alpha_j$.
+Equation~\eqref{eq:pair-error} separates an alias-free influence defect
+$D_h$ from the complete off-grid alias response.
+
+For ideal deconvolution,
+\begin{equation}
+G_h(\kk)
+=
+\frac{\widehat K_\kappa^L(\kk)}
+{|\widehat W_h(\kk)|^2},
+\end{equation}
+whenever the denominator is numerically safe. Then
+\begin{equation}
+D_h(\kk)=0
+\end{equation}
+in exact arithmetic, and the complete mesh error is produced entirely by
+the alias cross terms
+\begin{equation}
+\widehat K_\kappa^L(\kk)
+\left(
+\alpha_i^*+\alpha_j+\alpha_i^*\alpha_j
+\right).
+\end{equation}
+The linear terms are first order in the alias amplitude, while the quadratic
+term is second order. This distinction is important when defining
+numerical diagnostics: a diagnostic retaining only matched quadratic
+aliases can scale like $h^{2p}$ and miss the dominant $h^p$ contribution.
+
+\subsection{B-spline assignment and the \texorpdfstring{$h^p$}{h\textasciicircum p} mesh law}
+
+For a cardinal B-spline assignment of order $p$,
+\begin{equation}
+\widehat W_h(\kk)
+=
+\prod_{\ell=1}^3
+\operatorname{sinc}^p
+\left(\frac{k_\ell h}{2}\right),
+\qquad
+\operatorname{sinc}(x)=\frac{\sin x}{x}.
+\end{equation}
+For $p\ge2$, the relative alias amplitude satisfies
+\begin{equation}
+\alpha_h(\kk,q)
+=
+\mathcal{O}\!\left((h|\kk|)^p\right).
+\end{equation}
+Because the screened long-range Fourier multiplier has Gaussian decay,
+all moments
+\begin{equation}
+M_p(\kappa,\xi)
+=
+\frac{1}{(2\pi)^3}
+\int_{\mathbb R^3}
+k^p
+\|\widehat K_\kappa^L(\kk)\|_2
+\,d\kk
+\end{equation}
+are finite. Therefore the complete off-grid mesh pair response obeys the
+asymptotic law
+\begin{equation}
+\label{eq:mesh-law}
+\epsilon_{\mathrm{mesh}}
+=
+\mathcal{O}(h^p)
+\end{equation}
+for fixed physical cutoff and sufficiently fine mesh; the proof is given in
+Appendix~\ref{app:alias}.
+
+The phase dependence in $\alpha_h$ implies oscillations in a single fixed
+configuration as $h$ varies. Random global grid offsets remove the mean of
+the linear phase terms but not their RMS magnitude. Consequently, RMS
+phase-averaged errors give a cleaner estimate of the asymptotic $h^p$
+behavior.
+
+It is useful to write the measured asymptotic law in dimensionless form as
+\begin{equation}
+\label{eq:CM}
+\epsilon_{\mathrm{mesh}}
+\approx
+C_M(\kappa,\xi,p,k_c,\text{configuration})
+(\xi h)^p.
+\end{equation}
+The coefficient in Eq.~\eqref{eq:CM} is not universal; the experiments in
+Section~\ref{sec:pm-validation} show a modest dependence on configuration
+and reciprocal cutoff. Parameter selection should therefore use a
+conservative envelope $C_M^{\max}(p)$ rather than a single universal
+constant.
+
+\section{Discrete FDT thermostat and time integration}
+\label{sec:thermostat}
+
+\subsection{A finite-time thermostat map}
+
+The matrix-free Ewald--PPPM formulation of Section~\ref{sec:pm} provides a fast action of the discrete friction operator,
+\begin{equation}
+\bm{x} \mapsto \Gamma_h \bm{x},
+\end{equation}
+with measured cost consistent with
+\begin{equation}
+T_{\Gamma_h}(N)=\mathcal{O}(N\log N).
+\end{equation}
+The remaining difficulty is the correlated thermal noise. For the exponential finite-time thermostat, the damping and noise factors are
+\begin{equation}
+R_{\Delta t}(\Gamma_h)=\exp\!\left(-\frac{\Delta t}{m}\Gamma_h\right),
+\end{equation}
+and
+\begin{equation}
+S_{\Delta t}(\Gamma_h)
+=
+\left[
+\beta^{-1}m
+\left(I-R_{\Delta t}(\Gamma_h)^2\right)
+\right]^{1/2}.
+\end{equation}
+The pair $(R_{\Delta t},S_{\Delta t})$ reproduces the exact transition law of the frozen-configuration Ornstein--Uhlenbeck flow, conserves total momentum pathwise, and leaves the conditional Maxwell law invariant; see Appendix~\ref{app:thermostat}. The random increment is therefore
+\begin{equation}
+\eta
+=
+f_{\Delta t}(\Gamma_h)\,\xi,
+\end{equation}
+with
+\begin{equation}
+f_{\Delta t}(\lambda)
+=
+\sqrt{
+\beta^{-1}m
+\left(1-e^{-2\Delta t\lambda/m}\right)
+}.
+\end{equation}
+We evaluate this matrix-function action by the Lanczos method. If the required Krylov rank is $r(N)$, the noise cost is
+\begin{equation}
+T_{\mathrm{noise}}(N)
+=
+\mathcal{O}\!\left(r(N)N\log N\right).
+\end{equation}
+Consequently, a measured $\mathcal{O}(N\log N)$ production cost requires that the rank remain effectively constant under a fixed accuracy budget.
+
+\subsection{Lanczos evaluation of the correlated noise}
+\label{sec:lanczos}
+
+We first consider direct-start Lanczos with
+\begin{equation}
+z=\Pi\xi,
+\qquad
+\Pi=\left(I-\frac{1}{N}\bm{1}\bm{1}^{\mathsf T}\right)\otimes I_3,
+\end{equation}
+and
+\begin{equation}
+q_1=\frac{z}{\|z\|},
+\qquad
+\eta_r
+=
+\|z\|Q_r f_{\Delta t}(T_r)e_1.
+\end{equation}
+The projection $\Pi$ is applied after every $\Gamma_h$ action and after the final reconstruction.
+
+\subsection{Range-start Lanczos}
+\label{sec:range-start}
+
+A Landau-style range start is a natural alternative. Defining
+\begin{equation}
+b=\Gamma_h z,
+\end{equation}
+and
+\begin{equation}
+g(\lambda)=\frac{f_{\Delta t}(\lambda)}{\lambda},
+\end{equation}
+one may write, on the positive spectral range,
+\begin{equation}
+f_{\Delta t}(\Gamma_h)z
+=
+g(\Gamma_h)b.
+\end{equation}
+Although $b=\Gamma_h z$ strongly suppresses the smallest spectral modes in the starting vector, the transformed scalar function behaves as
+\begin{equation}
+g(\lambda)
+\sim
+C\lambda^{-1/2},
+\qquad \lambda\to0^+,
+\end{equation}
+because
+\begin{equation}
+f_{\Delta t}(\lambda)\sim C\sqrt{\lambda},
+\end{equation}
+with $C=(2\beta^{-1}\Delta t)^{1/2}$ (Appendix~\ref{app:thermostat}).
+The increased singularity of $g$ more than offsets the spectral reweighting.
+
+\subsection{Full symmetric splitting}
+\label{sec:splitting}
+
+The PPPM--Lanczos thermostat is inserted into the symmetric Langevin splitting
+\begin{equation}
+\Psi_{\Delta t}
+=
+B_{\Delta t/2}A_{\Delta t/2}O_{\Delta t}A_{\Delta t/2}B_{\Delta t/2}.
+\end{equation}
+For the ideal gas, $U=0$ and the conservative $B$ steps vanish. One step reduces to
+\begin{equation}
+q^{(1)}
+=
+q^n+\frac{\Delta t}{2m}p^n,
+\end{equation}
+\begin{equation}
+p^{n+1}
+=
+e^{-\Delta t\Gamma_h(q^{(1)})/m}p^n
++
+f_{\Delta t}(\Gamma_h(q^{(1)}))\xi^n,
+\end{equation}
+and
+\begin{equation}
+q^{n+1}
+=
+q^{(1)}+\frac{\Delta t}{2m}p^{n+1},
+\end{equation}
+with periodic wrapping of the positions.
+
+Both the deterministic damping action and the stochastic noise action are evaluated matrix-free. The center-of-mass momentum component is copied exactly through the damping step, while the fluctuating component and every noise sample are projected onto $\operatorname{Range}(\Pi)$.
+
+\section{Simulation error and complexity}
+\label{sec:error}
+
+\subsection{Operator error budget}
+
+For the present ideal-deconvolution implementation, it is more natural to
+combine aliasing and off-grid transfer into one complete mesh-response term:
+\begin{equation}
+\label{eq:op-budget}
+\epsilon_{\mathrm{op}}
+\le
+\epsilon_S
++
+\epsilon_F
++
+\epsilon_{\mathrm{mesh}}
++
+\epsilon_{\mathrm{quad}}.
+\end{equation}
+For the screened longitudinal kernel considered here the Fourier multiplier
+is available analytically, so $\epsilon_{\mathrm{quad}}$ can be made
+negligible. With the balanced variable
+\begin{equation}
+s
+=
+\xi r_c
+=
+\frac{k_c}{2\xi},
+\end{equation}
+the real- and reciprocal-space Ewald tails have the common Gaussian rate
+\begin{equation}
+\epsilon_S+\epsilon_F
+\sim
+C_E e^{-s^2}
+\end{equation}
+up to algebraic prefactors, whereas for fixed B-spline order
+\begin{equation}
+\epsilon_{\mathrm{mesh}}
+\approx
+C_M(\xi h)^p.
+\end{equation}
+If the mesh is parameterized by
+\begin{equation}
+k_c
+=
+\eta_N\frac{\pi}{h},
+\qquad 0<\eta_N<1,
+\end{equation}
+then
+\begin{equation}
+\xi h
+=
+\frac{\eta_N\pi}{2s},
+\end{equation}
+and the schematic total error becomes
+\begin{equation}
+\label{eq:op-schematic}
+\epsilon_{\mathrm{op}}
+\lesssim
+C_Ee^{-s^2}
++
+C_M
+\left(
+\frac{\eta_N\pi}{2s}
+\right)^p.
+\end{equation}
+Thus, in Eq.~\eqref{eq:op-schematic}, the Ewald tail is Gaussian in $s$,
+while the mesh error is only
+algebraic in $s$ at fixed assignment order. At sufficiently high target
+accuracy the mesh term must therefore dominate unless $p$ is increased or
+$h$ is reduced more aggressively.
+
+\subsection{Practical parameter selection}
+
+A convenient initial Ewald choice is
+\begin{equation}
+s
+=
+\sqrt{\log\left(\frac{2}{\mathrm{tol}}\right)}.
+\end{equation}
+The balanced cutoffs are then
+\begin{equation}
+r_c=\frac{s}{\xi},
+\qquad
+k_c=2\xi s.
+\end{equation}
+The factor $\xi$ should be treated as a computational work-balancing
+parameter rather than an accuracy parameter. For a chosen B-spline order
+$p$, a practical mesh requirement is
+\begin{equation}
+C_M^{\max}(p)(\xi h)^p
+\le
+\frac{\mathrm{tol}}{2},
+\end{equation}
+which gives
+\begin{equation}
+h
+\le
+\frac1\xi
+\left(
+\frac{\mathrm{tol}}
+{2C_M^{\max}(p)}
+\right)^{1/p}.
+\end{equation}
+This should be combined with a Nyquist safety constraint such as
+\begin{equation}
+\frac{k_ch}{\pi}\le0.8.
+\end{equation}
+For a box of side length $L$, one can then choose
+\begin{equation}
+M
+\ge
+\frac{L}{h}
+\end{equation}
+and round upward to an FFT-friendly size. This last rounding decreases the
+actual mesh spacing and therefore does not weaken the accuracy condition.
+In equal-accuracy timings at $\kappa=1$ (Appendix~\ref{app:equal-accuracy}),
+the accepted Ewald scale was $1.0$--$1.075$ times the initial choice above,
+and the cost per action was lowest near $\xi=0.5$--$0.7$; that accuracy was
+measured on two reference configurations only.
+
+Once a complete pair-response estimate is available, accuracy is certified
+through
+\begin{equation}
+\|\widetilde\Gamma_h-\Gamma\|_2
+\le
+\epsilon_{\mathrm{op}}.
+\end{equation}
+If a reliable restricted gap $\lambda_*$ is also available, the same error
+estimate provides the optional PSD certificate
+\begin{equation}
+\epsilon_{\mathrm{op}}<\lambda_*
+\quad\Longrightarrow\quad
+\widetilde\Gamma_h\succeq0.
+\end{equation}
+Failure of this sufficient inequality does not imply indefiniteness; it only
+means that the perturbation certificate is inconclusive.
+
+\subsection{Work estimate}
+
+With fixed noise and damping ranks $r_{\mathrm{noise}}$ and
+$r_{\mathrm{damp}}$, the dominant cost per thermostat step can be summarized as
+\begin{equation}
+T_{\mathrm{step}}
+=
+(r_{\mathrm{noise}}+r_{\mathrm{damp}})\,T_{\Gamma_h}
++
+T_{\mathrm{setup}}
++
+T_{\mathrm{reorth}}
++
+T_{\mathrm{small\ matrix}}
++
+T_{\mathrm{vector}}.
+\end{equation}
+In the earlier setting of Section~\ref{sec:experiments} the ranks were
+$r_{\mathrm{noise}}=40$ and $r_{\mathrm{damp}}=16$, i.e.\ $56$ actions per
+step. Because the measured $\Gamma_h$ action is $\mathcal{O}(N\log N)$-like
+(Section~\ref{sec:exp-timing}) and the remaining costs are subdominant over
+the tested regime, the numerical evidence supports the following
+accuracy-qualified statement.
+
+\begin{remark}[Measured complexity]
+\label{rem:complexity}
+Under the tested fixed physical-accuracy budget, using the fixed Lanczos ranks $r_{\mathrm{noise}}=40$ and $r_{\mathrm{damp}}=16$ of the earlier setting, the measured PPPM--Lanczos thermostat cost is consistent with $\mathcal{O}(N\log N)$ scaling for system sizes up to $N=16000$.
+\end{remark}
+
+Remark~\ref{rem:complexity} is deliberately finite-range and accuracy-qualified. It is \emph{not} an asymptotic theorem that the rank remains bounded as $N\to\infty$. In particular, the static rank-$40$ noise error already reaches approximately $9.1\times10^{-4}$
+at $N=16000$, close to the $10^{-3}$ production budget; if the ranks must grow with $N$, so does the cost per step.
+
+\section{Numerical experiments}
+\label{sec:experiments}
+
+This section tests the components of the method on the screened
+longitudinal kernel of Eq.~\eqref{eq:kernel} with $\kappa=1$, in a fully
+periodic cube with the $k=0$ term retained, and with
+$\beta=m=1$. The evidence is organized in four groups:
+operator accuracy and structural checks
+(Section~\ref{sec:pm-validation}); Lanczos accuracy and the choice of
+production ranks (Section~\ref{sec:lanczos-exp}); conservation, equilibrium
+and dynamical accuracy of the ideal-gas thermostat
+(Section~\ref{sec:dyn-exp}); and computational cost
+(Section~\ref{sec:exp-timing}). The Lennard-Jones application of
+Section~\ref{sec:lj} has its own kernel amplitude, screening length,
+density, time step and ranks, and none of its parameters are used here.
+
+\paragraph{Status of the reported numbers.}
+The results of
+Sections~\ref{sec:lanczos-exp}--\ref{sec:exp-timing} were obtained with an
+earlier version of the code, in which $A_{\kappa,\xi}(k)$ and
+$B_{\kappa,\xi}(k)$ were evaluated at $|\kk|$ rounded to twelve decimals
+and the spatial set used $s=4.100$ instead of the accepted
+$s=4.100151562$. Each is reported with its original setting. A
+recomputation with the corrected code is in progress; entries marked
+\pending{} will be replaced by its results, and nothing from the
+recomputation is reported before it is complete and checked.
+
+\subsection{Operator accuracy and structural checks}
+\label{sec:pm-validation}
+
+\pending{Experiment~1 is being rerun: the complete production action
+$X\mapsto\widetilde\Gamma_hX$ on static configurations against the unsplit
+full-periodic reference, with each error source of
+Eq.~\eqref{eq:op-budget} measured alone. Its results will replace or
+supplement the mesh-decomposition study below.}
+
+\paragraph{Mesh response.}
+The error model of Sections~\ref{sec:kernel} and~\ref{sec:pm} was tested
+on two periodic configurations with dense references, $\kappa=\xi=1$,
+$k_c\in\{4,6\}$: case A with $N=30$, $L=6$, and case B with $N=40$,
+$L=10$. The literal spread--FFT--influence--gather implementation agreed
+with its matrix representation to approximately $1.4\times10^{-15}$, and
+the pair-response error reconstructed from the $D_h$ and $\alpha_h$ terms
+of Eq.~\eqref{eq:pair-error} agreed with $K_h-K_F$ to approximately
+$1.8\times10^{-15}$ relative to the maximum retained pair response.
+
+For ideal deconvolution the largest observed influence defect was
+$\|D_h\|/\|\widehat K_\kappa^L\|\lesssim1.8\times10^{-16}$, and its
+graph-operator contribution was at most $4.7\times10^{-17}$, so the
+observed off-grid error is carried by the alias cross terms. An earlier
+alias diagnostic retained only the matched quadratic terms $n=n'\ne0$,
+which scale as $h^{2p}$, and omitted the dominant linear terms, which
+scale as $h^p$; this explains discrepancies by factors of approximately
+$22$ to $2\times10^5$ between that diagnostic and the complete mesh
+response.
+
+On the finest meshes the RMS phase-averaged mesh errors have fitted slopes
+between $p$ and $p+1.5$ (Fig.~\ref{fig:exp1-mesh}). The excess above $p$
+decreases as $h\to0$; the slopes are consistent with the $h^p$ law of
+Section~\ref{sec:pm} for approximately $0.1\lesssim\xi h\lesssim0.4$ when
+$p\le6$, with a narrower interval for $p=7,8$, but finite-mesh fits do not
+establish the asymptotic order. The normalized quantity
+$C_M(h)=\epsilon_{\mathrm{mesh}}/(\xi h)^p$ was nearly constant on the
+finest meshes, typically within factors $1.04$--$1.4$, and within about a
+factor $2$ for $p\ge7$ in the larger box. Across the tested cases $C_M$
+decreased from roughly $2\times10^{-2}$--$3.5\times10^{-2}$ at $p=2$ to
+$1.6\times10^{-4}$--$1.1\times10^{-3}$ at $p=8$, with up to a factor of
+about three dependence on configuration and $k_c$.
+
+The predictor $C_M(\xi h)^p$ was substantially more accurate than the
+edge-of-band heuristic $q^p$, $q=\eta_N/(2-\eta_N)$
+(Fig.~\ref{fig:exp1-predictors}). Over 181 mesh runs the ratio of the
+$C_M(\xi h)^p$ prediction to the measured error had median approximately
+$0.93$ and range $0.25$--$2.1$, whereas $q^p$ overpredicted by a median
+factor of approximately $1.9\times10^3$, with range $37$ to
+$4\times10^5$. The heuristic uses the retained spectral edge, while the
+complete error is weighted toward smaller $k$, where the long-range
+multiplier is larger and the alias ratio much smaller.
+
+\paragraph{Spectrum and positivity.}
+No negative graph eigenvalue was observed among 13\,195 mesh operators or
+among the 44 accepted equal-accuracy runs of
+Appendix~\ref{app:equal-accuracy}. The smallest observed ratio was
+$\lambda_h/\lambda_*\approx0.970$ (Fig.~\ref{fig:exp3}). The spectral-gap
+certificate was conservative: the actual gap shift was a median of about
+$2.4\%$ and at most $7\%$ of $\|\Gamma_h-\Gamma\|_2$. Stabilization
+therefore remains a valid fallback, but it was not required in the tested
+regime. Symmetry and the translation null space hold by construction
+(Section~\ref{sec:pm}); their residuals in the dynamic runs are reported
+in Sections~\ref{sec:dyn-exp} and~\ref{sec:exp-timing}.
+
+These tests predate the correction of the $|\kk|$ rounding, which
+perturbs the multiplier at the level of $10^{-13}$ relative to
+$\|\Gamma\|_2$ and does not affect the mesh errors quoted above.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.62\textwidth]{exp1_eps_vs_h.png}
+\includegraphics[width=0.36\textwidth]{exp1_slope_vs_p.png}
+\caption{Mesh response, $\kappa=\xi=1$, $k_c\in\{4,6\}$, configurations A ($N=30$, $L=6$) and B ($N=40$, $L=10$). Left: RMS phase-averaged mesh error versus $h$ for $p=2$--$8$. Right: fitted slope on the finest valid meshes versus $p$; the line is slope $=p$. Source: \texttt{mesh\_error\_decomposition\_results/plot01, plot02}.}
+\label{fig:exp1-mesh}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.32\textwidth]{exp1_full_vs_reconstructed.png}
+\includegraphics[width=0.32\textwidth]{exp1_actual_vs_CM.png}
+\includegraphics[width=0.32\textwidth]{exp1_actual_vs_qp.png}
+\caption{Mesh response, configurations A and B. Left: error reconstructed from the $D_h$ and $\alpha_h$ terms of Eq.~\eqref{eq:pair-error} versus the literal mesh error. Middle: measured error versus $C_M(\xi h)^p$. Right: measured error versus $q^p$, $q=\eta_N/(2-\eta_N)$. Source: \texttt{mesh\_error\_decomposition\_results/plot04, plot08, plot09}.}
+\label{fig:exp1-predictors}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{exp3_lambda_vs_h.png}
+\caption{Smallest eigenvalue $\lambda_h$ of the particle--mesh graph on $\cT^\perp$ and the perturbation lower bound versus $h$; the horizontal line is $\lambda_*$. Configurations A and B, $k_c\in\{4,6\}$, several $p$. Source: \texttt{mesh\_error\_decomposition\_results/plot10\_lambda\_vs\_h.png}.}
+\label{fig:exp3}
+\end{figure}
+
+\subsection{Lanczos accuracy and production-rank selection}
+\label{sec:lanczos-exp}
+
+The thermostat applies two matrix functions of the same
+$\widetilde\Gamma_h$: the noise factor $f_{\Delta t}$, which behaves like
+a square root near $\lambda=0$, and the damping factor
+$e^{-\Delta t\widetilde\Gamma_h/m}$. Lanczos errors are measured as relative
+action errors against converged high-rank Lanczos references of the same
+operator, so they contain no spatial error. A reference was accepted only
+when both the successive-rank difference and the rank-$r$ versus
+rank-$(r-20)$ difference satisfied stringent convergence criteria; for
+$N=8000$ and $16000$ this required references up to rank $360$. Two
+questions are kept apart: how the rank grows at a fixed high accuracy, and
+whether one fixed rank meets the production budget over the tested range.
+
+\paragraph{Rank growth at high accuracy.}
+At relative noise-action tolerance $10^{-8}$ the required direct-start rank
+grows with $N$ (Table~\ref{tab:rank-growth}, Fig.~\ref{fig:exp4}),
+approximately as $r(N)\sim N^{0.34}$. A claim
+$T_{\mathrm{thermostat}}=\mathcal O(N\log N)$ at fixed $10^{-8}$
+matrix-function accuracy is therefore not supported. The range start of
+Section~\ref{sec:range-start} required more steps than the direct start:
+at $N=4000$ and $10^{-8}$, about $166$--$169$ versus $126$--$128$, and
+typically $20\%$--$35\%$ more $\Gamma_h$ actions across the tested sizes.
+The direct start is retained.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{ccccccc}
+\toprule
+$N$ & 128 & 256 & 512 & 1024 & 2048 & 4000\\
+\midrule
+$r$ & 39 & 50 & 64 & 83 & 102 & 127\\
+\bottomrule
+\end{tabular}
+\caption{Representative direct-start Lanczos ranks at relative noise-action tolerance $10^{-8}$ (earlier setting).}
+\label{tab:rank-growth}
+\end{table}
+
+\paragraph{Fixed noise rank under the production budget.}
+The production target is a relative noise-action error
+$\varepsilon_{\mathrm{root}}\le10^{-3}$. Table~\ref{tab:fixed-rank-small}
+lists the largest error over the tested Gaussian seeds at
+$\Delta t\lambda_{\max}/m=0.5$ for $N\le4000$, and
+Table~\ref{tab:fixed-rank-large} extends the study to $N=8000$ and
+$16000$ with three seeds per size. Rank $24$ does not meet the budget
+uniformly; rank $32$ meets it through $N=4000$ but fails at $N=8000$ and
+$16000$. Rank $40$ is the smallest single tested rank that stays below
+$10^{-3}$ at every tested size, with a thin margin at $N=16000$ (largest
+error $9.1\times10^{-4}$). This is a finite-range statement at fixed
+accuracy, not a bound on the rank as $N\to\infty$.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{rcccc}
+\toprule
+$N$ & $r=16$ & $r=24$ & $r=32$ & $r=40$\\
+\midrule
+128  & $1.8\times10^{-4}$ & $6.1\times10^{-6}$ & $1.5\times10^{-7}$ & $4.6\times10^{-9}$\\
+256  & $4.8\times10^{-4}$ & $4.3\times10^{-5}$ & $3.4\times10^{-6}$ & $2.6\times10^{-7}$\\
+512  & $1.4\times10^{-3}$ & $1.8\times10^{-4}$ & $2.0\times10^{-5}$ & $3.3\times10^{-6}$\\
+1024 & $2.2\times10^{-3}$ & $4.8\times10^{-4}$ & $9.6\times10^{-5}$ & $1.8\times10^{-5}$\\
+2048 & $3.8\times10^{-3}$ & $1.0\times10^{-3}$ & $2.6\times10^{-4}$ & $7.8\times10^{-5}$\\
+4000 & $4.6\times10^{-3}$ & $1.4\times10^{-3}$ & $5.2\times10^{-4}$ & $2.0\times10^{-4}$\\
+\bottomrule
+\end{tabular}
+\caption{Fixed-rank direct-start noise-action errors for $N\le4000$ (maximum over seeds, earlier setting).}
+\label{tab:fixed-rank-small}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{rccc}
+\toprule
+$N$ & $r=32$ & $r=40$ & $r=48$\\
+\midrule
+128   & $1.5\times10^{-7}$ & $4.6\times10^{-9}$ & $\le 4.6\times10^{-9}$\\
+256   & $3.4\times10^{-6}$ & $2.6\times10^{-7}$ & $\le 2.6\times10^{-7}$\\
+512   & $2.0\times10^{-5}$ & $3.3\times10^{-6}$ & $\le 3.3\times10^{-6}$\\
+1024  & $9.6\times10^{-5}$ & $1.8\times10^{-5}$ & $\le 1.8\times10^{-5}$\\
+2048  & $2.6\times10^{-4}$ & $7.8\times10^{-5}$ & $\le 7.8\times10^{-5}$\\
+4000  & $5.2\times10^{-4}$ & $2.0\times10^{-4}$ & $\le 2.0\times10^{-4}$\\
+8000  & $1.04\times10^{-3}$ & $4.5\times10^{-4}$ & $2.2\times10^{-4}$\\
+16000 & $1.78\times10^{-3}$ & $9.1\times10^{-4}$ & $4.8\times10^{-4}$\\
+\bottomrule
+\end{tabular}
+\caption{Extended fixed-rank noise-action errors (earlier setting). For $N\le4000$ the rank-$48$ entries are upper bounds from the monotone decrease with rank; rank $48$ was not evaluated there.}
+\label{tab:fixed-rank-large}
+\end{table}
+
+\paragraph{Damping rank.}
+The damping factor is smoother than the noise factor. Against a converged
+$e^{-\Delta t\widetilde\Gamma_h/m}\Pi p$, rank $12$ gave relative errors of
+at most $7\times10^{-7}$ up to $\Delta t\lambda_{\max}=10$, but
+$1.8\times10^{-4}$ at $\Delta t\lambda_{\max}=20$; rank $16$ stayed below
+about $6\times10^{-7}$ at $\Delta t\lambda_{\max}=20$. Against the damping
+budget $10^{-6}$, rank $12$ is therefore adequate but marginal for
+close-pair spikes of $\lambda_{\max}$, and rank $16$ leaves a margin.
+
+\paragraph{Production ranks.}
+In the earlier setting the outcome of this section was
+$r_{\mathrm{noise}}=40$ and $r_{\mathrm{damp}}=16$ for the budgets
+$10^{-3}$ (noise) and $10^{-6}$ (damping) through $N=16000$. These values
+belong to that setting only. \pending{Recommended ranks for the corrected
+operator are determined by the rank-selection stage of the recomputation.}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.49\textwidth]{exp4_rank_vs_N.png}
+\includegraphics[width=0.49\textwidth]{exp4_range_ratio_vs_N.png}
+\caption{Rank growth at high accuracy. Left: required direct-start rank versus $N$ at fixed density for tolerances $10^{-6}$ and $10^{-8}$ and $\Delta t\lambda_{\max}/m=0.5$, $2.0$, against converged references. Right: ratio of range-start to direct-start rank. Source: \texttt{lanczos\_fdt\_results/plot09}, \texttt{lanczos\_range\_start\_results/plot07}.}
+\label{fig:exp4}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{exp5_fixed_rank_vs_N.png}
+\includegraphics[width=0.53\textwidth]{exp5_fixed_rank_large_n.png}
+\caption{Fixed-rank noise-action error versus $N$ at $\Delta t\lambda_{\max}/m=0.5$ (maximum over seeds). Left: $N\le4000$, ranks 16--40, with the $10^{-3}$ budget. Right: extension to $N=8000$ and $16000$ (right of the dashed line) for ranks 32, 40, 48, and the rank-40 noise-action time. Source: \texttt{fixed\_rank\_budget\_results/}.}
+\label{fig:exp5}
+\end{figure}
+
+\subsection{Conservation, equilibrium, and dynamical accuracy}
+\label{sec:dyn-exp}
+
+\paragraph{Setting.}
+The dynamic tests use the ideal gas ($U=0$) at density $30/216$ with the
+splitting of Section~\ref{sec:splitting}, the PPPM set $\xi=0.7$,
+$s=4.10$, $\eta_N=0.7$, $p=7$, and
+$\Delta t=0.0429=0.2\,m/\mathrm{median}\,\lambda_{\max}(q_0)$ over the 16
+initial configurations at $N=64$; the same physical $\Delta t$ is used at
+every $N$. The ranks are noise $40$ (and $48$ for comparison) with damping
+rank $12$; the high-rank Lanczos runs use $90$ and $24$. These runs
+therefore used damping rank $12$, not the $16$ adopted afterwards in
+Section~\ref{sec:lanczos-exp} and used for the timings of
+Section~\ref{sec:exp-timing}. At $N=64$ the coupled methods share initial
+states and Gaussian streams: dense eigendecomposition of the same
+$\widetilde\Gamma_h$ (the reference), the same with the $10^{-9}$ spatial
+set, high-rank Lanczos, ranks $40$ and $48$, and dense runs at $2\Delta t$,
+$\Delta t/2$ and $\Delta t/4$, 16 trajectories to $T_{\mathrm{end}}=6$.
+Because there is no repulsive potential, close pairs make $\lambda_{\max}$
+spike: $\Delta t\lambda_{\max}(t)$ reached about $3.7$ at $N=64$ and $10$ at
+$N=16000$; the exponential damping step is unconditionally stable and
+remained so.
+
+\paragraph{Momentum and thermal equilibrium.}
+Total momentum was preserved pathwise to round-off in every run, with
+largest relative defect $3.8\times10^{-14}$
+(Fig.~\ref{fig:exp6-mom}, left). A control run with independent,
+uncorrelated noise drifted by $\mathcal O(1)$ (defects $1$--$1.7$). From the
+deliberately anisotropic start $T_x\approx1.96$, $T_y\approx T_z\approx0.5$
+the component temperatures relaxed toward $T=1$ by $t\approx3$--$4$ at
+$N=64$ (Fig.~\ref{fig:exp6-temp}). The window $t\in[3,6]$ had not yet
+equilibrated the slowest mode, so 16 longer trajectories to $T=30$ with
+burn-in to $t=15$ were added; in these runs the $95\%$ confidence interval
+of every component temperature contains $1$, and the normalized
+conditional-Maxwell diagnostics are variance $0.9995\pm0.010$, skewness
+$-0.006\pm0.007$ and excess kurtosis $-0.023\pm0.025$
+(Fig.~\ref{fig:exp6-mom}, right). At $N=4000$ and $16000$ relaxation is
+visible but equilibrium was not tested.
+
+\paragraph{Separation of error sources.}
+Table~\ref{tab:dyn-differences} lists paired differences of the
+observables at $N=64$. The comparisons isolate four contributions:
+\begin{itemize}
+\item Krylov error on the same $\widetilde\Gamma_h$: high-rank Lanczos
+  minus dense is at most $1.1\times10^{-13}$, rank $48$ minus dense at
+  most $1.2\times10^{-11}$, rank $40$ minus dense at most $1.0\times10^{-9}$
+  (Fig.~\ref{fig:exp7});
+\item spatial discretization: replacing the production set by the
+  $10^{-9}$ set changes the observables by at most $5.6\times10^{-7}$. This
+  is a proxy obtained by tightening the set, not a comparison with the
+  exact $\Gamma$;
+\item time discretization: paired differences between dense runs at
+  successive step sizes are about $10^{-2}$ to $3\times10^{-2}$;
+\item sampling: the standard error of the mean over 16 trajectories is
+  $3\times10^{-2}$ to $8\times10^{-2}$.
+\end{itemize}
+At larger $N$, on the same seed and stream, rank $48$ minus rank $40$ is
+at most $4.1\times10^{-5}$ at $N=4000$ and $1.4\times10^{-4}$ at
+$N=16000$, compared with seed-to-seed standard deviations of the late-time
+temperatures of $0.009$--$0.019$ and $0.002$--$0.007$, respectively. Within
+the resolution of these observables, rank $40$ is indistinguishable from
+rank $48$ through $N=16000$ and from the dense reference at $N=64$.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+comparison & $T_x$ & $T_y$ & $T_z$ & $T_{\mathrm{kin}}$ & $O_k$ \\
+\midrule
+rank 40 $-$ dense & $6.6\times10^{-10}$ & $6.1\times10^{-10}$ & $1.0\times10^{-9}$ & $4.1\times10^{-10}$ & $5.6\times10^{-11}$ \\
+rank 48 $-$ dense & $1.2\times10^{-11}$ & $7.3\times10^{-12}$ & $5.1\times10^{-12}$ & $3.7\times10^{-12}$ & $4.3\times10^{-13}$ \\
+high rank $-$ dense & $3.0\times10^{-14}$ & $1.1\times10^{-13}$ & $5.7\times10^{-14}$ & $2.3\times10^{-14}$ & $7.6\times10^{-15}$ \\
+$10^{-9}$ set $-$ dense & $2.4\times10^{-7}$ & $3.1\times10^{-7}$ & $5.6\times10^{-7}$ & $1.7\times10^{-7}$ & $4.2\times10^{-8}$ \\
+$\Delta t$ $-$ $\Delta t/2$ & $2.8\times10^{-2}$ & $3.3\times10^{-2}$ & $3.4\times10^{-2}$ & $1.1\times10^{-2}$ & $1.5\times10^{-2}$ \\
+ \quad (SE) & $2.3\times10^{-2}$ & $1.9\times10^{-2}$ & $2.4\times10^{-2}$ & $1.1\times10^{-2}$ & $9\times10^{-3}$ \\
+$\Delta t/2$ $-$ $\Delta t/4$ & $2.6\times10^{-2}$ & $1.7\times10^{-2}$ & $3.5\times10^{-2}$ & $1.1\times10^{-2}$ & $2.5\times10^{-3}$ \\
+ \quad (SE) & $1.8\times10^{-2}$ & $1.6\times10^{-2}$ & $2.4\times10^{-2}$ & $1.0\times10^{-2}$ & $5\times10^{-3}$ \\
+$2\Delta t$ $-$ $\Delta t$ & $2.8\times10^{-2}$ & $2.7\times10^{-2}$ & $4.1\times10^{-2}$ & $2.7\times10^{-2}$ & $2.9\times10^{-3}$ \\
+ \quad (SE) & $2.9\times10^{-2}$ & $2.6\times10^{-2}$ & $3.1\times10^{-2}$ & $1.3\times10^{-2}$ & $9\times10^{-3}$ \\
+sampling SE of the mean & $8.4\times10^{-2}$ & $4.9\times10^{-2}$ & $6.1\times10^{-2}$ & $3.1\times10^{-2}$ & $2.9\times10^{-2}$ \\
+\bottomrule
+\end{tabular}
+\caption{Paired differences at $N=64$, 16 trajectories, noise/damping ranks $40/12$ and $48/12$ (earlier setting). Each entry is the largest over time of the absolute trajectory mean of the paired difference; $O_k=\langle\cos(2\pi x/L)\rangle$. ``Dense'' is the eigendecomposition of the same $\widetilde\Gamma_h$. Source: \texttt{dynamics\_results/REPORT.md}, \texttt{summary.json}.}
+\label{tab:dyn-differences}
+\end{table}
+
+\paragraph{Time-step sensitivity.}
+The nested noise streams are exact in distribution but couple the paths
+only approximately while $\widetilde\Gamma_h(q)$ moves. The step-refinement
+differences in Table~\ref{tab:dyn-differences} are comparable to their own
+standard errors (Fig.~\ref{fig:exp9}). They therefore do not resolve the
+time-discretization error beyond about $10^{-2}$ to $3\times10^{-2}$:
+neither its size nor a convergence order can be inferred from them. What
+the data do establish is the ordering of the resolved contributions,
+Krylov ($\le10^{-9}$) below spatial ($\le6\times10^{-7}$) below the
+combined level of time-step differences and sampling uncertainty (about
+$10^{-2}$). \pending{The recomputation repeats these comparisons with the
+corrected operator and the new ranks.}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{exp6_component_temperatures.png}
+\caption{Component temperatures, noise/damping ranks $40/12$. (a) $N=64$, mean over 16 trajectories with $\pm1$ standard error, dense and rank 40. (b) $N=4000$ and $16000$, rank 40. Source: \texttt{dynamics\_results/plot1\_component\_temperatures.png}.}
+\label{fig:exp6-temp}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.42\textwidth]{exp6_momentum.png}
+\includegraphics[width=0.56\textwidth]{exp6_maxwell.png}
+\caption{Left: relative total-momentum defect (maximum over trajectories) for all methods, including the control with independent noise. Right: QQ plot and histogram of normalized momenta against the conditional Maxwell law, long runs at $N=64$. Source: \texttt{dynamics\_results/plot3, plot7}.}
+\label{fig:exp6-mom}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.49\textwidth]{exp7_rank40_error.png}
+\includegraphics[width=0.49\textwidth]{exp7_rank48_error.png}
+\caption{Paired differences of $T_x$ and $O_k$ at $N=64$: rank 40 minus dense (left) and rank 48 minus dense (right), damping rank 12, with the temporal difference dense$(\Delta t/2)-$dense$(\Delta t)$ and the sampling standard error for comparison. Source: \texttt{dynamics\_results/plot4, plot5}.}
+\label{fig:exp7}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{exp9_temporal_refinement.png}
+\caption{Step refinement at $N=64$: paired differences between dense runs at $2\Delta t$, $\Delta t$, $\Delta t/2$ and $\Delta t/4$, compared with rank 40 minus dense. Source: \texttt{dynamics\_results/plot6\_temporal\_refinement.png}.}
+\label{fig:exp9}
+\end{figure}
+
+\subsection{Computational cost and scaling}
+\label{sec:exp-timing}
+
+The cost is the measured time of a complete thermostat step at the
+accuracy targets of Section~\ref{sec:lanczos-exp}: PPPM set $\xi=0.7$,
+$s=4.10$, $\eta_N=0.7$, $p=7$, noise rank $40$ (noise-action error
+$\le10^{-3}$ through $N=16000$) and damping rank $16$ (damping-action
+error $\le6\times10^{-7}$ up to $\Delta t\lambda_{\max}=20$). The ranks are
+the same at every size, so each step uses exactly
+$r_{\mathrm{noise}}+r_{\mathrm{damp}}=56$ actions of $\widetilde\Gamma_h$.
+Each size was run in a single process with one thread, three warm-up steps
+and ten timed steps; Table~\ref{tab:production-timing} reports medians.
+An earlier timing with damping rank $12$ ($52$ actions per step, four
+timed steps, a different session) is superseded and not combined with
+these numbers.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{rccccc}
+\toprule
+$N$ & step [s] & setup [s] & $\Gamma_h$ actions [s] & reorth. [s] & $T/(N\ln N)$ [s]\\
+\midrule
+512   & 0.789 & 0.024 & 0.754 & 0.003 & $2.47\times10^{-4}$\\
+4000  & 6.35  & 0.18  & 6.12  & 0.027 & $1.91\times10^{-4}$\\
+16000 & 37.4  & 0.94  & 36.0  & 0.12  & $2.41\times10^{-4}$\\
+\bottomrule
+\end{tabular}
+\caption{Single-process time per complete thermostat step, noise rank $40$, damping rank $16$ (earlier setting).}
+\label{tab:production-timing}
+\end{table}
+
+About $96\%$ of the step time is spent in the $\Gamma_h$ actions. The
+tridiagonal eigensolve and matrix-function evaluation take less than
+$0.5$~ms per step, and projection and other vector operations at most
+about $0.7\%$. The normalized time $T(N)/(N\ln N)$ stays between about
+$1.9\times10^{-4}$ and $2.5\times10^{-4}$~s with no systematic trend
+(Fig.~\ref{fig:exp10}). A descriptive power-law fit to the three points
+gives $T\propto N^{1.11}$, while $N\ln N$ itself behaves like $N^{1.13}$
+over the same range. The measured cost is therefore consistent with
+$N\log N$ growth for $N=512$--$16000$ at these fixed ranks. Since the
+rank-$40$ margin is thin at $N=16000$, a larger $N$ may require a larger
+noise rank, and the cost per step then grows in proportion to
+$r_{\mathrm{noise}}+r_{\mathrm{damp}}$.
+
+The timing runs also passed the structural checks: no negative Ritz values
+(smallest $\approx1.7\times10^{-2}$), total-momentum residual at most
+$5.9\times10^{-15}$, and $\|(I-\Pi)\eta\|/\|\eta\|\le8.1\times10^{-17}$.
+\pending{Equal-accuracy full-step timing with the ranks of the
+recomputation.}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{exp10_production_timing.png}
+\caption{Left: median single-process time per complete step versus $N$, noise rank 40, damping rank 16, with reference slopes $N$ and $N\ln N$. Right: $T/(N\ln N)$. Source: \texttt{dynamics\_results/production\_timing\_rank40\_16.png}.}
+\label{fig:exp10}
+\end{figure}
+
+\section{Application: Lennard-Jones liquid with kernel A}
+\label{sec:lj}
+
+The experiments of Section~\ref{sec:experiments} use $\kappa=1$ test
+configurations and an ideal gas. This section applies the same operator and
+thermostat to a liquid with a conservative pair potential, at a single
+state point. All numbers come from the result files of the project
+repository (\texttt{ewald\_longitudinal/lj075\_results/}, commit
+\texttt{39bb4f6}). Error bars are $95\%$ Student-$t$ intervals over
+independent replicas unless stated otherwise, and an interval that contains
+zero is never read as equivalence. Earlier toy studies at a lower density
+($N=64$, $L=5.5$, $\beta^{-1}=0.7$) and with a second radial law were also
+carried out in the project; they are not used here.
+
+\subsection{Particle model}
+\label{sec:lj-model}
+
+\paragraph{Friction kernel.}
+Kernel A is the screened longitudinal kernel of Eq.~\eqref{eq:kernel} with
+an amplitude,
+\begin{equation}
+\label{eq:kernelA}
+K^{A}(\rr)
+=
+\gamma\,r_{\mathrm{ref}}\,e^{\kappa r_{\mathrm{ref}}}\,K_\kappa(\rr),
+\end{equation}
+chosen so that the radial profile equals $\gamma$ at $r=r_{\mathrm{ref}}$.
+We use $\gamma=0.5$, $\kappa=0.7$, $r_{\mathrm{ref}}=1.3$, so the amplitude
+is $\gamma r_{\mathrm{ref}}e^{\kappa r_{\mathrm{ref}}}=1.6148$. Between
+particles the kernel is summed over all periodic images,
+\begin{equation}
+\label{eq:Kper}
+K_\kappa^{\mathrm{per}}(\rr)
+=
+\sum_{n\in\mathbb Z^3}K_\kappa(\rr+nL),
+\end{equation}
+which converges absolutely for $\rr\notin L\mathbb Z^3$ because
+$\|K_\kappa(\rr)\|_2=e^{-\kappa r}/r$. Its Fourier coefficients are
+$V^{-1}\widehat K_\kappa(\kk)$, $\kk\in\mathcal K$, and the $k=0$
+coefficient
+\begin{equation}
+\label{eq:k0}
+\widehat K_\kappa(\bm 0)
+=
+\int_{\mathbb R^3}K_\kappa(\rr)\,d\rr
+=
+\frac{4\pi}{3\kappa^2}\,\Id
+\end{equation}
+is finite because $\kappa>0$; it is \emph{retained}, i.e.\ nothing is
+subtracted from the lattice sum. Eq.~\eqref{eq:k0} follows from
+$\int_{S^2}\PP\,d\Omega=\tfrac{4\pi}{3}\Id$ and
+$\int_0^\infty r\,e^{-\kappa r}\,dr=\kappa^{-2}$. The friction matrix is the
+degree-minus-weight graph of the pair responses
+\begin{equation}
+\label{eq:Gamma-lj}
+(\Gamma(q)X)_i
+=
+\sum_{j\ne i}K_{ij}(x_i-x_j),
+\qquad
+K_{ij}
+=
+\gamma\,r_{\mathrm{ref}}\,e^{\kappa r_{\mathrm{ref}}}\,
+K_\kappa^{\mathrm{per}}(q_i-q_j).
+\end{equation}
+Self images ($j=i$, $n\ne0$) would act on $x_i-x_i=0$ and do not enter.
+
+\paragraph{Equations of motion.}
+With positions $q$, momenta $p$, mass $m$ and a standard Wiener process
+$W_t$ in $\mathbb R^{3N}$,
+\begin{equation}
+\label{eq:sde-lj}
+dq=\frac{p}{m}\,dt,
+\qquad
+dp=-\nabla U(q)\,dt-\frac1m\Gamma(q)p\,dt
++\left(2\beta^{-1}\Gamma(q)\right)^{1/2}dW_t ,
+\end{equation}
+where $U(q)=\sum_{i<j}u(|q_i-q_j|)$ under the minimum-image convention and
+\begin{equation}
+\label{eq:lj}
+\begin{gathered}
+u(r)
+=
+S(r)\,4\varepsilon\left[\left(\frac{\sigma}{r}\right)^{12}
+-\left(\frac{\sigma}{r}\right)^{6}\right],
+\\
+S(r)=1-10x^3+15x^4-6x^5,
+\qquad
+x=\min\left\{1,\max\left\{0,\frac{r/\sigma-r_{\mathrm{on}}}
+{r_{\mathrm{cut}}-r_{\mathrm{on}}}\right\}\right\},
+\end{gathered}
+\end{equation}
+with $r_{\mathrm{on}}=2$ and $r_{\mathrm{cut}}=2.5$. The force includes the
+switch derivative. Reduced units $m=\sigma=\varepsilon=1$ are used. Since
+$r_{\mathrm{cut}}\sigma<L/2$, the minimum image is exact for the forces;
+only the friction uses the full image sum.
+
+\begin{proposition}[Structure of the friction and invariance]
+\label{prop:lj-structure}
+For pairwise distinct positions:
+\begin{enumerate}
+\item $\Gamma(q)$ is symmetric and positive semidefinite, with
+$X^{\mathsf T}\Gamma X=\sum_{i<j}(x_i-x_j)^{\mathsf T}K_{ij}(x_i-x_j)$;
+\item $\Gamma(q)t=0$ for every $t\in\cT$, so $\Gamma\Pi=\Pi\Gamma=\Gamma$;
+\item the $k=0$ Fourier term contributes
+$\gamma r_{\mathrm{ref}}e^{\kappa r_{\mathrm{ref}}}\frac{4\pi}{3\kappa^2V}
+(N I_N-\mathbf1\mathbf1^{\mathsf T})\otimes I_3$ to $\Gamma$, which acts on
+$\Range\Pi$ as the multiple
+$\gamma r_{\mathrm{ref}}e^{\kappa r_{\mathrm{ref}}}\frac{4\pi N}{3\kappa^2V}$
+of the identity;
+\item total momentum is conserved pathwise by Eq.~\eqref{eq:sde-lj};
+\item the density
+$\pi(q,p)\propto\exp\{-\beta[U(q)+|p|^2/(2m)]\}$, restricted to a fixed
+total momentum, is stationary for Eq.~\eqref{eq:sde-lj}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) $K_\kappa(\rr)=K_\kappa(-\rr)=K_\kappa(\rr)^{\mathsf T}$, so
+$K_{ij}=K_{ji}=K_{ij}^{\mathsf T}$; pairing the $(i,j)$ and $(j,i)$ terms
+gives the quadratic form. Each image term
+$e^{-\kappa|\rr+nL|}|\rr+nL|^{-1}\PP(\rr+nL)$ is positive semidefinite, so
+$K_{ij}\succeq0$ and every pair term is nonnegative. (2) Block-row sums of
+Eq.~\eqref{eq:Gamma-lj} vanish. (3) Insert the $k=0$ coefficient
+$V^{-1}\widehat K_\kappa(\bm0)$ of Eq.~\eqref{eq:k0} into
+Eq.~\eqref{eq:Gamma-lj}; on $\Range\Pi$ the term
+$\mathbf1\mathbf1^{\mathsf T}\otimes I_3$ vanishes. (4) Pair forces sum to
+zero, $t^{\mathsf T}\Gamma=0$, and $t^{\mathsf T}\Gamma^{1/2}=0$ because
+$\Gamma^{1/2}$ has the null space of $\Gamma$. (5) The Hamiltonian part
+preserves $\pi$. The friction and noise part of the Fokker--Planck operator
+is $\nabla_p\cdot[\Gamma(q)(\frac pm\pi+\beta^{-1}\nabla_p\pi)]$, which
+vanishes because $\beta^{-1}\nabla_p\pi=-\frac pm\pi$; there is no spurious
+drift because $\Gamma$ depends on $q$ only.
+\end{proof}
+
+Positivity in item~1 rests on the pointwise positivity of the real-space
+kernel, as in Section~\ref{sec:kernel}; strict positivity on $\Range\Pi$ is
+not proved and is checked numerically below. Item~5 concerns the continuous
+model. Unlike a conservative collision model, $\Gamma p\ne0$ in general, so
+kinetic energy is not conserved; the discrete scheme preserves the
+conditional Maxwell law in its O-step (Appendix~\ref{app:thermostat}), but its
+configurational stationary law carries a time-step bias.
+
+The numerical scheme is the splitting $\Psi_{\Delta t}$ of
+Section~\ref{sec:splitting} with the conservative $B$ steps restored and
+with $\widetilde\Gamma_h$ evaluated once per step at the midpoint positions
+for both damping and noise. The particle--mesh operator of
+Section~\ref{sec:pm} is applied to the long-range part including the $k=0$
+mode, and the real-space part sums all pair images within $r_c$. No
+stabilization was needed in any test of this section ($\delta_h=0$ in
+Eq.~\eqref{eq:stabilized}, so $\Gamma_h=\widetilde\Gamma_h$), and the Lanczos
+evaluation is the direct-start method of Section~\ref{sec:lanczos} with fixed
+ranks; a nonpositive Ritz value aborts the run.
+
+\subsection{Exact noise coupling across time steps}
+\label{sec:lj-coupling}
+
+To compare time steps pathwise, levels $\Delta t$ and $2\Delta t$ are driven
+by coupled noise. The finest level draws $\xi\sim\mathcal N(0,\Pi)$. A
+coarse step forms its input from two successive fine inputs $\xi_1,\xi_2$
+with its own friction matrix $\Gamma_c=\widetilde\Gamma_h(q^{c})$ at its own
+midpoint positions:
+\begin{equation}
+\label{eq:coupling}
+\xi_c=a(\Gamma_c)\xi_1+b(\Gamma_c)\xi_2,
+\qquad
+a(\lambda)=\frac{e^{-x}}{\sqrt{1+e^{-2x}}},
+\quad
+b(\lambda)=\frac{1}{\sqrt{1+e^{-2x}}},
+\quad
+x=\frac{\Delta t\,\lambda}{m}.
+\end{equation}
+Since $a^2+b^2=1$ and $a(\Gamma_c)$, $b(\Gamma_c)$ commute with $\Pi$,
+$\xi_c\sim\mathcal N(0,\Pi)$ conditionally on the past, so every level
+samples its own correct law. For a frozen matrix, two fine O-steps give
+$R_{\Delta t}^2p+R_{\Delta t}f_{\Delta t}\xi_1+f_{\Delta t}\xi_2$, and
+$f_{2\Delta t}\xi_c$ equals the noise part because
+$f_{\Delta t}(\lambda)^2/f_{2\Delta t}(\lambda)^2=(1+e^{-2x})^{-1}$; hence one
+coarse step equals two fine ones. In the implementation this identity holds
+to $3\times10^{-15}$ with dense matrix functions and to
+$\le4\times10^{-11}$ with Lanczos. Equal seeds alone would not couple the
+levels.
+
+\subsection{State point and runs}
+\label{sec:lj-setup}
+
+The state point is $\rho^*=N\sigma^3/V=0.75$, $\beta^{-1}=1$, $N=256$,
+$L=6.98864$. The Ewald--PPPM set is $\xi=0.85$, $s=4.1$ ($r_c=4.824$,
+$k_c=6.97$), requested $\eta_N=0.6779$, B-spline order $p=8$, $M=24$
+(realised $k_ch/\pi=0.646$), 1935 retained modes and none excluded. Here
+$r_c>L/2=3.49$, so the real-space sum includes several images per pair. The
+$k=0$ shift of Proposition~\ref{prop:lj-structure}(3) equals $10.35$. An
+initial set with $p=7$, cost-optimized at the earlier toy state, gave relative
+operator errors $2.04$--$2.15\times10^{-7}$ on lattice-like states at this
+density, above the budget $2\times10^{-7}$, so $p$ was raised to $8$.
+Table~\ref{tab:lj-runs} lists the runs.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{1.4cm}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{2.6cm}}
+\toprule
+experiment & $\Delta t$ & ranks & initial states / replicas & length, burn-in, output \\
+\midrule
+static verification & -- & scan 2--56 & 42 representative states; 72 + 38 states visited by the runs below (exact O-step inputs) & static \\
+equilibration & 0.005 & 12/5 & 8 runs: fcc, random sequential addition, canonical, canonical with $\beta^{-1}=2$ momenta (2 each) & 50; burn-in measured 2, recommended 5; every step \\
+time-step study & 0.00125, 0.0025, 0.005, 0.01, coupled & 12/5 (4) & 16 canonical starts & $t_{\mathrm{end}}=10$; window $[1,10]$; every step \\
+long chains & 0.005, 0.01, coupled & 12/5 (4) & 11 canonical starts & 100; after $t=10$; every 0.01 \\
+operator sensitivity & 0.005 & 12/5 & 2 replicas, production vs.\ tighter PPPM set, same noise & 10 \\
+step cost & 0.005 & 12/5, 14/5 & 6 interleaved rounds of 40 steps, one thread & -- \\
+\bottomrule
+\end{tabular}
+\caption{Runs for the Lennard-Jones state point ($N=256$, $\rho^*=0.75$,
+$\beta^{-1}=1$, PPPM $\xi=0.85$, $s=4.1$, $p=8$, $M=24$). Canonical starts:
+fcc or random sequential addition followed by $30$--$50$ time units of
+scalar Langevin dynamics with conservative forces only. Ranks are
+noise/damping (coupling).}
+\label{tab:lj-runs}
+\end{table}
+
+\subsection{Operator accuracy on static and visited states}
+\label{sec:lj-operator}
+
+The reference is the dense full-periodic matrix $\Gamma$ of
+Eq.~\eqref{eq:Gamma-lj}, computed by a real-space lattice sum (near images
+directly, far images by a tensor Chebyshev fit; brute-force self-check
+$9.4\times10^{-16}$ of the largest entry) with the $k=0$ term retained. The
+measured quantity is the relative spectral error
+$\|\widetilde\Gamma_h-\Gamma\|_2/\|\Gamma\|_2$, with budget
+$2\times10^{-7}$. Because the exact $k=0$ shift dominates $\|\Gamma\|_2$
+($\lambda_{\max}\approx12$), the error is also reported relative to the
+norm of $\Gamma$ minus its $k=0$ term.
+
+Over 152 states---42 representative states, 72 frames visited by the
+equilibration runs (including frames of minimal pair distance and of extreme
+Ritz values) and 38 frames of the time-step and long chains---the relative
+error is at most $7.6\times10^{-8}$, and at most $1.60\times10^{-7}$
+relative to the $k\ne0$ part (Fig.~\ref{fig:lj-operator}a). Structural
+checks on all states: symmetry residual $\le2\times10^{-17}$, null-space
+residual $\le2\times10^{-15}$ for both matrices, literal FFT action versus
+independent dense assembly $\le8\times10^{-16}$, and smallest eigenvalue on
+$\Range\Pi$ between $4.58$ and $4.84$ (Fig.~\ref{fig:lj-operator}c). Two
+cheaper or tighter PPPM sets also pass on the 42 representative states
+($\eta_N=0.6$, $p=7$, $M=27$: $\le7.6\times10^{-8}$; $s=4.4$, $\eta_N=0.6$,
+$p=7$, $M=30$: $\le1.6\times10^{-8}$).
+
+\paragraph{Lanczos ranks.}
+The Lanczos error is the relative 2-norm error of the rank-$r$
+approximation against the dense matrix function of the same
+$\widetilde\Gamma_h$, for damping and noise functions, over Gaussian and
+Maxwell vectors, the actual momentum and noise of the step, longitudinal and
+transverse plane waves at $|\kk|=2\pi/L$ and $\sqrt2\,2\pi/L$, and
+slow-mode-dominated vectors. The strict rule requires the overall error and
+its projections on the $|\kk|=2\pi/L$ modes and on the lowest 3 and 12
+eigenmodes to be at most one tenth of the operator budget. Rank $12$
+suffices on the representative states, but on one visited state (a melting
+fcc start at $t=5$) it leaves $2.88\times10^{-8}$ in the $|\kk|=2\pi/L$
+projection, driven by a transverse plane wave. The recommendation is
+therefore $r_{\mathrm{noise}}=14$, $r_{\mathrm{damp}}=5$, with worst errors
+$6.4\times10^{-10}$ and $2.8\times10^{-11}$ at $\Delta t=0.005$ over all 152
+states (Fig.~\ref{fig:lj-operator}b). These ranks are far below the
+$40/16$ of the earlier setting of Section~\ref{sec:lanczos-exp}, which were set for the ideal gas
+with a $10^{-3}$ root-action budget up to $N=16000$; the present spectrum is
+narrow ($\lambda\in[4.6,12.5]$ on $\Range\Pi$, largely because of the $k=0$
+shift). The dynamic runs below used $12/5$; their on-line monitor on the
+actual inputs never exceeded $1.6\times10^{-10}$ overall and
+$1.8\times10^{-9}$ in the $|\kk|=2\pi/L$ projection for the noise.
+
+\paragraph{Physical effect of the operator error.}
+Two replicas were run in lock-step with the same noise and start, once with
+the production set and once with the tighter set (relative error
+$\le1.6\times10^{-8}$), at $\Delta t=0.005$ for 10 time units. The largest
+differences of time averages were $5.9\times10^{-5}$ (kinetic temperature,
+relative), $1.4\times10^{-5}$ ($U/N$), $1.3\times10^{-4}$ (mean-square
+displacement at $t=0.5$--$5$) and $4.5\times10^{-4}$ (pressure, absolute).
+With two replicas these are observed maxima, not confidence intervals.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_operator_lanczos.pdf}
+\caption{Static verification at the Lennard-Jones state point (kernel A,
+$N=256$, $\rho^*=0.75$, $\beta^{-1}=1$, PPPM $\xi=0.85$, $s=4.1$, $p=8$,
+$M=24$), 152 configurations; each point is one configuration, no error bars.
+(a) Relative spectral error of $\widetilde\Gamma_h$ against the full-periodic
+matrix, full norm and relative to the $k\ne0$ part; dashed: budget.
+(b) Strict Lanczos error (maximum over probe types and states) versus rank;
+dashed: budget/10. (c) Extreme eigenvalues on $\Range\Pi$; dotted: $k=0$
+shift $10.35$. Data: \texttt{verify\_\char123 representative,visited\_eq,visited\_dt\char125\_A.json}.}
+\label{fig:lj-operator}
+\end{figure}
+
+\subsection{Time-step dependence}
+\label{sec:lj-dt}
+
+Four levels $\Delta t\in\{0.01,0.005,0.0025,0.00125\}$ were integrated in
+lock-step with the coupling of Eq.~\eqref{eq:coupling} from 16 independent
+canonical starts to $t_{\mathrm{end}}=10$. Differences are paired by
+replica; time averages use $[1,10]$. The acceptance criteria were committed
+before any run: $1\%$ relative for kinetic temperature, $U/N$, the first
+peak of the radial distribution function and the mean-square displacement
+at $t=0.1,0.5,1,2,5$; $0.0075$ absolute for pressure; $1\%$ for a weighted
+norm of the radial-distribution difference; $1\%$ of the initial value for
+the maximum velocity-autocorrelation difference up to $t=2$. PASS requires
+the whole $95\%$ interval inside the band, FAIL the whole interval outside,
+otherwise INCONCLUSIVE. The decision rule was to accept the largest
+$\Delta t$ whose criteria all PASS.
+
+\begin{table}[htbp]
+\centering
+\small
+\resizebox{\textwidth}{!}{\begin{tabular}{lccc}
+\toprule
+criterion & $0.0025$ & $0.005$ & $0.01$ \\
+\midrule
+kinetic temperature & $-0.11\%$ $[-0.32,0.09]$ P & $-0.12\%$ $[-0.30,0.07]$ P & $-0.52\%$ $[-0.78,-0.26]$ P \\
+$U/N$ & $-0.12\%$ $[-0.23,-0.01]$ P & $-0.05\%$ $[-0.14,0.04]$ P & $-0.16\%$ $[-0.29,-0.03]$ P \\
+pressure (abs.) & $-0.026$ $[-0.049,-0.003]$ I & $0.0006$ $[-0.018,0.019]$ I & $-0.024$ $[-0.050,0.002]$ I \\
+RDF norm, registered bound & $1.78\%$ I & $1.68\%$ I & $1.82\%$ I \\
+RDF first-peak height & $0.01\%$ $[-0.44,0.47]$ P & $-0.05\%$ $[-0.50,0.41]$ P & $0.02\%$ $[-0.60,0.64]$ P \\
+RDF first-peak position & $0.03\%$ $[-0.22,0.28]$ P & $0.00\%$ $[-0.23,0.22]$ P & $-0.04\%$ $[-0.23,0.16]$ P \\
+VACF, bounds & $[0,0.39\%]$ P & $[0.004\%,0.41\%]$ P & $[0.26\%,0.78\%]$ P \\
+MSD$(0.1)$ & $-0.03\%$ $[-0.28,0.22]$ P & $0.04\%$ $[-0.19,0.27]$ P & $0.14\%$ $[-0.20,0.48]$ P \\
+MSD$(0.5)$ & $0.13\%$ $[-0.23,0.50]$ P & $0.41\%$ $[-0.36,1.18]$ I & $0.47\%$ $[-0.45,1.40]$ I \\
+MSD$(1)$ & $0.25\%$ $[-0.40,0.90]$ P & $0.52\%$ $[-0.63,1.67]$ I & $0.87\%$ $[-0.54,2.28]$ I \\
+MSD$(2)$ & $0.69\%$ $[-0.59,1.98]$ I & $0.89\%$ $[-1.08,2.85]$ I & $1.80\%$ $[-0.15,3.75]$ I \\
+MSD$(5)$ & $3.44\%$ $[1.03,5.86]$ \textbf{F} & $3.08\%$ $[-0.20,6.36]$ I & $2.99\%$ $[-0.32,6.31]$ I \\
+\bottomrule
+\end{tabular}}
+\caption{Pre-registered time-step comparison against $\Delta t=0.00125$
+(16 coupled replicas, ranks $12/5$; mean $[95\%$ CI$]$, relative unless
+stated). P/I/F = PASS/INCONCLUSIVE/FAIL. Data: \texttt{dt\_study.json}.}
+\label{tab:lj-dt}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_dt_forest.pdf}
+\caption{Scalar time-step criteria of Table~\ref{tab:lj-dt}: each level
+against $\Delta t=0.00125$, 16 coupled replicas, paired $95\%$ Student-$t$
+intervals; grey bands are the registered tolerances.}
+\label{fig:lj-forest}
+\end{figure}
+
+Under the registered rule \emph{no time step is validated} with 16 replicas
+(Table~\ref{tab:lj-dt}, Fig.~\ref{fig:lj-forest}). The finest-two comparison
+is not all-PASS, and no coarser level passes every criterion; pressure, the
+RDF norm and the mean-square displacement for $t\ge0.5$ are undecided at
+every level. On the criteria that are decidable at this sample size, all
+three coarse levels PASS; a rule restricted to that subset would select
+$\Delta t=0.01$, but it is post hoc and is not used as validation. At
+$\Delta t=0.01$ the kinetic-temperature ($-0.52\%$) and $U/N$ ($-0.16\%$)
+biases are resolved, though within $1\%$, and the velocity-autocorrelation
+difference bound lies above its noise floor; at $\Delta t=0.005$ neither
+bias is resolved. We therefore take $\Delta t=0.005$ as a
+\emph{provisional} step and regard $\Delta t=0.01$ as acceptable for static
+averages with the quoted biases.
+
+The registered MSD$(5)$ verdict at $\Delta t=0.0025$ is FAIL. A post-hoc
+comparison shows the same $\approx3\%$ offset for every coarse level while
+the coarse levels agree with one another ($0.005$ vs.\ $0.0025$:
+$-0.35\%$ $[-3.6,2.9]$), which points to a fluctuation of the reference
+level; this reading is post hoc and does not change the verdict. Pairing
+loses its benefit after $t\approx1$--$2$: the median RMS velocity difference
+to the finest path is $0.025$, $0.057$, $0.12$ at $t=1$ for the three coarse
+levels and $0.80$--$0.86$ at $t=5$ (Fig.~\ref{fig:lj-dtstudy}). A $1\%$
+verdict would need about 25 replicas for MSD$(0.5)$, 80 for MSD$(1)$ and
+60--100 for the pressure tolerance.
+
+\paragraph{Diffusion.}
+Eleven coupled two-level chains ($\Delta t=0.005$ and $0.01$, 100 time
+units, analysed after $t=10$) give windowed mean-square-displacement
+diffusion coefficients (Fig.~\ref{fig:lj-diffusion}). With a plateau rule
+fixed before these runs were analysed (paired change between consecutive
+windows within $\pm2\%$ over the whole interval), no plateau is confirmed:
+the coefficient decreases by $1.9\%$ $[1.2,2.7]$ and then $1.1\%$
+$[0.2,2.0]$ per window doubling up to $[4,8]$, and later steps have
+intervals of $\pm1.4$--$2.6\%$. The best estimate is
+$D\approx0.0284$--$0.0286$ at $\Delta t=0.005$, not a converged long-time
+value. The time-step effect is resolved only in the shortest window
+($+0.80\%$ $[0.05,1.55]$).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_diffusion.pdf}
+\caption{(a) Windowed mean-square-displacement diffusion coefficient,
+11 coupled chains of 100 time units, ranks $12/5$, $95\%$ intervals over
+chains. (b) Paired relative difference between $\Delta t=0.01$ and $0.005$;
+grey band: $\pm2\%$ plateau tolerance. Data: \texttt{longD.json}.}
+\label{fig:lj-diffusion}
+\end{figure}
+
+\subsection{Equilibration and static quantities}
+
+Eight runs from four start types give, for $t\ge25$, $U/N=-4.6697$, kinetic
+temperature $1.0003$, pressure $0.770$ and first RDF peak $2.558$
+(Fig.~\ref{fig:lj-equil}). The kinetic temperature is
+$|p-\bar p|^2/(3m(N-1))$ and the pressure uses the conservative virial
+only. A block rule fixed before the analysis gives a burn-in of 2 time
+units; 5 are recommended. Start-type dependence after burn-in was not
+detected (one-way ANOVA $p=0.21$--$0.78$), but with two runs per type
+initial-state independence is under-sampled. Velocity autocorrelation and
+Green--Kubo integrals require output at every step at $\Delta t=0.005$
+(quadrature bias $0.23\%$ at interval $0.01$ against a $0.2\%$ rule),
+whereas the mean-square displacement is unaffected up to interval $0.1$.
+
+\subsection{Dynamical correlation functions}
+\label{sec:lj-obs}
+
+With $v_i=p_i/m$ and time origins $t_0$, the observables are
+\begin{align}
+\label{eq:obs-vacf}
+Z(t)&=\frac{\langle v_i(t_0)\cdot v_i(t_0+t)\rangle}{\langle|v|^2\rangle},
+\qquad
+C_b(t)=\frac{\langle v_i(t_0)\cdot v_j(t_0+t)\rangle_{|q_i(t_0)-q_j(t_0)|\in b}}{\langle|v|^2\rangle},
+\\
+\label{eq:obs-current}
+j(\kk,t)&=\frac1N\sum_iv_i(t)e^{i\kk\cdot q_i(t)},
+\qquad
+C_{L,T}(k,t)=\frac{\langle j_{L,T}(\kk,t_0+t)\,\overline{j_{L,T}(\kk,t_0)}\rangle}
+{\langle|j_{L,T}(\kk,t_0)|^2\rangle},
+\\
+\label{eq:obs-vanhove}
+g_d(r,t)&=\frac{V}{N(N-1)}\left\langle\sum_{i\ne j}
+\frac{\delta\bigl(r-|q_j(t_0+t)-q_i(t_0)|\bigr)}{4\pi r^2}\right\rangle ,
+\end{align}
+where $j_L$ and $j_T$ are the components of $j$ along and across $\kk$.
+The shells $b$ are $[0,1.59)$, $[1.59,2.55)$ and $[2.55,L/2)$, the first and
+second minima of the radial distribution function; $C_L$, $C_T$ are averaged
+over the modes with $|\kk|=0.899$, $1.271$, $1.798$; $g_d$ is evaluated at
+$t=0.1,0.5,1,2$. Zero total momentum gives $\sum_{j\ne i}v_i\cdot v_j=-|v_i|^2$,
+so each $C_b$ starts near $-1/(N-1)$; nothing is subtracted.
+
+Two groups are analysed separately and never pooled: the 16 four-level
+chains (origins $t_0\in[1,8]$, lags $\le2$) and the 11 long chains
+(only $\Delta t=0.01$ vs.\ $0.005$, origins $t_0\in[10,98]$). Curves are
+normalized by each level's own $t=0$ value. For a window of a curve with
+paired mean difference $\overline{\Delta}(t)$, the reference mean curve is
+cut into sign lobes and
+\begin{equation}
+\label{eq:Esig}
+E_{\mathrm{sig}}=\sup_{t\in\mathrm{window}}\frac{|\overline{\Delta}(t)|}{S(t)},
+\end{equation}
+where $S(t)$ is the amplitude of the lobe containing $t$. Difference bands
+are simultaneous at $97.5\%$ over the window (maximum of a sign-flip
+max-$t$ and Bonferroni-$t$ constant), lobe amplitudes simultaneous at
+$97.5\%$, jointly $\ge95\%$. A window PASSes if the upper bound of
+$E_{\mathrm{sig}}$ is $\le1\%$ and every lobe in it is resolved to $\pm10\%$,
+FAILs if the lower bound exceeds $1\%$, and is INCONCLUSIVE otherwise. The
+protocol was frozen and amended once (each lobe judged on its own) before
+any difference was computed.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.55\textwidth]{obs_vacf_primary.png}\\
+\includegraphics[width=0.85\textwidth]{obs_vccf_primary.png}
+\caption{$Z(t)$ (top) and $C_b(t)$ for the three shells (bottom), 16
+coupled four-level replicas, ranks $12/5$. Upper rows: level means; lower
+rows: paired differences against $\Delta t=0.00125$; shading: pointwise
+$95\%$ interval (not used for verdicts); dashed: simultaneous $97.5\%$ band
+over $(0,2]$. Dotted line: all-pair mean $-Z/(N-1)$.}
+\label{fig:lj-vacf}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{obs_currents_primary.png}\\[4pt]
+\includegraphics[width=\textwidth]{obs_van_hove_primary.png}
+\caption{$C_L$, $C_T$ at $|\kk|=0.899$, $1.271$, $1.798$ (top) and
+$g_d(r,t)$ at $t=0,0.1,0.5,1,2$ (bottom; $t=0$ shown only); data and bands
+as in Fig.~\ref{fig:lj-vacf}. The $g_d$ band covers only bins with at least
+100 reference pairs per replica.}
+\label{fig:lj-currents}
+\end{figure}
+
+Results at $1\%$ of the lobe amplitude (Figs.~\ref{fig:lj-vacf},
+\ref{fig:lj-currents}; second group in Appendix~\ref{app:lj}):
+\begin{itemize}
+\item Of 71 observable-window cells, one supports display at
+$\Delta t=0.01$ (and $0.005$): a single $g_d$ bin at $r=0.84$, $t=0.1$, where
+$g_d\approx0.012$; it says nothing about the van Hove structure. Five cells
+are not supported because of FAILs and 65 are INCONCLUSIVE.
+\item Resolved deviations at $\Delta t=0.01$ vs.\ $0.00125$:
+$\langle|v|^2\rangle$ lower by $0.38\%$ $[0.09,0.67]$ (PASS); slower decay of
+$C_T$ at $|\kk|=0.899$ (half-decay time $+3.6\%$ $[0.6,6.6]$);
+$g_d(r<0.9,t=2)$ with $E_{\mathrm{sig}}=1.9\%$ $[0.14,4.6]$; all but the first
+are INCONCLUSIVE against $1\%$.
+\item Seven of 284 cells FAIL, six involving $\Delta t=0.01$ and five in the
+$0.01$ vs.\ $0.005$ group; all lie in windows whose reference lobes are
+unresolved, and at this sample size the counts cannot separate chance from a
+time-step effect.
+\item No whole-curve deviation is resolved in the four-level group, which is
+not equivalence: the simultaneous upper bounds at $\Delta t=0.01$ are
+$1.0\times10^{-2}$ of $Z(0)$, $3.2\times10^{-3}$ of $\langle|v|^2\rangle$ for
+the first VCCF shell, $0.092$ and $0.068$ for $C_L$, $C_T$ at
+$|\kk|=0.899$, and $0.030$, $0.045$ for $g_d$ at $t=1,2$.
+\item Most cells are undecided because weak reference lobes are not
+resolved to $\pm10\%$, or because the difference bands reach $1.5$--$8.5\%$
+of the lobe amplitude.
+\end{itemize}
+Decay of a correlation function to zero is not used as evidence of model
+correctness, and long-lag differences are not attributed to a mechanism.
+
+\subsection{Cost}
+\label{sec:lj-cost}
+
+All timings in this subsection come from one virtual machine (one thread)
+and are not combined with the timings of Section~\ref{sec:experiments}. The
+median CPU time of a full step at $\Delta t=0.005$ (forces, operator setup,
+damping and noise) was $124.8$~ms at ranks $12/5$ and $134.9$~ms at $14/5$,
+i.e.\ $0.0075$ core-hours per time unit at $14/5$; the two alternative PPPM
+sets took $117.9$ and $140.0$~ms. In a separate session, $\Delta t=0.01$
+saved $48.7\%$ ($12/5$) and $50.4\%$ ($14/5$) per physical time relative to
+$\Delta t=0.005$. A local single-path run of the cluster scripts (one
+state, $t\le1$, shared noise, not run on a cluster) gave median steps of
+$0.208$~s with PPPM and Lanczos $14/5$ versus $1.129$~s with the dense
+full-periodic matrix and eigendecomposition, peak memory $121$ versus
+$604$~MB; the velocity difference at $t=1$ was $7.4\times10^{-8}$ of the RMS
+velocity, dominated by the operator error (Appendix~\ref{app:lj}). No size
+scan was performed at this state point.
+
+\subsection{Scope}
+
+At this state point the following are established: the operator budget and
+positivity on $\Range\Pi$ on 152 static and visited states; the Lanczos
+ranks $14/5$ under the strict rule; momentum conservation to round-off; a
+negligible effect of the operator error on time averages in two replicas;
+and $1\%$ agreement of temperature, $U/N$, the first RDF peak, the velocity
+autocorrelation for $t\le2$ and MSD$(0.1)$ at all three coarse time steps.
+Provisional or under-sampled: the time step itself, the time-step effect on
+the RDF norm, MSD$(t\ge0.5)$, pressure and diffusion, the diffusion
+plateau, initial-state independence, and most $1\%$ comparisons of the
+correlation functions. Not addressed: other $N$, a convergence theorem for
+the scheme with configuration-dependent friction and Lanczos noise, an
+optimized influence function, a cluster run, and comparison with molecular
+dynamics or experiment. Raw trajectories of these runs are not in the
+repository; all figures and tables above are regenerated from cached
+analysis files.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+Sections~\ref{sec:kernel}--\ref{sec:error} address the
+consequences of the screened longitudinal Ewald long-range kernel for the
+particle graph and its PPPM discretization. The analysis rests on two
+properties: the real-space long-range pair kernel is pointwise positive
+semidefinite, and its Fourier multiplier has Gaussian decay
+$\mathcal{O}(e^{-k^2/(4\xi^2)})$. The Fourier multiplier itself need not be positive
+semidefinite; positivity of the exact friction follows instead from the
+pointwise semidefinite pair kernel and the graph degree-minus-weight
+structure.
+
+Finite reciprocal and particle--mesh approximations preserve symmetry and
+the translation nullspace when adjoint spreading/gathering and a common
+degree-minus-weight construction are used. Their operator error is
+controlled by the complete pair-response discrepancy. For ideal
+particle--mesh deconvolution, the leading mesh error is generated by the
+linear off-grid alias cross terms and satisfies
+\begin{equation}
+\epsilon_{\mathrm{mesh}}=\mathcal{O}(h^p)
+\end{equation}
+for a B-spline assignment of order $p$. The resulting practical error model
+is
+\begin{equation}
+\epsilon_{\mathrm{op}}
+\lesssim
+C_Ee^{-s^2}
++
+C_M(\xi h)^p,
+\qquad
+s=\xi r_c=\frac{k_c}{2\xi}.
+\end{equation}
+A useful initial choice is
+\begin{equation}
+s=\sqrt{\log(2/\mathrm{tol})},
+\qquad
+r_c=\frac{s}{\xi},
+\qquad
+k_c=2\xi s,
+\end{equation}
+followed by a mesh chosen from the measured envelope of $C_M$ and a Nyquist
+safety condition. Accuracy is certified by a complete pair-response
+operator bound, while
+\begin{equation}
+\epsilon_{\mathrm{op}}<\lambda_*
+\end{equation}
+provides a sufficient, although conservative, certificate that the raw
+discrete graph remains positive semidefinite.
+
+The experiments of Section~\ref{sec:experiments}, obtained in the earlier
+setting described there, support the following conclusions.
+\begin{enumerate}
+\item On the tested configurations the mesh error is carried by the linear
+  alias cross terms, the fitted mesh slopes are consistent with the $h^p$
+  law, and no negative graph eigenvalue occurred
+  (Section~\ref{sec:pm-validation}).
+\item At a fixed high accuracy $10^{-8}$ the direct-start Lanczos rank
+  grows with $N$, approximately as $N^{0.34}$, so a fixed-rank statement at
+  that accuracy is not supported; the range start is more expensive.
+\item Under the production budgets ($10^{-3}$ for the noise action,
+  $10^{-6}$ for the damping action) the fixed ranks $40$ and $16$ sufficed
+  through $N=16000$, with a thin noise margin at the largest size
+  (Section~\ref{sec:lanczos-exp}).
+\item The ideal-gas dynamics preserve total momentum pathwise to round-off,
+  relax anisotropic temperatures toward equipartition, and reproduce the
+  conditional Maxwell law in the long $N=64$ runs. Krylov differences on the
+  same $\widetilde\Gamma_h$ ($\le10^{-9}$) are below the spatial proxy
+  ($\le6\times10^{-7}$), which is below the combined level of step-refinement
+  differences and sampling uncertainty (about $10^{-2}$); the time
+  discretization error itself is not resolved (Section~\ref{sec:dyn-exp}).
+\item With ranks $40/16$ a complete step uses $56$ actions of
+  $\widetilde\Gamma_h$, and its measured cost is consistent with $N\log N$
+  growth for $N=512$--$16000$ (Section~\ref{sec:exp-timing}).
+\end{enumerate}
+The large-$N$ runs verify relaxation and coupled fixed-rank accuracy but do
+not establish large-$N$ equilibrium. The dynamic runs used damping rank
+$12$, the timings damping rank $16$. Production ranks for the corrected
+operator are determined by the recomputation in progress, and the ranks
+above should not be transferred to it. The experiments of
+Section~\ref{sec:experiments} contain no conservative potential; dynamics
+with a Lennard-Jones potential are treated separately in
+Section~\ref{sec:lj}.
+
+Section~\ref{sec:lj} extends the validation to a Lennard-Jones liquid with
+the amplitude-scaled kernel A at $\rho^*=0.75$, $\beta^{-1}=1$, $N=256$.
+There the particle--mesh operator meets a $2\times10^{-7}$ relative
+spectral budget against the full-periodic matrix with the $k=0$ term
+retained on 152 static and visited configurations, remains positive on
+$\Range\Pi$ without stabilization, and Lanczos ranks
+$r_{\mathrm{noise}}=14$, $r_{\mathrm{damp}}=5$ suffice under a strict
+error rule; these ranks are specific to that state point and accuracy
+budget. A pre-registered, pathwise-coupled time-step study validates no time
+step at 16 replicas: $\Delta t=0.005$ is provisional, and $\Delta t=0.01$
+shows resolved sub-percent biases in temperature and potential energy. The
+long-time diffusion plateau and most $1\%$ comparisons of the dynamical
+correlation functions remain under-sampled.
+
+\appendix
+
+\section{Gaussian-scale representation}
+\label{app:gauss-scale}
+
+This appendix proves Proposition~\ref{prop:gauss-scale}.
+
+\paragraph{Gaussian representations of the two factors.}
+We factor the scalar part of the kernel as
+\begin{equation}
+\frac{e^{-\kappa r}}{r^3}
+=
+\frac{e^{-\kappa r}}{r}\cdot\frac{1}{r^2}
+\end{equation}
+and represent each factor as a superposition of Gaussians in $r$.
+For the Yukawa factor we use the standard representation
+\begin{equation}
+\frac{e^{-\kappa r}}{r}
+=
+\frac{1}{\sqrt{\pi}}
+\int_0^\infty
+t^{-1/2}
+e^{-\kappa^2/(4t)}
+e^{-t r^2}\,dt,
+\end{equation}
+which is the integral
+$\int_0^\infty t^{-1/2}e^{-at-b/t}\,dt=\sqrt{\pi/a}\,e^{-2\sqrt{ab}}$,
+$a,b>0$, evaluated at $a=r^2$ and $b=\kappa^2/4$. For the second factor,
+\begin{equation}
+\frac{1}{r^2}
+=
+\int_0^\infty e^{-u r^2}\,du .
+\end{equation}
+Thus the Gaussian-scale weights of the two factors are
+$\pi^{-1/2}t^{-1/2}e^{-\kappa^2/(4t)}$ and the constant $1$.
+
+\paragraph{Convolution of the weights.}
+Multiplying the two representations, the Gaussians combine as
+$e^{-t r^2}e^{-u r^2}=e^{-(t+u)r^2}$, so the product is again a
+superposition of Gaussians, with scale $s=t+u$. Its weight is the
+Laplace convolution of the two weights. Explicitly, by Tonelli's
+theorem, since all integrands are nonnegative,
+\begin{align}
+\frac{e^{-\kappa r}}{r^3}
+&=
+\frac{1}{\sqrt{\pi}}
+\int_0^\infty
+\int_0^\infty
+t^{-1/2}
+e^{-\kappa^2/(4t)}
+e^{-(t+u) r^2}\,du\,dt
+\\
+&=
+\frac{1}{\sqrt{\pi}}
+\int_0^\infty
+\int_t^\infty
+t^{-1/2}
+e^{-\kappa^2/(4t)}
+e^{-s r^2}\,ds\,dt
+\\
+&=
+\int_0^\infty
+\left[
+\frac{1}{\sqrt{\pi}}
+\int_0^s
+t^{-1/2}
+e^{-\kappa^2/(4t)}\cdot 1\,dt
+\right]
+e^{-s r^2}\,ds
+\\
+&=
+\int_0^\infty
+\rho_\kappa(s)e^{-s r^2}\,ds,
+\end{align}
+where the second line substitutes $s=t+u$ in the inner integral and the
+third exchanges the order of integration over $0<t<s<\infty$. The
+bracket is the convolution
+$\int_0^s(\pi^{-1/2}t^{-1/2}e^{-\kappa^2/(4t)})\cdot1\,dt$ of the
+Yukawa weight with the constant weight of $1/r^2$. Multiplying by
+$\rr\rr^{\mathsf T}$ and using
+\begin{equation}
+K_\kappa(\rr)
+=
+e^{-\kappa r}\frac{\rr\rr^{\mathsf T}}{r^3}
+\end{equation}
+gives Eq.~\eqref{eq:gauss-scale}.
+
+\paragraph{Closed form of the weight.}
+Let $\varphi(s)$ denote the right-hand side of the second equality in
+Eq.~\eqref{eq:rho}. Differentiation gives
+\begin{align}
+\frac{d}{ds}
+\left[
+\frac{2\sqrt{s}}{\sqrt{\pi}}e^{-\kappa^2/(4s)}
+\right]
+&=
+\frac{1}{\sqrt{\pi}}
+\left(
+s^{-1/2}+\frac{\kappa^2}{2}s^{-3/2}
+\right)
+e^{-\kappa^2/(4s)},
+\\
+\frac{d}{ds}
+\left[
+\kappa\left[\erf\!\left(\frac{\kappa}{2\sqrt s}\right)-1\right]
+\right]
+&=
+-\frac{\kappa^2}{2\sqrt{\pi}}\,s^{-3/2}e^{-\kappa^2/(4s)},
+\end{align}
+so $\varphi'(s)=\pi^{-1/2}s^{-1/2}e^{-\kappa^2/(4s)}$. Since
+$\varphi(s)\to0$ as $s\to0^+$, $\varphi$ coincides with the integral
+in Eq.~\eqref{eq:rho}.
+
+\paragraph{Properties of the weight.}
+The integrand in Eq.~\eqref{eq:rho} is positive and bounded by
+$\pi^{-1/2}t^{-1/2}$. Hence $\rho_\kappa$ is positive and nondecreasing
+on $(0,\infty)$, and
+\begin{equation}
+\label{eq:rho-bound}
+\rho_\kappa(s)\le\frac{2\sqrt{s}}{\sqrt{\pi}}.
+\end{equation}
+In particular, $\rho_\kappa(\xi^2)>0$.
+
+\section{Closed-form real-space coefficients}
+\label{app:closed-form}
+
+Let
+\begin{equation}
+z=\frac{\kappa}{2\xi},
+\end{equation}
+and define
+\begin{equation}
+c_{\kappa,\xi}
+=
+\rho_\kappa(\xi^2)
+=
+\frac{2\xi}{\sqrt{\pi}}e^{-z^2}
++
+\kappa\left[\erf(z)-1\right].
+\end{equation}
+The long-range scalar coefficient can be written as
+\begin{equation}
+\theta_L(r)
+=
+Y_\kappa^L(r)
+-
+c_{\kappa,\xi}e^{-\xi^2r^2},
+\end{equation}
+where
+\begin{equation}
+Y_\kappa^L(r)
+=
+\frac{1}{2r}
+\left[
+e^{-\kappa r}
+\erfc\!\left(z-\xi r\right)
+-
+e^{\kappa r}
+\erfc\!\left(z+\xi r\right)
+\right].
+\end{equation}
+Similarly,
+\begin{equation}
+\theta_S(r)
+=
+Y_\kappa^S(r)
++
+c_{\kappa,\xi}e^{-\xi^2r^2},
+\end{equation}
+with
+\begin{equation}
+Y_\kappa^S(r)
+=
+\frac{1}{2r}
+\left[
+e^{-\kappa r}
+\erfc\!\left(\xi r-z\right)
++
+e^{\kappa r}
+\erfc\!\left(\xi r+z\right)
+\right].
+\end{equation}
+Since
+\begin{equation}
+Y_\kappa^S(r)+Y_\kappa^L(r)
+=
+\frac{e^{-\kappa r}}{r},
+\end{equation}
+the identity \(K_\kappa^S+K_\kappa^L=K_\kappa\) follows immediately.
+
+\section{Localization estimates}
+\label{app:localization}
+
+This appendix proves Proposition~\ref{prop:localization} and
+Eq.~\eqref{eq:tails}.
+
+\paragraph{Real-space decay.}
+Fix $r>0$. Since $r^2e^{-sr^2}=-\frac{d}{ds}e^{-sr^2}$, integration by parts
+in
+\begin{equation}
+\theta_S(r)
+=
+r^2\int_{\xi^2}^{\infty}
+\rho_\kappa(s)e^{-sr^2}\,ds
+\end{equation}
+gives
+\begin{equation}
+\label{eq:thetaS-ibp}
+\theta_S(r)
+=
+\rho_\kappa(\xi^2)e^{-\xi^2r^2}
++
+\int_{\xi^2}^{\infty}
+\rho_\kappa'(s)e^{-sr^2}\,ds .
+\end{equation}
+The boundary term at infinity vanishes: by Eq.~\eqref{eq:rho-bound},
+$0\le\rho_\kappa(s)e^{-sr^2}\le2\pi^{-1/2}\sqrt{s}\,e^{-sr^2}\to0$ as
+$s\to\infty$. By Appendix~\ref{app:gauss-scale},
+\begin{equation}
+\rho_\kappa'(s)
+=
+\frac{1}{\sqrt{\pi s}}\,e^{-\kappa^2/(4s)},
+\end{equation}
+so $0\le\rho_\kappa'(s)\le(\sqrt{\pi}\,\xi)^{-1}$ for $s\ge\xi^2$. Inserting
+this bound in the last integral of Eq.~\eqref{eq:thetaS-ibp} and using
+$\int_{\xi^2}^\infty e^{-sr^2}\,ds=e^{-\xi^2r^2}/r^2$ gives
+\begin{equation}
+0
+\le
+\theta_S(r)-\rho_\kappa(\xi^2)e^{-\xi^2r^2}
+\le
+\frac{e^{-\xi^2r^2}}{\sqrt{\pi}\,\xi r^2} .
+\end{equation}
+Hence, for fixed $\kappa,\xi>0$,
+\begin{equation}
+\theta_S(r)
+=
+e^{-\xi^2r^2}
+\left[\rho_\kappa(\xi^2)+\mathcal O(r^{-2})\right],
+\qquad r\to\infty .
+\end{equation}
+Since $\rho_\kappa(\xi^2)>0$, this gives
+$\theta_S(r)\sim\rho_\kappa(\xi^2)e^{-\xi^2r^2}$, and
+$K_\kappa^S(\rr)=\theta_S(r)\PP(\rr)$ yields Eq.~\eqref{eq:KS-asym}.
+
+\paragraph{Fourier transform.}
+For a Gaussian,
+\begin{equation}
+\mathcal F[e^{-sr^2}]
+=
+\left(\frac{\pi}{s}\right)^{3/2}
+e^{-k^2/(4s)}.
+\end{equation}
+With the convention used here, multiplication by $r_a$ corresponds to
+$i\,\partial/\partial k_a$ in Fourier space, so
+$\mathcal F[r_ar_b e^{-sr^2}]
+=-\partial_{k_a}\partial_{k_b}\mathcal F[e^{-sr^2}]$. Since
+$\partial_{k_a}\partial_{k_b}e^{-k^2/(4s)}
+=\bigl(k_ak_b/(4s^2)-\delta_{ab}/(2s)\bigr)e^{-k^2/(4s)}$,
+\begin{equation}
+\mathcal F[
+r_a r_b e^{-sr^2}
+]
+=
+\left(\frac{\pi}{s}\right)^{3/2}
+e^{-k^2/(4s)}
+\left[
+\frac{\delta_{ab}}{2s}
+-
+\frac{k_a k_b}{4s^2}
+\right].
+\end{equation}
+Integrating against $\rho_\kappa(s)$ over $(0,\xi^2)$, which is permitted
+because $\rho_\kappa(s)s^{-7/2}$ is integrable near $s=0$, gives
+Eq.~\eqref{eq:KL-fourier} with the stated $A_{\kappa,\xi}$ and
+$B_{\kappa,\xi}$. Differentiating $A_{\kappa,\xi}$ under the integral
+sign, $\partial_k e^{-k^2/(4s)}=-(k/(2s))e^{-k^2/(4s)}$, gives
+\begin{equation}
+B_{\kappa,\xi}(k)
+=
+\frac{1}{k}
+\frac{d}{dk}A_{\kappa,\xi}(k),
+\qquad
+k>0.
+\end{equation}
+
+\paragraph{Endpoint asymptotics.}
+Let $k>0$ and, for $m\in\{5/2,7/2\}$,
+\begin{equation}
+I_m(k)
+=
+\int_0^{\xi^2}
+\rho_\kappa(s)s^{-m}e^{-k^2/(4s)}\,ds,
+\end{equation}
+so that $A_{\kappa,\xi}(k)=\tfrac{\pi^{3/2}}{2}I_{5/2}(k)$ and
+$B_{\kappa,\xi}(k)=-\tfrac{\pi^{3/2}}{4}I_{7/2}(k)$. Since
+\begin{equation}
+\frac{d}{ds}e^{-k^2/(4s)}
+=
+\frac{k^2}{4s^2}e^{-k^2/(4s)},
+\end{equation}
+we write $\rho_\kappa(s)s^{-m}=s^{-2}\,\rho_\kappa(s)s^{2-m}$ and integrate
+by parts, first on $[\varepsilon,\xi^2]$ and then letting
+$\varepsilon\to0^+$:
+\begin{equation}
+\label{eq:Im-ibp}
+I_m(k)
+=
+\frac{4\rho_\kappa(\xi^2)\xi^{4-2m}}{k^2}
+e^{-k^2/(4\xi^2)}
+-
+\frac{4}{k^2}
+\int_0^{\xi^2}
+\frac{d}{ds}\!\left[\rho_\kappa(s)s^{2-m}\right]
+e^{-k^2/(4s)}\,ds .
+\end{equation}
+The boundary term at $s=0$ vanishes: by Eq.~\eqref{eq:rho-bound},
+\begin{equation}
+0
+\le
+\rho_\kappa(s)s^{2-m}e^{-k^2/(4s)}
+\le
+\frac{2}{\sqrt{\pi}}\,s^{5/2-m}e^{-k^2/(4s)}
+\longrightarrow0,
+\qquad s\to0^+,
+\end{equation}
+because the exponential factor decays faster than any power of $s$.
+
+To bound the remaining integral we use
+$\rho_\kappa'(s)\le\pi^{-1/2}s^{-1/2}$ and
+Eq.~\eqref{eq:rho-bound}. For $0<s\le\xi^2$,
+\begin{equation}
+\begin{aligned}
+\left|
+s^2\frac{d}{ds}\!\left[\rho_\kappa(s)s^{2-m}\right]
+\right|
+&=
+\left|
+s^{4-m}\rho_\kappa'(s)+(2-m)s^{3-m}\rho_\kappa(s)
+\right|
+\\
+&\le
+\frac{1+2|m-2|}{\sqrt{\pi}}\,s^{7/2-m}
+\le
+\frac{1+2|m-2|}{\sqrt{\pi}}\,\xi^{7-2m},
+\end{aligned}
+\end{equation}
+where the last step uses $7/2-m\ge0$. Hence, with
+$\int_0^{\xi^2}s^{-2}e^{-k^2/(4s)}\,ds=(4/k^2)e^{-k^2/(4\xi^2)}$,
+\begin{equation}
+\left|
+\frac{4}{k^2}
+\int_0^{\xi^2}
+\frac{d}{ds}\!\left[\rho_\kappa(s)s^{2-m}\right]
+e^{-k^2/(4s)}\,ds
+\right|
+\le
+\frac{16\,(1+2|m-2|)\,\xi^{7-2m}}{\sqrt{\pi}\,k^4}
+e^{-k^2/(4\xi^2)} ,
+\end{equation}
+which is $\mathcal O\bigl(k^{-4}e^{-k^2/(4\xi^2)}\bigr)$. The same bound
+shows that the integral in Eq.~\eqref{eq:Im-ibp} converges absolutely, which
+justifies the limit $\varepsilon\to0^+$. Since $\rho_\kappa(\xi^2)>0$,
+\begin{equation}
+I_m(k)
+=
+\frac{4\rho_\kappa(\xi^2)\xi^{4-2m}}{k^2}
+e^{-k^2/(4\xi^2)}
+\left[1+\mathcal O(k^{-2})\right],
+\qquad k\to\infty .
+\end{equation}
+
+With $m=5/2$ and $m=7/2$,
+\begin{align}
+A_{\kappa,\xi}(k)
+&=
+\frac{2\pi^{3/2}}{\xi k^2}\rho_\kappa(\xi^2)e^{-k^2/(4\xi^2)}
+\left[1+\mathcal O(k^{-2})\right],
+\\
+k^2B_{\kappa,\xi}(k)
+&=
+-\frac{\pi^{3/2}}{\xi^3}\rho_\kappa(\xi^2)e^{-k^2/(4\xi^2)}
+\left[1+\mathcal O(k^{-2})\right].
+\end{align}
+Thus
+\begin{equation}
+\frac{A_{\kappa,\xi}(k)}{k^2B_{\kappa,\xi}(k)}
+=
+-\frac{2\xi^2}{k^2}\left[1+\mathcal O(k^{-2})\right],
+\qquad
+\lambda_\parallel(k)
+=
+A_{\kappa,\xi}(k)+k^2B_{\kappa,\xi}(k)
+=
+k^2B_{\kappa,\xi}(k)\left[1+\mathcal O(k^{-2})\right],
+\end{equation}
+which is Eq.~\eqref{eq:lambda-par-asym}; in particular $\lambda_\parallel(k)<0$ for
+all sufficiently large $k$. The eigenvalues of the symmetric matrix
+$\widehat K_\kappa^L(\kk)$ are $\lambda_\perp(k)=A_{\kappa,\xi}(k)>0$
+(twice) and $\lambda_\parallel(k)$, so its spectral norm is
+$\max\{\lambda_\perp(k),|\lambda_\parallel(k)|\}$. Because
+$\lambda_\perp(k)/|\lambda_\parallel(k)|=\mathcal O(k^{-2})$, the norm equals
+$|\lambda_\parallel(k)|$ for large $k$, which gives Eq.~\eqref{eq:KL-decay}.
+
+\paragraph{Tail quantities.}
+Since $\|\theta_S(r)\PP(\rr)\|_2=\theta_S(r)$, spherical coordinates give
+\begin{equation}
+E_S(r_c)
+=
+4\pi
+\int_{r_c}^{\infty}
+r^2\theta_S(r)\,dr,
+\qquad
+E_F(k_c)
+=
+\frac{1}{2\pi^2}
+\int_{k_c}^{\infty}
+k^2
+\left\|
+\widehat K_\kappa^L(k)
+\right\|_2\,dk.
+\end{equation}
+For $c>0$, integration by parts gives
+\begin{equation}
+\int_{x_0}^{\infty}x^2e^{-cx^2}\,dx
+=
+\frac{x_0}{2c}e^{-cx_0^2}
++
+\frac{1}{2c}\int_{x_0}^{\infty}e^{-cx^2}\,dx,
+\end{equation}
+and the last integral is at most $e^{-cx_0^2}/(2cx_0)$. Hence
+\begin{equation}
+\int_{r_c}^{\infty}
+r^2e^{-\xi^2r^2}\,dr
+\sim
+\frac{r_c}{2\xi^2}
+e^{-\xi^2r_c^2},
+\qquad
+\int_{k_c}^{\infty}
+k^2e^{-k^2/(4\xi^2)}\,dk
+\sim
+2\xi^2 k_c
+e^{-k_c^2/(4\xi^2)}.
+\end{equation}
+Because the integrands are asymptotically equivalent to
+$\rho_\kappa(\xi^2)e^{-\xi^2r^2}$ and
+$(\pi^{3/2}/\xi^3)\rho_\kappa(\xi^2)e^{-k^2/(4\xi^2)}$, respectively, the tails inherit these
+rates:
+\begin{equation}
+E_S(r_c)
+\sim
+4\pi\rho_\kappa(\xi^2)
+\frac{r_c}{2\xi^2}
+e^{-\xi^2r_c^2},
+\qquad
+E_F(k_c)
+\sim
+\frac{\rho_\kappa(\xi^2)}{2\sqrt{\pi}\,\xi^3}\,
+2\xi^2 k_c
+e^{-k_c^2/(4\xi^2)},
+\end{equation}
+which is Eq.~\eqref{eq:tails}.
+
+\section{Pair-response operator bounds}
+\label{app:pair-response}
+
+\begin{lemma}[Pair-response perturbation]
+\label{lem:pair-response}
+Let $\Gamma$ and $\Gamma'$ be built by the degree-minus-weight
+construction, $(\Gamma X)_i=\sum_{j\ne i}K_{ij}(x_i-x_j)$, from pair
+responses $K_{ij}$ and $K'_{ij}$, and let $E_{ij}=K'_{ij}-K_{ij}$. If
+$E_{ij}=E_{ji}=E_{ij}^{\mathsf T}$ for all $i\ne j$, then
+\begin{equation}
+\|\Gamma'-\Gamma\|_2
+\le
+2\max_i\sum_{j\ne i}\|E_{ij}\|_2 .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The difference $\Gamma'-\Gamma$ is symmetric, and pairing the $(i,j)$ and
+$(j,i)$ terms gives
+\begin{equation}
+X^{\mathsf T}(\Gamma'-\Gamma)X
+=
+\frac12\sum_{i\ne j}(x_i-x_j)^{\mathsf T}E_{ij}(x_i-x_j).
+\end{equation}
+Using $|x_i-x_j|^2\le2|x_i|^2+2|x_j|^2$ and the symmetry in $i,j$,
+\begin{equation}
+\left|X^{\mathsf T}(\Gamma'-\Gamma)X\right|
+\le
+2\sum_i|x_i|^2\sum_{j\ne i}\|E_{ij}\|_2
+\le
+2\max_i\sum_{j\ne i}\|E_{ij}\|_2\,|X|^2 .
+\end{equation}
+For a symmetric operator the spectral norm is the supremum of the
+quadratic form over unit vectors.
+\end{proof}
+
+The hypothesis holds for every even, pointwise symmetric pair kernel. It
+also holds for the particle--mesh response, because an even, real-symmetric
+influence function makes each block of $W_h$ real and symmetric and
+$(W_h)_{ij}=(W_h)_{ji}$. Lemma~\ref{lem:pair-response} with
+$E_{ij}=R_{k_c}(q_i-q_j)$ gives Eq.~\eqref{eq:trunc-bound}. Since
+$|e^{i\kk\cdot\rr}|=1$, every term satisfies
+$\|R_{k_c}(\rr)\|_2\le V^{-1}\sum_{|\kk|>k_c}\|\widehat K_\kappa^L(\kk)\|_2$,
+and the sum over $j\ne i$ has $N-1$ terms, which gives
+Eq.~\eqref{eq:trunc-pessimistic}. Lemma~\ref{lem:pair-response} with
+$E_{ij}=K^h_{ij}-K_{ij}$ gives Eq.~\eqref{eq:op-bound}.
+
+\begin{proof}[Proof of Proposition~\ref{prop:stabilized}]
+Both terms in Eq.~\eqref{eq:stabilized} are symmetric. Since
+$\widetilde\Gamma_h$ has zero block-row sums, it annihilates $\cT$, and by
+symmetry it maps $\Range\Pi=\cT^\perp$ into itself. Hence
+$\Gamma_h t=\widetilde\Gamma_h t+\delta_h\Pi t=0$ for $t\in\cT$. For
+arbitrary $X$, write $Y=\Pi X$. Then
+\begin{equation}
+X^{\mathsf T}\Gamma_hX
+=
+Y^{\mathsf T}\widetilde\Gamma_hY+\delta_h|Y|^2
+\ge
+\left(
+\lambda_{\min}\bigl(\widetilde\Gamma_h|_{\Range\Pi}\bigr)+\delta_h
+\right)|Y|^2
+\ge0
+\end{equation}
+by the choice of $\delta_h$. Finally,
+$\|\Gamma_h-\Gamma\|_2\le\|\widetilde\Gamma_h-\Gamma\|_2+\delta_h\|\Pi\|_2
+\le\epsilon_{\mathrm{op}}+\delta_h$ by Eq.~\eqref{eq:op-bound} and
+$\|\Pi\|_2=1$.
+\end{proof}
+
+\section{Particle--mesh alias response}
+\label{app:alias}
+
+\paragraph{Single-mode pair response.}
+Spreading a particle at $q$ onto the mesh and taking the discrete Fourier
+transform produces, for a retained mode $\kk$, the deposited amplitude
+$S_h(\kk,q)$: sampling the window on the mesh folds all aliases
+$\kk_n$ onto $\kk$. Because the assignment window is real and even,
+$\widehat W_h$ is real, and gathering the field of mode $\kk$ at $q_i$
+produces the factor $\overline{S_h(\kk,q_i)}$. Hence the contribution of
+mode $\kk$ to $(W_h)_{ij}$ is proportional to
+\begin{equation}
+\overline{S_h(\kk,q_i)}\,G_h(\kk)\,S_h(\kk,q_j)
+=
+H_h(\kk)\,e^{i\kk\cdot(q_i-q_j)}
+\left(1+\alpha_i^*\right)\left(1+\alpha_j\right),
+\end{equation}
+with the same normalization as the exact contribution
+$\widehat K_\kappa^L(\kk)e^{i\kk\cdot(q_i-q_j)}$. Subtracting the exact
+contribution and expanding the product gives Eq.~\eqref{eq:pair-error}.
+
+\paragraph{B-spline alias ratio.}
+Write $x_\ell=k_\ell h/2$. The $\ell$-th component of $\kk_n$ satisfies
+$(\kk_n)_\ell h/2=x_\ell+\pi n_\ell$, and
+$\sin(x_\ell+\pi n_\ell)=(-1)^{n_\ell}\sin x_\ell$. Therefore
+\begin{equation}
+\left|
+\frac{\widehat W_h(\kk_n)}
+{\widehat W_h(\kk)}
+\right|
+=
+\prod_{\ell:n_\ell\ne0}
+\left|
+\frac{k_\ell h/2}
+{k_\ell h/2+\pi n_\ell}
+\right|^p.
+\end{equation}
+For a mode resolved by the mesh, $|x_\ell|\le\pi/2$, so
+$|x_\ell+\pi n_\ell|\ge\pi|n_\ell|/2$ and each factor is at most
+$(h|k_\ell|/\pi)^p|n_\ell|^{-p}$, where $h|k_\ell|/\pi\le1$ and
+$|k_\ell|\le|\kk|$. Every $n\ne0$ has at least one nonzero component, so
+the product of the factors $(h|k_\ell|/\pi)^p$ is at most
+$(h|\kk|/\pi)^p$ and
+\begin{equation}
+|\alpha_h(\kk,q)|
+\le
+\left(\frac{h|\kk|}{\pi}\right)^p
+\sum_{n\ne0}\ \prod_{\ell:n_\ell\ne0}|n_\ell|^{-p}
+=
+\left[
+\left(1+2\sum_{m=1}^\infty m^{-p}\right)^3-1
+\right]
+\left(\frac{h|\kk|}{\pi}\right)^p,
+\end{equation}
+uniformly in $q$. The series converges for $p\ge2$, which gives
+$\alpha_h(\kk,q)=\mathcal{O}((h|\kk|)^p)$.
+
+\paragraph{Mesh law.}
+For ideal deconvolution, $D_h=0$, and the bound on $\alpha_h$ gives, for
+each pair,
+\begin{equation}
+\|E^h_{ij}\|_2
+\lesssim
+\frac1V\sum_{|\kk|\le k_c}
+\|\widehat K_\kappa^L(\kk)\|_2
+\left[(h|\kk|)^p+(h|\kk|)^{2p}\right],
+\end{equation}
+with a constant depending only on $p$. Summing over $j\ne i$ multiplies the
+bound by $N-1$. The lattice sum
+$V^{-1}\sum_{\kk}|\kk|^p\|\widehat K_\kappa^L(\kk)\|_2$ is a Riemann sum
+for $M_p(\kappa,\xi)$ and is finite by the Gaussian decay in
+Eq.~\eqref{eq:KL-decay}. Since $h|\kk|\le\sqrt3\,\pi$ on the resolved
+modes, the $h^{2p}$ term is subdominant, which gives Eq.~\eqref{eq:mesh-law} for a fixed
+configuration and cutoff.
+
+\section{Finite-time thermostat}
+\label{app:thermostat}
+
+\paragraph{Exact covariance.}
+For frozen positions, consider the Ornstein--Uhlenbeck dynamics
+\begin{equation}
+dp
+=
+-\frac1m\Gamma_h p\,dt
++
+\left(2\beta^{-1}\Gamma_h\right)^{1/2}dW_t,
+\end{equation}
+where $W_t$ is a standard Wiener process. Over a step of length $\Delta t$,
+the solution is $p(\Delta t)=R_{\Delta t}(\Gamma_h)p(0)+\eta$ with a
+Gaussian increment $\eta$ of mean zero. By the It\^o isometry and the
+spectral calculus,
+\begin{equation}
+\operatorname{Cov}(\eta)
+=
+\int_0^{\Delta t}
+e^{-2\tau\Gamma_h/m}\,2\beta^{-1}\Gamma_h\,d\tau
+=
+\beta^{-1}m\left(I-R_{\Delta t}(\Gamma_h)^2\right)
+=
+S_{\Delta t}(\Gamma_h)^2 ,
+\end{equation}
+where both sides vanish on the null space of $\Gamma_h$. Since
+$f_{\Delta t}(\lambda)^2=\beta^{-1}m(1-e^{-2\Delta t\lambda/m})$, we have
+$S_{\Delta t}(\Gamma_h)=f_{\Delta t}(\Gamma_h)$, and the update
+$p\mapsto R_{\Delta t}(\Gamma_h)p+f_{\Delta t}(\Gamma_h)\xi$ reproduces
+the exact frozen-configuration transition law.
+
+\paragraph{Momentum conservation.}
+Let $t\in\cT$. Since $\Gamma_h t=0$, $R_{\Delta t}(\Gamma_h)t=t$ and
+$f_{\Delta t}(\Gamma_h)t=f_{\Delta t}(0)t=0$. Both operators are symmetric,
+so
+\begin{equation}
+t^{\mathsf T}p^{+}
+=
+\left(R_{\Delta t}(\Gamma_h)t\right)^{\mathsf T}p
++
+\left(f_{\Delta t}(\Gamma_h)t\right)^{\mathsf T}\xi
+=
+t^{\mathsf T}p
+\end{equation}
+for every noise sample. The Lanczos approximation retains this property
+because the starting vector $z=\Pi\xi$ and the reconstructed increment are
+projected onto $\Range\Pi=\cT^\perp$, and the center-of-mass component is
+copied exactly through the damping step.
+
+\paragraph{Invariance of the conditional Maxwell law.}
+Suppose $p$ is Gaussian with fixed total momentum and covariance
+$\beta^{-1}m\Pi$. Since $R_{\Delta t}(\Gamma_h)$ commutes with $\Pi$ and
+equals the identity on $\cT$, $I-R_{\Delta t}(\Gamma_h)^2
+=\Pi-R_{\Delta t}(\Gamma_h)^2\Pi$. Hence
+\begin{equation}
+\operatorname{Cov}(p^{+})
+=
+\beta^{-1}m
+\left(
+R_{\Delta t}(\Gamma_h)^2\Pi
++
+\Pi-R_{\Delta t}(\Gamma_h)^2\Pi
+\right)
+=
+\beta^{-1}m\Pi,
+\end{equation}
+and the total momentum is unchanged. The conditional Maxwell law is
+therefore invariant under the thermostat step.
+
+\paragraph{Range-start function.}
+Expanding the exponential gives
+$f_{\Delta t}(\lambda)^2=2\beta^{-1}\Delta t\,\lambda+\mathcal{O}(\lambda^2)$
+as $\lambda\to0^+$. Hence the constant in the range-start analysis is
+$C=(2\beta^{-1}\Delta t)^{1/2}$, and $g(\lambda)=f_{\Delta t}(\lambda)/\lambda$
+has the stated $\lambda^{-1/2}$ singularity.
+
+\section{Equal-accuracy timing of the splitting parameter}
+\label{app:equal-accuracy}
+
+This appendix keeps the equal-accuracy timing study that informs the
+parameter choice of Section~\ref{sec:error}. Every run was required to meet
+the same measured relative operator tolerance on the two dense reference
+configurations A ($N=30$, $L=6$) and B ($N=40$, $L=10$), $\kappa=1$; the
+cost per graph action was then timed on an $N=4000$ configuration
+(Table~\ref{tab:equal-accuracy}, Fig.~\ref{fig:exp2}). All 44 accepted runs
+met the tolerance on both configurations and were positive semidefinite and
+certified. The required Ewald scale was only
+$1.0$--$1.075\times\sqrt{\log(2/\mathrm{tol})}$, and for the tested density,
+hardware and tolerances the lowest cost occurred near $\xi=0.5$--$0.7$.
+This is an empirical work-balance result, not a universal optimum. The
+accuracy is established on cases A and B only; it is not a guarantee for
+other configurations.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{cccccc}
+\toprule
+Tolerance & $\xi=0.5$ & $0.7$ & $1.0$ & $1.4$ & $2.0$ \\
+\midrule
+$10^{-5}$ & 164 & 129 & 270 & 663 & 1999 \\
+$10^{-7}$ & 332 & 311 & 532 & 1366 & 8145 \\
+$10^{-9}$ & 592 & 739 & 2791 & 12704 & --- \\
+\bottomrule
+\end{tabular}
+\caption{Milliseconds per graph action at equal operator accuracy (accuracy measured on cases A and B, timing at $N=4000$).}
+\label{tab:equal-accuracy}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{exp2_min_cost_vs_xi.png}
+\caption{Cheapest accepted run (minimum measured time per graph action) versus $\xi$ at tolerances $10^{-5}$, $10^{-7}$, $10^{-9}$, for configurations A and B and the $N=4000$ timing configuration ($L=30$). Source: \texttt{equal\_accuracy\_xi\_results/min\_cost\_vs\_xi.png}.}
+\label{fig:exp2}
+\end{figure}
+
+\section{Supplementary figures for Section~\ref{sec:lj}}
+\label{app:lj}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{dt_study_A.png}
+\caption{Time-step study, 16 coupled replicas. Left: median RMS velocity
+difference to the $\Delta t=0.00125$ path. Middle and right: mean
+velocity-autocorrelation and radial-distribution differences (means only;
+verdicts use Table~\ref{tab:lj-dt}).}
+\label{fig:lj-dtstudy}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{equilibration_A.png}
+\caption{Equilibration: 8 runs of 50 time units at $\Delta t=0.005$ (ranks
+$12/5$), four start types; dashed: measured burn-in $2$. Bottom right:
+Green--Kubo and windowed mean-square-displacement diffusion coefficients
+with $95\%$ intervals over runs; no plateau is confirmed.}
+\label{fig:lj-equil}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.55\textwidth]{obs_vacf_secondary.png}\\
+\includegraphics[width=0.85\textwidth]{obs_vccf_secondary.png}
+\caption{Second group: 11 coupled chains, $\Delta t=0.01$ versus $0.005$
+only, origins $t_0\in[10,98]$, ranks $12/5$; conventions as in
+Fig.~\ref{fig:lj-vacf}. This group holds five of the seven FAIL cells and,
+lacking a finer level, cannot support display by itself.}
+\label{fig:lj-secondary}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{obs_currents_secondary.png}\\[4pt]
+\includegraphics[width=\textwidth]{obs_van_hove_secondary.png}
+\caption{Second group, current correlations and $g_d(r,t)$; conventions as
+in Figs.~\ref{fig:lj-currents} and~\ref{fig:lj-secondary}.}
+\label{fig:lj-secondary2}
+\end{figure}
+
+\paragraph{Local run of the cluster scripts.}
+The cluster workflow was exercised locally with bash on the development
+machine, without a scheduler; it is not a cluster result. One canonical
+state was integrated to $t=1$ with $\Delta t=0.005$ and $0.01$, once with
+PPPM and Lanczos $14/5$ and once with the dense full-periodic matrix and its
+eigendecomposition, sharing the noise at each $\Delta t$. Restart, locking,
+checkpoint and output checks passed. The RMS position and velocity
+differences at $t=1$ were $1.96\times10^{-8}$ and $1.28\times10^{-7}$
+($\Delta t=0.005$), $2.22\times10^{-8}$ and $1.35\times10^{-7}$
+($\Delta t=0.01$), and the total-momentum change stayed below
+$1.3\times10^{-13}$. A single path pair supports no statistical statement.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.49\textwidth]{pilot_fast_vs_dense.png}
+\includegraphics[width=0.49\textwidth]{pilot_diagnostics.png}
+\caption{Local run of the cluster scripts (one state, one paired noise path
+per $\Delta t$, $t\le1$). Left: PPPM--Lanczos minus dense differences of
+positions and velocities. Right: kinetic temperature, $U/N$ and total
+momentum change for the four cases.}
+\label{fig:lj-pilot}
+\end{figure}
+
+% \bibliographystyle{unsrtnat}
+% \bibliography{references}  % re-enable once the introduction cites references
+
+\end{document}
