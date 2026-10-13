@@ -14,15 +14,18 @@ image radius R is increased in a ladder and the change is reported against the e
 
 Stages (results in exp1_results/, dense matrices cached in exp1_results/raw/, git-ignored):
   configs     configurations and their geometry: configs.csv, configs.npz
-  reference   image-radius ladder of Gamma_ref and exact Gamma_S, Gamma_L (xi in XI_SWEEP): reference_ladder.csv
+  reference   image-radius ladder of Gamma_ref, and image sums Gamma_S, Gamma_L (|r| <= R_REF, xi in XI_SWEEP):
+              reference_ladder.csv
   quadrature  accuracy of the numerical kernel coefficients (theta_L, theta_S, A, B) under refined rules
   split       K = K^S + K^L on nonzero pair images and a radial grid; operator-level split identity
-  realspace   real-space cutoff sweep (Gamma_S^rc vs exact Gamma_S)
-  fourier     Fourier cutoff sweep (exact lattice sum |k| <= kc vs exact Gamma_L)
+  cutoffs     real-space cutoff sweep (Gamma_S^rc vs the image sum Gamma_S) and Fourier cutoff sweep (mesh-free
+              lattice sum |k| <= kc vs the image sum Gamma_L)
   mesh        mesh spacing h and B-spline order p with random grid shifts (Gamma_L^mesh vs Gamma_L^kc);
               off-grid alias decomposition D_h + H (alpha_i^* + alpha_j + alpha_i^* alpha_j), literal spread check
   action      production path GammaH.matvec (literal spread-FFT-influence-gather): ||Gamma_h - Gamma_ref||_2, probes,
               symmetry, translation null space, lambda_min on T_perp, error budget, at the accepted xi = 0.7 sets
+  precision   sources of the Fourier-vs-image-sum floor: wave-number rounding, quadrature, float64 vs 80-bit
+              evaluation of the sum, image-sum truncation (fourier_precision.csv)
   all         every stage in order
 
     python3 exp1_operator_action.py all --workers 4
@@ -392,7 +395,7 @@ def pair_images(x, L, rmax):
 
 
 def fourier_ladder_pairs(d, L, kc_list, A_of_k, chunk=None):
-    """Exact truncated lattice sums (1/V) sum_{|k| <= kc} Khat(k) cos(k.d) for ascending kc, k = 0 included."""
+    """Mesh-free lattice Fourier sums (1/V) sum_{|k| <= kc} Khat(k) cos(k.d) for ascending kc, k = 0 included."""
     kc_list = np.asarray(kc_list, float)
     chunk = chunk or max(64, int(4.0e6 / max(len(d), 1)))
     mv, kv, _ = lattice_modes(L, kc_list[-1])
@@ -434,7 +437,7 @@ def stage_split(args):
                                   max_rel=float(err.max()), median_rel=float(np.median(err)),
                                   r_at_max=float(r[np.argmax(err)])))
             print(f"  split xi {xi} {label}: max {err.max():.2e}", flush=True)
-    # operator level: Gamma_S (images, closed theta_S) + Gamma_L (exact lattice Fourier sum, kc = 2 xi 6.5)
+    # operator level: Gamma_S (images, closed theta_S) + Gamma_L (mesh-free lattice Fourier sum, kc = 2 xi 6.5)
     for c in cfgs:
         ref = load_ref(c["name"])
         pi, pj, d = pair_geometry(c["x"], c["L"])
@@ -488,7 +491,7 @@ def _cutoff_one(cfg):
                              x=float(xr), cutoff=float(xr / xi), err=e, count=end, no_new=bool(end == prev_n),
                              exp_guide=float(np.exp(-xr ** 2))))
             prev_n = end
-        # Fourier: exact lattice sums, sorted |k| shells
+        # Fourier: mesh-free lattice sums, sorted |k| shells
         KF, nm = fourier_ladder_pairs(d, L, 2 * xi * Y_KC, lambda kn: khat_AB(K, kn))
         prev_n = -1
         for y, Kp, n in zip(Y_KC, KF, nm):
@@ -698,7 +701,7 @@ def _action_one(job):
     lam_h = np.linalg.eigvalsh(Q.T @ (0.5 * (Glit + Glit.T)) @ Q)
     row.update(lam_star_ref=float(ref["lam_star"]), lam_star_h=float(lam_h[0]), lam_max_h=float(lam_h[-1]),
                weyl_margin=float(ref["lam_star"] - specnorm(D)))
-    # error budget: real cutoff, Fourier cutoff, mesh (exact definitions, xi = 0.7 exact pieces from the reference)
+    # error budget: real cutoff, Fourier cutoff, mesh (each against the xi = 0.7 image sums stored with the reference)
     pi, pj, d = pair_geometry(x, L)
     K = EwaldLongitudinal(KAPPA, xi)
     I, J, dd, rr = pair_images(x, L, op.rc)
@@ -733,10 +736,33 @@ def stage_action(args):
     log_run("action", dict(params=PARAM_SETS))
 
 
+def khat_AB_rounded12(K, kn):
+    """The coefficient path used before the fix: |k| rounded to 12 decimals before A(k), B(k) are evaluated.
+    Kept only to measure what the rounding contributed."""
+    ku, inv = np.unique(np.round(kn, 12), return_inverse=True)
+    Au, Bu = K.AB_scaled(ku)
+    dmp = np.exp(-ku ** 2 / (4 * K.xi ** 2))
+    return (Au * dmp)[inv], (Bu * dmp)[inv]
+
+
+def khat_AB_shell(K, mv, L):
+    """A(k), B(k) per integer shell |m|^2, with k = (2 pi/L) sqrt(|m|^2) computed from the integer shell."""
+    m2u, inv = np.unique((mv.astype(np.int64) ** 2).sum(axis=1), return_inverse=True)
+    ku = 2 * np.pi / L * np.sqrt(m2u.astype(float))
+    Au, Bu = K.AB_scaled(ku)
+    dmp = np.exp(-ku ** 2 / (4 * K.xi ** 2))
+    return (Au * dmp)[inv], (Bu * dmp)[inv]
+
+
 def stage_precision(args):
-    """Floor of the untruncated lattice Fourier sum of K^L (k_c = 2 xi 6.5) against the real-space image sum Gamma_L:
-    float64 accumulation, 80-bit (np.longdouble) accumulation of the same float64 inputs, and float64 with the refined
-    quadrature coefficients. Identical floors mean the floor is not set by the accumulation or by the coefficient rules."""
+    """Floor of the mesh-free lattice Fourier sum of K^L (finite cutoff k_c = 2 xi 6.5) against the real-space image
+    sum Gamma_L (|r| <= R_REF), with the possible sources separated:
+      wave-number rounding   coefficients at |k| rounded to 12 decimals (the earlier path) vs the exact |k| (current)
+                             vs k computed from the integer shell |m|^2;
+      quadrature             current |k| with every Gauss-Legendre rule refined (RefinedEwald);
+      floating point         float64 vs 80-bit (np.longdouble) evaluation of the sum (phases, cosines, products and
+                             accumulation) from the same float64 inputs d, k, A, B;
+      reference truncation   real-space image sum Gamma_L at R = 40 vs R = R_REF = 45."""
     rows = []
     for name in ("A", "lattice_N128_s1", "uniform_N128_s1"):
         c = load_configs(names=[name])[0]
@@ -744,8 +770,11 @@ def stage_precision(args):
         pi, pj, d = pair_geometry(c["x"], c["L"])
         nG = float(ref["norm2"])
         for xi in XI_SWEEP:
+            t0 = time.perf_counter()
             GL = laplacian(ref[f"KL_{xi:g}"], pi, pj, c["N"])
             K, Kr = EwaldLongitudinal(KAPPA, xi), RefinedEwald(KAPPA, xi)
+            prof = Profiles(K)
+            KL40 = lattice_ladder(d, c["L"], (40.0,), lambda r: prof.theta(r, "L"))[0]
             kc = 2 * xi * 6.5
             mv, kv, _ = lattice_modes(c["L"], kc)
             kn = np.linalg.norm(kv, axis=1)
@@ -761,13 +790,23 @@ def stage_precision(args):
                         + np.einsum("pk,k,ki,kj->pij", C, B[c0:c0 + 2048].astype(dtype), k, k)
                 return (out / V).astype(float)
             A, B = khat_AB(K, kn)
+            A12, B12 = khat_AB_rounded12(K, kn)
+            Ash, Bsh = khat_AB_shell(K, mv, c["L"])
             Ar, Br = khat_AB(Kr, kn)
-            K64, K80, Kref = fsum(np.float64, A, B), fsum(np.longdouble, A, B), fsum(np.float64, Ar, Br)
+            K64, K80 = fsum(np.float64, A, B), fsum(np.longdouble, A, B)
             e = lambda Kp: specnorm_sym(laplacian(Kp, pi, pj, c["N"]) - GL) / nG          # noqa: E731
-            rows.append(dict(name=name, xi=xi, kc=kc, n_modes=len(kv), floor_float64=e(K64), floor_longdouble=e(K80),
-                             floor_refined_coeffs=e(Kref),
+            rows.append(dict(name=name, xi=xi, kc=kc, n_modes=len(kv), n_unique_k_exact=len(np.unique(kn)),
+                             n_unique_k_rounded12=len(np.unique(np.round(kn, 12))),
+                             n_shells=len(np.unique((mv ** 2).sum(axis=1))),
+                             floor_rounded12=e(fsum(np.float64, A12, B12)), floor_float64=e(K64),
+                             floor_int_shell=e(fsum(np.float64, Ash, Bsh)), floor_longdouble=e(K80),
+                             floor_refined_coeffs=e(fsum(np.float64, Ar, Br)),
                              float64_vs_longdouble=specnorm_sym(laplacian(K64 - K80, pi, pj, c["N"])) / nG,
-                             longdouble_type=str(np.finfo(np.longdouble).dtype), longdouble_eps=float(np.finfo(np.longdouble).eps)))
+                             coeff_rounded12_vs_exact=float(np.max(np.maximum(np.abs(A12 - A), np.abs(B12 - B) * kn ** 2))
+                                                            / np.max(np.maximum(np.abs(A), np.abs(A + B * kn ** 2)))),
+                             GL_images_R40_vs_R45=specnorm_sym(laplacian(KL40, pi, pj, c["N"]) - GL) / nG,
+                             longdouble_type=str(np.finfo(np.longdouble).dtype),
+                             longdouble_eps=float(np.finfo(np.longdouble).eps), t_s=time.perf_counter() - t0))
             print(f"  precision {name} xi {xi}: {rows[-1]}", flush=True)
     write_csv(OUT / "fourier_precision.csv", rows)
     log_run("precision")

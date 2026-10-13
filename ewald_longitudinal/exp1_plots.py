@@ -6,11 +6,21 @@ Reads only exp1_results/*.csv written by exp1_operator_action.py; writes
   exp1_results/fits_cutoffs.csv, fits_mesh.csv, summary.json
   exp1_results/figures/exp1_components.{pdf,png}, exp1_action.{pdf,png}
   paper/figures/exp1_components.pdf, exp1_action.pdf
-  paper/tab_exp1_configs.tex, paper/tab_exp1_params.tex
+  paper/tab_exp1_configs.tex, paper/tab_exp1_params.tex, paper/tab_exp1_floor.tex, paper/tab_exp1_slopes.tex
 
 Fit rules (stated in the text):
-  cutoffs: log err = a - c x^2 on 1 <= x and err >= FIT_FLOOR (pre-plateau); x = xi rc or kc/(2 xi);
-  mesh:    log err_rms = a + q log h on the four finest meshes with err_rms >= FIT_FLOOR, per (config, s_F, p).
+  numerical floor  eps_num = largest numerical discrepancy measured: the operator-level split identity
+                   (split_operator.csv) and every column of the Fourier-sum precision check except the rounded-|k| one
+                   (fourier_precision.csv: exact-|k| float64, integer shell, 80-bit, refined coefficients; float64 vs
+                   80-bit difference; image-sum R = 40 vs 45 change). The rounded-|k| variant is the removed defect.
+  fit floor        FIT_FLOOR = FLOOR_FACTOR * eps_num, so the floor is at most 1% of any fitted error.
+  cutoffs          log err = a - c x^2 on x >= 1 and err >= FIT_FLOOR, x = xi rc or kc/(2 xi); steps that admit no new
+                   pair image or lattice shell are excluded.
+  mesh             log err_rms = a + q log h on the four finest meshes with err_rms >= FIT_FLOOR, per (config, s_F, p);
+                   also reported: the fit over every mesh above FIT_FLOOR, the local slopes, and the coarse-mesh fit
+                   (eta >= 0.5).
+Points below FIT_FLOOR stay in the CSV files. In the cutoff panels they lie below the dotted fit-floor line; the mesh
+panel draws them open (none occur at the production k_c). Excluded meshes are listed in summary.json.
 """
 import csv
 import json
@@ -30,7 +40,8 @@ HERE = Path(__file__).resolve().parent
 OUT = HERE / "exp1_results"
 FIG = OUT / "figures"
 PAPER = HERE.parent / "paper"
-FIT_FLOOR = 1e-12
+FLOOR_FACTOR = 100.0
+FIT_FLOOR = None                     # set in main() from the measured numerical floor
 
 # reference palette (dataviz skill): categorical slots 1-3 for the three families, ink for legacy cases,
 # ordinal blue ramp (steps 250..700) for the B-spline order p
@@ -87,6 +98,7 @@ def fit_cutoffs(rows):
                    n_fit=int(m.sum()), x_fit_min=float(x[m].min()) if m.any() else np.nan,
                    x_fit_max=float(x[m].max()) if m.any() else np.nan, flat_steps_total=int(nn.sum()),
                    flat_or_empty_in_window_excluded=int((win & ~m).sum()),
+                   n_below_floor=int(((x >= 1.0) & (e < FIT_FLOOR)).sum()), err_min=float(e.min()),
                    err_at_xmax=float(e[-1]), tail_max=float(tail.max()),
                    plateau=bool(tail.min() > 0.3 * tail.max()))
         if m.sum() >= 3:
@@ -111,11 +123,13 @@ def fit_mesh(rows):
         emin = np.array([num(r, "err_min") for r in rr])
         ok = e >= FIT_FLOOR
         idx = np.where(ok)[0][:4]
+        n_below = int((~ok).sum())
         rec = dict(name=name, set=rr[0]["set"], family=rr[0]["family"], N=int(num(rr[0], "N")), s_F=sF, p=p,
                    xi=num(rr[0], "xi"), n_meshes=len(rr), n_fit=len(idx), h_fit=[float(h[i]) for i in idx],
                    eta_range=[num(rr[-1], "eta"), num(rr[0], "eta")],
                    shift_max_over_rms=float(np.nanmax(emax / e)), shift_max_over_min=float(np.nanmax(emax / emin)),
-                   min_err=float(e.min()), eps_F=num(rr[0], "eps_F"))
+                   min_err=float(e.min()), eps_F=num(rr[0], "eps_F"), n_below_floor=n_below,
+                   eta_below_floor=[float(v) for v in np.array([num(r, "eta") for r in rr])[~ok]])
         eta = np.array([num(r, "eta") for r in rr])
         if len(idx) >= 3:
             q, a = np.polyfit(np.log(h[idx]), np.log(e[idx]), 1)
@@ -124,6 +138,10 @@ def fit_mesh(rows):
                        eta_fit=[float(eta[idx].min()), float(eta[idx].max())])
             loc = np.diff(np.log(e)) / np.diff(np.log(h))
             rec["local_slopes"] = [float(v) for v in loc]
+        if ok.sum() >= 3:
+            qa, _ = np.polyfit(np.log(h[ok]), np.log(e[ok]), 1)
+            rec.update(slope_all_above_floor=float(qa), n_all_above_floor=int(ok.sum()),
+                       eta_all_above_floor=[float(eta[ok].min()), float(eta[ok].max())])
         coarse = np.where(eta >= 0.5)[0]
         if len(coarse) >= 3:
             qc, _ = np.polyfit(np.log(h[coarse]), np.log(e[coarse]), 1)
@@ -131,6 +149,17 @@ def fit_mesh(rows):
         rec["h_steps"] = [float(v) for v in h[1:] / h[:-1] - 1]
         fits.append(rec)
     return fits
+
+
+PREC_EXACT = ("floor_float64", "floor_int_shell", "floor_longdouble", "floor_refined_coeffs", "float64_vs_longdouble",
+              "GL_images_R40_vs_R45")
+
+
+def numerical_floor(prec, split_op):
+    """Largest numerical discrepancy measured (see module doc)."""
+    vals = {k: max(num(r, k) for r in prec) for k in PREC_EXACT}
+    vals["split_operator"] = max(num(r, "spec_rel") for r in split_op)
+    return max(vals.values()), vals
 
 
 def write_csv(path, rows):
@@ -149,7 +178,7 @@ def fam_style(fam):
     return FAM.get(fam) or LEG.get(fam) or ("#52514e", "x", fam)
 
 
-def components_figure(cut, mesh, msum, split_op, split_pairs, quad):
+def components_figure(cut, mesh, msum, split_op, split_pairs, quad, prec):
     fig, axs = plt.subplots(2, 3, figsize=(7.0, 4.6), constrained_layout=True)
     # (a) split identity
     ax = axs[0, 0]
@@ -168,12 +197,15 @@ def components_figure(cut, mesh, msum, split_op, split_pairs, quad):
                     label=lab if xi == xs[0] else None)
     pr = [r for r in split_pairs if r["points"].startswith("pair")]
     ax.plot([num(r, "xi") for r in pr], [num(r, "max_rel") for r in pr], "-", color=INK2, lw=1,
-            label=r"pair level, max over $r$")
+            label="pair level")
+    ax.plot([num(r, "xi") + 0.03 for r in prec], [num(r, "floor_rounded12") for r in prec], "x", color="#a3a29d",
+            ms=4, mew=0.9, label=r"$|k|$ rounded (old)")
     ax.set_yscale("log")
-    ax.set_ylim(3e-17, 3e-12)
+    ax.set_ylim(3e-17, 1e-8)
     ax.set_xlabel(r"splitting parameter $\xi$")
     ax.set_ylabel("relative error")
-    ax.legend(loc="lower center", ncol=2, handletextpad=0.2, columnspacing=0.5, fontsize=6.3, markerscale=0.9)
+    ax.legend(loc="upper right", ncol=2, handletextpad=0.2, columnspacing=0.5, fontsize=5.8, markerscale=0.9,
+              borderaxespad=0.2)
     panel_label(ax, r"(a) $K=K^S+K^L$ against $\Gamma_{\rm ref}$")
     # (b), (c) cutoffs at the production xi = 0.7, family median with seed range; legacy cases thin
     for ax, part, xl, tt in ((axs[0, 1], "real", r"$\xi r_c$", r"(b) real-space cutoff, $\xi=0.7$"),
@@ -192,13 +224,15 @@ def components_figure(cut, mesh, msum, split_op, split_pairs, quad):
             r_ = sorted([r for r in sub if r["family"] == fam], key=lambda r: num(r, "x"))
             ax.plot([num(r, "x") for r in r_], [num(r, "err") for r in r_], ":", color=col, lw=1, label=lab)
         ax.plot(xg, np.exp(-xg ** 2), "--", color=INK2, lw=0.8, label=r"$e^{-x^2}$")
+        ax.axhline(FIT_FLOOR, color=INK2, lw=0.6, ls=":")
+        ax.text(xg[-1], FIT_FLOOR * 6, "fit floor", fontsize=6, color=INK2, ha="right", va="bottom")
         ax.set_yscale("log")
         ax.set_ylim(1e-17, 2)
         ax.set_xlabel(xl)
         ax.set_ylabel(r"$\|\Delta\Gamma\|_2/\|\Gamma_{\rm ref}\|_2$")
         panel_label(ax, tt)
-        if part == "real":
-            ax.legend(loc="lower left", handlelength=1.6, fontsize=6.5)
+        if part == "fourier":
+            ax.legend(loc="lower left", handlelength=1.6, fontsize=6.0, labelspacing=0.25)
     # (d) mesh error vs xi h at production kc, representative configuration, p ramp, RMS and shift range
     ax = axs[1, 0]
     rep = "uniform_N128_s1"
@@ -211,11 +245,15 @@ def components_figure(cut, mesh, msum, split_op, split_pairs, quad):
         hi = np.array([num(r, "err_max") for r in rr])
         col = RAMP[min(i, len(RAMP) - 1)]
         ax.fill_between(x, lo, hi, color=col, alpha=0.18, lw=0)
-        ax.plot(x, y, "o-", color=col, ms=3, label=f"$p={p}$")
+        ax.plot(x, y, "-", color=col, label=f"$p={p}$")
+        a_ = y >= FIT_FLOOR
+        ax.plot(x[a_], y[a_], "o", color=col, ms=3)
+        ax.plot(x[~a_], y[~a_], "o", color=col, ms=3, mfc="white", mew=0.8)
         f = [r for r in msum if r["name"] == rep and r["p"] == p and abs(r["s_F"] - 4.100151562017953) < 1e-6]
         if f and "slope" in f[0]:
             xx = np.array([x[0], x[min(3, len(x) - 1)]])
             ax.plot(xx, y[0] * (xx / x[0]) ** p * 0.35, "-", color=INK2, lw=0.6)
+    ax.axhline(FIT_FLOOR, color=INK2, lw=0.6, ls=":")
     ax.set_xscale("log")
     ax.set_yscale("log")
     ax.set_xticks([0.1, 0.2, 0.3, 0.4])
@@ -242,7 +280,7 @@ def components_figure(cut, mesh, msum, split_op, split_pairs, quad):
     ax.set_xlabel("B-spline order $p$")
     ax.set_ylabel(r"fitted slope of RMS error in $h$")
     ax.legend(loc="upper left", handlelength=1.2)
-    panel_label(ax, r"(e) $O(h^p)$ fits (open: $k_c$ at $s=5.5$)")
+    panel_label(ax, r"(e) fitted slopes in $h$ (open: $s=5.5$)")
     # (f) grid-shift sensitivity: max over shifts / RMS
     ax = axs[1, 2]
     for fam in ("caseA", "caseB", "uniform", "lattice", "cluster"):
@@ -255,7 +293,7 @@ def components_figure(cut, mesh, msum, split_op, split_pairs, quad):
                 ms=2.5, alpha=0.6, mec="none", label=lab)
     ax.set_xlabel(r"$\eta = k_c h/\pi$")
     ax.set_ylabel("max / RMS over grid shifts")
-    panel_label(ax, r"(f) grid-shift spread (8 shifts, $N\leq128$)")
+    panel_label(ax, r"(f) grid-shift spread")
     for a in axs.ravel():
         a.grid(True, which="major")
     return fig
@@ -265,30 +303,33 @@ def action_figure(act, probes, box, refn):
     fig, axs = plt.subplots(2, 2, figsize=(7.0, 5.0), constrained_layout=True)
     fams = ("caseA", "caseB", "uniform", "lattice", "cluster")
     tolv = {"T5": 1e-5, "T7": 1e-7, "T9": 1e-9}
-    jit = {"caseA": 0.80, "caseB": 0.89, "uniform": 1.0, "lattice": 1.12, "cluster": 1.26}
-    # (a) achieved relative spectral error against the tolerance the set was accepted for (on A and B)
+    # (a) achieved relative operator error divided by the tolerance the set was accepted for (on A and B)
     ax = axs[0, 0]
+    xpos = {"T9": 0, "T7": 1, "T5": 2}
+    off = {"caseA": -0.28, "caseB": -0.17, "uniform": -0.06, "lattice": 0.05, "cluster": 0.16}
     for fam in fams:
         col, mk, lab = fam_style(fam)
         for pname, t in tolv.items():
             for sets, fill in ((("legacy", "main"), True), (("check",), False)):
-                v = [num(r, "err_spec_rel") for r in act if r["family"] == fam and r["params"] == pname
+                v = [num(r, "err_spec_rel") / t for r in act if r["family"] == fam and r["params"] == pname
                      and r["set"] in sets]
                 if v:
-                    ax.plot([t * jit[fam]] * len(v), v, mk, color=col, ms=4.5, mfc=col if fill else "white",
+                    ax.plot([xpos[pname] + off[fam]] * len(v), v, mk, color=col, ms=4.5, mfc=col if fill else "white",
                             mec="white" if fill else col, mew=0.5 if fill else 0.9,
                             label=lab if (pname == "T7" and fill) else None)
-    tt = np.array([4e-10, 2.5e-5])
-    ax.plot(tt, tt, "-", color=INK2, lw=0.8)
-    ax.text(3e-6, 2.0e-6, "error = tol", rotation=33, fontsize=6.5, color=INK2, ha="center", va="top")
-    ax.set_xscale("log")
+    bx = [num(r, "err_spec_rel") / tolv["T7"] for r in box if r["params"] == "T7"]
+    ax.plot([xpos["T7"] + 0.28] * len(bx), bx, "x", color="#a3a29d", ms=3.5, mew=0.8, label="box-length sets")
+    ax.axhline(1.0, color=INK2, lw=0.8, ls="--")
+    ax.text(-0.42, 1.08, "tolerance", fontsize=6.5, color=INK2, ha="left", va="bottom")
     ax.set_yscale("log")
-    ax.set_xticks([1e-9, 1e-7, 1e-5])
-    ax.set_xticklabels(["T9\n$10^{-9}$", "T7\n$10^{-7}$", "T5\n$10^{-5}$"])
+    ax.set_xlim(-0.45, 2.45)
+    ax.set_ylim(0.01, 6)
+    ax.set_xticks([0, 1, 2])
+    ax.set_xticklabels(["T9 ($10^{-9}$)", "T7 ($10^{-7}$)", "T5 ($10^{-5}$)"])
     ax.set_xlabel("parameter set (tolerance accepted on A and B)")
-    ax.set_ylabel(r"$\|\Gamma_h-\Gamma_{\rm ref}\|_2/\|\Gamma_{\rm ref}\|_2$")
-    ax.legend(loc="upper left", handletextpad=0.2, fontsize=6.5, ncol=1)
-    panel_label(ax, "(a) relative spectral error (open: $N=256$)")
+    ax.set_ylabel(r"$\|\Gamma_h-\Gamma_{\rm ref}\|_2/\|\Gamma_{\rm ref}\|_2$ / tolerance")
+    ax.legend(loc="lower left", handletextpad=0.2, fontsize=6.0, ncol=2, columnspacing=0.6)
+    panel_label(ax, "(a) relative operator error (open: $N=256$)")
     # (b) absolute error against ||Gamma_ref||_2 at T7
     ax = axs[0, 1]
     allr = [r for r in act + box if r["params"] == "T7"]
@@ -306,7 +347,7 @@ def action_figure(act, probes, box, refn):
     ax.plot([], [], "x", color="#a3a29d", label="box-length sets")
     ax.set_xscale("log")
     ax.set_yscale("log")
-    ax.set_xlabel(r"$\|\Gamma_{\rm ref}\|_2$ (set by the closest pairs)")
+    ax.set_xlabel(r"$\|\Gamma_{\rm ref}\|_2$")
     ax.set_ylabel(r"$\|\Gamma_h-\Gamma_{\rm ref}\|_2$")
     ax.legend(loc="lower right", fontsize=6.5)
     panel_label(ax, "(b) absolute error, set T7")
@@ -356,6 +397,49 @@ def action_figure(act, probes, box, refn):
 
 
 # ----------------------------------------------------------------------------
+def tex_sci(v, d=1):
+    m, e = f"{v:.{d}e}".split("e")
+    return rf"${m}\times10^{{{int(e)}}}$"
+
+
+def floor_table(prec):
+    rows = [("$|\\mathbf k|$ rounded to 12 decimals (earlier)", "floor_rounded12", "wave-number rounding"),
+            ("unrounded $|\\mathbf k|$, float64 (current)", "floor_float64", "baseline"),
+            ("$k$ from the integer shell $|\\mathbf m|^2$, float64", "floor_int_shell", "wave-number input"),
+            ("unrounded $|\\mathbf k|$, refined quadrature", "floor_refined_coeffs", "quadrature"),
+            ("unrounded $|\\mathbf k|$, sum in 80 bits", "floor_longdouble", "floating point"),
+            ("float64 sum $-$ 80-bit sum", "float64_vs_longdouble", "floating point"),
+            ("image sum $\\Gamma_L$: $R=40$ against $R=45$", "GL_images_R40_vs_R45", "reference: tail + round-off")]
+    lines = [r"\begin{tabular}{lll}", r"\toprule", r"variant & range & source probed \\", r"\midrule"]
+    for lab, key, src in rows:
+        v = [num(r, key) for r in prec]
+        lines.append(f"{lab} & {tex_sci(min(v))}--{tex_sci(max(v))} & {src} \\\\")
+    lines += [r"\bottomrule", r"\end{tabular}"]
+    (PAPER / "tab_exp1_floor.tex").write_text("\n".join(lines) + "\n")
+
+
+def slope_table(msum):
+    """Fitted mesh slopes in h, main and legacy configurations: four finest meshes above the fit floor (s = 4.1 and
+    5.5), every mesh above the floor (s = 4.1), and coarse meshes eta >= 0.5 (s = 4.1)."""
+    S41 = [r for r in msum if abs(r["s_F"] - 4.100151562017953) < 1e-6 and r["set"] in ("legacy", "main") and "slope" in r]
+    S55 = [r for r in msum if abs(r["s_F"] - 5.5) < 1e-6 and r["set"] in ("legacy", "main") and "slope" in r]
+    med = lambda v: f"{np.median(v):.2f}" if len(v) else "--"                                 # noqa: E731
+    rng = lambda v: f"{np.median(v):.2f} ({min(v):.2f}--{max(v):.2f})" if len(v) else "--"     # noqa: E731
+    lines = [r"\begin{tabular}{ccccc}", r"\toprule",
+             r" & \multicolumn{3}{c}{$s=4.1$ (production $k_c$, 11 configurations)} & $s=5.5$ (5 configurations) \\",
+             r"\cmidrule(lr){2-4}\cmidrule(lr){5-5}",
+             r"$p$ & four finest, median (range) & all above floor & $\eta\ge0.5$ & four finest, median (range) \\",
+             r"\midrule"]
+    for p in sorted({r["p"] for r in S41}):
+        a = [r["slope"] for r in S41 if r["p"] == p]
+        lines.append(f"{p} & {np.median(a):.2f} ({min(a):.2f}--{max(a):.2f}) & "
+                     f"{med([r['slope_all_above_floor'] for r in S41 if r['p'] == p])} & "
+                     f"{med([r['slope_coarse'] for r in S41 if r['p'] == p and 'slope_coarse' in r])} & "
+                     f"{rng([r['slope'] for r in S55 if r['p'] == p])} \\\\")
+    lines += [r"\bottomrule", r"\end{tabular}"]
+    (PAPER / "tab_exp1_slopes.tex").write_text("\n".join(lines) + "\n")
+
+
 def tables(cfg, act):
     PAPER.mkdir(exist_ok=True)
     groups = [("legacy", "caseA"), ("legacy", "caseB")] + [("main", f) for f in ("uniform", "lattice", "cluster")] \
@@ -409,9 +493,14 @@ def tables(cfg, act):
     (PAPER / "tab_exp1_params.tex").write_text("\n".join(lines) + "\n")
 
 
-def summary(ref, quad, split_pairs, split_op, cutfits, msum, dec, act, probes, cfg, prec):
+def summary(ref, quad, split_pairs, split_op, cutfits, msum, dec, act, probes, cfg, prec, floor):
     """Every number quoted in the LaTeX section."""
     S = {}
+    S["numerical_floor"] = dict(eps_num=floor[0], components=floor[1], factor=FLOOR_FACTOR, fit_floor=FIT_FLOOR)
+    pcols = ["floor_rounded12", *PREC_EXACT, "coeff_rounded12_vs_exact"]
+    S["fourier_precision_ranges"] = {k: [min(num(r, k) for r in prec), max(num(r, k) for r in prec)] for k in pcols}
+    S["fourier_precision_rounded_over_exact"] = [min(num(r, "floor_rounded12") / num(r, "floor_float64") for r in prec),
+                                                 max(num(r, "floor_rounded12") / num(r, "floor_float64") for r in prec)]
     rl = [r for r in ref]
     nG = {r["name"]: num(r, "norm2") for r in rl if num(r, "R") == 45.0}
     S["reference"] = dict(
@@ -445,6 +534,9 @@ def summary(ref, quad, split_pairs, split_op, cutfits, msum, dec, act, probes, c
                 plateau_configs=sorted({r["name"] for r in fa if r["plateau"]}),
                 flat_steps_total=sum(r["flat_steps_total"] for r in fa),
                 excluded_from_fit=sum(r["flat_or_empty_in_window_excluded"] for r in fa),
+                below_floor_points=sum(r["n_below_floor"] for r in fa),
+                err_min=[min(r["err_min"] for r in fa), max(r["err_min"] for r in fa)],
+                x_fit_max=[min(r["x_fit_max"] for r in f), max(r["x_fit_max"] for r in f)],
                 configs_with_flat=sorted({r["name"] for r in fa if r["flat_steps_total"] > 0}))
     for sF in sorted({r["s_F"] for r in msum}):
         sub = [r for r in msum if r["s_F"] == sF and "slope" in r and r["set"] in ("legacy", "main")]
@@ -463,7 +555,11 @@ def summary(ref, quad, split_pairs, split_op, cutfits, msum, dec, act, probes, c
                                                     max(r["slope_coarse"] for r in sub if r["p"] == p and "slope_coarse" in r)]
                                                    if any("slope_coarse" in r for r in sub if r["p"] == p) else None),
                                slope_of_max_minus_rms=[min(r["slope_of_max"] - r["slope"] for r in sub if r["p"] == p),
-                                                       max(r["slope_of_max"] - r["slope"] for r in sub if r["p"] == p)])
+                                                       max(r["slope_of_max"] - r["slope"] for r in sub if r["p"] == p)],
+                               slope_all_median=float(np.median([r["slope_all_above_floor"] for r in sub if r["p"] == p])),
+                               slope_all_range=[min(r["slope_all_above_floor"] for r in sub if r["p"] == p),
+                                                max(r["slope_all_above_floor"] for r in sub if r["p"] == p)],
+                               meshes_below_floor=sum(r["n_below_floor"] for r in sub + chk if r["p"] == p))
                      for p in sorted({r["p"] for r in sub})}
         S[key + "_eta_fit"] = dict(min=min(r["eta_fit"][0] for r in sub + chk), max=max(r["eta_fit"][1] for r in sub + chk),
                                    median_lo=float(np.median([r["eta_fit"][0] for r in sub])),
@@ -476,8 +572,8 @@ def summary(ref, quad, split_pairs, split_op, cutfits, msum, dec, act, probes, c
         S[key + "_shift_max_over_rms"] = max(r["shift_max_over_rms"] for r in allr if r["set"] != "check")
         S[key + "_shift_max_over_min"] = max(r["shift_max_over_min"] for r in allr if r["set"] != "check")
         S[key + "_min_err"] = min(r["min_err"] for r in msum if r["s_F"] == sF)
-        S[key + "_threshold_moved_window"] = sorted({(r["name"], r["p"]) for r in msum if r["s_F"] == sF
-                                                     and r.get("eta_fit") and r["eta_fit"][0] > 0.3})
+        S[key + "_below_floor"] = sorted((r["name"], r["p"], r["n_below_floor"], [round(v, 3) for v in r["eta_below_floor"]])
+                                         for r in msum if r["s_F"] == sF and r["n_below_floor"] > 0)
     S["mesh_no_fit"] = [(r["name"], r["s_F"], r["p"]) for r in msum if "slope" not in r]
     S["decomposition"] = dict(
         identity_resid_rel_to_K_max=max(num(r, "identity_resid_rel_to_K") for r in dec),
@@ -520,6 +616,10 @@ def summary(ref, quad, split_pairs, split_op, cutfits, msum, dec, act, probes, c
             for g in [[r for r in sub if r["family"] == fam and r["set"] == st]] if g}
         S[f"action_{pname}_abs_all"] = [min(num(r, "err_spec_rel") * nG[r["name"]] for r in sub),
                                         max(num(r, "err_spec_rel") * nG[r["name"]] for r in sub)]
+    S["action_all_sets"] = dict(budget_match_max=max(num(r, "real_matches_production") for r in act),
+                                literal_vs_modespace_max=max(num(r, "literal_vs_modespace") for r in act),
+                                sym_max=max(num(r, "sym_resid") for r in act),
+                                min_err_spec=min(num(r, "err_spec_rel") for r in act))
     S["action_by_config_T7"] = {r["name"]: dict(err=num(r, "err_spec_rel"), err_abs=num(r, "err_spec_rel") * nG[r["name"]],
                                                 eps_S=num(r, "eps_S"), eps_F=num(r, "eps_F"), eps_mesh=num(r, "eps_mesh"),
                                                 lam_star=num(r, "lam_star_ref"), norm=nG[r["name"]], M=int(num(r, "M")),
@@ -550,6 +650,36 @@ def summary(ref, quad, split_pairs, split_op, cutfits, msum, dec, act, probes, c
                                           frac_over_spec=float(np.mean([num(r, "rel_err") > spec[(r["name"], "T7")]
                                                                         for r in g if r["probe"] == kind])))
                                for kind in ("gauss", "long", "trans")}
+    # tolerance transfer: every configuration whose relative spectral error exceeds the tolerance of its set
+    tolv = {"T5": 1e-5, "T7": 1e-7, "T9": 1e-9}
+    S["exceed"] = {pn: sorted([(r["name"], r["set"], r["family"], num(r, "err_spec_rel"), num(r, "err_spec_rel") / t,
+                                nG[r["name"]]) for r in act if r["params"] == pn and num(r, "err_spec_rel") > t],
+                              key=lambda v: -v[3]) for pn, t in tolv.items()}
+    S["n_tested"] = {pn: len([r for r in act if r["params"] == pn]) for pn in tolv}
+    # operator error within tolerance but a probe action error above it
+    pmax = defaultdict(float)
+    for r in probes:
+        if r["probe"] in ("gauss", "long", "trans"):
+            k = (r["name"], r["params"], r["probe"])
+            pmax[k] = max(pmax[k], num(r, "rel_err"))
+    S["probe_vs_tol"] = {}
+    for pn, t in tolv.items():
+        g = [r for r in act if r["params"] == pn]
+        ok_op = [r for r in g if num(r, "err_spec_rel") <= t]
+        S["probe_vs_tol"][pn] = dict(
+            n_configs=len(g), n_op_within_tol=len(ok_op),
+            **{f"{kind}_over_tol_while_op_ok": sorted(r["name"] for r in ok_op if pmax[(r["name"], pn, kind)] > t)
+               for kind in ("gauss", "long", "trans")},
+            **{f"{kind}_max_over_tol": max(pmax[(r["name"], pn, kind)] for r in g) / t for kind in ("gauss", "long", "trans")},
+            **{f"{kind}_max_over_tol_while_op_ok": max(pmax[(r["name"], pn, kind)] for r in ok_op) / t
+               for kind in ("gauss", "long", "trans")})
+    # norm against the nearest pair: 2 theta(d_min) is the norm of an isolated pair
+    cf = {r["name"]: r for r in cfg}
+    rat = {nm: nG[nm] / (np.exp(-float(cf[nm]["d_min"])) / float(cf[nm]["d_min"])) for nm in nG}
+    S["norm_over_theta_dmin"] = dict(all=[min(rat.values()), max(rat.values())],
+                                     **{fam: [min(v for k, v in rat.items() if cf[k]["family"] == fam),
+                                              max(v for k, v in rat.items() if cf[k]["family"] == fam)]
+                                        for fam in sorted({r["family"] for r in cfg})})
     S["configs"] = {r["name"]: dict(N=int(r["N"]), L=float(r["L"]), n=float(r["n"]), d_min=float(r["d_min"]),
                                     nn_mean=float(r["nn_mean"]), generator=json.loads(r["generator"])) for r in cfg}
     (OUT / "summary.json").write_text(json.dumps(S, indent=1, default=float) + "\n")
@@ -564,12 +694,16 @@ def main():
     quad, sp, so = rd("quadrature.csv"), rd("split_pairs.csv"), rd("split_operator.csv")
     cut, mesh, dec = rd("cutoffs.csv"), rd("mesh.csv"), rd("mesh_decomposition.csv")
     act, probes = rd("action.csv"), rd("action_probes.csv")
+    prec = rd("fourier_precision.csv")
+    global FIT_FLOOR
+    floor = numerical_floor(prec, so)
+    FIT_FLOOR = FLOOR_FACTOR * floor[0]
+    print(f"numerical floor {floor[0]:.3e} ({floor[1]}), fit floor {FIT_FLOOR:.3e}")
     cutfits, msum = fit_cutoffs(cut), fit_mesh(mesh)
     write_csv(OUT / "fits_cutoffs.csv", cutfits)
     write_csv(OUT / "fits_mesh.csv", msum)
-    prec = rd("fourier_precision.csv") if (OUT / "fourier_precision.csv").exists() else []
-    S = summary(ref, quad, sp, so, cutfits, msum, dec, act, probes, cfg, prec)
-    f1 = components_figure(cut, mesh, msum, so, sp, quad)
+    S = summary(ref, quad, sp, so, cutfits, msum, dec, act, probes, cfg, prec, floor)
+    f1 = components_figure(cut, mesh, msum, so, sp, quad, prec)
     refn = {r["name"]: num(r, "norm2") for r in ref if num(r, "R") == 45.0}
     f2 = action_figure([r for r in act if r["set"] in ("legacy", "main", "check")], probes,
                        [r for r in act if r["set"].startswith("box") and r["params"] == "T7"], refn)
@@ -578,6 +712,8 @@ def main():
         fig.savefig(FIG / f"{nm}.png")
         fig.savefig(PAPER / "figures" / f"{nm}.pdf")
     tables(cfg, [r for r in act if r["set"] in ("legacy", "main", "check")])
+    floor_table(prec)
+    slope_table(msum)
     print(json.dumps({k: v for k, v in S.items() if k not in ("configs", "action_by_config_T7")}, indent=1,
                      default=float)[:6000])
 

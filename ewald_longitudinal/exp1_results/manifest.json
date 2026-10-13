@@ -307,6 +307,210 @@
     "OMP_NUM_THREADS": "1",
     "MKL_NUM_THREADS": "1"
    }
+  },
+  {
+   "stage": "split",
+   "time": "2026-10-13T14:48:01+00:00",
+   "command": [
+    "/usr/local/bin/python3",
+    "exp1_operator_action.py",
+    "split",
+    "--workers",
+    "4"
+   ],
+   "git": {
+    "commit": "257dff559ee82e76778e5faf8cb73dda8c941434",
+    "dirty": true
+   },
+   "python": "3.11.15",
+   "numpy": "2.4.6",
+   "scipy": "1.17.1",
+   "host": "vm",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
+  },
+  {
+   "stage": "cutoffs",
+   "time": "2026-10-13T14:51:22+00:00",
+   "command": [
+    "/usr/local/bin/python3",
+    "exp1_operator_action.py",
+    "cutoffs",
+    "--workers",
+    "4"
+   ],
+   "git": {
+    "commit": "257dff559ee82e76778e5faf8cb73dda8c941434",
+    "dirty": true
+   },
+   "python": "3.11.15",
+   "numpy": "2.4.6",
+   "scipy": "1.17.1",
+   "host": "vm",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   },
+   "x_rc": [
+    0.5,
+    0.75,
+    1.0,
+    1.25,
+    1.5,
+    1.75,
+    2.0,
+    2.25,
+    2.5,
+    2.75,
+    3.0,
+    3.25,
+    3.5,
+    3.75,
+    4.0,
+    4.25,
+    4.5,
+    4.75,
+    5.0,
+    5.25,
+    5.5,
+    5.75,
+    6.0,
+    6.25,
+    6.5
+   ],
+   "y_kc": [
+    0.25,
+    0.5,
+    0.75,
+    1.0,
+    1.25,
+    1.5,
+    1.75,
+    2.0,
+    2.25,
+    2.5,
+    2.75,
+    3.0,
+    3.25,
+    3.5,
+    3.75,
+    4.0,
+    4.25,
+    4.5,
+    4.75,
+    5.0,
+    5.25,
+    5.5,
+    5.75,
+    6.0,
+    6.25,
+    6.5
+   ]
+  },
+  {
+   "stage": "mesh",
+   "time": "2026-10-13T14:55:15+00:00",
+   "command": [
+    "/usr/local/bin/python3",
+    "exp1_operator_action.py",
+    "mesh",
+    "--workers",
+    "4"
+   ],
+   "git": {
+    "commit": "257dff559ee82e76778e5faf8cb73dda8c941434",
+    "dirty": true
+   },
+   "python": "3.11.15",
+   "numpy": "2.4.6",
+   "scipy": "1.17.1",
+   "host": "vm",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   },
+   "shifts": 8,
+   "p": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ]
+  },
+  {
+   "stage": "action",
+   "time": "2026-10-13T14:57:10+00:00",
+   "command": [
+    "/usr/local/bin/python3",
+    "exp1_operator_action.py",
+    "action",
+    "--workers",
+    "4"
+   ],
+   "git": {
+    "commit": "257dff559ee82e76778e5faf8cb73dda8c941434",
+    "dirty": true
+   },
+   "python": "3.11.15",
+   "numpy": "2.4.6",
+   "scipy": "1.17.1",
+   "host": "vm",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   },
+   "params": {
+    "T5": {
+     "xi": 0.7,
+     "s": 3.493719027845567,
+     "eta": 0.8,
+     "p": 6
+    },
+    "T7": {
+     "xi": 0.7,
+     "s": 4.100151562017953,
+     "eta": 0.7,
+     "p": 7
+    },
+    "T9": {
+     "xi": 0.7,
+     "s": 4.627787054036341,
+     "eta": 0.6,
+     "p": 8
+    }
+   }
+  },
+  {
+   "stage": "precision",
+   "time": "2026-10-13T15:16:18+00:00",
+   "command": [
+    "/usr/local/bin/python3",
+    "exp1_operator_action.py",
+    "precision",
+    "--workers",
+    "4"
+   ],
+   "git": {
+    "commit": "257dff559ee82e76778e5faf8cb73dda8c941434",
+    "dirty": true
+   },
+   "python": "3.11.15",
+   "numpy": "2.4.6",
+   "scipy": "1.17.1",
+   "host": "vm",
+   "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+   }
   }
  ]
 }

@@ -1,0 +1,13 @@
+\begin{tabular}{lll}
+\toprule
+variant & range & source probed \\
+\midrule
+$|\mathbf k|$ rounded to 12 decimals (earlier) & $2.3\times10^{-14}$--$1.5\times10^{-13}$ & wave-number rounding \\
+unrounded $|\mathbf k|$, float64 (current) & $6.3\times10^{-17}$--$7.6\times10^{-16}$ & baseline \\
+$k$ from the integer shell $|\mathbf m|^2$, float64 & $5.4\times10^{-17}$--$8.5\times10^{-16}$ & wave-number input \\
+unrounded $|\mathbf k|$, refined quadrature & $6.5\times10^{-17}$--$7.9\times10^{-16}$ & quadrature \\
+unrounded $|\mathbf k|$, sum in 80 bits & $3.5\times10^{-17}$--$4.0\times10^{-16}$ & floating point \\
+float64 sum $-$ 80-bit sum & $4.2\times10^{-17}$--$6.7\times10^{-16}$ & floating point \\
+image sum $\Gamma_L$: $R=40$ against $R=45$ & $4.1\times10^{-17}$--$4.3\times10^{-16}$ & reference: tail + round-off \\
+\bottomrule
+\end{tabular}
