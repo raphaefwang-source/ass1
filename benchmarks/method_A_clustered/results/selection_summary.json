@@ -801,13 +801,13 @@
   1.6
  ],
  "provenance": {
-  "time": "2026-10-17T06:09:29+0000",
+  "time": "2026-10-17T06:43:03+0000",
   "command": "python3 run_clustered_benchmark.py --stage select",
   "git": {
-   "commit": "2f41eb29fce58ebaa8c5c2a1fad7b99e9cb79b27",
+   "commit": "300e63069e2c32d0e92fe770e3c036708abd8a37",
    "dirty": true
   },
-  "code_hash": "be561f59031e43dd",
+  "code_hash": "bfb73bbb1055299d",
   "python": "3.13.16",
   "numpy": "2.5.3",
   "scipy": "1.18.1",

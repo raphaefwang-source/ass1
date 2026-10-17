@@ -116,6 +116,13 @@ class FourierShells:
         return float(self.k[first])
 
 
+def shell_kc(kc, L):
+    """Exact reciprocal-lattice shell radius 2 pi sqrt(n)/L nearest to kc. kc read back from a file must be snapped:
+    a value rounded down by more than 1e-12 relative would silently drop the outermost retained shell."""
+    u = float(kc) * L / (2 * np.pi)
+    return float(2 * np.pi / L * np.sqrt(round(u * u)))
+
+
 def mesh_modes(kc, L):
     mc = int(np.floor(kc * L / (2 * np.pi) + 1e-12))
     g = np.arange(-mc, mc + 1)

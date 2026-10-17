@@ -86,7 +86,7 @@ def probes(x, L, N, Gref, Q, rng):
 
 
 def probe_class(name):
-    for c in ("gauss", "zeromean", "long", "trans", "slow", "translation"):
+    for c in ("gauss", "zeromean", "long", "translation", "trans", "slow"):    # "translation" before "trans"
         if name.startswith(c):
             return c
     return name

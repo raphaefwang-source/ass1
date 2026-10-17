@@ -9,7 +9,7 @@
   "existing_real_pairs_tree_all_equal": true,
   "max_images_per_pair_below_half": 1,
   "max_images_per_pair_above_half": 60,
-  "wall_s": 44.53279010599999
+  "wall_s": 49.35770920899995
  },
  "rows": [
   {
@@ -3456,10 +3456,10 @@
    "rc": 3.0,
    "rc_over_L": 0.4292678409574995,
    "regime": "rc<L/2",
-   "t_kdtree_tight_ms": 1.8839449999177305,
-   "t_kdtree_cube_ms": 32.38791800004037,
-   "t_existing_real_pairs_ms": 1.0386650001237285,
-   "t_existing_real_pairs_tree_ms": 1.026744999762741,
+   "t_kdtree_tight_ms": 1.700505000371777,
+   "t_kdtree_cube_ms": 32.24099500039301,
+   "t_existing_real_pairs_ms": 1.0845750002772547,
+   "t_existing_real_pairs_tree_ms": 1.103240000702499,
    "pass": true
   },
   {
@@ -3470,10 +3470,10 @@
    "rc": 4.824,
    "rc_over_L": 0.6902626882596592,
    "regime": "rc>=L/2",
-   "t_kdtree_tight_ms": 12.211658000069292,
-   "t_kdtree_cube_ms": 109.38838499987469,
-   "t_existing_real_pairs_ms": 193.48821599987787,
-   "t_existing_real_pairs_tree_ms": 8.390010999846709,
+   "t_kdtree_tight_ms": 12.343643000349402,
+   "t_kdtree_cube_ms": 113.62937000012607,
+   "t_existing_real_pairs_ms": 207.24423299998307,
+   "t_existing_real_pairs_tree_ms": 8.371321000595344,
    "pass": true
   },
   {
@@ -3484,10 +3484,10 @@
    "rc": 3.0,
    "rc_over_L": 0.34071011115602623,
    "regime": "rc<L/2",
-   "t_kdtree_tight_ms": 3.7240599999677215,
-   "t_kdtree_cube_ms": 65.9940440000355,
-   "t_existing_real_pairs_ms": 2.93102000023282,
-   "t_existing_real_pairs_tree_ms": 2.86695199974929,
+   "t_kdtree_tight_ms": 4.055475000313891,
+   "t_kdtree_cube_ms": 74.62388399926567,
+   "t_existing_real_pairs_ms": 3.034131999811507,
+   "t_existing_real_pairs_tree_ms": 3.020003000528959,
    "pass": true
   },
   {
@@ -3498,21 +3498,21 @@
    "rc": 4.824,
    "rc_over_L": 0.5478618587388902,
    "regime": "rc>=L/2",
-   "t_kdtree_tight_ms": 19.197140000414947,
-   "t_kdtree_cube_ms": 291.88319300010335,
-   "t_existing_real_pairs_ms": 777.035522999995,
-   "t_existing_real_pairs_tree_ms": 16.298399999868707,
+   "t_kdtree_tight_ms": 20.280851000279654,
+   "t_kdtree_cube_ms": 335.6228510001529,
+   "t_existing_real_pairs_ms": 859.0511329994115,
+   "t_existing_real_pairs_tree_ms": 16.733835999730218,
    "pass": true
   }
  ],
  "provenance": {
-  "time": "2026-10-17T05:56:44+0000",
+  "time": "2026-10-17T07:18:01+0000",
   "command": "python3 test_neighbor_images.py",
   "git": {
-   "commit": "2f41eb29fce58ebaa8c5c2a1fad7b99e9cb79b27",
+   "commit": "300e63069e2c32d0e92fe770e3c036708abd8a37",
    "dirty": true
   },
-  "code_hash": "be561f59031e43dd",
+  "code_hash": "10ec3aa0df162d3b",
   "python": "3.13.16",
   "numpy": "2.5.3",
   "scipy": "1.18.1",

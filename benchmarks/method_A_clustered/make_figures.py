@@ -157,8 +157,8 @@ def fig2(D):
         xo = D["summ"][f"{fam}_N256"]["opt"]["T_pred"]["xi"]
         ax.axvline(xo, color=FAM_COL[fam], ls="--", lw=1)
         best = b[int(np.argmin(bt))]
-        ax.annotate(f"predicted xi_opt = {xo:.3f}\nmeasured fastest = {best['xi']:.3f}", xy=(xo, ax.get_ylim()[1]),
-                    xytext=(0.98, 0.97), textcoords="axes fraction", ha="right", va="top", fontsize=8, color=INK2)
+        ax.text(0.97, 0.05, f"predicted xi_opt = {xo:.3f}\nmeasured fastest = {best['xi']:.3f}", transform=ax.transAxes,
+                ha="right", va="bottom", fontsize=8, color=INK2)
         bl = [r for r in D["bench"] if r["config"] == nm and r["set"] == "baseline"]
         if bl:
             ax.axhline(1e3 * bl[0]["t_action_s"], color=GREY, ls=":", lw=1.2,
@@ -167,7 +167,7 @@ def fig2(D):
         ax.set_xlabel("Ewald parameter xi")
         ax.set_ylabel("T_action [ms]")
         ax.set_title(f"({'ab'[list(axes).index(ax)]}) {FAM_LAB[fam]}, {nm}", fontsize=9)
-        ax.legend(fontsize=7, loc="lower left")
+        ax.legend(fontsize=7, loc="upper left")
     ax = axes[2]
     for key, lab, col in (("T_pred_real", "real space C_R N_img", "#2a78d6"),
                           ("T_pred_spread_gather", "spread + gather C_P N p^3", "#eb6834"),
@@ -266,7 +266,7 @@ def fig4(D):
 
 # ----------------------------------------------------------------------------- figure 5
 def fig5(D):
-    fig, axes = plt.subplots(1, 2, figsize=(10.5, 3.9))
+    fig, axes = plt.subplots(1, 2, figsize=(10.5, 5.0))
     for ax, N in zip(axes, (256, 64)):
         for fam in ("uniform", "moderate", "strong", "lj_equilibrated"):
             rows = sorted([r for r in D["errors"]["rows"] if r["family"] == fam and r["N"] == N and r["set"] == "certified"],
@@ -298,10 +298,11 @@ def fig5(D):
         ax.set_xlabel("Ewald parameter xi")
         ax.set_ylabel("||Gamma_h - Gamma_ref||_2 / ||Gamma_ref||_2")
         ax.set_title(f"({'ab'[list(axes).index(ax)]}) N = {N}", fontsize=9)
-        ax.legend(fontsize=6, loc="lower right")
+    h, lab = axes[0].get_legend_handles_labels()
+    fig.legend(h, lab, loc="lower center", ncol=3, fontsize=7, bbox_to_anchor=(0.5, -0.02))
     fig.suptitle("Figure 5. Measured operator error vs xi against the dense full-periodic reference",
                  fontsize=10.5, x=0.01, ha="left")
-    fig.tight_layout()
+    fig.tight_layout(rect=(0, 0.2, 1, 1))
     save(fig, "fig5_error_vs_xi")
 
 
@@ -402,11 +403,15 @@ def tables(D):
             "t_setup_mesh_degree_s", "T_setup_pred_s", "t_param_s")})
     C.write_csv(C.RESULTS.parent / "timing_breakdown.csv", tb)
     # error contributions at xi_opt: certified (absolute bound / ||Gamma_ref||) vs measured
+    from parameter_optimizer import FourierShells, eps_quad_estimate
     ec = []
     for r in D["errors"]["rows"]:
         if "meas_real_rel" not in r:
             continue
         n2 = r["norm2_ref"]
+        _, L = load(r["config"])
+        r["eps_quad_abs_est"] = eps_quad_estimate(r["xi"], L, r["kc"], r["M"], r["p"], r["N"] / L ** 3,
+                                                  FourierShells(r["xi"], L))[0]
         ec.append(dict(config=r["config"], N=r["N"], xi=r["xi"], rc=r["rc"], kc=r["kc"], M=r["M"],
                        cert_S_rel=r["cert_S_abs"] / n2, meas_S_rel=r["meas_real_rel"],
                        ratio_S=r["cert_S_abs"] / n2 / max(r["meas_real_rel"], 1e-300),
@@ -418,6 +423,19 @@ def tables(D):
                        cert_total_rel=(r["cert_S_abs"] + r["cert_F_abs"] + r["cert_mesh_abs"]) / n2,
                        meas_E_op=r["E_op"], ratio_total=(r["cert_S_abs"] + r["cert_F_abs"] + r["cert_mesh_abs"]) / n2 / r["E_op"]))
     C.write_csv(C.RESULTS / "error_contributions.csv", ec)
+    # probe-action errors per class (re-aggregated from the stored per-probe records)
+    from error_validation import probe_class
+    agg = {}
+    for pr in D["errors"]["probes"]:
+        k = (pr["config"], pr["set"], round(pr["xi"], 4), probe_class(pr["probe"]))
+        a = agg.setdefault(k, dict(config=k[0], set=k[1], xi=k[2], probe_class=k[3], n=0, abs_max=0.0,
+                                   op_normalised_max=0.0, rel_max=None))
+        a["n"] += 1
+        a["abs_max"] = max(a["abs_max"], pr["abs"])
+        a["op_normalised_max"] = max(a["op_normalised_max"], pr["op_normalised"])
+        if pr["rel"] is not None:
+            a["rel_max"] = pr["rel"] if a["rel_max"] is None else max(a["rel_max"], pr["rel"])
+    C.write_csv(C.RESULTS / "action_errors_by_class.csv", list(agg.values()))
     with open(C.RESULTS / "error_contributions.md", "w") as fh:
         fh.write("| config | xi | M | real: bound / measured | Fourier: bound / measured | mesh: bound / measured | "
                  "quad (estimate) | total: bound / measured E_op |\n|---|---|---|---|---|---|---|---|\n")

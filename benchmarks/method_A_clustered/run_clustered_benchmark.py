@@ -28,7 +28,7 @@ import common as C
 from clustered_configurations import load, all_names
 from cached_operator import CachedGammaH, mesh_for, baseline_mesh
 from parameter_optimizer import (RealSpaceTail, FourierShells, select_for_xi, lambda_lower_bound, M_tol, CostModel,
-                                 XI_GRID, A_MAX, R_PAD, SPLIT, eps_mesh, C_p)
+                                 XI_GRID, A_MAX, R_PAD, SPLIT, eps_mesh, C_p, shell_kc)
 from error_validation import (reference_cached, reference_summary, probes, validate_parameter_set, Components,
                               REF_REL_TOL)
 import prl_toy_models as v2
@@ -334,7 +334,8 @@ def family_lookup():
         import csv
         for r in csv.DictReader(fh):
             key = (r["family"], int(r["N"]), round(float(r["xi"]), 4))
-            fam[key] = dict(xi=float(r["xi"]), rc=float(r["rc"]), kc=float(r["kc"]), M=int(r["M"]), p=int(r["p"]),
+            fam[key] = dict(xi=float(r["xi"]), rc=float(r["rc"]), kc=shell_kc(float(r["kc"]), float(r["L"])),
+                            M=int(r["M"]), p=int(r["p"]),
                             T_pred=float(r["T_pred"]), T_setup_pred=float(r["T_setup_pred"]),
                             **{k: float(r[k]) for k in r if k.startswith("T_pred_") or k.startswith("J_pred_")})
     return fam
@@ -389,7 +390,9 @@ def stage_bench(args):
                 fp = fam.get((family_of(name), N, xi))
                 if fp is None:
                     fp = next(v for k, v in fam.items() if k[0] == family_of(name) and k[1] == N and abs(k[2] - xi) < 1e-9)
-                row, _ = measure_point(x, L, xi, fp["rc"], fp["kc"], fp["M"], fp["p"])
+                row, op = measure_point(x, L, xi, fp["rc"], fp["kc"], fp["M"], fp["p"])
+                assert op.mesh.mc == int(np.floor(fp["kc"] * L / (2 * np.pi) + 1e-12)) and \
+                    np.isclose(np.max(np.linalg.norm(op.mesh.kv, axis=1)), fp["kc"], rtol=1e-12), "outer shell lost"
                 pred = cm.predict(row["n_img"], N, fp["p"], fp["M"])
                 st = "certified"
             parts = cm.parts(row["n_img"], N, row["p"], row["M"])
@@ -486,8 +489,8 @@ def stage_empirical(args):
             for name, x, L, G, rst in data:
                 own = sel_rows[(name, round(xi, 4))]
                 cp = Components(x, L, G, xi, rst)
-                e = cp.empirical(C.EPS_TARGET, C.P_ORDER, float(own["rc"]), float(own["kc"]))
-                e.update(config=name, family=fam, N=N, rc_cert=float(own["rc"]), kc_cert=float(own["kc"]),
+                e = cp.empirical(C.EPS_TARGET, C.P_ORDER, float(own["rc"]), shell_kc(float(own["kc"]), L))
+                e.update(config=name, family=fam, N=N, rc_cert=float(own["rc"]), kc_cert=shell_kc(float(own["kc"]), L),
                          M_cert=int(own["M"]))
                 per.append(e)
                 res["seeds"].append({k: v for k, v in e.items()})

@@ -180,7 +180,7 @@ def write_csv(path, rows):
         w = csv.DictWriter(fh, fieldnames=keys)
         w.writeheader()
         for r in rows:
-            w.writerow({k: (f"{v:.10g}" if isinstance(v, float) else v) for k, v in r.items()})
+            w.writerow({k: (repr(float(v)) if isinstance(v, (float, np.floating)) else v) for k, v in r.items()})
 
 
 def log_command():
