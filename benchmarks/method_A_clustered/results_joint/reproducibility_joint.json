@@ -1,0 +1,81 @@
+{
+ "environment": {
+  "time": "2026-10-18T02:50:19+0000",
+  "command": "python3 make_figures_joint.py",
+  "git": {
+   "commit": "ac6de46a51db1f2d5c62e8aca6629c29e172a317",
+   "dirty": true
+  },
+  "code_hash": "b6021b6ce753594e",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ },
+ "commands_executed": [
+  "2026-10-18T01:53:55+0000  cd benchmarks/method_A_clustered && python3 test_alias_bound.py",
+  "2026-10-18T01:56:15+0000  cd benchmarks/method_A_clustered && python3 run_joint_benchmark.py --stage calibrate",
+  "2026-10-18T01:57:06+0000  cd benchmarks/method_A_clustered && python3 run_joint_benchmark.py --stage select",
+  "2026-10-18T02:26:44+0000  cd benchmarks/method_A_clustered && python3 run_joint_benchmark.py --stage bench",
+  "2026-10-18T02:38:27+0000  cd benchmarks/method_A_clustered && python3 run_joint_benchmark.py --stage errors",
+  "2026-10-18T02:48:05+0000  cd benchmarks/method_A_clustered && python3 make_figures_joint.py",
+  "2026-10-18T02:48:53+0000  cd benchmarks/method_A_clustered && python3 make_figures_joint.py",
+  "2026-10-18T02:49:46+0000  cd benchmarks/method_A_clustered && python3 test_alias_bound.py",
+  "2026-10-18T02:50:16+0000  cd benchmarks/method_A_clustered && python3 make_figures_joint.py"
+ ],
+ "problem": {
+  "objective": "min T_pred over (xi, kc, M, rc), p = 7",
+  "tau": 2e-07,
+  "constraint": "eps_S + eps_F + eps_mesh + eps_quad <= tau * Lambda_lb for every configuration of a level",
+  "approaches": {
+   "A": "fixed 33 % split, original C(p) mesh bound",
+   "A_hz": "fixed split, Hurwitz-zeta bound (diagnostic)",
+   "B": "joint optimisation, original C(p) mesh bound",
+   "C": "joint optimisation, Hurwitz-zeta mesh bound"
+  },
+  "mesh_bound": {
+   "A": "orig",
+   "A_hz": "hz",
+   "B": "orig",
+   "C": "hz"
+  },
+  "negligible_cut": 0.0001,
+  "M_cap": 400,
+  "a_grid": [
+   3.0,
+   5.5
+  ],
+  "rc_grid_points": 700,
+  "xi_grid": "0.40..1.60 step 0.025, refined 0.005 within +-0.025 of each approach's best"
+ },
+ "inputs": {
+  "configs": "configs/*.npz (unchanged)",
+  "references": "raw/<config>_Gref.npy (unchanged, git-ignored)",
+  "lambda_lb_and_norms": "results/references.json (unchanged)"
+ },
+ "files_sha256": {
+  "figures_joint/figJ1_alias_bound.png": "b672ef0bd8d846656068482c3ce6719e2aef2ab84546196192ba0ba10a2b8cb2",
+  "figures_joint/figJ2_budget_allocation.png": "3c4177c137a200e5faf15731d3f7865b978006f659ef554699036b23078f3b58",
+  "figures_joint/figJ3_time_vs_xi.png": "e7610940fb9a9a756ec380bac2e2534848b7152e08f7d9ce99d1ee506cd31d95",
+  "figures_joint/figJ4_speedup_error.png": "f1993f7d3eb017684881d5277fc921025e4650177768f387312bf527de26fb7a",
+  "results_joint/alias_bound_validation.json": "0c5a7f49f017bfa37bc2eef4b8d61da7241e858a6e76763cea9f0464972db736",
+  "results_joint/bench.json": "bdb2f9bab57737a1dc79fc34bee31fa3fe03c9d82ba84c9823f66f68296247e4",
+  "results_joint/calibration_timings.csv": "b15139cb0f33e6737f3c30a0925882e98b9d3b074ec5f32fdbc90e69a83afa6c",
+  "results_joint/commands.log": "a701b3e81d6bb90a3d0f6b030f999c8702ad78f20df1b5d300bee27a51bf584e",
+  "results_joint/cost_model.json": "b9a3f498931c7846e75cc923fc7fab6b54b70633ca66536efde8441c36e3679e",
+  "results_joint/errors.json": "ce78330cbfe3d02fab83f26bd5b516730cf24ca83ea039950197ed775282191d",
+  "results_joint/joint_errors.csv": "af23692ed87d6e82dc657fc50214352dddfa107ffb05815bdf56574ee02de1f5",
+  "results_joint/joint_parameter_results.csv": "767b5bac8aecb7fcccb924cd2731026022e667d79ef3bb0b4754241293f415d3",
+  "results_joint/joint_selection.json": "0afd9c9da7d5e909e4b8ed3fe090400d1bdc590f13700ffcf65f7078c527c874",
+  "results_joint/joint_selection_grid.csv": "513d1d4d70f2a7fbfa44d303ccc5b73bfb6a62bae4c208783813db4201cba4d2",
+  "results_joint/joint_summary.csv": "8827c6cb997647262591e32217eb7e0c247456d932bf8336a1278f7ebe1e7f1c",
+  "results_joint/joint_timing.csv": "88c5d17030dfc0136b9c1c4ad1908a9b3684e6e8b2161ed506c3575b23ed2929"
+ }
+}

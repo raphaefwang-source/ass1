@@ -1,0 +1,9 @@
+2026-10-18T01:53:55+0000  cd benchmarks/method_A_clustered && python3 test_alias_bound.py
+2026-10-18T01:56:15+0000  cd benchmarks/method_A_clustered && python3 run_joint_benchmark.py --stage calibrate
+2026-10-18T01:57:06+0000  cd benchmarks/method_A_clustered && python3 run_joint_benchmark.py --stage select
+2026-10-18T02:26:44+0000  cd benchmarks/method_A_clustered && python3 run_joint_benchmark.py --stage bench
+2026-10-18T02:38:27+0000  cd benchmarks/method_A_clustered && python3 run_joint_benchmark.py --stage errors
+2026-10-18T02:48:05+0000  cd benchmarks/method_A_clustered && python3 make_figures_joint.py
+2026-10-18T02:48:53+0000  cd benchmarks/method_A_clustered && python3 make_figures_joint.py
+2026-10-18T02:49:46+0000  cd benchmarks/method_A_clustered && python3 test_alias_bound.py
+2026-10-18T02:50:16+0000  cd benchmarks/method_A_clustered && python3 make_figures_joint.py
