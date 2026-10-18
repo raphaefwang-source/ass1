@@ -1,0 +1,5 @@
+[22:11:55] direct strong_N4096_s1: certified R_d = 26.625 (bound/Lambda_lb 1.9302e-07; R - 0.125 gives 2.0998e-07) tail(R_far) 1.04e-08 (201 s)
+[22:24:38] direct strong_N4096_s1: E_ref 9.199e-08 (ARPACK), E_conv 9.186e-08, Gamma_D(36.0) vs ref 1.52e-10, ARPACK E_ref 9.199e-08; 120674389 images (964 s)
+[22:28:03] direct uniform_N4096_s1: certified R_d = 27.0 (bound/Lambda_lb 1.9812e-07; R - 0.125 gives 2.1543e-07) tail(R_far) 1.04e-08 (205 s)
+[22:38:47] direct uniform_N4096_s1: E_ref 1.010e-07 (ARPACK), E_conv 1.008e-07, Gamma_D(36.0) vs ref 2.19e-10, ARPACK E_ref 1.010e-07; 126612465 images (849 s)
+[22:38:47] stage direct done in 1813 s

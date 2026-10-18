@@ -1,0 +1,82 @@
+{
+ "rows": {
+  "p9_xi0.7800_kc8.264476_M64_rc5.352478": {
+   "key": "p9_xi0.7800_kc8.264476_M64_rc5.352478",
+   "E_op_arpack": 2.937964031789651e-08,
+   "arpack": {
+    "value": 6.206634330301417e-07,
+    "eig": -6.206634330301417e-07,
+    "residual": 4.1171926186821886e-14,
+    "matvecs": 25,
+    "tol": 1e-06,
+    "which": "LM",
+    "t_s": 3.421559308000724
+   },
+   "E_op": 2.937964031789651e-08,
+   "E_op_method": "ARPACK largest |eigenvalue| of Gamma_h - Gamma_ref (matrix-free Gamma_h, dense Gamma_ref GEMV)",
+   "cert_rel": 1.9987472723458585e-07,
+   "passes": true,
+   "t_s": 3.8231679830005305
+  },
+  "p9_xi0.7550_kc8.337507_M64_rc5.412507": {
+   "key": "p9_xi0.7550_kc8.337507_M64_rc5.412507",
+   "E_op_arpack": 6.182103546831188e-08,
+   "arpack": {
+    "value": 1.3060083681101983e-06,
+    "eig": -1.3060083681101983e-06,
+    "residual": 1.580563262377337e-14,
+    "matvecs": 25,
+    "tol": 1e-06,
+    "which": "LM",
+    "t_s": 3.3750495229996886
+   },
+   "E_op": 6.182103546831188e-08,
+   "E_op_method": "ARPACK largest |eigenvalue| of Gamma_h - Gamma_ref (matrix-free Gamma_h, dense Gamma_ref GEMV)",
+   "cert_rel": 1.9985497920919172e-07,
+   "passes": true,
+   "t_s": 3.825017404999926
+  }
+ },
+ "optimum": {
+  "key": "p9_xi0.7800_kc8.264476_M64_rc5.352478",
+  "impl": "pairdiff",
+  "p": 9,
+  "xi": 0.78,
+  "kc": 8.264475988124,
+  "M": 64,
+  "rc": 5.352477891046895,
+  "n_img": 555353,
+  "cert_rel": 1.9987472723458585e-07,
+  "T_pred_ms": 101.020743495434,
+  "T_setup_ms": 303.77516800035664,
+  "T_action_median_ms": 98.3203284999945,
+  "T_action_q1_ms": 95.81388475021413,
+  "T_action_q3_ms": 105.10869774998355,
+  "T_action_min_ms": 90.72128199932195,
+  "T_action_max_ms": 131.145359000584,
+  "T_action_n": 60,
+  "T_action_iqr_rel": 0.09453602466116597,
+  "E_op": 2.937964031789651e-08
+ },
+ "note": "measured optimum = fastest confirmed (candidate, implementation) whose E_op was verified <= tau; all candidates are certified (bound <= tau)",
+ "provenance": {
+  "time": "2026-10-18T22:11:37+0000",
+  "command": "python3 run_scaling.py --stage verify --N 1024 2048",
+  "git": {
+   "commit": "4f2b326fabf59f409078e00650f20c0e10b54699",
+   "dirty": true
+  },
+  "code_hash": "0292dc33bfb34084",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ }
+}

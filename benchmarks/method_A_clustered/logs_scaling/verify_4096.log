@@ -1,0 +1,7 @@
+[22:09:03] verify strong_N4096_s1 p9_xi0.7450_kc8.405434_M81_rc5.617937: E_op 2.592e-08 (ARPAC) ARPACK 2.592e-08 (49 mv) cert 1.9975e-07 (25 s)
+[22:09:33] verify strong_N4096_s1 p10_xi0.8550_kc9.692634_M80_rc4.881171: E_op 2.715e-08 (ARPAC) ARPACK 2.715e-08 (61 mv) cert 1.9968e-07 (30 s)
+[22:09:33] verify strong_N4096_s1: optimum p9_xi0.7450_kc8.405434_M81_rc5.617937 cached 289.15 ms, E_op 2.592e-08
+[22:10:01] verify uniform_N4096_s1 p9_xi0.7200_kc8.167315_M81_rc5.809828: E_op 2.879e-08 (ARPAC) ARPACK 2.879e-08 (61 mv) cert 1.9980e-07 (27 s)
+[22:10:34] verify uniform_N4096_s1 p10_xi0.8250_kc9.392480_M80_rc5.031054: E_op 3.493e-08 (ARPAC) ARPACK 3.493e-08 (73 mv) cert 1.9978e-07 (32 s)
+[22:10:34] verify uniform_N4096_s1: optimum p9_xi0.7200_kc8.167315_M81_rc5.809828 pairdiff 271.54 ms, E_op 2.879e-08
+[22:10:34] stage verify done in 120 s

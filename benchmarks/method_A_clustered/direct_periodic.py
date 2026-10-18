@@ -39,12 +39,31 @@ def g_over_r2(r2):
     return v2.radial_friction(np.sqrt(r2), **KW) / r2
 
 
-def min_image_pairs(x, L):
+def min_image_pairs(x, L, pairs=None):
+    """All pairs i < j and their minimum-image displacements; pairs = (pi, pj) can be passed in (they depend on N
+    only, see DirectGeometry)."""
     N = len(x)
-    pi, pj = np.triu_indices(N, 1)
+    if pairs is None:
+        pi, pj = np.triu_indices(N, 1)
+        pi, pj = pi.astype(np.intp), pj.astype(np.intp)
+    else:
+        pi, pj = pairs
     d0 = x[pi] - x[pj]
     d0 -= L * np.round(d0 / L)
-    return pi.astype(np.intp), pj.astype(np.intp), d0
+    return pi, pj, d0
+
+
+class DirectGeometry:
+    """Configuration-independent preprocessing of the pair-summed direct method for one (N, L, R): the pair index
+    arrays i < j and the lattice-shift list. Built once per N, not part of the per-configuration setup."""
+
+    def __init__(self, N, L, R):
+        t0 = time.perf_counter()
+        pi, pj = np.triu_indices(N, 1)
+        self.pairs = (pi.astype(np.intp), pj.astype(np.intp))
+        self.shifts = shifts_for(L, R)
+        self.N, self.L, self.R = N, float(L), float(R)
+        self.t_build = time.perf_counter() - t0
 
 
 def shifts_for(L, R):
@@ -52,16 +71,17 @@ def shifts_for(L, R):
     return v2.lattice_shifts(L, R + np.sqrt(3) * L / 2)
 
 
-def tail_bound_per_particle(N, L, R, dr=0.05):
+def tail_bound_per_particle(N, L, R, dr=0.05, n_min=0):
     """Upper bound of sum_{images of one particle, |d| > R} g(|d|). With n(r) the number of images within r and
     cnt(r) = N 4 pi/3 (r + sqrt(3) L/2)^3 / L^3 >= n(r), summation by parts gives
-    sum = -g(R) n(R) + int_R^inf n(r) (-g'(r)) dr <= sum_s cnt(r_{s+1}) [g(r_s) - g(r_{s+1})]  (g decreasing)."""
+    sum = -g(R) n(R) + int_R^inf n(r) (-g'(r)) dr <= sum_s cnt(r_{s+1}) [g(r_s) - g(r_{s+1})] - g(R) n_min  (g decreasing),
+    n_min a lower bound of n(R) over the particles (exact image counts when they are known, else 0)."""
     r = R + dr * np.arange(400001)
     g = v2.radial_friction(r, **KW)
     cnt = N * 4 / 3 * np.pi * (r[1:] + np.sqrt(3) * L / 2) ** 3 / L ** 3
     terms = cnt * (g[:-1] - g[1:])
     assert terms[-1] < 1e-30 * terms.sum()
-    return float(terms.sum() + cnt[-1] * g[-1])
+    return float(terms.sum() + cnt[-1] * g[-1] - g[0] * n_min)
 
 
 # ----------------------------------------------------------------------------- convergence test
@@ -147,12 +167,14 @@ class DirectPairs:
     """Pair-summed direct action: K^per_R(q_i - q_j) tabulated for every pair i < j in setup (streamed over lattice
     shifts, images not stored), action loops over the N(N-1)/2 pairs."""
 
-    def __init__(self, x, L, R, budget=1 << 22):
+    def __init__(self, x, L, R, budget=1 << 22, geom=None):
         t0 = time.perf_counter()
         self.x, self.L, self.N, self.R = np.mod(x, L), float(L), len(x), float(R)
-        self.pi, self.pj, d0 = min_image_pairs(self.x, L)
+        if geom is not None:
+            assert geom.N == self.N and geom.L == self.L and geom.R >= self.R
+        self.pi, self.pj, d0 = min_image_pairs(self.x, L, None if geom is None else geom.pairs)
         P = len(self.pi)
-        S = shifts_for(L, R)
+        S = shifts_for(L, R) if geom is None else geom.shifts
         T = np.zeros((P, 6))
         R2 = self.R * self.R
         n_img = 0
@@ -185,3 +207,51 @@ class DirectPairs:
 
     def dense(self):
         return tensors_to_dense(self.pi, self.pj, self.T, self.N)
+
+    def nbytes(self):
+        """Persistent memory of the operator (pair tensors and pair index arrays)."""
+        return int(self.T.nbytes + self.pi.nbytes + self.pj.nbytes)
+
+
+def degree_bound_curve(x, L, edges, budget=1 << 22, pairs=None):
+    """Certified truncation bound of the direct sum on a radius grid, without storing pair tensors:
+    D_i(R_k) = sum of K over the images of particle i with edges[k] < |d| <= edges[-1] (per-particle 3 x 3 tensors,
+    accumulated per annulus), bound(R_k) = 2 [max_i lambda_max(D_i(R_k)) + tail beyond edges[-1]] (the discarded images
+    form a graph Laplacian with PSD edge weights, ||Lap|| <= 2 max_i ||D_i||; lambda_max of the part beyond edges[-1]
+    is at most its trace, the sum of g, bounded with the exact per-particle image counts inside edges[-1]).
+    Returns (bound_abs, lam, tail, count)."""
+    x = np.mod(x, L)
+    N = len(x)
+    pi, pj, d0 = min_image_pairs(x, L, pairs)
+    P = len(pi)
+    edges = np.asarray(edges, float)
+    nK = len(edges)
+    e2 = edges ** 2
+    S = shifts_for(L, edges[-1])
+    D = np.zeros((nK * N, 6))
+    count = np.zeros(nK, np.int64)
+    n_in = np.zeros(N, np.int64)                         # exact number of images of each particle with |d| <= edges[-1]
+    step = max(1, budget // P)
+    for s0 in range(0, len(S), step):
+        d = d0[None, :, :] + S[s0:s0 + step, None, :]
+        r2 = np.einsum("spa,spa->sp", d, d)
+        k = np.searchsorted(e2, r2, side="left")          # annulus (edges[k-1], edges[k]]; 0: inside edges[0]; nK: beyond
+        inside = k < nK
+        n_in += np.bincount(np.broadcast_to(pi[None, :], k.shape)[inside], minlength=N) + \
+            np.bincount(np.broadcast_to(pj[None, :], k.shape)[inside], minlength=N)
+        keep = (k > 0) & inside
+        kk = k[keep]
+        dk = d[keep]
+        w = g_over_r2(r2[keep])
+        ii = np.broadcast_to(pi[None, :], k.shape)[keep]
+        jj = np.broadcast_to(pj[None, :], k.shape)[keep]
+        count += np.bincount(kk, minlength=nK)
+        for c in range(6):
+            v = w * dk[:, SYM_A[c]] * dk[:, SYM_B[c]]
+            D[:, c] += np.bincount(kk * N + ii, v, nK * N) + np.bincount(kk * N + jj, v, nK * N)
+    D = D.reshape(nK, N, 6)
+    Dc = np.cumsum(D[::-1], axis=0)[::-1]                 # Dc[k] = sum over annuli >= k
+    Dk = np.concatenate([Dc[1:], np.zeros((1, N, 6))])    # discarded at R = edges[k]: annuli k+1 ... nK-1
+    lam = np.linalg.eigvalsh(Dk[..., SYM_FULL].reshape(-1, 3, 3))[:, -1].reshape(nK, N).max(axis=1)
+    tail = tail_bound_per_particle(N, L, edges[-1], n_min=int(n_in.min()))
+    return 2 * (lam + tail), lam, tail, count

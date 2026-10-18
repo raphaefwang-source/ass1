@@ -1,0 +1,37 @@
+[22:39:22] scale strong_N128_s1: 20 setup rounds (14 s): direct 542.1 ms, pppm_cached 18.2 ms, pppm_pairdiff 18.4 ms
+[22:39:25] scale strong_N128_s1: 200 action rounds (2 s): direct 0.542 ms, pppm_cached 3.751 ms, pppm_pairdiff 3.590 ms
+[22:39:25] scale strong_N128_s1: action direct 0.542 / PPPM 3.590 ms (x0.15); setup direct 542 / PPPM 18.4 ms; break-even q 171.8406886287123
+[22:39:42] scale uniform_N128_s1: 20 setup rounds (15 s): direct 577.8 ms, pppm_cached 18.5 ms, pppm_pairdiff 17.6 ms
+[22:39:44] scale uniform_N128_s1: 200 action rounds (2 s): direct 0.529 ms, pppm_cached 3.842 ms, pppm_pairdiff 3.708 ms
+[22:39:44] scale uniform_N128_s1: action direct 0.529 / PPPM 3.708 ms (x0.14); setup direct 578 / PPPM 17.6 ms; break-even q 176.22298617524754
+[22:40:13] scale strong_N256_s1: 20 setup rounds (27 s): direct 1142.0 ms, pppm_cached 34.3 ms, pppm_pairdiff 32.7 ms
+[22:40:18] scale strong_N256_s1: 200 action rounds (4 s): direct 2.632 ms, pppm_cached 7.817 ms, pppm_pairdiff 7.576 ms
+[22:40:18] scale strong_N256_s1: action direct 2.632 / PPPM 7.576 ms (x0.35); setup direct 1142 / PPPM 32.7 ms; break-even q 224.38327883524232
+[22:40:47] scale uniform_N256_s1: 20 setup rounds (27 s): direct 1134.8 ms, pppm_cached 33.9 ms, pppm_pairdiff 33.3 ms
+[22:40:52] scale uniform_N256_s1: 200 action rounds (4 s): direct 2.663 ms, pppm_cached 8.090 ms, pppm_pairdiff 7.728 ms
+[22:40:52] scale uniform_N256_s1: action direct 2.663 / PPPM 7.728 ms (x0.34); setup direct 1135 / PPPM 33.3 ms; break-even q 217.47835768904721
+[22:41:50] scale strong_N512_s1: 20 setup rounds (53 s): direct 2418.9 ms, pppm_cached 67.8 ms, pppm_pairdiff 66.9 ms
+[22:42:03] scale strong_N512_s1: 200 action rounds (10 s): direct 13.040 ms, pppm_cached 17.332 ms, pppm_pairdiff 16.791 ms
+[22:42:03] scale strong_N512_s1: action direct 13.040 / PPPM 16.791 ms (x0.78); setup direct 2419 / PPPM 66.9 ms; break-even q 627.0419983767761
+[22:43:08] scale uniform_N512_s1: 20 setup rounds (61 s): direct 2824.0 ms, pppm_cached 69.7 ms, pppm_pairdiff 63.9 ms
+[22:43:22] scale uniform_N512_s1: 200 action rounds (10 s): direct 12.756 ms, pppm_cached 17.929 ms, pppm_pairdiff 17.295 ms
+[22:43:22] scale uniform_N512_s1: action direct 12.756 / PPPM 17.295 ms (x0.74); setup direct 2824 / PPPM 63.9 ms; break-even q 608.1741831167476
+[22:44:35] scale strong_N1024_s1: 10 setup rounds (66 s): direct 6157.0 ms, pppm_cached 125.8 ms, pppm_pairdiff 120.7 ms
+[22:44:59] scale strong_N1024_s1: 100 action rounds (15 s): direct 56.930 ms, pppm_cached 44.105 ms, pppm_pairdiff 41.809 ms
+[22:44:59] scale strong_N1024_s1: action direct 56.930 / PPPM 41.809 ms (x1.36); setup direct 6157 / PPPM 120.7 ms; break-even q None
+[22:46:18] scale uniform_N1024_s1: 10 setup rounds (71 s): direct 6869.7 ms, pppm_cached 151.4 ms, pppm_pairdiff 124.0 ms
+[22:46:42] scale uniform_N1024_s1: 100 action rounds (15 s): direct 56.147 ms, pppm_cached 45.457 ms, pppm_pairdiff 42.638 ms
+[22:46:42] scale uniform_N1024_s1: action direct 56.147 / PPPM 42.638 ms (x1.32); setup direct 6870 / PPPM 124.0 ms; break-even q None
+[22:48:48] scale strong_N2048_s1: 6 setup rounds (107 s): direct 17083.7 ms, pppm_cached 387.2 ms, pppm_pairdiff 310.3 ms
+[22:49:41] scale strong_N2048_s1: 50 action rounds (30 s): direct 319.914 ms, pppm_cached 106.146 ms, pppm_pairdiff 102.532 ms
+[22:49:41] scale strong_N2048_s1: action direct 319.914 / PPPM 102.532 ms (x3.12); setup direct 17084 / PPPM 310.3 ms; break-even q None
+[22:51:55] scale uniform_N2048_s1: 6 setup rounds (115 s): direct 18416.0 ms, pppm_cached 334.7 ms, pppm_pairdiff 309.6 ms
+[22:52:49] scale uniform_N2048_s1: 50 action rounds (29 s): direct 304.636 ms, pppm_cached 100.739 ms, pppm_pairdiff 96.791 ms
+[22:52:49] scale uniform_N2048_s1: action direct 304.636 / PPPM 96.791 ms (x3.15); setup direct 18416 / PPPM 309.6 ms; break-even q None
+[22:59:34] scale strong_N4096_s1: 5 setup rounds (337 s): direct 65508.1 ms, pppm_cached 1054.0 ms, pppm_pairdiff 953.9 ms
+[23:02:46] scale strong_N4096_s1: 30 action rounds (93 s): direct 2182.208 ms, pppm_cached 278.586 ms, pppm_pairdiff 266.281 ms
+[23:02:46] scale strong_N4096_s1: action direct 2182.208 / PPPM 278.586 ms (x7.83); setup direct 65508 / PPPM 1054.0 ms; break-even q None
+[23:09:20] scale uniform_N4096_s1: 5 setup rounds (328 s): direct 63407.2 ms, pppm_cached 871.1 ms, pppm_pairdiff 697.5 ms
+[23:12:43] scale uniform_N4096_s1: 30 action rounds (98 s): direct 2369.471 ms, pppm_cached 262.231 ms, pppm_pairdiff 246.908 ms
+[23:12:43] scale uniform_N4096_s1: action direct 2369.471 / PPPM 246.908 ms (x9.60); setup direct 63407 / PPPM 697.5 ms; break-even q None
+[23:12:43] stage scale done in 2016 s

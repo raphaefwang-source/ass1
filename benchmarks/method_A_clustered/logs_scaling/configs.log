@@ -1,0 +1,13 @@
+[20:23:20] configs strong_N128_s1: L=5.5469 attempt=0 iters=79 d_min=0.9003 sigma_real/req=2.1942570970868385 (0 s)
+[20:23:21] configs uniform_N128_s1: L=5.5469 attempt=0 iters=29 d_min=0.9012 sigma_real/req=None (0 s)
+[20:23:21] configs strong_N256_s1: reused from configs/ (d_min 0.9001)
+[20:23:21] configs uniform_N256_s1: reused from configs/ (d_min 0.9019)
+[20:23:22] configs strong_N512_s1: reused from configs/ (d_min 0.9003)
+[20:23:22] configs uniform_N512_s1: reused from configs/ (d_min 0.9013)
+[20:23:25] configs strong_N1024_s1: L=11.0938 attempt=0 iters=194 d_min=0.9007 sigma_real/req=2.1605185535622566 (2 s)
+[20:23:26] configs uniform_N1024_s1: L=11.0938 attempt=0 iters=35 d_min=0.9013 sigma_real/req=None (1 s)
+[20:23:31] configs strong_N2048_s1: L=13.9773 attempt=0 iters=301 d_min=0.9003 sigma_real/req=2.155163719506979 (5 s)
+[20:23:34] configs uniform_N2048_s1: L=13.9773 attempt=0 iters=48 d_min=0.9012 sigma_real/req=None (3 s)
+[20:23:48] configs strong_N4096_s1: L=17.6103 attempt=0 iters=410 d_min=0.9003 sigma_real/req=2.1438977029978514 (15 s)
+[20:23:54] configs uniform_N4096_s1: L=17.6103 attempt=0 iters=46 d_min=0.9016 sigma_real/req=None (5 s)
+[20:23:54] stage configs done in 34 s

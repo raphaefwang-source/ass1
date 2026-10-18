@@ -220,20 +220,29 @@ def roundoff_effect(rows, ps, delta):
 
 
 def main():
-    C.RESULTS = RESULTS_PSEARCH
-    RESULTS_PSEARCH.mkdir(parents=True, exist_ok=True)
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--p", type=int, nargs="+", default=list(P_ALL), help="orders of the 1D/3D/operator checks")
+    ap.add_argument("--out-dir", default=str(RESULTS_PSEARCH))
+    ap.add_argument("--out-name", default="alias_bound_validation_p.json")
+    args = ap.parse_args()
+    P_RUN = tuple(args.p)
+    out_dir = C.Path(args.out_dir)
+    C.RESULTS = out_dir
+    out_dir.mkdir(parents=True, exist_ok=True)
     C.log_command()
     t0 = time.perf_counter()
     rng = np.random.default_rng([20261018, 21])
     rows, passes = {}, {}
-    passes["1_ft"] = check_ft_p(rows, tuple(range(4, 13)))
-    passes["2_stencil"] = check_stencil_p(rows, tuple(range(4, 13)), rng)
-    passes["6_zeta"] = check_zeta_p(rows, tuple(range(4, 13)))
-    C.log(f"ft/stencil/zeta p=4..12: {passes}")
+    p_ft = tuple(range(4, max(13, max(P_RUN) + 2)))
+    passes["1_ft"] = check_ft_p(rows, p_ft)
+    passes["2_stencil"] = check_stencil_p(rows, p_ft, rng)
+    passes["6_zeta"] = check_zeta_p(rows, p_ft)
+    C.log(f"ft/stencil/zeta p={p_ft[0]}..{p_ft[-1]}: {passes}")
     cfg1 = ["uniform_N64_s1", "strong_N256_s1", "strong_N512_s1", "moderate_N512_s1", "uniform_N512_s1"]
     cfg3 = ["strong_N256_s1", "strong_N512_s1", "uniform_N512_s1"]
     per_p = {}
-    for p in P_ALL:
+    for p in P_RUN:
         r1, tight, ok1 = check_1d_p(cfg1, p)
         r3, ok3 = check_3d_p(cfg3, p)
         per_p[p] = dict(one_axis=r1, sup_u_beta_over_sigma=tight, three_d=r3, pass_1d=ok1, pass_3d=ok3,
@@ -252,18 +261,17 @@ def main():
               f"W2 {q['max_W2_vs_What2']:.1e} -> {'pass' if ok1 and ok3 else 'FAIL'}")
     rows["per_p"] = per_p
     delta = max(max(v["max_excess_1d"], v["max_excess_3d"]) for v in per_p.values())
-    eff = roundoff_effect(rows, P_ALL, max(delta, 0.0))
-    passes["8_operator"] = check_operator_p(rows, P_ALL)
-    summary = dict(passes=passes, all_pass=all(passes.values()), p_tested=list(P_ALL), DELTA_1D=DELTA_1D,
+    eff = roundoff_effect(rows, P_RUN, max(delta, 0.0))
+    passes["8_operator"] = check_operator_p(rows, P_RUN)
+    summary = dict(passes=passes, all_pass=all(passes.values()), p_tested=list(P_RUN), DELTA_1D=DELTA_1D,
                    DELTA_3D=DELTA_3D, SIG_REL=SIG_REL, max_fp_excess_any_p=delta,
                    max_eps_mesh_increase_from_excess_rel_to_budget=eff,
                    operator_min_hz_over_measured={p: min([r["hz_over_measured"] for r in rows["8_operator_level"]
                                                           if r["p"] == p and not r["measured_below_roundoff_floor"]],
-                                                         default=None) for p in P_ALL},
+                                                         default=None) for p in P_RUN},
                    wall_s=time.perf_counter() - t0)
-    C.write_json(RESULTS_PSEARCH / "alias_bound_validation_p.json", dict(summary=summary, checks=rows,
-                                                                         provenance=C.provenance()))
-    C.log(f"alias bound validation p=4..11: {summary}")
+    C.write_json(out_dir / args.out_name, dict(summary=summary, checks=rows, provenance=C.provenance()))
+    C.log(f"alias bound validation p={list(P_RUN)}: {summary}")
     if not summary["all_pass"]:
         raise SystemExit("alias bound validation FAILED")
 

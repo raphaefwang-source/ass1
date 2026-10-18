@@ -1,0 +1,82 @@
+{
+ "rows": {
+  "p9_xi0.7550_kc8.481682_M64_rc5.524535": {
+   "key": "p9_xi0.7550_kc8.481682_M64_rc5.524535",
+   "E_op_arpack": 3.2591165827409206e-08,
+   "arpack": {
+    "value": 4.732440753981505e-07,
+    "eig": -4.732440753981505e-07,
+    "residual": 1.7624775534438834e-14,
+    "matvecs": 61,
+    "tol": 1e-06,
+    "which": "LM",
+    "t_s": 8.23970784300036
+   },
+   "E_op": 3.2591165827409206e-08,
+   "E_op_method": "ARPACK largest |eigenvalue| of Gamma_h - Gamma_ref (matrix-free Gamma_h, dense Gamma_ref GEMV)",
+   "cert_rel": 1.9990146370032933e-07,
+   "passes": true,
+   "t_s": 8.64665799300019
+  },
+  "p10_xi0.8250_kc9.299912_M60_rc5.036970": {
+   "key": "p10_xi0.8250_kc9.299912_M60_rc5.036970",
+   "E_op_arpack": 3.4640347046249474e-08,
+   "arpack": {
+    "value": 5.029994660573501e-07,
+    "eig": -5.029994660573501e-07,
+    "residual": 1.2483169524924054e-14,
+    "matvecs": 61,
+    "tol": 1e-06,
+    "which": "LM",
+    "t_s": 8.459211805999985
+   },
+   "E_op": 3.4640347046249474e-08,
+   "E_op_method": "ARPACK largest |eigenvalue| of Gamma_h - Gamma_ref (matrix-free Gamma_h, dense Gamma_ref GEMV)",
+   "cert_rel": 1.9949087138331688e-07,
+   "passes": true,
+   "t_s": 8.931323456999962
+  }
+ },
+ "optimum": {
+  "key": "p9_xi0.7550_kc8.481682_M64_rc5.524535",
+  "impl": "pairdiff",
+  "p": 9,
+  "xi": 0.755,
+  "kc": 8.481681715352995,
+  "M": 64,
+  "rc": 5.524535488340895,
+  "n_img": 542440,
+  "cert_rel": 1.9990146370032933e-07,
+  "T_pred_ms": 100.16011987482668,
+  "T_setup_ms": 292.5979339997866,
+  "T_action_median_ms": 100.11526000016602,
+  "T_action_q1_ms": 97.18806475052588,
+  "T_action_q3_ms": 107.37371449999955,
+  "T_action_min_ms": 94.66804600015166,
+  "T_action_max_ms": 139.9463369998557,
+  "T_action_n": 60,
+  "T_action_iqr_rel": 0.10173923285477936,
+  "E_op": 3.2591165827409206e-08
+ },
+ "note": "measured optimum = fastest confirmed (candidate, implementation) whose E_op was verified <= tau; all candidates are certified (bound <= tau)",
+ "provenance": {
+  "time": "2026-10-18T22:11:55+0000",
+  "command": "python3 run_scaling.py --stage verify --N 1024 2048",
+  "git": {
+   "commit": "4f2b326fabf59f409078e00650f20c0e10b54699",
+   "dirty": true
+  },
+  "code_hash": "0292dc33bfb34084",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ }
+}

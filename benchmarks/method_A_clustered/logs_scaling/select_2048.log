@@ -1,0 +1,17 @@
+[20:59:57] select strong_N2048_s1 p=6: xi 0.505 kc 5.487 M 96 rc 8.240 n_img 1728629 cert 1.9981e-07 pred 227.64 ms
+[21:00:37] select strong_N2048_s1 p=7: xi 0.580 kc 6.389 M 75 rc 7.226 n_img 1204202 cert 1.9997e-07 pred 152.29 ms
+[21:01:03] select strong_N2048_s1 p=8: xi 0.650 kc 7.220 M 64 rc 6.433 n_img 887018 cert 1.9968e-07 pred 108.42 ms
+[21:01:16] select strong_N2048_s1 p=9: xi 0.780 kc 8.264 M 64 rc 5.352 n_img 555353 cert 1.9987e-07 pred 101.02 ms
+[21:01:28] select strong_N2048_s1 p=10: xi 0.850 kc 9.493 M 60 rc 4.884 n_img 441403 cert 1.9845e-07 pred 103.40 ms
+[21:01:39] select strong_N2048_s1 p=11: xi 0.865 kc 9.714 M 54 rc 4.792 n_img 420894 cert 1.9986e-07 pred 115.67 ms
+[21:01:49] select strong_N2048_s1 p=12: xi 0.875 kc 9.322 M 50 rc 4.708 n_img 402420 cert 1.9999e-07 pred 141.26 ms
+[21:01:49] select strong_N2048_s1: model best p=9 (101.02 ms), boundary p False, xi boundary [], M cap [] (457 s)
+[21:08:02] select uniform_N2048_s1 p=6: xi 0.500 kc 5.469 M 100 rc 8.424 n_img 1923086 cert 1.9999e-07 pred 254.99 ms
+[21:08:37] select uniform_N2048_s1 p=7: xi 0.585 kc 6.499 M 80 rc 7.199 n_img 1200203 cert 1.9962e-07 pred 162.58 ms
+[21:09:00] select uniform_N2048_s1 p=8: xi 0.690 kc 7.220 M 72 rc 6.101 n_img 730886 cert 1.9994e-07 pred 110.98 ms
+[21:09:19] select uniform_N2048_s1 p=9: xi 0.755 kc 8.482 M 64 rc 5.525 n_img 542440 cert 1.9990e-07 pred 100.16 ms
+[21:09:31] select uniform_N2048_s1 p=10: xi 0.825 kc 9.300 M 60 rc 5.037 n_img 411406 cert 1.9949e-07 pred 101.40 ms
+[21:09:44] select uniform_N2048_s1 p=11: xi 0.845 kc 9.525 M 54 rc 4.921 n_img 383776 cert 1.9939e-07 pred 113.19 ms
+[21:09:53] select uniform_N2048_s1 p=12: xi 0.925 kc 9.859 M 54 rc 4.511 n_img 295286 cert 1.9948e-07 pred 138.63 ms
+[21:09:53] select uniform_N2048_s1: model best p=9 (100.16 ms), boundary p False, xi boundary ['6'], M cap [] (484 s)
+[21:09:53] stage select done in 942 s

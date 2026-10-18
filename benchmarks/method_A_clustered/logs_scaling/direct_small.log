@@ -1,0 +1,13 @@
+[20:54:16] direct uniform_N128_s1: certified R_d = 27.25 (bound/Lambda_lb 1.8893e-07; R - 0.125 gives 2.0468e-07) tail(R_far) 3.11e-09 (5 s)
+[20:54:21] direct uniform_N128_s1: E_ref 8.360e-08 (dense), E_conv 8.337e-08, Gamma_D(36.0) vs ref 2.42e-10; 4037888 images (10 s)
+[20:54:28] direct uniform_N256_s1: certified R_d = 27.25 (bound/Lambda_lb 1.8589e-07; R - 0.125 gives 2.0185e-07) tail(R_far) 3.81e-09 (7 s)
+[20:54:40] direct uniform_N256_s1: E_ref 8.241e-08 (dense), E_conv 8.218e-08, Gamma_D(36.0) vs ref 2.30e-10; 8105329 images (18 s)
+[20:54:54] direct strong_N512_s1: certified R_d = 26.875 (bound/Lambda_lb 1.8823e-07; R - 0.125 gives 2.0526e-07) tail(R_far) 4.77e-09 (14 s)
+[20:55:05] direct strong_N512_s1: E_ref 8.214e-08 (dense), E_conv 8.197e-08, Gamma_D(36.0) vs ref 1.81e-10; 15598608 images (25 s)
+[20:55:19] direct uniform_N512_s1: certified R_d = 27.125 (bound/Lambda_lb 1.9039e-07; R - 0.125 gives 2.0615e-07) tail(R_far) 4.77e-09 (14 s)
+[20:55:29] direct uniform_N512_s1: E_ref 8.328e-08 (dense), E_conv 8.307e-08, Gamma_D(36.0) vs ref 2.17e-10; 16019856 images (24 s)
+[20:56:01] direct strong_N1024_s1: certified R_d = 26.625 (bound/Lambda_lb 1.9643e-07; R - 0.125 gives 2.1246e-07) tail(R_far) 6.09e-09 (32 s)
+[20:56:35] direct strong_N1024_s1: E_ref 8.834e-08 (dense), E_conv 8.816e-08, Gamma_D(36.0) vs ref 1.78e-10, ARPACK E_ref 8.834e-08; 30421245 images (66 s)
+[20:57:06] direct uniform_N1024_s1: certified R_d = 27.125 (bound/Lambda_lb 1.9999e-07; R - 0.125 gives 2.1672e-07) tail(R_far) 6.07e-09 (31 s)
+[20:57:44] direct uniform_N1024_s1: E_ref 9.038e-08 (dense), E_conv 9.017e-08, Gamma_D(36.0) vs ref 2.38e-10, ARPACK E_ref 9.038e-08; 32068187 images (69 s)
+[20:57:44] stage direct done in 213 s

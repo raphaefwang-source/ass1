@@ -1,0 +1,9 @@
+[20:24:04] refs strong_N128_s1: ||G||=14.5638 (dense eigvalsh) Lambda_lb=13.1546 gen 2.0629984839999906 s, sym 0.0e+00
+[20:24:07] refs uniform_N128_s1: ||G||=13.2278 (dense eigvalsh) Lambda_lb=11.5463 gen 2.9343132579999747 s, sym 0.0e+00
+[20:24:08] refs strong_N256_s1: ||G||=15.8946 (dense eigvalsh) Lambda_lb=14.3219 gen None s, sym 0.0e+00
+[20:24:09] refs uniform_N256_s1: ||G||=13.6746 (dense eigvalsh) Lambda_lb=11.8188 gen None s, sym 0.0e+00
+[20:24:10] refs strong_N512_s1: ||G||=17.5490 (dense eigvalsh) Lambda_lb=15.1781 gen None s, sym 0.0e+00
+[20:24:12] refs uniform_N512_s1: ||G||=14.5110 (dense eigvalsh) Lambda_lb=12.6247 gen None s, sym 0.0e+00
+[20:24:23] refs strong_N1024_s1: ||G||=19.6047 (dense eigvalsh) Lambda_lb=17.1643 gen 8.08590737399993 s, sym 0.0e+00
+[20:24:33] refs uniform_N1024_s1: ||G||=13.8879 (dense eigvalsh) Lambda_lb=12.0247 gen 7.661117539999964 s, sym 0.0e+00
+[20:24:33] stage refs done in 31 s

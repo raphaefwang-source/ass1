@@ -1,0 +1,9 @@
+[21:12:56] select strong_N4096_s1 p=6: xi 0.500 kc 5.562 M 128 rc 8.561 n_img 4095738 cert 1.9990e-07 pred 592.88 ms
+[21:14:13] select strong_N4096_s1 p=7: xi 0.600 kc 6.598 M 108 rc 6.985 n_img 2439333 cert 1.9992e-07 pred 360.32 ms
+[21:14:58] select strong_N4096_s1 p=8: xi 0.670 kc 7.510 M 90 rc 6.250 n_img 1848052 cert 1.9995e-07 pred 278.08 ms
+[21:15:32] select strong_N4096_s1 p=9: xi 0.745 kc 8.405 M 81 rc 5.618 n_img 1415907 cert 1.9975e-07 pred 253.18 ms
+[21:16:00] select strong_N4096_s1 p=10: xi 0.855 kc 9.693 M 80 rc 4.881 n_img 993817 cert 1.9968e-07 pred 278.15 ms
+[21:16:25] select strong_N4096_s1 p=11: xi 0.905 kc 10.273 M 75 rc 4.599 n_img 851336 cert 1.9928e-07 pred 318.75 ms
+[21:16:48] select strong_N4096_s1 p=12: xi 0.955 kc 10.378 M 72 rc 4.346 n_img 737493 cert 1.9925e-07 pred 395.75 ms
+[21:16:48] select strong_N4096_s1: model best p=9 (253.18 ms), boundary p False, xi boundary ['6'], M cap [] (1023 s)
+[21:16:48] stage select done in 1023 s

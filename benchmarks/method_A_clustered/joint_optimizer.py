@@ -232,10 +232,11 @@ def predict_vec(cm, nimg, N, p, Ms):
 
 # ----------------------------------------------------------------------------- one xi, all approaches
 def evaluate_xi(xi, seeds, L, N, cm, p=C.P_ORDER, tau=TAU, topk=6, approaches=APPROACHES, curves=None,
-                variants=("orig", "hz"), M_cap=M_CAP):
+                variants=("orig", "hz"), M_cap=M_CAP, finalize_best=True):
     """seeds: list of dict(name, rst, lam_lb). Returns {approach: dict(best=<exact record>, top=[light records])}
     and the shared tables (for finalising other candidates of the same xi later). curves (the eps_S curves of this xi,
-    independent of p) can be passed in to share them between orders."""
+    independent of p) can be passed in to share them between orders. finalize_best=False skips the exact rc
+    bisection (best = None; the light records carry the grid rc, an upper bound of the exact one, and its T_pred)."""
     lam = np.array([s["lam_lb"] for s in seeds])
     tab = XiTables(xi, L, N, p, lam.min(), tau, variants=variants, M_cap=M_cap)
     if curves is None:
@@ -274,7 +275,8 @@ def evaluate_xi(xi, seeds, L, N, cm, p=C.P_ORDER, tau=TAU, topk=6, approaches=AP
                     T_pred_grid=float(T[o]), i=int(ii[o]), j=int(jj[o]), B=Bs[:, o].tolist(), g=gs[:, o].tolist())
                for o in order]
         o = order[0]
-        best = finalize(xi, tab, curves, seeds, int(ii[o]), int(jj[o]), Bs[:, o], gs[:, o], v, cm, N, p, tau)
+        best = finalize(xi, tab, curves, seeds, int(ii[o]), int(jj[o]), Bs[:, o], gs[:, o], v, cm, N, p, tau) \
+            if finalize_best else None
         out[ap] = dict(best=best, top=top, n_candidates=int(feas.sum()))
     return out, tab, curves
 

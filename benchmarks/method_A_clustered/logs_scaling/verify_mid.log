@@ -1,0 +1,28 @@
+[22:08:46] verify strong_N1024_s1 p9_xi0.8050_kc8.362354_M50_rc5.152451: E_op 3.633e-08 (dense) ARPACK 3.633e-08 (25 mv) cert 1.9935e-07 (12 s)
+[22:08:55] verify strong_N1024_s1 p9_xi0.7800_kc8.645264_M48_rc5.332939: E_op 3.291e-08 (dense) cert 1.9866e-07 (9 s)
+[22:09:02] verify strong_N1024_s1 p9_xi0.7550_kc8.323906_M48_rc5.420829: E_op 5.694e-08 (dense) cert 1.9763e-07 (7 s)
+[22:09:10] verify strong_N1024_s1 p9_xi0.7800_kc8.089383_M50_rc5.241530: E_op 6.004e-08 (dense) cert 1.9938e-07 (7 s)
+[22:09:20] verify strong_N1024_s1 p10_xi0.8700_kc9.026454_M48_rc4.688015: E_op 6.175e-08 (dense) cert 1.9986e-07 (10 s)
+[22:09:27] verify strong_N1024_s1 p8_xi0.7200_kc7.949383_M54_rc5.797009: E_op 2.815e-08 (dense) cert 1.9949e-07 (7 s)
+[22:09:38] verify strong_N1024_s1 p11_xi0.9400_kc10.427979_M45_rc4.407956: E_op 3.409e-08 (dense) cert 1.9916e-07 (12 s)
+[22:09:50] verify strong_N1024_s1 p12_xi0.9100_kc10.147354_M40_rc4.519709: E_op 4.533e-08 (dense) cert 1.9982e-07 (12 s)
+[22:09:56] verify strong_N1024_s1 p7_xi0.6200_kc6.482402_M60_rc6.730131: E_op 2.611e-08 (dense) cert 1.9996e-07 (6 s)
+[22:10:02] verify strong_N1024_s1 p6_xi0.5250_kc5.663701_M72_rc8.025360: E_op 2.048e-08 (dense) cert 1.9992e-07 (6 s)
+[22:10:02] verify strong_N1024_s1: optimum p9_xi0.8050_kc8.362354_M50_rc5.152451 pairdiff 41.16 ms, E_op 3.633e-08
+[22:10:14] verify uniform_N1024_s1 p9_xi0.7850_kc8.719157_M50_rc5.321372: E_op 3.032e-08 (dense) ARPACK 3.032e-08 (49 mv) cert 1.9993e-07 (12 s)
+[22:10:25] verify uniform_N1024_s1 p10_xi0.8750_kc9.777064_M48_rc4.786173: E_op 2.666e-08 (dense) cert 1.9919e-07 (11 s)
+[22:10:35] verify uniform_N1024_s1 p10_xi0.8500_kc9.357970_M48_rc4.850335: E_op 4.722e-08 (dense) cert 1.9906e-07 (10 s)
+[22:10:44] verify uniform_N1024_s1 p9_xi0.8100_kc9.026454_M54_rc5.067601: E_op 5.384e-08 (dense) cert 1.9971e-07 (9 s)
+[22:10:57] verify uniform_N1024_s1 p11_xi0.9450_kc10.580666_M48_rc4.321483: E_op 5.817e-08 (dense) cert 1.9913e-07 (13 s)
+[22:11:04] verify uniform_N1024_s1 p8_xi0.7000_kc7.744994_M54_rc6.030772: E_op 2.313e-08 (dense) cert 1.9984e-07 (7 s)
+[22:11:16] verify uniform_N1024_s1 p12_xi0.8950_kc9.955877_M40_rc4.631202: E_op 3.682e-08 (dense) cert 1.9818e-07 (12 s)
+[22:11:23] verify uniform_N1024_s1 p7_xi0.6300_kc6.982679_M64_rc6.726680: E_op 2.188e-08 (dense) cert 1.9992e-07 (7 s)
+[22:11:29] verify uniform_N1024_s1 p6_xi0.5150_kc5.343125_M75_rc8.181145: E_op 2.571e-08 (dense) cert 1.9997e-07 (6 s)
+[22:11:29] verify uniform_N1024_s1: optimum p9_xi0.7850_kc8.719157_M50_rc5.321372 pairdiff 42.72 ms, E_op 3.032e-08
+[22:11:33] verify strong_N2048_s1 p9_xi0.7800_kc8.264476_M64_rc5.352478: E_op 2.938e-08 (ARPAC) ARPACK 2.938e-08 (25 mv) cert 1.9987e-07 (4 s)
+[22:11:37] verify strong_N2048_s1 p9_xi0.7550_kc8.337507_M64_rc5.412507: E_op 6.182e-08 (ARPAC) ARPACK 6.182e-08 (25 mv) cert 1.9985e-07 (4 s)
+[22:11:37] verify strong_N2048_s1: optimum p9_xi0.7800_kc8.264476_M64_rc5.352478 pairdiff 98.32 ms, E_op 2.938e-08
+[22:11:46] verify uniform_N2048_s1 p9_xi0.7550_kc8.481682_M64_rc5.524535: E_op 3.259e-08 (ARPAC) ARPACK 3.259e-08 (61 mv) cert 1.9990e-07 (9 s)
+[22:11:55] verify uniform_N2048_s1 p10_xi0.8250_kc9.299912_M60_rc5.036970: E_op 3.464e-08 (ARPAC) ARPACK 3.464e-08 (61 mv) cert 1.9949e-07 (9 s)
+[22:11:55] verify uniform_N2048_s1: optimum p9_xi0.7550_kc8.481682_M64_rc5.524535 pairdiff 100.12 ms, E_op 3.259e-08
+[22:11:55] stage verify done in 200 s

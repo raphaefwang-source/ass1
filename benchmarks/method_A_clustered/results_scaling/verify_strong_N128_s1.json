@@ -1,0 +1,166 @@
+{
+ "rows": {
+  "p9_xi0.9300_kc9.809818_M25_rc4.452040": {
+   "key": "p9_xi0.9300_kc9.809818_M25_rc4.452040",
+   "E_op_dense": 3.333540007061802e-08,
+   "E_op_dense_asym_fro": 8.863287737022445e-17,
+   "t_dense_s": 0.0545855609998398,
+   "matrix_free_vs_dense": 5.458593796177075e-16,
+   "E_op": 3.333540007061802e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.983697036945955e-07,
+   "passes": true,
+   "t_s": 0.09920575100022688
+  },
+  "p9_xi0.9050_kc9.409246_M25_rc4.515623": {
+   "key": "p9_xi0.9050_kc9.409246_M25_rc4.515623",
+   "E_op_dense": 5.233411601839637e-08,
+   "E_op_dense_asym_fro": 8.82851646352091e-17,
+   "t_dense_s": 0.04835651500070526,
+   "matrix_free_vs_dense": 6.299274483234316e-16,
+   "E_op": 5.233411601839637e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9752801960952386e-07,
+   "passes": true,
+   "t_s": 0.08815728100034903
+  },
+  "p9_xi0.9050_kc9.477184_M24_rc4.612104": {
+   "key": "p9_xi0.9050_kc9.477184_M24_rc4.612104",
+   "E_op_dense": 2.6662165841550156e-08,
+   "E_op_dense_asym_fro": 8.485981261324129e-17,
+   "t_dense_s": 0.051999394999256765,
+   "matrix_free_vs_dense": 5.718771363232878e-16,
+   "E_op": 2.6662165841550156e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9804749868211302e-07,
+   "passes": true,
+   "t_s": 0.09004740299951663
+  },
+  "p9_xi0.8800_kc9.340815_M24_rc4.663583": {
+   "key": "p9_xi0.8800_kc9.340815_M24_rc4.663583",
+   "E_op_dense": 4.777972041377387e-08,
+   "E_op_dense_asym_fro": 8.202710490832492e-17,
+   "t_dense_s": 0.04740274899995711,
+   "matrix_free_vs_dense": 5.699919331995398e-16,
+   "E_op": 4.777972041377387e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9949899879406168e-07,
+   "passes": true,
+   "t_s": 0.08660522399986803
+  },
+  "p10_xi1.0450_kc11.156197_M25_rc3.928944": {
+   "key": "p10_xi1.0450_kc11.156197_M25_rc3.928944",
+   "E_op_dense": 4.234122923816639e-08,
+   "E_op_dense_asym_fro": 1.0340054478530586e-16,
+   "t_dense_s": 0.06528368999988743,
+   "matrix_free_vs_dense": 5.8384360206627035e-16,
+   "E_op": 4.234122923816639e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.987515159931105e-07,
+   "passes": true,
+   "t_s": 0.114899074999812
+  },
+  "p8_xi0.8500_kc8.919205_M27_rc4.921758": {
+   "key": "p8_xi0.8500_kc8.919205_M27_rc4.921758",
+   "E_op_dense": 2.5195214960689427e-08,
+   "E_op_dense_asym_fro": 8.047610667045421e-17,
+   "t_dense_s": 0.042414737999934005,
+   "matrix_free_vs_dense": 5.745811403606614e-16,
+   "E_op": 2.5195214960689427e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9948548675838307e-07,
+   "passes": true,
+   "t_s": 0.08809345200006646
+  },
+  "p11_xi1.1150_kc12.041193_M24_rc3.696673": {
+   "key": "p11_xi1.1150_kc12.041193_M24_rc3.696673",
+   "E_op_dense": 3.631636376529276e-08,
+   "E_op_dense_asym_fro": 1.1355434243122003e-16,
+   "t_dense_s": 0.14771332599957532,
+   "matrix_free_vs_dense": 5.555777936937651e-16,
+   "E_op": 3.631636376529276e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.995151358013278e-07,
+   "passes": true,
+   "t_s": 0.21593098500034102
+  },
+  "p7_xi0.7450_kc7.427874_M30_rc5.617214": {
+   "key": "p7_xi0.7450_kc7.427874_M30_rc5.617214",
+   "E_op_dense": 2.2773669192898184e-08,
+   "E_op_dense_asym_fro": 6.546907556242824e-17,
+   "t_dense_s": 0.037428666999403504,
+   "matrix_free_vs_dense": 5.440012482958766e-16,
+   "E_op": 2.2773669192898184e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9985323632183183e-07,
+   "passes": true,
+   "t_s": 0.08565552500022022
+  },
+  "p12_xi1.0100_kc10.686249_M20_rc4.068787": {
+   "key": "p12_xi1.0100_kc10.686249_M20_rc4.068787",
+   "E_op_dense": 4.119257437908517e-08,
+   "E_op_dense_asym_fro": 9.688687309139521e-17,
+   "t_dense_s": 0.11862706200008688,
+   "matrix_free_vs_dense": 5.560597326114119e-16,
+   "E_op": 4.119257437908517e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9727811956111606e-07,
+   "passes": true,
+   "t_s": 0.24080205999962345
+  },
+  "p6_xi0.5900_kc5.775864_M32_rc7.135897": {
+   "key": "p6_xi0.5900_kc5.775864_M32_rc7.135897",
+   "E_op_dense": 2.11119351535868e-08,
+   "E_op_dense_asym_fro": 4.4758200353858236e-17,
+   "t_dense_s": 0.09637849199953052,
+   "matrix_free_vs_dense": 6.469570336928537e-16,
+   "E_op": 2.11119351535868e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9971852707229444e-07,
+   "passes": true,
+   "t_s": 0.16813444800027355
+  }
+ },
+ "optimum": {
+  "key": "p9_xi0.9300_kc9.809818_M25_rc4.452040",
+  "impl": "pairdiff",
+  "p": 9,
+  "xi": 0.93,
+  "kc": 9.809817576339942,
+  "M": 25,
+  "rc": 4.452040403033161,
+  "n_img": 17288,
+  "cert_rel": 1.983697036945955e-07,
+  "T_pred_ms": 3.7712163825943352,
+  "T_setup_ms": 16.402651000134938,
+  "T_action_median_ms": 3.8398539995796455,
+  "T_action_q1_ms": 3.6903724997046083,
+  "T_action_q3_ms": 4.128175000460033,
+  "T_action_min_ms": 3.491155000119761,
+  "T_action_max_ms": 7.690221999837377,
+  "T_action_n": 150,
+  "T_action_iqr_rel": 0.11401540287816962,
+  "E_op": 3.333540007061802e-08
+ },
+ "note": "measured optimum = fastest confirmed (candidate, implementation) whose E_op was verified <= tau; all candidates are certified (bound <= tau)",
+ "provenance": {
+  "time": "2026-10-18T22:08:36+0000",
+  "command": "python3 run_scaling.py --stage verify --N 128 256 512",
+  "git": {
+   "commit": "4f2b326fabf59f409078e00650f20c0e10b54699",
+   "dirty": true
+  },
+  "code_hash": "0292dc33bfb34084",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ }
+}

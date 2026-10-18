@@ -1,0 +1,25 @@
+[21:21:04] bench strong_N128_s1: 16 candidates
+[21:21:13] bench strong_N128_s1: screening 32 actions x 40 rounds (7 s); best p9_xi0.9300_kc9.809818_M25_rc4.452040 3.88, p9_xi0.9050_kc9.409246_M25_rc4.515623 3.94, p9_xi0.9050_kc9.477184_M24_rc4.612104 3.94, p9_xi0.8800_kc9.340815_M24_rc4.663583 3.97
+[21:21:13] bench uniform_N128_s1: 16 candidates
+[21:21:23] bench uniform_N128_s1: screening 32 actions x 40 rounds (7 s); best p9_xi0.9250_kc9.809818_M25_rc4.508724 3.91, p9_xi0.9000_kc9.477184_M25_rc4.549809 3.97, p9_xi0.8750_kc9.202425_M24_rc4.707782 4.00, p9_xi0.9000_kc9.611619_M24_rc4.661856 4.03
+[21:21:23] bench strong_N256_s1: 16 candidates
+[21:21:43] bench strong_N256_s1: screening 32 actions x 40 rounds (15 s); best p9_xi0.8850_kc9.557101_M32_rc4.619899 8.59, p9_xi0.8600_kc9.386425_M30_rc4.858104 8.66, p9_xi0.8350_kc8.900205_M30_rc4.899579 8.80, p9_xi0.8600_kc8.576452_M32_rc4.719971 8.88
+[21:21:43] bench uniform_N256_s1: 16 candidates
+[21:22:03] bench uniform_N256_s1: screening 32 actions x 40 rounds (15 s); best p10_xi0.9800_kc10.675704_M32_rc4.166992 8.91, p9_xi0.8900_kc9.641306_M32_rc4.687445 9.00, p9_xi0.8650_kc9.343269_M32_rc4.748033 9.02, p10_xi0.9550_kc10.407331_M30_rc4.359836 9.13
+[21:22:03] bench strong_N512_s1: 16 candidates
+[21:22:47] bench strong_N512_s1: screening 32 actions x 40 rounds (33 s); best p9_xi0.8500_kc9.358535_M40_rc4.887756 18.63, p9_xi0.8250_kc9.026172_M40_rc4.952439 19.34, p10_xi0.8850_kc9.705759_M36_rc4.678719 19.39, p10_xi0.8600_kc9.466730_M36_rc4.745566 19.73
+[21:22:47] bench uniform_N512_s1: 16 candidates
+[21:23:32] bench uniform_N512_s1: screening 32 actions x 40 rounds (35 s); best p9_xi0.8350_kc9.082411_M40_rc4.976903 20.11, p9_xi0.8100_kc8.797625_M40_rc5.059907 20.44, p9_xi0.8600_kc9.493586_M40_rc5.165274 20.68, p10_xi0.8750_kc9.082411_M36_rc4.749920 20.73
+[21:23:32] bench strong_N1024_s1: 16 candidates
+[21:24:52] bench strong_N1024_s1: screening 32 actions x 30 rounds (56 s); best p9_xi0.7800_kc8.645264_M48_rc5.332939 41.45, p9_xi0.8050_kc8.362354_M50_rc5.152451 42.52, p9_xi0.7550_kc8.323906_M48_rc5.420829 42.95, p9_xi0.7800_kc8.089383_M50_rc5.241530 43.65
+[21:24:53] bench uniform_N1024_s1: 16 candidates
+[21:26:18] bench uniform_N1024_s1: screening 32 actions x 30 rounds (59 s); best p9_xi0.7850_kc8.719157_M50_rc5.321372 44.47, p10_xi0.8500_kc9.357970_M48_rc4.850335 44.98, p9_xi0.8100_kc9.026454_M54_rc5.067601 45.12, p10_xi0.8750_kc9.777064_M48_rc4.786173 45.17
+[21:26:18] bench strong_N2048_s1: 14 candidates
+[21:28:33] bench strong_N2048_s1: screening 28 actions x 20 rounds (84 s); best p9_xi0.7800_kc8.264476_M64_rc5.352478 99.60, p9_xi0.7550_kc8.337507_M64_rc5.412507 101.04, p10_xi0.8750_kc9.797241_M64_rc4.672897 101.76, p10_xi0.8250_kc8.739828_M60_rc4.942139 102.82
+[21:28:33] bench uniform_N2048_s1: 15 candidates
+[21:30:57] bench uniform_N2048_s1: screening 30 actions x 20 rounds (90 s); best p9_xi0.7550_kc8.481682_M64_rc5.524535 98.55, p9_xi0.7300_kc8.178449_M64_rc5.624774 101.81, p10_xi0.8250_kc9.299912_M60_rc5.036970 102.02, p10_xi0.8000_kc9.013013_M60_rc5.114934 102.08
+[21:30:57] bench strong_N4096_s1: 13 candidates
+[21:35:54] bench strong_N4096_s1: screening 26 actions x 15 rounds (179 s); best p10_xi0.8550_kc9.692634_M80_rc4.881171 258.05, p10_xi0.8300_kc9.159175_M80_rc4.939407 259.79, p9_xi0.7450_kc8.405434_M81_rc5.617937 261.21, p10_xi0.8800_kc9.958235_M81_rc4.931911 265.17
+[21:35:54] bench uniform_N4096_s1: 13 candidates
+[21:40:39] bench uniform_N4096_s1: screening 26 actions x 15 rounds (180 s); best p9_xi0.7200_kc8.167315_M81_rc5.809828 236.10, p10_xi0.8250_kc9.392480_M80_rc5.031054 238.40, p9_xi0.7450_kc7.865599_M90_rc5.474507 244.18, p10_xi0.8500_kc9.338109_M81_rc5.019520 248.19
+[21:40:39] stage bench done in 1175 s

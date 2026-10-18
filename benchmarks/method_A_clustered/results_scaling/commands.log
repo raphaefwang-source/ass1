@@ -1,0 +1,23 @@
+2026-10-18T20:20:14+0000  cd benchmarks/method_A_clustered && python3 test_alias_bound_p.py --p 12 13 --out-dir results_scaling --out-name alias_bound_validation_p12_13.json
+2026-10-18T20:23:20+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage configs
+2026-10-18T20:24:02+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage refs --N 128 256 512 1024
+2026-10-18T20:24:02+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage refs --N 2048
+2026-10-18T20:24:44+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage direct --N 128 256 --fam strong
+2026-10-18T20:25:55+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage refs --N 4096
+2026-10-18T20:30:34+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage calibrate
+2026-10-18T20:54:12+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage select --N 1024
+2026-10-18T20:54:12+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage select --N 128 256 512
+2026-10-18T20:54:12+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage select --N 2048
+2026-10-18T20:54:12+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage direct --N 128 256 512 1024
+2026-10-18T20:59:45+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage select --N 4096 --fam strong
+2026-10-18T20:59:45+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage direct --N 2048
+2026-10-18T21:01:21+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage select --N 4096 --fam uniform
+2026-10-18T21:10:28+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage direct --N 4096
+2026-10-18T21:21:04+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage bench
+2026-10-18T21:40:56+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage confirm
+2026-10-18T22:08:34+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage direct --N 4096
+2026-10-18T22:08:34+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage verify --N 4096
+2026-10-18T22:08:34+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage verify --N 1024 2048
+2026-10-18T22:08:34+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage verify --N 128 256 512
+2026-10-18T22:39:06+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage scale
+2026-10-18T23:12:52+0000  cd benchmarks/method_A_clustered && python3 run_scaling.py --stage memory

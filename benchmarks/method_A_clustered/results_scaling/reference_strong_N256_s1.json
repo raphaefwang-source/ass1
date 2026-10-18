@@ -1,0 +1,34 @@
+{
+ "name": "strong_N256_s1",
+ "N": 256,
+ "L": 6.98864371789039,
+ "t_generate_s": null,
+ "nbytes": 4718592,
+ "sym": 0.0,
+ "lam_lb": 14.321870345754977,
+ "null_rel": 4.024779061606003e-16,
+ "norm2": 15.894589621057344,
+ "lam_min_all": -1.0663131241483824e-14,
+ "norm2_method": "dense eigvalsh",
+ "t_norm_s": 0.05743515199992544,
+ "provenance": {
+  "time": "2026-10-18T20:24:08+0000",
+  "command": "python3 run_scaling.py --stage refs --N 128 256 512 1024",
+  "git": {
+   "commit": "4f2b326fabf59f409078e00650f20c0e10b54699",
+   "dirty": true
+  },
+  "code_hash": "f2c3fc34c392dcde",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ }
+}

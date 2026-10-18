@@ -1,0 +1,9 @@
+[21:14:52] select uniform_N4096_s1 p=6: xi 0.510 kc 5.641 M 144 rc 8.267 n_img 3636479 cert 1.9979e-07 pred 670.96 ms
+[21:16:25] select uniform_N4096_s1 p=7: xi 0.575 kc 6.472 M 108 rc 7.305 n_img 2509842 cert 1.9952e-07 pred 365.90 ms
+[21:17:12] select uniform_N4096_s1 p=8: xi 0.680 kc 7.694 M 96 rc 6.186 n_img 1524792 cert 1.9906e-07 pred 272.11 ms
+[21:17:54] select uniform_N4096_s1 p=9: xi 0.720 kc 8.167 M 81 rc 5.810 n_img 1263450 cert 1.9980e-07 pred 241.12 ms
+[21:18:24] select uniform_N4096_s1 p=10: xi 0.825 kc 9.392 M 80 rc 5.031 n_img 820579 cert 1.9978e-07 pred 264.44 ms
+[21:18:49] select uniform_N4096_s1 p=11: xi 0.880 kc 9.791 M 75 rc 4.717 n_img 676439 cert 1.9791e-07 pred 304.92 ms
+[21:19:13] select uniform_N4096_s1 p=12: xi 0.935 kc 10.686 M 72 rc 4.456 n_img 569968 cert 1.9815e-07 pred 382.50 ms
+[21:19:13] select uniform_N4096_s1: model best p=9 (241.12 ms), boundary p False, xi boundary [], M cap [] (1072 s)
+[21:19:13] stage select done in 1072 s

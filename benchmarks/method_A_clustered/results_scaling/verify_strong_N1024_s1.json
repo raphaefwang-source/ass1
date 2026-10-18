@@ -1,0 +1,176 @@
+{
+ "rows": {
+  "p9_xi0.8050_kc8.362354_M50_rc5.152451": {
+   "key": "p9_xi0.8050_kc8.362354_M50_rc5.152451",
+   "E_op_dense": 3.633013940121953e-08,
+   "E_op_dense_asym_fro": 2.1461935097259363e-16,
+   "t_dense_s": 9.853840270000546,
+   "matrix_free_vs_dense": 1.1707337870415536e-15,
+   "E_op_arpack": 3.633013931961768e-08,
+   "arpack": {
+    "value": 7.122418205646508e-07,
+    "eig": -7.122418205646508e-07,
+    "residual": 1.2680221440839199e-14,
+    "matvecs": 25,
+    "tol": 1e-06,
+    "which": "LM",
+    "t_s": 1.3153627980000238
+   },
+   "E_op": 3.633013940121953e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9935390739990427e-07,
+   "passes": true,
+   "t_s": 11.661484324000412
+  },
+  "p9_xi0.7800_kc8.645264_M48_rc5.332939": {
+   "key": "p9_xi0.7800_kc8.645264_M48_rc5.332939",
+   "E_op_dense": 3.291283916622008e-08,
+   "E_op_dense_asym_fro": 2.0387007440467168e-16,
+   "t_dense_s": 8.314612602000125,
+   "matrix_free_vs_dense": 1.148601481650481e-15,
+   "E_op": 3.291283916622008e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9865939733187877e-07,
+   "passes": true,
+   "t_s": 8.72222982599942
+  },
+  "p9_xi0.7550_kc8.323906_M48_rc5.420829": {
+   "key": "p9_xi0.7550_kc8.323906_M48_rc5.420829",
+   "E_op_dense": 5.6942126935522686e-08,
+   "E_op_dense_asym_fro": 1.9153779485473255e-16,
+   "t_dense_s": 7.042488068000239,
+   "matrix_free_vs_dense": 1.1290699603725595e-15,
+   "E_op": 5.6942126935522686e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9763067556996558e-07,
+   "passes": true,
+   "t_s": 7.412192882999989
+  },
+  "p9_xi0.7800_kc8.089383_M50_rc5.241530": {
+   "key": "p9_xi0.7800_kc8.089383_M50_rc5.241530",
+   "E_op_dense": 6.004490386725088e-08,
+   "E_op_dense_asym_fro": 2.0236506640747495e-16,
+   "t_dense_s": 6.981076668999776,
+   "matrix_free_vs_dense": 1.1486598133645476e-15,
+   "E_op": 6.004490386725088e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9938433874568666e-07,
+   "passes": true,
+   "t_s": 7.324076387999412
+  },
+  "p10_xi0.8700_kc9.026454_M48_rc4.688015": {
+   "key": "p10_xi0.8700_kc9.026454_M48_rc4.688015",
+   "E_op_dense": 6.175063300947295e-08,
+   "E_op_dense_asym_fro": 2.3961451607716056e-16,
+   "t_dense_s": 9.507986247999725,
+   "matrix_free_vs_dense": 1.14982354037966e-15,
+   "E_op": 6.175063300947295e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9985691402586271e-07,
+   "passes": true,
+   "t_s": 9.885479703999408
+  },
+  "p8_xi0.7200_kc7.949383_M54_rc5.797009": {
+   "key": "p8_xi0.7200_kc7.949383_M54_rc5.797009",
+   "E_op_dense": 2.8147125475970154e-08,
+   "E_op_dense_asym_fro": 1.757043024162099e-16,
+   "t_dense_s": 6.603002665000531,
+   "matrix_free_vs_dense": 1.1428290784982069e-15,
+   "E_op": 2.8147125475970154e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9948700660568733e-07,
+   "passes": true,
+   "t_s": 6.973447744000623
+  },
+  "p11_xi0.9400_kc10.427979_M45_rc4.407956": {
+   "key": "p11_xi0.9400_kc10.427979_M45_rc4.407956",
+   "E_op_dense": 3.408666596298903e-08,
+   "E_op_dense_asym_fro": 2.6412875331268785e-16,
+   "t_dense_s": 11.355452802999935,
+   "matrix_free_vs_dense": 1.142045506912973e-15,
+   "E_op": 3.408666596298903e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9915737701649367e-07,
+   "passes": true,
+   "t_s": 11.843743884000105
+  },
+  "p12_xi0.9100_kc10.147354_M40_rc4.519709": {
+   "key": "p12_xi0.9100_kc10.147354_M40_rc4.519709",
+   "E_op_dense": 4.5326537752421115e-08,
+   "E_op_dense_asym_fro": 2.5480095597187633e-16,
+   "t_dense_s": 11.014314372000626,
+   "matrix_free_vs_dense": 1.134416499765673e-15,
+   "E_op": 4.5326537752421115e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9981998179092838e-07,
+   "passes": true,
+   "t_s": 11.908092828999543
+  },
+  "p7_xi0.6200_kc6.482402_M60_rc6.730131": {
+   "key": "p7_xi0.6200_kc6.482402_M60_rc6.730131",
+   "E_op_dense": 2.6106142869516125e-08,
+   "E_op_dense_asym_fro": 1.375846306678509e-16,
+   "t_dense_s": 5.4181967579997945,
+   "matrix_free_vs_dense": 1.1828356335141033e-15,
+   "E_op": 2.6106142869516125e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.9995600537223258e-07,
+   "passes": true,
+   "t_s": 6.020910049000122
+  },
+  "p6_xi0.5250_kc5.663701_M72_rc8.025360": {
+   "key": "p6_xi0.5250_kc5.663701_M72_rc8.025360",
+   "E_op_dense": 2.0475409015431237e-08,
+   "E_op_dense_asym_fro": 9.663607294723914e-17,
+   "t_dense_s": 5.097215312999651,
+   "matrix_free_vs_dense": 1.2767986316947911e-15,
+   "E_op": 2.0475409015431237e-08,
+   "E_op_method": "dense (eigvalsh of the symmetric part + antisymmetric Frobenius)",
+   "cert_rel": 1.999230218857494e-07,
+   "passes": true,
+   "t_s": 5.95531167199988
+  }
+ },
+ "optimum": {
+  "key": "p9_xi0.8050_kc8.362354_M50_rc5.152451",
+  "impl": "pairdiff",
+  "p": 9,
+  "xi": 0.805,
+  "kc": 8.36235404497897,
+  "M": 50,
+  "rc": 5.152451455706157,
+  "n_img": 226698,
+  "cert_rel": 1.9935390739990427e-07,
+  "T_pred_ms": 40.991774848915796,
+  "T_setup_ms": 120.32822699984536,
+  "T_action_median_ms": 41.16234100001748,
+  "T_action_q1_ms": 39.73187950055035,
+  "T_action_q3_ms": 44.038145750164404,
+  "T_action_min_ms": 36.98694099966815,
+  "T_action_max_ms": 56.294196000635566,
+  "T_action_n": 100,
+  "T_action_iqr_rel": 0.10461665068107341,
+  "E_op": 3.633013940121953e-08
+ },
+ "note": "measured optimum = fastest confirmed (candidate, implementation) whose E_op was verified <= tau; all candidates are certified (bound <= tau)",
+ "provenance": {
+  "time": "2026-10-18T22:10:02+0000",
+  "command": "python3 run_scaling.py --stage verify --N 1024 2048",
+  "git": {
+   "commit": "4f2b326fabf59f409078e00650f20c0e10b54699",
+   "dirty": true
+  },
+  "code_hash": "0292dc33bfb34084",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ }
+}

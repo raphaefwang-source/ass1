@@ -1,0 +1,200 @@
+{
+ "config": "strong_N2048_s1",
+ "N": 2048,
+ "L": 13.977287435780779,
+ "R_d": 26.625,
+ "pppm": {
+  "p": 9,
+  "xi": 0.78,
+  "rc": 5.352477891046895,
+  "kc": 8.264475988124,
+  "M": 64,
+  "eta": 0.5745242597140698,
+  "impl": "pairdiff",
+  "n_img": 555353,
+  "E_op": 2.937964031789651e-08,
+  "cert_rel": 1.9987472723458585e-07
+ },
+ "direct": {
+  "R_d": 26.625,
+  "E_ref": 9.244879127904466e-08,
+  "bound_rel_lam": 1.9464416810856853e-07,
+  "n_images": 60820160,
+  "n_pairs": 2096128
+ },
+ "blas": [
+  {
+   "user_api": "blas",
+   "internal_api": "openblas",
+   "num_threads": 1,
+   "prefix": "libscipy_openblas",
+   "filepath": "/usr/local/lib/python3.13/dist-packages/scipy.libs/libscipy_openblas-5f890258.so",
+   "version": "0.3.31.dev",
+   "threading_layer": "pthreads",
+   "architecture": "SkylakeX"
+  },
+  {
+   "user_api": "blas",
+   "internal_api": "openblas",
+   "num_threads": 1,
+   "prefix": "libscipy_openblas",
+   "filepath": "/usr/local/lib/python3.13/dist-packages/numpy.libs/libscipy_openblas64_-f48b354e.so",
+   "version": "0.3.34.106.0",
+   "threading_layer": "pthreads",
+   "architecture": "SkylakeX"
+  }
+ ],
+ "once_direct_geometry": {
+  "median_ms": 47.840635999818915,
+  "q1_ms": 30.603478000557516,
+  "q3_ms": 86.18093649965886,
+  "min_ms": 13.366320001296117,
+  "max_ms": 124.5212369994988,
+  "n": 3,
+  "iqr_rel": 1.1617207283638895
+ },
+ "once_pppm_mesh": {
+  "median_ms": 30.45785999893269,
+  "q1_ms": 29.525330999604193,
+  "q3_ms": 30.771306499445927,
+  "min_ms": 28.592802000275697,
+  "max_ms": 31.084752999959164,
+  "n": 3,
+  "iqr_rel": 0.040908176079520873
+ },
+ "setups": {
+  "direct": {
+   "median_ms": 17083.716294499936,
+   "q1_ms": 16810.78937375014,
+   "q3_ms": 17333.991457249795,
+   "min_ms": 16231.264536998424,
+   "max_ms": 18051.52606699994,
+   "n": 6,
+   "iqr_rel": 0.03062577687900954
+  },
+  "pppm_cached": {
+   "median_ms": 387.225279499944,
+   "q1_ms": 350.32346099978895,
+   "q3_ms": 405.2053607497328,
+   "min_ms": 338.8163710005756,
+   "max_ms": 417.31730100036657,
+   "n": 6,
+   "iqr_rel": 0.1417311902281209
+  },
+  "pppm_pairdiff": {
+   "median_ms": 310.2924469994832,
+   "q1_ms": 307.7899342492856,
+   "q3_ms": 318.9213542491416,
+   "min_ms": 304.83350699978473,
+   "max_ms": 325.95091899929685,
+   "n": 6,
+   "iqr_rel": 0.035873963763850644
+  }
+ },
+ "actions": {
+  "direct": {
+   "median_ms": 319.9139405005553,
+   "q1_ms": 311.65567074958744,
+   "q3_ms": 336.9570999998359,
+   "min_ms": 286.2965889999032,
+   "max_ms": 605.421997999656,
+   "n": 50,
+   "iqr_rel": 0.07908823607580351
+  },
+  "pppm_cached": {
+   "median_ms": 106.14551349954127,
+   "q1_ms": 102.03520500090235,
+   "q3_ms": 111.0744005000015,
+   "min_ms": 97.283557000992,
+   "max_ms": 130.43041399942013,
+   "n": 50,
+   "iqr_rel": 0.08515852626346017
+  },
+  "pppm_pairdiff": {
+   "median_ms": 102.53208500034816,
+   "q1_ms": 99.13700050128682,
+   "q3_ms": 105.82490475007944,
+   "min_ms": 92.4380159995053,
+   "max_ms": 125.82990900045843,
+   "n": 50,
+   "iqr_rel": 0.06522742855341243
+  }
+ },
+ "action_err_opnorm_10X": {
+  "direct": 7.562193598188814e-08,
+  "pppm_cached": 1.125391808825692e-08,
+  "pppm_pairdiff": 1.125391808474835e-08
+ },
+ "rounds_setup": 6,
+ "rounds_action": 50,
+ "summary": {
+  "T_setup_direct_ms": 17083.716294499936,
+  "T_action_direct_ms": 319.9139405005553,
+  "T_setup_pppm_ms": 310.2924469994832,
+  "T_action_pppm_ms": 102.53208500034816,
+  "action_ratio_direct_over_pppm": 3.1201349362930544,
+  "setup_ratio_direct_over_pppm": 55.05682287693064,
+  "total_direct_ms": {
+   "1": 17403.63023500049,
+   "10": 20282.85569950549,
+   "40": 29880.27391452215,
+   "80": 42676.83153454436
+  },
+  "total_pppm_ms": {
+   "1": 412.8245319998314,
+   "10": 1335.6132970029648,
+   "40": 4411.57584701341,
+   "80": 8512.859247027336
+  },
+  "total_ratio_direct_over_pppm": {
+   "1": 42.1574516191969,
+   "10": 15.18617383116729,
+   "40": 6.773152032453614,
+   "80": 5.013219447913106
+  },
+  "break_even_q": null,
+  "note": "ratios > 1: PPPM faster; break_even_q: q at which T_setup + q T_action are equal (None: no positive crossing)"
+ },
+ "provenance": {
+  "time": "2026-10-18T22:49:41+0000",
+  "command": "python3 run_scaling.py --stage scale",
+  "git": {
+   "commit": "4f2b326fabf59f409078e00650f20c0e10b54699",
+   "dirty": true
+  },
+  "code_hash": "0292dc33bfb34084",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "blas": [
+   {
+    "user_api": "blas",
+    "internal_api": "openblas",
+    "num_threads": 1,
+    "prefix": "libscipy_openblas",
+    "filepath": "/usr/local/lib/python3.13/dist-packages/scipy.libs/libscipy_openblas-5f890258.so",
+    "version": "0.3.31.dev",
+    "threading_layer": "pthreads",
+    "architecture": "SkylakeX"
+   },
+   {
+    "user_api": "blas",
+    "internal_api": "openblas",
+    "num_threads": 1,
+    "prefix": "libscipy_openblas",
+    "filepath": "/usr/local/lib/python3.13/dist-packages/numpy.libs/libscipy_openblas64_-f48b354e.so",
+    "version": "0.3.34.106.0",
+    "threading_layer": "pthreads",
+    "architecture": "SkylakeX"
+   }
+  ]
+ }
+}
