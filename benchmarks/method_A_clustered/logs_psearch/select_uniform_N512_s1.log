@@ -1,0 +1,9 @@
+[06:30:11] select uniform_N512_s1: coarse grid done (211 s)
+[06:31:30] select uniform_N512_s1 p=5: xi 0.405 kc 4.037 M 64 rc 10.374 n_img 896234 cert 2.000e-07 T_pred pairdiff 68.53 ms; alt M [72, 75]
+[06:31:36] select uniform_N512_s1 p=6: xi 0.525 kc 5.573 M 54 rc 8.032 n_img 416737 cert 1.999e-07 T_pred pairdiff 36.37 ms; alt M [60, 64]
+[06:31:38] select uniform_N512_s1 p=7: xi 0.650 kc 7.028 M 48 rc 6.499 n_img 220129 cert 1.994e-07 T_pred pairdiff 23.50 ms; alt M [50, 54]
+[06:31:39] select uniform_N512_s1 p=8: xi 0.775 kc 8.443 M 45 rc 5.401 n_img 126199 cert 1.990e-07 T_pred pairdiff 18.26 ms; alt M [48, 50]
+[06:31:40] select uniform_N512_s1 p=9: xi 0.840 kc 9.277 M 40 rc 4.977 n_img 98794 cert 1.992e-07 T_pred pairdiff 16.58 ms; alt M [45]
+[06:31:41] select uniform_N512_s1 p=10: xi 0.875 kc 9.082 M 36 rc 4.750 n_img 85882 cert 1.990e-07 T_pred pairdiff 15.13 ms; alt M [40]
+[06:31:41] select uniform_N512_s1: best predicted 15.13 ms; FFT term alone at M_cap = 128: 172.6 ms (301 s)
+[06:31:41] stage select done in 307 s

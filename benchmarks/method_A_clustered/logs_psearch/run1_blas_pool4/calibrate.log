@@ -1,0 +1,28 @@
+[05:53:40] calibrate strong_N512_s1: p=4 full actions done
+[05:53:45] calibrate strong_N512_s1: p=5 full actions done
+[05:53:50] calibrate strong_N512_s1: p=6 full actions done
+[05:53:54] calibrate strong_N512_s1: p=7 full actions done
+[05:54:00] calibrate strong_N512_s1: p=8 full actions done
+[05:54:06] calibrate strong_N512_s1: p=9 full actions done
+[05:54:12] calibrate strong_N512_s1: p=10 full actions done
+[05:54:20] calibrate strong_N512_s1: p=11 full actions done
+[05:54:20] cost model strong_N512_s1: rank impl pairdiff; C_R cached 5.908e-08 pairdiff 5.326e-08; C_F 5.401e-09; S_p [ms] 4:0.41 5:0.77 6:1.60 7:2.38 8:3.40 9:5.30 10:6.88 11:9.05; full rel err cached +0.06 -0.07 +0.01 -0.02 -0.01 +0.00 -0.00 +0.00 +0.02 -0.01 +0.01 -0.07 +0.03 -0.05 -0.01 +0.04 +0.03 -0.02 -0.03 +0.03 +0.09 +0.01 -0.08 -0.01 -0.06 +0.01 +0.00 -0.00 +0.02 -0.00 -0.01 +0.00 (83 s)
+[05:55:02] calibrate uniform_N512_s1: p=4 full actions done
+[05:55:07] calibrate uniform_N512_s1: p=5 full actions done
+[05:55:12] calibrate uniform_N512_s1: p=6 full actions done
+[05:55:17] calibrate uniform_N512_s1: p=7 full actions done
+[05:55:22] calibrate uniform_N512_s1: p=8 full actions done
+[05:55:29] calibrate uniform_N512_s1: p=9 full actions done
+[05:55:35] calibrate uniform_N512_s1: p=10 full actions done
+[05:55:43] calibrate uniform_N512_s1: p=11 full actions done
+[05:55:43] cost model uniform_N512_s1: rank impl pairdiff; C_R cached 5.678e-08 pairdiff 5.050e-08; C_F 5.409e-09; S_p [ms] 4:0.41 5:0.77 6:1.48 7:2.58 8:3.47 9:5.76 10:7.14 11:10.25; full rel err cached +0.14 -0.05 -0.01 +0.01 -0.01 +0.01 +0.00 -0.01 -0.00 +0.02 +0.00 -0.03 +0.04 +0.00 -0.00 -0.03 +0.10 +0.01 -0.01 -0.09 +0.03 -0.02 -0.04 +0.03 +0.05 +0.04 -0.12 -0.03 +0.12 -0.01 -0.02 +0.01 (83 s)
+[05:56:25] calibrate moderate_N512_s1: p=4 full actions done
+[05:56:30] calibrate moderate_N512_s1: p=5 full actions done
+[05:56:35] calibrate moderate_N512_s1: p=6 full actions done
+[05:56:41] calibrate moderate_N512_s1: p=7 full actions done
+[05:56:46] calibrate moderate_N512_s1: p=8 full actions done
+[05:56:52] calibrate moderate_N512_s1: p=9 full actions done
+[05:56:59] calibrate moderate_N512_s1: p=10 full actions done
+[05:57:06] calibrate moderate_N512_s1: p=11 full actions done
+[05:57:06] cost model moderate_N512_s1: rank impl pairdiff; C_R cached 5.980e-08 pairdiff 5.410e-08; C_F 5.429e-09; S_p [ms] 4:0.38 5:0.85 6:1.45 7:2.85 8:3.60 9:5.22 10:6.55 11:9.34; full rel err cached -0.00 +0.00 +0.01 -0.03 +0.14 +0.01 -0.02 -0.01 +0.09 -0.04 -0.11 +0.04 +0.15 -0.04 +0.01 -0.01 -0.00 +0.06 +0.00 -0.00 +0.02 -0.01 -0.02 +0.02 -0.01 +0.01 -0.02 +0.02 +0.01 -0.01 -0.10 +0.04 (83 s)
+[05:57:06] stage calibrate done in 250 s

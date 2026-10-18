@@ -1,0 +1,504 @@
+{
+ "config": "moderate_N512_s1",
+ "N": 512,
+ "L": 8.80513933038567,
+ "tau": 2e-07,
+ "R_meas": 25.75,
+ "R_cert": 27.0,
+ "pppm": {
+  "xi": 0.86,
+  "rc": 4.900101336195458,
+  "kc": 9.466729540678768,
+  "M": 40,
+  "p": 9,
+  "eta": 0.6633249580710799,
+  "impl": "pairdiff",
+  "stage1_E_op": 1.822451417336806e-08,
+  "stage1_cert_rel": 1.9917145024301489e-07
+ },
+ "blas": [
+  {
+   "user_api": "blas",
+   "internal_api": "openblas",
+   "num_threads": 1,
+   "prefix": "libscipy_openblas",
+   "filepath": "/usr/local/lib/python3.13/dist-packages/scipy.libs/libscipy_openblas-5f890258.so",
+   "version": "0.3.31.dev",
+   "threading_layer": "pthreads",
+   "architecture": "SkylakeX"
+  },
+  {
+   "user_api": "blas",
+   "internal_api": "openblas",
+   "num_threads": 1,
+   "prefix": "libscipy_openblas",
+   "filepath": "/usr/local/lib/python3.13/dist-packages/numpy.libs/libscipy_openblas64_-f48b354e.so",
+   "version": "0.3.34.106.0",
+   "threading_layer": "pthreads",
+   "architecture": "SkylakeX"
+  }
+ ],
+ "once_pppm_mesh_influence": {
+  "median_ms": 10.84481300040352,
+  "q1_ms": 10.251427999719454,
+  "q3_ms": 10.86364999991929,
+  "min_ms": 9.474968000176887,
+  "max_ms": 13.675748000423482,
+  "n": 5,
+  "iqr_rel": 0.05645297896580198
+ },
+ "once_reference_generation": {
+  "median_ms": 2719.109480000043,
+  "q1_ms": 2278.8278155003354,
+  "q3_ms": 2986.235185499936,
+  "min_ms": 1838.546151000628,
+  "max_ms": 3253.3608909998293,
+  "n": 3,
+  "iqr_rel": 0.26016141505254486
+ },
+ "reference_regenerated_vs_raw_maxabs": 0.0,
+ "setups": {
+  "direct_images_Rmeas": {
+   "median_ms": 6700.423852999847,
+   "q1_ms": 6338.328331749835,
+   "q3_ms": 7195.223852500476,
+   "min_ms": 5726.314507000097,
+   "max_ms": 11722.124635,
+   "n": 10,
+   "iqr_rel": 0.12788676351675868
+  },
+  "direct_images_Rcert": {
+   "median_ms": 9354.874294500405,
+   "q1_ms": 8567.799737000314,
+   "q3_ms": 10070.47721050003,
+   "min_ms": 8122.0903339999495,
+   "max_ms": 10832.533882000462,
+   "n": 10,
+   "iqr_rel": 0.16063042924939339
+  },
+  "direct_pairs_Rmeas": {
+   "median_ms": 2016.5451990001202,
+   "q1_ms": 1923.70817349979,
+   "q3_ms": 2140.554403749775,
+   "min_ms": 1808.7203349996344,
+   "max_ms": 2234.333637000418,
+   "n": 10,
+   "iqr_rel": 0.10753353327141159
+  },
+  "direct_pairs_Rcert": {
+   "median_ms": 2372.0187379999516,
+   "q1_ms": 2287.2944387499956,
+   "q3_ms": 2499.2927927494293,
+   "min_ms": 2235.6137440001476,
+   "max_ms": 3110.2002430006905,
+   "n": 10,
+   "iqr_rel": 0.08937465400386647
+  },
+  "dense_phys_Rmeas": {
+   "median_ms": 2047.761208999873,
+   "q1_ms": 1973.119751500235,
+   "q3_ms": 2114.2729539997163,
+   "min_ms": 1929.3217030008236,
+   "max_ms": 2625.3571990000637,
+   "n": 10,
+   "iqr_rel": 0.06893049925895438
+  },
+  "pppm_setup_cached": {
+   "median_ms": 59.02003250002963,
+   "q1_ms": 57.70644674998948,
+   "q3_ms": 62.732230000165146,
+   "min_ms": 56.15166200004751,
+   "max_ms": 70.35635099964566,
+   "n": 10,
+   "iqr_rel": 0.08515385433197009
+  },
+  "pppm_setup_pairdiff": {
+   "median_ms": 58.941589999903954,
+   "q1_ms": 55.6324539995785,
+   "q3_ms": 60.77674950029177,
+   "min_ms": 50.85762699945917,
+   "max_ms": 64.48124799953803,
+   "n": 10,
+   "iqr_rel": 0.08727785424047184
+  }
+ },
+ "setups_pppm_extra": {
+  "pppm_setup_cached": {
+   "median_ms": 61.28021449967491,
+   "q1_ms": 58.09801775012602,
+   "q3_ms": 63.55756799985102,
+   "min_ms": 55.38262299978669,
+   "max_ms": 86.38625300045533,
+   "n": 30,
+   "iqr_rel": 0.08909156559420922
+  },
+  "pppm_setup_pairdiff": {
+   "median_ms": 57.523070000115695,
+   "q1_ms": 54.960297750085374,
+   "q3_ms": 64.0719637501661,
+   "min_ms": 50.885921000372036,
+   "max_ms": 97.61544000048161,
+   "n": 30,
+   "iqr_rel": 0.15840020360635143
+  }
+ },
+ "n_images": {
+  "direct_images_Rmeas": 13685441,
+  "direct_images_Rcert": 15783473,
+  "direct_pairs_Rmeas": 13685441,
+  "direct_pairs_Rcert": 15783473,
+  "n_pairs": 130816,
+  "pppm_real_space": 97098,
+  "direct_pairs_n_shifts": {
+   "Rmeas": 251,
+   "Rcert": 251
+  }
+ },
+ "dense_phys": {
+  "shape": [
+   1536,
+   1536
+  ],
+  "dtype": "float64",
+  "MiB": 18.0
+ },
+ "accuracy": {
+  "direct_pairs_Rmeas": {
+   "max_err_opnorm": 1.7461040277067452e-07,
+   "max_err_rel_action": 2.752752982766063e-07,
+   "translation_null_opnorm": 0.0
+  },
+  "direct_pairs_Rcert": {
+   "max_err_opnorm": 7.635507542345377e-08,
+   "max_err_rel_action": 1.2033274419719668e-07,
+   "translation_null_opnorm": 0.0
+  },
+  "dense_phys_GEMV": {
+   "max_err_opnorm": 1.7461040279770233e-07,
+   "max_err_rel_action": 2.7527529831921596e-07,
+   "translation_null_opnorm": 4.903764394408586e-16
+  },
+  "pppm_cached": {
+   "max_err_opnorm": 9.220337762829264e-09,
+   "max_err_rel_action": 1.4334326710950453e-08,
+   "translation_null_opnorm": 7.499020545325918e-18
+  },
+  "pppm_pairdiff": {
+   "max_err_opnorm": 9.220337760500696e-09,
+   "max_err_rel_action": 1.4334326707330363e-08,
+   "translation_null_opnorm": 0.0
+  },
+  "direct_images_Rmeas": {
+   "max_err_opnorm": 1.746104027840111e-07,
+   "max_err_rel_action": 2.752752982976316e-07,
+   "translation_null_opnorm": 0.0
+  },
+  "direct_images_Rcert": {
+   "max_err_opnorm": 7.635507542577702e-08,
+   "max_err_rel_action": 1.203327440877562e-07,
+   "translation_null_opnorm": 0.0
+  }
+ },
+ "E_op": {
+  "dense_phys_Rmeas": 1.8182150604839e-07,
+  "dense_phys_Rcert": 7.966592774625775e-08,
+  "pppm_Gamma_h": 1.822451417336806e-08
+ },
+ "identity": {
+  "pair_tensors_images_vs_streamed_maxrel": 8.279708832434613e-16,
+  "n_images_equal": true,
+  "direct_images_vs_pairs": 1.7600113387731757e-15,
+  "dense_phys_vs_pairs": 1.0631576388839073e-15,
+  "pppm_matrix_free_vs_dense_Gamma_h": 9.092759251826734e-16
+ },
+ "norm2_ref": 16.821859530085536,
+ "actions_fast": {
+  "direct_pairs_Rmeas": {
+   "median_ms": 11.423062999710965,
+   "q1_ms": 10.965689999693495,
+   "q3_ms": 12.279357750230702,
+   "min_ms": 9.904086999995343,
+   "max_ms": 20.46126700042805,
+   "n": 200,
+   "iqr_rel": 0.11500135739165981
+  },
+  "direct_pairs_Rcert": {
+   "median_ms": 11.323954499857791,
+   "q1_ms": 10.89439924976432,
+   "q3_ms": 12.166297500016299,
+   "min_ms": 9.939015999407275,
+   "max_ms": 16.593923999607796,
+   "n": 200,
+   "iqr_rel": 0.11231926534745014
+  },
+  "dense_phys_GEMV": {
+   "median_ms": 1.3427959997898142,
+   "q1_ms": 1.2962812502337329,
+   "q3_ms": 1.4120074997663323,
+   "min_ms": 1.1861279999720864,
+   "max_ms": 2.031507000538113,
+   "n": 200,
+   "iqr_rel": 0.0861830460849704
+  },
+  "dense_ref_GEMV": {
+   "median_ms": 1.3508054998965235,
+   "q1_ms": 1.308393499812155,
+   "q3_ms": 1.4148462500997994,
+   "min_ms": 1.230279000083101,
+   "max_ms": 2.195213000049989,
+   "n": 200,
+   "iqr_rel": 0.0788068676769521
+  },
+  "pppm_cached": {
+   "median_ms": 16.75422800008164,
+   "q1_ms": 15.995243249790292,
+   "q3_ms": 17.84320149999985,
+   "min_ms": 14.503901000352926,
+   "max_ms": 28.820862999964447,
+   "n": 200,
+   "iqr_rel": 0.11029802448674768
+  },
+  "pppm_pairdiff": {
+   "median_ms": 16.0099165000247,
+   "q1_ms": 15.217090500300401,
+   "q3_ms": 17.219975749867444,
+   "min_ms": 13.766531999863219,
+   "max_ms": 34.423350999531976,
+   "n": 200,
+   "iqr_rel": 0.12510279173310826
+  }
+ },
+ "actions_slow": {
+  "direct_pairs_Rmeas": {
+   "median_ms": 13.027261499701126,
+   "q1_ms": 11.48595900053806,
+   "q3_ms": 13.292160999981206,
+   "min_ms": 10.536815000705246,
+   "max_ms": 25.0493160001497,
+   "n": 30,
+   "iqr_rel": 0.13864786543853325
+  },
+  "direct_pairs_Rcert": {
+   "median_ms": 12.462831999982882,
+   "q1_ms": 11.512146500308518,
+   "q3_ms": 13.50016649985264,
+   "min_ms": 9.94973500019114,
+   "max_ms": 16.290463000586897,
+   "n": 30,
+   "iqr_rel": 0.1595159109540153
+  },
+  "dense_phys_GEMV": {
+   "median_ms": 1.3797965002595447,
+   "q1_ms": 1.3403454997842346,
+   "q3_ms": 1.421000999471289,
+   "min_ms": 1.2638100006370223,
+   "max_ms": 1.6454520000479533,
+   "n": 30,
+   "iqr_rel": 0.05845463419560997
+  },
+  "dense_ref_GEMV": {
+   "median_ms": 1.401519499722781,
+   "q1_ms": 1.3589177497124183,
+   "q3_ms": 1.4954825003314909,
+   "min_ms": 1.3027100003455416,
+   "max_ms": 1.6820649998408044,
+   "n": 30,
+   "iqr_rel": 0.0974404927267048
+  },
+  "pppm_cached": {
+   "median_ms": 18.468645499524428,
+   "q1_ms": 16.694508999535174,
+   "q3_ms": 19.57139925048068,
+   "min_ms": 14.651557999968645,
+   "max_ms": 25.770476000616327,
+   "n": 30,
+   "iqr_rel": 0.15577158871881472
+  },
+  "pppm_pairdiff": {
+   "median_ms": 17.626463499709644,
+   "q1_ms": 16.28308900058073,
+   "q3_ms": 18.456183750231503,
+   "min_ms": 14.65618599922891,
+   "max_ms": 23.801966999599244,
+   "n": 30,
+   "iqr_rel": 0.12328591890747508
+  },
+  "direct_images_Rmeas": {
+   "median_ms": 1203.6550404995978,
+   "q1_ms": 1131.461524000315,
+   "q3_ms": 1267.190945750599,
+   "min_ms": 1077.9143100007786,
+   "max_ms": 1350.1273709998713,
+   "n": 30,
+   "iqr_rel": 0.1127643861267321
+  },
+  "direct_images_Rcert": {
+   "median_ms": 1361.995412500164,
+   "q1_ms": 1333.4242580003774,
+   "q3_ms": 1403.164447999643,
+   "min_ms": 1269.8775980006758,
+   "max_ms": 1616.5304910000486,
+   "n": 30,
+   "iqr_rel": 0.05120442356795175
+  }
+ },
+ "summary": {
+  "direct_images_Rmeas": {
+   "T_setup_ms": 6700.423852999847,
+   "T_action_ms": 1203.6550404995978,
+   "action_speedup_vs_pppm": 75.18184373402202,
+   "setup_ratio_vs_pppm": 113.6790482409919,
+   "total_ms": {
+    "1": 7904.078893499445,
+    "10": 18736.974257995826,
+    "40": 54846.62547298376,
+    "80": 102992.82709296767
+   },
+   "total_ratio_vs_pppm": {
+    "1": 105.4559042586685,
+    "10": 85.54104124587641,
+    "40": 78.42646312126328,
+    "80": 76.87552688525757
+   },
+   "break_even_q_vs_pppm": null
+  },
+  "direct_images_Rcert": {
+   "T_setup_ms": 9354.874294500405,
+   "T_action_ms": 1361.995412500164,
+   "action_speedup_vs_pppm": 85.07198725852585,
+   "setup_ratio_vs_pppm": 158.71431860789045,
+   "total_ms": {
+    "1": 10716.86970700057,
+    "10": 22974.828419502046,
+    "40": 63834.69079450697,
+    "80": 118314.50729451353
+   },
+   "total_ratio_vs_pppm": {
+    "1": 142.98404671840413,
+    "10": 104.88837303124805,
+    "40": 91.27870639769175,
+    "80": 88.31187902265494
+   },
+   "break_even_q_vs_pppm": null
+  },
+  "direct_pairs_Rmeas": {
+   "T_setup_ms": 2016.5451990001202,
+   "T_action_ms": 11.423062999710965,
+   "action_speedup_vs_pppm": 0.7134992240398843,
+   "setup_ratio_vs_pppm": 34.212602663134916,
+   "total_ms": {
+    "1": 2027.9682619998312,
+    "10": 2130.77582899723,
+    "40": 2473.4677189885588,
+    "80": 2930.3902389769974
+   },
+   "total_ratio_vs_pppm": {
+    "1": 27.05707138790815,
+    "10": 9.727759699311488,
+    "40": 3.53686891713045,
+    "80": 2.1872910954995457
+   },
+   "break_even_q_vs_pppm": 426.78572770338485
+  },
+  "direct_pairs_Rcert": {
+   "T_setup_ms": 2372.0187379999516,
+   "T_action_ms": 11.323954499857791,
+   "action_speedup_vs_pppm": 0.7073087795205127,
+   "setup_ratio_vs_pppm": 40.24354853684498,
+   "total_ms": {
+    "1": 2383.3426924998093,
+    "10": 2485.2582829985295,
+    "40": 2824.976917994263,
+    "80": 3277.935097988575
+   },
+   "total_ratio_vs_pppm": {
+    "1": 31.79846281678245,
+    "10": 11.346099875326017,
+    "40": 4.039500081671008,
+    "80": 2.4467042498608733
+   },
+   "break_even_q_vs_pppm": 493.6184177160757
+  },
+  "dense_phys_Rmeas": {
+   "T_setup_ms": 2047.761208999873,
+   "T_action_ms": 1.3427959997898142,
+   "action_speedup_vs_pppm": 0.08387276721822644,
+   "setup_ratio_vs_pppm": 34.742211891521926,
+   "total_ms": {
+    "1": 2049.1040049996627,
+    "10": 2061.189168997771,
+    "40": 2101.4730489914655,
+    "80": 2155.184888983058
+   },
+   "total_ratio_vs_pppm": {
+    "1": 27.339063625113567,
+    "10": 9.410071513843853,
+    "40": 3.0049451020143474,
+    "80": 1.6086651716644702
+   },
+   "break_even_q_vs_pppm": 135.59714184990293
+  },
+  "pppm": {
+   "T_setup_ms": 58.941589999903954,
+   "T_action_ms": 16.0099165000247,
+   "action_speedup_vs_pppm": 1.0,
+   "setup_ratio_vs_pppm": 1.0,
+   "total_ms": {
+    "1": 74.95150649992866,
+    "10": 219.04075500015097,
+    "40": 699.338250000892,
+    "80": 1339.73491000188
+   },
+   "total_ratio_vs_pppm": {
+    "1": 1.0,
+    "10": 1.0,
+    "40": 1.0,
+    "80": 1.0
+   },
+   "break_even_q_vs_pppm": null
+  }
+ },
+ "summary_note": "action_speedup_vs_pppm = T_action(method)/T_action(PPPM): > 1 means PPPM is faster; break_even_q_vs_pppm: number of actions per configuration at which T_setup + q T_action of the method equals that of PPPM",
+ "provenance": {
+  "time": "2026-10-18T07:25:08+0000",
+  "command": "python3 run_direct512.py --stage bench",
+  "git": {
+   "commit": "c0d77cd340d03839fa1d234e301715f7a89e079b",
+   "dirty": true
+  },
+  "code_hash": "c13747b41f70b433",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "blas": [
+   {
+    "user_api": "blas",
+    "internal_api": "openblas",
+    "num_threads": 1,
+    "prefix": "libscipy_openblas",
+    "filepath": "/usr/local/lib/python3.13/dist-packages/scipy.libs/libscipy_openblas-5f890258.so",
+    "version": "0.3.31.dev",
+    "threading_layer": "pthreads",
+    "architecture": "SkylakeX"
+   },
+   {
+    "user_api": "blas",
+    "internal_api": "openblas",
+    "num_threads": 1,
+    "prefix": "libscipy_openblas",
+    "filepath": "/usr/local/lib/python3.13/dist-packages/numpy.libs/libscipy_openblas64_-f48b354e.so",
+    "version": "0.3.34.106.0",
+    "threading_layer": "pthreads",
+    "architecture": "SkylakeX"
+   }
+  ]
+ }
+}

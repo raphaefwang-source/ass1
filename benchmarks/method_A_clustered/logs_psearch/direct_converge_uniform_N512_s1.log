@@ -1,0 +1,16 @@
+[07:00:27] converge uniform_N512_s1: annulus tensors up to R_max 42.0 (59467236 images, 29 s)
+[07:00:30]   R= 12.00 n_img=  1387440 E_ref=1.580e-03 E_conv=1.580e-03 bound/Lambda=3.575e-03
+[07:00:46]   R= 14.00 n_img=  2201923 E_ref=5.139e-04 E_conv=5.139e-04 bound/Lambda=1.020e-03
+[07:01:02]   R= 16.00 n_img=  3287812 E_ref=1.322e-04 E_conv=1.322e-04 bound/Lambda=2.826e-04
+[07:01:19]   R= 18.00 n_img=  4681062 E_ref=3.493e-05 E_conv=3.493e-05 bound/Lambda=7.755e-05
+[07:01:35]   R= 20.00 n_img=  6420344 E_ref=9.347e-06 E_conv=9.347e-06 bound/Lambda=2.098e-05
+[07:01:51]   R= 22.00 n_img=  8544858 E_ref=2.656e-06 E_conv=2.656e-06 bound/Lambda=5.646e-06
+[07:02:07]   R= 24.00 n_img= 11095860 E_ref=6.986e-07 E_conv=6.986e-07 bound/Lambda=1.505e-06
+[07:02:24]   R= 26.00 n_img= 14109855 E_ref=1.766e-07 E_conv=1.766e-07 bound/Lambda=4.001e-07
+[07:02:40]   R= 28.00 n_img= 17620606 E_ref=4.776e-08 E_conv=4.775e-08 bound/Lambda=1.062e-07
+[07:02:56]   R= 30.00 n_img= 21670289 E_ref=1.227e-08 E_conv=1.227e-08 bound/Lambda=2.811e-08
+[07:03:13]   R= 32.00 n_img= 26301536 E_ref=3.411e-09 E_conv=3.408e-09 bound/Lambda=7.725e-09
+[07:03:29]   R= 40.00 n_img= 51371459 E_ref=1.528e-11 E_conv=1.144e-11 bound/Lambda=4.594e-10
+[07:03:33]   R= 42.00 n_img= 59467236 E_ref=3.842e-12 E_conv=0.000e+00 bound/Lambda=4.346e-10
+[07:03:33] converge uniform_N512_s1: R_meas 26.0 (E_ref 1.766e-07, E_conv 1.766e-07), R_cert 27.25 (bound 1.746e-07); Gamma_D(R_max) vs Gamma_ref 3.84e-12 (215 s)
+[07:03:33] stage converge done in 216 s

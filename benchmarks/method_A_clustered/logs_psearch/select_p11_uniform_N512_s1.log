@@ -1,0 +1,4 @@
+[06:33:14] select uniform_N512_s1: coarse grid done (60 s)
+[06:33:20] select uniform_N512_s1 p=11: xi 0.970 kc 10.751 M 36 rc 4.284 n_img 63002 cert 1.991e-07 T_pred pairdiff 17.20 ms; alt M [40]
+[06:33:20] select uniform_N512_s1: best predicted 15.13 ms; FFT term alone at M_cap = 128: 172.6 ms (301 s)
+[06:33:20] stage select done in 71 s

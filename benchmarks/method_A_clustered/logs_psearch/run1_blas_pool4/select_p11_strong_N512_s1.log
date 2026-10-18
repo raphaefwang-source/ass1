@@ -1,0 +1,4 @@
+[06:04:31] select strong_N512_s1: coarse grid done (64 s)
+[06:04:39] select strong_N512_s1 p=11: xi 0.975 kc 10.798 M 36 rc 4.228 n_img 61728 cert 1.989e-07 T_pred pairdiff 15.89 ms; alt M [40]
+[06:04:39] select strong_N512_s1: best predicted 14.50 ms; FFT term alone at M_cap = 128: 164.9 ms (332 s)
+[06:04:39] stage select done in 78 s

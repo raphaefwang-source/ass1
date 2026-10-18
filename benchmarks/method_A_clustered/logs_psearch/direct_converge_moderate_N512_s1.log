@@ -1,0 +1,16 @@
+[07:00:26] converge moderate_N512_s1: annulus tensors up to R_max 42.0 (59463164 images, 29 s)
+[07:00:30]   R= 12.00 n_img=  1392848 E_ref=1.373e-03 E_conv=1.373e-03 bound/Lambda=3.058e-03
+[07:00:46]   R= 14.00 n_img=  2210865 E_ref=4.445e-04 E_conv=4.445e-04 bound/Lambda=8.994e-04
+[07:01:02]   R= 16.00 n_img=  3283971 E_ref=1.152e-04 E_conv=1.152e-04 bound/Lambda=2.432e-04
+[07:01:18]   R= 18.00 n_img=  4666444 E_ref=3.082e-05 E_conv=3.082e-05 bound/Lambda=6.760e-05
+[07:01:35]   R= 20.00 n_img=  6422269 E_ref=8.130e-06 E_conv=8.130e-06 bound/Lambda=1.793e-05
+[07:01:50]   R= 22.00 n_img=  8564907 E_ref=2.323e-06 E_conv=2.323e-06 bound/Lambda=4.897e-06
+[07:02:07]   R= 24.00 n_img= 11095611 E_ref=6.021e-07 E_conv=6.021e-07 bound/Lambda=1.293e-06
+[07:02:23]   R= 26.00 n_img= 14088560 E_ref=1.542e-07 E_conv=1.542e-07 bound/Lambda=3.433e-07
+[07:02:40]   R= 28.00 n_img= 17618063 E_ref=4.186e-08 E_conv=4.185e-08 bound/Lambda=9.232e-08
+[07:02:55]   R= 30.00 n_img= 21687889 E_ref=1.061e-08 E_conv=1.061e-08 bound/Lambda=2.380e-08
+[07:03:12]   R= 32.00 n_img= 26312973 E_ref=2.945e-09 E_conv=2.942e-09 bound/Lambda=6.680e-09
+[07:03:27]   R= 40.00 n_img= 51405309 E_ref=1.321e-11 E_conv=9.894e-12 bound/Lambda=3.873e-10
+[07:03:31]   R= 42.00 n_img= 59463164 E_ref=3.325e-12 E_conv=0.000e+00 bound/Lambda=3.660e-10
+[07:03:31] converge moderate_N512_s1: R_meas 25.75 (E_ref 1.818e-07, E_conv 1.818e-07), R_cert 27.0 (bound 1.783e-07); Gamma_D(R_max) vs Gamma_ref 3.32e-12 (214 s)
+[07:03:31] stage converge done in 214 s

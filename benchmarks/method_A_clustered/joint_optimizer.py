@@ -24,6 +24,10 @@ Mesh bounds (both rigorous for the existing B-spline PPPM, see test_alias_bound.
 
 Approaches: "A" fixed 33/33/33/1 split with the orig bound (the previous benchmark), "A_hz" the same split with the hz
 bound (diagnostic, separates the two effects), "B" joint with orig, "C" joint with hz.
+
+Search over p (run_psearch_dense512.py): approach "C" evaluated separately for every order p with a per-p cost model
+(PCostModel, recalibrated per p and per action implementation); the eps_S curves of one xi are shared by all p
+(they do not depend on p), and only the hz mesh variant is tabulated. The defaults below reproduce results_joint/.
 """
 import numpy as np
 from scipy import special
@@ -78,7 +82,7 @@ def mesh_bound_one(fs, kc, M, p, rho, variant):
 class XiTables:
     """eps_F on shells and eps_mesh, eps_quad on the (shell, M) grid for one xi and box (configuration independent)."""
 
-    def __init__(self, xi, L, N, p, lam_min, tau=TAU):
+    def __init__(self, xi, L, N, p, lam_min, tau=TAU, variants=("orig", "hz"), M_cap=M_CAP):
         self.xi, self.L, self.N, self.p = float(xi), float(L), N, p
         self.rho = N / L ** 3
         fs = self.fs = FourierShells(xi, L)
@@ -100,10 +104,10 @@ class XiTables:
         self.pos = np.searchsorted(n2, self.shell_n, side="right")          # modes with |m|^2 <= shell n
         kn = fs.knorm_of_n[n2]
         dkn = self._quad_dknorm(n2)
-        self.Ms = np.array(smooth_numbers(2 * self.mc[0] + 1, M_CAP))
+        self.Ms = np.array(smooth_numbers(2 * self.mc[0] + 1, M_cap))
         nS, nM = len(self.kc), len(self.Ms)
-        self.eps_mesh = {v: np.full((nS, nM), np.inf) for v in ("orig", "hz")}
-        self.eps_quad = {v: np.full((nS, nM), np.inf) for v in ("orig", "hz")}
+        self.eps_mesh = {v: np.full((nS, nM), np.inf) for v in variants}
+        self.eps_quad = {v: np.full((nS, nM), np.inf) for v in variants}
         am = np.abs(mv)
         for jM, M in enumerate(self.Ms):
             valid = (self.mc < M / 2) & (self.kc * (L / M) / np.pi < 1)
@@ -111,7 +115,7 @@ class XiTables:
                 continue
             mmax = am.max()
             sig = sigma_hz(np.arange(mmax + 1) / M, p)
-            for v in ("orig", "hz"):
+            for v in variants:
                 if v == "hz":
                     a = np.prod(1 + sig[am], axis=1) - 1
                 else:
@@ -191,15 +195,53 @@ class RealSpaceCurve:
         return hi
 
 
+# ----------------------------------------------------------------------------- per-p cost model
+class PCostModel:
+    """Cost model recalibrated per assignment order p (one CostModel-like table per p):
+        T(p) = C_R N_img + [S_p + G_p M^3] + C_F M^3 log M^3 + C_0(p)
+    spread/gather is measured per p at the benchmark N (S_p) with its mesh-size dependence G_p M^3 (grid allocation and
+    zeroing in the scatter); C_0(p) holds the component intercepts and the per-p glue of the full action."""
+
+    def __init__(self, C_R, C_F, per_p, **extra):
+        self.C_R, self.C_F = float(C_R), float(C_F)
+        self.per_p = {int(k): dict(v) for k, v in per_p.items()}
+        self.extra = extra
+
+    def parts(self, n_img, N, p, M):
+        q = self.per_p[int(p)]
+        M = np.asarray(M, float) if np.ndim(M) else float(M)
+        return dict(real=self.C_R * n_img, spread_gather=q["S"] + q["G"] * M ** 3,
+                    fft=self.C_F * M ** 3 * np.log(M ** 3), overhead=q["C_0"])
+
+    def predict(self, n_img, N, p, M):
+        return float(sum(self.parts(n_img, N, p, M).values()))
+
+    def as_dict(self):
+        return dict(C_R=self.C_R, C_F=self.C_F, per_p={str(k): v for k, v in self.per_p.items()}, **self.extra)
+
+    @classmethod
+    def from_dict(cls, d):
+        d = dict(d)
+        return cls(d.pop("C_R"), d.pop("C_F"), d.pop("per_p"), **d)
+
+
+def predict_vec(cm, nimg, N, p, Ms):
+    """sum of the model parts (same operation order as the inline formula of the previous round)."""
+    return sum(cm.parts(nimg, N, p, Ms).values())
+
+
 # ----------------------------------------------------------------------------- one xi, all approaches
-def evaluate_xi(xi, seeds, L, N, cm, p=C.P_ORDER, tau=TAU, topk=6):
+def evaluate_xi(xi, seeds, L, N, cm, p=C.P_ORDER, tau=TAU, topk=6, approaches=APPROACHES, curves=None,
+                variants=("orig", "hz"), M_cap=M_CAP):
     """seeds: list of dict(name, rst, lam_lb). Returns {approach: dict(best=<exact record>, top=[light records])}
-    and the shared tables (for finalising other candidates of the same xi later)."""
+    and the shared tables (for finalising other candidates of the same xi later). curves (the eps_S curves of this xi,
+    independent of p) can be passed in to share them between orders."""
     lam = np.array([s["lam_lb"] for s in seeds])
-    tab = XiTables(xi, L, N, p, lam.min(), tau)
-    curves = [RealSpaceCurve(s["rst"], xi) for s in seeds]
+    tab = XiTables(xi, L, N, p, lam.min(), tau, variants=variants, M_cap=M_cap)
+    if curves is None:
+        curves = [RealSpaceCurve(s["rst"], xi) for s in seeds]
     out = {}
-    for ap in APPROACHES:
+    for ap in approaches:
         v = VARIANT[ap]
         eM, eQ = tab.eps_mesh[v], tab.eps_quad[v]
         if ap in ("A", "A_hz"):
@@ -226,7 +268,7 @@ def evaluate_xi(xi, seeds, L, N, cm, p=C.P_ORDER, tau=TAU, topk=6):
         rc_c = curves[0].rc[np.minimum(gs, G_RC - 1)].max(axis=0)
         nimg = np.mean([np.searchsorted(sd["rst"].r2, rc_c ** 2, side="right") for sd in seeds], axis=0)
         Ms = tab.Ms[jj].astype(float)
-        T = np.where(feas, cm.C_R * nimg + cm.C_P * N * p ** 3 + cm.C_F * Ms ** 3 * np.log(Ms ** 3) + cm.C_0, np.inf)
+        T = np.where(feas, predict_vec(cm, nimg, N, p, Ms), np.inf)
         order = [o for o in np.argsort(T)[:topk] if np.isfinite(T[o])]
         top = [dict(xi=float(xi), kc=float(tab.kc[ii[o]]), M=int(tab.Ms[jj[o]]), rc_grid=float(rc_c[o]),
                     T_pred_grid=float(T[o]), i=int(ii[o]), j=int(jj[o]), B=Bs[:, o].tolist(), g=gs[:, o].tolist())
