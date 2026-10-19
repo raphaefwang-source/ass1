@@ -1,68 +1,88 @@
-% Experiment 1 (Model A): spatial accuracy validation.  Numbers from validation_exp1/results (see report_exp1.md).
-\subsection{Spatial accuracy of the periodic Ewald--PPPM operator}\label{sec:exp1-spatial}
+% Experiment 1 (Model A): accuracy validation of the periodic Ewald--PPPM operator.
+% Numbers from validation_exp1/results (see report_exp1.md and results/tables_exp1.md).
+\subsection{Experiment 1: accuracy of the periodic Ewald--PPPM operator}\label{sec:exp1}
 
-All tests use the screened longitudinal kernel $K(r)=c\,e^{-\kappa r}r^{-1}\hat r\hat r^{\mathsf T}$ with
-$\kappa=0.7$, density $\rho=0.75$, the full periodic lattice sum with the $k=0$ Fourier term retained, and the
-Gaussian-scale split $K=K_S+K_L$ at $s=\xi^2$. The reference $\Gamma_{\rm ref}$ is the lattice-summed operator (direct near images,
-Chebyshev-fitted far images, relative tolerance $10^{-13}$); on all 19 configurations it agrees with an independent, unsplit direct image sum to radius
-$55$ to within $2.1$--$4.2\times10^{-15}$ in relative spectral norm, which sets the reference floor. Uniform,
-moderately clustered and strongly clustered configurations with $d_{\min}=0.9$ are used, three independent seeds
-per family.
+All tests use the screened longitudinal kernel $K(\mathbf r)=c\,e^{-\kappa r}r^{-1}\hat{\mathbf r}\hat{\mathbf r}^{\mathsf T}$
+with $\kappa=0.7$ and density $\rho=0.75$. The operator is the full periodic lattice sum with the $k=0$ Fourier term
+retained, split at $s=\xi^2$ into $K=K_S+K_L$.
+The reference $\Gamma_{\rm ref}$ is the lattice-summed operator: near images are summed directly, far images by a
+Chebyshev fit, with relative tolerance $10^{-13}$. On all 19 configurations it agrees with an independent, unsplit
+direct image sum to radius $55$ to within $2.1$--$4.2\times10^{-15}$ in relative spectral norm. For $N=512$ it agrees
+with a stricter lattice sum (tolerance $10^{-15}$) to $2.7\times10^{-15}$, and on every test vector the two references
+differ by at most $1.3\times10^{-14}$ relative to $\|\Gamma_{\rm ref}X\|_2$.
+We use uniform, moderately clustered and strongly clustered configurations with periodic minimum separation $0.9$
+(\cref{fig:exp1}(a)): three independent seeds per family at $N=128$ and $256$, and the strongly clustered $N=512$
+configuration on which the production parameters were optimised.
 
-\paragraph{Split identity}
-The three radial factors are evaluated independently: $\theta$ analytically, $\theta_S$ by its closed form, and
-$\theta_L$ by its own $s$-quadrature, so $K_L$ is never formed as $K-K_S$. Over all pair images $|d|\le8$ of the
-nine $N=256$ configurations and $\xi\in[0.5,1.5]$, the relative Frobenius error of $K-K_S-K_L$ is at most
-$3.0\times10^{-16}$ and the largest single-pair error is $1.9\times10^{-15}$
-(\cref{fig:exp1}(a)). A radial sweep down to $r=10^{-6}$ stays below $1.5\times10^{-15}$, and all three factors
-agree with 50-digit values to $\le1.0\times10^{-15}$ relative to $\theta$. By contrast, the subtraction
-$\theta-\theta_S$ loses up to $9\times10^{-3}$ of $\theta_L$ at $r=10^{-4}$, which is why the long-range part is
-never evaluated in real space by subtraction.
+\paragraph{Splitting identity}
+The three radial factors are evaluated independently: $\theta$ analytically, $\theta_S$ in closed form, and $\theta_L$
+by its own $s$-quadrature, so $K_L$ is never formed as $K-K_S$.
+We take all pair images with $|\mathbf d|\le8$ of the nine $N=256$ configurations and $\xi\in[0.5,1.5]$. The relative
+Frobenius error of $K-K_S-K_L$ is at most $3.0\times10^{-16}$, and the largest single-pair error is
+$1.9\times10^{-15}$ (\cref{fig:exp1}(b)).
+A radial sweep down to $r=10^{-6}$ stays below $1.5\times10^{-15}$, and all three factors agree with 50-digit values to
+$1.0\times10^{-15}$ relative to $\theta$. By contrast, the subtraction $\theta-\theta_S$ would lose up to
+$9\times10^{-3}$ of $\theta_L$ at $r=10^{-4}$.
 
 \paragraph{Short-range cutoff}
-With $\xi=0.85$ the long-range operator is replaced by its mesh-free Fourier lattice sum (certified tail
-$\le1.7\times10^{-17}$), so the error $E_S=\|\Gamma_S^{r_c}+\Gamma_L^{\rm ex}-\Gamma_{\rm ref}\|_2/
-\|\Gamma_{\rm ref}\|_2$ contains no mesh contribution. For $s=\xi r_c\in[2,6.6]$, least-squares fits
-$\log E_S=a-cs^2$ on $s\in[2.0,5.3]$ give $c=0.981$--$0.987$ for the nine configurations; we report $c$ as an
-observed decay constant, not a universal exponent. The certified real-space bound exceeds the observed error by a
-factor $1.4$--$1.9$. Beyond $s\approx5.8$ the error reaches $3.5$--$4.1\times10^{-15}$
-($1.8$--$2.4\times10^{-15}$ against the direct sum), which confirms the split identity at the operator level.
-No cutoff step left the neighbour set unchanged, and all points are shown.
-
-\paragraph{Degree convergence}
-The discrete degree $D_i^h=\sum_{j\ne i}K^h_{ij}$ is the production FFT degree with the mesh self response
-$W_{ii}$ removed; it matches the diagonal blocks of the assembled $\Gamma_h$ to $5.7\times10^{-16}$. Omitting the
-self-response correction would produce an apparent error of up to $1.6\times10^{-3}$. At fixed $(\xi,r_c,k_c)$ only
-the grid size $M$ is varied, and every point satisfies $m_c<M/2$ and $\eta<1$; Nyquist-violating grids are reported
-as invalid. The mesh-transfer error against the exact truncated Fourier degree converges with fitted rates
-$4.1$, $6.4$, $8.8$ and $10.2$--$10.4$ for $p=4,6,8,9$, uniformly in $N\in\{128,256,512\}$ and in the configuration
-family. With the production cutoffs ($r_c=4.8878$, $k_c\le9.3585$), the complete error levels off at the
-fixed-cutoff floor $2.0$--$2.7\times10^{-8}$ (\cref{fig:exp1}(c)). For $p=9$ every admissible grid already lies
-on this floor, so the plateau reflects truncation rather than a lack of mesh convergence.
+With $\xi=0.85$, the long-range operator is replaced by its mesh-free Fourier lattice sum $\Gamma_L^{\rm exact}$
+(certified tail $\le1.7\times10^{-17}$), so
+$E_S=\|\Gamma_S^{r_c}+\Gamma_L^{\rm exact}-\Gamma_{\rm ref}\|_2/\|\Gamma_{\rm ref}\|_2$ contains no mesh error.
+For $s=\xi r_c\in[2,6.6]$, least-squares fits $\log E_S=a-cs^2$ on $s\in[2.0,5.3]$ give $c=0.981$--$0.987$ for the
+nine configurations. We report $c$ as an observed decay constant, not a universal exponent. The certified real-space
+bound exceeds the observed error by a factor $1.4$--$1.9$ (\cref{fig:exp1}(c)).
+For $s\ge5.8$ the exact truncation tail falls below the measured error, which stays at
+$3.5$--$4.1\times10^{-15}$. This value is the reference/round-off floor, and it also confirms the splitting identity
+at the operator level. These points are shown as open markers.
 
 \paragraph{Matrix-free action}
-Finally, the production matrix-free action is compared with $\Gamma_{\rm ref}X$ for $N=128$ and $256$ on
-Gaussian, spectral (extremal eigenvectors), slow-mode and translation probes. Translation probes are judged by
-absolute residuals, which are exactly zero for the pair-difference form and $\le9.2\times10^{-18}$ for the cached
-form. With the production cutoffs the dense error is $E_{\rm op}\le3.5\times10^{-8}$ for all $M$ and all 18
-configurations, below the budget $2\times10^{-7}$. With stricter cutoffs ($r_c=6/\xi$, $k_c\le12\xi$), the
-Gaussian-probe error decays at a fitted rate $M^{-10.2}$ to $10^{-14}$ (\cref{fig:exp1}(d)). Throughout,
-$\Gamma_h$ is symmetric to $2\times10^{-17}$ and positive on the zero-momentum subspace, and its smallest eigenvalue
-there deviates from that of $\Gamma_{\rm ref}$ by at most $7.8\times10^{-8}$ (relative).
+The quantity used by the solver is the action $\Gamma_hX$.
+We fix the configuration, $\xi$, $r_c$, $k_c$ and the B-spline order $p=9$, and vary only the FFT size $M$. Grids that
+violate the Nyquist condition are reported as invalid; on every valid grid all reciprocal shells with
+$|\mathbf k|\le k_c$ are retained.
+For each $M$ we evaluate the production action on the same unit test vectors: ten Gaussian vectors, the three slowest
+and the fastest eigenvectors of $\Gamma_{\rm ref}$, and the three translations. The spectral probes are our own choice.
+We separate two errors:
+\[
+E_{\rm complete}=\frac{\|(\Gamma_h-\Gamma_{\rm ref})X\|_2}{\|\Gamma_{\rm ref}X\|_2},
+\qquad
+E_{\rm mesh}=\frac{\|(\Gamma_L^h-\Gamma_L^{k_c})X\|_2}{\|\Gamma_{\rm ref}X\|_2},
+\]
+where $\Gamma_L^{k_c}$ is the truncated Fourier operator evaluated without mesh assignment.
+
+At the production parameters ($\xi=0.85$, $r_c=4.8878$, $k_c=9.3585$, i.e.\ the exact shell
+$2\pi\sqrt{172}/L$, and $p=9$), the complete error for $N=512$ is $2.0$--$2.1\times10^{-8}$ for the Gaussian probes,
+$8.05\times10^{-8}$ for the slow and $8.6\times10^{-9}$ for the fast eigenvectors at the production grid $M=40$.
+These values are independent of $M$ for every admissible grid: they equal the fixed-cutoff truncation error.
+Meanwhile $E_{\rm mesh}$ decreases from $3.7\times10^{-9}$ at $M=28$ to $1.4\times10^{-14}$ at $M=96$, at a fitted rate
+$M^{-10.4}$ (\cref{fig:exp1}(d), left).
+With stricter cutoffs ($r_c=6/\xi$, $k_c\le12\xi$) the truncation error drops to at most $5.1\times10^{-15}$. The complete
+error then follows the mesh-only error down to $10^{-14}$, with fitted rates $10.0$--$10.4$ for $N=128$, $256$ and
+$512$ and all probe classes (maximum over the nine configurations of each size) (\cref{fig:exp1}(d), right).
+The slow eigenvectors have the largest relative error, about four times the Gaussian value at $N=512$, because their
+reference action $\lambda_{\min}\|u\|$ is the smallest. Their operator-normalised error is not larger.
+The translation residual $\|\Gamma_hT\|_2/\|\Gamma_{\rm ref}\|_2$ stays below $3\times10^{-16}$, which is smaller than
+that of $\Gamma_{\rm ref}$ itself. Finally, $\Gamma_h$ is symmetric to $1.3\times10^{-17}$ and positive on the zero-momentum
+subspace for every grid.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{fig1_spatial_validation.pdf}
-  \caption{Spatial validation of the periodic Ewald--PPPM operator for Model A.
-  (a) Error of the analytical split $K=K_S+K_L$ over all pair images ($|d|\le8$) of nine $N=256$ configurations:
-  relative Frobenius norm (solid), largest single pair (dashed), and a radial sweep $r\in[10^{-6},12]$ (dotted).
-  (b) Short-range error with the exact mesh-free long-range part, $\xi=0.85$: median over three seeds per family,
-  shading spans the seeds; the dash-dotted curve is the certified bound.
-  (c) Degree error for a strongly clustered $N=512$ configuration with production cutoffs: complete error against
-  $\Gamma_{\rm ref}$ (solid) and mesh-transfer error against the exact truncated Fourier degree (dashed);
-  the dotted line is the fixed-cutoff floor.
-  (d) Largest relative action error over five Gaussian probes and three seeds, for strict cutoffs (thick; solid
-  $N=128$, dashed $N=256$) and production cutoffs (thin); the dotted line is the largest production
-  $E_{\rm op}$. Guides and fitted rates are least-squares fits to the plotted data, not confidence bounds.}
+  \caption{Accuracy validation of the periodic Ewald--PPPM operator for Model A.
+  (a) Particle configurations in the periodic box ($\rho=0.75$, minimum separation $0.9$): uniform, moderately and
+  strongly clustered ($N=256$), and the strongly clustered $N=512$ configuration used in (d).
+  (b) Error of the analytical split $K=K_S+K_L$ over all pair images ($|\mathbf d|\le8$) of nine $N=256$
+  configurations: relative Frobenius norm (solid), largest single pair (dashed), and a radial sweep
+  $r\in[10^{-6},12]$ (dotted).
+  (c) Short-range error with the exact mesh-free long-range part, $\xi=0.85$: median over three seeds per family with
+  min--max shading, over the resolved decay; open markers are measurements at the reference/round-off floor. The
+  dash-dotted curve is the certified bound and the dashed curve the $e^{-s^2}$ guide.
+  (d) Matrix-free action error versus the FFT size $M$, with $\xi$, $r_c$, $k_c$ and $p=9$ fixed. Each curve is the
+  maximum over the tested probes (and over the configurations where several are pooled), not a maximum over all
+  vectors. Left: production cutoffs, $N=512$; complete error against $\Gamma_{\rm ref}$ (solid) and mesh-only error
+  against the exact truncated Fourier operator (dashed), for ten Gaussian vectors (shading: probe range) and the three
+  slowest eigenvectors of $\Gamma_{\rm ref}$. The dotted line marks the production grid $M=40$, and the grey band a
+  Nyquist-invalid grid. Right: complete error with strict cutoffs ($r_c=6/\xi$, $k_c\le12\xi$) for $N=128$ and $256$
+  (nine configurations each) and $N=512$. Fitted rates are least-squares fits to the plotted data.}
   \label{fig:exp1}
 \end{figure}

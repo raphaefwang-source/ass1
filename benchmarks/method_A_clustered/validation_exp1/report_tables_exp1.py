@@ -12,9 +12,9 @@ def e(x, d=2):
 
 
 def table_a():
-    rows = load("a_split_configs.csv")
-    radial = load("a_split_radial.csv")
-    mp_rows = load("a_split_mpmath.csv")
+    rows = load("split_configs.csv")
+    radial = load("split_radial.csv")
+    mp_rows = load("split_mpmath.csv")
     xis = sorted({r["xi"] for r in rows})
     out = ["| ξ | max rel. Frobenius (uniform / strong / moderate) | max pair rel. (all 9) | max abs. entry | "
            "radial sweep max (r ≥ 1e-6) | mpmath θ_S (ξr ≤ 7), rel. self | mpmath θ_L, rel. self | naive θ−θ_S at r = 1e-4 |",
@@ -35,9 +35,9 @@ def table_a():
 
 
 def table_b():
-    fits = load("b_shortrange_fits.csv")
-    rows = load("b_shortrange.csv")
-    summ = json.loads((RES / "b_shortrange_summary.json").read_text())
+    fits = load("shortrange_fits.csv")
+    rows = load("shortrange.csv")
+    summ = json.loads((RES / "shortrange_summary.json").read_text())
     out = ["| configuration | fit interval s | points | c (all) | c (s ≥ 3) | E_S at s = 4.1 / 4.2 | floor vs Γ_ref | floor vs Γ_D55 | "
            "bound/E (fit range) | Fourier tail of Γ_L^ex (certified, rel.) |",
            "|---|---|---|---|---|---|---|---|---|---|"]
@@ -61,46 +61,114 @@ def table_b():
     return "\n".join(out)
 
 
-def table_c():
-    rows = load("c_degree.csv")
-    fits = load("c_degree_rate_fits.csv")
-    out = ["| configuration | cutoffs | p | valid M | E_D complete (min M → max M) | E_D mesh (min M → max M) | fixed-cutoff floor | "
-           "LSQ mesh rate (M range) | first M with complete ≤ 1.1 floor |",
-           "|---|---|---|---|---|---|---|---|---|"]
-    for f in fits:
-        mine = [r for r in rows if r["config"] == f["config"] and r["p"] == f["p"] and r["setting"] == f["setting"] and r["valid"]]
-        fl = mine[0]["E_D_floor"]
-        reach = [r["M"] for r in mine if r["E_D_complete"] <= 1.1 * fl]
-        out.append(f"| {f['config']} | {f['setting']} | {f['p']} | {mine[0]['M']}–{mine[-1]['M']} | {e(mine[0]['E_D_complete'])} → "
-                   f"{e(mine[-1]['E_D_complete'])} | {e(mine[0]['E_D_mesh'])} → {e(mine[-1]['E_D_mesh'])} | {e(fl)} | "
-                   f"{f['rate_mesh_lsq']:.2f} ({f['M_lo']}–{f['M_hi']}) | {reach[0] if reach else '—'} |")
+def table_c_validity():
+    mesh = load("action_mesh.csv")
+    meta = json.loads((RES / "action_probes.json").read_text())["configs"]
+    out = ["| N | cutoffs | r_c | k_c used (outermost shell n) | modes retained = shell count | valid M | invalid M (reason) | "
+           "min \\|W_hat\\|^2 | excluded modes |", "|---|---|---|---|---|---|---|---|---|"]
+    for N in (128, 256, 512):
+        for st in ("production", "strict"):
+            sub = [m for m in mesh if m["N"] == N and m["setting"] == st]
+            v = [m for m in sub if m["valid"]]
+            inv = sorted({(m["M"], m["reason"]) for m in sub if not m["valid"]})
+            name = sub[0]["config"]
+            ms = meta[name]["settings"][st]
+            out.append(f"| {N} | {st} | {sub[0]['rc']:.10g} | {sub[0]['kc']:.12g} (n = {ms['n_shell']}) | "
+                       f"{v[0]['n_modes']} = {v[0]['n_modes_expected']} | {v[0]['M']}–{v[-1]['M']} | "
+                       f"{'; '.join(f'{M}: ' + r.replace('|', chr(92) + '|') for M, r in inv) or '—'} | {e(min(m['W2min'] for m in v), 1)} | "
+                       f"{max(m['n_excluded'] for m in v)} |")
+    mm = meta["strong_N512_s1"]["settings"]["production"]
+    out.append("")
+    out.append(f"N = 512 production: retained modes with the full-precision k_c = {mm['n_modes']}; with k_c truncated to "
+               f"9.3585 (old code) = {mm['n_modes_if_kc_rounded_to_9p3585']} (shell n = 172 dropped).")
     return "\n".join(out)
 
 
-def table_d():
-    rows = [r for r in load("d_action.csv") if r["valid"]]
-    out = ["| N | cutoffs | M | E_op (dense) | Gaussian (max of 5) | spectral min | spectral max | slow (max of 4) | "
-           "λ_min(Range Π) rel. dev. |",
-           "|---|---|---|---|---|---|---|---|---|"]
+def table_c_main():
+    rows = load("action_errors.csv")
+    mesh = load("action_mesh.csv")
+    out = ["| cutoffs | M | Gaussian E_complete (min–max of 10) | slow spectral E_complete (max of 3) | fast E_complete | "
+           "Gaussian E_mesh (max) | slow E_mesh (max) | E_trunc Gaussian / slow (max) | dense E_op | dense E_op,mesh |",
+           "|---|---|---|---|---|---|---|---|---|---|"]
+    for st in ("production", "strict"):
+        sub = [r for r in rows if r["N"] == 512 and r["setting"] == st]
+        for M in sorted({r["M"] for r in sub}):
+            q = [r for r in sub if r["M"] == M]
+            g = [r for r in q if r["probe_class"] == "gaussian"]
+            sl = [r for r in q if r["probe_class"] == "spectral_slow"]
+            fa = [r for r in q if r["probe_class"] == "spectral_fast"]
+            m = [x for x in mesh if x["N"] == 512 and x["setting"] == st and x["M"] == M][0]
+            out.append(f"| {st}{' (production M)' if st == 'production' and M == 40 else ''} | {M} | "
+                       f"{e(min(r['E_complete'] for r in g))}–{e(max(r['E_complete'] for r in g))} | "
+                       f"{e(max(r['E_complete'] for r in sl))} | {e(fa[0]['E_complete'])} | {e(max(r['E_mesh'] for r in g))} | "
+                       f"{e(max(r['E_mesh'] for r in sl))} | {e(max(r['E_trunc'] for r in g))} / {e(max(r['E_trunc'] for r in sl))} | "
+                       f"{e(m['E_op'])} | {e(m['E_op_mesh'])} |")
+    return "\n".join(out)
+
+
+def table_c_small():
+    rows = load("action_errors.csv")
+    out = ["| N | cutoffs | M | Gaussian E_complete (max over 10 probes × 9 configs) | slow E_complete | fast E_complete | "
+           "Gaussian E_mesh | slow E_mesh |", "|---|---|---|---|---|---|---|---|"]
     for N in (128, 256):
         for st in ("production", "strict"):
-            Ms = sorted({r["M"] for r in rows if r["N"] == N and r["setting"] == st})
+            sub = [r for r in rows if r["N"] == N and r["setting"] == st]
+            Ms = sorted({r["M"] for r in sub})
             for M in (Ms[0], Ms[len(Ms) // 2], Ms[-1]):
-                s = [r for r in rows if r["N"] == N and r["setting"] == st and r["M"] == M]
-                f = lambda k: max(r[k] for r in s)          # noqa: E731
-                dl = max(abs(r["lam_min_h_RangePi"] - r["lam_min_ref_RangePi"]) / r["lam_min_ref_RangePi"] for r in s)
-                out.append(f"| {N} | {st} | {M} | {e(f('E_op'))} | {e(f('E_gauss_max'))} | {e(f('E_spec_min'))} | "
-                           f"{e(f('E_spec_max'))} | {e(f('E_slow_max'))} | {e(dl)} |")
-    out.append("")
-    out.append("Maxima over the 9 configurations (3 families × 3 seeds) at each (N, cutoffs, M).")
+                q = [r for r in sub if r["M"] == M]
+                f = lambda cls, k: max(r[k] for r in q if r["probe_class"] == cls)      # noqa: E731
+                out.append(f"| {N} | {st} | {M} | {e(f('gaussian', 'E_complete'))} | {e(f('spectral_slow', 'E_complete'))} | "
+                           f"{e(f('spectral_fast', 'E_complete'))} | {e(f('gaussian', 'E_mesh'))} | {e(f('spectral_slow', 'E_mesh'))} |")
     return "\n".join(out)
 
 
-def table_d_rates():
-    fits = load("d_action_rate_fits.csv")
-    out = ["| N | family | quantity | M range | LSQ rate |", "|---|---|---|---|---|"]
-    for f in fits:
-        out.append(f"| {f['N']} | {f['family']} | {f['quantity']} | {f['M_lo']}–{f['M_hi']} | {f['rate_lsq']:.2f} |")
+def table_c_rates():
+    out = ["| N | cutoffs | probe class | quantity | M range | points | LSQ rate | R^2 |", "|---|---|---|---|---|---|---|---|"]
+    for f in load("action_rate_fits.csv"):
+        out.append(f"| {f['N']} | {f['setting']} | {f['probe_class']} | {f['quantity']} | {f['M_lo']}–{f['M_hi']} | "
+                   f"{f['n_points']} | {f['rate_lsq']:.2f} | {f['r2']:.4f} |")
+    out.append("")
+    out.append("p study (N = 512, mesh-only error, maximum over tested probes):")
+    out.append("")
+    out.append("| cutoffs | p | probe class | M range | points | LSQ rate | R^2 |")
+    out.append("|---|---|---|---|---|---|---|")
+    for f in load("action_p_rate_fits.csv"):
+        out.append(f"| {f['setting']} | {f['p']} | {f['probe_class']} | {f['M_lo']}–{f['M_hi']} | {f['n_points']} | "
+                   f"{f['rate_lsq']:.2f} | {f['r2']:.4f} |")
+    return "\n".join(out)
+
+
+def table_c_checks():
+    meta = json.loads((RES / "action_probes.json").read_text())["configs"]
+    summ = json.loads((RES / "action_summary.json").read_text())
+    tr = load("action_translation.csv")
+    out = ["| N | cutoffs | translation ‖Γ_h T‖/‖Γ_ref‖, pair-difference | cached D − H | Γ_ref itself | ‖Γ_L^h T‖ (abs.) |",
+           "|---|---|---|---|---|---|"]
+    for N in (128, 256, 512):
+        for st in ("production", "strict"):
+            sub = [r for r in tr if r["N"] == N and r["setting"] == st]
+            out.append(f"| {N} | {st} | {e(max(r['opnorm_pairdiff'] for r in sub))} | {e(max(r['opnorm_cached'] for r in sub))} | "
+                       f"{e(max(r['opnorm_ref'] for r in sub))} | {e(max(r['abs_mesh_part'] for r in sub))} |")
+    m = meta["strong_N512_s1"]
+    out.append("")
+    out.append("Spectral probes of strong_N512_s1 (eigenvectors of sym(Γ_ref)):")
+    out.append("")
+    out.append("| probe | eigenvalue | ‖Γ_ref u − λu‖/λ | relative gap to neighbours | ‖Tᵀu‖ |")
+    out.append("|---|---|---|---|---|")
+    for pr in m["probes"]:
+        if pr["probe_class"].startswith("spectral"):
+            out.append(f"| {pr['probe_id']} | {pr['eigenvalue']:.6f} | {e(pr['eigen_residual_rel'], 1)} | "
+                       f"{pr['rel_gap_to_neighbours']:.4f} | {e(pr['translation_component'], 1)} |")
+    sl = m["strict_lattice_check"]
+    out.append("")
+    out.append(f"Translation eigenvalues of sym(Γ_ref) (N = 512): {', '.join(e(v, 1) for v in m['spectral']['translation_eigenvalues'])}; "
+               f"λ_min(positive) = {m['spectral']['lambda_min_positive']:.6f}, λ_max = {m['spectral']['lambda_max']:.6f}.")
+    out.append(f"Stricter LatticeFriction (rel_tol 1e-15, degree 20, near_cells 3) vs Γ_ref: {e(sl['op_rel'])} (operator), "
+               f"{e(sl['action_rel_max_nonnull'])} (largest relative action difference over the non-null probes).")
+    out.append(f"Checks over all {summ['n_valid']} valid (configuration, cutoffs, M) cases: dense Γ_h vs matrix-free action "
+               f"≤ {e(summ['max_dense_vs_matrix_free'])}; symmetry defect ≤ {e(summ['max_sym_defect_h'])}; negative eigenvalue on "
+               f"Range Π: {summ['any_negative']}; cached vs pair-difference ≤ {e(summ['max_cached_vs_pairdiff'])}; "
+               f"E_complete ≤ E_mesh + E_trunc in every row: {summ['all_triangle_ok']}.")
     return "\n".join(out)
 
 
@@ -116,8 +184,11 @@ def table_refs():
 
 
 if __name__ == "__main__":
-    for title, fn in (("References", table_refs), ("(a) split identity", table_a), ("(b) short-range", table_b),
-                      ("(c) degree", table_c), ("(d) action", table_d), ("(d) action rates (strict)", table_d_rates)):
+    for title, fn in (("References", table_refs), ("(b) split identity", table_a), ("(c) short-range cutoff", table_b),
+                      ("(d) mesh validity and retained modes", table_c_validity),
+                      ("(d) N = 512 strongly clustered, every M", table_c_main),
+                      ("(d) N = 128, 256 (3 families x 3 seeds)", table_c_small), ("(d) fitted rates", table_c_rates),
+                      ("(d) translation, spectral probes and structural checks", table_c_checks)):
         print(f"### {title}\n")
         print(fn())
         print()

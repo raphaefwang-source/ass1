@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 """
-Figure 1 (spatial accuracy validation of the Model A Ewald-PPPM) and supplementary figures, regenerated from the
-saved results of run_exp1.py (nothing is recomputed here except least-squares guides drawn on the saved data).
+Figure 1 (accuracy validation of the periodic Ewald-PPPM for Model A) and its supplementary figures, regenerated from
+the saved results of run_exp1.py. Nothing is recomputed here; rates quoted in the figures are read from the saved
+least-squares fits (results/action_rate_fits.csv, results/action_p_rate_fits.csv).
 
     python3 plot_exp1.py
-Outputs: figures/fig1_spatial_validation.{pdf,png}, figures/figS1_split_radial.{pdf,png},
-         figures/figS2_degree_all.{pdf,png}, figures/figS3_action_all.{pdf,png}
+Outputs: figures/fig1_spatial_validation.{pdf,png}      (a) configurations, (b) split identity, (c) short-range
+                                                        cutoff, (d) matrix-free PPPM action
+         figures/figS1_split_radial.{pdf,png}           radial sweep and small-r cancellation for (b)
+         figures/figS2_action_detail.{pdf,png}          (d) for every N, cutoff setting and probe class, with dense E_op
+         figures/figS3_translation_residual.{pdf,png}   translation null space of Gamma_h, Gamma_ref
+         figures/figS4_action_p.{pdf,png}               mesh-only action error for p = 4, 6, 8, 9 (N = 512)
 """
 import csv
 import json
@@ -15,7 +20,7 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt          # noqa: E402
-import matplotlib.ticker                 # noqa: E402
+from matplotlib.gridspec import GridSpec  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 RES = HERE / "results"
@@ -23,8 +28,12 @@ FIG = HERE / "figures"
 FAMS = ("uniform", "strong", "moderate")
 FAM_LABEL = dict(uniform="uniform", strong="strongly clustered", moderate="moderately clustered")
 FAM_COLOR = dict(uniform="#1f77b4", strong="#d62728", moderate="#2ca02c")
+CLS_COLOR = dict(gaussian="#1f4e9c", spectral_slow="#c0392b", spectral_fast="#2e8b57")
+CLS_LABEL = dict(gaussian="Gaussian", spectral_slow="slow spectral", spectral_fast="fast spectral")
 P_COLOR = {4: "#4c72b0", 6: "#55a868", 8: "#dd8452", 9: "#8172b3"}
 U_ROUND = 2.0 ** -53
+S_PROD = 0.85 * 4.88775618844242
+FLOOR_FACTOR = 2.0                       # (b): a point is resolved if the exact truncation tail >= 2 x measured floor
 
 plt.rcParams.update({
     "font.family": "serif", "font.serif": ["DejaVu Serif"], "mathtext.fontset": "dejavuserif",
@@ -66,7 +75,6 @@ def series(rows, xkey, ykey, agg=max, **sel):
     return np.array(xs, float), np.array([agg([r[ykey] for r in sub if r[xkey] == x]) for x in xs], float)
 
 
-# ---------------------------------------------------------------------------- panels
 def tex(x, digits=1):
     m, e = f"{x:.{digits}e}".split("e")
     return rf"{m}\times10^{{{int(e)}}}"
@@ -77,9 +85,18 @@ def style_legend(ax, entries, **kw):
     return ax.legend(hs, [lab for lab, _ in entries], **kw)
 
 
-def panel_a(ax):
-    rows = load("a_split_configs.csv")
-    radial = load("a_split_radial.csv")
+def log_m_axis(ax, ticks):
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xticks(ticks)
+    ax.set_xticklabels([str(t) for t in ticks])
+    ax.xaxis.set_minor_locator(matplotlib.ticker.NullLocator())
+
+
+# ---------------------------------------------------------------------------- (b) split identity
+def panel_split(ax):
+    rows = load("split_configs.csv")
+    radial = load("split_radial.csv")
     for fam in FAMS:
         x, y = series(rows, "xi", "rel_fro", family=fam)
         ax.plot(x, y, "-o", color=FAM_COLOR[fam], ms=3 if fam != "uniform" else 4.5,
@@ -94,119 +111,204 @@ def panel_a(ax):
     ax.set_ylim(5e-17, 2e-13)
     ax.set_xlabel(r"splitting parameter $\xi$")
     ax.set_ylabel(r"relative error of $K-K_S-K_L$")
-    ax.set_title("(a) Analytical Ewald identity")
-    leg = style_legend(ax, [(f, dict(color=FAM_COLOR[f], lw=2)) for f in FAMS],
-                       loc="upper left", handlelength=1.4)
+    ax.set_title("(b) Analytical Ewald splitting")
+    leg = style_legend(ax, [(f, dict(color=FAM_COLOR[f], lw=2)) for f in FAMS], loc="upper left", ncol=3,
+                       handlelength=1.4, columnspacing=1.0)
     ax.add_artist(leg)
     style_legend(ax, [("relative Frobenius, all pairs", dict(color="k", ls="-", marker="o", ms=3)),
                       ("max over pairs", dict(color="k", ls="--", marker="s", mfc="none", ms=3)),
                       (r"radial sweep $r\in[10^{-6},12]$", dict(color="k", ls=":", marker="^", mfc="none", ms=3))],
-                 loc="upper right", handlelength=2.4)
+                 loc="upper left", bbox_to_anchor=(0.0, 0.89), handlelength=2.4)
 
 
-def panel_b(ax):
-    rows = load("b_shortrange.csv")
-    summ = json.loads((RES / "b_shortrange_summary.json").read_text())
+# ---------------------------------------------------------------------------- (c) short-range cutoff
+def shortrange_split():
+    """Measured E_S per configuration, split into the resolved decay (exact truncation tail >= FLOOR_FACTOR x the
+    configuration's measured floor) and the points at the reference / round-off floor. No value is altered."""
+    rows = load("shortrange.csv")
+    floor = {r["config"]: r["floor"] for r in load("shortrange_fits.csv")}
+    for r in rows:
+        r["resolved"] = r["E_trunc_exact"] >= FLOOR_FACTOR * floor[r["config"]]
+    return rows, floor
+
+
+def panel_shortrange(ax):
+    rows, floor = shortrange_split()
+    summ = json.loads((RES / "shortrange_summary.json").read_text())
+    s_res = []
     for fam in FAMS:
         sub = [r for r in rows if r["family"] == fam]
-        s = np.array(sorted({r["s"] for r in sub}))
-        E = np.array([[r["E_S"] for r in sub if r["s"] == v] for v in s])
-        ax.fill_between(s, E.min(1), E.max(1), color=FAM_COLOR[fam], alpha=0.25, lw=0)
-        ax.plot(s, np.median(E, 1), "-", color=FAM_COLOR[fam], label=f"{FAM_LABEL[fam]}")
+        s_all = sorted({r["s"] for r in sub})
+        s_ok = [s for s in s_all if all(r["resolved"] for r in sub if r["s"] == s)]
+        E = np.array([[r["E_S"] for r in sub if r["s"] == s] for s in s_ok])
+        ax.fill_between(s_ok, E.min(1), E.max(1), color=FAM_COLOR[fam], alpha=0.25, lw=0)
+        ax.plot(s_ok, np.median(E, 1), "-", color=FAM_COLOR[fam], label=f"{FAM_LABEL[fam]}")
+        fl = [r for r in sub if r["s"] not in s_ok]
+        ax.plot([r["s"] for r in fl], [r["E_S"] for r in fl], "o", ms=3.2, mfc="none", mew=0.8,
+                color=FAM_COLOR[fam], alpha=0.85)
+        s_res.append(max(s_ok))
+    s_hi = min(s_res)
+    fl_lo, fl_hi = min(floor.values()), max(floor.values())
+    ax.axhspan(fl_lo, fl_hi, color="0.6", alpha=0.35, lw=0)
+    ax.text(6.68, fl_hi * 2.4, "reference /\nroundoff floor", ha="right", va="bottom", fontsize=5.7, color="0.25")
     s, B = series(rows, "s", "bound_eps_S", agg=np.median)
-    ax.plot(s, B, "-.", color="0.35", lw=0.9, label=r"certified bound $\varepsilon_S/\|\Gamma_{\rm ref}\|_2$")
+    keep = B >= 1e-16
+    ax.plot(s[keep], B[keep], "-.", color="0.35", lw=0.9)
     s_all, Em = series(rows, "s", "E_S", agg=np.median)
     s0 = 3.0
     E0 = float(Em[np.argmin(abs(s_all - s0))])
-    sg = np.linspace(2.0, 5.85, 100)
-    ax.plot(sg, E0 * np.exp(-(sg ** 2 - s0 ** 2)), "k--", lw=0.9, label=r"$e^{-s^2}$ guide")
-    ax.axvline(0.85 * 4.8878, color="0.5", ls=":", lw=0.9)
-    ax.text(0.85 * 4.8878 + 0.06, 1.5e-2, r"production $s=4.15$", fontsize=6.5, color="0.35", va="top")
+    sg = np.linspace(2.0, s_hi, 100)
+    ax.plot(sg, E0 * np.exp(-(sg ** 2 - s0 ** 2)), "k--", lw=0.9)
+    ax.axvline(S_PROD, color="0.5", ls=":", lw=0.9)
+    ax.text(S_PROD + 0.06, 1.4e-16, rf"production $s={S_PROD:.3f}$", fontsize=6.0, color="0.35", va="bottom", ha="left")
     c_lo, c_hi = summ["c_range_individual"]
-    ax.text(0.97, 0.80, "fit $\\log E=a-cs^2$, $s\\in[2.0,5.3]$:\n" + rf"$c={c_lo:.3f}$–${c_hi:.3f}$ (9 configs)",
-            transform=ax.transAxes, fontsize=6.5, ha="right", va="top")
+    ax.text(0.97, 0.70, rf"$\log E_S=a-cs^2$: $c={c_lo:.3f}$–${c_hi:.3f}$" + "\n" + r"(LSQ, $s\in[2.0,5.3]$, 9 configs)",
+            transform=ax.transAxes, fontsize=6.3, ha="right", va="top")
     ax.set_yscale("log")
     ax.set_ylim(1e-16, 5e-2)
+    ax.set_xlim(1.9, 6.7)
     ax.set_xlabel(r"$s=\xi r_c$  ($\xi=0.85$, $N=256$)")
-    ax.set_ylabel(r"$E_S=\|\Gamma_S^{r_c}+\Gamma_L^{\rm ex}-\Gamma_{\rm ref}\|_2/\|\Gamma_{\rm ref}\|_2$")
-    ax.set_title("(b) Short-range cutoff")
-    ax.legend(loc="lower left", handlelength=2.2, title="median over 3 seeds, shading min–max",
-              title_fontsize=6.5)
-
-
-def panel_c(ax, name="strong_N512_s1", setting="production"):
-    rows = [r for r in load("c_degree.csv") if r["config"] == name and r["setting"] == setting and r["valid"]]
-    fits = {r["p"]: r["rate_mesh_lsq"] for r in load("c_degree_rate_fits.csv")
-            if r["config"] == name and r["setting"] == setting}
-    for p in (4, 6, 8, 9):
-        M, E = series(rows, "M", "E_D_complete", p=p)
-        ax.plot(M, E, "-o", color=P_COLOR[p], label=f"$p={p}$ (mesh rate {fits[p]:.1f})")
-        M, E = series(rows, "M", "E_D_mesh", p=p)
-        ax.plot(M, E, "--", color=P_COLOR[p], marker="o", mfc="none", lw=0.9)
-    floor = rows[0]["E_D_floor"]
-    ax.axhline(floor, color="k", ls=":", lw=0.9)
-    ax.set_xscale("log")
-    ax.set_yscale("log")
-    ax.set_xticks([28, 32, 40, 48, 64, 80, 96])
-    ax.set_xticklabels(["28", "32", "40", "48", "64", "80", "96"])
-    ax.minorticks_off()
-    ax.set_ylim(1e-16, 1e-3)
-    ax.set_xlabel(r"FFT grid size $M$ per dimension (strong, $N=512$)")
-    ax.set_ylabel(r"degree error $E_D$")
-    ax.set_title("(c) Degree convergence")
-    leg = ax.legend(loc="lower left", handlelength=2.2, title="LSQ rate of mesh-transfer error", title_fontsize=6.5)
+    ax.set_ylabel(r"$E_S=\|\Gamma_S^{r_c}+\Gamma_L^{\rm exact}-\Gamma_{\rm ref}\|_2/\|\Gamma_{\rm ref}\|_2$")
+    ax.set_title("(c) Short-range cutoff error")
+    leg = ax.legend(loc="lower left", bbox_to_anchor=(0.0, 0.10), handlelength=2.0,
+                    title="measured $E_S$ (median, band: 3 seeds)", title_fontsize=6.2)
     ax.add_artist(leg)
-    style_legend(ax, [(r"complete, vs $\Gamma_{\rm ref}$", dict(color="k", ls="-", marker="o", ms=3)),
-                      (r"mesh transfer, vs $\Gamma_L^{k_c}$", dict(color="k", ls="--", marker="o", mfc="none", ms=3)),
-                      (rf"fixed-cutoff floor ${tex(floor)}$", dict(color="k", ls=":"))],
-                 loc="upper right", handlelength=2.2)
+    style_legend(ax, [("measured at floor", dict(color="0.3", ls="none", marker="o", mfc="none", ms=3.2)),
+                      ("certified bound (theory)", dict(color="0.35", ls="-.")),
+                      (r"$e^{-s^2}$ guide", dict(color="k", ls="--"))],
+                 loc="upper right", bbox_to_anchor=(1.0, 1.0), handlelength=2.0)
 
 
-def panel_d(ax):
-    rows = [r for r in load("d_action.csv") if r["valid"]]
-    fits = load("d_action_rate_fits.csv")
-    for fam in FAMS:
-        for N, ls in ((128, "-"), (256, "--")):
-            M, E = series(rows, "M", "E_gauss_max", family=fam, N=N, setting="strict")
-            ax.plot(M, E, ls, color=FAM_COLOR[fam], marker="o", mfc="none" if N == 256 else FAM_COLOR[fam],
-                    ms=3 if fam != "uniform" else 4.5, label=f"{FAM_LABEL[fam]}, $N={N}$")
-            M, E = series(rows, "M", "E_gauss_max", family=fam, N=N, setting="production")
-            ax.plot(M, E, ls, color=FAM_COLOR[fam], lw=0.7, alpha=0.6)
-    prod_floor = max(r["E_op"] for r in rows if r["setting"] == "production")
-    prod_g = [r["E_gauss_max"] for r in rows if r["setting"] == "production"]
-    ax.axhline(prod_floor, color="k", ls=":", lw=0.9)
-    ax.text(0.03, 0.985, "production cutoffs (thin): Gaussian " + rf"$\leq{tex(max(prod_g))}$;"
-            + "\n" + rf"dense $E_{{\rm op}}\leq{tex(prod_floor)}$ (dotted: fixed-cutoff floor)",
-            transform=ax.transAxes, fontsize=6.3, color="0.2", va="top")
-    rates = [r["rate_lsq"] for r in fits if r["quantity"].startswith("E_gauss")]
-    ax.text(0.97, 0.56, "strict cutoffs (thick):\nLSQ rate " + rf"${min(rates):.2f}$–${max(rates):.2f}$",
-            transform=ax.transAxes, fontsize=6.5, ha="right", va="top")
-    ax.set_xscale("log")
-    ax.set_yscale("log")
-    ax.set_xticks([18, 20, 24, 32, 40, 48, 64, 80])
-    ax.set_xticklabels(["18", "20", "24", "32", "40", "48", "64", "80"])
-    ax.minorticks_off()
-    ax.set_ylim(3e-15, 3e-6)
-    ax.set_xlabel(r"FFT grid size $M$ per dimension ($p=9$)")
-    ax.set_ylabel(r"$\max_X\,\|\Gamma_h X-\Gamma_{\rm ref}X\|_2/\|\Gamma_{\rm ref}X\|_2$")
-    ax.set_title("(d) Matrix-free friction action")
-    ax.legend(loc="lower left", ncol=1, handlelength=2.2, fontsize=6.3)
+# ---------------------------------------------------------------------------- (d) PPPM action
+def class_curve(rows, key, cls, agg=max, **sel):
+    return series(rows, "M", key, agg=agg, probe_class=cls, **sel)
+
+
+def panel_action(ax1, ax2):
+    rows = [r for r in load("action_errors.csv")]
+    mesh = load("action_mesh.csv")
+    fits = load("action_rate_fits.csv")
+    # (d, left) production cutoffs, N = 512 strongly clustered: complete vs mesh-only
+    prod = [r for r in rows if r["N"] == 512 and r["setting"] == "production"]
+    for cls in ("gaussian", "spectral_slow"):
+        c = CLS_COLOR[cls]
+        M, Emax = class_curve(prod, "E_complete", cls)
+        _, Emin = class_curve(prod, "E_complete", cls, agg=min)
+        ax1.fill_between(M, Emin, Emax, color=c, alpha=0.18, lw=0)
+        ax1.plot(M, Emax, "-o", color=c, ms=3)
+        M, Emax = class_curve(prod, "E_mesh", cls)
+        _, Emin = class_curve(prod, "E_mesh", cls, agg=min)
+        ax1.fill_between(M, Emin, Emax, color=c, alpha=0.12, lw=0)
+        ax1.plot(M, Emax, "--o", color=c, mfc="none", ms=3)
+    inval = [m for m in mesh if m["N"] == 512 and m["setting"] == "production" and not m["valid"]]
+    for m in inval:
+        ax1.axvspan(m["M"] * 0.985, m["M"] * 1.015, color="0.75", lw=0)
+    ax1.text(26.0, 3e-11, "Nyquist-invalid $M=26$", fontsize=5.6, color="0.3", ha="center", va="center", rotation=90)
+    ax1.axvline(40, color="0.4", ls=":", lw=0.9)
+    ax1.text(41.0, 6e-15, "production $M=40$", fontsize=6.0, color="0.3", va="bottom", rotation=90)
+    fg = [f for f in fits if f["N"] == 512 and f["setting"] == "production" and f["probe_class"] == "gaussian"
+          and f["quantity"].startswith("E_mesh")][0]
+    ax1.text(0.97, 0.55, f"mesh-only, Gaussian: LSQ rate {fg['rate_lsq']:.1f}\n(M = {fg['M_lo']}–{fg['M_hi']}, "
+             f"$R^2$ = {fg['r2']:.4f})", transform=ax1.transAxes, fontsize=6.2, ha="right", va="top")
+    log_m_axis(ax1, [28, 32, 40, 48, 64, 80, 96])
+    ax1.set_ylim(3e-15, 2e-5)
+    ax1.set_xlabel(r"FFT grid size $M$ per dimension")
+    ax1.set_ylabel("relative action error\n(maximum over tested probes/configurations)")
+    ax1.set_title(r"production cutoffs, $N=512$ strongly clustered", fontsize=7.8, fontweight="normal")
+    leg = style_legend(ax1, [(CLS_LABEL[c], dict(color=CLS_COLOR[c], lw=2)) for c in ("gaussian", "spectral_slow")],
+                       loc="upper left", bbox_to_anchor=(0.06, 1.0), handlelength=1.4, fontsize=6.4)
+    ax1.add_artist(leg)
+    style_legend(ax1, [(r"complete $E_{\rm complete}$ (vs $\Gamma_{\rm ref}$)", dict(color="k", ls="-", marker="o", ms=3)),
+                       (r"mesh-only $E_{\rm mesh}$ (vs $\Gamma_L^{k_c}$)", dict(color="k", ls="--", marker="o", mfc="none",
+                                                                             ms=3))],
+                 loc="upper right", bbox_to_anchor=(1.0, 1.0), handlelength=2.2, fontsize=6.4)
+    # (d, right) strict cutoffs: complete error for every size, maximum over tested probes and configurations
+    st = [r for r in rows if r["setting"] == "strict"]
+    for N, ls, lw in ((128, "-", 0.9), (256, "--", 0.9), (512, "-", 1.8)):
+        for cls in ("gaussian", "spectral_slow"):
+            M, E = class_curve(st, "E_complete", cls, N=N)
+            ax2.plot(M, E, ls, color=CLS_COLOR[cls], lw=lw, marker="o" if N == 512 else None, ms=2.8,
+                     alpha=1.0 if N == 512 else 0.75)
+    fg = [f for f in fits if f["setting"] == "strict" and f["probe_class"] == "gaussian" and f["quantity"].startswith(
+        "E_complete")]
+    ax2.text(0.97, 0.97, "LSQ rate (Gaussian, max over probes/configs):\n" + ", ".join(
+        f"$N={f['N']}$: {f['rate_lsq']:.1f}" for f in fg), transform=ax2.transAxes, fontsize=6.0, ha="right", va="top")
+    trunc = max(m["E_op_trunc"] for m in mesh if m["setting"] == "strict")
+    ax2.axhline(trunc, color="0.45", ls=":", lw=0.9)
+    ax2.text(19.5, trunc * 1.4, rf"strict truncation floor $E_{{\rm op}}\leq{tex(trunc)}$", fontsize=5.8, color="0.3")
+    log_m_axis(ax2, [20, 24, 32, 40, 48, 64, 80, 96])
+    ax2.set_ylim(3e-15, 2e-5)
+    ax2.set_xlabel(r"FFT grid size $M$ per dimension")
+    ax2.set_title(r"strict cutoffs ($r_c=6/\xi$, $k_c\leq12\xi$): $E_{\rm complete}$", fontsize=7.8,
+                  fontweight="normal")
+    style_legend(ax2, [("$N=128$ (9 configs)", dict(color="k", ls="-", lw=0.9)),
+                       ("$N=256$ (9 configs)", dict(color="k", ls="--", lw=0.9)),
+                       ("$N=512$ strongly clustered", dict(color="k", ls="-", lw=1.8, marker="o", ms=2.8))],
+                 loc="lower left", bbox_to_anchor=(0.0, 0.07), handlelength=2.2, fontsize=6.4)
+
+
+CONFIG_VIEWS = (("uniform_N256_s1", "uniform"), ("moderate_N256_s1", "moderately clustered"),
+                ("strong_N256_s1", "strongly clustered"), ("strong_N512_s1", "strongly clustered"))
+
+
+def load_config(name):
+    for d in (HERE / "configs", HERE.parent / "configs", HERE.parent / "configs_scaling"):
+        if (d / f"{name}.npz").exists():
+            with np.load(d / f"{name}.npz") as z:
+                return np.mod(z["q"], float(z["L"])), float(z["L"])
+    raise FileNotFoundError(name)
+
+
+def panel_configs(axs):
+    """Schematic of the particle configurations: positions in the periodic box (depth shaded)."""
+    edges = [((0, 0, 0), (1, 0, 0)), ((0, 0, 0), (0, 1, 0)), ((0, 0, 0), (0, 0, 1)), ((1, 1, 0), (0, 1, 0)),
+             ((1, 1, 0), (1, 0, 0)), ((1, 1, 0), (1, 1, 1)), ((1, 0, 1), (0, 0, 1)), ((1, 0, 1), (1, 1, 1)),
+             ((1, 0, 1), (1, 0, 0)), ((0, 1, 1), (0, 0, 1)), ((0, 1, 1), (1, 1, 1)), ((0, 1, 1), (0, 1, 0))]
+    for ax, (name, lab) in zip(axs, CONFIG_VIEWS):
+        x, L = load_config(name)
+        fam = name.split("_")[0]
+        u = x / L
+        depth = (u[:, 0] + u[:, 1]) / 2 - u[:, 2] * 0.3
+        a = 0.35 + 0.65 * (depth - depth.min()) / np.ptp(depth)
+        cols = np.tile(matplotlib.colors.to_rgba(FAM_COLOR[fam]), (len(u), 1))
+        cols[:, 3] = a
+        ax.scatter(u[:, 0], u[:, 1], u[:, 2], s=5 if len(u) <= 256 else 3, c=cols, edgecolors="none", depthshade=False)
+        for p0, p1 in edges:
+            ax.plot(*zip(p0, p1), color="0.45", lw=0.6)
+        ax.set_xlim(0, 1)
+        ax.set_ylim(0, 1)
+        ax.set_zlim(0, 1)
+        ax.set_box_aspect((1, 1, 1), zoom=1.08)
+        ax.view_init(elev=18, azim=-58)
+        ax.set_axis_off()
+        N = len(x)
+        ax.set_title(f"{lab}\n$N={N}$, $L={L:.2f}$" + ("  (main test of (d))" if N == 512 else ""), fontsize=6.8,
+                     fontweight="normal", pad=-2)
 
 
 def fig1():
-    fig, axs = plt.subplots(2, 2, figsize=(7.4, 6.4))
-    panel_a(axs[0, 0])
-    panel_b(axs[0, 1])
-    panel_c(axs[1, 0])
-    panel_d(axs[1, 1])
-    fig.tight_layout(h_pad=1.6, w_pad=1.4)
+    fig = plt.figure(figsize=(7.4, 8.6))
+    top = GridSpec(1, 4, figure=fig, left=0.06, right=0.98, top=0.935, bottom=0.765, wspace=0.02)
+    axs3 = [fig.add_subplot(top[0, k], projection="3d") for k in range(4)]
+    panel_configs(axs3)
+    mid = GridSpec(1, 2, figure=fig, left=0.10, right=0.97, top=0.705, bottom=0.425, wspace=0.36)
+    panel_split(fig.add_subplot(mid[0, 0]))
+    panel_shortrange(fig.add_subplot(mid[0, 1]))
+    bot = GridSpec(1, 2, figure=fig, left=0.10, right=0.97, top=0.305, bottom=0.05, wspace=0.22)
+    ax1 = fig.add_subplot(bot[0, 0])
+    ax2 = fig.add_subplot(bot[0, 1])
+    panel_action(ax1, ax2)
+    fig.text(0.5, 0.985, "(a) Particle configurations (periodic box, $\\rho=0.75$, periodic $d_{\\min}\\geq0.9$)",
+             ha="center", va="bottom", fontsize=9.5, fontweight="bold")
+    fig.text(0.5, 0.335, r"(d) Matrix-free PPPM action convergence ($\xi$, $r_c$, $k_c$, $p=9$ fixed; only $M$ varies)",
+             ha="center", va="bottom", fontsize=9.5, fontweight="bold")
     save(fig, "fig1_spatial_validation")
 
 
 # ---------------------------------------------------------------------------- supplementary
 def figS1():
-    radial = load("a_split_radial.csv")
-    mp_rows = load("a_split_mpmath.csv")
+    radial = load("split_radial.csv")
+    mp_rows = load("split_mpmath.csv")
     fig, axs = plt.subplots(1, 2, figsize=(8.2, 3.0))
     cm = plt.get_cmap("viridis")
     xis = sorted({r["xi"] for r in radial})
@@ -244,70 +346,93 @@ def figS1():
 
 
 def figS2():
-    rows = [r for r in load("c_degree.csv")]
-    fig, axs = plt.subplots(2, 3, figsize=(9.0, 5.6), sharey=True)
+    rows = load("action_errors.csv")
+    mesh = [m for m in load("action_mesh.csv") if m["valid"]]
+    fig, axs = plt.subplots(2, 3, figsize=(9.6, 5.8), sharey=True)
     for i, setting in enumerate(("production", "strict")):
         for j, N in enumerate((128, 256, 512)):
             ax = axs[i, j]
-            name = f"strong_N{N}_s1"
-            sub = [r for r in rows if r["config"] == name and r["setting"] == setting]
-            for p in (4, 6, 8, 9):
-                M, E = series([r for r in sub if r["valid"]], "M", "E_D_complete", p=p)
-                ax.plot(M, E, "-o", color=P_COLOR[p], label=f"$p={p}$")
-                M, E = series([r for r in sub if r["valid"]], "M", "E_D_mesh", p=p)
-                ax.plot(M, E, "--", color=P_COLOR[p], marker="o", mfc="none", lw=0.8)
-            if N == 256:
-                for fam in ("uniform", "moderate"):
-                    s2 = [r for r in rows if r["config"] == f"{fam}_N256_s1" and r["setting"] == setting and r["valid"]]
-                    M, E = series(s2, "M", "E_D_complete", p=9)
-                    ax.plot(M, E, "-", color=FAM_COLOR[fam], lw=0.7, label=f"{fam} $p=9$")
-            inval = sorted({r["M"] for r in sub if not r["valid"]})
-            for M in inval:
-                ax.axvline(M, color="0.7", lw=4, alpha=0.4)
-            ax.axhline(sub[0]["E_D_floor"], color="k", ls=":", lw=0.9)
-            ax.set_xscale("log")
-            ax.set_yscale("log")
-            ax.minorticks_off()
+            sub = [r for r in rows if r["setting"] == setting and r["N"] == N]
+            for cls in ("gaussian", "spectral_slow", "spectral_fast"):
+                M, E = class_curve(sub, "E_complete", cls)
+                ax.plot(M, E, "-o", color=CLS_COLOR[cls], ms=2.6)
+                M, E = class_curve(sub, "E_mesh", cls)
+                ax.plot(M, E, "--o", color=CLS_COLOR[cls], mfc="none", ms=2.6, lw=0.9)
+            M, E = series([m for m in mesh if m["setting"] == setting and m["N"] == N], "M", "E_op")
+            ax.plot(M, E, ":", color="k", lw=1.0)
             Ms = sorted({r["M"] for r in sub})
-            ax.set_xticks(Ms)
-            ax.set_xticklabels([str(m) for m in Ms], fontsize=6)
-            ax.set_title(f"strong N={N}, {setting}" + (" (grey: invalid M)" if inval else ""), fontsize=8)
+            log_m_axis(ax, Ms)
+            ax.tick_params(axis="x", labelsize=6)
+            cfgs = sorted({r["config"] for r in sub})
+            ax.set_title(f"N={N}, {setting} cutoffs, p=9 ({len(cfgs)} config{'s' if len(cfgs) > 1 else ''})", fontsize=7.5)
             if j == 0:
-                ax.set_ylabel(r"$E_D$ (solid complete, dashed mesh)")
+                ax.set_ylabel("relative error\n(maximum over tested probes/configurations)", fontsize=7)
             if i == 1:
                 ax.set_xlabel("$M$")
-            if i == 0 and j == 1:
-                ax.legend(fontsize=6, ncol=2)
+    axs[0, 0].set_ylim(3e-15, 3e-6)
+    style_legend(axs[0, 0], [(CLS_LABEL[c], dict(color=CLS_COLOR[c], lw=2)) for c in CLS_COLOR]
+                 + [("complete (solid)", dict(color="k", ls="-")), ("mesh-only (dashed)", dict(color="k", ls="--")),
+                    (r"dense $E_{\rm op}$ (dotted)", dict(color="k", ls=":"))], loc="lower left", fontsize=5.8)
     fig.tight_layout()
-    save(fig, "figS2_degree_all")
+    save(fig, "figS2_action_detail")
 
 
 def figS3():
-    rows = [r for r in load("d_action.csv") if r["valid"]]
-    keys = (("E_op", "dense $E_{\\rm op}$"), ("E_gauss_max", "Gaussian (max of 5)"), ("E_spec_min", "spectral min"),
-            ("E_spec_max", "spectral max"), ("E_slow_max", "slow modes (max of 4)"))
-    fig, axs = plt.subplots(2, 2, figsize=(8.0, 5.8), sharey="row")
-    axs[0, 0].set_ylim(1.5e-8, 1.2e-7)
-    for i, setting in enumerate(("production", "strict")):
-        for j, N in enumerate((128, 256)):
-            ax = axs[i, j]
-            for k, (key, lab) in enumerate(keys):
-                M, E = series(rows, "M", key, N=N, setting=setting)
-                ax.plot(M, E, "-o", color=plt.get_cmap("tab10")(k), label=lab)
-            ax.set_xscale("log")
-            ax.set_yscale("log")
-            ax.xaxis.set_minor_locator(matplotlib.ticker.NullLocator())
-            Ms = sorted({r["M"] for r in rows if r["N"] == N})
-            ax.set_xticks(Ms)
-            ax.set_xticklabels([str(m) for m in Ms], fontsize=6.5)
-            ax.set_title(f"N={N}, {setting} cutoffs, p=9 (max over 9 configs)", fontsize=7.5)
-            ax.set_xlabel("$M$")
-            if j == 0:
-                ax.set_ylabel("relative error")
-            if j == 0:
-                ax.legend(fontsize=6, ncol=2 if i == 0 else 1)
+    tr = load("action_translation.csv")
+    zero = 1.5e-18                           # exact zeros are drawn on this line (log axis)
+    fig, axs = plt.subplots(1, 2, figsize=(8.0, 3.4), sharey=True)
+    for ax, setting in zip(axs, ("production", "strict")):
+        for N, c in ((128, "#7f7f7f"), (256, "#1f77b4"), (512, "#d62728")):
+            sub = [r for r in tr if r["setting"] == setting and r["N"] == N]
+            M, E = series(sub, "M", "opnorm_pairdiff")
+            ax.plot(M, np.maximum(E, zero), "-o", color=c, ms=2.6, label=f"$N={N}$ pair-difference (production)")
+            M, E = series(sub, "M", "opnorm_cached")
+            ax.plot(M, np.maximum(E, zero), "--s", color=c, mfc="none", ms=2.6, lw=0.9, label=f"$N={N}$ cached $D-H$")
+            ax.axhline(max(r["opnorm_ref"] for r in sub), color=c, ls=":", lw=0.9)
+        ax.axhline(U_ROUND, color="0.5", ls="-.", lw=0.8)
+        ax.axhline(zero, color="0.8", lw=3, zorder=0)
+        ax.text(19, zero * 1.4, "exact 0", fontsize=6, color="0.4")
+        ax.set_xscale("log")
+        ax.set_yscale("log")
+        ax.xaxis.set_minor_locator(matplotlib.ticker.NullLocator())
+        Ms = sorted({r["M"] for r in tr})
+        ax.set_xticks(Ms[::2])
+        ax.set_xticklabels([str(m) for m in Ms[::2]], fontsize=6.5)
+        ax.set_ylim(1e-18, 1e-14)
+        ax.set_xlabel("$M$")
+        ax.set_title(f"translation probes, {setting} cutoffs", fontsize=8)
+    axs[0].set_ylabel(r"$\max_a\|\Gamma_h T_a\|_2/\|\Gamma_{\rm ref}\|_2$" + "\n(3 probes, maximum over configurations)",
+                      fontsize=7.5)
+    h, lab = axs[0].get_legend_handles_labels()
+    h += [plt.Line2D([], [], color="k", ls=":"), plt.Line2D([], [], color="0.5", ls="-.")]
+    lab += [r"$\Gamma_{\rm ref}$ itself (dotted, per $N$)", r"$u=2^{-53}$"]
+    fig.legend(h, lab, loc="lower center", ncol=4, fontsize=6.0, bbox_to_anchor=(0.5, -0.02))
+    fig.tight_layout(rect=(0, 0.13, 1, 1))
+    save(fig, "figS3_translation_residual")
+
+
+def figS4():
+    rows = load("action_p.csv")
+    fits = load("action_p_rate_fits.csv")
+    fig, axs = plt.subplots(1, 2, figsize=(8.0, 3.2), sharey=True)
+    for ax, setting in zip(axs, ("production", "strict")):
+        for p in (4, 6, 8, 9):
+            sub = [r for r in rows if r["setting"] == setting and r["p"] == p]
+            M, E = class_curve(sub, "E_mesh", "gaussian")
+            f = [q for q in fits if q["setting"] == setting and q["p"] == p and q["probe_class"] == "gaussian"]
+            lab = f"$p={p}$" + (f", LSQ rate {f[0]['rate_lsq']:.1f} (M {f[0]['M_lo']}–{f[0]['M_hi']})" if f else "")
+            ax.plot(M, E, "--o", color=P_COLOR[p], mfc="none", ms=2.8, label=lab)
+            M, E = class_curve(sub, "E_complete", "gaussian")
+            ax.plot(M, E, "-", color=P_COLOR[p], lw=0.9)
+        log_m_axis(ax, sorted({r["M"] for r in rows}))
+        ax.tick_params(axis="x", labelsize=6)
+        ax.set_ylim(3e-15, 1e-4)
+        ax.set_xlabel("$M$")
+        ax.set_title(f"N=512 strongly clustered, {setting} cutoffs", fontsize=8)
+        ax.legend(fontsize=5.8, loc="lower left", title="dashed mesh-only, solid complete", title_fontsize=5.8)
+    axs[0].set_ylabel("Gaussian probes: relative action error\n(maximum over 10 probes)", fontsize=7.5)
     fig.tight_layout()
-    save(fig, "figS3_action_all")
+    save(fig, "figS4_action_p")
 
 
 if __name__ == "__main__":
@@ -315,4 +440,5 @@ if __name__ == "__main__":
     figS1()
     figS2()
     figS3()
+    figS4()
     print("figures written to", FIG)

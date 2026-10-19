@@ -14,27 +14,36 @@ References (independent of the split and of the PPPM):
   Gamma_D55  unsplit direct periodic image sum to R = 55 (direct_periodic.DirectPairs; certified tail bound
              <= 7e-14 relative), used only to measure the accuracy of Gamma_ref (stage refs)
 
-Panels (results/):
-  (a) split      K = K_S + K_L: theta_S closed form, theta_L by its own Gauss-Legendre s-integral (never K - K_S),
+Figure 1 (results/; panel (a) only shows the configurations of results/configurations.json):
+  (b) split      K = K_S + K_L: theta_S closed form, theta_L by its own Gauss-Legendre s-integral (never K - K_S),
                  theta = c e^{-kappa r}/r; all pair images |d| <= 8 of N = 256 uniform/strong/moderate x 3 seeds,
                  xi in XI_A; a synthetic radial sweep r = 1e-6 ... 12; 50-digit mpmath values of each component
-  (b) shortrange E_S(rc) = ||Gamma_S^{rc} + Gamma_L^{exact} - Gamma_ref||_2/||Gamma_ref||_2, xi = 0.85,
+                 -> split_*.csv/json
+  (c) shortrange E_S(rc) = ||Gamma_S^{rc} + Gamma_L^{exact} - Gamma_ref||_2/||Gamma_ref||_2, xi = 0.85,
                  s = xi rc = 2.0 ... 6.6; Gamma_L^{exact} = mesh-free Fourier lattice sum to k_c = 2 xi 6.6 (no mesh);
                  also against Gamma_D55, the exact-arithmetic tail ||Gamma_S^{rc} - Gamma_S^{full}||, and the
-                 certified RealSpaceTail bound
-  (c) degree     D_i^h = diagonal blocks of the complete discrete Gamma_h (mesh self response excluded), checked
-                 against the production FFT degree minus the mode-space self response; E_D vs Gamma_ref (complete),
-                 vs the exact truncated-Fourier degree (mesh transfer only), and the fixed-cutoff floor; p = 4, 6, 8, 9
-  (d) action     Gamma_h X (production pair-difference) vs Gamma_ref X: Gaussian, translation, spectral, slow-mode
-                 probes; dense E_op, symmetry, translation null space, cached vs pair-difference, lambda_min on
-                 Range(Pi) of Gamma_h; N = 128, 256 x 3 families x 3 seeds, p = 9
-Cutoff settings of (c), (d): "production" xi = 0.85, rc = 4.8878, kc = 9.3585 (measured N = 512 optimum, k_c snapped
-to the largest reciprocal shell <= 9.3585 of each box); "strict" xi = 0.85, rc = 6.0/xi, k_c <= 2 xi 6.0 (convergence
-experiment only, so the mesh error is visible below the production truncation floor).
+                 certified RealSpaceTail bound -> shortrange*.csv/json
+  (d) action     production matrix-free action Gamma_h(M) X (pair-difference GammaH.matvec; cached D - H as a second
+                 path) with xi, rc, kc, p fixed and only M varied; probes: 10 Gaussian (fixed seeds, translation
+                 removed), the 3 slowest and the fastest eigenvector of Gamma_ref, 3 translations (absolute /
+                 operator-normalised residuals only);
+                   E_complete = ||(Gamma_h - Gamma_ref) X|| / ||Gamma_ref X||
+                   E_mesh     = ||(Gamma_L^h - Gamma_L^{kc}) X|| / ||Gamma_ref X||   (Gamma_L^{kc}: exact truncated
+                                Fourier operator over the retained modes, no mesh assignment)
+                   E_trunc    = ||(Gamma_S^{rc} + Gamma_L^{kc} - Gamma_ref) X|| / ||Gamma_ref X||   (independent of M)
+                 N = 128, 256 (uniform/moderate/strong x 3 seeds) and N = 512 strongly clustered; dense E_op, symmetry,
+                 lambda_min on Range(Pi) for context -> action_*.csv/json; stage action_p: p = 4, 6, 8, 9 at N = 512
+                 (supplementary) -> action_p*.csv
+Cutoff settings of (d): "production" = the measured N = 512 optimum in full double precision (xi = 0.85,
+rc = 4.88775618844242, kc = 9.358534792617089 = 2 pi sqrt(172)/L_512, p = 9), kc snapped to the largest reciprocal
+shell <= kc of each box; "strict" xi = 0.85, rc = 6/xi, kc <= 12 xi (convergence experiment only, so the mesh error
+is visible below the production truncation floor). The diffusion-coefficient (degree D_i) study of the first version
+is not part of Experiment 1 any more (see report_exp1.md, "Changes").
 
-    python3 run_exp1.py all            # or any of: configs refs split shortrange degree action fits
+    python3 run_exp1.py all            # or any of: configs refs split shortrange action action_p
 """
 import argparse
+import hashlib
 import sys
 import time
 from pathlib import Path
@@ -49,10 +58,12 @@ from scipy import linalg                 # noqa: E402
 import clustered_configurations as CC    # noqa: E402
 from neighbor_images import kdtree_images  # noqa: E402
 from parameter_optimizer import RealSpaceTail, FourierShells, lambda_lower_bound, shell_kc, mesh_modes  # noqa: E402
-from cached_operator import CachedGammaH, mesh_for  # noqa: E402
+from cached_operator import CachedGammaH, mesh_for, short_range_weights  # noqa: E402
 from error_validation import Components, REF_REL_TOL, PAIRS6  # noqa: E402
 from direct_periodic import DirectPairs  # noqa: E402
-from test_parameter_selection import lap_full  # noqa: E402
+from test_parameter_selection import lap_full, lattice_modes, INFL_THR  # noqa: E402
+from run_psearch_dense512 import mode_pair_matrix_fast  # noqa: E402
+from prl_toy_models import LatticeFriction  # noqa: E402
 
 RESULTS = HERE / "results"
 CONFIG_DIR = HERE / "configs"
@@ -64,13 +75,19 @@ XI0 = 0.85
 S_B = np.round(np.arange(2.0, 6.6001, 0.1), 4)
 B_EXACT = 6.6                           # Gamma_L^exact: k_c = 2 xi B_EXACT (Fourier tail certified below)
 R_D55 = 55.0
-SETTINGS = {"production": dict(xi=0.85, rc=4.8878, kc_max=9.3585),
+# production = the measured N = 512 optimum (results_psearch/optimum_strong_N512_s1_main.json), full doubles: k_c is the
+# exact shell radius 2 pi sqrt(172)/L of the N = 512 box; a decimal truncation (9.3585) drops that shell.
+SETTINGS = {"production": dict(xi=0.85, rc=4.88775618844242, kc_max=9.358534792617089),
             "strict": dict(xi=0.85, rc=6.0 / 0.85, kc_max=2 * 0.85 * 6.0)}
-P_C = (4, 6, 8, 9)
-P_D = 9
-M_LIST = {128: (18, 20, 24, 28, 32, 36, 40, 48, 56, 64),
-          256: (22, 24, 28, 32, 36, 40, 48, 56, 64, 80),
-          512: (28, 32, 36, 40, 48, 56, 64, 80, 96)}
+P_ACTION = 9
+P_STUDY = (4, 6, 8, 9)
+M_PROD = 40
+MAIN_C = "strong_N512_s1"
+M_LIST = {128: (16, 18, 20, 24, 28, 32, 36, 40, 48, 56, 64),
+          256: (20, 22, 24, 28, 32, 36, 40, 48, 56, 64, 80),
+          512: (26, 28, 30, 32, 36, 40, 48, 56, 64, 80, 96)}
+GAUSS_SEEDS = tuple(range(1001, 1011))
+FIT_FLOOR = 1e-13                       # rate fits use only points above the round-off / reference level
 SEED = 20261019
 
 
@@ -286,10 +303,10 @@ def stage_split(args):
               f"(r < 0.9: {max(q['rel_pointwise'] for q in radial if q['xi'] == xi and q['r'] < 0.9):.2e}); mpmath: "
               f"theta_S {max(q['err_theta_S_rel_self'] for q in mp_rows if q['xi'] == xi and q['err_theta_S_rel_self'] is not None):.1e}, "
               f"theta_L {max(q['err_theta_L_rel_self'] for q in mp_rows if q['xi'] == xi and q['err_theta_L_rel_self'] is not None):.1e} (rel. to self)")
-    C.write_csv(RESULTS / "a_split_configs.csv", rows)
-    C.write_csv(RESULTS / "a_split_radial.csv", radial)
-    C.write_csv(RESULTS / "a_split_mpmath.csv", mp_rows)
-    C.write_json(RESULTS / "a_split_summary.json", dict(
+    C.write_csv(RESULTS / "split_configs.csv", rows)
+    C.write_csv(RESULTS / "split_radial.csv", radial)
+    C.write_csv(RESULTS / "split_mpmath.csv", mp_rows)
+    C.write_json(RESULTS / "split_summary.json", dict(
         max_rel_fro=max(q["rel_fro"] for q in rows), max_abs=max(q["max_abs"] for q in rows),
         max_rel_pointwise_configs=max(q["max_rel_pointwise"] for q in rows),
         max_rel_pointwise_radial=max(q["rel_pointwise"] for q in radial),
@@ -365,8 +382,8 @@ def stage_shortrange(args):
                   f"{np.median([q['E_S_vs_D55'] for q in mine[-5:]]):.2e}); fit c = {fits[-1]['c']:.3f} on "
                   f"s in [{fits[-1]['s_lo']:.1f}, {fits[-1]['s_hi']:.1f}]; Fourier tail {eps_F_ex / nref:.1e} "
                   f"({time.perf_counter() - t0:.0f} s)")
-    C.write_csv(RESULTS / "b_shortrange.csv", rows)
-    C.write_csv(RESULTS / "b_shortrange_fits.csv", fits)
+    C.write_csv(RESULTS / "shortrange.csv", rows)
+    C.write_csv(RESULTS / "shortrange_fits.csv", fits)
     fam_fits = {}
     for fam in FAMS:
         Ss = sorted({q["s"] for q in rows})
@@ -380,7 +397,7 @@ def stage_shortrange(args):
         (a3, c3), *_ = np.linalg.lstsq(A[sub], ev[sub], rcond=None)
         fam_fits[fam] = dict(c_median_curve=float(c), a=float(a), s_lo=float(sv.min()), s_hi=float(sv.max()),
                              c_median_curve_s_ge_3=float(c3), a_s_ge_3=float(a3), floor_median=floor)
-    C.write_json(RESULTS / "b_shortrange_summary.json", dict(
+    C.write_json(RESULTS / "shortrange_summary.json", dict(
         xi=xi, s=S_B.tolist(), B_exact=B_EXACT, family_fits=fam_fits,
         c_range_individual=[min(f_["c"] for f_ in fits), max(f_["c"] for f_ in fits)],
         c_s_ge_3_range_individual=[min(f_["c_s_ge_3"] for f_ in fits), max(f_["c_s_ge_3"] for f_ in fits)],
@@ -389,256 +406,307 @@ def stage_shortrange(args):
         provenance=C.provenance()))
 
 
-# ============================================================================ shared: operators per mesh
+# ============================================================================ (c) matrix-free action convergence
 def setting_params(setting, L):
     st = SETTINGS[setting]
     return st["xi"], st["rc"], kc_shell_below(st["kc_max"], L)
 
 
-def try_mesh(L, K, kc, M, p):
+def sum_of_three_squares(n):
+    """True if n = a^2 + b^2 + c^2 (Legendre: n is not of the form 4^a (8b + 7))."""
+    while n > 0 and n % 4 == 0:
+        n //= 4
+    return n % 8 != 7
+
+
+def shell_count(kc, L):
+    """Outermost reciprocal shell |m|^2 = n_c <= (kc L/2 pi)^2 and an independent integer count of |m|^2 <= n_c."""
+    n_c = int(np.floor((kc * L / (2 * np.pi)) ** 2 * (1 + 1e-12)))
+    while not sum_of_three_squares(n_c):
+        n_c -= 1
+    m = np.arange(-int(np.sqrt(n_c)), int(np.sqrt(n_c)) + 1)
+    n2 = (m[:, None, None] ** 2 + m[None, :, None] ** 2 + m[None, None, :] ** 2).ravel()
+    return n_c, int(np.sum(n2 <= n_c))
+
+
+def check_mesh(L, K, kc, M, p):
+    """Validity of one FFT size at fixed (xi, rc, kc, p): Nyquist, eta < 1, every retained shell complete
+    (independent integer count) and no mode below the influence-function threshold |W_hat|^2 <= INFL_THR."""
     mc = int(np.floor(kc * L / (2 * np.pi) + 1e-12))
     eta = kc * (L / M) / np.pi
-    if mc >= M / 2:
-        return None, dict(valid=False, reason=f"Nyquist: m_c = {mc} >= M/2 = {M / 2}", mc=mc, eta=eta)
-    if eta >= 1:
-        return None, dict(valid=False, reason=f"eta = {eta:.3f} >= 1", mc=mc, eta=eta)
+    info = dict(M=M, h=L / M, mc=mc, eta=eta, valid=False, reason="")
+    if not mc < M / 2:
+        info["reason"] = f"Nyquist: largest retained |m_a| = {mc} >= M/2 = {M / 2:g}"
+        return None, info
+    if not eta < 1:
+        info["reason"] = f"eta = k_c h/pi = {eta:.4f} >= 1"
+        return None, info
     mesh = mesh_for(L, K, kc, M, p)
-    return mesh, dict(valid=True, reason="", mc=mc, eta=eta, n_modes=mesh.n_modes, n_excluded=mesh.n_excluded,
-                      W2min=mesh.W2min)
+    n_c, n_exp = shell_count(kc, L)
+    info.update(n_shell=n_c, n_modes=mesh.n_modes, n_excluded=mesh.n_excluded, n_modes_expected=n_exp,
+                W2min=mesh.W2min, max_influence_amplification=float(1.0 / mesh.W2min))
+    if mesh.n_modes + mesh.n_excluded != n_exp:
+        info["reason"] = f"retained modes {mesh.n_modes + mesh.n_excluded} != shell count {n_exp}"
+        return None, info
+    if mesh.n_excluded > 0:
+        info["reason"] = f"{mesh.n_excluded} modes with |W_hat|^2 <= {INFL_THR:g} (incomplete shells)"
+        return None, info
+    info["valid"] = True
+    return mesh, info
 
 
-def self_response(mesh, x):
-    """Mesh self response W_ii = (1/V) sum_k |S_i(k)|^2 G_h(k) (mode space), shape (N, 3, 3)."""
-    s = mesh.stencil_dft(x)
-    o, mv = mesh.mc, mesh.mv
-    S = s[:, 0, mv[:, 0] + o] * s[:, 1, mv[:, 1] + o] * s[:, 2, mv[:, 2] + o]
-    a2 = np.abs(S) ** 2
-    return np.einsum("nk,kab->nab", a2, mesh.Gm) / mesh.V
+def sha(v):
+    return hashlib.sha256(np.ascontiguousarray(v, dtype=np.float64).tobytes()).hexdigest()
 
 
-def diag_blocks(G, N):
-    return G.reshape(N, 3, N, 3)[np.arange(N), :, np.arange(N), :]
-
-
-def real_degree(op):
-    N = op.N
-    return op.DS
-
-
-def fourier_degree(cp, kc):
-    W = cp.fourier_W(kc)
-    N = W.shape[0]
-    idx = np.arange(N)
-    W[idx, idx] = 0.0
-    return W.sum(axis=1), W
-
-
-# ============================================================================ (c) degree convergence
-def stage_degree(args):
-    rows = []
-    cases = [(name_of("strong", N, 1), p, setting) for N in (128, 256, 512) for p in P_C for setting in SETTINGS]
-    cases += [(name_of(fam, 256, 1), 9, setting) for fam in ("uniform", "moderate") for setting in SETTINGS]
-    cache = {}
-    for name, p, setting in cases:
-        x, L = load_cfg(name)
-        N = len(x)
-        xi, rc, kc = setting_params(setting, L)
-        K = C.kernel(xi)
-        key = (name, setting)
-        if key not in cache:
-            G = gref(name, x, L)
-            Dref = diag_blocks(G, N)
-            cp = Components(x, L, G, xi)
-            DLkc, _ = fourier_degree(cp, kc)
-            op0 = CachedGammaH(x, L, K, rc, mesh_for(L, K, 2 * np.pi * 2 / L, 16, 4))
-            DS = op0.DS.copy()
-            nD = float(np.sqrt(np.sum(Dref ** 2)))
-            floor = float(np.sqrt(np.sum((DS + DLkc - Dref) ** 2)) / nD)
-            cache[key] = dict(G=G, Dref=Dref, DLkc=DLkc, DS=DS, nD=nD, floor=floor)
-            del cp
-        cc = cache[key]
-        for M in M_LIST[N]:
-            mesh, info = try_mesh(L, K, kc, M, p)
-            row = dict(config=name, N=N, family=name.split("_")[0], setting=setting, xi=xi, rc=rc, kc=kc, p=p, M=M,
-                       h=L / M, **info, E_D_floor=cc["floor"])
-            if mesh is not None:
-                idx, wt = mesh.flat(x)
-                Dm = mesh.degree(idx, wt)                     # production FFT degree, mesh self response included
-                Wii = self_response(mesh, x)
-                DLh = Dm - Wii
-                Dh = cc["DS"] + DLh
-                nD = cc["nD"]
-                row.update(E_D_complete=float(np.sqrt(np.sum((Dh - cc["Dref"]) ** 2)) / nD),
-                           E_D_mesh=float(np.sqrt(np.sum((DLh - cc["DLkc"]) ** 2)) / nD),
-                           E_D_self_not_removed=float(np.sqrt(np.sum((cc["DS"] + Dm - cc["Dref"]) ** 2)) / nD),
-                           self_response_rel=float(np.sqrt(np.sum(Wii ** 2)) / nD))
-                if N <= 256 and M in (M_LIST[N][0], M_LIST[N][len(M_LIST[N]) // 2]):
-                    from run_psearch_dense512 import dense_fast
-                    Gh, _ = dense_fast(x, L, K, rc, mesh)
-                    row["diag_dense_vs_fft_minus_self"] = float(np.sqrt(np.sum((diag_blocks(Gh, N) - Dh) ** 2)) / nD)
-                    del Gh
-            rows.append(row)
-        mine = [q for q in rows if q["config"] == name and q["p"] == p and q["setting"] == setting]
-        C.log(f"degree {name} {setting} p={p}: " + ", ".join(
-            f"M{q['M']}:{q['E_D_complete']:.1e}/{q['E_D_mesh']:.1e}" if q["valid"] else f"M{q['M']}:invalid"
-            for q in mine) + f"; floor {cc['floor']:.1e}")
-        C.write_csv(RESULTS / "c_degree.csv", rows)
-    rates = []
-    for name, p, setting in cases:
-        mine = [q for q in rows if q["config"] == name and q["p"] == p and q["setting"] == setting and q["valid"]]
-        for a, b in zip(mine[:-1], mine[1:]):
-            rates.append(dict(config=name, p=p, setting=setting, M_lo=a["M"], M_hi=b["M"],
-                              rate_mesh=float(-np.log(b["E_D_mesh"] / a["E_D_mesh"]) / np.log(b["M"] / a["M"])),
-                              rate_complete=float(-np.log(b["E_D_complete"] / a["E_D_complete"]) / np.log(b["M"] / a["M"]))))
-    C.write_csv(RESULTS / "c_degree_rates.csv", rates)
-    gfit = []
-    for name, p, setting in cases:
-        mine = [q for q in rows if q["config"] == name and q["p"] == p and q["setting"] == setting and q["valid"]
-                and q["E_D_mesh"] >= 1e-13]
-        if len(mine) >= 3:
-            lm = np.log([q["M"] for q in mine])
-            le = np.log([q["E_D_mesh"] for q in mine])
-            slope, icpt = np.polyfit(lm, le, 1)
-            gfit.append(dict(config=name, p=p, setting=setting, M_lo=mine[0]["M"], M_hi=mine[-1]["M"], n_points=len(mine),
-                             rate_mesh_lsq=float(-slope)))
-    C.write_csv(RESULTS / "c_degree_rate_fits.csv", gfit)
-    v = [q for q in rows if q["valid"]]
-    C.write_json(RESULTS / "c_degree_summary.json", dict(
-        settings=SETTINGS, M_list=M_LIST, p=list(P_C), n_rows=len(rows), n_valid=len(v),
-        invalid=[dict(config=q["config"], setting=q["setting"], p=q["p"], M=q["M"], reason=q["reason"])
-                 for q in rows if not q["valid"]],
-        max_n_excluded=max(q["n_excluded"] for q in v), min_W2min=min(q["W2min"] for q in v),
-        max_eta=max(q["eta"] for q in v),
-        self_response_rel_range=[min(q["self_response_rel"] for q in v), max(q["self_response_rel"] for q in v)],
-        max_diag_dense_vs_fft_minus_self=max(q["diag_dense_vs_fft_minus_self"] for q in v
-                                             if q.get("diag_dense_vs_fft_minus_self") is not None),
-        n_dense_checks=sum(1 for q in v if q.get("diag_dense_vs_fft_minus_self") is not None),
-        floors={f"{q['config']}|{q['setting']}": q["E_D_floor"] for q in v},
-        rate_fits=gfit, provenance=C.provenance()))
-
-
-# ============================================================================ (d) action
-def probe_set(x, L, N, G, Q):
-    rng = np.random.default_rng([SEED, 4, N])
-    P = {f"gauss{k}": rng.standard_normal(3 * N) for k in range(5)}
-    lam, U = np.linalg.eigh(Q.T @ G @ Q)
-    P["spec_min"] = Q @ U[:, 0]
-    P["spec_max"] = Q @ U[:, -1]
-    kmin = 2 * np.pi / L
-    for a, b, tag in ((0, 0, "long_x"), (1, 1, "long_y"), (0, 1, "trans_xy"), (2, 0, "trans_zx")):
-        X = np.zeros((N, 3))
-        X[:, b] = np.cos(kmin * x[:, a])
-        X -= X.mean(0)
-        P[f"slow_{tag}"] = X.ravel()
+def action_probes(N, G):
+    """Unit-norm probes: 10 Gaussian (fixed seeds, translation removed), the 3 slowest and the fastest eigenvector of
+    sym(Gamma_ref) outside the translation space, and the 3 translations 1_N (x) e_a / sqrt(N)."""
+    probes = []
+    for a, sd in enumerate(GAUSS_SEEDS):
+        X = np.random.default_rng(sd).standard_normal((N, 3))
+        X -= X.mean(axis=0)
+        probes.append(dict(probe_class="gaussian", probe_id=f"gauss{a}", seed=sd, v=X.ravel() / np.linalg.norm(X)))
+    Q, T = projector_basis(N)
+    lam, U = np.linalg.eigh(0.5 * (G + G.T))
+    tr = np.argsort(np.abs(lam))[:3]
+    pos = np.setdiff1d(np.arange(3 * N), tr)
+    pos = pos[np.argsort(lam[pos])]
+    assert lam[pos[0]] > 0
+    spec = dict(translation_eigenvalues=lam[tr].tolist(),
+                translation_overlap=np.linalg.norm(T.T @ U[:, tr], axis=0).tolist(),
+                max_translation_overlap_other=float(np.linalg.norm(T.T @ U[:, pos], axis=0).max()),
+                lambda_min_positive=float(lam[pos[0]]), lambda_max=float(lam[pos[-1]]))
+    for tag, k in (("slow", 0), ("slow", 1), ("slow", 2), ("fast", len(pos) - 1)):
+        j = pos[k]
+        u = U[:, j] * np.sign(U[np.argmax(np.abs(U[:, j])), j])
+        u = u / np.linalg.norm(u)
+        nb = [lam[pos[q]] for q in (k - 1, k + 1) if 0 <= q < len(pos)]
+        probes.append(dict(probe_class=f"spectral_{tag}", probe_id=f"spec_{tag}{k if tag == 'slow' else ''}",
+                           eigen_index_positive=int(k), eigenvalue=float(lam[j]),
+                           eigen_residual_rel=float(np.linalg.norm(G @ u - lam[j] * u) / abs(lam[j])),
+                           rel_gap_to_neighbours=float(min(abs(lam[j] - b) for b in nb) / abs(lam[j])), v=u))
     for a in range(3):
-        T = np.zeros((N, 3))
-        T[:, a] = 1.0
-        P[f"translation_{'xyz'[a]}"] = T.ravel()
-    return P, lam
+        X = np.zeros((N, 3))
+        X[:, a] = 1.0
+        probes.append(dict(probe_class="translation", probe_id=f"trans_{'xyz'[a]}", v=X.ravel() / np.sqrt(N)))
+    for pr in probes:
+        pr.update(sha256=sha(pr["v"]), translation_component=float(np.linalg.norm(T.T @ pr["v"])))
+    return probes, spec
+
+
+def real_dense(x, L, K, rc):
+    """Dense Gamma_S^{rc} on the production image list (the real-space blocks of run_psearch_dense512.dense_fast)."""
+    N = len(x)
+    il = kdtree_images(np.mod(x, L), L, rc)
+    w = short_range_weights(K, il.d)
+    wd = w[:, None] * il.d
+    flat = il.i.astype(np.int64) * N + il.j
+    W = np.empty((N, N, 3, 3))
+    for a, b in PAIRS6:
+        W[:, :, a, b] = W[:, :, b, a] = np.bincount(flat, wd[:, a] * il.d[:, b], N * N).reshape(N, N)
+    return lap_full(W + W.transpose(1, 0, 2, 3)), len(il.i)
+
+
+def action_case(name, x, L, G, GD, probes, setting, p, M_list, dense):
+    """All M for one (configuration, cutoff setting, p): complete, mesh-only and truncation action errors."""
+    fam, N, seed = name.split("_")[0], len(x), int(name.split("_s")[-1])
+    xi, rc, kc = setting_params(setting, L)
+    K = C.kernel(xi)
+    nref = norm2_sym(G)[0]
+    Xm = np.stack([pr["v"] for pr in probes], 1)
+    Yref, Y55 = G @ Xm, GD @ Xm
+    mv, _, _ = lattice_modes(L, kc)
+    GL = lap_full(Components(x, L, G, xi).fourier_W(kc, mv=mv))        # exact truncated Fourier operator
+    YL = GL @ Xm
+    GS, n_img = real_dense(x, L, K, rc)
+    Ytr = GS @ Xm + YL                                                # Gamma_S^{rc} + Gamma_L^{kc}: M-independent
+    E_op_trunc = norm2_sym(GS + GL - G)[0] / nref
+    Q, _ = projector_basis(N)
+    head = dict(config=name, N=N, family=fam, seed=seed, setting=setting, xi=xi, rc=rc, kc=kc, p=p)
+    rows, trows, mrows = [], [], []
+    for M in M_list:
+        mesh, info = check_mesh(L, K, kc, M, p)
+        mrow = dict(head, **info, production_point=bool(setting == "production" and N == 512 and M == M_PROD and p == 9),
+                    n_real_images=n_img, E_op_trunc=E_op_trunc)
+        if mesh is None:
+            mrows.append(mrow)
+            continue
+        op = CachedGammaH(x, L, K, rc, mesh)
+        pd = op.existing_gammah()
+        assert op.n_images == n_img
+        if dense:
+            GLh = lap_full(mode_pair_matrix_fast(mesh, x))
+            Gh = GS + GLh
+            lh = np.linalg.eigvalsh(Q.T @ (0.5 * (Gh + Gh.T)) @ Q)
+            Yd = Gh @ Xm
+            mrow.update(E_op=norm2_sym(Gh - G)[0] / nref, E_op_mesh=norm2_sym(GLh - GL)[0] / nref,
+                        sym_defect_h=float(np.linalg.norm(Gh - Gh.T) / np.linalg.norm(Gh)),
+                        lam_min_h_RangePi=float(lh[0]), n_negative_RangePi=int(np.sum(lh < 0)))
+            del Gh, GLh
+        dmax, dtr = 0.0, 0.0
+        for k, pr in enumerate(probes):
+            v = Xm[:, k]
+            assert sha(v) == pr["sha256"]                         # identical input bytes for every M
+            yh = pd.matvec(v.copy())                              # production pair-difference action
+            yc = op.apply(v.reshape(N, 3)).ravel()                # cached D - H action
+            yLh = pd.mesh.graph_action(pd.idx, pd.wt, v.reshape(N, 3), pd.D).ravel()    # Gamma_L^h X
+            if dense and pr["probe_class"] != "translation":
+                dmax = max(dmax, float(np.linalg.norm(Yd[:, k] - yh) / np.linalg.norm(yh)))
+            if dense and pr["probe_class"] == "translation":
+                dtr = max(dtr, float(np.linalg.norm(Yd[:, k] - yh)) / nref)
+            if pr["probe_class"] == "translation":
+                trows.append(dict(head, M=M, probe_id=pr["probe_id"], abs_pairdiff=float(np.linalg.norm(yh)),
+                                  abs_cached=float(np.linalg.norm(yc)), abs_mesh_part=float(np.linalg.norm(yLh)),
+                                  opnorm_pairdiff=float(np.linalg.norm(yh)) / nref,
+                                  opnorm_cached=float(np.linalg.norm(yc)) / nref,
+                                  abs_ref=float(np.linalg.norm(Yref[:, k])), opnorm_ref=float(np.linalg.norm(Yref[:, k])) / nref,
+                                  abs_D55=float(np.linalg.norm(Y55[:, k])), abs_trunc=float(np.linalg.norm(Ytr[:, k])),
+                                  sha256=pr["sha256"][:16]))
+                continue
+            nr = float(np.linalg.norm(Yref[:, k]))
+            ec = float(np.linalg.norm(yh - Yref[:, k]))
+            em = float(np.linalg.norm(yLh - YL[:, k])) / nr
+            et = float(np.linalg.norm(Ytr[:, k] - Yref[:, k])) / nr
+            rows.append(dict(head, M=M, h=L / M, eta=info["eta"], production_point=mrow["production_point"],
+                             probe_class=pr["probe_class"], probe_id=pr["probe_id"], probe_seed=pr.get("seed"),
+                             eigenvalue=pr.get("eigenvalue"), ref_action_norm=nr, E_complete=ec / nr, E_complete_abs=ec,
+                             E_complete_opnorm=ec / nref, E_mesh=em, E_trunc=et,
+                             triangle_ok=bool(ec / nr <= em + et + 1e-15),
+                             E_complete_cached=float(np.linalg.norm(yc - Yref[:, k])) / nr,
+                             cached_vs_pairdiff=float(np.linalg.norm(yc - yh) / np.linalg.norm(yh)),
+                             E_D55_vs_ref=float(np.linalg.norm(Y55[:, k] - Yref[:, k])) / nr, sha256=pr["sha256"][:16]))
+        if dense:
+            mrow.update(dense_vs_matrix_free=dmax, dense_vs_matrix_free_translation_opnorm=dtr)
+        mrows.append(mrow)
+    return rows, trows, mrows
+
+
+def action_configs():
+    return [name_of(f, N, s) for N in (128, 256) for f in FAMS for s in SEEDS] + [MAIN_C]
 
 
 def stage_action(args):
-    rows, prow = [], []
-    for N in (128, 256):
-        for fam in FAMS:
-            for s_ in SEEDS:
-                name = name_of(fam, N, s_)
-                x, L = load_cfg(name)
-                G = gref(name, x, L)
-                nref = ref_rec(name)["norm2"]
-                Q, T = projector_basis(N)
-                P, lamref = probe_set(x, L, N, G, Q)
-                GP = {k: G @ v for k, v in P.items()}
-                t0 = time.perf_counter()
-                for setting in SETTINGS:
-                    xi, rc, kc = setting_params(setting, L)
-                    K = C.kernel(xi)
-                    for M in M_LIST[N]:
-                        mesh, info = try_mesh(L, K, kc, M, P_D)
-                        row = dict(config=name, N=N, family=fam, seed=s_, setting=setting, xi=xi, rc=rc, kc=kc, p=P_D,
-                                   M=M, h=L / M, **info)
-                        if mesh is None:
-                            rows.append(row)
-                            continue
-                        op = CachedGammaH(x, L, K, rc, mesh)
-                        pd = op.existing_gammah()
-                        Gh = pd.dense()
-                        E, asym = norm2_sym(Gh - G)
-                        lh = np.linalg.eigvalsh(Q.T @ (0.5 * (Gh + Gh.T)) @ Q)
-                        rel, nullr, cvp = {}, {}, 0.0
-                        for k, v in P.items():
-                            y = pd.matvec(v)                         # production pair-difference action
-                            yc = op.apply(v.reshape(N, 3)).ravel()   # cached D - H action
-                            dv = float(np.linalg.norm(y - GP[k]))
-                            on = nref * np.linalg.norm(v)
-                            if k.startswith("translation"):
-                                nullr[k] = dict(abs=float(np.linalg.norm(y)), opnorm=float(np.linalg.norm(y) / on),
-                                                opnorm_cached=float(np.linalg.norm(yc) / on),
-                                                opnorm_ref=float(np.linalg.norm(GP[k]) / on))
-                                prow.append(dict(config=name, N=N, family=fam, seed=s_, setting=setting, M=M, probe=k,
-                                                 abs=nullr[k]["abs"], opnorm=nullr[k]["opnorm"], rel=None,
-                                                 opnorm_cached=nullr[k]["opnorm_cached"],
-                                                 opnorm_ref=nullr[k]["opnorm_ref"]))
-                            else:
-                                cvp = max(cvp, float(np.linalg.norm(y - yc) / np.linalg.norm(y)))
-                                rel[k] = dv / np.linalg.norm(GP[k])
-                                prow.append(dict(config=name, N=N, family=fam, seed=s_, setting=setting, M=M, probe=k,
-                                                 abs=dv, opnorm=dv / on, rel=rel[k], opnorm_cached=None, opnorm_ref=None))
-                        row.update(E_op=E / nref, E_op_asym=asym / nref,
-                                   E_gauss_max=max(v for k, v in rel.items() if k.startswith("gauss")),
-                                   E_gauss_median=float(np.median([v for k, v in rel.items() if k.startswith("gauss")])),
-                                   E_spec_min=rel["spec_min"], E_spec_max=rel["spec_max"],
-                                   E_slow_max=max(v for k, v in rel.items() if k.startswith("slow")),
-                                   translation_opnorm_max=max(v["opnorm"] for v in nullr.values()),
-                                   translation_abs_max=max(v["abs"] for v in nullr.values()),
-                                   translation_opnorm_cached_max=max(v["opnorm_cached"] for v in nullr.values()),
-                                   translation_opnorm_ref_max=max(v["opnorm_ref"] for v in nullr.values()),
-                                   null_dense_h=float(np.linalg.norm(Gh @ T) / (nref * np.sqrt(3))),
-                                   sym=float(np.linalg.norm(Gh - Gh.T) / np.linalg.norm(Gh)),
-                                   cached_vs_pairdiff=cvp,
-                                   lam_min_h_RangePi=float(lh[0]), lam_min_ref_RangePi=float(lamref[0]),
-                                   n_negative_RangePi=int(np.sum(lh < 0)))
-                        rows.append(row)
-                C.log(f"action {name}: " + "; ".join(
-                    f"{st}: " + " ".join(f"{q['M']}:{q['E_gauss_max']:.1e}" for q in rows
-                                         if q["config"] == name and q["setting"] == st and q["valid"])
-                    for st in SETTINGS) + f" ({time.perf_counter() - t0:.0f} s)")
-                C.write_csv(RESULTS / "d_action.csv", rows)
-                C.write_csv(RESULTS / "d_action_probes.csv", prow)
-    C.write_json(RESULTS / "d_action_summary.json", dict(
-        settings=SETTINGS, p=P_D, M_list={k: v for k, v in M_LIST.items() if k <= 256},
-        max_sym=max(q["sym"] for q in rows if q["valid"]),
-        max_translation_opnorm=max(q["translation_opnorm_max"] for q in rows if q["valid"]),
-        max_translation_opnorm_cached=max(q["translation_opnorm_cached_max"] for q in rows if q["valid"]),
-        max_null_dense_h=max(q["null_dense_h"] for q in rows if q["valid"]),
-        max_cached_vs_pairdiff=max(q["cached_vs_pairdiff"] for q in rows if q["valid"]),
-        min_lam_min_h=min(q["lam_min_h_RangePi"] for q in rows if q["valid"]),
-        any_negative=any(q["n_negative_RangePi"] > 0 for q in rows if q["valid"]),
+    """Panel (c): p = 9, production and strict cutoffs, all action configurations, dense E_op for context."""
+    rows, trows, mrows, meta = [], [], [], {}
+    for name in action_configs():
+        t0 = time.perf_counter()
+        x, L = load_cfg(name)
+        N = len(x)
+        G = gref(name, x, L)
+        GD = np.load(C.RAW / f"exp1_{name}_GD55.npy")
+        probes, spec = action_probes(N, G)
+        if name == MAIN_C:
+            np.savez_compressed(RESULTS / f"action_probes_{name}.npz", X=np.stack([pr["v"] for pr in probes], 1),
+                                ids=np.array([pr["probe_id"] for pr in probes]))
+        meta[name] = dict(N=N, L=L, norm2_ref=norm2_sym(G)[0], spectral=spec,
+                          probes=[{k: v for k, v in pr.items() if k != "v"} for pr in probes], settings={})
+        for setting in SETTINGS:
+            xi, rc, kc = setting_params(setting, L)
+            n_c, n_exp = shell_count(kc, L)
+            meta[name]["settings"][setting] = dict(xi=xi, rc=rc, kc=kc, n_shell=n_c, n_modes=n_exp,
+                                                   n_modes_if_kc_rounded_to_9p3585=int(len(lattice_modes(
+                                                       L, kc_shell_below(9.3585, L))[0])) if setting == "production" else None)
+            r, t, m = action_case(name, x, L, G, GD, probes, setting, P_ACTION, M_LIST[N], dense=True)
+            rows += r
+            trows += t
+            mrows += m
+        g = [q for q in rows if q["config"] == name and q["probe_class"] == "gaussian"]
+        C.log(f"action {name}: " + "; ".join(
+            f"{st}: " + " ".join(f"{M}:{max(q['E_complete'] for q in g if q['setting'] == st and q['M'] == M):.1e}/"
+                                 f"{max(q['E_mesh'] for q in g if q['setting'] == st and q['M'] == M):.1e}"
+                                 for M in sorted({q['M'] for q in g if q['setting'] == st}))
+            for st in SETTINGS) + f"  (Gaussian max complete/mesh; {time.perf_counter() - t0:.0f} s)")
+        C.write_csv(RESULTS / "action_errors.csv", rows)
+        C.write_csv(RESULTS / "action_translation.csv", trows)
+        C.write_csv(RESULTS / "action_mesh.csv", mrows)
+    # reference check of the main configuration against a stricter LatticeFriction
+    x, L = load_cfg(MAIN_C)
+    G = gref(MAIN_C, x, L)
+    lat = LatticeFriction(L, kernel=C.LAW, gamma=C.GAMMA, kappa=C.KAPPA, r_ref=C.R_REF, rel_tol=1e-15, near_cells=3,
+                          degree=20)
+    Gs = C.lattice_matrix(lat, x)
+    Xm = np.stack([pr["v"] for pr in action_probes(len(x), G)[0]], 1)
+    dY = np.linalg.norm((Gs - G) @ Xm, axis=0) / np.maximum(np.linalg.norm(G @ Xm, axis=0), 1e-300)
+    meta[MAIN_C]["strict_lattice_check"] = dict(rel_tol=1e-15, near_cells=3, degree=20,
+                                                op_rel=norm2_sym(Gs - G)[0] / norm2_sym(G)[0],
+                                                action_rel_max_nonnull=float(dY[:-3].max()))
+    C.write_json(RESULTS / "action_probes.json", dict(
+        settings=SETTINGS, p=P_ACTION, M_list={str(k): v for k, v in M_LIST.items()}, gauss_seeds=GAUSS_SEEDS,
+        production_source="results_psearch/optimum_strong_N512_s1_main.json", M_production=M_PROD,
+        configs=meta, provenance=C.provenance()))
+    fits = []
+    for setting in SETTINGS:
+        for N in (128, 256, 512):
+            for cls in ("gaussian", "spectral_slow", "spectral_fast"):
+                for key in ("E_mesh", "E_complete"):
+                    sub = [q for q in rows if q["N"] == N and q["setting"] == setting and q["probe_class"] == cls]
+                    Ms = sorted({q["M"] for q in sub})
+                    E = np.array([max(q[key] for q in sub if q["M"] == M) for M in Ms])
+                    keep = E >= FIT_FLOOR
+                    if keep.sum() >= 4:
+                        lm, le = np.log(np.array(Ms, float)[keep]), np.log(E[keep])
+                        b, a = np.polyfit(lm, le, 1)
+                        r2 = 1 - np.sum((le - (a + b * lm)) ** 2) / np.sum((le - le.mean()) ** 2)
+                        fits.append(dict(N=N, setting=setting, probe_class=cls, quantity=key + " (max over tested probes/configs)",
+                                         M_lo=int(np.array(Ms)[keep][0]), M_hi=int(np.array(Ms)[keep][-1]),
+                                         n_points=int(keep.sum()), rate_lsq=float(-b), r2=float(r2)))
+    C.write_csv(RESULTS / "action_rate_fits.csv", fits)
+    v = [q for q in mrows if q["valid"]]
+    C.write_json(RESULTS / "action_summary.json", dict(
+        n_cases=len(mrows), n_valid=len(v), invalid=[dict(config=q["config"], setting=q["setting"], M=q["M"],
+                                                          reason=q["reason"]) for q in mrows if not q["valid"]],
+        max_n_excluded=max(q["n_excluded"] for q in v), min_W2min=min(q["W2min"] for q in v),
+        max_dense_vs_matrix_free=max(q["dense_vs_matrix_free"] for q in v),
+        max_sym_defect_h=max(q["sym_defect_h"] for q in v), any_negative=any(q["n_negative_RangePi"] > 0 for q in v),
+        all_triangle_ok=all(q["triangle_ok"] for q in rows),
+        max_cached_vs_pairdiff=max(q["cached_vs_pairdiff"] for q in rows),
+        max_translation_opnorm_pairdiff=max(q["opnorm_pairdiff"] for q in trows),
+        max_translation_opnorm_cached=max(q["opnorm_cached"] for q in trows),
+        max_translation_opnorm_ref=max(q["opnorm_ref"] for q in trows), fit_floor=FIT_FLOOR,
         provenance=C.provenance()))
 
 
-def stage_fits(args):
-    """Least-squares rates of the saved action errors (strict cutoffs, points >= 1e-13; no recomputation)."""
-    import csv
-    with open(RESULTS / "d_action.csv") as fh:
-        rows = [r for r in csv.DictReader(fh) if r["valid"] == "True" and r["setting"] == "strict"]
-    out = []
-    for N in (128, 256):
-        for fam in FAMS:
-            for key in ("E_op", "E_gauss_max"):
-                Ms = sorted({int(r["M"]) for r in rows if int(r["N"]) == N and r["family"] == fam})
-                E = np.array([max(float(r[key]) for r in rows if int(r["N"]) == N and r["family"] == fam and int(r["M"]) == M)
-                              for M in Ms])
-                keep = E >= 1e-13
-                slope, _ = np.polyfit(np.log(np.array(Ms, float)[keep]), np.log(E[keep]), 1)
-                out.append(dict(N=N, family=fam, quantity=key + " (max over seeds)", M_lo=int(np.array(Ms)[keep][0]),
-                                M_hi=int(np.array(Ms)[keep][-1]), n_points=int(keep.sum()), rate_lsq=float(-slope)))
-    C.write_csv(RESULTS / "d_action_rate_fits.csv", out)
-    C.log("action rates: " + ", ".join(f"N{q['N']} {q['family']} {q['quantity'][:7]} {q['rate_lsq']:.2f}" for q in out))
+def stage_action_p(args):
+    """Supplementary: mesh-only and complete action error for p = 4, 6, 8, 9 on the main configuration, both cutoff
+    settings, every other parameter identical (no dense assembly)."""
+    x, L = load_cfg(MAIN_C)
+    N = len(x)
+    G = gref(MAIN_C, x, L)
+    GD = np.load(C.RAW / f"exp1_{MAIN_C}_GD55.npy")
+    probes, _ = action_probes(N, G)
+    probes = [pr for pr in probes if pr["probe_class"] != "translation"]
+    rows, mrows = [], []
+    for setting in SETTINGS:
+        for p in P_STUDY:
+            r, _, m = action_case(MAIN_C, x, L, G, GD, probes, setting, p, M_LIST[N], dense=False)
+            rows += r
+            mrows += m
+            g = [q for q in r if q["probe_class"] == "gaussian"]
+            C.log(f"action_p {setting} p={p}: " + " ".join(
+                f"{M}:{max(q['E_mesh'] for q in g if q['M'] == M):.1e}" for M in sorted({q['M'] for q in g})))
+            C.write_csv(RESULTS / "action_p.csv", rows)
+            C.write_csv(RESULTS / "action_p_mesh.csv", mrows)
+    fits = []
+    for setting in SETTINGS:
+        for p in P_STUDY:
+            for cls in ("gaussian", "spectral_slow"):
+                sub = [q for q in rows if q["setting"] == setting and q["p"] == p and q["probe_class"] == cls]
+                Ms = sorted({q["M"] for q in sub})
+                E = np.array([max(q["E_mesh"] for q in sub if q["M"] == M) for M in Ms])
+                keep = E >= FIT_FLOOR
+                if keep.sum() >= 4:
+                    lm, le = np.log(np.array(Ms, float)[keep]), np.log(E[keep])
+                    b, a = np.polyfit(lm, le, 1)
+                    r2 = 1 - np.sum((le - (a + b * lm)) ** 2) / np.sum((le - le.mean()) ** 2)
+                    fits.append(dict(setting=setting, p=p, probe_class=cls, M_lo=int(np.array(Ms)[keep][0]),
+                                     M_hi=int(np.array(Ms)[keep][-1]), n_points=int(keep.sum()), rate_lsq=float(-b),
+                                     r2=float(r2)))
+    C.write_csv(RESULTS / "action_p_rate_fits.csv", fits)
 
 
 STAGES = dict(configs=stage_configs, refs=stage_refs, split=stage_split, shortrange=stage_shortrange,
-              degree=stage_degree, action=stage_action, fits=stage_fits)
+              action=stage_action, action_p=stage_action_p)
 
 
 def main():

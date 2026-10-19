@@ -1,0 +1,379 @@
+{
+ "n_cases": 418,
+ "n_valid": 361,
+ "invalid": [
+  {
+   "config": "uniform_N128_s1",
+   "setting": "production",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 8 >= M/2 = 8"
+  },
+  {
+   "config": "uniform_N128_s1",
+   "setting": "strict",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 8"
+  },
+  {
+   "config": "uniform_N128_s1",
+   "setting": "strict",
+   "M": 18,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 9"
+  },
+  {
+   "config": "uniform_N128_s2",
+   "setting": "production",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 8 >= M/2 = 8"
+  },
+  {
+   "config": "uniform_N128_s2",
+   "setting": "strict",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 8"
+  },
+  {
+   "config": "uniform_N128_s2",
+   "setting": "strict",
+   "M": 18,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 9"
+  },
+  {
+   "config": "uniform_N128_s3",
+   "setting": "production",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 8 >= M/2 = 8"
+  },
+  {
+   "config": "uniform_N128_s3",
+   "setting": "strict",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 8"
+  },
+  {
+   "config": "uniform_N128_s3",
+   "setting": "strict",
+   "M": 18,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 9"
+  },
+  {
+   "config": "strong_N128_s1",
+   "setting": "production",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 8 >= M/2 = 8"
+  },
+  {
+   "config": "strong_N128_s1",
+   "setting": "strict",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 8"
+  },
+  {
+   "config": "strong_N128_s1",
+   "setting": "strict",
+   "M": 18,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 9"
+  },
+  {
+   "config": "strong_N128_s2",
+   "setting": "production",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 8 >= M/2 = 8"
+  },
+  {
+   "config": "strong_N128_s2",
+   "setting": "strict",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 8"
+  },
+  {
+   "config": "strong_N128_s2",
+   "setting": "strict",
+   "M": 18,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 9"
+  },
+  {
+   "config": "strong_N128_s3",
+   "setting": "production",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 8 >= M/2 = 8"
+  },
+  {
+   "config": "strong_N128_s3",
+   "setting": "strict",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 8"
+  },
+  {
+   "config": "strong_N128_s3",
+   "setting": "strict",
+   "M": 18,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 9"
+  },
+  {
+   "config": "moderate_N128_s1",
+   "setting": "production",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 8 >= M/2 = 8"
+  },
+  {
+   "config": "moderate_N128_s1",
+   "setting": "strict",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 8"
+  },
+  {
+   "config": "moderate_N128_s1",
+   "setting": "strict",
+   "M": 18,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 9"
+  },
+  {
+   "config": "moderate_N128_s2",
+   "setting": "production",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 8 >= M/2 = 8"
+  },
+  {
+   "config": "moderate_N128_s2",
+   "setting": "strict",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 8"
+  },
+  {
+   "config": "moderate_N128_s2",
+   "setting": "strict",
+   "M": 18,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 9"
+  },
+  {
+   "config": "moderate_N128_s3",
+   "setting": "production",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 8 >= M/2 = 8"
+  },
+  {
+   "config": "moderate_N128_s3",
+   "setting": "strict",
+   "M": 16,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 8"
+  },
+  {
+   "config": "moderate_N128_s3",
+   "setting": "strict",
+   "M": 18,
+   "reason": "Nyquist: largest retained |m_a| = 9 >= M/2 = 9"
+  },
+  {
+   "config": "uniform_N256_s1",
+   "setting": "production",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 10 >= M/2 = 10"
+  },
+  {
+   "config": "uniform_N256_s1",
+   "setting": "strict",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 10"
+  },
+  {
+   "config": "uniform_N256_s1",
+   "setting": "strict",
+   "M": 22,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 11"
+  },
+  {
+   "config": "uniform_N256_s2",
+   "setting": "production",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 10 >= M/2 = 10"
+  },
+  {
+   "config": "uniform_N256_s2",
+   "setting": "strict",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 10"
+  },
+  {
+   "config": "uniform_N256_s2",
+   "setting": "strict",
+   "M": 22,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 11"
+  },
+  {
+   "config": "uniform_N256_s3",
+   "setting": "production",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 10 >= M/2 = 10"
+  },
+  {
+   "config": "uniform_N256_s3",
+   "setting": "strict",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 10"
+  },
+  {
+   "config": "uniform_N256_s3",
+   "setting": "strict",
+   "M": 22,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 11"
+  },
+  {
+   "config": "strong_N256_s1",
+   "setting": "production",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 10 >= M/2 = 10"
+  },
+  {
+   "config": "strong_N256_s1",
+   "setting": "strict",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 10"
+  },
+  {
+   "config": "strong_N256_s1",
+   "setting": "strict",
+   "M": 22,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 11"
+  },
+  {
+   "config": "strong_N256_s2",
+   "setting": "production",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 10 >= M/2 = 10"
+  },
+  {
+   "config": "strong_N256_s2",
+   "setting": "strict",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 10"
+  },
+  {
+   "config": "strong_N256_s2",
+   "setting": "strict",
+   "M": 22,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 11"
+  },
+  {
+   "config": "strong_N256_s3",
+   "setting": "production",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 10 >= M/2 = 10"
+  },
+  {
+   "config": "strong_N256_s3",
+   "setting": "strict",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 10"
+  },
+  {
+   "config": "strong_N256_s3",
+   "setting": "strict",
+   "M": 22,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 11"
+  },
+  {
+   "config": "moderate_N256_s1",
+   "setting": "production",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 10 >= M/2 = 10"
+  },
+  {
+   "config": "moderate_N256_s1",
+   "setting": "strict",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 10"
+  },
+  {
+   "config": "moderate_N256_s1",
+   "setting": "strict",
+   "M": 22,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 11"
+  },
+  {
+   "config": "moderate_N256_s2",
+   "setting": "production",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 10 >= M/2 = 10"
+  },
+  {
+   "config": "moderate_N256_s2",
+   "setting": "strict",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 10"
+  },
+  {
+   "config": "moderate_N256_s2",
+   "setting": "strict",
+   "M": 22,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 11"
+  },
+  {
+   "config": "moderate_N256_s3",
+   "setting": "production",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 10 >= M/2 = 10"
+  },
+  {
+   "config": "moderate_N256_s3",
+   "setting": "strict",
+   "M": 20,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 10"
+  },
+  {
+   "config": "moderate_N256_s3",
+   "setting": "strict",
+   "M": 22,
+   "reason": "Nyquist: largest retained |m_a| = 11 >= M/2 = 11"
+  },
+  {
+   "config": "strong_N512_s1",
+   "setting": "production",
+   "M": 26,
+   "reason": "Nyquist: largest retained |m_a| = 13 >= M/2 = 13"
+  },
+  {
+   "config": "strong_N512_s1",
+   "setting": "strict",
+   "M": 26,
+   "reason": "Nyquist: largest retained |m_a| = 14 >= M/2 = 13"
+  },
+  {
+   "config": "strong_N512_s1",
+   "setting": "strict",
+   "M": 28,
+   "reason": "Nyquist: largest retained |m_a| = 14 >= M/2 = 14"
+  }
+ ],
+ "max_n_excluded": 0,
+ "min_W2min": 0.0007108356409079887,
+ "max_dense_vs_matrix_free": 3.779426280380553e-15,
+ "max_sym_defect_h": 1.2926811674977098e-17,
+ "any_negative": false,
+ "all_triangle_ok": true,
+ "max_cached_vs_pairdiff": 2.1603133345768684e-15,
+ "max_translation_opnorm_pairdiff": 1.5212901960874653e-16,
+ "max_translation_opnorm_cached": 2.8699229179535585e-16,
+ "max_translation_opnorm_ref": 4.919731518202167e-16,
+ "fit_floor": 1e-13,
+ "provenance": {
+  "time": "2026-10-19T15:57:34+0000",
+  "command": "python3 run_exp1.py action action_p",
+  "git": {
+   "commit": "f69535271c4f72b534f0e97f1bd1511c7534ebb2",
+   "dirty": true
+  },
+  "code_hash": "4d862270ca47fce2",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ }
+}
