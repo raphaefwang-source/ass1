@@ -27,20 +27,20 @@ Figure 1 (results/; panel (a) only shows the configurations of results/configura
                  path) with xi, rc, kc, p fixed and only M varied; probes: 10 Gaussian (fixed seeds, translation
                  removed), the 3 slowest and the fastest eigenvector of Gamma_ref, 3 translations (absolute /
                  operator-normalised residuals only);
-                   E_complete = ||(Gamma_h - Gamma_ref) X|| / ||Gamma_ref X||
-                   E_mesh     = ||(Gamma_L^h - Gamma_L^{kc}) X|| / ||Gamma_ref X||   (Gamma_L^{kc}: exact truncated
-                                Fourier operator over the retained modes, no mesh assignment)
-                   E_trunc    = ||(Gamma_S^{rc} + Gamma_L^{kc} - Gamma_ref) X|| / ||Gamma_ref X||   (independent of M)
-                 N = 128, 256 (uniform/moderate/strong x 3 seeds) and N = 512 strongly clustered; dense E_op, symmetry,
-                 lambda_min on Range(Pi) for context -> action_*.csv/json; stage action_p: p = 4, 6, 8, 9 at N = 512
-                 (supplementary) -> action_p*.csv
+                   E_complete = ||(Gamma_h - Gamma_ref) X|| / ||Gamma_ref X||          (the quantity of Fig. 1(d))
+                 diagnostic columns (not plotted): E_mesh = ||(Gamma_L^h - Gamma_L^{kc}) X|| / ||Gamma_ref X|| and
+                 E_trunc = ||(Gamma_S^{rc} + Gamma_L^{kc} - Gamma_ref) X|| / ||Gamma_ref X||;
+                 N = 128, 256 (uniform/moderate/strong x 3 seeds) and N = 512 (uniform/moderate/strong, seed 1;
+                 strongly clustered = the optimisation configuration); dense E_op, symmetry, lambda_min on Range(Pi)
+                 for context -> action_*.csv/json; stage action_p: p = 4, 6, 8, 9 at N = 512 (supplementary)
+                 -> action_p*.csv; stage action_fits: least-squares rates from the saved CSVs
 Cutoff settings of (d): "production" = the measured N = 512 optimum in full double precision (xi = 0.85,
 rc = 4.88775618844242, kc = 9.358534792617089 = 2 pi sqrt(172)/L_512, p = 9), kc snapped to the largest reciprocal
 shell <= kc of each box; "strict" xi = 0.85, rc = 6/xi, kc <= 12 xi (convergence experiment only, so the mesh error
 is visible below the production truncation floor). The diffusion-coefficient (degree D_i) study of the first version
 is not part of Experiment 1 any more (see report_exp1.md, "Changes").
 
-    python3 run_exp1.py all            # or any of: configs refs split shortrange action action_p
+    python3 run_exp1.py all            # or any of: configs refs split shortrange action action_p action_fits
 """
 import argparse
 import hashlib
@@ -144,7 +144,7 @@ def needed_configs():
     for fam in FAMS:
         for s in SEEDS:
             out += [name_of(fam, 256, s), name_of(fam, 128, s)]
-    out.append(name_of("strong", 512, 1))
+    out += [name_of(fam, 512, 1) for fam in FAMS]
     return out
 
 
@@ -583,13 +583,87 @@ def action_case(name, x, L, G, GD, probes, setting, p, M_list, dense):
 
 
 def action_configs():
-    return [name_of(f, N, s) for N in (128, 256) for f in FAMS for s in SEEDS] + [MAIN_C]
+    return [name_of(f, N, s) for N in (128, 256) for f in FAMS for s in SEEDS] + [name_of(f, 512, 1) for f in FAMS]
+
+
+def typed(v):
+    """CSV string -> bool / int / float / None (for resuming from saved rows)."""
+    if v == "":
+        return None
+    if v in ("True", "False"):
+        return v == "True"
+    for t in (int, float):
+        try:
+            return t(v)
+        except ValueError:
+            pass
+    return v
+
+
+def read_rows(name):
+    import csv
+    with open(RESULTS / name) as fh:
+        return [{k: typed(v) for k, v in r.items()} for r in csv.DictReader(fh)]
+
+
+def rate_fit(Ms, E):
+    keep = E >= FIT_FLOOR
+    if keep.sum() < 4:
+        return None
+    lm, le = np.log(np.array(Ms, float)[keep]), np.log(E[keep])
+    b, a = np.polyfit(lm, le, 1)
+    r2 = 1 - np.sum((le - (a + b * lm)) ** 2) / np.sum((le - le.mean()) ** 2)
+    return dict(M_lo=int(np.array(Ms)[keep][0]), M_hi=int(np.array(Ms)[keep][-1]), n_points=int(keep.sum()),
+                rate_lsq=float(-b), r2=float(r2))
+
+
+def write_action_fits():
+    """Least-squares rates of the saved action errors (maximum over the tested probes, points >= FIT_FLOOR), per N and
+    cutoff setting for all families pooled and for each family, and for the p study; no recomputation."""
+    rows = read_rows("action_errors.csv")
+    fits = []
+    for setting in SETTINGS:
+        for N in (128, 256, 512):
+            for fam in ("all",) + FAMS:
+                for cls in ("gaussian", "spectral_slow", "spectral_fast"):
+                    for key in ("E_complete", "E_mesh"):
+                        sub = [q for q in rows if q["N"] == N and q["setting"] == setting and q["probe_class"] == cls
+                               and fam in ("all", q["family"])]
+                        Ms = sorted({q["M"] for q in sub})
+                        f = rate_fit(Ms, np.array([max(q[key] for q in sub if q["M"] == M) for M in Ms]))
+                        if f is not None:
+                            fits.append(dict(N=N, setting=setting, family=fam, probe_class=cls,
+                                             quantity=key + " (max over tested probes/configs)", **f))
+    C.write_csv(RESULTS / "action_rate_fits.csv", fits)
+    if (RESULTS / "action_p.csv").exists():
+        prow = read_rows("action_p.csv")
+        pf = []
+        for setting in SETTINGS:
+            for p in P_STUDY:
+                for cls in ("gaussian", "spectral_slow"):
+                    for key in ("E_complete", "E_mesh"):
+                        sub = [q for q in prow if q["setting"] == setting and q["p"] == p and q["probe_class"] == cls]
+                        Ms = sorted({q["M"] for q in sub})
+                        f = rate_fit(Ms, np.array([max(q[key] for q in sub if q["M"] == M) for M in Ms]))
+                        if f is not None:
+                            pf.append(dict(setting=setting, p=p, probe_class=cls, quantity=key, **f))
+        C.write_csv(RESULTS / "action_p_rate_fits.csv", pf)
+
+
+def stage_action_fits(args):
+    write_action_fits()
 
 
 def stage_action(args):
     """Panel (c): p = 9, production and strict cutoffs, all action configurations, dense E_op for context."""
     rows, trows, mrows, meta = [], [], [], {}
+    if args.resume and (RESULTS / "action_mesh.csv").exists():
+        rows, trows, mrows = (read_rows(f"action_{k}.csv") for k in ("errors", "translation", "mesh"))
+        meta = C.read_json(RESULTS / "action_probes.json")["configs"]
+    done = {q["config"] for q in mrows}
     for name in action_configs():
+        if name in done:
+            continue
         t0 = time.perf_counter()
         x, L = load_cfg(name)
         N = len(x)
@@ -635,23 +709,7 @@ def stage_action(args):
         settings=SETTINGS, p=P_ACTION, M_list={str(k): v for k, v in M_LIST.items()}, gauss_seeds=GAUSS_SEEDS,
         production_source="results_psearch/optimum_strong_N512_s1_main.json", M_production=M_PROD,
         configs=meta, provenance=C.provenance()))
-    fits = []
-    for setting in SETTINGS:
-        for N in (128, 256, 512):
-            for cls in ("gaussian", "spectral_slow", "spectral_fast"):
-                for key in ("E_mesh", "E_complete"):
-                    sub = [q for q in rows if q["N"] == N and q["setting"] == setting and q["probe_class"] == cls]
-                    Ms = sorted({q["M"] for q in sub})
-                    E = np.array([max(q[key] for q in sub if q["M"] == M) for M in Ms])
-                    keep = E >= FIT_FLOOR
-                    if keep.sum() >= 4:
-                        lm, le = np.log(np.array(Ms, float)[keep]), np.log(E[keep])
-                        b, a = np.polyfit(lm, le, 1)
-                        r2 = 1 - np.sum((le - (a + b * lm)) ** 2) / np.sum((le - le.mean()) ** 2)
-                        fits.append(dict(N=N, setting=setting, probe_class=cls, quantity=key + " (max over tested probes/configs)",
-                                         M_lo=int(np.array(Ms)[keep][0]), M_hi=int(np.array(Ms)[keep][-1]),
-                                         n_points=int(keep.sum()), rate_lsq=float(-b), r2=float(r2)))
-    C.write_csv(RESULTS / "action_rate_fits.csv", fits)
+    write_action_fits()
     v = [q for q in mrows if q["valid"]]
     C.write_json(RESULTS / "action_summary.json", dict(
         n_cases=len(mrows), n_valid=len(v), invalid=[dict(config=q["config"], setting=q["setting"], M=q["M"],
@@ -687,31 +745,17 @@ def stage_action_p(args):
                 f"{M}:{max(q['E_mesh'] for q in g if q['M'] == M):.1e}" for M in sorted({q['M'] for q in g})))
             C.write_csv(RESULTS / "action_p.csv", rows)
             C.write_csv(RESULTS / "action_p_mesh.csv", mrows)
-    fits = []
-    for setting in SETTINGS:
-        for p in P_STUDY:
-            for cls in ("gaussian", "spectral_slow"):
-                sub = [q for q in rows if q["setting"] == setting and q["p"] == p and q["probe_class"] == cls]
-                Ms = sorted({q["M"] for q in sub})
-                E = np.array([max(q["E_mesh"] for q in sub if q["M"] == M) for M in Ms])
-                keep = E >= FIT_FLOOR
-                if keep.sum() >= 4:
-                    lm, le = np.log(np.array(Ms, float)[keep]), np.log(E[keep])
-                    b, a = np.polyfit(lm, le, 1)
-                    r2 = 1 - np.sum((le - (a + b * lm)) ** 2) / np.sum((le - le.mean()) ** 2)
-                    fits.append(dict(setting=setting, p=p, probe_class=cls, M_lo=int(np.array(Ms)[keep][0]),
-                                     M_hi=int(np.array(Ms)[keep][-1]), n_points=int(keep.sum()), rate_lsq=float(-b),
-                                     r2=float(r2)))
-    C.write_csv(RESULTS / "action_p_rate_fits.csv", fits)
+    write_action_fits()
 
 
 STAGES = dict(configs=stage_configs, refs=stage_refs, split=stage_split, shortrange=stage_shortrange,
-              action=stage_action, action_p=stage_action_p)
+              action=stage_action, action_p=stage_action_p, action_fits=stage_action_fits)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("stages", nargs="*", default=["all"])
+    ap.add_argument("--resume", action="store_true", help="action: keep saved configurations, compute only missing ones")
     args = ap.parse_args()
     stages = list(STAGES) if args.stages == ["all"] else args.stages
     C.RESULTS = RESULTS

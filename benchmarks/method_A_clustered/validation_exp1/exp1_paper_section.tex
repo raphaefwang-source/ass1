@@ -6,13 +6,13 @@ All tests use the screened longitudinal kernel $K(\mathbf r)=c\,e^{-\kappa r}r^{
 with $\kappa=0.7$ and density $\rho=0.75$. The operator is the full periodic lattice sum with the $k=0$ Fourier term
 retained, split at $s=\xi^2$ into $K=K_S+K_L$.
 The reference $\Gamma_{\rm ref}$ is the lattice-summed operator: near images are summed directly, far images by a
-Chebyshev fit, with relative tolerance $10^{-13}$. On all 19 configurations it agrees with an independent, unsplit
-direct image sum to radius $55$ to within $2.1$--$4.2\times10^{-15}$ in relative spectral norm. For $N=512$ it agrees
+Chebyshev fit, with relative tolerance $10^{-13}$. On all 21 configurations it agrees with an independent, unsplit
+direct image sum to radius $55$ to within $2.0$--$4.2\times10^{-15}$ in relative spectral norm. For $N=512$ it agrees
 with a stricter lattice sum (tolerance $10^{-15}$) to $2.7\times10^{-15}$, and on every test vector the two references
 differ by at most $1.3\times10^{-14}$ relative to $\|\Gamma_{\rm ref}X\|_2$.
 We use uniform, moderately clustered and strongly clustered configurations with periodic minimum separation $0.9$
-(\cref{fig:exp1}(a)): three independent seeds per family at $N=128$ and $256$, and the strongly clustered $N=512$
-configuration on which the production parameters were optimised.
+(\cref{fig:exp1}(a)): three independent seeds per family at $N=128$ and $256$, and one configuration per family at
+$N=512$, the strongly clustered one being the configuration on which the production parameters were optimised.
 
 \paragraph{Splitting identity}
 The three radial factors are evaluated independently: $\theta$ analytically, $\theta_S$ in closed form, and $\theta_L$
@@ -36,33 +36,28 @@ $3.5$--$4.1\times10^{-15}$. This value is the reference/round-off floor, and it 
 at the operator level. These points are shown as open markers.
 
 \paragraph{Matrix-free action}
-The quantity used by the solver is the action $\Gamma_hX$.
-We fix the configuration, $\xi$, $r_c$, $k_c$ and the B-spline order $p=9$, and vary only the FFT size $M$. Grids that
-violate the Nyquist condition are reported as invalid; on every valid grid all reciprocal shells with
-$|\mathbf k|\le k_c$ are retained.
-For each $M$ we evaluate the production action on the same unit test vectors: ten Gaussian vectors, the three slowest
-and the fastest eigenvectors of $\Gamma_{\rm ref}$, and the three translations. The spectral probes are our own choice.
-We separate two errors:
+The quantity used by the solver is the action $\Gamma_hX$, so we measure
 \[
-E_{\rm complete}=\frac{\|(\Gamma_h-\Gamma_{\rm ref})X\|_2}{\|\Gamma_{\rm ref}X\|_2},
-\qquad
-E_{\rm mesh}=\frac{\|(\Gamma_L^h-\Gamma_L^{k_c})X\|_2}{\|\Gamma_{\rm ref}X\|_2},
+E(X;M)=\frac{\|(\Gamma_h(M)-\Gamma_{\rm ref})X\|_2}{\|\Gamma_{\rm ref}X\|_2}
 \]
-where $\Gamma_L^{k_c}$ is the truncated Fourier operator evaluated without mesh assignment.
-
-At the production parameters ($\xi=0.85$, $r_c=4.8878$, $k_c=9.3585$, i.e.\ the exact shell
-$2\pi\sqrt{172}/L$, and $p=9$), the complete error for $N=512$ is $2.0$--$2.1\times10^{-8}$ for the Gaussian probes,
-$8.05\times10^{-8}$ for the slow and $8.6\times10^{-9}$ for the fast eigenvectors at the production grid $M=40$.
-These values are independent of $M$ for every admissible grid: they equal the fixed-cutoff truncation error.
-Meanwhile $E_{\rm mesh}$ decreases from $3.7\times10^{-9}$ at $M=28$ to $1.4\times10^{-14}$ at $M=96$, at a fitted rate
-$M^{-10.4}$ (\cref{fig:exp1}(d), left).
-With stricter cutoffs ($r_c=6/\xi$, $k_c\le12\xi$) the truncation error drops to at most $5.1\times10^{-15}$. The complete
-error then follows the mesh-only error down to $10^{-14}$, with fitted rates $10.0$--$10.4$ for $N=128$, $256$ and
-$512$ and all probe classes (maximum over the nine configurations of each size) (\cref{fig:exp1}(d), right).
-The slow eigenvectors have the largest relative error, about four times the Gaussian value at $N=512$, because their
-reference action $\lambda_{\min}\|u\|$ is the smallest. Their operator-normalised error is not larger.
-The translation residual $\|\Gamma_hT\|_2/\|\Gamma_{\rm ref}\|_2$ stays below $3\times10^{-16}$, which is smaller than
-that of $\Gamma_{\rm ref}$ itself. Finally, $\Gamma_h$ is symmetric to $1.3\times10^{-17}$ and positive on the zero-momentum
+for the production matrix-free implementation. For each configuration, $\xi$, $r_c$, $k_c$ and $p=9$ are fixed and
+only the FFT size $M$ varies. Grids that violate the Nyquist condition are reported as invalid; on every valid grid, all
+reciprocal shells with $|\mathbf k|\le k_c$ are retained.
+The same unit test vectors are used for every $M$: ten Gaussian vectors, the three slowest and the fastest eigenvectors
+of $\Gamma_{\rm ref}$ (our choice of spectral probes), and the three translations.
+To expose the mesh convergence we use strict cutoffs, $r_c=6/\xi$ and $k_c\le12\xi$. Their truncation error is at most
+$5.1\times10^{-15}$, so the remaining error comes from the mesh.
+For all three configuration families and $N=128$, $256$ and $512$, the Gaussian-probe error decreases from about
+$10^{-9}$ to $1$--$1.4\times10^{-14}$ (\cref{fig:exp1}(d)). The fitted rates are $10.1$--$10.3$ for the Gaussian and
+$10.0$--$10.3$ for the slow eigenvectors, and the families differ by at most $12\%$ at equal $N$ and $M$.
+At the production parameters ($r_c=4.8878$; $k_c=9.3585$, the exact shell $2\pi\sqrt{172}/L$ for $N=512$; $p=9$), the
+error does not depend on $M$ on any admissible grid: it equals the truncation error of the fixed cutoffs. Over all 21
+configurations this is $2.0$--$2.9\times10^{-8}$ for the Gaussian vectors, $4.9$--$8.1\times10^{-8}$ for the slow and
+$0.84$--$2.0\times10^{-8}$ for the fast eigenvectors.
+The slow eigenvectors have the largest relative error because their reference action $\lambda_{\min}\|u\|$ is the
+smallest; their operator-normalised error is not larger.
+The translation residual $\|\Gamma_hT\|_2/\|\Gamma_{\rm ref}\|_2$ stays below $3\times10^{-16}$, below that of
+$\Gamma_{\rm ref}$ itself. Finally, $\Gamma_h$ is symmetric to $1.4\times10^{-17}$ and positive on the zero-momentum
 subspace for every grid.
 
 \begin{figure}[t]
@@ -70,19 +65,18 @@ subspace for every grid.
   \includegraphics[width=\textwidth]{fig1_spatial_validation.pdf}
   \caption{Accuracy validation of the periodic Ewald--PPPM operator for Model A.
   (a) Particle configurations in the periodic box ($\rho=0.75$, minimum separation $0.9$): uniform, moderately and
-  strongly clustered ($N=256$), and the strongly clustered $N=512$ configuration used in (d).
+  strongly clustered ($N=256$), and the strongly clustered $N=512$ configuration of the parameter optimisation.
   (b) Error of the analytical split $K=K_S+K_L$ over all pair images ($|\mathbf d|\le8$) of nine $N=256$
   configurations: relative Frobenius norm (solid), largest single pair (dashed), and a radial sweep
   $r\in[10^{-6},12]$ (dotted).
   (c) Short-range error with the exact mesh-free long-range part, $\xi=0.85$: median over three seeds per family with
   min--max shading, over the resolved decay; open markers are measurements at the reference/round-off floor. The
   dash-dotted curve is the certified bound and the dashed curve the $e^{-s^2}$ guide.
-  (d) Matrix-free action error versus the FFT size $M$, with $\xi$, $r_c$, $k_c$ and $p=9$ fixed. Each curve is the
-  maximum over the tested probes (and over the configurations where several are pooled), not a maximum over all
-  vectors. Left: production cutoffs, $N=512$; complete error against $\Gamma_{\rm ref}$ (solid) and mesh-only error
-  against the exact truncated Fourier operator (dashed), for ten Gaussian vectors (shading: probe range) and the three
-  slowest eigenvectors of $\Gamma_{\rm ref}$. The dotted line marks the production grid $M=40$, and the grey band a
-  Nyquist-invalid grid. Right: complete error with strict cutoffs ($r_c=6/\xi$, $k_c\le12\xi$) for $N=128$ and $256$
-  (nine configurations each) and $N=512$. Fitted rates are least-squares fits to the plotted data.}
+  (d) Relative error of the matrix-free action against $\Gamma_{\rm ref}$ versus the FFT size $M$, with strict cutoffs
+  ($\xi=0.85$, $r_c=6/\xi$, $k_c\le12\xi$, $p=9$ fixed). Each curve is the maximum over ten Gaussian test vectors (and
+  three seeds for $N=128$, $256$), not a maximum over all vectors. Colour and marker give the configuration family;
+  solid, dashed and thick lines are $N=128$, $256$ and $512$. With the production cutoffs, the error equals the
+  $M$-independent truncation error of those cutoffs ($2.0$--$2.9\times10^{-8}$). Fitted rates are least-squares fits to
+  the plotted data.}
   \label{fig:exp1}
 \end{figure}

@@ -1,2 +1,4 @@
 2026-10-19T05:29:36+0000  cd benchmarks/method_A_clustered/validation_exp1 && python3 run_exp1.py all
 2026-10-19T15:48:57+0000  cd benchmarks/method_A_clustered/validation_exp1 && python3 run_exp1.py action action_p
+2026-10-19T18:05:29+0000  cd benchmarks/method_A_clustered/validation_exp1 && python3 run_exp1.py configs refs action --resume
+2026-10-19T18:10:44+0000  cd benchmarks/method_A_clustered/validation_exp1 && python3 run_exp1.py action_fits

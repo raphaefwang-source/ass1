@@ -1,0 +1,9 @@
+[18:05:31] configs uniform_N512_s1: configs, d_min 0.9013
+[18:05:31] configs moderate_N512_s1: configs, d_min 0.9007
+[18:05:32] stage configs done in 3 s
+[18:05:58] refs uniform_N512_s1: ||G|| 14.5110, Lambda_lb 12.6247, lam_min(Pi) 3.4290; ||G_D55 - G_ref||/||G_ref|| 2.47e-15 (D55 tail bound 6.4e-14)
+[18:06:25] refs moderate_N512_s1: ||G|| 16.8219, Lambda_lb 14.9915, lam_min(Pi) 3.0024; ||G_D55 - G_ref||/||G_ref|| 2.03e-15 (D55 tail bound 5.5e-14)
+[18:06:25] stage refs done in 53 s
+[18:08:14] action uniform_N512_s1: production: 28:2.7e-08/3.6e-09 30:2.7e-08/1.7e-09 32:2.7e-08/8.3e-10 36:2.7e-08/2.3e-10 40:2.7e-08/7.4e-11 48:2.7e-08/1.2e-11 56:2.7e-08/2.5e-12 64:2.7e-08/6.7e-13 80:2.7e-08/7.9e-14 96:2.7e-08/1.4e-14; strict: 30:1.7e-09/1.7e-09 32:8.3e-10/8.3e-10 36:2.3e-10/2.3e-10 40:7.4e-11/7.4e-11 48:1.2e-11/1.2e-11 56:2.5e-12/2.5e-12 64:6.7e-13/6.7e-13 80:7.9e-14/7.9e-14 96:1.4e-14/1.4e-14  (Gaussian max complete/mesh; 109 s)
+[18:10:01] action moderate_N512_s1: production: 28:2.4e-08/3.6e-09 30:2.4e-08/1.6e-09 32:2.4e-08/8.1e-10 36:2.4e-08/2.3e-10 40:2.4e-08/7.4e-11 48:2.4e-08/1.1e-11 56:2.4e-08/2.5e-12 64:2.4e-08/7.1e-13 80:2.4e-08/7.8e-14 96:2.4e-08/1.4e-14; strict: 30:1.6e-09/1.6e-09 32:8.1e-10/8.1e-10 36:2.3e-10/2.3e-10 40:7.4e-11/7.4e-11 48:1.1e-11/1.1e-11 56:2.5e-12/2.5e-12 64:7.1e-13/7.1e-13 80:7.8e-14/7.8e-14 96:1.4e-14/1.4e-14  (Gaussian max complete/mesh; 107 s)
+[18:10:12] stage action done in 228 s

@@ -1,6 +1,6 @@
 {
- "n_cases": 418,
- "n_valid": 361,
+ "n_cases": 462,
+ "n_valid": 399,
  "invalid": [
   {
    "config": "uniform_N128_s1",
@@ -343,12 +343,48 @@
    "setting": "strict",
    "M": 28,
    "reason": "Nyquist: largest retained |m_a| = 14 >= M/2 = 14"
+  },
+  {
+   "config": "uniform_N512_s1",
+   "setting": "production",
+   "M": 26,
+   "reason": "Nyquist: largest retained |m_a| = 13 >= M/2 = 13"
+  },
+  {
+   "config": "uniform_N512_s1",
+   "setting": "strict",
+   "M": 26,
+   "reason": "Nyquist: largest retained |m_a| = 14 >= M/2 = 13"
+  },
+  {
+   "config": "uniform_N512_s1",
+   "setting": "strict",
+   "M": 28,
+   "reason": "Nyquist: largest retained |m_a| = 14 >= M/2 = 14"
+  },
+  {
+   "config": "moderate_N512_s1",
+   "setting": "production",
+   "M": 26,
+   "reason": "Nyquist: largest retained |m_a| = 13 >= M/2 = 13"
+  },
+  {
+   "config": "moderate_N512_s1",
+   "setting": "strict",
+   "M": 26,
+   "reason": "Nyquist: largest retained |m_a| = 14 >= M/2 = 13"
+  },
+  {
+   "config": "moderate_N512_s1",
+   "setting": "strict",
+   "M": 28,
+   "reason": "Nyquist: largest retained |m_a| = 14 >= M/2 = 14"
   }
  ],
  "max_n_excluded": 0,
  "min_W2min": 0.0007108356409079887,
  "max_dense_vs_matrix_free": 3.779426280380553e-15,
- "max_sym_defect_h": 1.2926811674977098e-17,
+ "max_sym_defect_h": 1.4222700429565424e-17,
  "any_negative": false,
  "all_triangle_ok": true,
  "max_cached_vs_pairdiff": 2.1603133345768684e-15,
@@ -357,10 +393,10 @@
  "max_translation_opnorm_ref": 4.919731518202167e-16,
  "fit_floor": 1e-13,
  "provenance": {
-  "time": "2026-10-19T15:57:34+0000",
-  "command": "python3 run_exp1.py action action_p",
+  "time": "2026-10-19T18:10:12+0000",
+  "command": "python3 run_exp1.py configs refs action --resume",
   "git": {
-   "commit": "f69535271c4f72b534f0e97f1bd1511c7534ebb2",
+   "commit": "d0502fe62bbcea6d7c74bfa67710996da623e71d",
    "dirty": true
   },
   "code_hash": "4d862270ca47fce2",

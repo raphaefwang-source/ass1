@@ -8,6 +8,7 @@
 | moderate_N256_s1 | 6.9886 | 15.0052 | 13.4545 | 4.2622 | 2.82e-15 | 5.7e-14 | 6.7e-16 |
 | moderate_N256_s2 | 6.9886 | 15.0554 | 13.7952 | 4.1140 | 2.98e-15 | 5.7e-14 | 6.3e-16 |
 | moderate_N256_s3 | 6.9886 | 15.1693 | 13.6114 | 4.0754 | 2.78e-15 | 5.7e-14 | 6.6e-16 |
+| moderate_N512_s1 | 8.8051 | 16.8219 | 14.9915 | 3.0024 | 2.03e-15 | 5.5e-14 | 8.1e-16 |
 | strong_N128_s1 | 5.5469 | 14.5638 | 13.1546 | 4.6662 | 3.85e-15 | 5.5e-14 | 4.2e-16 |
 | strong_N128_s2 | 5.5469 | 14.6319 | 13.2278 | 4.6671 | 4.10e-15 | 5.5e-14 | 4.3e-16 |
 | strong_N128_s3 | 5.5469 | 14.2515 | 12.8890 | 4.7370 | 4.01e-15 | 5.7e-14 | 4.3e-16 |
@@ -21,6 +22,7 @@
 | uniform_N256_s1 | 6.9886 | 13.6746 | 11.8188 | 4.3686 | 3.20e-15 | 6.3e-14 | 6.6e-16 |
 | uniform_N256_s2 | 6.9886 | 13.3849 | 11.7370 | 4.4097 | 3.27e-15 | 6.4e-14 | 6.8e-16 |
 | uniform_N256_s3 | 6.9886 | 13.4654 | 11.9469 | 4.4668 | 3.15e-15 | 6.4e-14 | 6.6e-16 |
+| uniform_N512_s1 | 8.8051 | 14.5110 | 12.6247 | 3.4290 | 2.47e-15 | 6.4e-14 | 8.3e-16 |
 
 ### (b) split identity
 
@@ -71,100 +73,100 @@ Largest relative difference between E_S and the exact-arithmetic tail ||Γ_S^ful
 
 N = 512 production: retained modes with the full-precision k_c = 9459; with k_c truncated to 9.3585 (old code) = 9435 (shell n = 172 dropped).
 
-### (d) N = 512 strongly clustered, every M
+### (d) N = 512 strongly clustered (optimisation case), every M
 
-| cutoffs | M | Gaussian E_complete (min–max of 10) | slow spectral E_complete (max of 3) | fast E_complete | Gaussian E_mesh (max) | slow E_mesh (max) | E_trunc Gaussian / slow (max) | dense E_op | dense E_op,mesh |
-|---|---|---|---|---|---|---|---|---|---|
-| production | 28 | 2.03e-08–2.20e-08 | 8.06e-08 | 9.35e-09 | 3.73e-09 | 5.10e-09 | 2.14e-08 / 8.05e-08 | 3.04e-08 | 8.07e-09 |
-| production | 30 | 2.01e-08–2.14e-08 | 8.06e-08 | 8.43e-09 | 1.59e-09 | 1.96e-09 | 2.14e-08 / 8.05e-08 | 3.04e-08 | 3.86e-09 |
-| production | 32 | 2.01e-08–2.14e-08 | 8.06e-08 | 8.85e-09 | 8.21e-10 | 9.02e-10 | 2.14e-08 / 8.05e-08 | 3.03e-08 | 1.95e-09 |
-| production | 36 | 2.02e-08–2.14e-08 | 8.05e-08 | 8.65e-09 | 2.38e-10 | 3.12e-10 | 2.14e-08 / 8.05e-08 | 3.03e-08 | 5.15e-10 |
-| production (production M) | 40 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.60e-09 | 7.34e-11 | 8.71e-11 | 2.14e-08 / 8.05e-08 | 3.03e-08 | 1.90e-10 |
-| production | 48 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.61e-09 | 1.16e-11 | 1.48e-11 | 2.14e-08 / 8.05e-08 | 3.03e-08 | 2.78e-11 |
-| production | 56 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.61e-09 | 2.46e-12 | 3.31e-12 | 2.14e-08 / 8.05e-08 | 3.03e-08 | 5.98e-12 |
-| production | 64 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.61e-09 | 6.53e-13 | 8.66e-13 | 2.14e-08 / 8.05e-08 | 3.03e-08 | 1.56e-12 |
-| production | 80 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.61e-09 | 7.63e-14 | 9.86e-14 | 2.14e-08 / 8.05e-08 | 3.03e-08 | 1.84e-13 |
-| production | 96 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.61e-09 | 1.39e-14 | 1.89e-14 | 2.14e-08 / 8.05e-08 | 3.03e-08 | 3.10e-14 |
-| strict | 30 | 1.46e-09–1.59e-09 | 1.96e-09 | 1.28e-09 | 1.59e-09 | 1.96e-09 | 2.52e-15 / 1.33e-14 | 3.86e-09 | 3.86e-09 |
-| strict | 32 | 7.24e-10–8.21e-10 | 9.02e-10 | 6.98e-10 | 8.21e-10 | 9.02e-10 | 2.52e-15 / 1.33e-14 | 1.95e-09 | 1.95e-09 |
-| strict | 36 | 2.08e-10–2.38e-10 | 3.12e-10 | 1.89e-10 | 2.38e-10 | 3.12e-10 | 2.52e-15 / 1.33e-14 | 5.15e-10 | 5.15e-10 |
-| strict | 40 | 6.73e-11–7.34e-11 | 8.71e-11 | 5.68e-11 | 7.34e-11 | 8.71e-11 | 2.52e-15 / 1.33e-14 | 1.90e-10 | 1.90e-10 |
-| strict | 48 | 1.05e-11–1.16e-11 | 1.48e-11 | 9.67e-12 | 1.16e-11 | 1.48e-11 | 2.52e-15 / 1.33e-14 | 2.78e-11 | 2.78e-11 |
-| strict | 56 | 2.29e-12–2.46e-12 | 3.31e-12 | 2.33e-12 | 2.46e-12 | 3.31e-12 | 2.52e-15 / 1.33e-14 | 5.98e-12 | 5.98e-12 |
-| strict | 64 | 6.03e-13–6.53e-13 | 8.67e-13 | 4.61e-13 | 6.53e-13 | 8.67e-13 | 2.52e-15 / 1.33e-14 | 1.55e-12 | 1.56e-12 |
-| strict | 80 | 7.01e-14–7.64e-14 | 9.98e-14 | 6.00e-14 | 7.63e-14 | 9.86e-14 | 2.52e-15 / 1.33e-14 | 1.86e-13 | 1.84e-13 |
-| strict | 96 | 1.22e-14–1.42e-14 | 2.17e-14 | 1.16e-14 | 1.39e-14 | 1.91e-14 | 2.52e-15 / 1.33e-14 | 3.21e-14 | 3.10e-14 |
+| cutoffs | M | Gaussian E_complete (min–max of 10) | slow spectral E_complete (max of 3) | fast E_complete | fixed-cutoff value E_trunc, Gaussian / slow (max) | dense E_op |
+|---|---|---|---|---|---|---|
+| production | 28 | 2.03e-08–2.20e-08 | 8.06e-08 | 9.35e-09 | 2.14e-08 / 8.05e-08 | 3.04e-08 |
+| production | 30 | 2.01e-08–2.14e-08 | 8.06e-08 | 8.43e-09 | 2.14e-08 / 8.05e-08 | 3.04e-08 |
+| production | 32 | 2.01e-08–2.14e-08 | 8.06e-08 | 8.85e-09 | 2.14e-08 / 8.05e-08 | 3.03e-08 |
+| production | 36 | 2.02e-08–2.14e-08 | 8.05e-08 | 8.65e-09 | 2.14e-08 / 8.05e-08 | 3.03e-08 |
+| production (production M) | 40 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.60e-09 | 2.14e-08 / 8.05e-08 | 3.03e-08 |
+| production | 48 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.61e-09 | 2.14e-08 / 8.05e-08 | 3.03e-08 |
+| production | 56 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.61e-09 | 2.14e-08 / 8.05e-08 | 3.03e-08 |
+| production | 64 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.61e-09 | 2.14e-08 / 8.05e-08 | 3.03e-08 |
+| production | 80 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.61e-09 | 2.14e-08 / 8.05e-08 | 3.03e-08 |
+| production | 96 | 2.01e-08–2.14e-08 | 8.05e-08 | 8.61e-09 | 2.14e-08 / 8.05e-08 | 3.03e-08 |
+| strict | 30 | 1.46e-09–1.59e-09 | 1.96e-09 | 1.28e-09 | 2.52e-15 / 1.33e-14 | 3.86e-09 |
+| strict | 32 | 7.24e-10–8.21e-10 | 9.02e-10 | 6.98e-10 | 2.52e-15 / 1.33e-14 | 1.95e-09 |
+| strict | 36 | 2.08e-10–2.38e-10 | 3.12e-10 | 1.89e-10 | 2.52e-15 / 1.33e-14 | 5.15e-10 |
+| strict | 40 | 6.73e-11–7.34e-11 | 8.71e-11 | 5.68e-11 | 2.52e-15 / 1.33e-14 | 1.90e-10 |
+| strict | 48 | 1.05e-11–1.16e-11 | 1.48e-11 | 9.67e-12 | 2.52e-15 / 1.33e-14 | 2.78e-11 |
+| strict | 56 | 2.29e-12–2.46e-12 | 3.31e-12 | 2.33e-12 | 2.52e-15 / 1.33e-14 | 5.98e-12 |
+| strict | 64 | 6.03e-13–6.53e-13 | 8.67e-13 | 4.61e-13 | 2.52e-15 / 1.33e-14 | 1.55e-12 |
+| strict | 80 | 7.01e-14–7.64e-14 | 9.98e-14 | 6.00e-14 | 2.52e-15 / 1.33e-14 | 1.86e-13 |
+| strict | 96 | 1.22e-14–1.42e-14 | 2.17e-14 | 1.16e-14 | 2.52e-15 / 1.33e-14 | 3.21e-14 |
 
-### (d) N = 128, 256 (3 families x 3 seeds)
+### (d) per family and N (all probe classes)
 
-| N | cutoffs | M | Gaussian E_complete (max over 10 probes × 9 configs) | slow E_complete | fast E_complete | Gaussian E_mesh | slow E_mesh |
+| N | family | cutoffs | M (smallest / middle / largest valid) | Gaussian E_complete | slow E_complete | fast E_complete | LSQ rate, Gaussian E_complete |
 |---|---|---|---|---|---|---|---|
-| 128 | production | 18 | 2.87e-08 | 6.74e-08 | 1.98e-08 | 3.40e-09 | 2.81e-09 |
-| 128 | production | 36 | 2.84e-08 | 6.73e-08 | 1.95e-08 | 2.27e-12 | 1.97e-12 |
-| 128 | production | 64 | 2.84e-08 | 6.73e-08 | 1.95e-08 | 9.16e-15 | 8.20e-15 |
-| 128 | strict | 20 | 1.02e-09 | 8.20e-10 | 1.15e-09 | 1.02e-09 | 8.20e-10 |
-| 128 | strict | 36 | 2.27e-12 | 1.97e-12 | 2.16e-12 | 2.27e-12 | 1.97e-12 |
-| 128 | strict | 64 | 1.04e-14 | 1.35e-14 | 9.45e-15 | 9.19e-15 | 8.19e-15 |
-| 256 | production | 22 | 2.76e-08 | 8.01e-08 | 2.00e-08 | 4.52e-09 | 4.86e-09 |
-| 256 | production | 40 | 2.74e-08 | 8.01e-08 | 1.91e-08 | 7.56e-12 | 7.89e-12 |
-| 256 | production | 80 | 2.74e-08 | 8.01e-08 | 1.91e-08 | 9.25e-15 | 9.62e-15 |
-| 256 | strict | 24 | 1.59e-09 | 1.62e-09 | 1.57e-09 | 1.59e-09 | 1.62e-09 |
-| 256 | strict | 40 | 7.56e-12 | 7.89e-12 | 7.81e-12 | 7.56e-12 | 7.89e-12 |
-| 256 | strict | 80 | 9.93e-15 | 1.48e-14 | 1.06e-14 | 9.25e-15 | 9.62e-15 |
+| 128 | uniform | production | 18 / 36 / 64 | 2.8e-08 / 2.8e-08 / 2.8e-08 | 5.1e-08 / 5.1e-08 / 5.1e-08 | 1.9e-08 / 1.9e-08 / 1.9e-08 | -0.00 (flat: fixed-cutoff value) |
+| 128 | uniform | strict | 20 / 36 / 64 | 9.7e-10 / 2.2e-12 / 1.0e-14 | 8.2e-10 / 1.9e-12 / 1.2e-14 | 1.1e-09 / 2.2e-12 / 9.5e-15 | 10.14 |
+| 128 | moderate | production | 18 / 36 / 64 | 2.7e-08 / 2.7e-08 / 2.7e-08 | 5.4e-08 / 5.4e-08 / 5.4e-08 | 2.0e-08 / 1.9e-08 / 1.9e-08 | 0.00 (flat: fixed-cutoff value) |
+| 128 | moderate | strict | 20 / 36 / 64 | 9.3e-10 / 2.1e-12 / 1.0e-14 | 8.1e-10 / 1.9e-12 / 1.3e-14 | 8.3e-10 / 1.9e-12 / 8.8e-15 | 10.10 |
+| 128 | strong | production | 18 / 36 / 64 | 2.9e-08 / 2.8e-08 / 2.8e-08 | 6.7e-08 / 6.7e-08 / 6.7e-08 | 1.9e-08 / 1.8e-08 / 1.8e-08 | 0.01 (flat: fixed-cutoff value) |
+| 128 | strong | strict | 20 / 36 / 64 | 1.0e-09 / 2.3e-12 / 1.0e-14 | 8.1e-10 / 2.0e-12 / 1.4e-14 | 8.8e-10 / 2.0e-12 / 8.9e-15 | 10.17 |
+| 256 | uniform | production | 22 / 40 / 80 | 2.8e-08 / 2.7e-08 / 2.7e-08 | 5.9e-08 / 5.8e-08 / 5.8e-08 | 2.0e-08 / 1.9e-08 / 1.9e-08 | 0.00 (flat: fixed-cutoff value) |
+| 256 | uniform | strict | 24 / 40 / 80 | 1.6e-09 / 7.6e-12 / 9.9e-15 | 1.3e-09 / 6.0e-12 / 1.2e-14 | 1.4e-09 / 6.3e-12 / 7.8e-15 | 10.22 |
+| 256 | moderate | production | 22 / 40 / 80 | 2.6e-08 / 2.6e-08 / 2.6e-08 | 6.1e-08 / 6.1e-08 / 6.1e-08 | 1.9e-08 / 1.9e-08 / 1.9e-08 | 0.01 (flat: fixed-cutoff value) |
+| 256 | moderate | strict | 24 / 40 / 80 | 1.6e-09 / 7.2e-12 / 9.5e-15 | 1.5e-09 / 6.5e-12 / 1.3e-14 | 1.6e-09 / 7.8e-12 / 1.1e-14 | 10.27 |
+| 256 | strong | production | 22 / 40 / 80 | 2.5e-08 / 2.4e-08 / 2.4e-08 | 8.0e-08 / 8.0e-08 / 8.0e-08 | 1.9e-08 / 1.8e-08 / 1.8e-08 | 0.01 (flat: fixed-cutoff value) |
+| 256 | strong | strict | 24 / 40 / 80 | 1.6e-09 / 7.5e-12 / 9.7e-15 | 1.6e-09 / 7.9e-12 / 1.5e-14 | 1.4e-09 / 7.0e-12 / 7.6e-15 | 10.20 |
+| 512 | uniform | production | 28 / 48 / 96 | 2.7e-08 / 2.7e-08 / 2.7e-08 | 5.9e-08 / 5.9e-08 / 5.9e-08 | 1.6e-08 / 1.8e-08 / 1.8e-08 | 0.01 (flat: fixed-cutoff value) |
+| 512 | uniform | strict | 30 / 48 / 96 | 1.7e-09 / 1.2e-11 / 1.4e-14 | 1.5e-09 / 1.0e-11 / 1.5e-14 | 1.5e-09 / 1.1e-11 / 1.2e-14 | 10.31 |
+| 512 | moderate | production | 28 / 48 / 96 | 2.4e-08 / 2.4e-08 / 2.4e-08 | 6.0e-08 / 6.0e-08 / 6.0e-08 | 1.4e-08 / 1.4e-08 / 1.4e-08 | 0.00 (flat: fixed-cutoff value) |
+| 512 | moderate | strict | 30 / 48 / 96 | 1.6e-09 / 1.1e-11 / 1.4e-14 | 1.5e-09 / 1.2e-11 / 1.7e-14 | 1.5e-09 / 9.4e-12 / 1.2e-14 | 10.26 |
+| 512 | strong | production | 28 / 48 / 96 | 2.2e-08 / 2.1e-08 / 2.1e-08 | 8.1e-08 / 8.1e-08 / 8.1e-08 | 9.3e-09 / 8.6e-09 / 8.6e-09 | 0.01 (flat: fixed-cutoff value) |
+| 512 | strong | strict | 30 / 48 / 96 | 1.6e-09 / 1.2e-11 / 1.4e-14 | 2.0e-09 / 1.5e-11 / 2.2e-14 | 1.3e-09 / 9.7e-12 / 1.2e-14 | 10.32 |
 
-### (d) fitted rates
+Maxima over the 10 Gaussian probes (and the 3 seeds for N = 128, 256); N = 512 has one configuration per family.
 
-| N | cutoffs | probe class | quantity | M range | points | LSQ rate | R^2 |
-|---|---|---|---|---|---|---|---|
-| 128 | production | gaussian | E_mesh (max over tested probes/configs) | 18–48 | 8 | 10.29 | 0.9994 |
-| 128 | production | gaussian | E_complete (max over tested probes/configs) | 18–64 | 10 | 0.01 | 0.3255 |
-| 128 | production | spectral_slow | E_mesh (max over tested probes/configs) | 18–48 | 8 | 10.17 | 0.9990 |
-| 128 | production | spectral_slow | E_complete (max over tested probes/configs) | 18–64 | 10 | 0.00 | 0.1647 |
-| 128 | production | spectral_fast | E_mesh (max over tested probes/configs) | 18–48 | 8 | 10.31 | 0.9990 |
-| 128 | production | spectral_fast | E_complete (max over tested probes/configs) | 18–64 | 10 | 0.00 | 0.0938 |
-| 256 | production | gaussian | E_mesh (max over tested probes/configs) | 22–56 | 8 | 10.36 | 0.9994 |
-| 256 | production | gaussian | E_complete (max over tested probes/configs) | 22–80 | 10 | 0.00 | 0.0523 |
-| 256 | production | spectral_slow | E_mesh (max over tested probes/configs) | 22–56 | 8 | 10.44 | 0.9990 |
-| 256 | production | spectral_slow | E_complete (max over tested probes/configs) | 22–80 | 10 | 0.00 | 0.4046 |
-| 256 | production | spectral_fast | E_mesh (max over tested probes/configs) | 22–56 | 8 | 10.24 | 0.9995 |
-| 256 | production | spectral_fast | E_complete (max over tested probes/configs) | 22–80 | 10 | 0.02 | 0.3900 |
-| 512 | production | gaussian | E_mesh (max over tested probes/configs) | 28–64 | 8 | 10.42 | 0.9995 |
-| 512 | production | gaussian | E_complete (max over tested probes/configs) | 28–96 | 10 | 0.01 | 0.2262 |
-| 512 | production | spectral_slow | E_mesh (max over tested probes/configs) | 28–64 | 8 | 10.34 | 0.9985 |
-| 512 | production | spectral_slow | E_complete (max over tested probes/configs) | 28–96 | 10 | 0.00 | 0.4049 |
-| 512 | production | spectral_fast | E_mesh (max over tested probes/configs) | 28–64 | 8 | 10.40 | 0.9991 |
-| 512 | production | spectral_fast | E_complete (max over tested probes/configs) | 28–96 | 10 | 0.03 | 0.1698 |
-| 128 | strict | gaussian | E_mesh (max over tested probes/configs) | 20–48 | 7 | 10.15 | 0.9997 |
-| 128 | strict | gaussian | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.15 | 0.9997 |
-| 128 | strict | spectral_slow | E_mesh (max over tested probes/configs) | 20–48 | 7 | 10.00 | 0.9992 |
-| 128 | strict | spectral_slow | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.00 | 0.9992 |
-| 128 | strict | spectral_fast | E_mesh (max over tested probes/configs) | 20–48 | 7 | 10.29 | 0.9986 |
-| 128 | strict | spectral_fast | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.28 | 0.9986 |
-| 256 | strict | gaussian | E_mesh (max over tested probes/configs) | 24–56 | 7 | 10.24 | 0.9996 |
-| 256 | strict | gaussian | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.24 | 0.9996 |
-| 256 | strict | spectral_slow | E_mesh (max over tested probes/configs) | 24–56 | 7 | 10.29 | 0.9993 |
-| 256 | strict | spectral_slow | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.29 | 0.9993 |
-| 256 | strict | spectral_fast | E_mesh (max over tested probes/configs) | 24–56 | 7 | 10.19 | 0.9993 |
-| 256 | strict | spectral_fast | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.19 | 0.9993 |
-| 512 | strict | gaussian | E_mesh (max over tested probes/configs) | 30–64 | 7 | 10.32 | 0.9998 |
-| 512 | strict | gaussian | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.32 | 0.9998 |
-| 512 | strict | spectral_slow | E_mesh (max over tested probes/configs) | 30–64 | 7 | 10.15 | 0.9993 |
-| 512 | strict | spectral_slow | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.15 | 0.9993 |
-| 512 | strict | spectral_fast | E_mesh (max over tested probes/configs) | 30–64 | 7 | 10.35 | 0.9990 |
-| 512 | strict | spectral_fast | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.35 | 0.9990 |
+### (d) fitted rates (strict cutoffs, complete error)
 
-p study (N = 512, mesh-only error, maximum over tested probes):
+| N | cutoffs | family | probe class | quantity | M range | points | LSQ rate | R^2 |
+|---|---|---|---|---|---|---|---|---|
+| 128 | strict | all | gaussian | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.15 | 0.9997 |
+| 128 | strict | all | spectral_slow | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.00 | 0.9992 |
+| 128 | strict | all | spectral_fast | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.28 | 0.9986 |
+| 128 | strict | uniform | gaussian | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.14 | 0.9995 |
+| 128 | strict | uniform | spectral_slow | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.15 | 0.9991 |
+| 128 | strict | uniform | spectral_fast | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.30 | 0.9974 |
+| 128 | strict | strong | gaussian | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.17 | 0.9996 |
+| 128 | strict | strong | spectral_slow | E_complete (max over tested probes/configs) | 20–48 | 7 | 9.99 | 0.9992 |
+| 128 | strict | strong | spectral_fast | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.20 | 0.9996 |
+| 128 | strict | moderate | gaussian | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.10 | 0.9995 |
+| 128 | strict | moderate | spectral_slow | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.10 | 0.9993 |
+| 128 | strict | moderate | spectral_fast | E_complete (max over tested probes/configs) | 20–48 | 7 | 10.04 | 0.9993 |
+| 256 | strict | all | gaussian | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.24 | 0.9996 |
+| 256 | strict | all | spectral_slow | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.29 | 0.9993 |
+| 256 | strict | all | spectral_fast | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.19 | 0.9993 |
+| 256 | strict | uniform | gaussian | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.22 | 0.9995 |
+| 256 | strict | uniform | spectral_slow | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.20 | 0.9995 |
+| 256 | strict | uniform | spectral_fast | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.28 | 0.9992 |
+| 256 | strict | strong | gaussian | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.20 | 0.9996 |
+| 256 | strict | strong | spectral_slow | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.29 | 0.9993 |
+| 256 | strict | strong | spectral_fast | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.15 | 0.9987 |
+| 256 | strict | moderate | gaussian | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.27 | 0.9995 |
+| 256 | strict | moderate | spectral_slow | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.31 | 0.9994 |
+| 256 | strict | moderate | spectral_fast | E_complete (max over tested probes/configs) | 24–56 | 7 | 10.17 | 0.9992 |
+| 512 | strict | all | gaussian | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.28 | 0.9996 |
+| 512 | strict | all | spectral_slow | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.15 | 0.9993 |
+| 512 | strict | all | spectral_fast | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.32 | 0.9988 |
+| 512 | strict | uniform | gaussian | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.31 | 0.9996 |
+| 512 | strict | uniform | spectral_slow | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.27 | 0.9997 |
+| 512 | strict | uniform | spectral_fast | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.28 | 0.9982 |
+| 512 | strict | strong | gaussian | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.32 | 0.9998 |
+| 512 | strict | strong | spectral_slow | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.15 | 0.9993 |
+| 512 | strict | strong | spectral_fast | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.35 | 0.9990 |
+| 512 | strict | moderate | gaussian | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.26 | 0.9995 |
+| 512 | strict | moderate | spectral_slow | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.14 | 0.9995 |
+| 512 | strict | moderate | spectral_fast | E_complete (max over tested probes/configs) | 30–64 | 7 | 10.49 | 0.9976 |
+
+p study (N = 512 strongly clustered, strict cutoffs, complete error, maximum over tested probes):
 
 | cutoffs | p | probe class | M range | points | LSQ rate | R^2 |
 |---|---|---|---|---|---|---|
-| production | 4 | gaussian | 28–96 | 10 | 4.21 | 0.9995 |
-| production | 4 | spectral_slow | 28–96 | 10 | 4.11 | 0.9989 |
-| production | 6 | gaussian | 28–96 | 10 | 6.49 | 0.9995 |
-| production | 6 | spectral_slow | 28–96 | 10 | 6.43 | 0.9988 |
-| production | 8 | gaussian | 28–96 | 10 | 8.87 | 0.9993 |
-| production | 8 | spectral_slow | 28–96 | 10 | 8.85 | 0.9988 |
-| production | 9 | gaussian | 28–64 | 8 | 10.42 | 0.9995 |
-| production | 9 | spectral_slow | 28–64 | 8 | 10.34 | 0.9985 |
 | strict | 4 | gaussian | 30–96 | 9 | 4.19 | 0.9995 |
 | strict | 4 | spectral_slow | 30–96 | 9 | 4.12 | 0.9987 |
 | strict | 6 | gaussian | 30–96 | 9 | 6.46 | 0.9996 |
@@ -176,14 +178,14 @@ p study (N = 512, mesh-only error, maximum over tested probes):
 
 ### (d) translation, spectral probes and structural checks
 
-| N | cutoffs | translation ‖Γ_h T‖/‖Γ_ref‖, pair-difference | cached D − H | Γ_ref itself | ‖Γ_L^h T‖ (abs.) |
-|---|---|---|---|---|---|
-| 128 | production | 1.50e-16 | 2.08e-16 | 3.15e-16 | 2.09e-15 |
-| 128 | strict | 1.52e-16 | 2.87e-16 | 3.15e-16 | 2.22e-15 |
-| 256 | production | 0.00e+00 | 9.25e-18 | 4.19e-16 | 0.00e+00 |
-| 256 | strict | 0.00e+00 | 9.00e-18 | 4.19e-16 | 0.00e+00 |
-| 512 | production | 1.04e-16 | 1.83e-16 | 4.92e-16 | 1.82e-15 |
-| 512 | strict | 1.03e-16 | 2.70e-16 | 4.92e-16 | 1.81e-15 |
+| N | cutoffs | translation ‖Γ_h T‖/‖Γ_ref‖, pair-difference | cached D − H | Γ_ref itself |
+|---|---|---|---|---|
+| 128 | production | 1.50e-16 | 2.08e-16 | 3.15e-16 |
+| 128 | strict | 1.52e-16 | 2.87e-16 | 3.15e-16 |
+| 256 | production | 0.00e+00 | 9.25e-18 | 4.19e-16 |
+| 256 | strict | 0.00e+00 | 9.00e-18 | 4.19e-16 |
+| 512 | production | 1.04e-16 | 1.83e-16 | 4.92e-16 |
+| 512 | strict | 1.11e-16 | 2.70e-16 | 4.92e-16 |
 
 Spectral probes of strong_N512_s1 (eigenvectors of sym(Γ_ref)):
 
@@ -196,5 +198,5 @@ Spectral probes of strong_N512_s1 (eigenvectors of sym(Γ_ref)):
 
 Translation eigenvalues of sym(Γ_ref) (N = 512): -1.7e-16, 2.0e-16, -1.1e-15; λ_min(positive) = 2.301966, λ_max = 17.549015.
 Stricter LatticeFriction (rel_tol 1e-15, degree 20, near_cells 3) vs Γ_ref: 2.66e-15 (operator), 1.33e-14 (largest relative action difference over the non-null probes).
-Checks over all 361 valid (configuration, cutoffs, M) cases: dense Γ_h vs matrix-free action ≤ 3.78e-15; symmetry defect ≤ 1.29e-17; negative eigenvalue on Range Π: False; cached vs pair-difference ≤ 2.16e-15; E_complete ≤ E_mesh + E_trunc in every row: True.
+Checks over all 399 valid (configuration, cutoffs, M) cases: dense Γ_h vs matrix-free action ≤ 3.78e-15; symmetry defect ≤ 1.42e-17; negative eigenvalue on Range Π: False; cached vs pair-difference ≤ 2.16e-15.
 

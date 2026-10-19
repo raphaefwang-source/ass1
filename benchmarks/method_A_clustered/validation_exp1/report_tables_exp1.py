@@ -88,51 +88,61 @@ def table_c_main():
     rows = load("action_errors.csv")
     mesh = load("action_mesh.csv")
     out = ["| cutoffs | M | Gaussian E_complete (min–max of 10) | slow spectral E_complete (max of 3) | fast E_complete | "
-           "Gaussian E_mesh (max) | slow E_mesh (max) | E_trunc Gaussian / slow (max) | dense E_op | dense E_op,mesh |",
-           "|---|---|---|---|---|---|---|---|---|---|"]
+           "fixed-cutoff value E_trunc, Gaussian / slow (max) | dense E_op |", "|---|---|---|---|---|---|---|"]
     for st in ("production", "strict"):
-        sub = [r for r in rows if r["N"] == 512 and r["setting"] == st]
+        sub = [r for r in rows if r["config"] == "strong_N512_s1" and r["setting"] == st]
         for M in sorted({r["M"] for r in sub}):
             q = [r for r in sub if r["M"] == M]
             g = [r for r in q if r["probe_class"] == "gaussian"]
             sl = [r for r in q if r["probe_class"] == "spectral_slow"]
             fa = [r for r in q if r["probe_class"] == "spectral_fast"]
-            m = [x for x in mesh if x["N"] == 512 and x["setting"] == st and x["M"] == M][0]
+            m = [x for x in mesh if x["config"] == "strong_N512_s1" and x["setting"] == st and x["M"] == M][0]
             out.append(f"| {st}{' (production M)' if st == 'production' and M == 40 else ''} | {M} | "
                        f"{e(min(r['E_complete'] for r in g))}–{e(max(r['E_complete'] for r in g))} | "
-                       f"{e(max(r['E_complete'] for r in sl))} | {e(fa[0]['E_complete'])} | {e(max(r['E_mesh'] for r in g))} | "
-                       f"{e(max(r['E_mesh'] for r in sl))} | {e(max(r['E_trunc'] for r in g))} / {e(max(r['E_trunc'] for r in sl))} | "
-                       f"{e(m['E_op'])} | {e(m['E_op_mesh'])} |")
+                       f"{e(max(r['E_complete'] for r in sl))} | {e(fa[0]['E_complete'])} | "
+                       f"{e(max(r['E_trunc'] for r in g))} / {e(max(r['E_trunc'] for r in sl))} | {e(m['E_op'])} |")
     return "\n".join(out)
 
 
 def table_c_small():
     rows = load("action_errors.csv")
-    out = ["| N | cutoffs | M | Gaussian E_complete (max over 10 probes × 9 configs) | slow E_complete | fast E_complete | "
-           "Gaussian E_mesh | slow E_mesh |", "|---|---|---|---|---|---|---|---|"]
-    for N in (128, 256):
-        for st in ("production", "strict"):
-            sub = [r for r in rows if r["N"] == N and r["setting"] == st]
-            Ms = sorted({r["M"] for r in sub})
-            for M in (Ms[0], Ms[len(Ms) // 2], Ms[-1]):
-                q = [r for r in sub if r["M"] == M]
-                f = lambda cls, k: max(r[k] for r in q if r["probe_class"] == cls)      # noqa: E731
-                out.append(f"| {N} | {st} | {M} | {e(f('gaussian', 'E_complete'))} | {e(f('spectral_slow', 'E_complete'))} | "
-                           f"{e(f('spectral_fast', 'E_complete'))} | {e(f('gaussian', 'E_mesh'))} | {e(f('spectral_slow', 'E_mesh'))} |")
+    fits = load("action_rate_fits.csv")
+    out = ["| N | family | cutoffs | M (smallest / middle / largest valid) | Gaussian E_complete | slow E_complete | "
+           "fast E_complete | LSQ rate, Gaussian E_complete |", "|---|---|---|---|---|---|---|---|"]
+    for N in (128, 256, 512):
+        for fam in ("uniform", "moderate", "strong"):
+            for st in ("production", "strict"):
+                sub = [r for r in rows if r["N"] == N and r["family"] == fam and r["setting"] == st]
+                Ms = sorted({r["M"] for r in sub})
+                sel = (Ms[0], Ms[len(Ms) // 2], Ms[-1])
+                f = lambda cls, k: " / ".join(e(max(r[k] for r in sub if r["probe_class"] == cls and r["M"] == M), 1)  # noqa: E731
+                                              for M in sel)
+                fr = [q for q in fits if q["N"] == N and q["family"] == fam and q["setting"] == st and q["probe_class"] == "gaussian"
+                      and q["quantity"].startswith("E_complete")]
+                out.append(f"| {N} | {fam} | {st} | {' / '.join(map(str, sel))} | {f('gaussian', 'E_complete')} | "
+                           f"{f('spectral_slow', 'E_complete')} | {f('spectral_fast', 'E_complete')} | "
+                           f"{fr[0]['rate_lsq']:.2f}{' (flat: fixed-cutoff value)' if st == 'production' else ''} |")
+    out.append("")
+    out.append("Maxima over the 10 Gaussian probes (and the 3 seeds for N = 128, 256); N = 512 has one configuration per family.")
     return "\n".join(out)
 
 
 def table_c_rates():
-    out = ["| N | cutoffs | probe class | quantity | M range | points | LSQ rate | R^2 |", "|---|---|---|---|---|---|---|---|"]
+    out = ["| N | cutoffs | family | probe class | quantity | M range | points | LSQ rate | R^2 |",
+           "|---|---|---|---|---|---|---|---|---|"]
     for f in load("action_rate_fits.csv"):
-        out.append(f"| {f['N']} | {f['setting']} | {f['probe_class']} | {f['quantity']} | {f['M_lo']}–{f['M_hi']} | "
+        if not f["quantity"].startswith("E_complete") or f["setting"] != "strict":
+            continue
+        out.append(f"| {f['N']} | {f['setting']} | {f['family']} | {f['probe_class']} | {f['quantity']} | {f['M_lo']}–{f['M_hi']} | "
                    f"{f['n_points']} | {f['rate_lsq']:.2f} | {f['r2']:.4f} |")
     out.append("")
-    out.append("p study (N = 512, mesh-only error, maximum over tested probes):")
+    out.append("p study (N = 512 strongly clustered, strict cutoffs, complete error, maximum over tested probes):")
     out.append("")
     out.append("| cutoffs | p | probe class | M range | points | LSQ rate | R^2 |")
     out.append("|---|---|---|---|---|---|---|")
     for f in load("action_p_rate_fits.csv"):
+        if f["quantity"] != "E_complete" or f["setting"] != "strict":
+            continue
         out.append(f"| {f['setting']} | {f['p']} | {f['probe_class']} | {f['M_lo']}–{f['M_hi']} | {f['n_points']} | "
                    f"{f['rate_lsq']:.2f} | {f['r2']:.4f} |")
     return "\n".join(out)
@@ -142,13 +152,13 @@ def table_c_checks():
     meta = json.loads((RES / "action_probes.json").read_text())["configs"]
     summ = json.loads((RES / "action_summary.json").read_text())
     tr = load("action_translation.csv")
-    out = ["| N | cutoffs | translation ‖Γ_h T‖/‖Γ_ref‖, pair-difference | cached D − H | Γ_ref itself | ‖Γ_L^h T‖ (abs.) |",
-           "|---|---|---|---|---|---|"]
+    out = ["| N | cutoffs | translation ‖Γ_h T‖/‖Γ_ref‖, pair-difference | cached D − H | Γ_ref itself |",
+           "|---|---|---|---|---|"]
     for N in (128, 256, 512):
         for st in ("production", "strict"):
             sub = [r for r in tr if r["N"] == N and r["setting"] == st]
             out.append(f"| {N} | {st} | {e(max(r['opnorm_pairdiff'] for r in sub))} | {e(max(r['opnorm_cached'] for r in sub))} | "
-                       f"{e(max(r['opnorm_ref'] for r in sub))} | {e(max(r['abs_mesh_part'] for r in sub))} |")
+                       f"{e(max(r['opnorm_ref'] for r in sub))} |")
     m = meta["strong_N512_s1"]
     out.append("")
     out.append("Spectral probes of strong_N512_s1 (eigenvectors of sym(Γ_ref)):")
@@ -167,8 +177,7 @@ def table_c_checks():
                f"{e(sl['action_rel_max_nonnull'])} (largest relative action difference over the non-null probes).")
     out.append(f"Checks over all {summ['n_valid']} valid (configuration, cutoffs, M) cases: dense Γ_h vs matrix-free action "
                f"≤ {e(summ['max_dense_vs_matrix_free'])}; symmetry defect ≤ {e(summ['max_sym_defect_h'])}; negative eigenvalue on "
-               f"Range Π: {summ['any_negative']}; cached vs pair-difference ≤ {e(summ['max_cached_vs_pairdiff'])}; "
-               f"E_complete ≤ E_mesh + E_trunc in every row: {summ['all_triangle_ok']}.")
+               f"Range Π: {summ['any_negative']}; cached vs pair-difference ≤ {e(summ['max_cached_vs_pairdiff'])}.")
     return "\n".join(out)
 
 
@@ -186,8 +195,8 @@ def table_refs():
 if __name__ == "__main__":
     for title, fn in (("References", table_refs), ("(b) split identity", table_a), ("(c) short-range cutoff", table_b),
                       ("(d) mesh validity and retained modes", table_c_validity),
-                      ("(d) N = 512 strongly clustered, every M", table_c_main),
-                      ("(d) N = 128, 256 (3 families x 3 seeds)", table_c_small), ("(d) fitted rates", table_c_rates),
+                      ("(d) N = 512 strongly clustered (optimisation case), every M", table_c_main),
+                      ("(d) per family and N (all probe classes)", table_c_small), ("(d) fitted rates (strict cutoffs, complete error)", table_c_rates),
                       ("(d) translation, spectral probes and structural checks", table_c_checks)):
         print(f"### {title}\n")
         print(fn())

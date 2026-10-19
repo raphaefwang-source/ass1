@@ -8,9 +8,10 @@ least-squares fits (results/action_rate_fits.csv, results/action_p_rate_fits.csv
 Outputs: figures/fig1_spatial_validation.{pdf,png}      (a) configurations, (b) split identity, (c) short-range
                                                         cutoff, (d) matrix-free PPPM action
          figures/figS1_split_radial.{pdf,png}           radial sweep and small-r cancellation for (b)
-         figures/figS2_action_detail.{pdf,png}          (d) for every N, cutoff setting and probe class, with dense E_op
+         figures/figS2_action_detail.{pdf,png}          (d) complete error for every N, both cutoff settings, all probe
+                                                        classes, with dense E_op
          figures/figS3_translation_residual.{pdf,png}   translation null space of Gamma_h, Gamma_ref
-         figures/figS4_action_p.{pdf,png}               mesh-only action error for p = 4, 6, 8, 9 (N = 512)
+         figures/figS4_action_p.{pdf,png}               complete action error for p = 4, 6, 8, 9 (N = 512, strict)
 """
 import csv
 import json
@@ -150,7 +151,7 @@ def panel_shortrange(ax):
     s_hi = min(s_res)
     fl_lo, fl_hi = min(floor.values()), max(floor.values())
     ax.axhspan(fl_lo, fl_hi, color="0.6", alpha=0.35, lw=0)
-    ax.text(6.68, fl_hi * 2.4, "reference /\nroundoff floor", ha="right", va="bottom", fontsize=5.7, color="0.25")
+    ax.text(6.68, fl_hi * 4.0, "reference /\nroundoff floor", ha="right", va="bottom", fontsize=5.7, color="0.25")
     s, B = series(rows, "s", "bound_eps_S", agg=np.median)
     keep = B >= 1e-16
     ax.plot(s[keep], B[keep], "-.", color="0.35", lw=0.9)
@@ -184,67 +185,42 @@ def class_curve(rows, key, cls, agg=max, **sel):
     return series(rows, "M", key, agg=agg, probe_class=cls, **sel)
 
 
-def panel_action(ax1, ax2):
-    rows = [r for r in load("action_errors.csv")]
-    mesh = load("action_mesh.csv")
-    fits = load("action_rate_fits.csv")
-    # (d, left) production cutoffs, N = 512 strongly clustered: complete vs mesh-only
-    prod = [r for r in rows if r["N"] == 512 and r["setting"] == "production"]
-    for cls in ("gaussian", "spectral_slow"):
-        c = CLS_COLOR[cls]
-        M, Emax = class_curve(prod, "E_complete", cls)
-        _, Emin = class_curve(prod, "E_complete", cls, agg=min)
-        ax1.fill_between(M, Emin, Emax, color=c, alpha=0.18, lw=0)
-        ax1.plot(M, Emax, "-o", color=c, ms=3)
-        M, Emax = class_curve(prod, "E_mesh", cls)
-        _, Emin = class_curve(prod, "E_mesh", cls, agg=min)
-        ax1.fill_between(M, Emin, Emax, color=c, alpha=0.12, lw=0)
-        ax1.plot(M, Emax, "--o", color=c, mfc="none", ms=3)
-    inval = [m for m in mesh if m["N"] == 512 and m["setting"] == "production" and not m["valid"]]
-    for m in inval:
-        ax1.axvspan(m["M"] * 0.985, m["M"] * 1.015, color="0.75", lw=0)
-    ax1.text(26.0, 3e-11, "Nyquist-invalid $M=26$", fontsize=5.6, color="0.3", ha="center", va="center", rotation=90)
-    ax1.axvline(40, color="0.4", ls=":", lw=0.9)
-    ax1.text(41.0, 6e-15, "production $M=40$", fontsize=6.0, color="0.3", va="bottom", rotation=90)
-    fg = [f for f in fits if f["N"] == 512 and f["setting"] == "production" and f["probe_class"] == "gaussian"
-          and f["quantity"].startswith("E_mesh")][0]
-    ax1.text(0.97, 0.55, f"mesh-only, Gaussian: LSQ rate {fg['rate_lsq']:.1f}\n(M = {fg['M_lo']}–{fg['M_hi']}, "
-             f"$R^2$ = {fg['r2']:.4f})", transform=ax1.transAxes, fontsize=6.2, ha="right", va="top")
-    log_m_axis(ax1, [28, 32, 40, 48, 64, 80, 96])
-    ax1.set_ylim(3e-15, 2e-5)
-    ax1.set_xlabel(r"FFT grid size $M$ per dimension")
-    ax1.set_ylabel("relative action error\n(maximum over tested probes/configurations)")
-    ax1.set_title(r"production cutoffs, $N=512$ strongly clustered", fontsize=7.8, fontweight="normal")
-    leg = style_legend(ax1, [(CLS_LABEL[c], dict(color=CLS_COLOR[c], lw=2)) for c in ("gaussian", "spectral_slow")],
-                       loc="upper left", bbox_to_anchor=(0.06, 1.0), handlelength=1.4, fontsize=6.4)
-    ax1.add_artist(leg)
-    style_legend(ax1, [(r"complete $E_{\rm complete}$ (vs $\Gamma_{\rm ref}$)", dict(color="k", ls="-", marker="o", ms=3)),
-                       (r"mesh-only $E_{\rm mesh}$ (vs $\Gamma_L^{k_c}$)", dict(color="k", ls="--", marker="o", mfc="none",
-                                                                             ms=3))],
-                 loc="upper right", bbox_to_anchor=(1.0, 1.0), handlelength=2.2, fontsize=6.4)
-    # (d, right) strict cutoffs: complete error for every size, maximum over tested probes and configurations
-    st = [r for r in rows if r["setting"] == "strict"]
-    for N, ls, lw in ((128, "-", 0.9), (256, "--", 0.9), (512, "-", 1.8)):
-        for cls in ("gaussian", "spectral_slow"):
-            M, E = class_curve(st, "E_complete", cls, N=N)
-            ax2.plot(M, E, ls, color=CLS_COLOR[cls], lw=lw, marker="o" if N == 512 else None, ms=2.8,
-                     alpha=1.0 if N == 512 else 0.75)
-    fg = [f for f in fits if f["setting"] == "strict" and f["probe_class"] == "gaussian" and f["quantity"].startswith(
-        "E_complete")]
-    ax2.text(0.97, 0.97, "LSQ rate (Gaussian, max over probes/configs):\n" + ", ".join(
-        f"$N={f['N']}$: {f['rate_lsq']:.1f}" for f in fg), transform=ax2.transAxes, fontsize=6.0, ha="right", va="top")
-    trunc = max(m["E_op_trunc"] for m in mesh if m["setting"] == "strict")
-    ax2.axhline(trunc, color="0.45", ls=":", lw=0.9)
-    ax2.text(19.5, trunc * 1.4, rf"strict truncation floor $E_{{\rm op}}\leq{tex(trunc)}$", fontsize=5.8, color="0.3")
-    log_m_axis(ax2, [20, 24, 32, 40, 48, 64, 80, 96])
-    ax2.set_ylim(3e-15, 2e-5)
-    ax2.set_xlabel(r"FFT grid size $M$ per dimension")
-    ax2.set_title(r"strict cutoffs ($r_c=6/\xi$, $k_c\leq12\xi$): $E_{\rm complete}$", fontsize=7.8,
-                  fontweight="normal")
-    style_legend(ax2, [("$N=128$ (9 configs)", dict(color="k", ls="-", lw=0.9)),
-                       ("$N=256$ (9 configs)", dict(color="k", ls="--", lw=0.9)),
-                       ("$N=512$ strongly clustered", dict(color="k", ls="-", lw=1.8, marker="o", ms=2.8))],
-                 loc="lower left", bbox_to_anchor=(0.0, 0.07), handlelength=2.2, fontsize=6.4)
+N_STYLE = {128: dict(ls="-", lw=0.9), 256: dict(ls="--", lw=0.9), 512: dict(ls="-", lw=1.6)}
+FAM_MARKER = dict(uniform="o", moderate="^", strong="s")
+
+
+def family_curves(ax, rows, key, setting):
+    """Gaussian probes, one curve per (family, N): maximum over the 10 probes (and the 3 seeds for N = 128, 256)."""
+    for fam in FAMS:
+        for N, st in N_STYLE.items():
+            M, E = series(rows, "M", key, probe_class="gaussian", family=fam, N=N, setting=setting)
+            if len(M):
+                ax.plot(M, E, color=FAM_COLOR[fam], marker=FAM_MARKER[fam], ms=3.6 if N == 512 else 3.0,
+                        mfc=FAM_COLOR[fam] if N == 512 else "none", mew=0.8, alpha=0.9, **st)
+
+
+def panel_action(ax):
+    rows = load("action_errors.csv")
+    fits = [q for q in load("action_rate_fits.csv") if q["setting"] == "strict" and q["family"] != "all"
+            and q["probe_class"] == "gaussian" and q["quantity"].startswith("E_complete")]
+    family_curves(ax, rows, "E_complete", "strict")
+    lo, hi = min(q["rate_lsq"] for q in fits), max(q["rate_lsq"] for q in fits)
+    ax.text(0.97, 0.97, f"LSQ rate {lo:.1f}–{hi:.1f}\n(each family and $N$, $R^2\\geq{min(q['r2'] for q in fits):.3f}$)",
+            transform=ax.transAxes, fontsize=6.3, ha="right", va="top")
+    ax.text(0.03, 0.97, r"$\xi=0.85$, $r_c=6/\xi$, $k_c\leq12\xi$, $p=9$ fixed;" + "\nonly $M$ varies",
+            transform=ax.transAxes, fontsize=6.3, ha="left", va="top", color="0.25")
+    log_m_axis(ax, [18, 24, 32, 40, 48, 64, 80, 96])
+    ax.set_ylim(3e-15, 3e-7)
+    ax.set_xlabel(r"FFT grid size $M$ per dimension")
+    ax.set_ylabel(r"$\|(\Gamma_h-\Gamma_{\rm ref})X\|_2/\|\Gamma_{\rm ref}X\|_2$" + "\n(maximum over tested probes/configurations)")
+    ax.set_title("(d) Matrix-free PPPM action")
+    leg = style_legend(ax, [(FAM_LABEL[f], dict(color=FAM_COLOR[f], lw=1.2, marker=FAM_MARKER[f], ms=3.6, mfc="none"))
+                            for f in FAMS], loc="lower left", handlelength=2.0, fontsize=6.4)
+    ax.add_artist(leg)
+    style_legend(ax, [("$N=128$ (open markers)", dict(color="k", **N_STYLE[128])),
+                      ("$N=256$ (open markers)", dict(color="k", **N_STYLE[256])),
+                      ("$N=512$ (filled markers)", dict(color="k", marker="s", ms=3.4, **N_STYLE[512]))],
+                 loc="upper right", bbox_to_anchor=(1.0, 0.86), handlelength=2.2, fontsize=6.2)
 
 
 CONFIG_VIEWS = (("uniform_N256_s1", "uniform"), ("moderate_N256_s1", "moderately clustered"),
@@ -278,30 +254,25 @@ def panel_configs(axs):
         ax.set_xlim(0, 1)
         ax.set_ylim(0, 1)
         ax.set_zlim(0, 1)
-        ax.set_box_aspect((1, 1, 1), zoom=1.08)
+        ax.set_box_aspect((1, 1, 1), zoom=1.12)
         ax.view_init(elev=18, azim=-58)
         ax.set_axis_off()
         N = len(x)
-        ax.set_title(f"{lab}\n$N={N}$, $L={L:.2f}$" + ("  (main test of (d))" if N == 512 else ""), fontsize=6.8,
-                     fontweight="normal", pad=-2)
+        ax.set_title(f"{lab}, $N={N}$", fontsize=6.4, fontweight="normal", pad=-4)
 
 
 def fig1():
-    fig = plt.figure(figsize=(7.4, 8.6))
-    top = GridSpec(1, 4, figure=fig, left=0.06, right=0.98, top=0.935, bottom=0.765, wspace=0.02)
-    axs3 = [fig.add_subplot(top[0, k], projection="3d") for k in range(4)]
+    fig = plt.figure(figsize=(7.4, 6.9))
+    gs = GridSpec(2, 2, figure=fig, left=0.09, right=0.98, top=0.95, bottom=0.07, hspace=0.36, wspace=0.34)
+    sub = gs[0, 0].subgridspec(2, 2, wspace=0.0, hspace=0.22)
+    axs3 = [fig.add_subplot(sub[k // 2, k % 2], projection="3d") for k in range(4)]
     panel_configs(axs3)
-    mid = GridSpec(1, 2, figure=fig, left=0.10, right=0.97, top=0.705, bottom=0.425, wspace=0.36)
-    panel_split(fig.add_subplot(mid[0, 0]))
-    panel_shortrange(fig.add_subplot(mid[0, 1]))
-    bot = GridSpec(1, 2, figure=fig, left=0.10, right=0.97, top=0.305, bottom=0.05, wspace=0.22)
-    ax1 = fig.add_subplot(bot[0, 0])
-    ax2 = fig.add_subplot(bot[0, 1])
-    panel_action(ax1, ax2)
-    fig.text(0.5, 0.985, "(a) Particle configurations (periodic box, $\\rho=0.75$, periodic $d_{\\min}\\geq0.9$)",
-             ha="center", va="bottom", fontsize=9.5, fontweight="bold")
-    fig.text(0.5, 0.335, r"(d) Matrix-free PPPM action convergence ($\xi$, $r_c$, $k_c$, $p=9$ fixed; only $M$ varies)",
-             ha="center", va="bottom", fontsize=9.5, fontweight="bold")
+    pos = gs[0, 0].get_position(fig)
+    fig.text((pos.x0 + pos.x1) / 2, pos.y1 + 0.012, "(a) Particle configurations", ha="center", va="bottom",
+             fontsize=9.5, fontweight="bold")
+    panel_split(fig.add_subplot(gs[0, 1]))
+    panel_shortrange(fig.add_subplot(gs[1, 0]))
+    panel_action(fig.add_subplot(gs[1, 1]))
     save(fig, "fig1_spatial_validation")
 
 
@@ -356,23 +327,20 @@ def figS2():
             for cls in ("gaussian", "spectral_slow", "spectral_fast"):
                 M, E = class_curve(sub, "E_complete", cls)
                 ax.plot(M, E, "-o", color=CLS_COLOR[cls], ms=2.6)
-                M, E = class_curve(sub, "E_mesh", cls)
-                ax.plot(M, E, "--o", color=CLS_COLOR[cls], mfc="none", ms=2.6, lw=0.9)
             M, E = series([m for m in mesh if m["setting"] == setting and m["N"] == N], "M", "E_op")
             ax.plot(M, E, ":", color="k", lw=1.0)
             Ms = sorted({r["M"] for r in sub})
             log_m_axis(ax, Ms)
             ax.tick_params(axis="x", labelsize=6)
             cfgs = sorted({r["config"] for r in sub})
-            ax.set_title(f"N={N}, {setting} cutoffs, p=9 ({len(cfgs)} config{'s' if len(cfgs) > 1 else ''})", fontsize=7.5)
+            ax.set_title(f"N={N}, {setting} cutoffs, p=9 ({len(cfgs)} configs)", fontsize=7.5)
             if j == 0:
-                ax.set_ylabel("relative error\n(maximum over tested probes/configurations)", fontsize=7)
+                ax.set_ylabel("complete error vs $\\Gamma_{\\rm ref}$\n(maximum over tested probes/configurations)", fontsize=7)
             if i == 1:
                 ax.set_xlabel("$M$")
     axs[0, 0].set_ylim(3e-15, 3e-6)
     style_legend(axs[0, 0], [(CLS_LABEL[c], dict(color=CLS_COLOR[c], lw=2)) for c in CLS_COLOR]
-                 + [("complete (solid)", dict(color="k", ls="-")), ("mesh-only (dashed)", dict(color="k", ls="--")),
-                    (r"dense $E_{\rm op}$ (dotted)", dict(color="k", ls=":"))], loc="lower left", fontsize=5.8)
+                 + [(r"dense $E_{\rm op}$", dict(color="k", ls=":"))], loc="lower left", fontsize=6)
     fig.tight_layout()
     save(fig, "figS2_action_detail")
 
@@ -412,25 +380,22 @@ def figS3():
 
 
 def figS4():
-    rows = load("action_p.csv")
-    fits = load("action_p_rate_fits.csv")
-    fig, axs = plt.subplots(1, 2, figsize=(8.0, 3.2), sharey=True)
-    for ax, setting in zip(axs, ("production", "strict")):
-        for p in (4, 6, 8, 9):
-            sub = [r for r in rows if r["setting"] == setting and r["p"] == p]
-            M, E = class_curve(sub, "E_mesh", "gaussian")
-            f = [q for q in fits if q["setting"] == setting and q["p"] == p and q["probe_class"] == "gaussian"]
-            lab = f"$p={p}$" + (f", LSQ rate {f[0]['rate_lsq']:.1f} (M {f[0]['M_lo']}–{f[0]['M_hi']})" if f else "")
-            ax.plot(M, E, "--o", color=P_COLOR[p], mfc="none", ms=2.8, label=lab)
-            M, E = class_curve(sub, "E_complete", "gaussian")
-            ax.plot(M, E, "-", color=P_COLOR[p], lw=0.9)
-        log_m_axis(ax, sorted({r["M"] for r in rows}))
-        ax.tick_params(axis="x", labelsize=6)
-        ax.set_ylim(3e-15, 1e-4)
-        ax.set_xlabel("$M$")
-        ax.set_title(f"N=512 strongly clustered, {setting} cutoffs", fontsize=8)
-        ax.legend(fontsize=5.8, loc="lower left", title="dashed mesh-only, solid complete", title_fontsize=5.8)
-    axs[0].set_ylabel("Gaussian probes: relative action error\n(maximum over 10 probes)", fontsize=7.5)
+    rows = [r for r in load("action_p.csv") if r["setting"] == "strict"]
+    fits = [q for q in load("action_p_rate_fits.csv") if q["setting"] == "strict" and q["quantity"] == "E_complete"
+            and q["probe_class"] == "gaussian"]
+    fig, ax = plt.subplots(figsize=(4.6, 3.3))
+    for p in (4, 6, 8, 9):
+        M, E = class_curve([r for r in rows if r["p"] == p], "E_complete", "gaussian")
+        f = [q for q in fits if q["p"] == p][0]
+        ax.plot(M, E, "-o", color=P_COLOR[p], ms=2.8,
+                label=f"$p={p}$: LSQ rate {f['rate_lsq']:.1f} (M {f['M_lo']}–{f['M_hi']}, $R^2$={f['r2']:.4f})")
+    log_m_axis(ax, sorted({r["M"] for r in rows}))
+    ax.tick_params(axis="x", labelsize=6.5)
+    ax.set_ylim(3e-15, 1e-4)
+    ax.set_xlabel("$M$")
+    ax.set_ylabel("Gaussian probes: complete error\n(maximum over 10 probes)", fontsize=7.5)
+    ax.set_title("N=512 strongly clustered, strict cutoffs", fontsize=8)
+    ax.legend(fontsize=5.8, loc="lower left")
     fig.tight_layout()
     save(fig, "figS4_action_p")
 

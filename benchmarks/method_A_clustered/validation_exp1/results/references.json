@@ -303,13 +303,45 @@
    "D55_n_images": 133509955,
    "D55_tail_bound_rel": 5.26510364653412e-14,
    "t_D55_s": 21.461320705999924
+  },
+  "uniform_N512_s1": {
+   "name": "uniform_N512_s1",
+   "N": 512,
+   "L": 8.80513933038567,
+   "norm2": 14.510985898813061,
+   "lam_lb": 12.624729005317738,
+   "lam_min_RangePi": 3.428976077089371,
+   "sym": 0.0,
+   "null": 8.282815652292274e-16,
+   "t_ref_s": 1.7265963529999908,
+   "D55_vs_ref": 2.467328624741161e-15,
+   "D55_vs_ref_asym": 0.0,
+   "D55_n_images": 133542142,
+   "D55_tail_bound_rel": 6.367409095306614e-14,
+   "t_D55_s": 22.798012882000023
+  },
+  "moderate_N512_s1": {
+   "name": "moderate_N512_s1",
+   "N": 512,
+   "L": 8.80513933038567,
+   "norm2": 16.821859530085522,
+   "lam_lb": 14.991532555708144,
+   "lam_min_RangePi": 3.002401455086759,
+   "sym": 0.0,
+   "null": 8.076405892070167e-16,
+   "t_ref_s": 1.5861269860000675,
+   "D55_vs_ref": 2.030128842762041e-15,
+   "D55_vs_ref_asym": 0.0,
+   "D55_n_images": 133537867,
+   "D55_tail_bound_rel": 5.4926973696765e-14,
+   "t_D55_s": 23.693178364000005
   }
  },
  "provenance": {
-  "time": "2026-10-19T05:32:46+0000",
-  "command": "python3 run_exp1.py all",
+  "time": "2026-10-19T18:06:25+0000",
+  "command": "python3 run_exp1.py configs refs action --resume",
   "git": {
-   "commit": "39d5b1c35f17c0caec67c2d49c052c431b48b909",
+   "commit": "d0502fe62bbcea6d7c74bfa67710996da623e71d",
    "dirty": true
   },
   "code_hash": "4d862270ca47fce2",
