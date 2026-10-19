@@ -1,9 +1,0 @@
-[06:30:14] select moderate_N512_s1: coarse grid done (214 s)
-[06:31:42] select moderate_N512_s1 p=5: xi 0.445 kc 4.569 M 72 rc 9.506 n_img 684772 cert 2.000e-07 T_pred pairdiff 63.76 ms; alt M [75, 80]
-[06:31:46] select moderate_N512_s1 p=6: xi 0.535 kc 5.340 M 54 rc 7.860 n_img 385276 cert 1.999e-07 T_pred pairdiff 33.08 ms; alt M [60, 64]
-[06:31:48] select moderate_N512_s1 p=7: xi 0.660 kc 7.171 M 48 rc 6.354 n_img 204667 cert 1.999e-07 T_pred pairdiff 21.60 ms; alt M [50, 54]
-[06:31:50] select moderate_N512_s1 p=8: xi 0.785 kc 8.473 M 45 rc 5.301 n_img 121093 cert 1.999e-07 T_pred pairdiff 16.95 ms; alt M [48, 50]
-[06:31:50] select moderate_N512_s1 p=9: xi 0.850 kc 9.194 M 40 rc 4.889 n_img 96456 cert 1.998e-07 T_pred pairdiff 14.77 ms; alt M [45]
-[06:31:51] select moderate_N512_s1 p=10: xi 0.885 kc 9.706 M 36 rc 4.683 n_img 85230 cert 1.998e-07 T_pred pairdiff 15.43 ms; alt M [40]
-[06:31:51] select moderate_N512_s1: best predicted 14.77 ms; FFT term alone at M_cap = 128: 161.1 ms (311 s)
-[06:31:51] stage select done in 317 s

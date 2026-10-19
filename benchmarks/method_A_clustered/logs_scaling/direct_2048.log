@@ -1,5 +1,0 @@
-[21:00:52] direct strong_N2048_s1: certified R_d = 26.625 (bound/Lambda_lb 1.9464e-07; R - 0.125 gives 2.1216e-07) tail(R_far) 7.90e-09 (67 s)
-[21:03:38] direct strong_N2048_s1: E_ref 9.245e-08 (dense), E_conv 9.228e-08, Gamma_D(36.0) vs ref 1.76e-10, ARPACK E_ref 9.245e-08; 60820160 images (233 s)
-[21:04:49] direct uniform_N2048_s1: certified R_d = 27.125 (bound/Lambda_lb 1.8822e-07; R - 0.125 gives 2.0427e-07) tail(R_far) 7.87e-09 (71 s)
-[21:08:19] direct uniform_N2048_s1: E_ref 8.811e-08 (dense), E_conv 8.787e-08, Gamma_D(36.0) vs ref 2.43e-10, ARPACK E_ref 8.811e-08; 64171809 images (281 s)
-[21:08:19] stage direct done in 514 s

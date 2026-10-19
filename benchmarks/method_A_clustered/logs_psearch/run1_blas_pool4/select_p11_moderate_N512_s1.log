@@ -1,4 +1,0 @@
-[06:04:32] select moderate_N512_s1: coarse grid done (66 s)
-[06:04:40] select moderate_N512_s1 p=11: xi 0.975 kc 10.798 M 36 rc 4.230 n_img 64151 cert 1.983e-07 T_pred pairdiff 15.58 ms; alt M [40]
-[06:04:40] select moderate_N512_s1: best predicted 15.30 ms; FFT term alone at M_cap = 128: 165.7 ms (345 s)
-[06:04:40] stage select done in 79 s

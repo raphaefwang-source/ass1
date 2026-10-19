@@ -1,9 +1,0 @@
-N=256: prod M=36 fine M=45 rel action diff max 7.65e-08
-N=512: prod M=45 fine M=54 rel action diff max 6.58e-08
-N=1024: prod M=54 fine M=72 rel action diff max 7.81e-08
-N=2048: prod M=72 fine M=90 rel action diff max 5.64e-08
-N=4000: prod M=81 fine M=108 rel action diff max 7.68e-08
-N=6000: prod M=96 fine M=125 rel action diff max 8.26e-08
-N=8000: prod M=108 fine M=135 rel action diff max 7.52e-08
-N=11000: prod M=120 fine M=150 rel action diff max 6.73e-08
-N=16000: prod M=128 fine M=180 rel action diff max 1.03e-07

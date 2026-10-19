@@ -228,7 +228,7 @@ CONFIG_VIEWS = (("uniform_N256_s1", "uniform"), ("moderate_N256_s1", "moderately
 
 
 def load_config(name):
-    for d in (HERE / "configs", HERE.parent / "configs", HERE.parent / "configs_scaling"):
+    for d in (HERE / "configs",):
         if (d / f"{name}.npz").exists():
             with np.load(d / f"{name}.npz") as z:
                 return np.mod(z["q"], float(z["L"])), float(z["L"])

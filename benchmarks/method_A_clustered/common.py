@@ -35,8 +35,7 @@ for _p in (EWALD, EWALD / "toy_models", HERE):
 
 import prl_toy_models as v2  # noqa: E402
 import radial_kernels as rk  # noqa: E402
-import toy_configs as tc  # noqa: E402
-from lj075_common import STATE  # noqa: E402
+STATE = dict(rho=0.75, gamma=0.5, kappa=0.7, r_ref=1.3)
 
 RESULTS = HERE / "results"
 FIGURES = HERE / "figures"
@@ -51,7 +50,7 @@ D_MIN = 0.9                            # RSA d_min of the lj075 canonical starts
 EPS_TARGET = 2e-7                      # relative spectral operator budget of law A (manuscript Sec. 3.5)
 P_ORDER = 7                            # assignment order fixed for the theory-guided selection
 BASE_CONFIG = "lj_rho0.75_kT1.0_A_prod"
-BASELINE = dict(tc.CONFIGS[BASE_CONFIG]["pppm"][LAW])          # xi 0.85, s 4.1, eta 0.6779, p 8
+BASELINE = dict(xi=0.85, s=4.1, eta=0.6779116381586452, p=8)          # xi 0.85, s 4.1, eta 0.6779, p 8
 
 
 def box_length(N):

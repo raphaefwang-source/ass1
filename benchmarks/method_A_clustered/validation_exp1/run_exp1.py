@@ -62,7 +62,7 @@ from cached_operator import CachedGammaH, mesh_for, short_range_weights  # noqa:
 from error_validation import Components, REF_REL_TOL, PAIRS6  # noqa: E402
 from direct_periodic import DirectPairs  # noqa: E402
 from test_parameter_selection import lap_full, lattice_modes, INFL_THR  # noqa: E402
-from run_psearch_dense512 import mode_pair_matrix_fast  # noqa: E402
+from exp1_dense_reference import mode_pair_matrix_fast  # noqa: E402
 from prl_toy_models import LatticeFriction  # noqa: E402
 
 RESULTS = HERE / "results"
@@ -96,7 +96,7 @@ def name_of(fam, N, seed):
 
 
 def cfg_path(name):
-    for d in (CONFIG_DIR, C.HERE / "configs_scaling", C.CONFIGS):
+    for d in (CONFIG_DIR,):
         if (d / f"{name}.npz").exists():
             return d / f"{name}.npz"
     return None
@@ -108,6 +108,7 @@ def load_cfg(name):
 
 
 def gref(name, x, L):
+    C.RAW.mkdir(parents=True, exist_ok=True)
     f = C.RAW / f"{name}_Gref.npy"
     if f.exists():
         return np.load(f)
@@ -175,8 +176,11 @@ def stage_configs(args):
 def stage_refs(args):
     """Gamma_ref for every configuration, its norm and Lambda_lb, and its accuracy against the direct sum to R = 55."""
     out = C.read_json(RESULTS / "references.json", {"rows": {}})
+    C.RAW.mkdir(parents=True, exist_ok=True)
     for name in needed_configs():
-        if name in out["rows"]:
+        if (name in out["rows"] and
+            (C.RAW / f"{name}_Gref.npy").exists() and
+            (C.RAW / f"exp1_{name}_GD55.npy").exists()):
             continue
         x, L = load_cfg(name)
         N = len(x)
