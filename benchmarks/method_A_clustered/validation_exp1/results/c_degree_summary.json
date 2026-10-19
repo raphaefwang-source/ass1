@@ -1,0 +1,454 @@
+{
+ "settings": {
+  "production": {
+   "xi": 0.85,
+   "rc": 4.8878,
+   "kc_max": 9.3585
+  },
+  "strict": {
+   "xi": 0.85,
+   "rc": 7.0588235294117645,
+   "kc_max": 10.2
+  }
+ },
+ "M_list": {
+  "128": [
+   18,
+   20,
+   24,
+   28,
+   32,
+   36,
+   40,
+   48,
+   56,
+   64
+  ],
+  "256": [
+   22,
+   24,
+   28,
+   32,
+   36,
+   40,
+   48,
+   56,
+   64,
+   80
+  ],
+  "512": [
+   28,
+   32,
+   36,
+   40,
+   48,
+   56,
+   64,
+   80,
+   96
+  ]
+ },
+ "p": [
+  4,
+  6,
+  8,
+  9
+ ],
+ "n_rows": 272,
+ "n_valid": 258,
+ "invalid": [
+  {
+   "config": "strong_N128_s1",
+   "setting": "strict",
+   "p": 4,
+   "M": 18,
+   "reason": "Nyquist: m_c = 9 >= M/2 = 9.0"
+  },
+  {
+   "config": "strong_N128_s1",
+   "setting": "strict",
+   "p": 6,
+   "M": 18,
+   "reason": "Nyquist: m_c = 9 >= M/2 = 9.0"
+  },
+  {
+   "config": "strong_N128_s1",
+   "setting": "strict",
+   "p": 8,
+   "M": 18,
+   "reason": "Nyquist: m_c = 9 >= M/2 = 9.0"
+  },
+  {
+   "config": "strong_N128_s1",
+   "setting": "strict",
+   "p": 9,
+   "M": 18,
+   "reason": "Nyquist: m_c = 9 >= M/2 = 9.0"
+  },
+  {
+   "config": "strong_N256_s1",
+   "setting": "strict",
+   "p": 4,
+   "M": 22,
+   "reason": "Nyquist: m_c = 11 >= M/2 = 11.0"
+  },
+  {
+   "config": "strong_N256_s1",
+   "setting": "strict",
+   "p": 6,
+   "M": 22,
+   "reason": "Nyquist: m_c = 11 >= M/2 = 11.0"
+  },
+  {
+   "config": "strong_N256_s1",
+   "setting": "strict",
+   "p": 8,
+   "M": 22,
+   "reason": "Nyquist: m_c = 11 >= M/2 = 11.0"
+  },
+  {
+   "config": "strong_N256_s1",
+   "setting": "strict",
+   "p": 9,
+   "M": 22,
+   "reason": "Nyquist: m_c = 11 >= M/2 = 11.0"
+  },
+  {
+   "config": "strong_N512_s1",
+   "setting": "strict",
+   "p": 4,
+   "M": 28,
+   "reason": "Nyquist: m_c = 14 >= M/2 = 14.0"
+  },
+  {
+   "config": "strong_N512_s1",
+   "setting": "strict",
+   "p": 6,
+   "M": 28,
+   "reason": "Nyquist: m_c = 14 >= M/2 = 14.0"
+  },
+  {
+   "config": "strong_N512_s1",
+   "setting": "strict",
+   "p": 8,
+   "M": 28,
+   "reason": "Nyquist: m_c = 14 >= M/2 = 14.0"
+  },
+  {
+   "config": "strong_N512_s1",
+   "setting": "strict",
+   "p": 9,
+   "M": 28,
+   "reason": "Nyquist: m_c = 14 >= M/2 = 14.0"
+  },
+  {
+   "config": "uniform_N256_s1",
+   "setting": "strict",
+   "p": 9,
+   "M": 22,
+   "reason": "Nyquist: m_c = 11 >= M/2 = 11.0"
+  },
+  {
+   "config": "moderate_N256_s1",
+   "setting": "strict",
+   "p": 9,
+   "M": 22,
+   "reason": "Nyquist: m_c = 11 >= M/2 = 11.0"
+  }
+ ],
+ "max_n_excluded": 0,
+ "min_W2min": 0.0008352347396559707,
+ "max_eta": 0.9447549859466602,
+ "self_response_rel_range": [
+  7.472854257649859e-05,
+  0.0015963790911673443
+ ],
+ "max_diag_dense_vs_fft_minus_self": 5.656324976982305e-16,
+ "n_dense_checks": 30,
+ "floors": {
+  "strong_N128_s1|production": 2.652086106690013e-08,
+  "strong_N128_s1|strict": 4.578524415651063e-15,
+  "strong_N256_s1|production": 2.3236675326731006e-08,
+  "strong_N256_s1|strict": 3.0081179698416816e-15,
+  "strong_N512_s1|production": 2.0493629071807177e-08,
+  "strong_N512_s1|strict": 2.1872973405388247e-15,
+  "uniform_N256_s1|production": 2.6174285866331857e-08,
+  "uniform_N256_s1|strict": 3.3563755046542994e-15,
+  "moderate_N256_s1|production": 2.4692657955500272e-08,
+  "moderate_N256_s1|strict": 3.1873860715561573e-15
+ },
+ "rate_fits": [
+  {
+   "config": "strong_N128_s1",
+   "p": 4,
+   "setting": "production",
+   "M_lo": 18,
+   "M_hi": 64,
+   "n_points": 10,
+   "rate_mesh_lsq": 4.1433493349449195
+  },
+  {
+   "config": "strong_N128_s1",
+   "p": 4,
+   "setting": "strict",
+   "M_lo": 20,
+   "M_hi": 64,
+   "n_points": 9,
+   "rate_mesh_lsq": 4.122953600211579
+  },
+  {
+   "config": "strong_N128_s1",
+   "p": 6,
+   "setting": "production",
+   "M_lo": 18,
+   "M_hi": 64,
+   "n_points": 10,
+   "rate_mesh_lsq": 6.4122094427344924
+  },
+  {
+   "config": "strong_N128_s1",
+   "p": 6,
+   "setting": "strict",
+   "M_lo": 20,
+   "M_hi": 64,
+   "n_points": 9,
+   "rate_mesh_lsq": 6.328896467237277
+  },
+  {
+   "config": "strong_N128_s1",
+   "p": 8,
+   "setting": "production",
+   "M_lo": 18,
+   "M_hi": 64,
+   "n_points": 10,
+   "rate_mesh_lsq": 8.780233772426365
+  },
+  {
+   "config": "strong_N128_s1",
+   "p": 8,
+   "setting": "strict",
+   "M_lo": 20,
+   "M_hi": 64,
+   "n_points": 9,
+   "rate_mesh_lsq": 8.648690771485796
+  },
+  {
+   "config": "strong_N128_s1",
+   "p": 9,
+   "setting": "production",
+   "M_lo": 18,
+   "M_hi": 40,
+   "n_points": 7,
+   "rate_mesh_lsq": 10.391995760140954
+  },
+  {
+   "config": "strong_N128_s1",
+   "p": 9,
+   "setting": "strict",
+   "M_lo": 20,
+   "M_hi": 40,
+   "n_points": 6,
+   "rate_mesh_lsq": 10.164441150997098
+  },
+  {
+   "config": "strong_N256_s1",
+   "p": 4,
+   "setting": "production",
+   "M_lo": 22,
+   "M_hi": 80,
+   "n_points": 10,
+   "rate_mesh_lsq": 4.177958673221184
+  },
+  {
+   "config": "strong_N256_s1",
+   "p": 4,
+   "setting": "strict",
+   "M_lo": 24,
+   "M_hi": 80,
+   "n_points": 9,
+   "rate_mesh_lsq": 4.164558355826551
+  },
+  {
+   "config": "strong_N256_s1",
+   "p": 6,
+   "setting": "production",
+   "M_lo": 22,
+   "M_hi": 80,
+   "n_points": 10,
+   "rate_mesh_lsq": 6.475398211433165
+  },
+  {
+   "config": "strong_N256_s1",
+   "p": 6,
+   "setting": "strict",
+   "M_lo": 24,
+   "M_hi": 80,
+   "n_points": 9,
+   "rate_mesh_lsq": 6.411633249815806
+  },
+  {
+   "config": "strong_N256_s1",
+   "p": 8,
+   "setting": "production",
+   "M_lo": 22,
+   "M_hi": 80,
+   "n_points": 10,
+   "rate_mesh_lsq": 8.861366327017908
+  },
+  {
+   "config": "strong_N256_s1",
+   "p": 8,
+   "setting": "strict",
+   "M_lo": 24,
+   "M_hi": 80,
+   "n_points": 9,
+   "rate_mesh_lsq": 8.749193773844945
+  },
+  {
+   "config": "strong_N256_s1",
+   "p": 9,
+   "setting": "production",
+   "M_lo": 22,
+   "M_hi": 56,
+   "n_points": 8,
+   "rate_mesh_lsq": 10.379061079555784
+  },
+  {
+   "config": "strong_N256_s1",
+   "p": 9,
+   "setting": "strict",
+   "M_lo": 24,
+   "M_hi": 56,
+   "n_points": 7,
+   "rate_mesh_lsq": 10.197984836203778
+  },
+  {
+   "config": "strong_N512_s1",
+   "p": 4,
+   "setting": "production",
+   "M_lo": 28,
+   "M_hi": 96,
+   "n_points": 9,
+   "rate_mesh_lsq": 4.131578451704146
+  },
+  {
+   "config": "strong_N512_s1",
+   "p": 4,
+   "setting": "strict",
+   "M_lo": 32,
+   "M_hi": 96,
+   "n_points": 8,
+   "rate_mesh_lsq": 4.103052138451994
+  },
+  {
+   "config": "strong_N512_s1",
+   "p": 6,
+   "setting": "production",
+   "M_lo": 28,
+   "M_hi": 96,
+   "n_points": 9,
+   "rate_mesh_lsq": 6.451436362763206
+  },
+  {
+   "config": "strong_N512_s1",
+   "p": 6,
+   "setting": "strict",
+   "M_lo": 32,
+   "M_hi": 96,
+   "n_points": 8,
+   "rate_mesh_lsq": 6.3597100189012785
+  },
+  {
+   "config": "strong_N512_s1",
+   "p": 8,
+   "setting": "production",
+   "M_lo": 28,
+   "M_hi": 96,
+   "n_points": 9,
+   "rate_mesh_lsq": 8.859009238518942
+  },
+  {
+   "config": "strong_N512_s1",
+   "p": 8,
+   "setting": "strict",
+   "M_lo": 32,
+   "M_hi": 96,
+   "n_points": 8,
+   "rate_mesh_lsq": 8.726327060945058
+  },
+  {
+   "config": "strong_N512_s1",
+   "p": 9,
+   "setting": "production",
+   "M_lo": 28,
+   "M_hi": 64,
+   "n_points": 7,
+   "rate_mesh_lsq": 10.433027787486656
+  },
+  {
+   "config": "strong_N512_s1",
+   "p": 9,
+   "setting": "strict",
+   "M_lo": 32,
+   "M_hi": 64,
+   "n_points": 6,
+   "rate_mesh_lsq": 10.229097417854264
+  },
+  {
+   "config": "uniform_N256_s1",
+   "p": 9,
+   "setting": "production",
+   "M_lo": 22,
+   "M_hi": 56,
+   "n_points": 8,
+   "rate_mesh_lsq": 10.308088303557856
+  },
+  {
+   "config": "uniform_N256_s1",
+   "p": 9,
+   "setting": "strict",
+   "M_lo": 24,
+   "M_hi": 56,
+   "n_points": 7,
+   "rate_mesh_lsq": 10.241512580566317
+  },
+  {
+   "config": "moderate_N256_s1",
+   "p": 9,
+   "setting": "production",
+   "M_lo": 22,
+   "M_hi": 56,
+   "n_points": 8,
+   "rate_mesh_lsq": 10.390834454914229
+  },
+  {
+   "config": "moderate_N256_s1",
+   "p": 9,
+   "setting": "strict",
+   "M_lo": 24,
+   "M_hi": 56,
+   "n_points": 7,
+   "rate_mesh_lsq": 10.270703323481582
+  }
+ ],
+ "provenance": {
+  "time": "2026-10-19T05:37:32+0000",
+  "command": "python3 run_exp1.py all",
+  "git": {
+   "commit": "39d5b1c35f17c0caec67c2d49c052c431b48b909",
+   "dirty": true
+  },
+  "code_hash": "4d862270ca47fce2",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ }
+}

@@ -1,0 +1,117 @@
+[05:29:36] configs uniform_N256_s1: configs, d_min 0.9019
+[05:29:36] configs uniform_N128_s1: configs_scaling, d_min 0.9012
+[05:29:37] configs uniform_N256_s2: configs, d_min 0.9025
+[05:29:37] configs uniform_N128_s2: validation_exp1/configs (clustered_configurations.generate), d_min 0.9012
+[05:29:37] configs uniform_N256_s3: validation_exp1/configs (clustered_configurations.generate), d_min 0.9012
+[05:29:37] configs uniform_N128_s3: validation_exp1/configs (clustered_configurations.generate), d_min 0.9006
+[05:29:37] configs strong_N256_s1: configs, d_min 0.9001
+[05:29:37] configs strong_N128_s1: configs_scaling, d_min 0.9003
+[05:29:37] configs strong_N256_s2: configs, d_min 0.9008
+[05:29:37] configs strong_N128_s2: validation_exp1/configs (clustered_configurations.generate), d_min 0.9011
+[05:29:38] configs strong_N256_s3: validation_exp1/configs (clustered_configurations.generate), d_min 0.9001
+[05:29:38] configs strong_N128_s3: validation_exp1/configs (clustered_configurations.generate), d_min 0.9001
+[05:29:38] configs moderate_N256_s1: configs, d_min 0.9015
+[05:29:38] configs moderate_N128_s1: validation_exp1/configs (clustered_configurations.generate), d_min 0.9015
+[05:29:38] configs moderate_N256_s2: configs, d_min 0.9011
+[05:29:38] configs moderate_N128_s2: validation_exp1/configs (clustered_configurations.generate), d_min 0.9019
+[05:29:39] configs moderate_N256_s3: validation_exp1/configs (clustered_configurations.generate), d_min 0.9016
+[05:29:39] configs moderate_N128_s3: validation_exp1/configs (clustered_configurations.generate), d_min 0.9008
+[05:29:39] configs strong_N512_s1: configs, d_min 0.9003
+[05:29:39] stage configs done in 4 s
+[05:29:50] refs uniform_N256_s1: ||G|| 13.6746, Lambda_lb 11.8188, lam_min(Pi) 4.3686; ||G_D55 - G_ref||/||G_ref|| 3.20e-15 (D55 tail bound 6.3e-14)
+[05:29:55] refs uniform_N128_s1: ||G|| 13.2278, Lambda_lb 11.5463, lam_min(Pi) 5.4589; ||G_D55 - G_ref||/||G_ref|| 4.02e-15 (D55 tail bound 6.1e-14)
+[05:30:05] refs uniform_N256_s2: ||G|| 13.3849, Lambda_lb 11.7370, lam_min(Pi) 4.4097; ||G_D55 - G_ref||/||G_ref|| 3.27e-15 (D55 tail bound 6.4e-14)
+[05:30:13] refs uniform_N128_s2: ||G|| 13.4671, Lambda_lb 11.8629, lam_min(Pi) 5.5612; ||G_D55 - G_ref||/||G_ref|| 4.05e-15 (D55 tail bound 6.0e-14)
+[05:30:26] refs uniform_N256_s3: ||G|| 13.4654, Lambda_lb 11.9469, lam_min(Pi) 4.4668; ||G_D55 - G_ref||/||G_ref|| 3.15e-15 (D55 tail bound 6.4e-14)
+[05:30:34] refs uniform_N128_s3: ||G|| 13.2269, Lambda_lb 11.4907, lam_min(Pi) 5.4696; ||G_D55 - G_ref||/||G_ref|| 4.19e-15 (D55 tail bound 6.1e-14)
+[05:30:45] refs strong_N256_s1: ||G|| 15.8946, Lambda_lb 14.3219, lam_min(Pi) 3.4616; ||G_D55 - G_ref||/||G_ref|| 2.96e-15 (D55 tail bound 5.4e-14)
+[05:30:51] refs strong_N128_s1: ||G|| 14.5638, Lambda_lb 13.1546, lam_min(Pi) 4.6662; ||G_D55 - G_ref||/||G_ref|| 3.85e-15 (D55 tail bound 5.5e-14)
+[05:31:01] refs strong_N256_s2: ||G|| 15.8187, Lambda_lb 14.1728, lam_min(Pi) 3.4589; ||G_D55 - G_ref||/||G_ref|| 2.79e-15 (D55 tail bound 5.4e-14)
+[05:31:09] refs strong_N128_s2: ||G|| 14.6319, Lambda_lb 13.2278, lam_min(Pi) 4.6671; ||G_D55 - G_ref||/||G_ref|| 4.10e-15 (D55 tail bound 5.5e-14)
+[05:31:21] refs strong_N256_s3: ||G|| 15.8463, Lambda_lb 14.1336, lam_min(Pi) 3.5040; ||G_D55 - G_ref||/||G_ref|| 2.87e-15 (D55 tail bound 5.4e-14)
+[05:31:28] refs strong_N128_s3: ||G|| 14.2515, Lambda_lb 12.8890, lam_min(Pi) 4.7370; ||G_D55 - G_ref||/||G_ref|| 4.01e-15 (D55 tail bound 5.7e-14)
+[05:31:38] refs moderate_N256_s1: ||G|| 15.0052, Lambda_lb 13.4545, lam_min(Pi) 4.2622; ||G_D55 - G_ref||/||G_ref|| 2.82e-15 (D55 tail bound 5.7e-14)
+[05:31:45] refs moderate_N128_s1: ||G|| 14.5573, Lambda_lb 12.7248, lam_min(Pi) 5.1545; ||G_D55 - G_ref||/||G_ref|| 3.66e-15 (D55 tail bound 5.5e-14)
+[05:31:56] refs moderate_N256_s2: ||G|| 15.0554, Lambda_lb 13.7952, lam_min(Pi) 4.1140; ||G_D55 - G_ref||/||G_ref|| 2.98e-15 (D55 tail bound 5.7e-14)
+[05:32:04] refs moderate_N128_s2: ||G|| 14.0656, Lambda_lb 12.6417, lam_min(Pi) 5.2543; ||G_D55 - G_ref||/||G_ref|| 3.91e-15 (D55 tail bound 5.7e-14)
+[05:32:16] refs moderate_N256_s3: ||G|| 15.1693, Lambda_lb 13.6114, lam_min(Pi) 4.0754; ||G_D55 - G_ref||/||G_ref|| 2.78e-15 (D55 tail bound 5.7e-14)
+[05:32:24] refs moderate_N128_s3: ||G|| 13.8278, Lambda_lb 12.0900, lam_min(Pi) 5.2486; ||G_D55 - G_ref||/||G_ref|| 3.93e-15 (D55 tail bound 5.8e-14)
+[05:32:46] refs strong_N512_s1: ||G|| 17.5490, Lambda_lb 15.1781, lam_min(Pi) 2.3020; ||G_D55 - G_ref||/||G_ref|| 2.06e-15 (D55 tail bound 5.3e-14)
+[05:32:46] stage refs done in 187 s
+[05:32:56] split uniform_N256_s1: max rel_fro over xi 2.81e-16, max pointwise 1.79e-15
+[05:33:05] split uniform_N256_s2: max rel_fro over xi 2.82e-16, max pointwise 1.89e-15
+[05:33:14] split uniform_N256_s3: max rel_fro over xi 2.72e-16, max pointwise 1.83e-15
+[05:33:23] split strong_N256_s1: max rel_fro over xi 2.87e-16, max pointwise 1.76e-15
+[05:33:32] split strong_N256_s2: max rel_fro over xi 2.97e-16, max pointwise 1.80e-15
+[05:33:42] split strong_N256_s3: max rel_fro over xi 2.89e-16, max pointwise 1.83e-15
+[05:33:51] split moderate_N256_s1: max rel_fro over xi 2.85e-16, max pointwise 1.87e-15
+[05:34:00] split moderate_N256_s2: max rel_fro over xi 2.82e-16, max pointwise 1.82e-15
+[05:34:09] split moderate_N256_s3: max rel_fro over xi 2.81e-16, max pointwise 1.88e-15
+[05:34:19] split radial xi=0.5: max pointwise 1.36e-15 (r < 0.9: 6.13e-16); mpmath: theta_S 4.3e-16, theta_L 6.7e-16 (rel. to self)
+[05:34:28] split radial xi=0.6: max pointwise 1.02e-15 (r < 0.9: 5.31e-16); mpmath: theta_S 6.5e-15, theta_L 4.3e-16 (rel. to self)
+[05:34:36] split radial xi=0.75: max pointwise 1.25e-15 (r < 0.9: 5.39e-16); mpmath: theta_S 3.9e-15, theta_L 6.7e-16 (rel. to self)
+[05:34:46] split radial xi=0.85: max pointwise 1.47e-15 (r < 0.9: 6.21e-16); mpmath: theta_S 2.0e-10, theta_L 6.7e-16 (rel. to self)
+[05:34:57] split radial xi=1.0: max pointwise 1.13e-15 (r < 0.9: 6.84e-16); mpmath: theta_S 2.0e-10, theta_L 6.7e-16 (rel. to self)
+[05:35:07] split radial xi=1.2: max pointwise 1.03e-15 (r < 0.9: 8.79e-16); mpmath: theta_S 1.9e-10, theta_L 3.4e-16 (rel. to self)
+[05:35:16] split radial xi=1.5: max pointwise 1.13e-15 (r < 0.9: 7.17e-16); mpmath: theta_S 2.0e-10, theta_L 3.5e-16 (rel. to self)
+[05:35:17] stage split done in 150 s
+[05:35:26] shortrange uniform_N256_s1: E_S(s=2) 1.33e-02, floor 3.85e-15 (vs D55 1.83e-15); fit c = 0.981 on s in [2.0, 5.3]; Fourier tail 1.7e-17 (9 s)
+[05:35:35] shortrange uniform_N256_s2: E_S(s=2) 1.41e-02, floor 3.96e-15 (vs D55 2.40e-15); fit c = 0.981 on s in [2.0, 5.3]; Fourier tail 1.7e-17 (10 s)
+[05:35:45] shortrange uniform_N256_s3: E_S(s=2) 1.38e-02, floor 4.14e-15 (vs D55 2.12e-15); fit c = 0.981 on s in [2.0, 5.3]; Fourier tail 1.7e-17 (10 s)
+[05:35:55] shortrange strong_N256_s1: E_S(s=2) 1.41e-02, floor 3.56e-15 (vs D55 1.80e-15); fit c = 0.987 on s in [2.0, 5.3]; Fourier tail 1.5e-17 (9 s)
+[05:36:04] shortrange strong_N256_s2: E_S(s=2) 1.42e-02, floor 3.71e-15 (vs D55 1.92e-15); fit c = 0.987 on s in [2.0, 5.3]; Fourier tail 1.5e-17 (10 s)
+[05:36:13] shortrange strong_N256_s3: E_S(s=2) 1.44e-02, floor 3.54e-15 (vs D55 1.80e-15); fit c = 0.987 on s in [2.0, 5.3]; Fourier tail 1.5e-17 (9 s)
+[05:36:22] shortrange moderate_N256_s1: E_S(s=2) 1.30e-02, floor 3.52e-15 (vs D55 1.90e-15); fit c = 0.984 on s in [2.0, 5.3]; Fourier tail 1.6e-17 (9 s)
+[05:36:31] shortrange moderate_N256_s2: E_S(s=2) 1.35e-02, floor 3.94e-15 (vs D55 1.77e-15); fit c = 0.983 on s in [2.0, 5.3]; Fourier tail 1.5e-17 (9 s)
+[05:36:41] shortrange moderate_N256_s3: E_S(s=2) 1.38e-02, floor 3.90e-15 (vs D55 1.99e-15); fit c = 0.984 on s in [2.0, 5.3]; Fourier tail 1.5e-17 (9 s)
+[05:36:41] stage shortrange done in 84 s
+[05:36:41] degree strong_N128_s1 production p=4: M18:6.7e-06/6.7e-06, M20:4.3e-06/4.3e-06, M24:1.9e-06/1.9e-06, M28:1.0e-06/1.0e-06, M32:6.2e-07/6.2e-07, M36:3.7e-07/3.7e-07, M40:2.3e-07/2.3e-07, M48:1.1e-07/1.1e-07, M56:6.3e-08/5.8e-08, M64:4.6e-08/3.5e-08; floor 2.7e-08
+[05:36:41] degree strong_N128_s1 strict p=4: M18:invalid, M20:4.3e-06/4.3e-06, M24:1.9e-06/1.9e-06, M28:1.0e-06/1.0e-06, M32:6.2e-07/6.2e-07, M36:3.7e-07/3.7e-07, M40:2.3e-07/2.3e-07, M48:1.1e-07/1.1e-07, M56:5.8e-08/5.8e-08, M64:3.5e-08/3.5e-08; floor 4.6e-15
+[05:36:42] degree strong_N128_s1 production p=6: M18:1.8e-07/1.8e-07, M20:8.0e-08/7.6e-08, M24:3.6e-08/2.4e-08, M28:2.8e-08/9.4e-09, M32:2.7e-08/3.8e-09, M36:2.6e-08/1.8e-09, M40:2.7e-08/8.9e-10, M48:2.7e-08/2.9e-10, M56:2.7e-08/1.1e-10, M64:2.7e-08/5.2e-11; floor 2.7e-08
+[05:36:42] degree strong_N128_s1 strict p=6: M18:invalid, M20:7.6e-08/7.6e-08, M24:2.4e-08/2.4e-08, M28:9.4e-09/9.4e-09, M32:3.8e-09/3.8e-09, M36:1.8e-09/1.8e-09, M40:8.9e-10/8.9e-10, M48:2.9e-10/2.9e-10, M56:1.1e-10/1.1e-10, M64:5.2e-11/5.2e-11; floor 4.6e-15
+[05:36:42] degree strong_N128_s1 production p=8: M18:2.8e-08/8.0e-09, M20:2.7e-08/2.3e-09, M24:2.7e-08/4.9e-10, M28:2.7e-08/1.3e-10, M32:2.7e-08/3.6e-11, M36:2.7e-08/1.4e-11, M40:2.7e-08/5.2e-12, M48:2.7e-08/1.1e-12, M56:2.7e-08/2.9e-13, M64:2.7e-08/1.1e-13; floor 2.7e-08
+[05:36:43] degree strong_N128_s1 strict p=8: M18:invalid, M20:2.3e-09/2.3e-09, M24:4.9e-10/4.9e-10, M28:1.3e-10/1.3e-10, M32:3.6e-11/3.6e-11, M36:1.4e-11/1.4e-11, M40:5.2e-12/5.2e-12, M48:1.1e-12/1.1e-12, M56:3.0e-13/2.9e-13, M64:1.1e-13/1.1e-13; floor 4.6e-15
+[05:36:43] degree strong_N128_s1 production p=9: M18:2.7e-08/1.9e-09, M20:2.7e-08/4.7e-10, M24:2.7e-08/7.9e-11, M28:2.7e-08/1.7e-11, M32:2.7e-08/3.7e-12, M36:2.7e-08/1.3e-12, M40:2.7e-08/4.2e-13, M48:2.7e-08/7.9e-14, M56:2.7e-08/1.7e-14, M64:2.7e-08/5.0e-15; floor 2.7e-08
+[05:36:43] degree strong_N128_s1 strict p=9: M18:invalid, M20:4.7e-10/4.7e-10, M24:7.9e-11/7.9e-11, M28:1.7e-11/1.7e-11, M32:3.7e-12/3.7e-12, M36:1.3e-12/1.3e-12, M40:4.2e-13/4.2e-13, M48:7.9e-14/7.9e-14, M56:1.8e-14/1.8e-14, M64:6.9e-15/5.0e-15; floor 4.6e-15
+[05:36:45] degree strong_N256_s1 production p=4: M22:7.6e-06/7.6e-06, M24:5.4e-06/5.4e-06, M28:2.8e-06/2.8e-06, M32:1.4e-06/1.4e-06, M36:9.7e-07/9.7e-07, M40:5.9e-07/5.9e-07, M48:2.7e-07/2.7e-07, M56:1.6e-07/1.5e-07, M64:9.0e-08/8.6e-08, M80:4.2e-08/3.5e-08; floor 2.3e-08
+[05:36:46] degree strong_N256_s1 strict p=4: M22:invalid, M24:5.4e-06/5.4e-06, M28:2.8e-06/2.8e-06, M32:1.4e-06/1.4e-06, M36:9.7e-07/9.7e-07, M40:5.9e-07/5.9e-07, M48:2.7e-07/2.7e-07, M56:1.5e-07/1.5e-07, M64:8.6e-08/8.6e-08, M80:3.5e-08/3.5e-08; floor 3.0e-15
+[05:36:47] degree strong_N256_s1 production p=6: M22:2.3e-07/2.3e-07, M24:1.2e-07/1.2e-07, M28:4.9e-08/4.2e-08, M32:2.8e-08/1.5e-08, M36:2.5e-08/7.9e-09, M40:2.3e-08/4.0e-09, M48:2.3e-08/1.2e-09, M56:2.3e-08/4.6e-10, M64:2.3e-08/2.0e-10, M80:2.3e-08/5.2e-11; floor 2.3e-08
+[05:36:48] degree strong_N256_s1 strict p=6: M22:invalid, M24:1.2e-07/1.2e-07, M28:4.2e-08/4.2e-08, M32:1.5e-08/1.5e-08, M36:7.9e-09/7.9e-09, M40:4.0e-09/4.0e-09, M48:1.2e-09/1.2e-09, M56:4.6e-10/4.6e-10, M64:2.0e-10/2.0e-10, M80:5.2e-11/5.2e-11; floor 3.0e-15
+[05:36:49] degree strong_N256_s1 production p=8: M22:2.6e-08/1.1e-08, M24:2.4e-08/4.3e-09, M28:2.3e-08/1.0e-09, M32:2.3e-08/2.7e-10, M36:2.3e-08/1.0e-10, M40:2.3e-08/4.1e-11, M48:2.3e-08/7.9e-12, M56:2.3e-08/2.2e-12, M64:2.3e-08/7.1e-13, M80:2.3e-08/1.1e-13; floor 2.3e-08
+[05:36:50] degree strong_N256_s1 strict p=8: M22:invalid, M24:4.3e-09/4.3e-09, M28:1.0e-09/1.0e-09, M32:2.7e-10/2.7e-10, M36:1.0e-10/1.0e-10, M40:4.1e-11/4.1e-11, M48:7.9e-12/7.9e-12, M56:2.2e-12/2.2e-12, M64:7.1e-13/7.1e-13, M80:1.1e-13/1.1e-13; floor 3.0e-15
+[05:36:51] degree strong_N256_s1 production p=9: M22:2.4e-08/2.8e-09, M24:2.3e-08/9.3e-10, M28:2.3e-08/1.8e-10, M32:2.3e-08/4.0e-11, M36:2.3e-08/1.2e-11, M40:2.3e-08/4.5e-12, M48:2.3e-08/6.6e-13, M56:2.3e-08/1.7e-13, M64:2.3e-08/4.3e-14, M80:2.3e-08/4.7e-15; floor 2.3e-08
+[05:36:51] degree strong_N256_s1 strict p=9: M22:invalid, M24:9.3e-10/9.3e-10, M28:1.8e-10/1.8e-10, M32:4.0e-11/4.0e-11, M36:1.2e-11/1.2e-11, M40:4.5e-12/4.5e-12, M48:6.6e-13/6.6e-13, M56:1.7e-13/1.7e-13, M64:4.3e-14/4.3e-14, M80:5.5e-15/4.7e-15; floor 3.0e-15
+[05:36:59] degree strong_N512_s1 production p=4: M28:6.9e-06/6.9e-06, M32:4.1e-06/4.1e-06, M36:2.3e-06/2.3e-06, M40:1.4e-06/1.4e-06, M48:6.9e-07/6.9e-07, M56:3.5e-07/3.5e-07, M64:2.3e-07/2.3e-07, M80:8.7e-08/8.5e-08, M96:4.8e-08/4.4e-08; floor 2.0e-08
+[05:37:07] degree strong_N512_s1 strict p=4: M28:invalid, M32:4.1e-06/4.1e-06, M36:2.3e-06/2.3e-06, M40:1.4e-06/1.4e-06, M48:6.9e-07/6.9e-07, M56:3.5e-07/3.5e-07, M64:2.3e-07/2.3e-07, M80:8.5e-08/8.5e-08, M96:4.4e-08/4.4e-08; floor 2.2e-15
+[05:37:09] degree strong_N512_s1 production p=6: M28:2.1e-07/2.1e-07, M32:7.8e-08/7.5e-08, M36:4.1e-08/3.5e-08, M40:2.5e-08/1.5e-08, M48:2.1e-08/5.2e-09, M56:2.1e-08/1.8e-09, M64:2.0e-08/8.6e-10, M80:2.0e-08/2.0e-10, M96:2.0e-08/6.9e-11; floor 2.0e-08
+[05:37:12] degree strong_N512_s1 strict p=6: M28:invalid, M32:7.5e-08/7.5e-08, M36:3.5e-08/3.5e-08, M40:1.5e-08/1.5e-08, M48:5.2e-09/5.2e-09, M56:1.8e-09/1.8e-09, M64:8.6e-10/8.6e-10, M80:2.0e-10/2.0e-10, M96:6.9e-11/6.9e-11; floor 2.2e-15
+[05:37:16] degree strong_N512_s1 production p=8: M28:2.3e-08/9.6e-09, M32:2.1e-08/2.3e-09, M36:2.1e-08/8.5e-10, M40:2.0e-08/2.8e-10, M48:2.0e-08/6.1e-11, M56:2.0e-08/1.5e-11, M64:2.0e-08/4.9e-12, M80:2.0e-08/7.2e-13, M96:2.0e-08/1.6e-13; floor 2.0e-08
+[05:37:19] degree strong_N512_s1 strict p=8: M28:invalid, M32:2.3e-09/2.3e-09, M36:8.5e-10/8.5e-10, M40:2.8e-10/2.8e-10, M48:6.1e-11/6.1e-11, M56:1.5e-11/1.5e-11, M64:4.9e-12/4.9e-12, M80:7.2e-13/7.2e-13, M96:1.6e-13/1.6e-13; floor 2.2e-15
+[05:37:22] degree strong_N512_s1 production p=9: M28:2.1e-08/2.3e-09, M32:2.1e-08/4.5e-10, M36:2.0e-08/1.5e-10, M40:2.0e-08/4.1e-11, M48:2.0e-08/7.2e-12, M56:2.0e-08/1.5e-12, M64:2.0e-08/3.8e-13, M80:2.0e-08/4.4e-14, M96:2.0e-08/8.1e-15; floor 2.0e-08
+[05:37:25] degree strong_N512_s1 strict p=9: M28:invalid, M32:4.5e-10/4.5e-10, M36:1.5e-10/1.5e-10, M40:4.1e-11/4.1e-11, M48:7.2e-12/7.2e-12, M56:1.5e-12/1.5e-12, M64:3.8e-13/3.8e-13, M80:4.4e-14/4.4e-14, M96:8.4e-15/8.1e-15; floor 2.2e-15
+[05:37:27] degree uniform_N256_s1 production p=9: M22:2.6e-08/2.4e-09, M24:2.6e-08/9.6e-10, M28:2.6e-08/1.8e-10, M32:2.6e-08/4.5e-11, M36:2.6e-08/1.3e-11, M40:2.6e-08/4.5e-12, M48:2.6e-08/7.0e-13, M56:2.6e-08/1.7e-13, M64:2.6e-08/4.4e-14, M80:2.6e-08/5.0e-15; floor 2.6e-08
+[05:37:28] degree uniform_N256_s1 strict p=9: M22:invalid, M24:9.6e-10/9.6e-10, M28:1.8e-10/1.8e-10, M32:4.5e-11/4.5e-11, M36:1.3e-11/1.3e-11, M40:4.5e-12/4.5e-12, M48:7.0e-13/7.0e-13, M56:1.7e-13/1.7e-13, M64:4.4e-14/4.4e-14, M80:6.2e-15/5.1e-15; floor 3.4e-15
+[05:37:30] degree moderate_N256_s1 production p=9: M22:2.5e-08/2.6e-09, M24:2.5e-08/9.6e-10, M28:2.5e-08/1.7e-10, M32:2.5e-08/4.5e-11, M36:2.5e-08/1.2e-11, M40:2.5e-08/4.0e-12, M48:2.5e-08/6.9e-13, M56:2.5e-08/1.6e-13, M64:2.5e-08/4.0e-14, M80:2.5e-08/5.0e-15; floor 2.5e-08
+[05:37:32] degree moderate_N256_s1 strict p=9: M22:invalid, M24:9.6e-10/9.6e-10, M28:1.7e-10/1.7e-10, M32:4.5e-11/4.5e-11, M36:1.2e-11/1.2e-11, M40:4.0e-12/4.0e-12, M48:6.9e-13/6.9e-13, M56:1.6e-13/1.6e-13, M64:4.0e-14/4.0e-14, M80:5.9e-15/4.9e-15; floor 3.2e-15
+[05:37:32] stage degree done in 52 s
+[05:37:41] action uniform_N128_s1: production: 18:2.8e-08 20:2.7e-08 24:2.7e-08 28:2.7e-08 32:2.7e-08 36:2.7e-08 40:2.7e-08 48:2.7e-08 56:2.7e-08 64:2.7e-08; strict: 20:9.5e-10 24:1.3e-10 28:2.6e-11 32:6.3e-12 36:2.1e-12 40:7.3e-13 48:1.3e-13 56:3.0e-14 64:1.0e-14 (9 s)
+[05:37:50] action uniform_N128_s2: production: 18:2.7e-08 20:2.7e-08 24:2.7e-08 28:2.7e-08 32:2.7e-08 36:2.7e-08 40:2.7e-08 48:2.7e-08 56:2.7e-08 64:2.7e-08; strict: 20:9.6e-10 24:1.3e-10 28:2.8e-11 32:6.6e-12 36:2.1e-12 40:7.3e-13 48:1.3e-13 56:3.0e-14 64:9.7e-15 (9 s)
+[05:37:58] action uniform_N128_s3: production: 18:2.6e-08 20:2.6e-08 24:2.6e-08 28:2.6e-08 32:2.6e-08 36:2.6e-08 40:2.6e-08 48:2.6e-08 56:2.6e-08 64:2.6e-08; strict: 20:9.0e-10 24:1.3e-10 28:2.6e-11 32:6.5e-12 36:2.1e-12 40:7.6e-13 48:1.3e-13 56:2.9e-14 64:9.7e-15 (9 s)
+[05:38:07] action strong_N128_s1: production: 18:2.8e-08 20:2.7e-08 24:2.7e-08 28:2.7e-08 32:2.7e-08 36:2.7e-08 40:2.7e-08 48:2.7e-08 56:2.7e-08 64:2.7e-08; strict: 20:8.8e-10 24:1.3e-10 28:2.7e-11 32:6.9e-12 36:2.1e-12 40:7.8e-13 48:1.3e-13 56:3.2e-14 64:9.9e-15 (9 s)
+[05:38:16] action strong_N128_s2: production: 18:2.8e-08 20:2.7e-08 24:2.7e-08 28:2.7e-08 32:2.7e-08 36:2.7e-08 40:2.7e-08 48:2.7e-08 56:2.7e-08 64:2.7e-08; strict: 20:9.5e-10 24:1.2e-10 28:2.7e-11 32:6.8e-12 36:2.1e-12 40:7.2e-13 48:1.2e-13 56:2.7e-14 64:9.3e-15 (9 s)
+[05:38:24] action strong_N128_s3: production: 18:2.8e-08 20:2.8e-08 24:2.8e-08 28:2.8e-08 32:2.8e-08 36:2.8e-08 40:2.8e-08 48:2.8e-08 56:2.8e-08 64:2.8e-08; strict: 20:9.6e-10 24:1.3e-10 28:2.8e-11 32:7.0e-12 36:2.1e-12 40:7.5e-13 48:1.2e-13 56:3.0e-14 64:9.0e-15 (8 s)
+[05:38:33] action moderate_N128_s1: production: 18:2.6e-08 20:2.6e-08 24:2.6e-08 28:2.6e-08 32:2.6e-08 36:2.6e-08 40:2.6e-08 48:2.6e-08 56:2.6e-08 64:2.6e-08; strict: 20:8.8e-10 24:1.2e-10 28:2.9e-11 32:6.9e-12 36:2.0e-12 40:7.5e-13 48:1.2e-13 56:2.9e-14 64:1.0e-14 (9 s)
+[05:38:41] action moderate_N128_s2: production: 18:2.6e-08 20:2.6e-08 24:2.6e-08 28:2.6e-08 32:2.6e-08 36:2.6e-08 40:2.6e-08 48:2.6e-08 56:2.6e-08 64:2.6e-08; strict: 20:8.7e-10 24:1.3e-10 28:2.7e-11 32:6.8e-12 36:1.9e-12 40:7.4e-13 48:1.3e-13 56:3.1e-14 64:9.3e-15 (8 s)
+[05:38:50] action moderate_N128_s3: production: 18:2.7e-08 20:2.7e-08 24:2.7e-08 28:2.7e-08 32:2.7e-08 36:2.7e-08 40:2.7e-08 48:2.7e-08 56:2.7e-08 64:2.7e-08; strict: 20:9.9e-10 24:1.3e-10 28:2.6e-11 32:7.0e-12 36:2.1e-12 40:7.6e-13 48:1.3e-13 56:2.9e-14 64:1.0e-14 (9 s)
+[05:39:13] action uniform_N256_s1: production: 22:2.7e-08 24:2.7e-08 28:2.7e-08 32:2.7e-08 36:2.7e-08 40:2.7e-08 48:2.7e-08 56:2.7e-08 64:2.7e-08 80:2.7e-08; strict: 24:1.5e-09 28:2.9e-10 32:6.8e-11 36:2.1e-11 40:7.1e-12 48:1.2e-12 56:2.6e-13 64:7.3e-14 80:9.5e-15 (23 s)
+[05:39:36] action uniform_N256_s2: production: 22:2.7e-08 24:2.6e-08 28:2.6e-08 32:2.6e-08 36:2.6e-08 40:2.6e-08 48:2.6e-08 56:2.6e-08 64:2.6e-08 80:2.6e-08; strict: 24:1.6e-09 28:2.9e-10 32:7.0e-11 36:2.1e-11 40:6.8e-12 48:1.1e-12 56:2.6e-13 64:7.4e-14 80:9.8e-15 (23 s)
+[05:40:00] action uniform_N256_s3: production: 22:2.7e-08 24:2.7e-08 28:2.7e-08 32:2.7e-08 36:2.7e-08 40:2.7e-08 48:2.7e-08 56:2.7e-08 64:2.7e-08 80:2.7e-08; strict: 24:1.6e-09 28:2.9e-10 32:7.1e-11 36:2.1e-11 40:7.4e-12 48:1.2e-12 56:2.5e-13 64:7.1e-14 80:1.0e-14 (23 s)
+[05:40:23] action strong_N256_s1: production: 22:2.4e-08 24:2.4e-08 28:2.4e-08 32:2.4e-08 36:2.4e-08 40:2.4e-08 48:2.4e-08 56:2.4e-08 64:2.4e-08 80:2.4e-08; strict: 24:1.6e-09 28:3.0e-10 32:6.7e-11 36:2.1e-11 40:7.2e-12 48:1.1e-12 56:2.8e-13 64:7.7e-14 80:8.8e-15 (23 s)
+[05:40:46] action strong_N256_s2: production: 22:2.4e-08 24:2.3e-08 28:2.3e-08 32:2.3e-08 36:2.3e-08 40:2.3e-08 48:2.3e-08 56:2.3e-08 64:2.3e-08 80:2.3e-08; strict: 24:1.6e-09 28:2.9e-10 32:7.0e-11 36:2.1e-11 40:7.0e-12 48:1.2e-12 56:2.5e-13 64:7.4e-14 80:9.7e-15 (22 s)
+[05:41:09] action strong_N256_s3: production: 22:2.4e-08 24:2.4e-08 28:2.3e-08 32:2.3e-08 36:2.3e-08 40:2.3e-08 48:2.3e-08 56:2.3e-08 64:2.3e-08 80:2.3e-08; strict: 24:1.6e-09 28:2.9e-10 32:7.2e-11 36:2.2e-11 40:7.2e-12 48:1.2e-12 56:2.5e-13 64:7.7e-14 80:9.5e-15 (23 s)
+[05:41:32] action moderate_N256_s1: production: 22:2.6e-08 24:2.5e-08 28:2.5e-08 32:2.5e-08 36:2.5e-08 40:2.5e-08 48:2.5e-08 56:2.5e-08 64:2.5e-08 80:2.5e-08; strict: 24:1.5e-09 28:3.0e-10 32:7.5e-11 36:2.1e-11 40:7.1e-12 48:1.2e-12 56:2.5e-13 64:7.3e-14 80:9.3e-15 (23 s)
+[05:41:54] action moderate_N256_s2: production: 22:2.6e-08 24:2.5e-08 28:2.5e-08 32:2.5e-08 36:2.5e-08 40:2.5e-08 48:2.5e-08 56:2.5e-08 64:2.5e-08 80:2.5e-08; strict: 24:1.5e-09 28:2.9e-10 32:7.1e-11 36:2.1e-11 40:7.2e-12 48:1.2e-12 56:2.7e-13 64:7.0e-14 80:1.0e-14 (22 s)
+[05:42:17] action moderate_N256_s3: production: 22:2.6e-08 24:2.5e-08 28:2.5e-08 32:2.5e-08 36:2.5e-08 40:2.5e-08 48:2.5e-08 56:2.5e-08 64:2.5e-08 80:2.5e-08; strict: 24:1.5e-09 28:2.9e-10 32:6.8e-11 36:2.1e-11 40:7.3e-12 48:1.1e-12 56:2.6e-13 64:7.2e-14 80:9.3e-15 (22 s)
+[05:42:17] stage action done in 285 s
+[05:42:17] action rates: N128 uniform E_op (m 10.16, N128 uniform E_gauss 10.16, N128 strong E_op (m 10.25, N128 strong E_gauss 10.16, N128 moderate E_op (m 10.15, N128 moderate E_gauss 10.19, N256 uniform E_op (m 10.12, N256 uniform E_gauss 10.23, N256 strong E_op (m 10.19, N256 strong E_gauss 10.17, N256 moderate E_op (m 10.10, N256 moderate E_gauss 10.22
+[05:42:17] stage fits done in 0 s

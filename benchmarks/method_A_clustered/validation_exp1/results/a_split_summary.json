@@ -1,0 +1,44 @@
+{
+ "max_rel_fro": 2.973134401153136e-16,
+ "max_abs": 8.916478666520788e-16,
+ "max_rel_pointwise_configs": 1.8862947862670724e-15,
+ "max_rel_pointwise_radial": 1.4744830594728544e-15,
+ "max_rel_pointwise_radial_r_lt_0p9": 8.794010825508723e-16,
+ "mp_max_err_theta_S_self": 1.9984876702807738e-10,
+ "mp_max_err_theta_S_self_xir_le_7": 8.263706114293004e-15,
+ "mp_max_err_theta_S_rel_to_theta": 4.685024085034829e-16,
+ "mp_max_err_theta_L_self": 6.718078962145828e-16,
+ "mp_max_err_theta_L_rel_to_theta": 6.718078962135441e-16,
+ "mp_max_err_theta": 1.0077118443203163e-15,
+ "mp_max_err_naive_L_self": 0.00933725026957373,
+ "xi": [
+  0.5,
+  0.6,
+  0.75,
+  0.85,
+  1.0,
+  1.2,
+  1.5
+ ],
+ "r_pairs": 8.0,
+ "provenance": {
+  "time": "2026-10-19T05:35:17+0000",
+  "command": "python3 run_exp1.py all",
+  "git": {
+   "commit": "39d5b1c35f17c0caec67c2d49c052c431b48b909",
+   "dirty": true
+  },
+  "code_hash": "4d862270ca47fce2",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ }
+}
