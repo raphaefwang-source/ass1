@@ -39,3 +39,17 @@ Raw dense matrices live in a git-ignored `benchmarks/method_A_clustered/raw/` fo
 **Verification:** A static audit of imports found no missing project modules, and all 21 input configurations and latest figures are present. A clean-environment numerical rerun has **not** been executed as part of this GitHub-only cleanup. Before using this branch as a publication/release source, run `python run_exp1.py all` and compare generated numbers/figures with the committed results.
 
 The optimization source for the pinned N=512 parameters is archived in Git history: `xi=0.85`, `rc=4.88775618844242`, `kc=9.358534792617089`, `p=9`, `M=40`.
+
+## New spatial-accuracy experiments (c = 1 kernel)
+
+Two further experiments live next to the original Experiment 1, whose results above are unchanged:
+
+- `benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps/`: Candidate 1 (θ = 0) accuracy against a converged
+  direct periodic reference (R_D chosen per κ, validated against LatticeFriction), with six one-at-a-time sweeps
+  (s_R, s_F, M, p, ρ, κ). See `report.md`.
+- `benchmarks/method_A_clustered/validation_exp1/candidate2_pilot/`: Candidate 1 vs Candidate 2 (θ = 1/2, isotropic
+  Gaussian-corrected split) on identical kernels, positions, references, probes, cutoffs and FFT mesh. See `report.md`.
+
+Shared code is in `validation_exp1/ewald_exp_lib.py`, and dense references are cached in the git-ignored
+`raw/exp_refs_c1/`. Each driver has a `smoke` mode and an `all` mode; `validation_exp1/slurm_exp_sweeps.sb` is a
+SLURM job with no account or partition set.

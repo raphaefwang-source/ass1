@@ -34,8 +34,11 @@ SYM_FULL = np.array([[0, 3, 4], [3, 1, 5], [4, 5, 2]])
 CHUNK = 1 << 20
 
 
-def g_over_r2(r2):
-    """g(r)/r^2 of kernel A (prl_toy_models.radial_friction), so that K(d) = (g/r^2) d d^T."""
+def g_over_r2(r2, g=None):
+    """g(r)/r^2 of kernel A (prl_toy_models.radial_friction), so that K(d) = (g/r^2) d d^T. An explicit radial
+    function g(r) (e.g. exp(-kappa r)/r with amplitude 1) replaces the default kernel when given."""
+    if g is not None:
+        return g(np.sqrt(r2)) / r2
     return v2.radial_friction(np.sqrt(r2), **KW) / r2
 
 
@@ -71,13 +74,13 @@ def shifts_for(L, R):
     return v2.lattice_shifts(L, R + np.sqrt(3) * L / 2)
 
 
-def tail_bound_per_particle(N, L, R, dr=0.05, n_min=0):
+def tail_bound_per_particle(N, L, R, dr=0.05, n_min=0, g=None):
     """Upper bound of sum_{images of one particle, |d| > R} g(|d|). With n(r) the number of images within r and
     cnt(r) = N 4 pi/3 (r + sqrt(3) L/2)^3 / L^3 >= n(r), summation by parts gives
     sum = -g(R) n(R) + int_R^inf n(r) (-g'(r)) dr <= sum_s cnt(r_{s+1}) [g(r_s) - g(r_{s+1})] - g(R) n_min  (g decreasing),
     n_min a lower bound of n(R) over the particles (exact image counts when they are known, else 0)."""
     r = R + dr * np.arange(400001)
-    g = v2.radial_friction(r, **KW)
+    g = v2.radial_friction(r, **KW) if g is None else g(r)
     cnt = N * 4 / 3 * np.pi * (r[1:] + np.sqrt(3) * L / 2) ** 3 / L ** 3
     terms = cnt * (g[:-1] - g[1:])
     assert terms[-1] < 1e-30 * terms.sum()
@@ -85,7 +88,7 @@ def tail_bound_per_particle(N, L, R, dr=0.05, n_min=0):
 
 
 # ----------------------------------------------------------------------------- convergence test
-def annulus_tensors(x, L, edges, budget=1 << 22):
+def annulus_tensors(x, L, edges, budget=1 << 22, g=None):
     """acc[k, p, :] = sum of K(d) (6 components) over the images of pair p with edges[k-1] < |d| <= edges[k]
     (edges[-1] = R_max; images beyond are dropped). Returns pi, pj, acc and the image count per annulus."""
     x = np.mod(x, L)
@@ -106,7 +109,7 @@ def annulus_tensors(x, L, edges, budget=1 << 22):
         keep = k < nK
         kk = k[keep]
         dk = d[keep]
-        w = g_over_r2(r2[keep])
+        w = g_over_r2(r2[keep], g)
         flat = kk * P + np.broadcast_to(pidx[None, :], k.shape)[keep]
         count += np.bincount(kk, minlength=nK)
         for c in range(6):
@@ -167,7 +170,7 @@ class DirectPairs:
     """Pair-summed direct action: K^per_R(q_i - q_j) tabulated for every pair i < j in setup (streamed over lattice
     shifts, images not stored), action loops over the N(N-1)/2 pairs."""
 
-    def __init__(self, x, L, R, budget=1 << 22, geom=None):
+    def __init__(self, x, L, R, budget=1 << 22, geom=None, g=None):
         t0 = time.perf_counter()
         self.x, self.L, self.N, self.R = np.mod(x, L), float(L), len(x), float(R)
         if geom is not None:
@@ -185,7 +188,7 @@ class DirectPairs:
             r2 = np.einsum("spa,spa->sp", d, d)
             keep = r2 <= R2
             dk = d[keep]
-            w = g_over_r2(r2[keep])
+            w = g_over_r2(r2[keep], g)
             p = np.broadcast_to(pidx[None, :], r2.shape)[keep]
             n_img += len(p)
             for c in range(6):

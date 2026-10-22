@@ -1,0 +1,27 @@
+#!/bin/bash
+# Ready-to-submit SLURM job for the two spatial-accuracy experiments (accuracy_sweeps/, candidate2_pilot/).
+# No account, partition or QOS is set: add the ones you are entitled to on MSU HPCC, e.g.
+#   #SBATCH --account=<your_account>
+#   #SBATCH --partition=<partition>
+# Resources below are what the complete local run used (4 cores, < 8 GB, ~3 h wall); adjust as needed.
+#SBATCH --job-name=ewald_exp_sweeps
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=16G
+#SBATCH --time=06:00:00
+#SBATCH --output=ewald_exp_sweeps_%j.log
+
+set -euo pipefail
+# module load Python/3.11 SciPy-bundle matplotlib   # site-specific; uncomment/adapt for your software stack
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+W=${SLURM_CPUS_PER_TASK:-4}
+cd "${SLURM_SUBMIT_DIR:-$(dirname "$0")}"
+python3 -c "import numpy, scipy, matplotlib, mpmath" || { echo "install numpy scipy matplotlib mpmath"; exit 1; }
+
+cd accuracy_sweeps
+python3 run_accuracy_sweeps.py smoke
+python3 run_accuracy_sweeps.py all --workers "$W"       # configs refs sweeps timing fits plots tables
+cd ../candidate2_pilot
+python3 run_candidate2_pilot.py smoke
+python3 run_candidate2_pilot.py all --workers "$W" --seeds 1 2 3

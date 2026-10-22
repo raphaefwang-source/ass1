@@ -1,0 +1,17 @@
+2026-10-21T22:34:30+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py smoke
+2026-10-21T22:58:21+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py checks
+2026-10-21T23:00:06+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py pilot ratios --workers 1 --seeds 1
+2026-10-21T23:28:45+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py tables plots
+2026-10-21T23:29:15+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py pilot ratios --workers 4 --seeds 1 2 3
+2026-10-21T23:52:51+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py eqacc
+2026-10-21T23:52:52+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py tables
+2026-10-21T23:53:02+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py plots
+2026-10-21T23:59:50+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py smoke
+2026-10-22T00:01:31+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py eqacc
+2026-10-22T00:08:38+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py eqtime
+2026-10-22T00:09:16+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py tables plots
+2026-10-22T00:09:38+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py plots
+2026-10-22T02:38:18+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py plots
+2026-10-22T02:41:30+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py plots
+2026-10-22T02:41:57+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py plots
+2026-10-22T02:42:17+0000  cd benchmarks/method_A_clustered/validation_exp1/candidate2_pilot && python3 run_candidate2_pilot.py plots

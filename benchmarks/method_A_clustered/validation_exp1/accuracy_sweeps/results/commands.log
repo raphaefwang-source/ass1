@@ -1,0 +1,16 @@
+2026-10-21T22:31:09+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py smoke
+2026-10-21T22:31:55+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py configs refs --workers 4
+2026-10-21T22:58:12+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py refs --workers 1
+2026-10-21T22:58:21+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py sweeps --workers 3
+2026-10-21T23:08:10+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py fits plots tables
+2026-10-21T23:08:50+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py plots
+2026-10-21T23:09:03+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py timing
+2026-10-22T00:00:11+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py smoke
+2026-10-22T00:00:49+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py timing
+2026-10-22T00:09:20+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py plots
+2026-10-22T02:38:07+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py plots
+2026-10-22T02:39:20+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py plots
+2026-10-22T02:39:53+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py plots
+2026-10-22T02:40:16+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py plots
+2026-10-22T02:40:40+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py plots
+2026-10-22T02:41:00+0000  cd benchmarks/method_A_clustered/validation_exp1/accuracy_sweeps && python3 run_accuracy_sweeps.py plots

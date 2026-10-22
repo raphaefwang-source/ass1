@@ -1,0 +1,87 @@
+{
+ "amplitude": {
+  "kappa0.2": {
+   "RadialEwald_amp": 1.0,
+   "theta_full_max_rel": 0.0,
+   "direct_g_max_rel": 0.0,
+   "lattice_friction_g_max_rel": 8.20121951902555e-16,
+   "lattice_friction_c_minus_1": 0.0,
+   "split_S_plus_L_max_rel": 8.491699322267271e-16,
+   "ghat0_vs_4pi_over_kappa2": 0.0
+  },
+  "kappa0.5": {
+   "RadialEwald_amp": 1.0,
+   "theta_full_max_rel": 0.0,
+   "direct_g_max_rel": 0.0,
+   "lattice_friction_g_max_rel": 4.365770699110882e-16,
+   "lattice_friction_c_minus_1": 0.0,
+   "split_S_plus_L_max_rel": 1.3498235853885742e-15,
+   "ghat0_vs_4pi_over_kappa2": 0.0
+  },
+  "kappa0.7": {
+   "RadialEwald_amp": 1.0,
+   "theta_full_max_rel": 0.0,
+   "direct_g_max_rel": 0.0,
+   "lattice_friction_g_max_rel": 3.0416485491425006e-15,
+   "lattice_friction_c_minus_1": 0.0,
+   "split_S_plus_L_max_rel": 3.0416485491425006e-15,
+   "ghat0_vs_4pi_over_kappa2": 0.0
+  },
+  "kappa1": {
+   "RadialEwald_amp": 1.0,
+   "theta_full_max_rel": 0.0,
+   "direct_g_max_rel": 0.0,
+   "lattice_friction_g_max_rel": 3.157802098575653e-16,
+   "lattice_friction_c_minus_1": 0.0,
+   "split_S_plus_L_max_rel": 3.856754290519021e-15,
+   "ghat0_vs_4pi_over_kappa2": 0.0
+  },
+  "kappa2": {
+   "RadialEwald_amp": 1.0,
+   "theta_full_max_rel": 0.0,
+   "direct_g_max_rel": 0.0,
+   "lattice_friction_g_max_rel": 3.911511876332888e-16,
+   "lattice_friction_c_minus_1": 0.0,
+   "split_S_plus_L_max_rel": 7.91393800223762e-15,
+   "ghat0_vs_4pi_over_kappa2": 0.0
+  }
+ },
+ "DirectPairs_vs_annulus_rel": 3.1568904916888774e-16,
+ "DirectPairs_t_s": 0.9819050939995577,
+ "DirectPairs_action_vs_dense_rel": 7.134094589871761e-16,
+ "small_system_dense_vs_matrix_free": {
+  "theta0": {
+   "basis_vs_dense_rel": 7.720803395120315e-16,
+   "basis_sym": 2.2286544159312758e-17,
+   "N": 128
+  },
+  "theta0.5": {
+   "basis_vs_dense_rel": 1.0921424039317703e-15,
+   "basis_sym": 2.7551131233245622e-17,
+   "N": 128
+  }
+ },
+ "n_sweep_rows": 15,
+ "max_mf_vs_dense": 5.449044932378505e-14,
+ "provenance": {
+  "time": "2026-10-22T00:00:48+0000",
+  "command": "python3 run_accuracy_sweeps.py smoke",
+  "git": {
+   "commit": "7713a6b63916b11cadf0763e172967252a2f1c92",
+   "dirty": true
+  },
+  "code_hash": "bd4e474676d89dfe",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "amplitude_c": 1.0
+ }
+}

@@ -1,0 +1,15 @@
+[23:00:06] === stage pilot
+[23:03:32] sweeps moderate_N256_s1_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:06:49] sweeps moderate_N256_s1_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:09:56] sweeps moderate_N256_s1_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:13:01] sweeps strong_N256_s1_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:16:11] sweeps strong_N256_s1_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:19:17] sweeps strong_N256_s1_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:22:25] sweeps uniform_N256_s1_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:25:33] sweeps uniform_N256_s1_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:28:38] sweeps uniform_N256_s1_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:28:39] sweeps: 684 rows in 1713 s -> /home/user/raphaefwang-source/ass1/benchmarks/method_A_clustered/validation_exp1/candidate2_pilot/results/pilot.csv
+[23:28:39] === stage pilot done in 1713 s
+[23:28:39] === stage ratios
+[23:28:39] ratios: 342 paired points
+[23:28:39] === stage ratios done in 0 s

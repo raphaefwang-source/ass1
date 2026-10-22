@@ -1,0 +1,24 @@
+{
+ "fourier_correction_radial_FT_max_rel": 2.5510053014945734e-16,
+ "provenance": {
+  "time": "2026-10-22T00:00:10+0000",
+  "command": "python3 run_candidate2_pilot.py smoke",
+  "git": {
+   "commit": "7713a6b63916b11cadf0763e172967252a2f1c92",
+   "dirty": true
+  },
+  "code_hash": "bd4e474676d89dfe",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "host": "vm",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "n_cpu": 4,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "amplitude_c": 1.0
+ }
+}

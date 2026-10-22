@@ -1,0 +1,33 @@
+[23:29:15] === stage pilot
+[23:32:40] sweeps moderate_N256_s1_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:32:41] sweeps moderate_N256_s1_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:32:42] sweeps moderate_N256_s1_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:32:42] sweeps moderate_N256_s2_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:36:02] sweeps moderate_N256_s2_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:36:02] sweeps moderate_N256_s2_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:36:03] sweeps moderate_N256_s3_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:36:03] sweeps moderate_N256_s3_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:39:23] sweeps strong_N256_s1_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:39:28] sweeps strong_N256_s1_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:39:28] sweeps moderate_N256_s3_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:39:30] sweeps strong_N256_s1_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:42:50] sweeps strong_N256_s2_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:42:51] sweeps strong_N256_s2_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:42:53] sweeps strong_N256_s2_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:42:54] sweeps strong_N256_s3_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:46:07] sweeps strong_N256_s3_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:46:12] sweeps strong_N256_s3_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:46:16] sweeps uniform_N256_s1_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:46:17] sweeps uniform_N256_s1_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:49:21] sweeps uniform_N256_s1_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:49:25] sweeps uniform_N256_s2_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:49:29] sweeps uniform_N256_s2_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:49:32] sweeps uniform_N256_s2_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:52:36] sweeps uniform_N256_s3_rho0.75 kappa 0.7: 76 rows (74 distinct)
+[23:52:41] sweeps uniform_N256_s3_rho0.75 kappa 0.2: 76 rows (74 distinct)
+[23:52:49] sweeps uniform_N256_s3_rho0.75 kappa 2: 76 rows (74 distinct)
+[23:52:49] sweeps: 2052 rows in 1415 s -> /home/user/raphaefwang-source/ass1/benchmarks/method_A_clustered/validation_exp1/candidate2_pilot/results/pilot.csv
+[23:52:49] === stage pilot done in 1415 s
+[23:52:49] === stage ratios
+[23:52:50] ratios: 1026 paired points
+[23:52:50] === stage ratios done in 0 s
