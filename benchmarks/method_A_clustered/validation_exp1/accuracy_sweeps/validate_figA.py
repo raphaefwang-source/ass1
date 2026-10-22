@@ -6,8 +6,8 @@ For every panel, setting and family the curves drawn in the matplotlib figure (r
 not from the plotting code's own bookkeeping) are compared with medians / minima / maxima recomputed here from the
 CSV (median lines and min-max bands): Fig. A1 must equal E_G and Fig. A2 must equal E_GX (and differ from the other
 metric); k_c/xi must equal
-2 sF_eff of the recorded rows; every point must aggregate exactly 3 seeds; the floors must come from ref_floor_G /
-ref_floor_GX. Nothing is written to results/.
+2 sF_eff of the recorded rows; every point must aggregate exactly 3 seeds; no reference-floor line or marker may be drawn,
+and the y labels must name Gamma_D. Nothing is written to results/.
 
     python3 validate_figA.py
 """
@@ -92,21 +92,17 @@ def main():
                     if not (np.all(np.isin([e[2] for e in exp], yv)) and np.all(np.isin([e[3] for e in exp], yv))
                             and yv.min() == min(e[2] for e in exp) and yv.max() == max(e[3] for e in exp)):
                         problems.append(f"{name} {title} {st} {fam}: min-max band differs from CSV {metric}")
-        # floors
-        fkey = PF.A_METRICS[metric]["floor"]
+        # no reference-floor line or marker (ref_floor_G / ref_floor_GX / Gamma_LF) may be drawn; the y label names Gamma_D
         for ax, (sw, title, *_r) in zip(fig.axes, PF.A_PANELS):
-            sel = [r for r in rows if r["sweep"] == sw]
-            xs = sorted({XDEF[sw](r) for r in sel})
-            fm = np.array([np.median([float(r[fkey]) for r in sel if XDEF[sw](r) == x]) for x in xs])
-            fl = [ln for ln in ax.lines if ln.get_marker() == "x"]
-            if sw in ("rho", "kappa"):
-                if not (fl and np.array_equal(np.asarray(fl[0].get_ydata(), float), fm)):
-                    problems.append(f"{name} {title}: per-x floor differs from {fkey}")
-            else:
-                hl = [ln for ln in ax.lines if ln.get_marker() in ("None", "", None) and len(ln.get_ydata()) == 2
-                      and ln.get_ydata()[0] == ln.get_ydata()[1]]
-                if not (hl and hl[0].get_ydata()[0] == float(np.median(fm)) and np.ptp(fm) == 0):
-                    problems.append(f"{name} {title}: constant floor differs from {fkey}")
+            if any(ln.get_marker() == "x" for ln in ax.lines):
+                problems.append(f"{name} {title}: x-marker (floor) line present")
+            flat = [ln for ln in ax.lines if len(ln.get_ydata()) == 2 and ln.get_ydata()[0] == ln.get_ydata()[1]
+                    and ln.get_marker() in ("None", "", None)]
+            if flat:
+                problems.append(f"{name} {title}: horizontal line present (reference floor?)")
+        for ax in fig.axes[::3]:
+            if r"\Gamma_D" not in ax.get_ylabel() or "ref" in ax.get_ylabel():
+                problems.append(f"{name}: y label {ax.get_ylabel()!r} does not name Gamma_D")
     # Fourier axis
     sf = [r for r in rows if r["sweep"] == "sF"]
     uF = sorted({2.0 * float(r["sF_eff"]) for r in sf})

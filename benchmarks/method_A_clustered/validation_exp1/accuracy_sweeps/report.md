@@ -4,10 +4,10 @@ Every number in this report is read from `results/`. Tables: `results/tables.md`
 Figures are regenerated from the existing CSV files only (no recomputation) by `python3 run_accuracy_sweeps.py plots`; the code is in `../paper_figures.py` (functions `six_sweeps`, `exp1`), and `python3 validate_figA.py` checks the drawn data against `results/sweeps.csv`.
 
 **Fig. A1** `figures/figA1_gamma_operator_6sweeps.{pdf,png}` — relative friction-operator error, the same metric in all six panels:
-E_Γ = ‖Γ_h − Γ_ref‖₂ / ‖Γ_ref‖₂ (CSV column `E_G`).
+E_Γ = ‖Γ_h − Γ_D‖₂ / ‖Γ_D‖₂ (CSV column `E_G`), with Γ_D the unsplit direct periodic sum.
 
 **Fig. A2** `figures/figA2_gamma_action_6sweeps.{pdf,png}` — relative matrix-free action error, the same six panels and axes:
-E_ΓX = ‖(Γ_h − Γ_ref)X‖_F / ‖Γ_ref X‖_F with X the 10 common Gaussian probe vectors (CSV column `E_GX`). Slow- and fast-mode probes are not mixed in; they are in Fig. S1(c).
+E_ΓX = ‖(Γ_h − Γ_D)X‖_F / ‖Γ_D X‖_F with X the 10 common Gaussian probe vectors (CSV column `E_GX`). Slow- and fast-mode probes are not mixed in; they are in Fig. S1(b).
 
 Panels of both figures (Candidate 1, θ = 0, c = 1, N = 256, ξ = 0.85; one parameter changed at a time):
 
@@ -23,16 +23,17 @@ Panels of both figures (Candidate 1, θ = 0, c = 1, N = 256, ξ = 0.85; one para
 - Settings: **baseline** ξ r_c = 6, k_c/(2ξ) = 6 (nominal k_c/ξ = 12, shell-snapped 11.967), M = 80, p = 9, ρ = 0.75, κ = 0.7 (solid lines, filled markers); **moderate** ξ r_c = 4, k_c/(2ξ) = 4 (nominal k_c/ξ = 8, shell-snapped 7.986), M = 40, p = 7, other parameters at baseline (dashed lines, open markers).
 - Curves are medians over the 3 seeds of each family (uniform, moderately clustered, strongly clustered; colours and marker shapes fixed in both figures); the shaded band is the seed min–max. The three families nearly coincide (medians within 1.27×), so their markers are drawn with decreasing sizes.
 - Dotted black guides in (a) and (b) are the theoretical Gaussian decays e^{−(ξ r_c)²} and e^{−(k_c/ξ)²/4}, anchored 3× above the baseline median at ξ r_c = 3 and k_c/ξ = 5.98; they are not data.
-- Reference floor: ‖Γ_LF − Γ_D‖₂/‖Γ_D‖₂ (`ref_floor_G`) in Fig. A1 and ‖(Γ_LF − Γ_D)X‖_F/‖Γ_D X‖_F (`ref_floor_GX`) in Fig. A2, median over the 9 configurations. In (a)–(d) the physical system is fixed and the floor is one horizontal line (9.6e-16 for E_Γ, 6.3e-16 for E_ΓX). In (e) and (f) the reference changes with ρ or κ, so the floor is drawn per value (× markers): E_Γ floor 3.0e-15 at κ = 0.2 down to 4.6e-16 at κ = 1.
+- Every plotted error is relative to Γ_D. No reference-floor lines or markers are drawn, and no LatticeFriction/Chebyshev comparison appears in any figure; the independent LatticeFriction cross-check of Γ_D is reported as numbers in §1 only.
 - **Not computed (shown as absent, not filled in):** the cutoff sweeps (a), (b) were run at the baseline only, so there are no moderate curves there; k_c/ξ below 3.96 (requested k_c/(2ξ) < 2) was not run; the baseline M sweep starts at M = 24, the first FFT-friendly size above the Nyquist limit M > 22 of the baseline k_c (largest retained |m| = 11); the moderate k_c (|m| ≤ 7) allows M = 16.
 
 **Fig. S1** `figures/figS1_reference_structure.{pdf,png}` (supplementary):
-- (a) Convergence of the unsplit direct periodic sum to its radius R_D, with the certified tail bound and the 10⁻¹³ certification level.
-- (b) LatticeFriction vs direct reference as rel_tol is tightened.
-- (c) Action error by probe class along the ξ r_c sweep: Gaussian X (= `E_GX`), the 3 slowest eigenvectors (`E_GX_slow_max`) and the fastest eigenvector (`E_GX_fast`) of Γ_ref.
-- (d) λ_min deviation on Range(Π) vs E_Γ, all 927 rows. (e) Momentum (filled) and symmetry (open) residuals. (f) Setup and cached matvec time vs M; 3 concurrent workers.
+- (a) Convergence of Γ_D itself in the direct-sum radius: ‖Γ_D(R) − Γ_D(R_D)‖₂/‖Γ_D‖₂, with the certified tail bound and the 10⁻¹³ certification level used to choose R_D.
+- (b) Action error by probe class along the ξ r_c sweep, relative to Γ_D: Gaussian X (= `E_GX`), the 3 slowest eigenvectors (`E_GX_slow_max`) and the fastest eigenvector (`E_GX_fast`) of Γ_D.
+- (c) Relative deviation of λ_min(Γ_h) from λ_min(Γ_D) on Range(Π) vs E_Γ, all 927 rows.
+- (d) Momentum conservation, max_a ‖Γ_h t_a‖/‖Γ_D‖₂ over the three translations. (e) Symmetry, ‖Γ_h − Γ_hᵀ‖_F/‖Γ_h‖_F.
+- (f) Setup and cached matvec time vs M; 3 concurrent workers.
 
-`figures/figA_plotted_series.csv` lists every plotted median / min / max (and floor value) with its figure, panel, setting, family and x.
+`figures/figA_plotted_series.csv` lists every plotted median / min / max with its figure, panel, setting, family and x.
 
 The original Experiment 1 (`../results`, `../figures`, `../report_exp1.md`, c = 1.6148) is unchanged and is not reused.
 Its kernel amplitude differs, so its cached matrices (`raw/*_Gref.npy`) are not reused either.
@@ -203,7 +204,7 @@ Both errors decay as a Gaussian in the cutoff until they reach the baseline mesh
 | moderate, E_Γ | 2.2e-8 | 8.8e-8 | 1.2e-7 | 1.5e-7 | 1.1e-7 |
 | moderate, E_ΓX | 1.3e-8 | 5.7e-8 | 8.9e-8 | 1.3e-7 | 1.2e-7 |
 
-- At κ = 0.2 the baseline is at its reference floor (E_Γ floor 3.0e-15 median, 3.3e-15 max), which is why the floor is drawn per κ in panel (f).
+- At κ = 0.2 the baseline is at its reference floor (E_Γ floor 3.0e-15 median, 3.3e-15 max).
 - For weak screening, ‖Γ_ref‖ is dominated by the k = 0 term (eigenvalue 4πρc/(3κ²) = 78.5 at κ = 0.2, vs ‖Γ‖ = 85–90), so relative errors are smaller there.
 - At κ = 2 the slow-mode action errors are the largest (E_ΓX_slow 4.3e-6 at moderate, 1.1e-13 at baseline). λ_min(Γ_ref) = 0.017 is small against ‖Γ‖ = 1.5, so the slow modes carry the largest relative action error.
 
@@ -220,7 +221,7 @@ Both errors decay as a Gaussian in the cutoff until they reach the baseline mesh
 | Symmetry | ≤ 2.4e-17 |
 | λ_min of the complete Γ_h on Range(Π) | positive in all rows (min 0.01674, κ = 2) |
 | Negative eigenvalues | none in any row |
-| Relative λ_min deviation | tracks E_Γ (Fig. S1(d)); max 7.4e-3, at ξ r_c = 2 |
+| Relative λ_min deviation | tracks E_Γ (Fig. S1(c)); max 7.4e-3, at ξ r_c = 2 |
 
 ### Cost (`results/timing_serial.csv`; serial, 1 thread, Intel Xeon @ 2.10GHz container, median of 15)
 

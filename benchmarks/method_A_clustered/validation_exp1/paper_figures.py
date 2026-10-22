@@ -3,11 +3,13 @@ Publication figures for accuracy_sweeps/ and candidate2_pilot/, in the style of 
 conservative particle method for the free-space Landau equation" (SIAM preprint): 2 x 2 panels with bold centred
 titles, serif (STIX) fonts, boxed axes with inward ticks, light grid, framed in-panel legends, colour = family or
 candidate, filled markers / solid lines vs open markers / dashed lines for the two quantities of a panel, shaded
-min-max range over seeds, black dotted comparison guides and dotted, labelled thresholds.
+min-max range over seeds, black dotted comparison guides. Every plotted error is relative to Gamma_D, the unsplit direct
+periodic sum; no LatticeFriction/Chebyshev comparison or reference-floor line is drawn.
 
 Every figure is regenerated from the CSV files in results/ (no recomputation):
     accuracy_sweeps/figures/figA1_gamma_operator_6sweeps (E_G), figA2_gamma_action_6sweeps (E_GX): 2 x 3, the six
-        one-at-a-time sweeps with identical panels and axes; figS1_reference_structure (supplementary);
+        one-at-a-time sweeps with identical panels and axes; figS1_reference_structure (supplementary: Gamma_D convergence,
+        probe classes, PSD, momentum, symmetry, cost);
         figA_plotted_series.csv (the plotted medians / ranges, for checking)
     candidate2_pilot/figures/fig3_candidate_comparison, fig4_psd_cost, figS2_pilot_all_kappa
 """
@@ -77,13 +79,6 @@ def guide(ax, x, y, label):
     ax.plot(x, y, ":", color=INK, lw=1.1, label=label)
 
 
-def threshold(ax, y, text, x_text=0.98, above=True, ha="right"):
-    ax.axhline(y, color=INK, ls=(0, (1, 1.5)), lw=0.8)
-    ax.annotate(text, xy=(x_text, y), xycoords=("axes fraction", "data"), ha=ha,
-                va="bottom" if above else "top", fontsize=6.3, xytext=(0, 1.5 if above else -1.5),
-                textcoords="offset points")
-
-
 def anchored(xs, f, x0, y0, factor=3.0):
     """Guide c f(x) through factor * y0 at x0."""
     return f(xs) * factor * y0 / f(x0)
@@ -105,13 +100,11 @@ A_PANELS = (
     ("kappa", "(f) Screening parameter", r"$\kappa$  ($c=1$)", lambda r: r["value"], True),
 )
 A_SETTINGS = (("baseline", False), ("moderate", True))     # solid / filled vs dashed / open
-A_METRICS = {
-    "E_G": dict(floor="ref_floor_G", fig="figA1_gamma_operator_6sweeps",
-                ylabel=r"$E_\Gamma=\|\Gamma_h-\Gamma_{\rm ref}\|_2\,/\,\|\Gamma_{\rm ref}\|_2$",
-                floor_label=r"reference floor $\|\Gamma_{LF}-\Gamma_D\|_2/\|\Gamma_D\|_2$"),
-    "E_GX": dict(floor="ref_floor_GX", fig="figA2_gamma_action_6sweeps",
-                 ylabel=r"$E_{\Gamma X}=\|(\Gamma_h-\Gamma_{\rm ref})X\|_F\,/\,\|\Gamma_{\rm ref}X\|_F$",
-                 floor_label=r"reference floor $\|(\Gamma_{LF}-\Gamma_D)X\|_F/\|\Gamma_D X\|_F$"),
+A_METRICS = {     # both errors are measured against Gamma_D, the unsplit direct periodic sum
+    "E_G": dict(fig="figA1_gamma_operator_6sweeps",
+                ylabel=r"$E_\Gamma=\|\Gamma_h-\Gamma_D\|_2\,/\,\|\Gamma_D\|_2$"),
+    "E_GX": dict(fig="figA2_gamma_action_6sweeps",
+                 ylabel=r"$E_{\Gamma X}=\|(\Gamma_h-\Gamma_D)X\|_F\,/\,\|\Gamma_D X\|_F$"),
 }
 A_YLIM = (1e-16, 1e-1)
 A_FAM_LAB = {"uniform": "uniform", "moderate": "moderately clustered", "strong": "strongly clustered"}
@@ -134,15 +127,6 @@ def six_sweeps(rows, metric, figures, series):
                     n = sum(1 for r in fr if r["x"] == x[k])
                     series.append(dict(figure=spec["fig"], panel=title[:3], sweep=sw, metric=metric, setting=st,
                                        family=fam, x=x[k], median=m[k], min=lo[k], max=hi[k], n_seeds=n))
-        # reference floor: one line where the physical configuration is fixed, per-x values where it changes
-        fx, fm, _, _ = stats(pr, "x", spec["floor"])
-        if sw in ("rho", "kappa"):
-            ax.plot(fx, fm, ls=(0, (1, 1.5)), color=INK, lw=0.8, marker="x", ms=3.5, mew=0.8)
-        else:
-            ax.axhline(float(np.median(fm)), color=INK, ls=(0, (1, 1.5)), lw=0.8)
-        for k in range(len(fx)):
-            series.append(dict(figure=spec["fig"], panel=title[:3], sweep=sw, metric=spec["floor"], setting="reference",
-                               family="all", x=fx[k], median=fm[k], min=None, max=None, n_seeds=None))
         # theoretical Gaussian decay guides (not measured data), anchored 3x above the baseline median at s = 3
         base = [r for r in pr if r["setting"] == "baseline"]
         if sw == "sR":
@@ -179,27 +163,24 @@ def six_sweeps(rows, metric, figures, series):
         ax.set_ylabel(spec["ylabel"])
     for ax in axs[:, 1:].ravel():
         ax.tick_params(labelleft=False)
-    floor_h = Line2D([], [], color=INK, ls=(0, (1, 1.5)), lw=0.8, marker="x", ms=3.5, mew=0.8,
-                     label=spec["floor_label"] + "\n" + r"($\times$: separate value for each $\rho$, $\kappa$)")
     h = [Line2D([], [], color=FAM_COL[f], marker=FAM_MK[f], ms=A_FAM_MS[f], label=A_FAM_LAB[f]) for f in FAMS] + [
         Line2D([], [], color=GREY, marker="o", label=r"baseline: $\xi r_c=6$, $k_c/\xi=12$, $M=80$, $p=9$"),
         Line2D([], [], color=GREY, ls="--", marker="o", mfc="white",
                label=r"moderate: $\xi r_c=4$, $k_c/\xi=8$, $M=40$, $p=7$"),
-        Line2D([], [], color=INK, ls=":", lw=1.1, label=r"guides $e^{-(\xi r_c)^2}$ (a), $e^{-(k_c/\xi)^2/4}$ (b)"),
-        floor_h]
-    order = [0, 3, 1, 4, 2, 5, 6]      # column-major legend: families | settings | guide, floor
-    fig.legend(handles=[h[i] for i in order], loc="lower center", ncol=4, bbox_to_anchor=(0.5, -0.005),
+        Line2D([], [], color=INK, ls=":", lw=1.1, label=r"guides $e^{-(\xi r_c)^2}$ (a), $e^{-(k_c/\xi)^2/4}$ (b)")]
+    order = [0, 3, 1, 4, 2, 5]         # column-major legend: family over setting / guide
+    fig.legend(handles=[h[i] for i in order], loc="lower center", ncol=3, bbox_to_anchor=(0.5, -0.005),
                columnspacing=1.2, handlelength=2.2)
     fig.tight_layout(h_pad=1.0, w_pad=0.6, rect=(0, 0.085, 1, 1))
     save(fig, figures / spec["fig"])
 
 
 def exp1(results, figures, read_csv):
-    """Fig. A1 (E_G), Fig. A2 (E_GX) over the six sweeps, and Fig. S1 (references, probe classes, PSD, momentum,
-    cost). Plotted medians / ranges are written to figures/figA_plotted_series.csv for checking."""
+    """Fig. A1 (E_G), Fig. A2 (E_GX) over the six sweeps, and Fig. S1 (Gamma_D convergence in R, probe classes,
+    PSD, momentum, symmetry, cost). Every error is relative to Gamma_D. Plotted medians / ranges are written to
+    figures/figA_plotted_series.csv for checking."""
     style()
     rows = [r for r in read_csv(results / "sweeps.csv") if r.get("mesh_valid")]
-    refs = read_csv(results / "references.csv")
     conv = read_csv(results / "reference_convergence.csv")
     series = []
     for metric in ("E_G", "E_GX"):
@@ -212,9 +193,8 @@ def exp1(results, figures, read_csv):
                                                          else str(s_[k])) for k in keys) + "\n")
     for r in rows:
         r["x"] = r["value"]
-    floor = float(np.median([r["ref_floor_GX"] for r in rows if r["sweep"] == "sR"]))
 
-    # ---------------- Fig. S1: reference convergence, probe classes, PSD, momentum / symmetry, cost
+    # ---------------- Fig. S1: Gamma_D convergence in R, probe classes, PSD, momentum, symmetry, cost
     fig, axs = plt.subplots(2, 3, figsize=(7.4, 5.0))
     ax = axs[0, 0]
     for kap in (0.2, 0.5, 0.7, 1.0, 2.0):
@@ -229,26 +209,13 @@ def exp1(results, figures, read_csv):
     ax.set_yticks([1e-19, 1e-15, 1e-11, 1e-7, 1e-3])
     ax.set_xlabel(r"direct-sum radius $R$")
     ax.set_ylabel(r"$\|\Gamma_D(R)-\Gamma_D(R_D)\|_2/\|\Gamma_D\|_2$")
-    ax.set_title("(a) Direct periodic reference")
+    ax.set_title(r"(a) Convergence of $\Gamma_D$ in $R$")
     h, l = ax.get_legend_handles_labels()
     h += [Line2D([], [], color=GREY, ls="--", marker="o", mfc="white", ms=2.6, lw=0.8),
           Line2D([], [], color=INK, ls=(0, (1, 1.5)), lw=0.8)]
     l += ["certified tail bound", r"certification $10^{-13}$"]
     ax.legend(h, l, loc="lower left", ncol=2, columnspacing=0.6, handlelength=1.4, fontsize=5.4)
     ax = axs[0, 1]
-    tols = (1e-10, 1e-12, 1e-14)
-    for kap in (0.2, 0.5, 0.7, 1.0, 2.0):
-        rr = [r for r in refs if r["kappa"] == kap]
-        med = [np.median([r[f"LF_{t:g}_vs_D_rel"] for r in rr]) for t in tols]
-        lo = [min(r[f"LF_{t:g}_vs_D_rel"] for r in rr) for t in tols]
-        hi = [max(r[f"LF_{t:g}_vs_D_rel"] for r in rr) for t in tols]
-        curve(ax, np.array(tols), np.array(med), np.array(lo), np.array(hi), KAP_COL[kap], KAP_MK[kap],
-              label=fr"$\kappa={kap:g}$")
-    ax.set_xscale("log"), ax.set_yscale("log"), ax.invert_xaxis()
-    ax.set_xlabel("LatticeFriction rel_tol"), ax.set_ylabel(r"$\|\Gamma_{LF}-\Gamma_D\|_2/\|\Gamma_D\|_2$")
-    ax.set_title("(b) Two independent references")
-    ax.legend(loc="upper right", ncol=2)
-    ax = axs[0, 2]
     rs = [r for r in rows if r["sweep"] == "sR"]
     for key, lab, ls, mk in (("E_GX", r"Gaussian $X$ (10 vectors)", "-", "o"),
                              ("E_GX_slow_max", "3 slowest eigenvectors", "--", "s"),
@@ -256,35 +223,32 @@ def exp1(results, figures, read_csv):
         x, m, lo, hi = stats(rs, "x", key)
         ax.fill_between(x, lo, hi, color=GREY, alpha=0.12, lw=0)
         ax.plot(x, m, ls, color=INK, marker=mk, mfc="white" if ls != "-" else INK, label=lab)
-    threshold(ax, floor, "reference floor (Gaussian $X$)", x_text=0.02, ha="left", above=True)
     ax.set_yscale("log"), ax.set_ylim(2e-16, 0.3)
     ax.set_xlabel(r"$\xi r_c$  (baseline)")
-    ax.set_ylabel(r"$\|(\Gamma_h-\Gamma_{\rm ref})X\|/\|\Gamma_{\rm ref}X\|$")
-    ax.set_title("(c) Action error by probe class")
+    ax.set_ylabel(r"$\|(\Gamma_h-\Gamma_D)X\|/\|\Gamma_D X\|$")
+    ax.set_title("(b) Action error by probe class")
     ax.legend(loc="upper right")
-    ax = axs[1, 0]
+    ax = axs[0, 2]
     for fam in FAMS:
         fr = [r for r in rows if r["family"] == fam]
         ax.plot([r["E_G"] for r in fr], [abs(r["lam_min_h"] / r["lam_min_ref"] - 1) for r in fr], FAM_MK[fam],
                 color=FAM_COL[fam], ms=2.6, alpha=0.65, ls="none", label=fam)
     ax.plot([1e-16, 1], [1e-16, 1], ls=(0, (1, 1.5)), color=INK, lw=0.8, label=r"$y=x$")
     ax.set_xscale("log"), ax.set_yscale("log"), ax.set_xlim(5e-16, 0.1), ax.set_ylim(1e-17, 0.1)
-    ax.set_xlabel(r"$E_\Gamma$"), ax.set_ylabel(r"$|\lambda_{\min}(\Gamma_h)/\lambda_{\min}(\Gamma_{\rm ref})-1|$")
-    ax.set_title(r"(d) Smallest eigenvalue on Range($\Pi$)")
+    ax.set_xlabel(r"$E_\Gamma$"), ax.set_ylabel(r"$|\lambda_{\min}(\Gamma_h)/\lambda_{\min}(\Gamma_D)-1|$")
+    ax.set_title(r"(c) Smallest eigenvalue on Range($\Pi$)")
     ax.legend(loc="upper left")
-    ax = axs[1, 1]
-    for fam in FAMS:
-        fr = [r for r in rows if r["family"] == fam]
-        ax.plot([r["E_G"] for r in fr], [r["mom_opnorm_max"] for r in fr], FAM_MK[fam], color=FAM_COL[fam], ms=2.6,
-                alpha=0.6, ls="none")
-        ax.plot([r["E_G"] for r in fr], [r["sym_resid"] for r in fr], FAM_MK[fam], color=FAM_COL[fam], ms=2.6,
-                mfc="white", alpha=0.6, ls="none")
-    ax.set_xscale("log"), ax.set_yscale("log"), ax.set_ylim(5e-19, 1e-15)
-    ax.set_xlabel(r"$E_\Gamma$"), ax.set_ylabel("residual")
-    ax.set_title("(e) Momentum and symmetry")
-    ax.legend(handles=[Line2D([], [], color=GREY, marker="o", ls="none", label=r"$\|\Gamma_h t\|/\|\Gamma_{\rm ref}\|$"),
-                       Line2D([], [], color=GREY, marker="o", mfc="white", ls="none",
-                              label=r"$\|\Gamma_h-\Gamma_h^T\|_F/\|\Gamma_h\|_F$")], loc="upper left")
+    for ax, key, ylab, title in ((axs[1, 0], "mom_opnorm_max", r"$\max_a\|\Gamma_h t_a\|\,/\,\|\Gamma_D\|_2$",
+                                  "(d) Momentum conservation"),
+                                 (axs[1, 1], "sym_resid", r"$\|\Gamma_h-\Gamma_h^T\|_F\,/\,\|\Gamma_h\|_F$",
+                                  "(e) Symmetry")):
+        for fam in FAMS:
+            fr = [r for r in rows if r["family"] == fam]
+            ax.plot([r["E_G"] for r in fr], [r[key] for r in fr], FAM_MK[fam], color=FAM_COL[fam], ms=2.6,
+                    alpha=0.6, ls="none", label=fam)
+        ax.set_xscale("log"), ax.set_yscale("log"), ax.set_ylim(5e-19, 1e-16)
+        ax.set_xlabel(r"$E_\Gamma$"), ax.set_ylabel(ylab), ax.set_title(title)
+        ax.legend(loc="upper left", ncol=3, columnspacing=0.8)
     ax = axs[1, 2]
     for st, dashed in A_SETTINGS:
         rs = [r for r in rows if r["sweep"] == "M" and r["setting"] == st and r.get("t_matvec_s")]
@@ -311,13 +275,19 @@ def exp2(results, figures, read_csv):
     rows = [r for r in read_csv(results / "pilot.csv") if r.get("E_G") is not None]
     for r in rows:
         r["x"] = r["sF_eff"] if r["sweep"] == "sF" else r["value"]
-        r["floor"] = max(r["ref_floor_G"], r["E_G_mesh_only"], 1e-15)
+    # improvement ratios E(theta=0)/E(theta=1/2) from the stored errors (all relative to Gamma_D), shown only where both
+    # errors exceed 10x the PPPM mesh-only error of the pair (and 1e-15), so the M = 80 mesh plateau is not divided
+    mesh = {}
+    for r in rows:
+        key = (r["config"], r["kappa"], r["sweep"], r["value"])
+        mesh[key] = max(mesh.get(key, 1e-15), r["E_G_mesh_only"])
     rat = read_csv(results / "ratios.csv")
     for r in rat:
         r["x"] = r["sF_eff"] if r["sweep"] == "sF" else r["value"]
-        a, b = r["E_GX_slow_max_theta0"], r["E_GX_slow_max_theta0.5"]
-        r["ratio_slow"] = a / b if min(a, b) > 10 * r["floor"] else None
-    floor = lambda kap: float(np.median([r["floor"] for r in rows if r["kappa"] == kap]))
+        lev = 10 * mesh[(r["config"], r["kappa"], r["sweep"], r["value"])]
+        for m, out in (("E_G", "ratio_E_G"), ("E_GX", "ratio_E_GX"), ("E_GX_slow_max", "ratio_slow")):
+            a, b = r[f"{m}_theta0"], r[f"{m}_theta0.5"]
+            r[out] = a / b if min(a, b) > lev else None
 
     def cand_panel(ax, kap, sw, legend=True):
         rs = [r for r in rows if r["kappa"] == kap and r["sweep"] == sw]
@@ -328,7 +298,6 @@ def exp2(results, figures, read_csv):
         x = np.linspace(2, 5.7, 50)
         y0 = np.median([r["E_G"] for r in rs if abs(r["x"] - 3.0) < 0.13 and r["theta"] == 0.0])
         guide(ax, x, anchored(x, lambda s: np.exp(-s ** 2), 3.0, y0), None)
-        threshold(ax, floor(kap), "floor: max(reference, mesh-only)", x_text=0.02, ha="left", above=False)
         ax.set_yscale("log"), ax.set_ylim(1e-16, 0.3)
         if legend:
             ax.legend(handles=[Line2D([], [], color=CAND_COL[t], marker=CAND_MK[t], label=CAND_LAB[t]) for t in (0.0, 0.5)]
@@ -397,7 +366,7 @@ def exp2(results, figures, read_csv):
     ax.annotate(f"negative eigenvalues: {n_neg} of {n_ops} operators", xy=(0.97, 0.04), xycoords="axes fraction",
                 ha="right", fontsize=6.3)
     ax.set_xlabel(r"$s_R=\xi r_c$  ($s_F=6.5$)")
-    ax.set_ylabel(r"$\lambda_{\min}(\Gamma_h)/\lambda_{\min}(\Gamma_{ref})-1$")
+    ax.set_ylabel(r"$\lambda_{\min}(\Gamma_h)/\lambda_{\min}(\Gamma_D)-1$")
     ax.set_title(r"(a) Complete $\Gamma_h$ on Range($\Pi$), no repair")
     ax.legend(handles=[Line2D([], [], color=CAND_COL[t], marker=CAND_MK[t], label=CAND_LAB[t]) for t in (0.0, 0.5)]
               + [Line2D([], [], color=GREY, label=r"$\kappa=0.7$"),
@@ -414,7 +383,7 @@ def exp2(results, figures, read_csv):
     ax.set_xlabel(r"$E_\Gamma$"), ax.set_ylabel("residual")
     ax.set_title("(b) Momentum and symmetry residuals")
     ax.legend(handles=[Line2D([], [], color=CAND_COL[t], marker=CAND_MK[t], ls="none", label=CAND_LAB[t]) for t in (0.0, 0.5)]
-              + [Line2D([], [], color=GREY, marker="o", ls="none", label=r"$\|\Gamma_h t\|/\|\Gamma_{ref}\|$"),
+              + [Line2D([], [], color=GREY, marker="o", ls="none", label=r"$\|\Gamma_h t\|/\|\Gamma_D\|$"),
                  Line2D([], [], color=GREY, marker="o", mfc="white", ls="none", label="symmetry")], loc="upper left", ncol=2)
     es = read_csv(results / "eqacc_summary.csv")
     pt = read_csv(results / "eqacc_paired_timing.csv")
