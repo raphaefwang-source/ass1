@@ -1,0 +1,364 @@
+10:38:47 START refs
+10:38:47 DONE refs
+10:38:47 START search
+10:39:01 search xi=1.15 s=2.9: 0 / 75 pass design
+10:39:15 search xi=1.15 s=3: 0 / 75 pass design
+10:39:24 search xi=1.15 s=3.1: 8 / 75 pass design
+10:39:35 search xi=1.15 s=3.2: 4 / 75 pass design
+10:39:45 search xi=1.15 s=3.3: 2 / 75 pass design
+10:39:53 search xi=1.15 s=3.4: 2 / 75 pass design
+10:40:02 search xi=1.15 s=3.5: 2 / 75 pass design
+10:40:10 search xi=1.15 s=3.6: 1 / 75 pass design
+10:40:18 search xi=1.15 s=3.8: 2 / 75 pass design
+10:40:26 search xi=1.15 s=4: 1 / 75 pass design
+10:40:42 search xi=1.2 s=2.9: 0 / 75 pass design
+10:40:57 search xi=1.2 s=3: 0 / 75 pass design
+10:41:07 search xi=1.2 s=3.1: 7 / 75 pass design
+10:41:16 search xi=1.2 s=3.2: 2 / 75 pass design
+10:41:24 search xi=1.2 s=3.3: 0 / 75 pass design
+10:41:32 search xi=1.2 s=3.4: 1 / 75 pass design
+10:41:40 search xi=1.2 s=3.5: 2 / 75 pass design
+10:41:49 search xi=1.2 s=3.6: 0 / 75 pass design
+10:41:57 search xi=1.2 s=3.8: 2 / 75 pass design
+10:42:04 search xi=1.2 s=4: 0 / 75 pass design
+10:42:23 search xi=1.3 s=2.9: 0 / 75 pass design
+10:42:33 search xi=1.3 s=3: 11 / 75 pass design
+10:42:42 search xi=1.3 s=3.1: 1 / 75 pass design
+10:42:51 search xi=1.3 s=3.2: 1 / 75 pass design
+10:42:59 search xi=1.3 s=3.3: 3 / 75 pass design
+10:43:08 search xi=1.3 s=3.4: 3 / 75 pass design
+10:43:16 search xi=1.3 s=3.5: 2 / 75 pass design
+10:43:24 search xi=1.3 s=3.6: 2 / 75 pass design
+10:43:32 search xi=1.3 s=3.8: 1 / 75 pass design
+10:43:41 search xi=1.3 s=4: 0 / 75 pass design
+10:43:54 search xi=1.4 s=2.9: 0 / 75 pass design
+10:44:06 search xi=1.4 s=3: 9 / 75 pass design
+10:44:21 search xi=1.4 s=3.1: 10 / 75 pass design
+10:44:30 search xi=1.4 s=3.2: 3 / 75 pass design
+10:44:41 search xi=1.4 s=3.3: 0 / 75 pass design
+10:44:50 search xi=1.4 s=3.4: 4 / 75 pass design
+10:45:01 search xi=1.4 s=3.5: 1 / 75 pass design
+10:45:10 search xi=1.4 s=3.6: 2 / 75 pass design
+10:45:19 search xi=1.4 s=3.8: 2 / 75 pass design
+10:45:28 search xi=1.4 s=4: 1 / 75 pass design
+10:45:43 search xi=1.5 s=2.9: 0 / 75 pass design
+10:45:58 search xi=1.5 s=3: 11 / 75 pass design
+10:46:09 search xi=1.5 s=3.1: 4 / 75 pass design
+10:46:19 search xi=1.5 s=3.2: 12 / 75 pass design
+10:46:29 search xi=1.5 s=3.3: 4 / 75 pass design
+10:46:39 search xi=1.5 s=3.4: 3 / 75 pass design
+10:46:47 search xi=1.5 s=3.5: 5 / 75 pass design
+10:46:55 search xi=1.5 s=3.6: 4 / 75 pass design
+10:47:03 search xi=1.5 s=3.8: 5 / 75 pass design
+10:47:11 search xi=1.5 s=4: 2 / 75 pass design
+10:47:25 search xi=1.6 s=2.9: 0 / 75 pass design
+10:47:37 search xi=1.6 s=3: 11 / 75 pass design
+10:47:46 search xi=1.6 s=3.1: 9 / 75 pass design
+10:47:55 search xi=1.6 s=3.2: 6 / 75 pass design
+10:48:03 search xi=1.6 s=3.3: 5 / 75 pass design
+10:48:12 search xi=1.6 s=3.4: 5 / 75 pass design
+10:48:21 search xi=1.6 s=3.5: 0 / 75 pass design
+10:48:30 search xi=1.6 s=3.6: 1 / 75 pass design
+10:48:38 search xi=1.6 s=3.8: 6 / 75 pass design
+10:48:46 search xi=1.6 s=4: 2 / 75 pass design
+10:48:46 DONE search
+10:48:46 START validate
+10:48:57 xi=1.15: nine-config timing shortlist 22 of 22 survivors
+10:49:03 validate xi1.15_s3.2_sf3.2_M20_p5: 9 configs, max=6.2981e-05, feasible=True
+10:49:08 validate xi1.15_s3.2_sf3.2_M18_p6: 9 configs, max=4.8459e-05, feasible=True
+10:49:16 validate xi1.15_s3.8_sf3.8_M20_p5: 9 configs, max=5.6665e-05, feasible=True
+10:49:25 xi=1.2: nine-config timing shortlist 14 of 14 survivors
+10:49:32 validate xi1.2_s3.1_sf3.1_M20_p5: 9 configs, max=8.6483e-05, feasible=True
+10:49:37 validate xi1.2_s3.2_sf3.2_M18_p6: 9 configs, max=6.2293e-05, feasible=True
+10:49:42 validate xi1.2_s3.5_sf3.5_M22_p5: 9 configs, max=3.791e-05, feasible=True
+10:49:58 xi=1.3: nine-config timing shortlist 24 of 24 survivors
+10:50:04 validate xi1.3_s3.1_sf3.1_M20_p6: 9 configs, max=6.6785e-05, feasible=True
+10:50:09 validate xi1.3_s3.2_sf3.2_M20_p6: 9 configs, max=5.1407e-05, feasible=True
+10:50:14 validate xi1.3_s3_sf3_M22_p6: 9 configs, max=9.534e-05, feasible=True
+10:50:16 validate xi1.3_s3_sf3_M24_p5: 4 configs, max=0.00010056, feasible=False
+10:50:35 xi=1.4: nine-config timing shortlist 32 of 32 survivors
+10:50:37 validate xi1.4_s3.1_sf3.1_M22_p5: 2 configs, max=0.00010645, feasible=False
+10:50:41 validate xi1.4_s3.1_sf3.1_M24_p5: 9 configs, max=7.4569e-05, feasible=True
+10:50:47 validate xi1.4_s3.4_sf3.4_M24_p5: 9 configs, max=5.5389e-05, feasible=True
+10:50:50 validate xi1.4_s3_sf3_M20_p7: 4 configs, max=0.00010151, feasible=False
+10:50:54 validate xi1.4_s3_sf3_M24_p6: 7 configs, max=0.00010222, feasible=False
+10:51:00 validate xi1.4_s3.2_sf3.2_M27_p5: 9 configs, max=3.7544e-05, feasible=True
+10:51:17 xi=1.5: nine-config timing shortlist 32 of 50 survivors
+10:51:23 validate xi1.5_s3.1_sf3.1_M24_p5: 9 configs, max=9.7342e-05, feasible=True
+10:51:28 validate xi1.5_s3.4_sf3.4_M24_p5: 9 configs, max=8.6563e-05, feasible=True
+10:51:34 validate xi1.5_s3.3_sf3.3_M24_p5: 9 configs, max=8.9546e-05, feasible=True
+10:51:51 xi=1.6: nine-config timing shortlist 32 of 45 survivors
+10:51:57 validate xi1.6_s3.2_sf3.2_M24_p6: 9 configs, max=7.0485e-05, feasible=True
+10:52:03 validate xi1.6_s3.1_sf3.1_M24_p6: 9 configs, max=8.0968e-05, feasible=True
+10:52:11 validate xi1.6_s3.4_sf3.4_M27_p5: 9 configs, max=5.2579e-05, feasible=True
+10:52:17 validate xi1.6_s3.3_sf3.3_M24_p6: 9 configs, max=5.8867e-05, feasible=True
+10:52:24 DONE validate
+10:52:24 START timing
+10:52:52 interleaved timing uniform_N256_s2_rho0.75: 20 candidates
+10:53:16 interleaved timing strong_N256_s1_rho0.75: 20 candidates
+10:53:36 interleaved timing uniform_N256_s1_rho0.75: 20 candidates
+10:53:53 interleaved timing uniform_N256_s3_rho0.75: 20 candidates
+10:54:10 interleaved timing moderate_N256_s1_rho0.75: 20 candidates
+10:54:26 interleaved timing moderate_N256_s2_rho0.75: 20 candidates
+10:54:49 interleaved timing moderate_N256_s3_rho0.75: 20 candidates
+10:55:15 interleaved timing strong_N256_s2_rho0.75: 20 candidates
+10:55:36 interleaved timing strong_N256_s3_rho0.75: 20 candidates
+10:55:36 DONE timing
+10:56:25 START search
+10:56:25 Rechecking 2641 runtime-pruned points with factor 2
+10:56:26 search xi=1.15 s=2.9: 0 / 75 pass design
+10:56:27 search xi=1.15 s=3: 0 / 75 pass design
+10:56:34 search xi=1.15 s=3.1: 23 / 75 pass design
+10:56:43 search xi=1.15 s=3.2: 22 / 75 pass design
+10:56:52 search xi=1.15 s=3.3: 20 / 75 pass design
+10:57:00 search xi=1.15 s=3.4: 19 / 75 pass design
+10:57:09 search xi=1.15 s=3.5: 14 / 75 pass design
+10:57:18 search xi=1.15 s=3.6: 13 / 75 pass design
+10:57:30 search xi=1.15 s=3.8: 7 / 75 pass design
+10:57:38 search xi=1.15 s=4: 6 / 75 pass design
+10:57:39 search xi=1.2 s=2.9: 0 / 75 pass design
+10:57:40 search xi=1.2 s=3: 0 / 75 pass design
+10:57:48 search xi=1.2 s=3.1: 12 / 75 pass design
+10:57:58 search xi=1.2 s=3.2: 9 / 75 pass design
+10:58:08 search xi=1.2 s=3.3: 6 / 75 pass design
+10:58:19 search xi=1.2 s=3.4: 6 / 75 pass design
+10:58:28 search xi=1.2 s=3.5: 4 / 75 pass design
+10:58:39 search xi=1.2 s=3.6: 3 / 75 pass design
+10:58:49 search xi=1.2 s=3.8: 3 / 75 pass design
+10:58:59 search xi=1.2 s=4: 1 / 75 pass design
+10:59:00 search xi=1.3 s=2.9: 0 / 75 pass design
+10:59:10 search xi=1.3 s=3: 13 / 75 pass design
+10:59:22 search xi=1.3 s=3.1: 13 / 75 pass design
+10:59:32 search xi=1.3 s=3.2: 9 / 75 pass design
+10:59:42 search xi=1.3 s=3.3: 11 / 75 pass design
+10:59:52 search xi=1.3 s=3.4: 14 / 75 pass design
+11:00:02 search xi=1.3 s=3.5: 12 / 75 pass design
+11:00:11 search xi=1.3 s=3.6: 10 / 75 pass design
+11:00:22 search xi=1.3 s=3.8: 12 / 75 pass design
+11:00:32 search xi=1.3 s=4: 7 / 75 pass design
+11:00:33 search xi=1.4 s=2.9: 0 / 75 pass design
+11:00:39 search xi=1.4 s=3: 16 / 75 pass design
+11:00:49 search xi=1.4 s=3.1: 17 / 75 pass design
+11:00:59 search xi=1.4 s=3.2: 12 / 75 pass design
+11:01:11 search xi=1.4 s=3.3: 9 / 75 pass design
+11:01:23 search xi=1.4 s=3.4: 7 / 75 pass design
+11:01:34 search xi=1.4 s=3.5: 11 / 75 pass design
+11:01:46 search xi=1.4 s=3.6: 6 / 75 pass design
+11:01:58 search xi=1.4 s=3.8: 3 / 75 pass design
+11:02:08 search xi=1.4 s=4: 1 / 75 pass design
+11:02:10 search xi=1.5 s=2.9: 0 / 75 pass design
+11:02:16 search xi=1.5 s=3: 11 / 75 pass design
+11:02:26 search xi=1.5 s=3.1: 9 / 75 pass design
+11:02:35 search xi=1.5 s=3.2: 15 / 75 pass design
+11:02:46 search xi=1.5 s=3.3: 10 / 75 pass design
+11:02:56 search xi=1.5 s=3.4: 10 / 75 pass design
+11:03:07 search xi=1.5 s=3.5: 12 / 75 pass design
+11:03:16 search xi=1.5 s=3.6: 10 / 75 pass design
+11:03:26 search xi=1.5 s=3.8: 11 / 75 pass design
+11:03:37 search xi=1.5 s=4: 8 / 75 pass design
+11:03:39 search xi=1.6 s=2.9: 0 / 75 pass design
+11:03:45 search xi=1.6 s=3: 14 / 75 pass design
+11:03:53 search xi=1.6 s=3.1: 15 / 75 pass design
+11:04:01 search xi=1.6 s=3.2: 12 / 75 pass design
+11:04:10 search xi=1.6 s=3.3: 14 / 75 pass design
+11:04:19 search xi=1.6 s=3.4: 12 / 75 pass design
+11:04:29 search xi=1.6 s=3.5: 12 / 75 pass design
+11:04:38 search xi=1.6 s=3.6: 11 / 75 pass design
+11:04:49 search xi=1.6 s=3.8: 11 / 75 pass design
+11:04:59 search xi=1.6 s=4: 9 / 75 pass design
+11:04:59 DONE search
+11:04:59 START validate
+11:05:10 xi=1.15: nine-config timing shortlist 32 of 124 survivors
+11:05:21 xi=1.2: nine-config timing shortlist 32 of 44 survivors
+11:05:26 validate xi1.2_s3.3_sf3.3_M20_p5: 9 configs, max=7.7859e-05, feasible=True
+11:05:31 validate xi1.2_s3.2_sf3.2_M20_p5: 9 configs, max=7.8895e-05, feasible=True
+11:05:37 validate xi1.2_s3.4_sf3.4_M20_p5: 9 configs, max=7.6488e-05, feasible=True
+11:05:44 xi=1.3: nine-config timing shortlist 32 of 101 survivors
+11:05:52 validate xi1.3_s3.2_sf3.2_M22_p5: 9 configs, max=6.8632e-05, feasible=True
+11:06:00 validate xi1.3_s3.1_sf3.1_M24_p5: 9 configs, max=6.0167e-05, feasible=True
+11:06:06 validate xi1.3_s3.4_sf3.4_M22_p5: 9 configs, max=6.3253e-05, feasible=True
+11:06:12 validate xi1.3_s3.1_sf3.1_M22_p5: 9 configs, max=7.6068e-05, feasible=True
+11:06:18 validate xi1.3_s3.3_sf3.3_M22_p5: 9 configs, max=6.2824e-05, feasible=True
+11:06:28 xi=1.4: nine-config timing shortlist 32 of 82 survivors
+11:06:34 validate xi1.4_s3.5_sf3.5_M22_p6: 9 configs, max=3.6971e-05, feasible=True
+11:06:40 validate xi1.4_s3.1_sf3.1_M22_p6: 9 configs, max=6.2028e-05, feasible=True
+11:06:46 validate xi1.4_s3.8_sf3.8_M30_p4: 9 configs, max=7.5969e-05, feasible=True
+11:06:52 validate xi1.4_s3.2_sf3.2_M20_p7: 9 configs, max=5.8156e-05, feasible=True
+11:06:59 validate xi1.4_s3.1_sf3.1_M20_p7: 9 configs, max=6.351e-05, feasible=True
+11:07:02 xi=1.5: nine-config timing shortlist 32 of 96 survivors
+11:07:08 validate xi1.5_s3.1_sf3.1_M24_p6: 9 configs, max=6.653e-05, feasible=True
+11:07:12 xi=1.6: nine-config timing shortlist 32 of 110 survivors
+11:07:20 validate xi1.6_s3.3_sf3.3_M27_p5: 9 configs, max=5.5334e-05, feasible=True
+11:07:27 validate xi1.6_s3.3_sf3.3_M27_p6: 9 configs, max=2.3658e-05, feasible=True
+11:07:39 DONE validate
+11:07:39 START timing
+11:08:11 interleaved timing uniform_N256_s2_rho0.75: 37 candidates
+11:08:41 interleaved timing strong_N256_s1_rho0.75: 37 candidates
+11:09:12 interleaved timing uniform_N256_s1_rho0.75: 37 candidates
+11:09:50 interleaved timing uniform_N256_s3_rho0.75: 37 candidates
+11:10:28 interleaved timing moderate_N256_s1_rho0.75: 37 candidates
+11:11:03 interleaved timing moderate_N256_s2_rho0.75: 37 candidates
+11:11:35 interleaved timing moderate_N256_s3_rho0.75: 37 candidates
+11:12:13 interleaved timing strong_N256_s2_rho0.75: 37 candidates
+11:12:43 interleaved timing strong_N256_s3_rho0.75: 37 candidates
+11:12:43 DONE timing
+11:13:07 START validate
+11:13:38 xi=1.15: nine-config timing shortlist 32 of 124 survivors
+11:13:45 validate xi1.15_s3.4_sf3.4_M20_p5: 9 configs, max=5.7366e-05, feasible=True
+11:13:50 validate xi1.15_s3.1_sf3.1_M20_p6: 9 configs, max=5.3863e-05, feasible=True
+11:14:12 xi=1.2: nine-config timing shortlist 32 of 44 survivors
+11:14:17 validate xi1.2_s3.2_sf3.2_M20_p6: 9 configs, max=3.833e-05, feasible=True
+11:14:22 validate xi1.2_s3.1_sf3.1_M18_p6: 9 configs, max=7.4075e-05, feasible=True
+11:14:53 xi=1.3: nine-config timing shortlist 32 of 101 survivors
+11:14:59 validate xi1.3_s3.5_sf3.5_M24_p5: 9 configs, max=3.487e-05, feasible=True
+11:15:05 validate xi1.3_s3.3_sf3.3_M22_p6: 9 configs, max=2.4635e-05, feasible=True
+11:15:11 validate xi1.3_s3.3_sf3.3_M20_p6: 9 configs, max=4.9901e-05, feasible=True
+11:15:43 xi=1.4: nine-config timing shortlist 32 of 82 survivors
+11:15:48 validate xi1.4_s3.2_sf3.2_M20_p6: 9 configs, max=9.1861e-05, feasible=True
+11:15:53 validate xi1.4_s3.4_sf3.4_M22_p5: 9 configs, max=9.6728e-05, feasible=True
+11:16:00 validate xi1.4_s3.5_sf3.5_M24_p6: 9 configs, max=1.9983e-05, feasible=True
+11:16:40 xi=1.5: nine-config timing shortlist 32 of 96 survivors
+11:16:46 validate xi1.5_s3.2_sf3.2_M22_p6: 9 configs, max=6.8081e-05, feasible=True
+11:17:22 xi=1.6: nine-config timing shortlist 32 of 110 survivors
+11:17:27 validate xi1.6_s3.3_sf3.3_M24_p7: 9 configs, max=3.266e-05, feasible=True
+11:17:33 validate xi1.6_s3.3_sf3.3_M32_p4: 9 configs, max=9.5524e-05, feasible=True
+11:17:38 validate xi1.6_s3.5_sf3.5_M30_p5: 9 configs, max=2.7135e-05, feasible=True
+11:17:40 validate xi1.6_s3.1_sf3.1_M32_p4: 3 configs, max=0.0001076, feasible=False
+11:17:45 validate xi1.6_s4_sf4_M32_p4: 9 configs, max=9.0516e-05, feasible=True
+11:17:50 validate xi1.6_s3.1_sf3.1_M27_p6: 9 configs, max=5.3245e-05, feasible=True
+11:17:50 DONE validate
+11:17:50 START timing
+11:18:26 interleaved timing uniform_N256_s2_rho0.75: 28 candidates
+11:18:58 interleaved timing strong_N256_s1_rho0.75: 28 candidates
+11:19:34 interleaved timing uniform_N256_s1_rho0.75: 28 candidates
+Traceback (most recent call last):
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/run_joint_optimization.py", line 601, in <module>
+    main()
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/run_joint_optimization.py", line 596, in main
+    globals()[f'stage_{stage}'](args)
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/run_joint_optimization.py", line 526, in stage_timing
+    t = C.median_time(functions[cid][phase],1,warm=1)[0]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/common.py", line 97, in median_time
+    fn()
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/run_joint_optimization.py", line 513, in <lambda>
+    mesh=lambda op=op:np.einsum('nab,nb->na',op.Dm,X)-op.mesh.apply(op.idx,op.wt,X))
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wfy666/Documents/New project/ass1_joint/ewald_longitudinal/test_parameter_selection.py", line 263, in apply
+    phi = self._conv(rho_hat, range(3))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wfy666/Documents/New project/ass1_joint/ewald_longitudinal/test_parameter_selection.py", line 253, in _conv
+    return [np.fft.irfftn(sum(self._G(d, c) * rho_hat[c] for c in comps), s=(self.M,) * 3, axes=(0, 1, 2)) for d in range(3)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wfy666/Documents/New project/ass1_joint/ewald_longitudinal/test_parameter_selection.py", line 253, in <listcomp>
+    return [np.fft.irfftn(sum(self._G(d, c) * rho_hat[c] for c in comps), s=(self.M,) * 3, axes=(0, 1, 2)) for d in range(3)]
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wfy666/Documents/New project/ass1_joint/ewald_longitudinal/test_parameter_selection.py", line 253, in <genexpr>
+    return [np.fft.irfftn(sum(self._G(d, c) * rho_hat[c] for c in comps), s=(self.M,) * 3, axes=(0, 1, 2)) for d in range(3)]
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+11:20:33 START search
+11:20:40 search xi=1.15 s=2.9: 0 / 75 pass design
+11:20:43 search xi=1.15 s=3: 0 / 75 pass design
+11:20:47 search xi=1.15 s=3.1: 23 / 75 pass design
+11:20:50 search xi=1.15 s=3.2: 22 / 75 pass design
+11:20:54 search xi=1.15 s=3.3: 20 / 75 pass design
+11:20:57 search xi=1.15 s=3.4: 19 / 75 pass design
+11:21:02 search xi=1.15 s=3.5: 14 / 75 pass design
+11:21:06 search xi=1.15 s=3.6: 13 / 75 pass design
+11:21:09 search xi=1.15 s=3.8: 7 / 75 pass design
+11:21:12 search xi=1.15 s=4: 6 / 75 pass design
+11:21:15 search xi=1.2 s=2.9: 0 / 75 pass design
+11:21:18 search xi=1.2 s=3: 0 / 75 pass design
+11:21:21 search xi=1.2 s=3.1: 12 / 75 pass design
+11:21:24 search xi=1.2 s=3.2: 9 / 75 pass design
+11:21:28 search xi=1.2 s=3.3: 6 / 75 pass design
+11:21:31 search xi=1.2 s=3.4: 6 / 75 pass design
+11:21:35 search xi=1.2 s=3.5: 4 / 75 pass design
+11:21:39 search xi=1.2 s=3.6: 3 / 75 pass design
+11:21:43 search xi=1.2 s=3.8: 3 / 75 pass design
+11:21:46 search xi=1.2 s=4: 1 / 75 pass design
+11:21:49 search xi=1.3 s=2.9: 0 / 75 pass design
+11:21:52 search xi=1.3 s=3: 13 / 75 pass design
+11:21:55 search xi=1.3 s=3.1: 13 / 75 pass design
+11:22:00 search xi=1.3 s=3.2: 9 / 75 pass design
+11:22:07 search xi=1.3 s=3.3: 11 / 75 pass design
+11:22:11 search xi=1.3 s=3.4: 14 / 75 pass design
+11:22:14 search xi=1.3 s=3.5: 12 / 75 pass design
+11:22:18 search xi=1.3 s=3.6: 10 / 75 pass design
+11:22:23 search xi=1.3 s=3.8: 12 / 75 pass design
+11:22:27 search xi=1.3 s=4: 7 / 75 pass design
+11:22:30 search xi=1.4 s=2.9: 0 / 75 pass design
+11:22:34 search xi=1.4 s=3: 16 / 75 pass design
+11:22:38 search xi=1.4 s=3.1: 17 / 75 pass design
+11:22:41 search xi=1.4 s=3.2: 12 / 75 pass design
+11:22:44 search xi=1.4 s=3.3: 9 / 75 pass design
+11:22:48 search xi=1.4 s=3.4: 7 / 75 pass design
+11:22:51 search xi=1.4 s=3.5: 11 / 75 pass design
+11:22:53 search xi=1.4 s=3.6: 6 / 75 pass design
+11:22:58 search xi=1.4 s=3.8: 3 / 75 pass design
+11:23:01 search xi=1.4 s=4: 1 / 75 pass design
+11:23:04 search xi=1.5 s=2.9: 0 / 75 pass design
+11:23:06 search xi=1.5 s=3: 11 / 75 pass design
+11:23:09 search xi=1.5 s=3.1: 9 / 75 pass design
+11:23:11 search xi=1.5 s=3.2: 15 / 75 pass design
+11:23:14 search xi=1.5 s=3.3: 10 / 75 pass design
+11:23:19 search xi=1.5 s=3.4: 10 / 75 pass design
+11:23:22 search xi=1.5 s=3.5: 12 / 75 pass design
+11:23:26 search xi=1.5 s=3.6: 10 / 75 pass design
+11:23:29 search xi=1.5 s=3.8: 11 / 75 pass design
+11:23:33 search xi=1.5 s=4: 8 / 75 pass design
+11:23:36 search xi=1.6 s=2.9: 0 / 75 pass design
+11:23:41 search xi=1.6 s=3: 14 / 75 pass design
+11:23:45 search xi=1.6 s=3.1: 15 / 75 pass design
+11:23:50 search xi=1.6 s=3.2: 12 / 75 pass design
+11:23:54 search xi=1.6 s=3.3: 14 / 75 pass design
+11:23:57 search xi=1.6 s=3.4: 12 / 75 pass design
+11:24:01 search xi=1.6 s=3.5: 12 / 75 pass design
+11:24:05 search xi=1.6 s=3.6: 11 / 75 pass design
+11:24:08 search xi=1.6 s=3.8: 11 / 75 pass design
+11:24:10 search xi=1.6 s=4: 9 / 75 pass design
+11:24:31 search xi=1.8 s=2.9: 0 / 75 pass design
+11:24:51 search xi=1.8 s=3: 0 / 75 pass design
+11:25:11 search xi=1.8 s=3.1: 19 / 75 pass design
+11:25:29 search xi=1.8 s=3.2: 11 / 75 pass design
+11:25:45 search xi=1.8 s=3.3: 16 / 75 pass design
+11:25:57 search xi=1.8 s=3.4: 12 / 75 pass design
+11:26:09 search xi=1.8 s=3.5: 13 / 75 pass design
+11:26:22 search xi=1.8 s=3.6: 13 / 75 pass design
+11:26:34 search xi=1.8 s=3.8: 9 / 75 pass design
+11:26:46 search xi=1.8 s=4: 6 / 75 pass design
+11:27:09 search xi=2 s=2.9: 0 / 75 pass design
+11:27:32 search xi=2 s=3: 0 / 75 pass design
+11:27:45 search xi=2 s=3.1: 14 / 75 pass design
+11:28:00 search xi=2 s=3.2: 9 / 75 pass design
+11:28:14 search xi=2 s=3.3: 13 / 75 pass design
+11:28:31 search xi=2 s=3.4: 3 / 75 pass design
+11:28:49 search xi=2 s=3.5: 0 / 75 pass design
+11:29:01 search xi=2 s=3.6: 3 / 75 pass design
+11:29:12 search xi=2 s=3.8: 5 / 75 pass design
+11:29:23 search xi=2 s=4: 6 / 75 pass design
+11:29:24 DONE search
+11:30:07 START validate
+11:30:50 xi=1.8: nine-config timing shortlist 32 of 99 survivors
+11:31:01 validate xi1.8_s3.5_sf3.5_M32_p5: 9 configs, max=3.3977e-05, feasible=True
+11:31:10 validate xi1.8_s3.6_sf3.6_M32_p5: 9 configs, max=3.3524e-05, feasible=True
+11:31:18 validate xi1.8_s3.1_sf3.1_M32_p5: 9 configs, max=7.0152e-05, feasible=True
+11:31:26 validate xi1.8_s3.3_sf3.3_M27_p5: 9 configs, max=9.5569e-05, feasible=True
+11:32:02 xi=2: nine-config timing shortlist 32 of 53 survivors
+11:32:09 validate xi2_s3.2_sf3.2_M32_p5: 9 configs, max=6.9647e-05, feasible=True
+11:32:15 validate xi2_s3.1_sf3.1_M30_p6: 9 configs, max=6.3653e-05, feasible=True
+11:32:21 validate xi2_s3.1_sf3.1_M32_p5: 9 configs, max=7.8254e-05, feasible=True
+11:32:28 validate xi2_s3.3_sf3.3_M30_p6: 9 configs, max=3.5485e-05, feasible=True
+11:32:28 DONE validate
+11:34:37 START timing
+11:35:51 interleaved timing uniform_N256_s2_rho0.75: 36 candidates
+11:36:53 interleaved timing strong_N256_s1_rho0.75: 36 candidates
+11:37:39 interleaved timing uniform_N256_s1_rho0.75: 36 candidates
+11:38:23 interleaved timing uniform_N256_s3_rho0.75: 36 candidates
+11:39:08 interleaved timing moderate_N256_s1_rho0.75: 36 candidates
+11:39:54 interleaved timing moderate_N256_s2_rho0.75: 36 candidates
+11:40:39 interleaved timing moderate_N256_s3_rho0.75: 36 candidates
+11:41:24 interleaved timing strong_N256_s2_rho0.75: 36 candidates
+11:42:13 interleaved timing strong_N256_s3_rho0.75: 36 candidates
+11:42:13 DONE timing

@@ -1,0 +1,105 @@
+{
+ "time": "2026-10-23T11:30:07-0400",
+ "command": "python3 benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/run_joint_optimization.py validate --xi-extension --output-dir benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/xi_extension_20261023 --xis 1.8 2 --refresh-shortlist-times --runtime-prune-factor 2 --validation-band 1.12 --include-balance-controls --finalists-per-xi 2 --timing-top-measured 2",
+ "git": {
+  "commit": "f9ce8564a80ce627ed866c6df4186d860f6af2bc",
+  "dirty": true
+ },
+ "code_hash": "bd4e474676d89dfe",
+ "python": "3.11.5",
+ "numpy": "2.4.6",
+ "scipy": "1.17.1",
+ "host": "host-375949.dhcp.egr.msu.edu",
+ "cpu": "arm",
+ "n_cpu": 8,
+ "threads": {
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1"
+ },
+ "amplitude_c": 1.0,
+ "threadpool_info": [],
+ "search_grid": {
+  "s": [
+   2.9,
+   3.0,
+   3.1,
+   3.2,
+   3.3,
+   3.4,
+   3.5,
+   3.6,
+   3.8,
+   4.0
+  ],
+  "xi": [
+   1.8,
+   2.0
+  ],
+  "M": [
+   16,
+   18,
+   20,
+   22,
+   24,
+   27,
+   30,
+   32,
+   36,
+   40,
+   45,
+   48,
+   54,
+   60,
+   64
+  ],
+  "p": [
+   3,
+   4,
+   5,
+   6,
+   7
+  ]
+ },
+ "xi_extension": true,
+ "baseline_id": "previous_xi115",
+ "baseline_parameters": {
+  "kappa": 0.7,
+  "rho": 0.75,
+  "xi": 1.15,
+  "sR": 3.1,
+  "sF": 3.1,
+  "M": 20,
+  "p": 5,
+  "theta": 0.0
+ },
+ "options": {
+  "stages": [
+   "validate"
+  ],
+  "rebuild_necessary_refs": false,
+  "output_dir": "benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/xi_extension_20261023",
+  "xi_extension": true,
+  "xis": [
+   1.8,
+   2.0
+  ],
+  "s_values": null,
+  "mesh_sizes": null,
+  "orders": null,
+  "runtime_prune_factor": 2.0,
+  "validation_band": 1.12,
+  "finalists_per_xi": 2,
+  "rounds": 9,
+  "reps": 11,
+  "recheck_pruned": false,
+  "include_balance_controls": true,
+  "timing_top_measured": 2,
+  "refresh_shortlist_times": true
+ },
+ "runner_sha256": "918eb3aa24ee779ba3c6d220ec6003da0b2dd2c1677da5b95bd8fed9b718314a",
+ "reference": "Gamma_D only",
+ "target": 0.0001,
+ "objective": "median over nine per-configuration median matvec times",
+ "platform": "macOS-27.0.1-arm64-arm-64bit"
+}

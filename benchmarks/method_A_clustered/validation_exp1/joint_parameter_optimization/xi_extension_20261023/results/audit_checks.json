@@ -1,0 +1,19 @@
+{
+ "complete_requested_grid": true,
+ "n_requested": 6000,
+ "n_valid_mesh": 4580,
+ "n_dense_errors": 2004,
+ "n_runtime_pruned": 2576,
+ "n_final_timed": 36,
+ "n_raw_samples": 96228,
+ "nine_config_error_structure_checks_pass": true,
+ "interleaved_component_medians_recomputed": true,
+ "nine_reference_caches_unchanged": true,
+ "historical_artifacts_unchanged": 24,
+ "production_PPPM_and_other_experiments_unchanged": true,
+ "executed_runner_hash_verified": true,
+ "source_sha256": {
+  "run_joint_optimization.py": "918eb3aa24ee779ba3c6d220ec6003da0b2dd2c1677da5b95bd8fed9b718314a",
+  "summarize_results.py": "3a2d6bd7fe923f79c6b6d54ac3401f89b676820225f90eac3e37435bd198ad92"
+ }
+}
