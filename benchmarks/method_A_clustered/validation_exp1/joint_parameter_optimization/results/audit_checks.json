@@ -1,0 +1,22 @@
+{
+ "complete_requested_grid": true,
+ "n_requested": 864,
+ "n_mesh_valid": 822,
+ "n_design_survivors": 473,
+ "n_fully_feasible": 43,
+ "n_final_including_baseline": 44,
+ "n_final_timing_samples": 19404,
+ "samples_per_candidate_configuration": 49,
+ "timing_medians_recomputed": true,
+ "nine_reference_certificates_pass": true,
+ "small_test_vs_search_exact_match": true,
+ "no_LF_error_fields": true,
+ "existing_tracked_files_unchanged": true,
+ "source_sha256": {
+  "benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/run_joint_optimization.py": "c36b87ff18312f8c805bee03a7928bfa6c4e412fe2b3337f862bbd0eb449ae9b",
+  "benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/summarize_results.py": "e9c5150cee22fc3df3c50734b220666ad4466277cfcfe7c9e4657db690a1dcd7",
+  "benchmarks/method_A_clustered/validation_exp1/ewald_exp_lib.py": "8c7bb41073afe93678428b17759749b0a1322e18c0bf476f16177aef3a95ee56",
+  "benchmarks/method_A_clustered/cached_operator.py": "a4a99543525f7fa5ee999dea5213b452fe2ec0c7ff699826678fa65712e2b730",
+  "ewald_longitudinal/test_parameter_selection.py": "10474225653b10147af0b814d82b3728d0b8b4db9a161a51631ec74b63af6b8c"
+ }
+}

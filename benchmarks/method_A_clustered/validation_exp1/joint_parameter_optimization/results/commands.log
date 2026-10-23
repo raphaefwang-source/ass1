@@ -1,0 +1,2 @@
+2026-10-22T23:25:01-0400  cd . && python3 benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/run_joint_optimization.py refs small --rebuild-necessary-refs
+2026-10-22T23:28:36-0400  cd . && python3 benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/run_joint_optimization.py search validate timing

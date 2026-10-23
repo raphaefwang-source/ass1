@@ -1,0 +1,121 @@
+Matplotlib is building the font cache; this may take a moment.
+23:25:01 START refs
+23:25:02 direct ref uniform_N256_s2_rho0.75: R=55.0, historical direct time=11.9s
+23:25:14 ref complete 11.54s, norm=8.28884565201, cert=6.41e-14
+23:25:14 direct ref strong_N256_s1_rho0.75: R=55.0, historical direct time=11.2s
+23:25:26 ref complete 10.76s, norm=9.84301131315, cert=5.4e-14
+23:25:26 direct ref uniform_N256_s1_rho0.75: R=55.0, historical direct time=12.0s
+23:25:36 ref complete 9.42s, norm=8.46822055209, cert=6.27e-14
+23:25:37 direct ref uniform_N256_s3_rho0.75: R=55.0, historical direct time=11.5s
+23:25:48 ref complete 10.27s, norm=8.33870873474, cert=6.37e-14
+23:25:48 direct ref moderate_N256_s1_rho0.75: R=55.0, historical direct time=11.7s
+23:26:01 ref complete 12.16s, norm=9.29226341441, cert=5.72e-14
+23:26:02 direct ref moderate_N256_s2_rho0.75: R=55.0, historical direct time=11.9s
+23:26:13 ref complete 10.36s, norm=9.32330583789, cert=5.7e-14
+23:26:13 direct ref moderate_N256_s3_rho0.75: R=55.0, historical direct time=11.4s
+23:26:25 ref complete 10.68s, norm=9.39384900998, cert=5.65e-14
+23:26:25 direct ref strong_N256_s2_rho0.75: R=55.0, historical direct time=11.2s
+23:26:36 ref complete 10.30s, norm=9.79601935833, cert=5.42e-14
+23:26:36 direct ref strong_N256_s3_rho0.75: R=55.0, historical direct time=12.9s
+23:26:48 ref complete 11.20s, norm=9.81307624634, cert=5.41e-14
+23:26:48 DONE refs
+23:26:48 START small
+23:26:55 small p=3: max E_G=0.00041867988, median matvec=3.0309ms
+23:27:00 small p=4: max E_G=8.8919579e-05, median matvec=3.2552ms
+23:27:00 DONE small
+23:28:36 START search
+23:28:38 search xi=0.85 s=3: 0 / 24 pass design
+23:28:46 search xi=0.85 s=3.1: 14 / 24 pass design
+23:28:54 search xi=0.85 s=3.2: 17 / 24 pass design
+23:29:03 search xi=0.85 s=3.3: 17 / 24 pass design
+23:29:13 search xi=0.85 s=3.4: 17 / 24 pass design
+23:29:22 search xi=0.85 s=3.5: 17 / 24 pass design
+23:29:32 search xi=0.85 s=3.6: 17 / 24 pass design
+23:29:45 search xi=0.85 s=3.8: 17 / 24 pass design
+23:29:57 search xi=0.85 s=4: 17 / 24 pass design
+23:30:00 search xi=0.7 s=3: 0 / 24 pass design
+23:30:12 search xi=0.7 s=3.1: 19 / 24 pass design
+23:30:26 search xi=0.7 s=3.2: 20 / 24 pass design
+23:30:40 search xi=0.7 s=3.3: 20 / 24 pass design
+23:30:56 search xi=0.7 s=3.4: 20 / 24 pass design
+23:31:12 search xi=0.7 s=3.5: 20 / 24 pass design
+23:31:31 search xi=0.7 s=3.6: 20 / 24 pass design
+23:31:50 search xi=0.7 s=3.8: 20 / 24 pass design
+23:32:13 search xi=0.7 s=4: 20 / 24 pass design
+23:32:16 search xi=1 s=3: 0 / 24 pass design
+23:32:22 search xi=1 s=3.1: 12 / 24 pass design
+23:32:29 search xi=1 s=3.2: 13 / 24 pass design
+23:32:36 search xi=1 s=3.3: 13 / 24 pass design
+23:32:43 search xi=1 s=3.4: 13 / 24 pass design
+23:32:51 search xi=1 s=3.5: 13 / 24 pass design
+23:32:58 search xi=1 s=3.6: 13 / 24 pass design
+23:33:07 search xi=1 s=3.8: 13 / 24 pass design
+23:33:15 search xi=1 s=4: 13 / 24 pass design
+23:33:18 search xi=1.15 s=3: 0 / 24 pass design
+23:33:23 search xi=1.15 s=3.1: 9 / 24 pass design
+23:33:29 search xi=1.15 s=3.2: 10 / 24 pass design
+23:33:35 search xi=1.15 s=3.3: 10 / 24 pass design
+23:33:41 search xi=1.15 s=3.4: 10 / 24 pass design
+23:33:46 search xi=1.15 s=3.5: 10 / 24 pass design
+23:33:54 search xi=1.15 s=3.6: 10 / 24 pass design
+23:34:01 search xi=1.15 s=3.8: 10 / 24 pass design
+23:34:07 search xi=1.15 s=4: 9 / 24 pass design
+23:34:07 DONE search
+23:34:07 START validate
+23:34:12 validate xi0.85_s3.1_sf3.1_M16_p5: 9 configs, max=7.2606e-05, feasible=True
+23:34:16 validate xi0.85_s3.1_sf3.1_M18_p5: 9 configs, max=6.5383e-05, feasible=True
+23:34:19 validate xi0.85_s3.2_sf3.2_M20_p4: 9 configs, max=6.2318e-05, feasible=True
+23:34:23 validate xi0.85_s3.1_sf3.1_M20_p4: 9 configs, max=8.1277e-05, feasible=True
+23:34:27 validate xi0.85_s3.1_sf3.1_M20_p5: 9 configs, max=6.4969e-05, feasible=True
+23:34:32 validate xi0.85_s3.3_sf3.3_M16_p5: 9 configs, max=4.0223e-05, feasible=True
+23:34:36 validate xi0.85_s3.3_sf3.3_M20_p4: 9 configs, max=5.3394e-05, feasible=True
+23:34:40 validate xi0.85_s3.3_sf3.3_M18_p4: 9 configs, max=8.0746e-05, feasible=True
+23:34:44 validate xi0.85_s3.2_sf3.2_M16_p5: 9 configs, max=5.0116e-05, feasible=True
+23:34:48 validate xi0.85_s3.2_sf3.2_M18_p5: 9 configs, max=3.9278e-05, feasible=True
+23:34:52 validate xi0.85_s3.3_sf3.3_M18_p5: 9 configs, max=2.5131e-05, feasible=True
+23:34:56 validate xi0.85_s3.4_sf3.4_M18_p4: 9 configs, max=7.6479e-05, feasible=True
+23:35:00 validate xi0.85_s3.4_sf3.4_M20_p4: 9 configs, max=4.9368e-05, feasible=True
+23:35:04 validate xi0.85_s3.1_sf3.1_M22_p4: 9 configs, max=6.8895e-05, feasible=True
+23:35:08 validate xi0.7_s3.1_sf3.1_M16_p4: 9 configs, max=8.5983e-05, feasible=True
+23:35:12 validate xi0.7_s3.1_sf3.1_M18_p4: 9 configs, max=7.261e-05, feasible=True
+23:35:16 validate xi0.7_s3.1_sf3.1_M16_p5: 9 configs, max=7.0414e-05, feasible=True
+23:35:20 validate xi0.7_s3.2_sf3.2_M16_p4: 9 configs, max=6.5368e-05, feasible=True
+23:35:25 validate xi0.7_s3.1_sf3.1_M18_p5: 9 configs, max=7.047e-05, feasible=True
+23:35:29 validate xi0.7_s3.1_sf3.1_M20_p5: 9 configs, max=7.0513e-05, feasible=True
+23:35:34 validate xi0.7_s3.2_sf3.2_M18_p4: 9 configs, max=4.9199e-05, feasible=True
+23:35:38 validate xi0.7_s3.3_sf3.3_M16_p4: 9 configs, max=5.7951e-05, feasible=True
+23:35:42 validate xi0.7_s3.2_sf3.2_M16_p5: 9 configs, max=4.1624e-05, feasible=True
+23:35:47 validate xi0.7_s3.1_sf3.1_M20_p4: 9 configs, max=7.1414e-05, feasible=True
+23:35:51 validate xi0.7_s3.3_sf3.3_M16_p5: 9 configs, max=2.263e-05, feasible=True
+23:35:55 validate xi0.7_s3.2_sf3.2_M20_p4: 9 configs, max=4.3246e-05, feasible=True
+23:35:57 validate xi1_s3.2_sf3.2_M16_p5: 4 configs, max=0.00010403, feasible=False
+23:36:01 validate xi1_s3.3_sf3.3_M16_p5: 9 configs, max=9.7373e-05, feasible=True
+23:36:05 validate xi1_s3.2_sf3.2_M18_p5: 9 configs, max=5.6939e-05, feasible=True
+23:36:09 validate xi1_s3.1_sf3.1_M20_p5: 9 configs, max=6.6854e-05, feasible=True
+23:36:13 validate xi1_s3.4_sf3.4_M16_p5: 9 configs, max=9.3901e-05, feasible=True
+23:36:17 validate xi1_s3.1_sf3.1_M18_p5: 9 configs, max=7.1992e-05, feasible=True
+23:36:21 validate xi1_s3.4_sf3.4_M18_p5: 9 configs, max=4.8011e-05, feasible=True
+23:36:25 validate xi1_s3.1_sf3.1_M22_p4: 9 configs, max=8.9987e-05, feasible=True
+23:36:29 validate xi1_s3.3_sf3.3_M18_p5: 9 configs, max=5.1642e-05, feasible=True
+23:36:33 validate xi1_s3.3_sf3.3_M20_p5: 9 configs, max=2.8649e-05, feasible=True
+23:36:37 validate xi1_s3.5_sf3.5_M18_p5: 9 configs, max=4.6682e-05, feasible=True
+23:36:41 validate xi1_s3.2_sf3.2_M22_p4: 9 configs, max=7.5483e-05, feasible=True
+23:36:45 validate xi1_s3.5_sf3.5_M16_p5: 9 configs, max=9.2118e-05, feasible=True
+23:36:49 validate xi1.15_s3.1_sf3.1_M20_p5: 9 configs, max=7.4417e-05, feasible=True
+23:36:53 validate xi1.15_s3.2_sf3.2_M20_p5: 9 configs, max=6.2981e-05, feasible=True
+23:36:57 validate xi1.15_s3.4_sf3.4_M20_p5: 9 configs, max=5.7366e-05, feasible=True
+23:37:01 validate xi1.15_s3.3_sf3.3_M20_p5: 9 configs, max=5.8442e-05, feasible=True
+23:37:05 validate xi1.15_s3.3_sf3.3_M24_p4: 9 configs, max=0.00010045, feasible=False
+23:37:09 validate xi1.15_s3.1_sf3.1_M22_p5: 9 configs, max=5.8897e-05, feasible=True
+23:37:13 DONE validate
+23:37:13 START timing
+23:37:25 interleaved timing uniform_N256_s2_rho0.75: 44 candidates
+23:37:37 interleaved timing strong_N256_s1_rho0.75: 44 candidates
+23:37:50 interleaved timing uniform_N256_s1_rho0.75: 44 candidates
+23:38:02 interleaved timing uniform_N256_s3_rho0.75: 44 candidates
+23:38:15 interleaved timing moderate_N256_s1_rho0.75: 44 candidates
+23:38:27 interleaved timing moderate_N256_s2_rho0.75: 44 candidates
+23:38:39 interleaved timing moderate_N256_s3_rho0.75: 44 candidates
+23:38:52 interleaved timing strong_N256_s2_rho0.75: 44 candidates
+23:39:04 interleaved timing strong_N256_s3_rho0.75: 44 candidates
+23:39:04 DONE timing

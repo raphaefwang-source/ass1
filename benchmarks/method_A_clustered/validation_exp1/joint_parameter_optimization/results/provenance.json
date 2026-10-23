@@ -1,0 +1,60 @@
+{
+ "time": "2026-10-22T23:28:36-0400",
+ "command": "python3 benchmarks/method_A_clustered/validation_exp1/joint_parameter_optimization/run_joint_optimization.py search validate timing",
+ "git": {
+  "commit": "692175342a3c58f2d46b94e8aa12ae6db33073ec",
+  "dirty": true
+ },
+ "code_hash": "bd4e474676d89dfe",
+ "python": "3.11.5",
+ "numpy": "2.4.6",
+ "scipy": "1.17.1",
+ "host": "wangfengyudeMacBook-Air.local",
+ "cpu": "arm",
+ "n_cpu": 8,
+ "threads": {
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1"
+ },
+ "amplitude_c": 1.0,
+ "threadpool_info": [],
+ "search_grid": {
+  "s": [
+   3.0,
+   3.1,
+   3.2,
+   3.3,
+   3.4,
+   3.5,
+   3.6,
+   3.8,
+   4.0
+  ],
+  "xi": [
+   0.85,
+   0.7,
+   1.0,
+   1.15
+  ],
+  "M": [
+   16,
+   18,
+   20,
+   22,
+   24,
+   27,
+   30,
+   32
+  ],
+  "p": [
+   3,
+   4,
+   5
+  ]
+ },
+ "reference": "Gamma_D only",
+ "target": 0.0001,
+ "objective": "median over nine per-configuration median matvec times",
+ "platform": "macOS-27.0.1-arm64-arm-64bit"
+}
