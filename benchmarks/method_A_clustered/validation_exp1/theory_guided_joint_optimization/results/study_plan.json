@@ -1,0 +1,491 @@
+{
+  "baseline": {
+    "candidate_id": "xi1.25_R2.8_F2.8_M16_p5",
+    "kappa": 0.2,
+    "c": 1.0,
+    "N": 256,
+    "rho": 0.75,
+    "theta": 0.0,
+    "xi": 1.25,
+    "sR": 2.8,
+    "sF_req": 2.8,
+    "sF_eff": 2.762313493347261,
+    "rc": 2.2399999999999998,
+    "kc": 6.905783733368152,
+    "kc_shell_n": 59,
+    "M": 16,
+    "p": 5,
+    "stages": "OAT-M;OAT-p;OAT-sF;OAT-sR;OAT-xi;cutoff-heatmap;mesh-tradeoff;nine-config-guided-refinement",
+    "error_scope": "maximum of nine configurations",
+    "n_configs": 9,
+    "feasible": true,
+    "mesh_valid": true,
+    "mesh_reason": null,
+    "eta": 0.9601432184835759,
+    "n_modes": 1935,
+    "E_G_design": 7.095491664027734e-05,
+    "n_images_design": 4463,
+    "t_screen_s": 0.0011446250136941671,
+    "t_screen_min_s": 0.0011347910622134805,
+    "t_screen_iqr_rel": 0.08201384952016089,
+    "screen_pass": true,
+    "status": "nine-config feasible",
+    "initial_t_screen_s": 0.0012512500397861004,
+    "screen_times_refreshed": true,
+    "E_G_max_tested": 8.513544780082862e-05,
+    "t_nine_screen_s": 0.0011855410411953926
+  },
+  "free_incumbent": {
+    "candidate_id": "xi1.25_R2.8_F2.8_M16_p5",
+    "kappa": 0.2,
+    "c": 1.0,
+    "N": 256,
+    "rho": 0.75,
+    "theta": 0.0,
+    "xi": 1.25,
+    "sR": 2.8,
+    "sF_req": 2.8,
+    "sF_eff": 2.762313493347261,
+    "rc": 2.2399999999999998,
+    "kc": 6.905783733368152,
+    "kc_shell_n": 59,
+    "M": 16,
+    "p": 5,
+    "stages": "OAT-M;OAT-p;OAT-sF;OAT-sR;OAT-xi;cutoff-heatmap;mesh-tradeoff;nine-config-guided-refinement",
+    "error_scope": "maximum of nine configurations",
+    "n_configs": 9,
+    "feasible": true,
+    "mesh_valid": true,
+    "mesh_reason": null,
+    "eta": 0.9601432184835759,
+    "n_modes": 1935,
+    "E_G_design": 7.095491664027734e-05,
+    "n_images_design": 4463,
+    "t_screen_s": 0.0011446250136941671,
+    "t_screen_min_s": 0.0011347910622134805,
+    "t_screen_iqr_rel": 0.08201384952016089,
+    "screen_pass": true,
+    "status": "nine-config feasible",
+    "initial_t_screen_s": 0.0012512500397861004,
+    "screen_times_refreshed": true,
+    "E_G_max_tested": 8.513544780082862e-05,
+    "t_nine_screen_s": 0.0011855410411953926
+  },
+  "mesh_ids": [
+    "xi1.25_R2.8_F2.8_M8_p3",
+    "xi1.25_R2.8_F2.8_M8_p4",
+    "xi1.25_R2.8_F2.8_M8_p5",
+    "xi1.25_R2.8_F2.8_M8_p6",
+    "xi1.25_R2.8_F2.8_M8_p7",
+    "xi1.25_R2.8_F2.8_M10_p3",
+    "xi1.25_R2.8_F2.8_M10_p4",
+    "xi1.25_R2.8_F2.8_M10_p5",
+    "xi1.25_R2.8_F2.8_M10_p6",
+    "xi1.25_R2.8_F2.8_M10_p7",
+    "xi1.25_R2.8_F2.8_M12_p3",
+    "xi1.25_R2.8_F2.8_M12_p4",
+    "xi1.25_R2.8_F2.8_M12_p5",
+    "xi1.25_R2.8_F2.8_M12_p6",
+    "xi1.25_R2.8_F2.8_M12_p7",
+    "xi1.25_R2.8_F2.8_M14_p3",
+    "xi1.25_R2.8_F2.8_M14_p4",
+    "xi1.25_R2.8_F2.8_M14_p5",
+    "xi1.25_R2.8_F2.8_M14_p6",
+    "xi1.25_R2.8_F2.8_M14_p7",
+    "xi1.25_R2.8_F2.8_M16_p3",
+    "xi1.25_R2.8_F2.8_M16_p4",
+    "xi1.25_R2.8_F2.8_M16_p5",
+    "xi1.25_R2.8_F2.8_M16_p6",
+    "xi1.25_R2.8_F2.8_M16_p7",
+    "xi1.25_R2.8_F2.8_M18_p3",
+    "xi1.25_R2.8_F2.8_M18_p4",
+    "xi1.25_R2.8_F2.8_M18_p5",
+    "xi1.25_R2.8_F2.8_M18_p6",
+    "xi1.25_R2.8_F2.8_M18_p7",
+    "xi1.25_R2.8_F2.8_M20_p3",
+    "xi1.25_R2.8_F2.8_M20_p4",
+    "xi1.25_R2.8_F2.8_M20_p5",
+    "xi1.25_R2.8_F2.8_M20_p6",
+    "xi1.25_R2.8_F2.8_M20_p7",
+    "xi1.25_R2.8_F2.8_M22_p3",
+    "xi1.25_R2.8_F2.8_M22_p4",
+    "xi1.25_R2.8_F2.8_M22_p5",
+    "xi1.25_R2.8_F2.8_M22_p6",
+    "xi1.25_R2.8_F2.8_M22_p7",
+    "xi1.25_R2.8_F2.8_M24_p3",
+    "xi1.25_R2.8_F2.8_M24_p4",
+    "xi1.25_R2.8_F2.8_M24_p5",
+    "xi1.25_R2.8_F2.8_M24_p6",
+    "xi1.25_R2.8_F2.8_M24_p7",
+    "xi1.25_R2.8_F2.8_M27_p3",
+    "xi1.25_R2.8_F2.8_M27_p4",
+    "xi1.25_R2.8_F2.8_M27_p5",
+    "xi1.25_R2.8_F2.8_M27_p6",
+    "xi1.25_R2.8_F2.8_M27_p7",
+    "xi1.25_R2.8_F2.8_M30_p3",
+    "xi1.25_R2.8_F2.8_M30_p4",
+    "xi1.25_R2.8_F2.8_M30_p5",
+    "xi1.25_R2.8_F2.8_M30_p6",
+    "xi1.25_R2.8_F2.8_M30_p7",
+    "xi1.25_R2.8_F2.8_M32_p3",
+    "xi1.25_R2.8_F2.8_M32_p4",
+    "xi1.25_R2.8_F2.8_M32_p5",
+    "xi1.25_R2.8_F2.8_M32_p6",
+    "xi1.25_R2.8_F2.8_M32_p7",
+    "xi1.25_R2.8_F2.8_M36_p3",
+    "xi1.25_R2.8_F2.8_M36_p4",
+    "xi1.25_R2.8_F2.8_M36_p5",
+    "xi1.25_R2.8_F2.8_M36_p6",
+    "xi1.25_R2.8_F2.8_M36_p7",
+    "xi1.25_R2.8_F2.8_M40_p3",
+    "xi1.25_R2.8_F2.8_M40_p4",
+    "xi1.25_R2.8_F2.8_M40_p5",
+    "xi1.25_R2.8_F2.8_M40_p6",
+    "xi1.25_R2.8_F2.8_M40_p7",
+    "xi1.25_R2.8_F2.8_M48_p3",
+    "xi1.25_R2.8_F2.8_M48_p4",
+    "xi1.25_R2.8_F2.8_M48_p5",
+    "xi1.25_R2.8_F2.8_M48_p6",
+    "xi1.25_R2.8_F2.8_M48_p7"
+  ],
+  "heatmap_ids": [
+    "xi1.25_R2.4_F2.4_M16_p5",
+    "xi1.25_R2.4_F2.5_M16_p5",
+    "xi1.25_R2.4_F2.6_M16_p5",
+    "xi1.25_R2.4_F2.7_M16_p5",
+    "xi1.25_R2.4_F2.8_M16_p5",
+    "xi1.25_R2.4_F2.9_M16_p5",
+    "xi1.25_R2.4_F3_M16_p5",
+    "xi1.25_R2.4_F3.1_M16_p5",
+    "xi1.25_R2.4_F3.2_M16_p5",
+    "xi1.25_R2.5_F2.4_M16_p5",
+    "xi1.25_R2.5_F2.5_M16_p5",
+    "xi1.25_R2.5_F2.6_M16_p5",
+    "xi1.25_R2.5_F2.7_M16_p5",
+    "xi1.25_R2.5_F2.8_M16_p5",
+    "xi1.25_R2.5_F2.9_M16_p5",
+    "xi1.25_R2.5_F3_M16_p5",
+    "xi1.25_R2.5_F3.1_M16_p5",
+    "xi1.25_R2.5_F3.2_M16_p5",
+    "xi1.25_R2.6_F2.4_M16_p5",
+    "xi1.25_R2.6_F2.5_M16_p5",
+    "xi1.25_R2.6_F2.6_M16_p5",
+    "xi1.25_R2.6_F2.7_M16_p5",
+    "xi1.25_R2.6_F2.8_M16_p5",
+    "xi1.25_R2.6_F2.9_M16_p5",
+    "xi1.25_R2.6_F3_M16_p5",
+    "xi1.25_R2.6_F3.1_M16_p5",
+    "xi1.25_R2.6_F3.2_M16_p5",
+    "xi1.25_R2.7_F2.4_M16_p5",
+    "xi1.25_R2.7_F2.5_M16_p5",
+    "xi1.25_R2.7_F2.6_M16_p5",
+    "xi1.25_R2.7_F2.7_M16_p5",
+    "xi1.25_R2.7_F2.8_M16_p5",
+    "xi1.25_R2.7_F2.9_M16_p5",
+    "xi1.25_R2.7_F3_M16_p5",
+    "xi1.25_R2.7_F3.1_M16_p5",
+    "xi1.25_R2.7_F3.2_M16_p5",
+    "xi1.25_R2.8_F2.4_M16_p5",
+    "xi1.25_R2.8_F2.5_M16_p5",
+    "xi1.25_R2.8_F2.6_M16_p5",
+    "xi1.25_R2.8_F2.7_M16_p5",
+    "xi1.25_R2.8_F2.8_M16_p5",
+    "xi1.25_R2.8_F2.9_M16_p5",
+    "xi1.25_R2.8_F3_M16_p5",
+    "xi1.25_R2.8_F3.1_M16_p5",
+    "xi1.25_R2.8_F3.2_M16_p5",
+    "xi1.25_R2.9_F2.4_M16_p5",
+    "xi1.25_R2.9_F2.5_M16_p5",
+    "xi1.25_R2.9_F2.6_M16_p5",
+    "xi1.25_R2.9_F2.7_M16_p5",
+    "xi1.25_R2.9_F2.8_M16_p5",
+    "xi1.25_R2.9_F2.9_M16_p5",
+    "xi1.25_R2.9_F3_M16_p5",
+    "xi1.25_R2.9_F3.1_M16_p5",
+    "xi1.25_R2.9_F3.2_M16_p5",
+    "xi1.25_R3_F2.4_M16_p5",
+    "xi1.25_R3_F2.5_M16_p5",
+    "xi1.25_R3_F2.6_M16_p5",
+    "xi1.25_R3_F2.7_M16_p5",
+    "xi1.25_R3_F2.8_M16_p5",
+    "xi1.25_R3_F2.9_M16_p5",
+    "xi1.25_R3_F3_M16_p5",
+    "xi1.25_R3_F3.1_M16_p5",
+    "xi1.25_R3_F3.2_M16_p5",
+    "xi1.25_R3.1_F2.4_M16_p5",
+    "xi1.25_R3.1_F2.5_M16_p5",
+    "xi1.25_R3.1_F2.6_M16_p5",
+    "xi1.25_R3.1_F2.7_M16_p5",
+    "xi1.25_R3.1_F2.8_M16_p5",
+    "xi1.25_R3.1_F2.9_M16_p5",
+    "xi1.25_R3.1_F3_M16_p5",
+    "xi1.25_R3.1_F3.1_M16_p5",
+    "xi1.25_R3.1_F3.2_M16_p5",
+    "xi1.25_R3.2_F2.4_M16_p5",
+    "xi1.25_R3.2_F2.5_M16_p5",
+    "xi1.25_R3.2_F2.6_M16_p5",
+    "xi1.25_R3.2_F2.7_M16_p5",
+    "xi1.25_R3.2_F2.8_M16_p5",
+    "xi1.25_R3.2_F2.9_M16_p5",
+    "xi1.25_R3.2_F3_M16_p5",
+    "xi1.25_R3.2_F3.1_M16_p5",
+    "xi1.25_R3.2_F3.2_M16_p5"
+  ],
+  "OAT": [
+    {
+      "parameter": "xi",
+      "value": 0.6,
+      "candidate_id": "xi0.6_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 0.8,
+      "candidate_id": "xi0.8_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 1.0,
+      "candidate_id": "xi1_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 1.05,
+      "candidate_id": "xi1.05_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 1.15,
+      "candidate_id": "xi1.15_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 1.2,
+      "candidate_id": "xi1.2_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 1.25,
+      "candidate_id": "xi1.25_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 1.35,
+      "candidate_id": "xi1.35_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 1.4,
+      "candidate_id": "xi1.4_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 1.45,
+      "candidate_id": "xi1.45_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 1.6,
+      "candidate_id": "xi1.6_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 1.8,
+      "candidate_id": "xi1.8_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "xi",
+      "value": 2.0,
+      "candidate_id": "xi2_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "sR",
+      "value": 2.0,
+      "candidate_id": "xi1.25_R2_F2.8_M16_p5"
+    },
+    {
+      "parameter": "sR",
+      "value": 2.2,
+      "candidate_id": "xi1.25_R2.2_F2.8_M16_p5"
+    },
+    {
+      "parameter": "sR",
+      "value": 2.4,
+      "candidate_id": "xi1.25_R2.4_F2.8_M16_p5"
+    },
+    {
+      "parameter": "sR",
+      "value": 2.6,
+      "candidate_id": "xi1.25_R2.6_F2.8_M16_p5"
+    },
+    {
+      "parameter": "sR",
+      "value": 2.8,
+      "candidate_id": "xi1.25_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "sR",
+      "value": 3.0,
+      "candidate_id": "xi1.25_R3_F2.8_M16_p5"
+    },
+    {
+      "parameter": "sR",
+      "value": 3.2,
+      "candidate_id": "xi1.25_R3.2_F2.8_M16_p5"
+    },
+    {
+      "parameter": "sR",
+      "value": 3.4,
+      "candidate_id": "xi1.25_R3.4_F2.8_M16_p5"
+    },
+    {
+      "parameter": "sR",
+      "value": 3.6,
+      "candidate_id": "xi1.25_R3.6_F2.8_M16_p5"
+    },
+    {
+      "parameter": "sF",
+      "value": 2.0,
+      "candidate_id": "xi1.25_R2.8_F2_M16_p5"
+    },
+    {
+      "parameter": "sF",
+      "value": 2.2,
+      "candidate_id": "xi1.25_R2.8_F2.2_M16_p5"
+    },
+    {
+      "parameter": "sF",
+      "value": 2.4,
+      "candidate_id": "xi1.25_R2.8_F2.4_M16_p5"
+    },
+    {
+      "parameter": "sF",
+      "value": 2.6,
+      "candidate_id": "xi1.25_R2.8_F2.6_M16_p5"
+    },
+    {
+      "parameter": "sF",
+      "value": 2.8,
+      "candidate_id": "xi1.25_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "sF",
+      "value": 3.0,
+      "candidate_id": "xi1.25_R2.8_F3_M16_p5"
+    },
+    {
+      "parameter": "sF",
+      "value": 3.2,
+      "candidate_id": "xi1.25_R2.8_F3.2_M16_p5"
+    },
+    {
+      "parameter": "sF",
+      "value": 3.4,
+      "candidate_id": "xi1.25_R2.8_F3.4_M16_p5"
+    },
+    {
+      "parameter": "sF",
+      "value": 3.6,
+      "candidate_id": "xi1.25_R2.8_F3.6_M16_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 8,
+      "candidate_id": "xi1.25_R2.8_F2.8_M8_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 10,
+      "candidate_id": "xi1.25_R2.8_F2.8_M10_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 12,
+      "candidate_id": "xi1.25_R2.8_F2.8_M12_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 14,
+      "candidate_id": "xi1.25_R2.8_F2.8_M14_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 16,
+      "candidate_id": "xi1.25_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 18,
+      "candidate_id": "xi1.25_R2.8_F2.8_M18_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 20,
+      "candidate_id": "xi1.25_R2.8_F2.8_M20_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 22,
+      "candidate_id": "xi1.25_R2.8_F2.8_M22_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 24,
+      "candidate_id": "xi1.25_R2.8_F2.8_M24_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 27,
+      "candidate_id": "xi1.25_R2.8_F2.8_M27_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 30,
+      "candidate_id": "xi1.25_R2.8_F2.8_M30_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 32,
+      "candidate_id": "xi1.25_R2.8_F2.8_M32_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 36,
+      "candidate_id": "xi1.25_R2.8_F2.8_M36_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 40,
+      "candidate_id": "xi1.25_R2.8_F2.8_M40_p5"
+    },
+    {
+      "parameter": "M",
+      "value": 48,
+      "candidate_id": "xi1.25_R2.8_F2.8_M48_p5"
+    },
+    {
+      "parameter": "p",
+      "value": 3,
+      "candidate_id": "xi1.25_R2.8_F2.8_M16_p3"
+    },
+    {
+      "parameter": "p",
+      "value": 4,
+      "candidate_id": "xi1.25_R2.8_F2.8_M16_p4"
+    },
+    {
+      "parameter": "p",
+      "value": 5,
+      "candidate_id": "xi1.25_R2.8_F2.8_M16_p5"
+    },
+    {
+      "parameter": "p",
+      "value": 6,
+      "candidate_id": "xi1.25_R2.8_F2.8_M16_p6"
+    },
+    {
+      "parameter": "p",
+      "value": 7,
+      "candidate_id": "xi1.25_R2.8_F2.8_M16_p7"
+    }
+  ]
+}

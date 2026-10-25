@@ -1,0 +1,20 @@
+Matplotlib is building the font cache; this may take a moment.
+17:11:35 direct start uniform_N256_s2_rho0.75 R=190; historical time=428.7s
+17:11:35 direct start strong_N256_s3_rho0.75 R=190; historical time=435.6s
+17:11:35 direct start uniform_N256_s1_rho0.75 R=190; historical time=435.4s
+17:21:02 direct done uniform_N256_s2_rho0.75 time=566.26s cert=9.96e-14
+17:21:02 direct done uniform_N256_s1_rho0.75 time=566.30s cert=9.95e-14
+17:21:03 direct done strong_N256_s3_rho0.75 time=567.09s cert=9.43e-14
+17:21:04 direct start uniform_N256_s3_rho0.75 R=190; historical time=416.0s
+17:21:04 direct start moderate_N256_s1_rho0.75 R=190; historical time=435.5s
+17:21:05 direct start moderate_N256_s2_rho0.75 R=190; historical time=436.9s
+17:31:29 direct done moderate_N256_s1_rho0.75 time=623.72s cert=9.69e-14
+17:31:30 direct done uniform_N256_s3_rho0.75 time=624.23s cert=9.96e-14
+17:31:31 direct start moderate_N256_s3_rho0.75 R=190; historical time=430.2s
+17:31:31 direct start strong_N256_s1_rho0.75 R=190; historical time=439.5s
+17:31:31 direct done moderate_N256_s2_rho0.75 time=625.02s cert=9.68e-14
+17:31:33 direct start strong_N256_s2_rho0.75 R=190; historical time=425.5s
+17:40:21 direct done moderate_N256_s3_rho0.75 time=528.91s cert=9.64e-14
+17:40:21 direct done strong_N256_s1_rho0.75 time=528.73s cert=9.42e-14
+17:40:23 direct done strong_N256_s2_rho0.75 time=529.65s cert=9.43e-14
+17:40:24 all nine independent kappa=.2 references complete

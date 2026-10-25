@@ -1,0 +1,47 @@
+{
+  "rounds": 3,
+  "reps": 5,
+  "threads": 1,
+  "candidate_order": "random every repetition",
+  "phase_order": "random each round",
+  "started_unix": 1792956150.700738,
+  "elapsed_s": 334.77496099472046,
+  "checkpoints": [
+    {
+      "config": "uniform_N256_s2_rho0.75",
+      "elapsed_s": 31.06121826171875
+    },
+    {
+      "config": "strong_N256_s3_rho0.75",
+      "elapsed_s": 65.73009204864502
+    },
+    {
+      "config": "uniform_N256_s1_rho0.75",
+      "elapsed_s": 106.24773621559143
+    },
+    {
+      "config": "uniform_N256_s3_rho0.75",
+      "elapsed_s": 142.97118020057678
+    },
+    {
+      "config": "moderate_N256_s1_rho0.75",
+      "elapsed_s": 180.70755910873413
+    },
+    {
+      "config": "moderate_N256_s2_rho0.75",
+      "elapsed_s": 218.91965699195862
+    },
+    {
+      "config": "moderate_N256_s3_rho0.75",
+      "elapsed_s": 255.67180919647217
+    },
+    {
+      "config": "strong_N256_s1_rho0.75",
+      "elapsed_s": 294.87711691856384
+    },
+    {
+      "config": "strong_N256_s2_rho0.75",
+      "elapsed_s": 334.7749309539795
+    }
+  ]
+}

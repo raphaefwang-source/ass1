@@ -1,0 +1,33 @@
+{
+  "time": "2026-10-23T17:11:32-0400",
+  "command": "python3 benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/build_references.py --workers 3",
+  "git": {
+    "commit": "f404db061bda7f36b319bb1cd718574961781872",
+    "dirty": true
+  },
+  "code_hash": "bd4e474676d89dfe",
+  "python": "3.11.5",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "host": "host-375949.dhcp.egr.msu.edu",
+  "cpu": "arm",
+  "n_cpu": 8,
+  "threads": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "amplitude_c": 1.0,
+  "kappa": 0.2,
+  "N": 256,
+  "rho": 0.75,
+  "c": 1.0,
+  "theta": 0.0,
+  "target": 0.0001,
+  "threadpool_info": [],
+  "reference": "unsplit direct periodic Gamma_D only",
+  "workers": 3,
+  "each_worker_threads": 1,
+  "assessment": "No kappa=.2 cache found in checked project copies; historical cost ~430s/config, R=190.",
+  "source_sha256": "574275b88ca6ec1e33bb7a58f899d3ef297669fe4412fb18c935666321ec70c2"
+}

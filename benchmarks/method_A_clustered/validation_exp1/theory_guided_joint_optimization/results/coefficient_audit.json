@@ -1,0 +1,26 @@
+[
+  {
+    "xi": 0.6,
+    "quadrature_bound_estimate_abs": 1.5433281758919423e-13,
+    "coefficient_relative_max": 1.0289692005728434e-15,
+    "short_profile_closed_vs_quadrature": 6.573866232137207e-16
+  },
+  {
+    "xi": 1.0,
+    "quadrature_bound_estimate_abs": 3.2928682949771697e-13,
+    "coefficient_relative_max": 6.661992580628521e-16,
+    "short_profile_closed_vs_quadrature": 5.202998484446276e-16
+  },
+  {
+    "xi": 1.4,
+    "quadrature_bound_estimate_abs": 4.287889072855261e-13,
+    "coefficient_relative_max": 6.865835603313318e-16,
+    "short_profile_closed_vs_quadrature": 6.324771209348074e-16
+  },
+  {
+    "xi": 2.0,
+    "quadrature_bound_estimate_abs": 6.865372913352337e-13,
+    "coefficient_relative_max": 8.143934228134353e-16,
+    "short_profile_closed_vs_quadrature": 4.2684473210369515e-16
+  }
+]

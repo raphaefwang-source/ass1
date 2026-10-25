@@ -1,0 +1,26 @@
+{
+  "historical_tracked_files_unchanged": 210,
+  "references_kappa": 0.2,
+  "references_c": 1.0,
+  "n_references": 9,
+  "reference_hashes_verified": true,
+  "reference_certification_tolerance": 1e-13,
+  "reference_tails_within_tolerance": true,
+  "maximum_reference_certified_tail": 9.96330817345361e-14,
+  "raw_timing_medians_verified": true,
+  "executed_numerical_sources_verified": true,
+  "n_candidates": 4029,
+  "n_configurations": 9,
+  "n_final_candidate_configuration_rows": 486,
+  "n_timing_samples": 192456,
+  "production_implementation_unchanged": true,
+  "source_sha256": {
+    "summarize_results.py": "92fdd3f0d6b5f5386741e20a6031fc047bf647d98b33ae5ed51acacdb50cabfa",
+    "analyze_optimization.py": "1d750a6c410df9a60a980cf915c0e4b00aed3af6326de2f41899617479e05dbd",
+    "run_optimization.py": "e3b701966b7b1c8464eb5ba456eac3ff00e3cd88b0d311f06c06adc1529b74b2",
+    "theory.py": "c1d07d91b2fa657a63dd7e2fce65c1257d070b7412278d9e092ecfa87a3f1e67",
+    "experiment.py": "88069a461de9554ec8510eeb876e918c56ccd32d3e59149749b23f5608e06bb4",
+    "run_all.py": "451b1dba8ff276b853844bf7c2d86c7925cf0eae794b4b6caaf0447f7c9b7eee",
+    "build_references.py": "574275b88ca6ec1e33bb7a58f899d3ef297669fe4412fb18c935666321ec70c2"
+  }
+}

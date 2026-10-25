@@ -1,0 +1,94 @@
+17:21:48 START coarse
+17:21:49 historical-parameter-control: complete, 1 new requests, total=1
+17:21:59 coarse-equal: 40 new requests, total=41
+17:22:10 coarse-equal: 80 new requests, total=81
+17:22:22 coarse-equal: 120 new requests, total=121
+17:22:31 coarse-equal: 160 new requests, total=161
+17:22:40 coarse-equal: 200 new requests, total=201
+17:22:48 coarse-equal: 240 new requests, total=241
+17:22:57 coarse-equal: 280 new requests, total=281
+17:23:06 coarse-equal: 320 new requests, total=321
+17:23:14 coarse-equal: 360 new requests, total=361
+17:23:21 coarse-equal: 400 new requests, total=401
+17:23:30 coarse-equal: 440 new requests, total=441
+17:23:39 coarse-equal: 480 new requests, total=481
+17:23:46 coarse-equal: 520 new requests, total=521
+17:23:54 coarse-equal: 560 new requests, total=561
+17:23:59 coarse-equal: 600 new requests, total=601
+17:24:06 coarse-equal: 640 new requests, total=641
+17:24:11 coarse-equal: 680 new requests, total=681
+17:24:17 coarse-equal: 720 new requests, total=721
+17:24:24 coarse-equal: 760 new requests, total=761
+17:24:30 coarse-equal: 800 new requests, total=801
+17:24:30 coarse-equal: complete, 800 new requests, total=801
+17:24:30 DONE coarse
+17:24:30 START cutoffs
+17:24:39 independent-cutoffs: 40 new requests, total=841
+17:24:48 independent-cutoffs: 80 new requests, total=881
+17:24:55 independent-cutoffs: 120 new requests, total=921
+17:25:02 independent-cutoffs: 160 new requests, total=961
+17:25:09 independent-cutoffs: 200 new requests, total=1001
+17:25:17 independent-cutoffs: 240 new requests, total=1041
+17:25:25 independent-cutoffs: 280 new requests, total=1081
+17:25:31 independent-cutoffs: 320 new requests, total=1121
+17:25:39 independent-cutoffs: 360 new requests, total=1161
+17:25:46 independent-cutoffs: 400 new requests, total=1201
+17:25:55 independent-cutoffs: 440 new requests, total=1241
+17:26:05 independent-cutoffs: 480 new requests, total=1281
+17:26:12 independent-cutoffs: 520 new requests, total=1321
+17:26:16 independent-cutoffs: complete, 551 new requests, total=1352
+17:26:16 DONE cutoffs
+17:26:16 START refine
+17:26:25 local-refinement-1: 40 new requests, total=1392
+17:26:35 local-refinement-1: 80 new requests, total=1432
+17:26:48 local-refinement-1: 120 new requests, total=1472
+17:26:57 local-refinement-1: 160 new requests, total=1512
+17:27:04 local-refinement-1: 200 new requests, total=1552
+17:27:07 local-refinement-1: complete, 209 new requests, total=1561
+17:27:17 local-refinement-2: 40 new requests, total=1601
+17:27:25 local-refinement-2: 80 new requests, total=1641
+17:27:36 local-refinement-2: 120 new requests, total=1681
+17:27:45 local-refinement-2: 160 new requests, total=1721
+17:27:58 local-refinement-2: 200 new requests, total=1761
+17:28:02 local-refinement-2: complete, 224 new requests, total=1785
+17:28:02 DONE refine
+17:28:02 START expand
+Traceback (most recent call last):
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/run_optimization.py", line 267, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/run_optimization.py", line 264, in main
+    else: globals()[stage](search)
+          ~~~~~~~~~^^^^^^^
+KeyError: 'expand'
+17:29:01 START cutoffs
+17:29:11 independent-cutoffs: 40 new requests, total=1825
+17:29:21 independent-cutoffs: 80 new requests, total=1865
+17:29:30 independent-cutoffs: 120 new requests, total=1905
+17:29:37 independent-cutoffs: 160 new requests, total=1945
+17:29:45 independent-cutoffs: 200 new requests, total=1985
+17:29:54 independent-cutoffs: 240 new requests, total=2025
+17:30:03 independent-cutoffs: 280 new requests, total=2065
+17:30:10 independent-cutoffs: 320 new requests, total=2105
+17:30:17 independent-cutoffs: 360 new requests, total=2145
+17:30:25 independent-cutoffs: 400 new requests, total=2185
+17:30:33 independent-cutoffs: 440 new requests, total=2225
+17:30:41 independent-cutoffs: 480 new requests, total=2265
+17:30:49 independent-cutoffs: complete, 518 new requests, total=2303
+17:30:49 DONE cutoffs
+17:30:49 START refine
+17:31:04 local-refinement-1: 40 new requests, total=2343
+17:31:14 local-refinement-1: 80 new requests, total=2383
+17:31:26 local-refinement-1: 120 new requests, total=2423
+17:31:34 local-refinement-1: 160 new requests, total=2463
+17:31:43 local-refinement-1: 200 new requests, total=2503
+17:31:47 local-refinement-1: complete, 208 new requests, total=2511
+17:32:07 local-refinement-2: 40 new requests, total=2551
+17:32:17 local-refinement-2: 80 new requests, total=2591
+17:32:25 local-refinement-2: complete, 99 new requests, total=2610
+17:32:25 DONE refine
+17:32:25 START expand
+17:32:33 boundary-and-xi-recheck: 40 new requests, total=2650
+17:32:39 boundary-and-xi-recheck: 80 new requests, total=2690
+17:32:43 boundary-and-xi-recheck: complete, 103 new requests, total=2713
+17:32:43 DONE expand

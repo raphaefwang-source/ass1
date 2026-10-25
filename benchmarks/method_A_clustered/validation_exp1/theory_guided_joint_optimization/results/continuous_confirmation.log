@@ -1,0 +1,76 @@
+15:22:30 START diagnostics
+15:23:01 diagnostic phase timing complete: uniform_N256_s2_rho0.75
+15:23:36 diagnostic phase timing complete: strong_N256_s3_rho0.75
+15:24:16 diagnostic phase timing complete: uniform_N256_s1_rho0.75
+15:24:53 diagnostic phase timing complete: uniform_N256_s3_rho0.75
+15:25:31 diagnostic phase timing complete: moderate_N256_s1_rho0.75
+15:26:09 diagnostic phase timing complete: moderate_N256_s2_rho0.75
+15:26:46 diagnostic phase timing complete: moderate_N256_s3_rho0.75
+15:27:25 diagnostic phase timing complete: strong_N256_s1_rho0.75
+15:28:05 diagnostic phase timing complete: strong_N256_s2_rho0.75
+15:28:05 DONE diagnostics
+15:28:05 START timing
+15:28:05 full structure validation xi1.2_R3.1_F3.1_M20_p5
+15:28:11 full structure validation xi1_R3_F3_M16_p4
+15:28:16 full structure validation xi1.3_R2.85_F3.1_M20_p4
+15:28:21 full structure validation xi1.3_R2.85_F3.25_M20_p4
+15:28:26 full structure validation xi1.2_R2.8_F3.3_M20_p4
+15:28:26 full structure validation xi1.25_R3.1_F2.7_M16_p5
+15:28:26 full structure validation xi1.25_R3.1_F2.8_M16_p5
+15:28:26 full structure validation xi1.25_R2.9_F2.8_M16_p5
+15:28:26 full structure validation xi1.25_R3.1_F2.6_M16_p5
+15:28:26 full structure validation xi1.15_R2.8_F2.8_M16_p5
+15:28:26 full structure validation xi1.25_R2.8_F2.8_M16_p5
+15:28:26 full structure validation xi1.25_R2.8_F2.8_M16_p6
+15:28:26 full structure validation xi1.25_R2.8_F2.8_M16_p7
+15:28:26 full structure validation xi1.25_R2.8_F2.8_M27_p3
+15:28:26 full structure validation xi1.25_R3_F2.7_M16_p5
+15:28:26 full structure validation xi1.2_R2.9_F2.7_M16_p5
+15:28:26 full structure validation xi1.3_R2.8_F3.3_M20_p4
+15:28:26 full structure validation xi1.3_R2.95_F3.15_M20_p4
+15:28:26 full structure validation xi1.3_R2.9_F3.15_M20_p4
+15:28:26 full structure validation xi1.3_R2.9_F3.2_M20_p4
+15:28:40 full structure validation xi0.3_R2.9_F3_M12_p4
+15:28:48 full structure validation xi0.4_R2.9_F3.1_M12_p4
+15:28:56 full structure validation xi0.5_R2.9_F3_M12_p4
+15:28:56 full structure validation xi0.6_R2.8_F3.4_M12_p4
+15:29:02 full structure validation xi0.7_R2.8_F3.4_M12_p4
+15:29:12 full structure validation xi0.8_R2.8_F2.9_M12_p5
+15:29:12 full structure validation xi0.9_R2.8_F2.8_M16_p4
+15:29:12 full structure validation xi1.05_R2.8_F2.8_M16_p5
+15:29:12 full structure validation xi1.1_R2.9_F2.8_M14_p5
+15:29:12 full structure validation xi1.35_R2.8_F2.8_M18_p5
+15:29:12 full structure validation xi1.4_R2.8_F2.8_M18_p5
+15:29:19 full structure validation xi1.5_R2.9_F2.9_M22_p4
+15:29:19 full structure validation xi1.6_R2.8_F3.1_M24_p4
+15:29:29 full structure validation xi1.7_R3.1_F2.7_M24_p4
+15:29:29 full structure validation xi1.8_R2.9_F2.9_M24_p5
+15:29:29 full structure validation xi1.9_R2.8_F2.8_M27_p4
+15:29:36 full structure validation xi2_R3.1_F3.1_M32_p4
+15:29:36 full structure validation xi2.1_R2.9_F2.9_M30_p4
+15:29:43 full structure validation xi2.2_R3_F3.1_M32_p4
+15:29:43 full structure validation xi2.3_R3_F3.1_M32_p4
+15:29:43 full structure validation xi1.25_R3.2_F2.8_M16_p5
+15:29:43 full structure validation xi1.25_R3.4_F2.8_M16_p5
+15:29:52 full structure validation xi0.4_R3_F3_M8_p4
+15:29:52 full structure validation xi0.8_R2.8_F2.8_M10_p6
+15:29:52 full structure validation xi0.9_R2.8_F2.9_M12_p5
+15:29:59 full structure validation xi1_R2.8_F2.8_M18_p4
+15:30:06 full structure validation xi1.7_R2.8_F2.8_M27_p4
+15:30:06 full structure validation xi1.25_R2.8_F2.8_M36_p4
+15:30:06 full structure validation xi1.25_R2.8_F2.8_M40_p5
+15:30:06 full structure validation xi1.25_R2.8_F2.8_M48_p3
+15:30:12 full structure validation xi1.1_R2.8_F2.8_M14_p7
+15:30:18 full structure validation xi1.25_R2.8_F2.8_M24_p5
+15:30:18 full structure validation xi0.8_R2.8_F2.8_M16_p5
+15:32:31 final interleaved timing uniform_N256_s2_rho0.75: 53 designs, 99 samples/phase
+15:34:22 final interleaved timing strong_N256_s3_rho0.75: 53 designs, 99 samples/phase
+15:35:58 final interleaved timing uniform_N256_s1_rho0.75: 53 designs, 99 samples/phase
+15:37:35 final interleaved timing uniform_N256_s3_rho0.75: 53 designs, 99 samples/phase
+15:39:16 final interleaved timing moderate_N256_s1_rho0.75: 53 designs, 99 samples/phase
+15:40:53 final interleaved timing moderate_N256_s2_rho0.75: 53 designs, 99 samples/phase
+15:42:39 final interleaved timing moderate_N256_s3_rho0.75: 53 designs, 99 samples/phase
+15:44:31 final interleaved timing strong_N256_s1_rho0.75: 53 designs, 99 samples/phase
+15:46:18 final interleaved timing strong_N256_s2_rho0.75: 53 designs, 99 samples/phase
+15:46:18 final common timing complete
+15:46:18 DONE timing

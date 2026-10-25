@@ -1,0 +1,6 @@
+2026-10-23T17:21:48-0400  cd . && python3 benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/run_optimization.py coarse cutoffs refine expand
+2026-10-23T17:29:01-0400  cd . && python3 benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/run_optimization.py cutoffs refine expand
+2026-10-23T17:40:28-0400  cd . && python3 /Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/run_optimization.py all
+2026-10-23T17:50:42-0400  cd . && python3 /Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/analyze_optimization.py all
+2026-10-25T15:17:55-0400  cd . && python3 benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/post_sensitivity_refinement.py
+2026-10-25T15:22:30-0400  cd . && python3 benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/analyze_optimization.py diagnostics timing --refresh-diagnostics

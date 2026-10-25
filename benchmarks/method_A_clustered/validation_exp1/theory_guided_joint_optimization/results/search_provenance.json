@@ -1,0 +1,42 @@
+{
+  "time": "2026-10-23T17:40:28-0400",
+  "command": "python3 /Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/run_optimization.py all",
+  "git": {
+    "commit": "f404db061bda7f36b319bb1cd718574961781872",
+    "dirty": true
+  },
+  "code_hash": "bd4e474676d89dfe",
+  "python": "3.11.5",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "host": "host-375949.dhcp.egr.msu.edu",
+  "cpu": "arm",
+  "n_cpu": 8,
+  "threads": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "amplitude_c": 1.0,
+  "kappa": 0.2,
+  "N": 256,
+  "rho": 0.75,
+  "c": 1.0,
+  "theta": 0.0,
+  "target": 0.0001,
+  "threadpool_info": [],
+  "reference": "unsplit direct periodic Gamma_D only",
+  "stages": [
+    "all"
+  ],
+  "scope": "adaptive discrete search",
+  "source_sha256": {
+    "summarize_results.py": "99607097f33ba8bcd0f41893bd4ca064a9ff7e8bd476afe68769b3f10bd60583",
+    "analyze_optimization.py": "6785a742d05267c32090795eb9c70e84d8f56e9494fcb5275c7cc1847fabc401",
+    "run_optimization.py": "e3b701966b7b1c8464eb5ba456eac3ff00e3cd88b0d311f06c06adc1529b74b2",
+    "theory.py": "c1d07d91b2fa657a63dd7e2fce65c1257d070b7412278d9e092ecfa87a3f1e67",
+    "experiment.py": "88069a461de9554ec8510eeb876e918c56ccd32d3e59149749b23f5608e06bb4",
+    "run_all.py": "451b1dba8ff276b853844bf7c2d86c7925cf0eae794b4b6caaf0447f7c9b7eee",
+    "build_references.py": "574275b88ca6ec1e33bb7a58f899d3ef297669fe4412fb18c935666321ec70c2"
+  }
+}

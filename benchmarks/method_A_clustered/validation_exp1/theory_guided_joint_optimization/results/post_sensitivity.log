@@ -1,0 +1,158 @@
+15:17:58 post-sensitivity-coupled-refinement: 40 new requests, total=4069
+15:18:01 post-sensitivity-coupled-refinement: 80 new requests, total=4109
+15:18:04 post-sensitivity-coupled-refinement: 120 new requests, total=4149
+15:18:07 post-sensitivity-coupled-refinement: 160 new requests, total=4189
+15:18:10 post-sensitivity-coupled-refinement: 200 new requests, total=4229
+15:18:12 post-sensitivity-coupled-refinement: 240 new requests, total=4269
+15:18:14 post-sensitivity-coupled-refinement: 280 new requests, total=4309
+15:18:17 post-sensitivity-coupled-refinement: 320 new requests, total=4349
+15:18:18 post-sensitivity-coupled-refinement: 360 new requests, total=4389
+15:18:20 post-sensitivity-coupled-refinement: 400 new requests, total=4429
+15:18:23 post-sensitivity-coupled-refinement: 440 new requests, total=4469
+15:18:24 post-sensitivity-coupled-refinement: 480 new requests, total=4509
+15:18:25 post-sensitivity-coupled-refinement: 520 new requests, total=4549
+15:18:26 post-sensitivity-coupled-refinement: 560 new requests, total=4589
+15:18:27 post-sensitivity-coupled-refinement: 600 new requests, total=4629
+15:18:28 post-sensitivity-coupled-refinement: 640 new requests, total=4669
+15:18:29 post-sensitivity-coupled-refinement: 680 new requests, total=4709
+15:18:30 post-sensitivity-coupled-refinement: 720 new requests, total=4749
+15:18:31 post-sensitivity-coupled-refinement: 760 new requests, total=4789
+15:18:36 post-sensitivity-coupled-refinement: 800 new requests, total=4829
+15:18:41 post-sensitivity-coupled-refinement: 840 new requests, total=4869
+15:18:44 post-sensitivity-coupled-refinement: 880 new requests, total=4909
+15:18:47 post-sensitivity-coupled-refinement: 920 new requests, total=4949
+15:18:50 post-sensitivity-coupled-refinement: 960 new requests, total=4989
+15:18:54 post-sensitivity-coupled-refinement: 1000 new requests, total=5029
+15:18:56 post-sensitivity-coupled-refinement: 1040 new requests, total=5069
+15:18:59 post-sensitivity-coupled-refinement: 1080 new requests, total=5109
+15:18:59 post-sensitivity-coupled-refinement: complete, 1083 new requests, total=5112
+15:20:43 refreshed 1833 design survivor timings
+15:20:46 validate 7/165 xi1.3_R2.8_F3.15_M20_p4 Emax=9.13875e-05 n=9 feasible=True
+15:20:46 validate 8/165 xi1.25_R2.9_F2.9_M18_p4 Emax=0.000104551 n=2 feasible=False
+15:20:47 validate 10/165 xi1.35_R2.9_F2.9_M20_p4 Emax=9.2384e-05 n=9 feasible=True
+15:20:47 validate 18/165 xi1.35_R2.8_F2.8_M20_p4 Emax=9.39997e-05 n=9 feasible=True
+15:20:48 validate 22/165 xi1.2_R2.8_F3_M18_p4 Emax=0.000107526 n=8 feasible=False
+15:20:49 validate 24/165 xi1.3_R2.85_F3.25_M20_p4 Emax=8.87401e-05 n=9 feasible=True
+15:20:50 validate 25/165 xi1.3_R2.8_F3.2_M20_p4 Emax=9.18987e-05 n=9 feasible=True
+15:20:50 validate 26/165 xi1.2_R2.8_F2.7_M16_p5 Emax=8.52285e-05 n=9 feasible=True
+15:20:51 validate 27/165 xi1.3_R2.85_F3.1_M20_p4 Emax=8.75659e-05 n=9 feasible=True
+15:20:51 validate 28/165 xi1.3_R2.9_F3.15_M20_p4 Emax=8.30182e-05 n=9 feasible=True
+15:20:51 validate 29/165 xi1.25_R2.9_F2.8_M16_p5 Emax=7.5158e-05 n=9 feasible=True
+15:20:52 validate 30/165 xi1.3_R2.8_F3_M20_p4 Emax=9.05555e-05 n=9 feasible=True
+15:20:53 validate 31/165 xi1.2_R2.8_F3.3_M20_p4 Emax=6.84617e-05 n=9 feasible=True
+15:20:53 validate 32/165 xi1.25_R3_F3_M18_p4 Emax=0.000103324 n=2 feasible=False
+15:20:54 validate 33/165 xi1.35_R2.7_F2.7_M20_p4 Emax=0.000110403 n=2 feasible=False
+15:20:54 validate 34/165 xi1.25_R2.8_F2.8_M20_p4 Emax=7.89594e-05 n=9 feasible=True
+15:20:54 validate 35/165 xi1.3_R2.9_F3.25_M20_p4 Emax=8.36541e-05 n=9 feasible=True
+15:20:55 validate 37/165 xi1.3_R2.9_F3.3_M20_p4 Emax=8.42183e-05 n=9 feasible=True
+15:20:56 validate 38/165 xi1.2_R2.8_F2.6_M16_p5 Emax=9.81136e-05 n=9 feasible=True
+15:20:56 validate 41/165 xi1.3_R2.9_F2.9_M20_p4 Emax=7.95716e-05 n=9 feasible=True
+15:20:56 validate 43/165 xi1_R2.8_F2.7_M16_p4 Emax=9.72096e-05 n=9 feasible=True
+15:20:56 validate 44/165 xi1.3_R3_F3_M20_p4 Emax=7.5982e-05 n=9 feasible=True
+15:20:58 validate 45/165 xi1.15_R2.8_F2.8_M18_p4 Emax=9.53334e-05 n=9 feasible=True
+15:20:59 validate 46/165 xi1_R2.9_F2.7_M16_p4 Emax=8.47124e-05 n=9 feasible=True
+15:20:59 validate 47/165 xi1.4_R2.8_F2.8_M18_p5 Emax=7.41925e-05 n=9 feasible=True
+15:21:00 validate 48/165 xi1.2_R2.9_F2.9_M20_p4 Emax=5.87674e-05 n=9 feasible=True
+15:21:00 validate 50/165 xi1.05_R2.8_F2.8_M16_p5 Emax=6.02771e-05 n=9 feasible=True
+15:21:01 validate 52/165 xi1.2_R2.8_F2.8_M16_p5 Emax=7.47065e-05 n=9 feasible=True
+15:21:01 validate 55/165 xi1_R3_F3_M16_p4 Emax=6.95172e-05 n=9 feasible=True
+15:21:02 validate 56/165 xi1.15_R2.7_F2.7_M18_p5 Emax=0.000105581 n=2 feasible=False
+15:21:03 validate 57/165 xi1.2_R3_F3_M18_p5 Emax=3.10022e-05 n=9 feasible=True
+15:21:03 validate 59/165 xi1.6_R2.8_F2.8_M20_p5 Emax=8.35867e-05 n=9 feasible=True
+15:21:04 validate 60/165 xi1.5_R2.9_F2.9_M22_p4 Emax=7.36639e-05 n=9 feasible=True
+15:21:05 validate 62/165 xi1_R2.8_F2.8_M18_p4 Emax=6.95885e-05 n=9 feasible=True
+15:21:06 validate 63/165 xi1.6_R2.7_F2.8_M24_p4 Emax=0.000107792 n=8 feasible=False
+15:21:08 validate 64/165 xi1.6_R3_F2.9_M22_p4 Emax=9.04753e-05 n=9 feasible=True
+15:21:08 validate 65/165 xi1.25_R2.8_F2.8_M16_p6 Emax=7.11885e-05 n=9 feasible=True
+15:21:08 validate 66/165 xi1.8_R3_F2.8_M24_p4 Emax=0.000100533 n=4 feasible=False
+15:21:09 validate 67/165 xi1.5_R2.8_F2.8_M22_p4 Emax=7.8564e-05 n=9 feasible=True
+15:21:10 validate 68/165 xi1.6_R3_F3_M22_p4 Emax=9.09688e-05 n=9 feasible=True
+15:21:10 validate 69/165 xi1.5_R2.8_F2.8_M20_p5 Emax=6.62419e-05 n=9 feasible=True
+15:21:10 validate 70/165 xi1.15_R2.7_F2.7_M20_p5 Emax=0.000105187 n=2 feasible=False
+15:21:11 validate 72/165 xi0.9_R2.8_F2.8_M12_p5 Emax=9.54903e-05 n=9 feasible=True
+15:21:11 validate 74/165 xi1.25_R2.7_F2.7_M16_p6 Emax=0.000107473 n=2 feasible=False
+15:21:11 validate 75/165 xi1.6_R2.9_F2.9_M22_p4 Emax=9.44445e-05 n=9 feasible=True
+15:21:11 validate 76/165 xi1.7_R3.1_F2.9_M24_p4 Emax=7.38276e-05 n=9 feasible=True
+15:21:13 validate 77/165 xi1.7_R3.1_F2.8_M24_p4 Emax=7.92177e-05 n=9 feasible=True
+15:21:14 validate 78/165 xi1.7_R3.1_F2.7_M24_p4 Emax=8.06081e-05 n=9 feasible=True
+15:21:14 validate 79/165 xi0.9_R2.8_F2.8_M16_p4 Emax=7.63907e-05 n=9 feasible=True
+15:21:14 validate 80/165 xi1.1_R2.8_F2.8_M18_p4 Emax=8.15286e-05 n=9 feasible=True
+15:21:15 validate 81/165 xi1.2_R2.8_F2.8_M16_p6 Emax=6.37441e-05 n=9 feasible=True
+15:21:16 validate 82/165 xi1.2_R3_F3.3_M24_p3 Emax=0.000103263 n=9 feasible=False
+15:21:16 validate 83/165 xi1.25_R3_F3_M24_p3 Emax=0.000110059 n=2 feasible=False
+15:21:16 validate 84/165 xi1.7_R2.9_F2.9_M24_p4 Emax=8.17442e-05 n=9 feasible=True
+15:21:16 validate 86/165 xi1.7_R3_F3_M24_p4 Emax=7.42895e-05 n=9 feasible=True
+15:21:16 validate 87/165 xi1.2_R3.1_F3.1_M20_p5 Emax=1.51543e-05 n=9 feasible=True
+15:21:18 validate 88/165 xi1.7_R2.8_F2.8_M24_p5 Emax=6.67694e-05 n=9 feasible=True
+15:21:18 validate 89/165 xi0.9_R2.8_F2.9_M12_p5 Emax=9.44587e-05 n=9 feasible=True
+15:21:20 validate 90/165 xi1.7_R2.8_F2.8_M27_p4 Emax=7.14457e-05 n=9 feasible=True
+15:21:20 validate 91/165 xi0.8_R2.8_F2.7_M14_p4 Emax=9.92924e-05 n=9 feasible=True
+15:21:21 validate 92/165 xi0.8_R2.8_F2.9_M12_p5 Emax=7.64619e-05 n=9 feasible=True
+15:21:22 validate 93/165 xi1.4_R2.8_F3_M27_p3 Emax=0.000106368 n=2 feasible=False
+15:21:23 validate 94/165 xi0.8_R2.8_F3_M16_p4 Emax=7.3479e-05 n=9 feasible=True
+15:21:23 validate 95/165 xi1.25_R2.8_F2.8_M27_p3 Emax=9.06426e-05 n=9 feasible=True
+15:21:23 validate 96/165 xi1.9_R2.8_F2.8_M24_p5 Emax=7.71921e-05 n=9 feasible=True
+15:21:24 validate 97/165 xi0.8_R2.8_F2.8_M12_p5 Emax=9.00794e-05 n=9 feasible=True
+15:21:24 validate 98/165 xi1.15_R2.7_F2.7_M14_p7 Emax=0.000116634 n=2 feasible=False
+15:21:25 validate 100/165 xi1.8_R2.7_F2.7_M27_p4 Emax=9.14924e-05 n=9 feasible=True
+15:21:25 validate 102/165 xi1.25_R2.8_F2.8_M16_p7 Emax=6.57844e-05 n=9 feasible=True
+15:21:26 validate 103/165 xi0.8_R2.9_F2.9_M12_p5 Emax=5.35914e-05 n=9 feasible=True
+15:21:27 validate 104/165 xi1.1_R2.8_F2.8_M14_p7 Emax=6.54896e-05 n=9 feasible=True
+15:21:27 validate 106/165 xi0.8_R2.8_F2.8_M10_p6 Emax=9.76662e-05 n=9 feasible=True
+15:21:28 validate 107/165 xi1.8_R3.1_F2.5_M30_p4 Emax=9.42406e-05 n=9 feasible=True
+15:21:30 validate 109/165 xi1.6_R2.8_F2.8_M32_p3 Emax=9.35378e-05 n=9 feasible=True
+15:21:30 validate 110/165 xi1.8_R3.1_F2.8_M32_p3 Emax=0.000102748 n=2 feasible=False
+15:21:30 validate 111/165 xi2.1_R3_F3_M30_p4 Emax=4.35371e-05 n=9 feasible=True
+15:21:30 validate 112/165 xi2.1_R3.1_F3.1_M30_p4 Emax=4.1744e-05 n=9 feasible=True
+15:21:31 validate 113/165 xi0.7_R2.8_F3.2_M12_p4 Emax=9.01275e-05 n=9 feasible=True
+15:21:31 validate 114/165 xi0.7_R2.8_F3.4_M12_p4 Emax=9.00495e-05 n=9 feasible=True
+15:21:32 validate 115/165 xi2_R3.2_F3.2_M32_p4 Emax=2.71982e-05 n=9 feasible=True
+15:21:32 validate 116/165 xi2.2_R3_F3_M32_p4 Emax=3.65982e-05 n=9 feasible=True
+15:21:34 validate 118/165 xi2_R3.1_F3.1_M32_p4 Emax=2.84106e-05 n=9 feasible=True
+15:21:34 validate 119/165 xi2.2_R3.2_F3.2_M32_p4 Emax=3.65469e-05 n=9 feasible=True
+15:21:36 validate 120/165 xi2.1_R3.1_F3.1_M32_p4 Emax=3.34241e-05 n=9 feasible=True
+15:21:36 validate 121/165 xi0.7_R2.8_F2.8_M14_p4 Emax=8.76496e-05 n=9 feasible=True
+15:21:37 validate 122/165 xi0.7_R2.9_F2.9_M12_p4 Emax=7.18644e-05 n=9 feasible=True
+15:21:39 validate 123/165 xi2.2_R3_F3.1_M32_p4 Emax=3.60807e-05 n=9 feasible=True
+15:21:40 validate 124/165 xi1.9_R2.8_F2.8_M27_p4 Emax=7.60489e-05 n=9 feasible=True
+15:21:41 validate 125/165 xi0.7_R3_F3_M12_p4 Emax=6.24082e-05 n=9 feasible=True
+15:21:41 validate 126/165 xi2.2_R2.9_F2.9_M32_p4 Emax=3.89084e-05 n=9 feasible=True
+15:21:41 validate 127/165 xi2.3_R3.1_F3_M32_p4 Emax=3.55095e-05 n=9 feasible=True
+15:21:44 validate 128/165 xi2.3_R3.2_F3.1_M32_p4 Emax=3.69457e-05 n=9 feasible=True
+15:21:45 validate 129/165 xi0.8_R3.1_F2.8_M10_p7 Emax=5.97522e-05 n=9 feasible=True
+15:21:45 validate 130/165 xi0.7_R2.9_F2.9_M10_p5 Emax=7.09998e-05 n=9 feasible=True
+15:21:46 validate 131/165 xi1.8_R3_F3_M36_p3 Emax=8.13686e-05 n=9 feasible=True
+15:21:46 validate 133/165 xi0.6_R2.8_F3.4_M12_p4 Emax=9.98108e-05 n=9 feasible=True
+15:21:46 validate 134/165 xi2.3_R3_F3_M32_p4 Emax=3.55644e-05 n=9 feasible=True
+15:21:46 validate 135/165 xi2.3_R3.1_F3.1_M32_p5 Emax=1.17283e-05 n=9 feasible=True
+15:21:46 validate 136/165 xi2.1_R3.1_F3.1_M36_p4 Emax=1.81409e-05 n=9 feasible=True
+15:21:46 validate 137/165 xi0.6_R2.8_F3.1_M12_p4 Emax=9.98555e-05 n=9 feasible=True
+15:21:47 validate 138/165 xi1.25_R2.8_F2.8_M36_p3 Emax=6.02345e-05 n=9 feasible=True
+15:21:47 validate 139/165 xi2.3_R3.1_F3.1_M36_p4 Emax=1.98834e-05 n=9 feasible=True
+15:21:47 validate 140/165 xi0.6_R2.9_F2.9_M16_p4 Emax=5.50572e-05 n=9 feasible=True
+15:21:48 validate 141/165 xi0.6_R3_F3_M12_p4 Emax=5.04472e-05 n=9 feasible=True
+15:21:49 validate 142/165 xi1.25_R2.8_F2.8_M40_p4 Emax=5.59534e-05 n=9 feasible=True
+15:21:50 validate 143/165 xi0.6_R3_F3_M14_p4 Emax=3.67396e-05 n=9 feasible=True
+15:21:50 validate 144/165 xi1.25_R2.8_F2.8_M40_p3 Emax=5.92655e-05 n=9 feasible=True
+15:21:50 validate 145/165 xi1.25_R2.8_F2.8_M40_p5 Emax=5.60957e-05 n=9 feasible=True
+15:21:50 validate 146/165 xi0.5_R2.9_F2.9_M14_p4 Emax=7.4067e-05 n=9 feasible=True
+15:21:50 validate 147/165 xi0.5_R2.9_F3.1_M12_p4 Emax=6.4115e-05 n=9 feasible=True
+15:21:52 validate 148/165 xi0.5_R2.9_F3_M12_p4 Emax=6.4115e-05 n=9 feasible=True
+15:21:52 validate 149/165 xi0.5_R2.9_F2.9_M12_p4 Emax=7.42827e-05 n=9 feasible=True
+15:21:53 validate 150/165 xi0.5_R2.9_F2.9_M14_p5 Emax=7.39243e-05 n=9 feasible=True
+15:21:53 validate 151/165 xi1.25_R2.8_F2.8_M48_p3 Emax=5.73619e-05 n=9 feasible=True
+15:21:54 validate 152/165 xi1.25_R2.8_F2.8_M48_p4 Emax=5.60149e-05 n=9 feasible=True
+15:21:54 validate 153/165 xi1.25_R2.8_F2.8_M48_p7 Emax=5.61138e-05 n=9 feasible=True
+15:21:56 validate 154/165 xi0.4_R2.9_F3.1_M12_p4 Emax=7.44968e-05 n=9 feasible=True
+15:21:56 validate 155/165 xi0.4_R2.9_F2.9_M8_p4 Emax=8.84482e-05 n=9 feasible=True
+15:21:57 validate 156/165 xi0.4_R2.9_F2.9_M14_p5 Emax=7.40477e-05 n=9 feasible=True
+15:21:58 validate 157/165 xi0.4_R2.9_F2.9_M14_p3 Emax=9.44433e-05 n=9 feasible=True
+15:21:59 validate 158/165 xi0.4_R3_F3_M8_p4 Emax=6.51531e-05 n=9 feasible=True
+15:22:00 validate 159/165 xi0.4_R2.9_F3_M8_p4 Emax=8.84482e-05 n=9 feasible=True
+15:22:00 validate 160/165 xi0.3_R2.9_F3.1_M12_p4 Emax=9.94732e-05 n=9 feasible=True
+15:22:00 validate 161/165 xi0.3_R2.9_F3_M16_p4 Emax=9.94107e-05 n=9 feasible=True
+15:22:03 validate 162/165 xi0.3_R2.9_F3_M12_p4 Emax=9.94732e-05 n=9 feasible=True
+15:22:04 validate 163/165 xi0.3_R3_F3_M12_p4 Emax=5.80857e-05 n=9 feasible=True
+15:22:07 validate 164/165 xi0.3_R3_F3_M10_p4 Emax=6.06682e-05 n=9 feasible=True
+15:22:07 validate 165/165 xi0.3_R3_F3_M16_p4 Emax=5.80832e-05 n=9 feasible=True
+15:22:07 post-sensitivity joint refinement complete
