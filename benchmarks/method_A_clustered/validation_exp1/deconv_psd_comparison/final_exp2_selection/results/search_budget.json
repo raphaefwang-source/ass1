@@ -1,0 +1,101 @@
+{
+  "unique_fresh_candidates": 228,
+  "candidate_epsilon_stage_memberships": 273,
+  "eta_max": 0.95,
+  "resource_max_M": 128,
+  "status_counts": {
+    "PPPM-original": {
+      "invalid_mesh": 7,
+      "ok": 20
+    },
+    "B2-positive": {
+      "invalid_mesh": 0,
+      "ok": 32
+    },
+    "PPPM-grid-PSD": {
+      "invalid_mesh": 23,
+      "ok": 146
+    }
+  },
+  "precision_constraint": "fresh max-nine complete E_G <= epsilon only; no bounds or PSD eigenvalue constraint",
+  "budgets": {
+    "PPPM-original": {
+      "0.001": {
+        "unique_candidates": 13,
+        "stages": {
+          "seeds": 3,
+          "local": 8,
+          "boundary": 4
+        }
+      },
+      "0.0001": {
+        "unique_candidates": 13,
+        "stages": {
+          "seeds": 3,
+          "local": 8,
+          "boundary": 4
+        }
+      },
+      "1e-05": {
+        "unique_candidates": 15,
+        "stages": {
+          "seeds": 3,
+          "local": 8,
+          "boundary": 4
+        }
+      }
+    },
+    "B2-positive": {
+      "0.001": {
+        "unique_candidates": 11,
+        "stages": {
+          "seeds": 5,
+          "local": 8,
+          "boundary": 4
+        }
+      },
+      "0.0001": {
+        "unique_candidates": 12,
+        "stages": {
+          "seeds": 5,
+          "local": 8,
+          "boundary": 4
+        }
+      },
+      "1e-05": {
+        "unique_candidates": 11,
+        "stages": {
+          "seeds": 3,
+          "local": 8,
+          "boundary": 4
+        }
+      }
+    },
+    "PPPM-grid-PSD": {
+      "0.001": {
+        "unique_candidates": 54,
+        "stages": {
+          "seeds": 24,
+          "local": 24,
+          "boundary": 12
+        }
+      },
+      "0.0001": {
+        "unique_candidates": 55,
+        "stages": {
+          "seeds": 23,
+          "local": 24,
+          "boundary": 12
+        }
+      },
+      "1e-05": {
+        "unique_candidates": 60,
+        "stages": {
+          "seeds": 24,
+          "local": 24,
+          "boundary": 12
+        }
+      }
+    }
+  }
+}

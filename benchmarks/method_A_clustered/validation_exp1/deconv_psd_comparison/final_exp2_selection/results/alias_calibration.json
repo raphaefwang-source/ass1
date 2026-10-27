@@ -1,0 +1,11 @@
+{
+  "alias_C": 0.0002718877803316353,
+  "n_unique_calibration_points": 56,
+  "target_kappa": 0.2,
+  "target_rho": 0.75,
+  "source": "same-physics prior Original complete errors and q(eta)^p; initialization only",
+  "model": "C_alias*(eta/(2-eta))^p",
+  "fallback_C": 0.001,
+  "certified": false,
+  "limitation": "contains cutoff errors; neither alias-only estimate nor certified projected error"
+}

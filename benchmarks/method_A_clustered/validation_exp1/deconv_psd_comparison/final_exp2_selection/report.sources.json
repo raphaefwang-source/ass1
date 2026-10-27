@@ -1,0 +1,191 @@
+{
+  "created_at": "2026-10-27T13:30:39-04:00",
+  "report": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/report.md",
+  "inputs": [
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/README.md",
+      "bytes": 8816,
+      "sha256": "00e52201aed0523c900dd7de824db18a775676980e0f53e236096e276c1afcf4"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/figures/plot_status.json",
+      "bytes": 3870,
+      "sha256": "ef68764db50d322eaecae94d8f9b4b3222db0068e6616bc729af6c43014fe0c0"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/plot_results.py",
+      "bytes": 34697,
+      "sha256": "964d6d3366d14a8ca4fd10580502bad9f7b11cf951198dbce7467d8309fd723c"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/report_generator.py",
+      "bytes": 40604,
+      "sha256": "f2776102f5720c649f855f865c23aea70a002d94e430a82c97089e3a9ab31b90"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/requirements_github.md",
+      "bytes": 3209,
+      "sha256": "031a18aa4ecb442ec2b41eb52e0d174753702aee9876deb571fd6aa0488975d8"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/alias_calibration.json",
+      "bytes": 398,
+      "sha256": "28037ef5a6e9178c288555a77d0e05209001cf56d2be26345621cf39174a1efa"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/availability.csv",
+      "bytes": 563,
+      "sha256": "51547c524f9f167195bea35347c3ca2501f66c79292019b3912f125308ab5349"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/best_by_epsilon.csv",
+      "bytes": 14924,
+      "sha256": "2d6b8949edcde627bc33f58cc6e046094f97e8f2c8fd3e86ab33a322d06ceb93"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/candidate_memberships.csv",
+      "bytes": 37789,
+      "sha256": "d5ea1e8525621afa435fb9bdbfd6d0a245f17375d606986c8462df5023e9d111"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/components_raw.csv",
+      "bytes": 753912,
+      "sha256": "22fc0f5ca5592a7b5160e39ca6e07df1bed991ca03ae5e8c7ca59f02f1bcea61"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/config_setup_raw.csv",
+      "bytes": 155230,
+      "sha256": "e92a347e08ec8ca2a6f1411dc3a845c0689c5dafffc7dbf59200a014a89ed0bf"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/cross_plan.json",
+      "bytes": 4967,
+      "sha256": "745a33e4c3cfa67517ff85ec85e08a88cb5de1b35c7b453be582baf3475250d6"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/cross_validation.csv",
+      "bytes": 90286,
+      "sha256": "ebdefed050ce14065a5371fb030ab8df774df200f39150cb94f94f783fd04fd4"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/final_timing.csv",
+      "bytes": 31020,
+      "sha256": "74159b2e670e45de90622f8fcee58fbd1b946080ead3b1a5c7a9bd4bec4fe13e"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/paired_speed_ratios.csv",
+      "bytes": 2074,
+      "sha256": "4c46ce13edea678cc6c3f3bc2742c4c4b0d09d25f79fab0cb01b311f321b6a8f"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/runtime_environment.json",
+      "bytes": 2448,
+      "sha256": "9b685f87e4360585ef7b4dd9a7dcd01433999b5318cc8628b256fcee8cbdd93d"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/scaling.csv",
+      "bytes": 10337,
+      "sha256": "0e026e2255c54dff2c2d4fbd6a367ad63b179e3cf95d0faaf6120465ad4f3e1d"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/scaling_raw.csv",
+      "bytes": 25449,
+      "sha256": "cd6bdef5478ffb26fed280fd41715af433dd20b1267eb79e83ca9536af2bff1f"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/search.csv",
+      "bytes": 291281,
+      "sha256": "16f9d42e339d843abc52d16a19cb63519be3463893f8d306eea7104d72b73ec2"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/search_budget.json",
+      "bytes": 2004,
+      "sha256": "d6d5922475a4d5796ef46af8441c2f211bfbd960b229261198e67a526ab6e0f5"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/search_protocol.json",
+      "bytes": 536,
+      "sha256": "2b71b5882c62dc3988a2e751ba6696069786ff503c064730f005f941ef234dd2"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/shortlist.csv",
+      "bytes": 39314,
+      "sha256": "0068269038258cfcf91d5476f9900967922babebf2b2f215299156371a1ed7c3"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/system_load.json",
+      "bytes": 21912,
+      "sha256": "4b6e2fda83b964bbaa4f1234e9f2feff98223e9316b143ee508426e9829de91b"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/table_setup_raw.csv",
+      "bytes": 16676,
+      "sha256": "6850e14b8cb714cc5bd62f787c72988120b7b04ea74e58ce328eb40b863ae065"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/test_selection.log",
+      "bytes": 111,
+      "sha256": "adb4dcc61738ff5c260d7a4e48dfe82141daf146c3933f5a483a511262bd4fce"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/tests_summary.json",
+      "bytes": 306,
+      "sha256": "58482b87c9344ce8835e767f905cd8214c3dd973582e9007257f64b8c8eab423"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/theory_initialization.csv",
+      "bytes": 39527,
+      "sha256": "ef4b434e333cbac50e75080da68e6a205721251f49d7d7efa5d2b71f7c666bdb"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/timing_context.json",
+      "bytes": 1474,
+      "sha256": "b58f9b75fd196a43045c84e736d1bca6aee440656ca4288a4921ca845512c2e3"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/timing_raw.csv",
+      "bytes": 1220429,
+      "sha256": "67c38afd48ef0731f193cb4ad828aca7f8fcccbc70b1aa6a1779680f76c6c16f"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/validation.csv",
+      "bytes": 293468,
+      "sha256": "8d53ac01128618e0d2bf37fcc4a169b7084a7105a994aec7c3e1f3265735b5a8"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/runtime_environment.py",
+      "bytes": 1047,
+      "sha256": "512ff43d4e51927559073d9efacd9e4d5ab8ab9ac75ef47ec9076f83df6e3511"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/scaling_references/N128_uniform_s2.json",
+      "bytes": 630,
+      "sha256": "e3ff22eae396ac4a1bd882564038c78cde000c60a41a9a240e8cc31526ef44a3"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/scaling_references/N64_uniform_s2.json",
+      "bytes": 627,
+      "sha256": "f1341b003d00470d44517b8c8cd229aa44a1b2c9ea4bb257c54481589cdb3ba6"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/structural_audit.json",
+      "bytes": 4292,
+      "sha256": "e54fd448188f1ac7a8f8a0d9947a74001c36b39d4188015656d4cebcdc570f7a"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/structural_audit.py",
+      "bytes": 6881,
+      "sha256": "3e259398fa692747250f6b68e6732e594c09132a721927ef1d14a95b6268b079"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/theory_source_audit.json",
+      "bytes": 5457,
+      "sha256": "c772c6e0decb70b4af7e131d08dc6496aa427b62104ff0dc06e012efa5cd2d2f"
+    }
+  ],
+  "audit_status_consulted": {
+    "status": "pass",
+    "issues": 0,
+    "dependency_kind": "status-only; no SHA dependency"
+  }
+}

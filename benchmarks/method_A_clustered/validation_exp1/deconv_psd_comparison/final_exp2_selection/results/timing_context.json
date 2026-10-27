@@ -1,0 +1,29 @@
+{
+  "batch": "final_four_step_common_serial",
+  "rounds": 5,
+  "reps": 7,
+  "n_configs": 9,
+  "threads": 1,
+  "seed": 20261029,
+  "threadpools": [],
+  "load_average": [
+    6.1630859375,
+    5.814453125,
+    6.12353515625
+  ],
+  "warmup": "3 per candidate/config/round and one immediately before every sample",
+  "setup": "3 fresh tables per candidate, 3 fresh config builds per configuration; common kernel primitives warm",
+  "direct_dense": "cached independent numerical Gamma_D; full assembly cost not measured, setup/amortization unavailable",
+  "source_sha256": {
+    "scaling.py": "42bd98646454196cb61a5b776f24cfbeb0f0e92335961025324b6e798d21d23f",
+    "audit_sources.py": "c5f3aed9b28ca287ccdce3dcb63bbdb94789e39562c0501bc998ffd2ef632f6b",
+    "protocol.py": "794d7ec59c4a60df52cfb9a2e8bb99454b2932046c2bb67a49835af0acc5f5f8",
+    "final_audit.py": "dc389f996c6cd9c10d9c9f20385528c5b7973002930df94e9a0e1d68fe1d1456",
+    "test_selection.py": "c2d2532bdf9b3c0fc205a3f35620b2a05a87cf3a21274f585fe59a87aa65e926",
+    "timing.py": "e778774a7f273bc952cd2ad6fdb6dbbb99f586cec31db696c780292a0ec148f8",
+    "report_generator.py": "fb22c3674a1030df4f9460244554979b7944baebcdc03fe41e6b9f0b8fe4f67b",
+    "structural_audit.py": "3e259398fa692747250f6b68e6732e594c09132a721927ef1d14a95b6268b079",
+    "search.py": "8faaf98be1aae5ef7a02ff3a320c4c7112d1da8d9c14ed1cf31683bfec870725",
+    "plot_results.py": "dbe0ee91c775c86ae0f39e7a4cf4db31113a5ed445f7432462e721fc1ce1dc20"
+  }
+}

@@ -1,0 +1,10 @@
+method,epsilon,feasible_shortlist_candidates,status
+PPPM-original,0.001,4,available_for_fresh_serial_timing
+B2-positive,0.001,3,available_for_fresh_serial_timing
+PPPM-grid-PSD,0.001,3,available_for_fresh_serial_timing
+PPPM-original,0.0001,4,available_for_fresh_serial_timing
+B2-positive,0.0001,4,available_for_fresh_serial_timing
+PPPM-grid-PSD,0.0001,4,available_for_fresh_serial_timing
+PPPM-original,1e-05,4,available_for_fresh_serial_timing
+B2-positive,1e-05,4,available_for_fresh_serial_timing
+PPPM-grid-PSD,1e-05,2,available_for_fresh_serial_timing
