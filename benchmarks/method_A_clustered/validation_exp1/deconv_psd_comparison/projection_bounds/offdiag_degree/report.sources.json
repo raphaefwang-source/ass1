@@ -1,0 +1,116 @@
+{
+  "created_at": "2026-10-27T12:26:54-04:00",
+  "report": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/report.md",
+  "inputs": [
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/README.md",
+      "bytes": 6703,
+      "sha256": "f3845e7e3c8eb560841ec9527fe738d425587a7d7f9cc0a0eda08e42771d2872"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/audit_small_stability.py",
+      "bytes": 5093,
+      "sha256": "c29474c062b87ad18b113cb8d02156695804eb98b1e4a506eda92d4130a39280"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/figures/plot_status.json",
+      "bytes": 607,
+      "sha256": "71b299d1fcab98b454b6ab80252203fccf44e372c85eb35a94cb105321282fc6"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/offdiag_bounds.py",
+      "bytes": 15055,
+      "sha256": "d741bb51a745af593721517795af5f0b3bae6d64b826e148b6dabb21ff6c9e61"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/plot_results.py",
+      "bytes": 22251,
+      "sha256": "028ed74dd365a4a82588f47ec56d39cc8996a7a9ce6d0e174a361a64fff3f469"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/proof.md",
+      "bytes": 8798,
+      "sha256": "4e63773c9c13b9c98e66385a2de9acf81877492b94ec72593b38e55db9f4132a"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/report_generator.py",
+      "bytes": 30298,
+      "sha256": "f3e5917a15ab26dc4e4d8a0b98d3a7b1fa121c7a6bcec07474c703498c4ccfff"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/requirements_github.md",
+      "bytes": 4775,
+      "sha256": "867948af4e28007dc586670d6ce21382b13b73569c60085e60f18b37bc8347e3"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/results/bounds.csv",
+      "bytes": 3188929,
+      "sha256": "7a0ed66cae701ff9a6f27918a0f00d4d470162039f210a8553bbf46020880925"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/results/cases_summary.csv",
+      "bytes": 88384,
+      "sha256": "f74c737a3dec28516001aeddf2130f3e66af199cfcf1f1a3de63782548912ecb"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/results/resume.log",
+      "bytes": 6660,
+      "sha256": "8d3c16a8ec41508672bc575473477f6af8f81b66db7bca9b056e86955834bc49"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/results/smallN_stability_cases.csv",
+      "bytes": 4407,
+      "sha256": "74cd704de3e99595e644db22553aaa914f076a3f679a878e2c5c2b72becfffc5"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/results/smallN_stability_summary.json",
+      "bytes": 893,
+      "sha256": "9c6b53fd08fd32eb0c8984834ca9a76adc9991f5a68716a8871a040e0b0fe7e0"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/results/test_offdiag_bounds.log",
+      "bytes": 111,
+      "sha256": "98497912b5a2efd2914e8ebb841b5420bfcfe126a5e57c4ec9cadebca7a1315b"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/results/tests_summary.json",
+      "bytes": 319,
+      "sha256": "6b1de00e73fcd5560acfecf336d6fc43901cdf53b19d7f7769e8cf2e3f936030"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/results/timing_context.json",
+      "bytes": 412,
+      "sha256": "b901d1683f91611e936ba68d9d189d00f877807058770a2f48e3fabe010f8064"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/results/timing_raw.csv",
+      "bytes": 417539,
+      "sha256": "82332a81f1046c307c55d55a432f8f0fe4e5d76de385d526cf9f92d5d362c20b"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/results/timing_resume_check.json",
+      "bytes": 525,
+      "sha256": "98d2c8ba9341ecf2b3c6c2c36d940209728ec720e4afe6a79546f3b472e99bcb"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/results/verification_summary.json",
+      "bytes": 1733,
+      "sha256": "ebe99e21025e64413586ad929fdd6ae9c85ed5cb73eaa195156ba6972af161fd"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/run_offdiag.py",
+      "bytes": 17973,
+      "sha256": "6938cc634d60baad09bc424742fbf510169ea07170b2f1aa047599d034486d68"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/offdiag_degree/source_catalog.json",
+      "bytes": 40210,
+      "sha256": "74aaf98ad0e24919814ab557ce4bf6a68d6a4c2f33fcee89b3ed5d7dd47ac6b2"
+    }
+  ],
+  "audit_status_consulted": {
+    "status": "pass",
+    "issues": 0,
+    "dependency_kind": "status-only; avoid report/audit SHA cycle"
+  }
+}
