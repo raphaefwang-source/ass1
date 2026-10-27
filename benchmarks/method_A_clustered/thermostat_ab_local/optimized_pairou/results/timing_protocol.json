@@ -1,0 +1,22 @@
+{
+  "methods": [
+    "A-python",
+    "A-compiled",
+    "B"
+  ],
+  "systems": 34,
+  "rounds": 5,
+  "reps": 7,
+  "setup_reps": 3,
+  "alpha": 1.0,
+  "primary_epsilon": 0.0001,
+  "batch": "pairou_threeway_local_20261027",
+  "global_seed": 2026102708,
+  "Gaussian_seed_recipe": "2026102708+1000000+case_index*100000+round*1000+rep",
+  "timing_scope": "seeded RNG construction, all needed Gaussian draws, unchanged OU/Krylov/FFT/reorth plus full near sweeps; diagnostics/hash serialization outside wall",
+  "paired_random_inputs": "each method resets identical sample seed; both A use identical z,forward,reverse; B generates only its needed z",
+  "warmup": "one full step per method after precomputing coefficients; compilation cost separate",
+  "selection_source_sha256": "762d31ec3bfc3594e49a28a9ce33bad8521f683d7ee78ce3828dccd090a39a5c",
+  "no_historical_timing_mix": true,
+  "inference": "paired repeated samples share config/round; uncertainty should resample round/config blocks, not claim independent repeated hardware states"
+}

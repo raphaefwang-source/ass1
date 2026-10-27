@@ -1,0 +1,32 @@
+[
+  {
+    "config": "N2_uniform_s2_eps0.0001",
+    "N": 2.0,
+    "family": "uniform",
+    "seed": 2.0,
+    "epsilon": 0.0001,
+    "phase": "conditional",
+    "samples": 32,
+    "file": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/optimized_pairou/pilot_smoke/inputs/mc_N2_uniform_s2_eps0.0001_conditional.npz",
+    "sha256": "664af29b208498cb828a48510d879b285343b388507a3ac1ae8a663fde33f227",
+    "baseline_input_sha256": "f4391093b4ac8dbec63657483218fada426ac9a09eb0b3fef754d27ce3e24e9c",
+    "seed_recipe": "2026102708+100000+case_index*100000+equilibrium*10000+sample",
+    "gaussian_recipe": "numpy.default_rng(seed); equilibrium p draw first if needed; draws z[k,d], ef[k,E,3], er[k,E,3] in that order",
+    "raw_Gaussian_preservation": "per-sample seed, exact draw recipe and SHA256; raw output samples and p retained"
+  },
+  {
+    "config": "N2_uniform_s2_eps0.0001",
+    "N": 2.0,
+    "family": "uniform",
+    "seed": 2.0,
+    "epsilon": 0.0001,
+    "phase": "equilibrium",
+    "samples": 32,
+    "file": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/optimized_pairou/pilot_smoke/inputs/mc_N2_uniform_s2_eps0.0001_equilibrium.npz",
+    "sha256": "9fb29fa5ceea6c9284cd31c56b9fb7a95e54b0049fa36942bf57ae5fd2ee9c11",
+    "baseline_input_sha256": "f4391093b4ac8dbec63657483218fada426ac9a09eb0b3fef754d27ce3e24e9c",
+    "seed_recipe": "2026102708+100000+case_index*100000+equilibrium*10000+sample",
+    "gaussian_recipe": "numpy.default_rng(seed); equilibrium p draw first if needed; draws z[k,d], ef[k,E,3], er[k,E,3] in that order",
+    "raw_Gaussian_preservation": "per-sample seed, exact draw recipe and SHA256; raw output samples and p retained"
+  }
+]

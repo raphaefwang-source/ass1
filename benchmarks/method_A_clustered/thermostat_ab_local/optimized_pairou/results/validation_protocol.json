@@ -1,0 +1,25 @@
+{
+  "cases": 34,
+  "baseline_selected_rows": 272,
+  "global_seed": 2026102708,
+  "alphas": [
+    0.1,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "methods": [
+    "A-python",
+    "A-compiled",
+    "B"
+  ],
+  "baseline_role": "read-only positions, p/z, exact discrete graph and final selected ranks; all new numerical outputs recomputed",
+  "compiled_tolerance": 1e-11,
+  "dynamical_tolerance": 0.001,
+  "MC_samples_small": 512,
+  "MC_samples_medium": 128,
+  "MC_seeds": "2026102708 + 100000 + case_index*100000 + equilibrium*10000 + sample",
+  "MC_reference": "exact same independent draws in ideal dense full B or ideal split A with dense long OU",
+  "MC_second_interpretation": "Difference of second moments around known ideal mean; variance difference plus squared finite-mean bias, not a covariance certificate",
+  "inference_limit": "Finite registered probes and samples; no universal finite-rank guarantee"
+}

@@ -1,0 +1,11 @@
+{
+  "seed": 202610270809,
+  "bootstrap_draws": 4000,
+  "ci": "approximate percentile 95%",
+  "estimator": "paired per-repetition cost ratios -> median within config/round -> median across rounds -> median across configurations",
+  "resampling": "for each draw resample configurations with replacement, then resample entire round-ratio blocks within each selected configuration; repetitions are not iid bootstrap units",
+  "per_config_CI": "resample whole round-ratio blocks only",
+  "variation": "configuration_min/max and round_min/max describe observed variation separately",
+  "inference_limit": "conditional local sample and observed frozen configurations; does not certify future hardware states or a population of systems",
+  "source_sha256": "23a41c19e8a92eab9f58244e131a6bba0538600d4a421885e7b238def9ca5fe9"
+}

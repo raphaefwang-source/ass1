@@ -1,0 +1,31 @@
+test_all_probes_rule_requires_every_probe (test_experiment.TestStoppingAudit.test_all_probes_rule_requires_every_probe) ... ok
+test_csv_empty_change_is_unavailable (test_experiment.TestStoppingAudit.test_csv_empty_change_is_unavailable) ... ok
+test_false_positive_detected_despite_small_rank_change (test_experiment.TestStoppingAudit.test_false_positive_detected_despite_small_rank_change) ... ok
+test_independent_ideal_a_path_matches_full_rank_production (test_experiment.TestStoppingAudit.test_independent_ideal_a_path_matches_full_rank_production) ... ok
+test_negative_source_preserves_every_draw_and_order (test_experiment.TestStoppingAudit.test_negative_source_preserves_every_draw_and_order) ... ok
+test_forward_reverse_differ_and_noise_is_indexed_original_edge (test_ou_core.TestEdgesAndSplitting.test_forward_reverse_differ_and_noise_is_indexed_original_edge) ... ok
+test_independent_split_conditional_covariance_and_stationarity (test_ou_core.TestEdgesAndSplitting.test_independent_split_conditional_covariance_and_stationarity) ... ok
+test_invalid_and_roundoff_negative_edges (test_ou_core.TestEdgesAndSplitting.test_invalid_and_roundoff_negative_edges) ... ok
+test_monte_carlo_pair_stationary_mean_and_covariance (test_ou_core.TestEdgesAndSplitting.test_monte_carlo_pair_stationary_mean_and_covariance) ... ok
+test_one_edge_exact_mean_covariance_and_zero_mode (test_ou_core.TestEdgesAndSplitting.test_one_edge_exact_mean_covariance_and_zero_mode) ... ok
+test_dense_both_functions_mass_and_temperature (test_ou_core.TestLanczos.test_dense_both_functions_mass_and_temperature) ... ok
+test_exact_additional_zero_mode (test_ou_core.TestLanczos.test_exact_additional_zero_mode) ... ok
+test_expm1_retains_tiny_time_noise (test_ou_core.TestLanczos.test_expm1_retains_tiny_time_noise) ... ok
+test_finite_rank_is_reported_and_not_declared_converged (test_ou_core.TestLanczos.test_finite_rank_is_reported_and_not_declared_converged) ... ok
+test_individual_ranks_and_dense_step (test_ou_core.TestLanczos.test_individual_ranks_and_dense_step) ... ok
+test_negative_rejects_both_functions_and_clips_roundoff (test_ou_core.TestLanczos.test_negative_rejects_both_functions_and_clips_roundoff) ... ok
+test_projection_and_com (test_ou_core.TestLanczos.test_projection_and_com) ... ok
+test_zero_operator_happy_breakdown (test_ou_core.TestLanczos.test_zero_operator_happy_breakdown) ... ok
+test_all_images_aggregate_to_full_rank_pair (test_spatial.SpatialTests.test_all_images_aggregate_to_full_rank_pair) ... ok
+test_analytic_tail_dominates_discarded_annulus (test_spatial.SpatialTests.test_analytic_tail_dominates_discarded_annulus) ... ok
+test_dense_assembly_matches_production_actions (test_spatial.SpatialTests.test_dense_assembly_matches_production_actions) ... ok
+test_legal_scaled_mesh_and_saved_configuration_hash (test_spatial.SpatialTests.test_legal_scaled_mesh_and_saved_configuration_hash) ... ok
+test_long_matrix_matches_literal_stencil_contraction (test_spatial.SpatialTests.test_long_matrix_matches_literal_stencil_contraction) ... ok
+test_self_interactions_cancel_exactly_in_graph_conversion (test_spatial.SpatialTests.test_self_interactions_cancel_exactly_in_graph_conversion) ... ok
+test_streamed_unsplit_sum_matches_independent_existing_direct (test_spatial.SpatialTests.test_streamed_unsplit_sum_matches_independent_existing_direct) ... ok
+test_symmetry_psd_and_three_center_of_mass_modes (test_spatial.SpatialTests.test_symmetry_psd_and_three_center_of_mass_modes) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 1.523s
+
+OK

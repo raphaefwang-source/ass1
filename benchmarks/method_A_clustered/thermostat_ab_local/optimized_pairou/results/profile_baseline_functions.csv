@@ -1,0 +1,117 @@
+file,line,function,primitive_calls,calls,self_s,cumulative_s
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/optimized_pairou/profile_baseline.py,14,step,5,5,0.000281083,0.525594416
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/run_benchmarks.py,30,sample_step,5,5,0.0015012270000000002,0.5251193740000001
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/ou_core.py,277,ou_a,5,5,7.2209e-05,0.523577916
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/ou_core.py,253,sweep,10,10,0.454453667,0.45465770800000005
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/ou_core.py,164,_ou,5,5,0.00010091100000000001,0.068393831
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/ou_core.py,61,lanczos_action,10,10,0.002073073,0.067759835
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/run_benchmarks.py,32,counted_action,40,40,4.9793e-05,0.061272166
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/spatial.py,136,long_action,40,40,0.000498363,0.061222373000000004
+/Users/wfy666/Documents/New project/ass1_joint/ewald_longitudinal/test_parameter_selection.py,258,apply,40,40,0.00036770600000000003,0.06025537500000001
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,58,_raw_fft,720,720,0.034171145,0.034573913000000005
+/Users/wfy666/Documents/New project/ass1_joint/ewald_longitudinal/test_parameter_selection.py,252,_conv,40,40,4.737e-05,0.027396912000000002
+/Users/wfy666/Documents/New project/ass1_joint/ewald_longitudinal/test_parameter_selection.py,253,<listcomp>,40,40,0.000611664,0.027349542
+/Users/wfy666/Documents/New project/ass1_joint/ewald_longitudinal/test_parameter_selection.py,261,<listcomp>,40,40,0.007913139000000001,0.026254624
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,1473,irfftn,120,120,0.000719991,0.019823786000000003
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,1266,rfftn,120,120,0.0009189220000000001,0.018179208000000002
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,219,ifft,240,240,0.00021616200000000002,0.012300378
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,120,fft,240,240,0.000192312,0.011559953000000001
+~,0,<built-in method builtins.sum>,120,120,0.00251896,0.00689921
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,421,irfft,120,120,8.8248e-05,0.006308586000000001
+/Users/wfy666/Documents/New project/ass1_joint/ewald_longitudinal/test_parameter_selection.py,264,<listcomp>,40,40,0.004230169000000001,0.005676749
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,324,rfft,120,120,0.00010328300000000001,0.005072958000000001
+/Users/wfy666/Documents/New project/ass1_joint/ewald_longitudinal/test_parameter_selection.py,253,<genexpr>,480,480,0.003645455,0.0043802500000000005
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/ou_core.py,25,project,110,110,0.00059946,0.002709291
+~,0,<method 'reduce' of 'numpy.ufunc' objects>,480,480,0.0023952360000000002,0.0023952360000000002
+~,0,<method 'mean' of 'numpy.ndarray' objects>,140,140,7.2537e-05,0.0017813700000000002
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/_methods.py,115,_mean,140,140,0.000655814,0.001708833
+~,0,<method 'sum' of 'numpy.ndarray' objects>,120,120,6.378e-05,0.00141883
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/_methods.py,47,_sum,120,120,5.5556e-05,0.00135505
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,704,_cook_nd_args,240,240,0.0006837960000000001,0.0009790760000000002
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/ou_core.py,16,_vector,150,150,0.000403959,0.0009172080000000001
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/ou_core.py,156,_restore_com,10,10,0.000123955,0.0008479570000000001
+/Users/wfy666/Documents/New project/ass1_joint/ewald_longitudinal/test_parameter_selection.py,255,_G,360,360,0.00044634400000000005,0.000734795
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/scipy/_lib/_util.py,1149,wrapper,10,10,0.000135826,0.000660333
+~,0,<method 'all' of 'numpy.ndarray' objects>,200,200,9.017500000000001e-05,0.0005845970000000001
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/_methods.py,64,_all,200,200,9.513300000000001e-05,0.000494422
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/shape_base.py,378,stack,40,40,0.000330135,0.00048084
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/linalg/_linalg.py,2599,norm,100,100,0.00023290500000000002,0.000437176
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/scipy/linalg/_decomp.py,1212,eigh_tridiagonal,10,10,0.00020100100000000002,0.00038258400000000005
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/einsumfunc.py,1244,einsum,40,40,3.2545e-05,0.00038062400000000003
+~,0,<built-in method numpy._core._multiarray_umath.c_einsum>,40,40,0.000348079,0.000348079
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/_methods.py,73,_count_reduce_items,140,140,0.000282705,0.000332417
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/ou_core.py,47,_psd_spectrum,10,10,0.000152456,0.000315164
+~,0,<method 'reshape' of 'numpy.ndarray' objects>,505,505,0.000240737,0.000240737
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,737,<listcomp>,240,240,0.00023950500000000002,0.00023950500000000002
+~,0,<built-in method numpy.asarray>,1350,1350,0.000189005,0.000189005
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/_ufunc_config.py,496,inner,5,5,0.00012125,0.000144167
+~,0,<built-in method numpy.lib.array_utils.normalize_axis_index>,900,900,0.000136852,0.000136852
+~,0,<method 'ravel' of 'numpy.ndarray' objects>,600,600,0.00013275100000000002,0.00013275100000000002
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/multiarray.py,710,result_type,1320,1320,0.000131564,0.000131564
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/scipy/_lib/array_api_compat/numpy/_aliases.py,70,asarray,20,20,5.325300000000001e-05,0.000130211
+~,0,<built-in method builtins.min>,370,370,0.00012816500000000002,0.00012816500000000002
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/scipy/_lib/_util.py,423,_asarray_validated,20,20,4.4416e-05,0.00012808400000000002
+~,0,<method 'dot' of 'numpy.ndarray' objects>,100,100,0.00011683900000000001,0.00011683900000000001
+~,0,<built-in method builtins.isinstance>,535,535,9.212100000000001e-05,0.000112454
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/getlimits.py,178,__new__,90,90,8.906300000000001e-05,0.000110075
+~,0,<built-in method builtins.max>,420,420,0.000107535,0.000107535
+~,0,<built-in method builtins.len>,960,960,0.000104856,0.000104856
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/fromnumeric.py,3011,max,10,10,2.0169000000000003e-05,8.846e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,116,_fft_dispatcher,720,720,8.758400000000001e-05,8.758400000000001e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,108,_swap_direction,360,360,8.539700000000001e-05,8.539700000000001e-05
+~,0,<method 'index' of 'list' objects>,360,360,8.3045e-05,8.3045e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/lib/_twodim_base_impl.py,176,eye,10,10,4.9831000000000005e-05,8.2376e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/shape_base.py,368,_stack_dispatcher,40,40,2.8587000000000003e-05,7.8544e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/multiarray.py,115,empty_like,720,720,7.5028e-05,7.5028e-05
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/ou_core.py,31,_parameters,25,25,7.4168e-05,7.4168e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/scipy/_lib/_sparse.py,10,issparse,20,20,2.6668000000000003e-05,7.0709e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/fromnumeric.py,66,_wrapreduction,10,10,2.8707e-05,6.8291e-05
+~,0,<built-in method builtins.issubclass>,480,480,6.162500000000001e-05,6.162500000000001e-05
+~,0,<method 'copy' of 'numpy.ndarray' objects>,60,60,5.7208000000000005e-05,5.7208000000000005e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/einsumfunc.py,1236,_einsum_dispatcher,200,200,5.6469000000000004e-05,5.6469000000000004e-05
+~,0,<built-in method numpy.array>,20,20,3.525e-05,5.4292e-05
+/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/ou_core.py,244,_coefficients,10,10,2.3833e-05,5.0792000000000004e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/shape_base.py,206,_arrays_for_stack_dispatcher,40,40,3.6045000000000005e-05,4.9957e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/shape_base.py,464,<listcomp>,40,40,4.8291e-05,4.8291e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/shape_base.py,452,<listcomp>,40,40,3.579e-05,4.7208000000000006e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/linalg/_linalg.py,168,isComplexType,100,100,3.1299e-05,4.1171e-05
+~,0,<method 'get' of 'dict' objects>,305,305,3.8779e-05,3.8779e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/fft/_pocketfft.py,751,_fftn_dispatcher,240,240,3.8589e-05,3.8589e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/shape_base.py,456,<setcomp>,40,40,3.8292000000000005e-05,3.8292000000000005e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/threading.py,90,RLock,5,5,3.6708e-05,3.6708e-05
+~,0,<built-in method time.perf_counter>,250,250,3.6471000000000004e-05,3.6471000000000004e-05
+<frozen abc>,117,__instancecheck__,25,25,1.3249000000000001e-05,3.2458e-05
+~,0,<built-in method numpy.zeros>,10,10,3.0127e-05,3.0127e-05
+~,0,<method 'min' of 'numpy.ndarray' objects>,10,10,5.833000000000001e-06,2.7709000000000002e-05
+~,0,<built-in method numpy.asanyarray>,260,260,2.6384e-05,2.6384e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/scipy/linalg/blas.py,395,getter,10,10,1.9959e-05,2.4792000000000003e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/scipy/_lib/array_api_compat/common/_helpers.py,683,_check_device,20,20,1.8288000000000002e-05,2.2666000000000003e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/scipy/linalg/_decomp.py,628,_check_select,10,10,1.8963e-05,2.2169e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/_methods.py,43,_amin,10,10,3.877e-06,2.1876000000000002e-05
+~,0,<built-in method _abc._abc_instancecheck>,25,25,1.9209000000000002e-05,1.9209000000000002e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/enum.py,193,__get__,20,20,1.5168000000000001e-05,1.9042e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/numeric.py,483,count_nonzero,20,20,1.0962000000000001e-05,1.8001000000000003e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/multiarray.py,906,bincount,120,120,1.6167e-05,1.6167e-05
+~,0,<method 'update' of 'dict' objects>,20,20,1.6126e-05,1.6126e-05
+~,0,<built-in method builtins.hasattr>,40,40,1.3912000000000002e-05,1.3912000000000002e-05
+~,0,<built-in method numpy._core._multiarray_umath._make_extobj>,5,5,1.3167000000000001e-05,1.3167000000000001e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/linalg/_linalg.py,2595,_norm_dispatcher,100,100,1.2867e-05,1.2867e-05
+~,0,<built-in method numpy.empty>,10,10,1.2792e-05,1.2792e-05
+~,0,<method 'append' of 'list' objects>,115,115,1.2591e-05,1.2591e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/ma/core.py,6669,isMaskedArray,20,20,8.995000000000001e-06,1.1165e-05
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/fromnumeric.py,67,<dictcomp>,10,10,1.0583e-05,1.0583e-05
+~,0,<built-in method builtins.abs>,40,40,7.292000000000001e-06,7.292000000000001e-06
+~,0,<built-in method numpy._core._multiarray_umath.count_nonzero>,20,20,7.039000000000001e-06,7.039000000000001e-06
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/multiarray.py,197,concatenate,45,45,6.294e-06,6.294e-06
+~,0,<method 'reset' of '_contextvars.ContextVar' objects>,5,5,4.999e-06,4.999e-06
+~,0,<method 'set' of '_contextvars.ContextVar' objects>,5,5,4.751e-06,4.751e-06
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/scipy/_lib/_array_api_override.py,69,array_namespace,10,10,4.1270000000000005e-06,4.1270000000000005e-06
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/enum.py,1249,value,20,20,3.8740000000000005e-06,3.8740000000000005e-06
+~,0,<built-in method builtins.any>,10,10,3.5840000000000003e-06,3.5840000000000003e-06
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/scipy/linalg/_decomp.py,1397,_check_info,10,10,3.247e-06,3.247e-06
+~,0,<method 'items' of 'dict' objects>,15,15,2.9570000000000002e-06,2.9570000000000002e-06
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/numeric.py,479,_count_nonzero_dispatcher,20,20,2.8740000000000004e-06,2.8740000000000004e-06
+~,0,<built-in method _operator.index>,20,20,2.418e-06,2.418e-06
+~,0,<method 'lower' of 'str' objects>,10,10,2.373e-06,2.373e-06
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/_core/fromnumeric.py,3006,_max_dispatcher,10,10,1.374e-06,1.374e-06
+~,0,<method 'disable' of '_lsprof.Profiler' objects>,1,1,5.420000000000001e-07,5.420000000000001e-07

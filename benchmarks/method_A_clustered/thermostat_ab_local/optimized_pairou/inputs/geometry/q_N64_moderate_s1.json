@@ -1,0 +1,13 @@
+{
+  "name": "moderate_N64_s1_nested_rho0.75",
+  "family": "moderate",
+  "seed": 1,
+  "source_seed": 1,
+  "rho": 0.75,
+  "N": 64,
+  "L": 4.402569665192835,
+  "hash": "1d31aaf824b4",
+  "position_sha256": "1d31aaf824b40a032daff12ac6fd4aeed9caea9391b20d1c254c8d22b80fabd4",
+  "d_min": 0.568135078335829,
+  "generation": "nested subset of committed configuration, box-scaled at fixed density"
+}

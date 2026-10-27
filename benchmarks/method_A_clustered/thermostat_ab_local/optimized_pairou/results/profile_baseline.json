@@ -1,0 +1,43 @@
+{
+  "config": "N256_uniform_s2_eps0.0001",
+  "N": 256,
+  "edge_count": 4948,
+  "n_images": 4948,
+  "unprofiled_samples": 7,
+  "profiled_steps": 5,
+  "near_fraction_median": 0.8542298396931687,
+  "median_total_s": 0.10208545904606581,
+  "original_implementation": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/ou_core.py",
+  "source_sha256": "7d7c2e87fe6a4d44e530102f354387e5275e22818becedbb3cb86f7974590528",
+  "selection_source_sha256": "762d31ec3bfc3594e49a28a9ce33bad8521f683d7ee78ce3828dccd090a39a5c",
+  "baseline_input_sha256": "3ff4d5b65572925ef7054b7c43dbce8a78ecf7887fb3159db2bf9c80973d8101",
+  "role": "fresh pre-optimization diagnostic profile only; final speedups use three-way formal batch",
+  "profiler": "cProfile; cumulative phases overlap, do not sum nested function times",
+  "load": {
+    "label": "baseline_profile",
+    "unix": 1793141932.393047,
+    "load": [
+      10.80908203125,
+      8.404296875,
+      6.69482421875
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 246.6 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "46078  92.4 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "38499  22.8 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "38413  15.3 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "57516  11.0 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "38419   5.3 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "38420   2.9 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)",
+      "38362   2.3 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "  413   2.2 /usr/libexec/dasd",
+      "58139   1.7 /Applications/Utilities/Adobe Creative Cloud/ACC/Creative Cloud.app/Contents/MacOS/Creative Cloud",
+      "57348   1.7 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "45938   1.7 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "33231   1.4 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "30526   1.2 /usr/libexec/trustd",
+      "17717   1.2 /Applications/WeChat.app/Contents/MacOS/WeChatAppEx.app/Contents/Frameworks/WeChatAppEx Framework.framework/Versions/C/Helpers/WeChatAppEx Helper (Renderer).app/Contents/MacOS/WeChatAppEx Helper (Renderer)"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "elapsed_s": 0.4675109999952838,
+  "cases": 1,
+  "rows": 24,
+  "fullcov_rows": 6,
+  "paired_case_phases": 2,
+  "maximum_compiled_original_relative": 8.742603289973952e-16,
+  "maximum_coupled_ideal_path": 2.5954393874680947e-07,
+  "mc_samples_small": 32,
+  "mc_samples_medium": 16,
+  "all_outputs_newly_computed": true,
+  "baseline_MC_results_used": false
+}
