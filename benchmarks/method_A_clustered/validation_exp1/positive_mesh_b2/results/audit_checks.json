@@ -1,0 +1,28 @@
+{
+ "historical_files_checked": 301,
+ "historical_modified": [],
+ "construction_rows": 4,
+ "structural_proof": "proof.md",
+ "eigenvalues_are_regression_only": true,
+ "provenance": {
+  "time": "2026-10-26T17:37:20-0400",
+  "command": "python3 benchmarks/method_A_clustered/validation_exp1/positive_mesh_b2/audit.py",
+  "git": {
+   "commit": "99b416fb8a5eba3d4130f62a39110f6f00197188",
+   "dirty": true
+  },
+  "code_hash": "590c49f7caad9c3d",
+  "python": "3.11.5",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "host": "wangfengyudeMacBook-Air.local",
+  "cpu": "arm",
+  "n_cpu": 8,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "amplitude_c": 1.0
+ }
+}

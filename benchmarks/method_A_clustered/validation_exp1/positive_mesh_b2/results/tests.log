@@ -1,0 +1,13 @@
+test_bad_inputs (test_positive_mesh.PositiveMeshTests.test_bad_inputs) ... ok
+test_fft_dense_odd_even_and_wrap (test_positive_mesh.PositiveMeshTests.test_fft_dense_odd_even_and_wrap) ... ok
+test_full_basis_and_zero_amplitude (test_positive_mesh.PositiveMeshTests.test_full_basis_and_zero_amplitude) ... ok
+test_independent_image_integral (test_positive_mesh.PositiveMeshTests.test_independent_image_integral) ... ok
+test_radial_kernel_api (test_positive_mesh.PositiveMeshTests.test_radial_kernel_api) ... ok
+test_self_response_cancels (test_positive_mesh.PositiveMeshTests.test_self_response_cancels) ... ok
+test_spline_nonnegativity_partition (test_positive_mesh.PositiveMeshTests.test_spline_nonnegativity_partition) ... ok
+test_table_psd_inversion_and_zero_mode (test_positive_mesh.PositiveMeshTests.test_table_psd_inversion_and_zero_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.130s
+
+OK

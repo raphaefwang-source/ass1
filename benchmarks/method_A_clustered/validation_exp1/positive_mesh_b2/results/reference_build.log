@@ -1,0 +1,96 @@
+16:26:59 reference built moderate_N256_s1_rho0.3 kap=0.7 R=55.0
+16:27:03 reference built moderate_N256_s1_rho0.5 kap=0.7 R=55.0
+16:27:05 reference built moderate_N256_s1_rho0.75 kap=2.0 R=20.0
+16:27:06 reference built moderate_N256_s1_rho0.75 kap=1.0 R=40.0
+16:27:13 reference built moderate_N256_s2_rho0.3 kap=0.7 R=55.0
+16:27:21 reference built moderate_N256_s1_rho1 kap=0.7 R=55.0
+16:27:26 reference built moderate_N256_s1_rho0.75 kap=0.5 R=77.5
+concurrent.futures.process._RemoteTraceback:
+"""
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/process.py", line 256, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/process.py", line 205, in _process_chunk
+    return [fn(*args) for args in chunk]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/process.py", line 205, in <listcomp>
+    return [fn(*args) for args in chunk]
+            ^^^^^^^^^
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/positive_mesh_b2/build_references.py", line 44, in one
+    return dict(config=cfg['name'],family=f,seed=s,rho=rho,kappa=kappa,position_hash=cfg['hash'],
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: dict() got multiple values for keyword argument 'config'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/positive_mesh_b2/build_references.py", line 59, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/positive_mesh_b2/build_references.py", line 52, in main
+    for r in pool.map(one,jobs()):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/process.py", line 606, in _chain_from_iterable_of_lists
+    for element in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+TypeError: dict() got multiple values for keyword argument 'config'
+16:28:12 reference built moderate_N256_s2_rho0.75 kap=1.0 R=40.0
+16:28:14 reference built moderate_N256_s2_rho0.75 kap=2.0 R=20.0
+16:28:16 reference built moderate_N256_s2_rho0.5 kap=0.7 R=55.0
+16:28:26 reference built moderate_N256_s3_rho0.3 kap=0.7 R=55.0
+16:28:43 reference built moderate_N256_s3_rho0.5 kap=0.7 R=55.0
+16:28:43 reference built moderate_N256_s2_rho1 kap=0.7 R=55.0
+16:28:56 reference built moderate_N256_s3_rho0.75 kap=1.0 R=40.0
+16:29:01 reference built moderate_N256_s3_rho0.75 kap=2.0 R=20.0
+16:29:04 reference built moderate_N256_s2_rho0.75 kap=0.5 R=77.5
+16:29:20 reference built strong_N256_s1_rho0.3 kap=0.7 R=55.0
+16:29:41 reference built strong_N256_s1_rho0.5 kap=0.7 R=55.0
+16:29:43 reference built moderate_N256_s3_rho1 kap=0.7 R=55.0
+16:29:56 reference built strong_N256_s1_rho0.75 kap=1.0 R=40.0
+16:29:58 reference built strong_N256_s1_rho0.75 kap=2.0 R=20.0
+16:29:59 reference built moderate_N256_s3_rho0.75 kap=0.5 R=77.5
+16:30:11 reference built strong_N256_s2_rho0.3 kap=0.7 R=55.0
+16:30:28 reference built strong_N256_s2_rho0.5 kap=0.7 R=55.0
+16:30:31 reference built strong_N256_s1_rho1 kap=0.7 R=55.0
+16:30:50 reference built strong_N256_s2_rho0.75 kap=1.0 R=40.0
+16:30:54 reference built strong_N256_s1_rho0.75 kap=0.5 R=77.5
+16:30:59 reference built strong_N256_s2_rho0.75 kap=2.0 R=20.0
+16:31:17 reference built strong_N256_s3_rho0.3 kap=0.7 R=55.0
+16:31:33 reference built strong_N256_s2_rho1 kap=0.7 R=55.0
+16:31:34 reference built strong_N256_s3_rho0.5 kap=0.7 R=55.0
+16:31:48 reference built strong_N256_s3_rho0.75 kap=1.0 R=40.0
+16:31:50 reference built strong_N256_s2_rho0.75 kap=0.5 R=77.5
+16:31:50 reference built strong_N256_s3_rho0.75 kap=2.0 R=20.0
+16:32:00 reference built uniform_N256_s1_rho0.3 kap=0.7 R=55.0
+16:32:21 reference built uniform_N256_s1_rho0.5 kap=0.7 R=55.0
+16:32:23 reference built strong_N256_s3_rho1 kap=0.7 R=55.0
+16:32:37 reference built uniform_N256_s1_rho0.75 kap=1.0 R=40.0
+16:32:40 reference built uniform_N256_s1_rho0.75 kap=2.0 R=20.0
+16:32:40 reference built strong_N256_s3_rho0.75 kap=0.5 R=77.5
+16:32:50 reference built uniform_N256_s2_rho0.3 kap=0.7 R=55.0
+16:33:05 reference built uniform_N256_s2_rho0.5 kap=0.7 R=55.0
+16:33:07 reference built uniform_N256_s1_rho1 kap=0.7 R=55.0
+16:33:15 reference built uniform_N256_s2_rho0.75 kap=1.0 R=40.0
+16:33:17 reference built uniform_N256_s1_rho0.75 kap=0.5 R=77.5
+16:33:17 reference built uniform_N256_s2_rho0.75 kap=2.0 R=20.0
+16:33:25 reference built uniform_N256_s3_rho0.3 kap=0.7 R=55.0
+16:33:37 reference built uniform_N256_s3_rho0.5 kap=0.7 R=55.0
+16:33:38 reference built uniform_N256_s2_rho1 kap=0.7 R=55.0
+16:33:47 reference built uniform_N256_s3_rho0.75 kap=1.0 R=40.0
+16:33:50 reference built uniform_N256_s3_rho0.75 kap=2.0 R=20.0
+16:33:50 reference built uniform_N256_s2_rho0.75 kap=0.5 R=77.5
+16:34:15 reference built uniform_N256_s3_rho1 kap=0.7 R=55.0
+16:34:24 reference built uniform_N256_s3_rho0.75 kap=0.5 R=77.5
+16:34:25 all 72 independent direct references ready
+17:02:32 all 72 independent direct references ready

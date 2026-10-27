@@ -1,0 +1,25 @@
+{
+ "time": "2026-10-26T16:47:51-0400",
+ "command": "python3 benchmarks/method_A_clustered/validation_exp1/positive_mesh_b2/run_experiments.py sweeps fits --workers 3",
+ "git": {
+  "commit": "99b416fb8a5eba3d4130f62a39110f6f00197188",
+  "dirty": true
+ },
+ "code_hash": "f513ac4c51ac3894",
+ "python": "3.11.5",
+ "numpy": "2.4.6",
+ "scipy": "1.17.1",
+ "host": "wangfengyudeMacBook-Air.local",
+ "cpu": "arm",
+ "n_cpu": 8,
+ "threads": {
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1"
+ },
+ "workers": 3,
+ "rows": 927,
+ "threadpool": [],
+ "note": "accuracy only; final performance measured serially separately",
+ "amplitude_c": 1.0
+}
