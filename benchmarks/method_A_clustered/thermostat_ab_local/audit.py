@@ -400,7 +400,7 @@ def main():
     else:
         check('logged_unit_and_spatial_tests_passed', False, 'logs/tests.log missing')
     evidence_files = sorted(path for path in HERE.rglob('*') if path.is_file() and
-                            path.suffix in ('.csv', '.json', '.npz', '.py', '.png', '.svg', '.log', '.md') and
+                            (path.suffix in ('.csv', '.json', '.npz', '.py', '.png', '.svg', '.log', '.md') or path.name == '.gitattributes') and
                             path.name not in ('audit.json',) and '__pycache__' not in path.parts)
     manifest = {str(path.relative_to(HERE)): sha(path) for path in evidence_files}
     failed = [row['name'] for row in checks if not row['passed']]

@@ -1,0 +1,4 @@
+# Keep exact archived CSV bytes, including their standard CRLF record endings.
+*.csv whitespace=cr-at-eol
+# Matplotlib emits trailing spaces within multiline SVG path attributes.
+*.svg -whitespace
