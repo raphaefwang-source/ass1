@@ -1,0 +1,43 @@
+{
+  "generated": [
+    {
+      "figure": "fig1a_complete_error_bounds",
+      "plotted_records": 210
+    },
+    {
+      "figure": "fig1b_mesh_error_bounds",
+      "plotted_records": 210
+    },
+    {
+      "figure": "fig2_tightness_delta_negative_blocks",
+      "plotted_records": 135
+    },
+    {
+      "figure": "fig3_parameter_bounds_activity",
+      "plotted_records": 200
+    },
+    {
+      "figure": "fig4_winner_activecase_and_bound_cost",
+      "plotted_records": 22
+    },
+    {
+      "figure": "fig5_empirical_budget_envelope",
+      "plotted_records": 54
+    },
+    {
+      "figure": "fig3b_parameter_bounds_activity_moderate",
+      "plotted_records": 165
+    }
+  ],
+  "skipped": [],
+  "notes": [],
+  "input_rows": 1692,
+  "dataset_rows": {
+    "convergence": 324,
+    "sweeps": 927,
+    "validation": 387,
+    "xi_sweep": 45,
+    "best_projection_diagnostics": 9
+  },
+  "verified_positive_correction_norm_rows": 576
+}
