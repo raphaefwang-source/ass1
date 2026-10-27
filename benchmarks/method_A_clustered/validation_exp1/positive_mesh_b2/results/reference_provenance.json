@@ -1,0 +1,24 @@
+{
+ "time": "2026-10-26T17:02:32-0400",
+ "command": "python3 benchmarks/method_A_clustered/validation_exp1/positive_mesh_b2/build_references.py --workers 1",
+ "git": {
+  "commit": "99b416fb8a5eba3d4130f62a39110f6f00197188",
+  "dirty": true
+ },
+ "code_hash": "2428a55e1bf2b705",
+ "python": "3.11.5",
+ "numpy": "2.4.6",
+ "scipy": "1.17.1",
+ "host": "wangfengyudeMacBook-Air.local",
+ "cpu": "arm",
+ "n_cpu": 8,
+ "threads": {
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1"
+ },
+ "workers": 1,
+ "source": "unsplit direct periodic only",
+ "reference_count": 72,
+ "amplitude_c": 1.0
+}

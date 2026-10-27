@@ -1,0 +1,23 @@
+{
+ "id": "xi0.35_sR3.1_sT36_M72_p2",
+ "kappa": 0.2,
+ "rho": 0.75,
+ "xi": 0.35,
+ "sR": 3.1,
+ "sT": 36.0,
+ "M": 72,
+ "p": 2,
+ "max_E_G": 9.965581556637812e-05,
+ "max_E_GX": 2.938663522488952e-05,
+ "min_eigenvalue": 67.73506874905716,
+ "feasible": true,
+ "n_configs": 9,
+ "method": "B2",
+ "median_matvec_s": 0.06562975,
+ "min_config_median_s": 0.062193583000000004,
+ "max_config_median_s": 0.06868350000000001,
+ "max_relative_iqr": 0.3027545259765231,
+ "median_config_setup_s": 0.17270762496627867,
+ "median_table_setup_s": 0.4245498749660328,
+ "n_samples_per_config": 35
+}

@@ -1,0 +1,39 @@
+{
+ "rounds": 5,
+ "reps": 7,
+ "threads": 1,
+ "started_unix": 1793049168.402411,
+ "elapsed_s": 1401.0546860694885,
+ "randomization": "candidate blocks randomly ordered each round",
+ "warmup": "3 per block, 1 before each sample",
+ "objective": "median over nine configuration medians",
+ "b2_over_pppm_block_bootstrap_95": [
+  26.3061797718604,
+  33.9847989293579
+ ],
+ "note": "conditional on candidate selection; other system load is not controlled",
+ "setup": "3 fresh configuration builds per state; 3 fresh parameter tables; kernel primitives warmed",
+ "provenance": {
+  "time": "2026-10-26T17:36:09-0400",
+  "command": "python3 benchmarks/method_A_clustered/validation_exp1/positive_mesh_b2/time_candidates.py --rounds 5 --reps 7",
+  "git": {
+   "commit": "99b416fb8a5eba3d4130f62a39110f6f00197188",
+   "dirty": true
+  },
+  "code_hash": "590c49f7caad9c3d",
+  "python": "3.11.5",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "host": "wangfengyudeMacBook-Air.local",
+  "cpu": "arm",
+  "n_cpu": 8,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "threadpool": [],
+  "amplitude_c": 1.0
+ }
+}

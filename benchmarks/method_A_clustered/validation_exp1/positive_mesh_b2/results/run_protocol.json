@@ -1,0 +1,44 @@
+{
+ "base_commit": "99b416fb8a5eba3d4130f62a39110f6f00197188",
+ "date": "2026-10-26",
+ "timezone": "America/Detroit",
+ "independent_references": {
+  "total": 72,
+  "reused": 18,
+  "missing_built": 54
+ },
+ "accuracy_passes": [
+  {
+   "workers": 2,
+   "available_only": true,
+   "rows": 833
+  },
+  {
+   "workers": 3,
+   "fill_missing": true,
+   "rows": 927
+  }
+ ],
+ "screen_timing": "coarse/calibration may overlap accuracy; local after sweeps; final serial reranking and paired timing after all workers exit",
+ "numerically_equivalent_implementation_updates": [
+  "contiguous FFT multiplier storage",
+  "streamed far-short diagnostic sum"
+ ],
+ "history_preservation": "all 301 initial tracked files retained byte for byte",
+ "commands": [
+  "python3 build_references.py --workers 3",
+  "python3 run_experiments.py sweeps --workers 2 --available-only",
+  "python3 optimize.py calibrate",
+  "python3 run_experiments.py fits",
+  "python3 optimize.py search",
+  "python3 run_experiments.py sweeps fits --workers 3",
+  "python3 optimize.py local",
+  "python3 optimize.py boundary",
+  "caffeinate -i python3 time_candidates.py --rounds 5 --reps 7",
+  "python3 final_diagnostics.py",
+  "python3 plot_results.py",
+  "python3 summarize_results.py"
+ ],
+ "reference_cache_layout": "18 original caches read-only; 54 B2-created caches isolated under raw/positive_mesh_b2_refs",
+ "implementation_notes": "Exact p=1 half-grid tie handling added during timing; all timed candidates have p>=2, whose numeric and cached action paths are unchanged. Final API audit also distinguished RadialEwald.theta (method) from ThetaKernel.theta (numeric blend) in constructor validation. Experiments use the numeric ThetaKernel path, with identical numeric operations and cached actions. Eight final tests include exact RadialEwald/ThetaKernel table parity and operator agreement."
+}
