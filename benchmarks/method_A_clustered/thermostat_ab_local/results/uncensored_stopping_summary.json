@@ -1,0 +1,132 @@
+{
+  "source": "saved input G and GL; independent DenseOU reference",
+  "timing_scope": "diagnostic only; dense actions are not additional FFT benchmark measurements",
+  "source_rank_errors_sha256_before": "a1613efa04f0f0a56a2e980195949c577d1cbc8e247bb269693571928b5a0740",
+  "source_rank_errors_sha256_after": "a1613efa04f0f0a56a2e980195949c577d1cbc8e247bb269693571928b5a0740",
+  "input_sha256": {
+    "N2_uniform_s2_eps0.0001": "f4391093b4ac8dbec63657483218fada426ac9a09eb0b3fef754d27ce3e24e9c",
+    "N8_uniform_s2_eps0.0001": "4c01b776c2c72cacc5d70105c2ddde0421fdffd7d90a1c4b4eb3cb1e3195283c",
+    "N16_uniform_s2_eps0.0001": "7a01f823487f64a0915c8d36a5bd637f79b87d66e973c87e39c2b673bb283558",
+    "N64_uniform_s2_eps0.0001": "8104ec7feb8b5cc779f8fc168447df007e00f19eb022116705a4738795f167b3",
+    "N128_uniform_s2_eps0.0001": "73cc66eb26e6246dbb63f52429966524c2aa1b0e8b1791847a82c1fbd5b7eb56",
+    "N256_uniform_s2_eps0.0001": "3ff4d5b65572925ef7054b7c43dbce8a78ecf7887fb3159db2bf9c80973d8101"
+  },
+  "N": [
+    2,
+    8,
+    16,
+    64,
+    128,
+    256
+  ],
+  "alphas": [
+    1.0,
+    2.0
+  ],
+  "alpha_definition": "dt*lambda_max(full); long uses the same physical dt",
+  "probes": [
+    "saved_random",
+    "saved_z"
+  ],
+  "ranks_requested": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    8,
+    12
+  ],
+  "ranks_note": "cap each rank at 3N-3 and deduplicate; no early stopping",
+  "elapsed_s": 0.8299114999826998,
+  "per_direction": {
+    "1e-06": {
+      "counts": {
+        "no_previous_rank": 96,
+        "true_positive": 268,
+        "true_negative": 148,
+        "false_positive": 0,
+        "false_negative": 96
+      },
+      "comparable_rows": 512,
+      "false_positive_opportunities": 148,
+      "observed_false_positive_count": 0,
+      "assessment": "empirical only; observed false positives disprove certification, absence does not prove it"
+    },
+    "1e-08": {
+      "counts": {
+        "no_previous_rank": 96,
+        "true_positive": 179,
+        "true_negative": 237,
+        "false_positive": 0,
+        "false_negative": 96
+      },
+      "comparable_rows": 512,
+      "false_positive_opportunities": 237,
+      "observed_false_positive_count": 0,
+      "assessment": "empirical only; observed false positives disprove certification, absence does not prove it"
+    },
+    "1e-10": {
+      "counts": {
+        "no_previous_rank": 96,
+        "true_positive": 138,
+        "true_negative": 278,
+        "false_positive": 0,
+        "false_negative": 96
+      },
+      "comparable_rows": 512,
+      "false_positive_opportunities": 278,
+      "observed_false_positive_count": 0,
+      "assessment": "empirical only; observed false positives disprove certification, absence does not prove it"
+    }
+  },
+  "both_registered_probes": {
+    "1e-06": {
+      "counts": {
+        "no_previous_rank": 48,
+        "true_positive": 133,
+        "true_negative": 75,
+        "false_positive": 0,
+        "false_negative": 48
+      },
+      "comparable_rows": 256,
+      "false_positive_opportunities": 75,
+      "observed_false_positive_count": 0,
+      "assessment": "empirical only; observed false positives disprove certification, absence does not prove it"
+    },
+    "1e-08": {
+      "counts": {
+        "no_previous_rank": 48,
+        "true_positive": 89,
+        "true_negative": 119,
+        "false_positive": 0,
+        "false_negative": 48
+      },
+      "comparable_rows": 256,
+      "false_positive_opportunities": 119,
+      "observed_false_positive_count": 0,
+      "assessment": "empirical only; observed false positives disprove certification, absence does not prove it"
+    },
+    "1e-10": {
+      "counts": {
+        "no_previous_rank": 48,
+        "true_positive": 69,
+        "true_negative": 139,
+        "false_positive": 0,
+        "false_negative": 48
+      },
+      "comparable_rows": 256,
+      "false_positive_opportunities": 139,
+      "observed_false_positive_count": 0,
+      "assessment": "empirical only; observed false positives disprove certification, absence does not prove it"
+    }
+  },
+  "false_positive_examples": [],
+  "limitations": [
+    "Finite observed configurations, time scales, ranks, and directions do not certify an error bound.",
+    "This supplemental sweep does not change the production accuracy selection or its tolerance.",
+    "Successive tested ranks have nonuniform increments.",
+    "Noise action error is vector dependent and is not a covariance-operator error bound.",
+    "A small successive-rank change alone cannot be used as a general stopping certificate."
+  ]
+}

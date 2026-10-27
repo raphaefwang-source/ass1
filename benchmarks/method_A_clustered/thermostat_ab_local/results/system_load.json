@@ -1,0 +1,893 @@
+[
+  {
+    "label": "before",
+    "unix": 1793129746.244123,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 273.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  92.2 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.0 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   9.4 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "57725   7.5 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "38419   6.5 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "41501   3.4 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "38420   1.7 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)",
+      "  404   1.5 /System/Library/CoreServices/launchservicesd",
+      "38413   0.7 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "  838   0.6 /usr/libexec/sysmond",
+      "29058   0.3 Claude",
+      "  402   0.3 /usr/libexec/opendirectoryd",
+      "38362   0.3 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "57348   0.3 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN"
+    ]
+  },
+  {
+    "label": "N2_uniform_s2_eps0.0001",
+    "unix": 1793129746.38926,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 272.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  76.3 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  24.8 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   8.4 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "57725   7.8 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "38413   5.3 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "38419   5.1 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "41501   3.3 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "  404   2.5 /System/Library/CoreServices/launchservicesd",
+      "38420   1.0 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)",
+      "38499   0.6 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "29058   0.4 Claude",
+      "38362   0.4 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "  838   0.3 /usr/libexec/sysmond",
+      "58486   0.3 /Users/wfy666/Library/Application Support/Adobe/com.adobe.ARMDCHelper/Adobe Acrobat Updater.app/Contents/MacOS/Acrobat Updater"
+    ]
+  },
+  {
+    "label": "N8_uniform_s2_eps0.0001",
+    "unix": 1793129746.554351,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 278.4 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  72.4 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  24.9 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691  10.5 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "41501   2.9 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "57725   2.8 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "38413   2.4 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "16861   2.2 /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod",
+      "57735   1.5 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "38419   1.5 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "  365   1.2 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd",
+      "  404   0.9 /System/Library/CoreServices/launchservicesd",
+      "57348   0.8 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "  502   0.8 /usr/libexec/airportd",
+      "38420   0.5 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)"
+    ]
+  },
+  {
+    "label": "N16_uniform_s1_eps0.0001",
+    "unix": 1793129746.738441,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 273.7 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  75.6 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  26.9 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   9.6 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "42239   4.2 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared",
+      "57725   4.2 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "41501   3.0 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "14036   2.4 /Applications/Utilities/Adobe Creative Cloud Experience/CCXProcess/CCXProcess.app/Contents/MacOS/Creative Cloud Content Manager.node",
+      "38413   1.7 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "  365   1.4 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd",
+      "  536   1.4 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores",
+      "16861   1.3 /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod",
+      "57735   1.2 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "38419   0.8 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "  390   0.8 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds"
+    ]
+  },
+  {
+    "label": "N16_uniform_s2_eps0.0001",
+    "unix": 1793129746.927677,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 279.9 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  81.6 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  26.7 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   8.2 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "41501   2.8 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "57725   1.5 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "42239   1.5 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared",
+      "  365   1.2 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd",
+      "14036   0.7 /Applications/Utilities/Adobe Creative Cloud Experience/CCXProcess/CCXProcess.app/Contents/MacOS/Creative Cloud Content Manager.node",
+      "57735   0.6 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "  536   0.6 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores",
+      "38413   0.5 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "  390   0.4 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds",
+      "16861   0.4 /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod",
+      "38419   0.3 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+    ]
+  },
+  {
+    "label": "N16_uniform_s3_eps0.0001",
+    "unix": 1793129747.119519,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 282.2 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  78.0 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.8 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691  12.1 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "41501   2.8 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "  365   1.4 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd",
+      "42239   0.9 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared",
+      "57725   0.8 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "  536   0.6 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores",
+      "57735   0.4 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "14036   0.4 /Applications/Utilities/Adobe Creative Cloud Experience/CCXProcess/CCXProcess.app/Contents/MacOS/Creative Cloud Content Manager.node",
+      "57348   0.4 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "38362   0.3 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "38413   0.3 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "  390   0.3 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds"
+    ]
+  },
+  {
+    "label": "N16_moderate_s1_eps0.0001",
+    "unix": 1793129747.311738,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 281.9 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  82.3 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.8 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   9.7 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "41501   3.4 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "  365   1.2 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd",
+      "33231   0.4 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "29058   0.4 Claude",
+      "  404   0.4 /System/Library/CoreServices/launchservicesd",
+      "58486   0.4 /Users/wfy666/Library/Application Support/Adobe/com.adobe.ARMDCHelper/Adobe Acrobat Updater.app/Contents/MacOS/Acrobat Updater",
+      "36648   0.3 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "  536   0.3 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores",
+      "42239   0.3 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared",
+      "57348   0.2 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "  390   0.2 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds"
+    ]
+  },
+  {
+    "label": "N16_moderate_s2_eps0.0001",
+    "unix": 1793129747.526122,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 281.9 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  75.1 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  24.3 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   8.0 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "41501   3.1 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "38420   1.6 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)",
+      "38413   1.3 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "38362   1.1 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "38499   0.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "  365   0.4 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd",
+      "  416   0.4 /usr/sbin/distnoted",
+      "38419   0.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "28981   0.3 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper",
+      "58486   0.3 /Users/wfy666/Library/Application Support/Adobe/com.adobe.ARMDCHelper/Adobe Acrobat Updater.app/Contents/MacOS/Acrobat Updater",
+      "57735   0.3 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder"
+    ]
+  },
+  {
+    "label": "N16_moderate_s3_eps0.0001",
+    "unix": 1793129747.7215722,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 276.6 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  81.7 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  24.4 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   8.6 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "38413   4.9 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "41501   2.6 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "  365   1.2 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd",
+      "38499   1.2 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "57348   0.9 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "38420   0.7 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)",
+      "38362   0.7 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "  360   0.6 /usr/libexec/logd",
+      "30526   0.4 /usr/libexec/trustd",
+      "38419   0.3 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "  390   0.3 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds"
+    ]
+  },
+  {
+    "label": "N16_strong_s1_eps0.0001",
+    "unix": 1793129747.93601,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 270.4 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  83.7 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.6 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "29058   9.7 Claude",
+      "57691   7.1 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "38362   4.2 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "38413   3.4 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "41501   2.6 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "38499   1.7 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "  365   1.1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd",
+      "38419   1.0 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "57725   0.8 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "  536   0.7 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores",
+      "57348   0.7 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "57484   0.6 /System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow"
+    ]
+  },
+  {
+    "label": "N16_strong_s2_eps0.0001",
+    "unix": 1793129748.130838,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 274.9 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  76.8 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  24.8 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691  10.4 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "29058   6.4 Claude",
+      "38362   2.8 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "41501   2.8 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "38413   2.4 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "57348   1.7 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "  365   1.4 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd",
+      "38499   1.1 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "38419   0.8 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "  536   0.6 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores",
+      "57725   0.6 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "  390   0.5 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds"
+    ]
+  },
+  {
+    "label": "N16_strong_s3_eps0.0001",
+    "unix": 1793129748.376422,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 273.7 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  81.3 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  23.0 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   8.6 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "28903   5.2 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)",
+      "41501   2.7 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "29058   2.3 Claude",
+      "15892   1.7 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper",
+      "38413   1.6 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "57348   1.6 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "  365   1.5 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd",
+      "38362   1.5 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "15879   1.4 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/MacOS/Electron",
+      "38499   0.7 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "  513   0.7 /usr/sbin/mDNSResponder"
+    ]
+  },
+  {
+    "label": "N64_uniform_s1_eps0.0001",
+    "unix": 1793129749.0097542,
+    "load": [
+      4.9814453125,
+      5.10009765625,
+      5.7626953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 279.3 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  94.2 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.6 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   8.7 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "41501   3.0 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "28903   1.9 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)",
+      "57348   1.6 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "57113   1.4 /Users/wfy666/.local/bin/claude",
+      "38413   1.2 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "38362   1.1 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "15879   0.8 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/MacOS/Electron",
+      "38499   0.7 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "36742   0.7 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "38419   0.5 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "57735   0.4 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder"
+    ]
+  },
+  {
+    "label": "N64_uniform_s2_eps0.0001",
+    "unix": 1793129749.647636,
+    "load": [
+      4.90283203125,
+      5.08154296875,
+      5.751953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 280.5 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  95.7 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  23.5 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   6.6 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "41501   2.3 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "38362   1.6 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "38420   1.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)",
+      "57348   1.3 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "38413   1.2 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "38419   0.9 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "38499   0.8 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "26327   0.4 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "  402   0.3 /usr/libexec/opendirectoryd",
+      "33369   0.3 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "57113   0.2 /Users/wfy666/.local/bin/claude"
+    ]
+  },
+  {
+    "label": "N64_uniform_s3_eps0.0001",
+    "unix": 1793129750.305943,
+    "load": [
+      4.90283203125,
+      5.08154296875,
+      5.751953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 271.1 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  95.3 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  24.3 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57113  11.3 /Users/wfy666/.local/bin/claude",
+      "57691   9.8 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "38419   5.5 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "38413   3.3 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "41501   3.1 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "57348   1.9 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "38362   1.2 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "57725   1.0 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "15891   1.0 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/Frameworks/Code Helper (GPU).app/Contents/MacOS/Code Helper (GPU)",
+      "57735   0.9 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "38499   0.7 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "  635   0.7 /usr/sbin/cfprefsd"
+    ]
+  },
+  {
+    "label": "N64_moderate_s1_eps0.0001",
+    "unix": 1793129751.072738,
+    "load": [
+      4.90283203125,
+      5.08154296875,
+      5.751953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 247.1 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  88.9 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  22.3 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "38419  14.5 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "38362  10.9 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "38478  10.0 /Users/wfy666/.codex/computer-use/Codex Computer Use.app/Contents/MacOS/SkyComputerUseService",
+      "38413   9.8 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "38499   8.0 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "30526   7.3 /usr/libexec/trustd",
+      "57691   6.9 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "  838   5.5 /usr/libexec/sysmond",
+      "57395   5.1 /System/Library/PrivateFrameworks/TCC.framework/Support/tccd",
+      "38629   4.6 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "57725   4.2 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "30525   3.4 /usr/libexec/trustd"
+    ]
+  },
+  {
+    "label": "N64_moderate_s2_eps0.0001",
+    "unix": 1793129751.764378,
+    "load": [
+      4.90283203125,
+      5.08154296875,
+      5.751953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 273.4 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  95.2 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  23.1 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "38362   7.6 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "57691   7.4 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "36742   2.5 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "33249   2.5 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif).app/Contents/MacOS/Google Chrome Helper (Aperitif)",
+      "41501   2.2 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "38419   1.9 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "57725   1.7 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "57348   1.7 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "38413   1.3 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "30526   1.1 /usr/libexec/trustd",
+      "33231   1.0 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "  502   0.9 /usr/libexec/airportd"
+    ]
+  },
+  {
+    "label": "N64_moderate_s3_eps0.0001",
+    "unix": 1793129752.4318342,
+    "load": [
+      4.90283203125,
+      5.08154296875,
+      5.751953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 277.9 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  96.1 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  24.0 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   9.4 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "36742   4.8 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "33231   3.9 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "57735   2.9 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "41501   2.8 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "38419   1.6 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "38362   0.8 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "38420   0.8 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)",
+      "28903   0.4 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)",
+      "  393   0.3 /usr/libexec/diskarbitrationd",
+      "57640   0.3 /System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATS.framework/Support/fontd",
+      "58486   0.2 /Users/wfy666/Library/Application Support/Adobe/com.adobe.ARMDCHelper/Adobe Acrobat Updater.app/Contents/MacOS/Acrobat Updater"
+    ]
+  },
+  {
+    "label": "N64_strong_s1_eps0.0001",
+    "unix": 1793129753.060097,
+    "load": [
+      4.90283203125,
+      5.08154296875,
+      5.751953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 281.6 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  97.0 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  26.0 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   9.7 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      " 4677   5.0 /System/Library/PrivateFrameworks/HomeKitDaemon.framework/Support/homed",
+      "57655   4.1 /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd",
+      "  633   3.8 /usr/libexec/secd",
+      "41501   3.1 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "57348   0.8 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "57735   0.5 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "17670   0.4 /Applications/WeChat.app/Contents/MacOS/WeChatAppEx.app/Contents/MacOS/WeChatAppEx",
+      "33231   0.4 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "36742   0.4 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "  471   0.3 /System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsd",
+      "    1   0.3 /sbin/launchd"
+    ]
+  },
+  {
+    "label": "N64_strong_s2_eps0.0001",
+    "unix": 1793129753.673568,
+    "load": [
+      4.90283203125,
+      5.08154296875,
+      5.751953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 281.8 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  95.2 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  24.7 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   9.5 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "41501   2.8 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "38420   0.8 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)",
+      "29058   0.3 Claude",
+      "  360   0.3 /usr/libexec/logd",
+      "  402   0.2 /usr/libexec/opendirectoryd",
+      "  633   0.2 /usr/libexec/secd",
+      "57655   0.1 /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd",
+      "38499   0.1 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "17696   0.1 /Applications/WeChat.app/Contents/MacOS/WeChatAppEx.app/Contents/Frameworks/WeChatAppEx Framework.framework/Versions/C/Helpers/WeChatAppEx Helper.app/Contents/MacOS/WeChatAppEx Helper",
+      "38362   0.1 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "17684   0.1 /Applications/WeChat.app/Contents/MacOS/WeChatAppEx.app/Contents/Frameworks/WeChatAppEx Framework.framework/Versions/C/Helpers/WeChatAppEx Helper (GPU).app/Contents/MacOS/WeChatAppEx Helper (GPU)"
+    ]
+  },
+  {
+    "label": "N64_strong_s3_eps0.0001",
+    "unix": 1793129754.289406,
+    "load": [
+      4.90283203125,
+      5.08154296875,
+      5.751953125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 282.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  96.4 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.2 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   9.0 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "41501   3.4 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "15891   0.5 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/Frameworks/Code Helper (GPU).app/Contents/MacOS/Code Helper (GPU)",
+      "58552   0.4 /Library/Application Support/Adobe/Adobe Desktop Common/ADS/Adobe Desktop Service.app/Contents/MacOS/Adobe Desktop Service",
+      "17729   0.3 /Applications/WeChat.app/Contents/MacOS/WeChatAppEx.app/Contents/Frameworks/WeChatAppEx Framework.framework/Versions/C/Helpers/WeChatAppEx Helper (Renderer).app/Contents/MacOS/WeChatAppEx Helper (Renderer)",
+      "58577   0.3 /Applications/Utilities/Adobe Sync/CoreSync/Core Sync.app/Contents/MacOS/Core Sync",
+      "57604   0.2 /System/Library/CoreServices/ControlCenter.app/Contents/MacOS/ControlCenter",
+      "38420   0.1 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)",
+      "57360   0.1 node",
+      "15922   0.1 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper",
+      "58426   0.1 /Library/Application Support/Adobe/Adobe Desktop Common/ADCUtils/CrashReporter/AdobeCrashReporter.framework/Versions/A/Adobe Crash Processor.app/Contents/MacOS/Adobe Crash Processor",
+      "  483   0.1 /usr/libexec/clocksyncd"
+    ]
+  },
+  {
+    "label": "N256_uniform_s1_eps0.0001",
+    "unix": 1793129756.513896,
+    "load": [
+      4.91015625,
+      5.080078125,
+      5.7470703125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 279.9 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  98.7 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  26.0 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57725  12.5 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "57691   9.3 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "57735   4.0 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "41501   3.3 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "  838   3.3 /usr/libexec/sysmond",
+      "  404   1.9 /System/Library/CoreServices/launchservicesd",
+      "38413   1.6 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "  536   1.5 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores",
+      "37101   0.8 /System/Library/PrivateFrameworks/CalendarDaemon.framework/Support/calaccessd",
+      "38420   0.8 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)",
+      "  390   0.6 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds",
+      "38362   0.6 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
+    ]
+  },
+  {
+    "label": "N256_uniform_s2_eps0.0001",
+    "unix": 1793129758.655702,
+    "load": [
+      4.91015625,
+      5.080078125,
+      5.7470703125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 274.3 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  99.7 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.6 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   8.0 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "38413   6.3 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "17655   5.9 /Applications/WeChat.app/Contents/MacOS/WeChat",
+      "41501   3.4 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "38419   3.0 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "57735   1.8 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "  503   1.4 /usr/libexec/symptomsd",
+      "57348   1.1 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "57725   1.0 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "38362   0.6 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "30526   0.6 /usr/libexec/trustd",
+      "28981   0.3 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper"
+    ]
+  },
+  {
+    "label": "N256_uniform_s3_eps0.0001",
+    "unix": 1793129760.9832351,
+    "load": [
+      4.9169921875,
+      5.07861328125,
+      5.74267578125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 276.4 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  96.7 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  33.2 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "    1  20.6 /sbin/launchd",
+      "57484  16.4 /System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow",
+      "41745  14.1 /System/Library/Frameworks/Metal.framework/Versions/A/XPCServices/MTLCompilerService.xpc/Contents/MacOS/MTLCompilerService",
+      "57691  10.5 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "  403   5.6 /System/Library/PrivateFrameworks/ApplePushService.framework/apsd",
+      "  838   3.8 /usr/libexec/sysmond",
+      "41501   2.7 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "58577   2.2 /Applications/Utilities/Adobe Sync/CoreSync/Core Sync.app/Contents/MacOS/Core Sync",
+      "57348   1.8 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "57725   1.5 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "38362   1.2 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "38413   1.0 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+    ]
+  },
+  {
+    "label": "N256_moderate_s1_eps0.0001",
+    "unix": 1793129763.479986,
+    "load": [
+      4.9169921875,
+      5.07861328125,
+      5.74267578125
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 274.7 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  99.0 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  26.5 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   9.7 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "38419   6.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "  536   4.0 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores",
+      "41501   3.5 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      " 4677   1.2 /System/Library/PrivateFrameworks/HomeKitDaemon.framework/Support/homed",
+      "57725   1.0 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "57655   1.0 /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd",
+      "  633   1.0 /usr/libexec/secd",
+      "  390   0.9 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds",
+      "33248   0.6 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif).app/Contents/MacOS/Google Chrome Helper (Aperitif)",
+      "28981   0.5 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper",
+      "42240   0.5 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    ]
+  },
+  {
+    "label": "N256_moderate_s2_eps0.0001",
+    "unix": 1793129765.817203,
+    "load": [
+      4.84326171875,
+      5.060546875,
+      5.732421875
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 277.5 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  97.3 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.4 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691  10.1 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "41501   2.7 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "57655   2.4 /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd",
+      "90832   2.2 /usr/libexec/keyboardservicesd",
+      "56777   1.4 /Users/wfy666/iteris-projects/MyProblem/.iteris/codex_home/goal-iteris-myproblem-20261008T191334068989Z/packages/app-server-daemon/releases/0.159.2-aarch64-apple-darwin/bin/codex",
+      "57725   1.1 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "17729   1.0 /Applications/WeChat.app/Contents/MacOS/WeChatAppEx.app/Contents/Frameworks/WeChatAppEx Framework.framework/Versions/C/Helpers/WeChatAppEx Helper (Renderer).app/Contents/MacOS/WeChatAppEx Helper (Renderer)",
+      "57618   0.8 /System/Library/PrivateFrameworks/TCC.framework/Support/tccd",
+      "17706   0.7 /Applications/WeChat.app/Contents/MacOS/WeChatAppEx.app/Contents/Frameworks/WeChatAppEx Framework.framework/Versions/C/Helpers/WeChatAppEx Helper (Renderer).app/Contents/MacOS/WeChatAppEx Helper (Renderer)",
+      "57735   0.5 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "  360   0.4 /usr/libexec/logd",
+      "57395   0.4 /System/Library/PrivateFrameworks/TCC.framework/Support/tccd"
+    ]
+  },
+  {
+    "label": "N256_moderate_s3_eps0.0001",
+    "unix": 1793129768.16047,
+    "load": [
+      4.84326171875,
+      5.060546875,
+      5.732421875
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 276.9 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  99.6 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.5 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   9.1 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "14036   6.7 /Applications/Utilities/Adobe Creative Cloud Experience/CCXProcess/CCXProcess.app/Contents/MacOS/Creative Cloud Content Manager.node",
+      "57650   6.0 /System/Library/PrivateFrameworks/IDS.framework/identityservicesd.app/Contents/MacOS/identityservicesd",
+      "38413   5.3 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "57348   3.7 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "41501   2.9 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "30526   1.3 /usr/libexec/trustd",
+      "38419   1.0 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)",
+      "38478   0.6 /Users/wfy666/.codex/computer-use/Codex Computer Use.app/Contents/MacOS/SkyComputerUseService",
+      "37010   0.5 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "  536   0.4 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores",
+      "57735   0.4 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder"
+    ]
+  },
+  {
+    "label": "N256_strong_s1_eps0.0001",
+    "unix": 1793129770.552764,
+    "load": [
+      4.775390625,
+      5.04248046875,
+      5.72216796875
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 270.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  99.4 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  26.6 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691  11.4 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "    1   6.5 /sbin/launchd",
+      "41501   3.5 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "  390   3.3 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds",
+      "  402   2.5 /usr/libexec/opendirectoryd",
+      "57735   2.4 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "  635   1.6 /usr/sbin/cfprefsd",
+      "  426   1.5 /usr/sbin/notifyd",
+      "57348   1.4 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "  536   1.3 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores",
+      "  360   1.3 /usr/libexec/logd",
+      "42243   1.0 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared"
+    ]
+  },
+  {
+    "label": "N256_strong_s2_eps0.0001",
+    "unix": 1793129772.9509819,
+    "load": [
+      4.775390625,
+      5.04248046875,
+      5.72216796875
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 277.3 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273 100.0 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.1 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      " 4677  10.4 /System/Library/PrivateFrameworks/HomeKitDaemon.framework/Support/homed",
+      "57691   9.8 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "  633   8.9 /usr/libexec/secd",
+      "57655   7.6 /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd",
+      "  536   3.4 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores",
+      "  409   3.4 /usr/libexec/locationd",
+      "41501   2.9 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "57719   1.2 /System/Applications/Notes.app/Contents/MacOS/Notes",
+      "  471   0.9 /System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsd",
+      "23722   0.8 /usr/libexec/PerfPowerServices",
+      "17670   0.8 /Applications/WeChat.app/Contents/MacOS/WeChatAppEx.app/Contents/MacOS/WeChatAppEx",
+      "  635   0.7 /usr/sbin/cfprefsd"
+    ]
+  },
+  {
+    "label": "N256_strong_s3_eps0.0001",
+    "unix": 1793129775.411702,
+    "load": [
+      4.79296875,
+      5.04150390625,
+      5.7177734375
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 272.6 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  98.2 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.4 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   9.9 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "33231   4.0 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "41501   2.9 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "38413   1.1 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "29058   0.9 Claude",
+      "57348   0.5 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "38362   0.4 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "36915   0.4 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "36745   0.4 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "26288   0.3 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "17622   0.3 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)",
+      "  483   0.2 /usr/libexec/clocksyncd"
+    ]
+  },
+  {
+    "label": "N128_uniform_s2_eps0.0001",
+    "unix": 1793129776.481426,
+    "load": [
+      4.79296875,
+      5.04150390625,
+      5.7177734375
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 284.7 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273 100.0 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "  370  57.1 /usr/sbin/systemstats",
+      "57516  26.6 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691  10.6 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "57725   4.6 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "41501   3.3 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "  404   1.3 /System/Library/CoreServices/launchservicesd",
+      "38413   1.2 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "57348   0.7 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "29058   0.3 Claude",
+      "33231   0.2 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "57604   0.2 /System/Library/CoreServices/ControlCenter.app/Contents/MacOS/ControlCenter",
+      "57724   0.2 /Applications/zoom.us.app/Contents/MacOS/zoom.us",
+      "57721   0.2 /Applications/Adobe Acrobat DC/Adobe Acrobat.app/Contents/MacOS/AdobeAcrobat"
+    ]
+  },
+  {
+    "label": "N128_moderate_s2_eps0.0001",
+    "unix": 1793129777.612671,
+    "load": [
+      4.79296875,
+      5.04150390625,
+      5.7177734375
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 275.5 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  96.7 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.5 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691  10.4 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "41501   3.0 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "57725   2.7 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "23722   2.0 /usr/libexec/PerfPowerServices",
+      "  838   1.4 /usr/libexec/sysmond",
+      "  370   1.3 /usr/sbin/systemstats",
+      "33231   1.1 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "38420   0.9 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/156.0.8078.48/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)",
+      "  416   0.5 /usr/sbin/distnoted",
+      "38413   0.4 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+      "29058   0.4 Claude",
+      "96671   0.3 /usr/sbin/bluetoothd"
+    ]
+  },
+  {
+    "label": "N128_strong_s2_eps0.0001",
+    "unix": 1793129778.754983,
+    "load": [
+      4.79296875,
+      5.04150390625,
+      5.7177734375
+    ],
+    "processes": [
+      "  PID  %CPU COMM",
+      " 6223 275.2 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler",
+      "42273  97.0 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python",
+      "57516  25.9 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "57691   8.9 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension",
+      "57113   5.3 /Users/wfy666/.local/bin/claude",
+      "41501   2.7 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService",
+      "  409   2.3 /usr/libexec/locationd",
+      "14036   2.2 /Applications/Utilities/Adobe Creative Cloud Experience/CCXProcess/CCXProcess.app/Contents/MacOS/Creative Cloud Content Manager.node",
+      "57735   1.5 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder",
+      "17655   1.0 /Applications/WeChat.app/Contents/MacOS/WeChat",
+      "17717   0.9 /Applications/WeChat.app/Contents/MacOS/WeChatAppEx.app/Contents/Frameworks/WeChatAppEx Framework.framework/Versions/C/Helpers/WeChatAppEx Helper (Renderer).app/Contents/MacOS/WeChatAppEx Helper (Renderer)",
+      "57348   0.9 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN",
+      "57725   0.7 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor",
+      "33249   0.6 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif).app/Contents/MacOS/Google Chrome Helper (Aperitif)",
+      "  360   0.5 /usr/libexec/logd"
+    ]
+  }
+]

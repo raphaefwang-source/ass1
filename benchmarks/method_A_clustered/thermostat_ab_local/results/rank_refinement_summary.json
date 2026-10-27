@@ -1,0 +1,53 @@
+{
+  "config": "N2_uniform_s2_eps0.0001",
+  "only_method": "B",
+  "only_alpha": 1.0,
+  "old_noise_rank": 2,
+  "new_noise_rank": 3,
+  "initial_path_errors": {
+    "conditional": 1.3699321003815902e-05,
+    "equilibrium": 1.9558258541588015e-05
+  },
+  "refined_path_errors": {
+    "conditional": 1.7904464111237982e-15,
+    "equilibrium": 2.555268758857967e-15
+  },
+  "new_registered_noise_error_max": 3.986157158720844e-16,
+  "elapsed_s": 3.258966917055659,
+  "initial_MC_elapsed_s": 114.73067775007803,
+  "refinement_MC_elapsed_s": 1.632899250020273,
+  "preserved_initial_evidence": {
+    "results/selection.csv": "ab8054cdd0ee044bf2fde3f69130dd9a5f4d829c0179bd65185c38b5ce2a7c14",
+    "results/rank_errors.csv": "9cff2fbc00c828ba6190cd238778a12fe4e69609bf378bc642c887d23d5807b6",
+    "results/matrixfree_checks.csv": "0afc3fcb40dd26925e28b742a2c7ec181819bd47d87e1eeb7d2c1dc7613cbd84",
+    "results/mc.csv": "0b2b5cb3e6dec464135cefdebb5e95c862cc4dfe27414299950d0529a5e325be",
+    "results/mc_fullcov.csv": "77390052743deab87a37b0dc0881fc01573ef1babe11cabfe10d64537e0e3b6f",
+    "results/mc_done.json": "7ab5c4736a0f959f1658191d3a3ff9eecebaf7057f3d4d2835d0b739b0b5429e",
+    "results/stopping_summary.json": "cab61b76ba7021fb87ac1da5b16c228d250f60f2a470b67acad19911911f8182",
+    "results/stopping_diagnostics.csv": "222384a6dae84ce2f1151ebf59ce6875b9e10e778f29109338d8ff53ac3c0157",
+    "results/stopping_diagnostics_all_probes.csv": "b7449e868076a6e73a0072c0cf7e6b004b12cbc7ab145d7a9224f82120823aca",
+    "results/coupling_checks.csv": "d01f8920830c32a6569320bb88af1fed701b5593a21a83fe414e73d63c23590f",
+    "inputs/mc_N2_uniform_s2_eps0.0001_B_conditional.npz": "c72be58cbb82cde629802e4b93a01528e20775b421787a12899e7c0676ccc5f8",
+    "inputs/mc_N2_uniform_s2_eps0.0001_B_equilibrium.npz": "1af32e72467ef83b8b4332393c6fe274db6f46da3e926dde72752d9377494b50"
+  },
+  "final_result_sha256": {
+    "selection.csv": "762d31ec3bfc3594e49a28a9ce33bad8521f683d7ee78ce3828dccd090a39a5c",
+    "rank_errors.csv": "a1613efa04f0f0a56a2e980195949c577d1cbc8e247bb269693571928b5a0740",
+    "matrixfree_checks.csv": "6b92dad5c95f03e86196835e3b327c85fac7d4828cb2463d059d426b7530f449",
+    "mc.csv": "379bc736e6d3a4ee55e4af7f773bbe8c597d18b5a3000d86576e8613830ad8ba",
+    "mc_fullcov.csv": "755dbfca1fb31c58ea6f7549c9e77173476f368415c659777561837f25876bcb",
+    "mc_done.json": "fa8ed29eee6e000da81822b7dc0ce62322de063717e49c1fd045397e8eec0431",
+    "stopping_summary.json": "6c6132a773685694b46b11efaa0acd970013d76012d2b0441d7621c9650f0f26",
+    "coupling_checks.csv": "ab8579cdf18109c53384c60e14f9df980abba2e8cad79ebf92513533c8d7a816",
+    "rank_refinement.csv": "a1180598b3cd7e373f1946045757dcbc178f8e0e62ac38ce380d2878e8ef9cf1"
+  },
+  "interpretation": "post-MC rank refinement is disclosed; initial five-probe guarantee failed to cover all Gaussian draws",
+  "inference_limit": "a finite sample audit of remaining cases is empirical, not a universal error guarantee",
+  "old_r_n": 2,
+  "new_r_n": 3,
+  "trigger": 1.9558258541588015e-05,
+  "pilot_path": "pilot_rank_refinement/",
+  "SHA_manifest": "pilot_rank_refinement/initial_evidence_manifest.json",
+  "reproduce": "python3 -B refine_small_case.py",
+  "final_all_MC_path_error_max": 4.2288490248117086e-07
+}

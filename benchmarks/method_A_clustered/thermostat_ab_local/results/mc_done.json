@@ -1,0 +1,9 @@
+{
+  "elapsed_s": 116.3635770000983,
+  "rows": 128,
+  "initial_batch_elapsed_s": 114.73067775007803,
+  "refinement_MC_elapsed_s": 1.632899250020273,
+  "refinement": "one N2/B alpha1 rank2->3 noise rerun, same 512 per-phase Gaussian seeds; initial evidence archived",
+  "refinement_archive": "pilot_rank_refinement/initial_evidence_manifest.json",
+  "full_batch_rerun": false
+}

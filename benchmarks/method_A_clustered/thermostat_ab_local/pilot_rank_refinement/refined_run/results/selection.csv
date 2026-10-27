@@ -1,0 +1,2 @@
+config,N,family,seed,epsilon,alpha,dt,method,r_d,r_n,substeps,krylov_damp_error,krylov_noise_error,split_error,tolerance,available,rank_domain,rank_refinement
+N2_uniform_s2_eps0.0001,2.0,uniform,2.0,0.0001,1.0,0.012510250778516483,B,3.0,3,1.0,1.1564920637977078e-15,3.986157158720844e-16,0.0,0.001,True,five registered directions plus post-MC full projected dimension refinement,N2/B/alpha1 extra Gaussian path failure; see rank_refinement.csv
