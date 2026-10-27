@@ -1,0 +1,13 @@
+{
+  "name": "uniform_N128_s2_nested_rho0.75",
+  "family": "uniform",
+  "seed": 2,
+  "source_seed": 2,
+  "rho": 0.75,
+  "N": 128,
+  "L": 5.546890194805077,
+  "hash": "a1152a8925fe",
+  "position_sha256": "a1152a8925fe835ba56d5a6eee6bb8fcd8c8e872ad31c4cdcb0fde4fea3ebc83",
+  "d_min": 0.7170508151243888,
+  "generation": "nested subset of committed configuration, box-scaled at fixed density"
+}

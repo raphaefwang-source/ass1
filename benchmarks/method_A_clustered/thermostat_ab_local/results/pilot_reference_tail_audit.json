@@ -1,0 +1,37 @@
+{
+  "proof": "For each particle, images of each other particle form a shifted L-lattice. Disjoint cubes of side L centered at images inside B(r) fit into B(r+a), a=sqrt(3)L/2. Their count n(r) is <= C(r)=(N-1)*4*pi*(r+a)^3/(3*L^3). Integration by parts gives sum_{distance>R}g(distance)=-g(R)n(R)+integral_R^infinity n(r)*(-gprime(r))dr <= integral_R^infinity C(r)*(-gprime(r))dr. Omitting self images is exact for a graph action. The omitted PSD graph norm is bounded by twice its maximum weighted degree, then by twice its maximum degree trace. physical_tail_bound evaluates the resulting analytic integral for g=exp(-.2*r)/r. Radius uses a physical minimum-image graph norm lower bound, so the norm ratio criterion is conservative.",
+  "numerical_checks": [
+    {
+      "N": 2,
+      "L": 1.3867225487012693,
+      "R": 8.0,
+      "analytic_bound": 209.46571985646676,
+      "independent_quadrature": 209.46571985646673,
+      "quadrature_error_estimate": 6.91606700481238e-11,
+      "relative_discrepancy": 1.3568668634600237e-16
+    },
+    {
+      "N": 16,
+      "L": 2.7734450974025386,
+      "R": 40.0,
+      "analytic_bound": 5.246139219919077,
+      "independent_quadrature": 5.246139219919072,
+      "quadrature_error_estimate": 3.996465084042757e-12,
+      "relative_discrepancy": 1.0158080628067955e-15
+    },
+    {
+      "N": 64,
+      "L": 4.402569665192835,
+      "R": 140.0,
+      "analytic_bound": 1.0065424804433074e-07,
+      "independent_quadrature": 1.0065424804433062e-07,
+      "quadrature_error_estimate": 2.8771534424646756e-19,
+      "relative_discrepancy": 1.1833977255999676e-15
+    }
+  ],
+  "lower_norm_proof": "The minimum-image physical graph is a PSD summand of the full unsplit graph. Its maximum eigenvalue is a lower bound on the full graph norm and on each direct partial sum containing all minimum images.",
+  "kernel_correspondence": "E.kernel(.2,xi,0) creates RadialEwald(law=A,kappa=.2,amp=1); theta_full(r)=exp(-.2*r)/r. direct_unsplit_dense independently evaluates exp(-.2*r)*d*d.T/r^3. theta=0 removes every isotropic shift. Neither path uses common.py LJ amplitude or kappa=.7.",
+  "historical_snapshot_checks": 1145,
+  "historical_snapshot_differences": [],
+  "floating_point_scope": "Analytic truncation bound in real arithmetic; summation and evaluation floating point errors are not claimed as interval-certified. Unit tests compare independent sums and graph assemblies."
+}

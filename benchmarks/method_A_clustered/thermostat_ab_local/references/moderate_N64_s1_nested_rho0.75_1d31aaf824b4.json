@@ -1,0 +1,15 @@
+{
+  "position_sha256": "1d31aaf824b40a032daff12ac6fd4aeed9caea9391b20d1c254c8d22b80fabd4",
+  "reference_source": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/references/moderate_N64_s1_nested_rho0.75_1d31aaf824b4.npz",
+  "reference_reused": false,
+  "reference_R": 140.0,
+  "reference_norm2": 84.47905168669142,
+  "reference_tail_bound_rel": 1.19146990922233e-09,
+  "reference_tail_bound_abs": 1.0065424804433074e-07,
+  "reference_requested_bound_rel": 1e-08,
+  "reference_images": 271547110,
+  "reference_kind": "independent literal unsplit direct periodic physical kernel",
+  "t_reference_generate": 32.032159541966394,
+  "kappa": 0.2,
+  "amplitude": 1.0
+}

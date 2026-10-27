@@ -1,0 +1,32 @@
+{
+  "source": "rank_errors.csv",
+  "source_sha256": "9cff2fbc00c828ba6190cd238778a12fe4e69609bf378bc642c887d23d5807b6",
+  "complete_accuracy_marker": true,
+  "per_direction": {
+    "no_previous_rank": 2720,
+    "true_positive": 635,
+    "true_negative": 0,
+    "false_positive": 0,
+    "false_negative": 1685
+  },
+  "all_registered_directions": {
+    "no_previous_rank": 544,
+    "true_positive": 0,
+    "true_negative": 0,
+    "false_positive": 0,
+    "false_negative": 464
+  },
+  "diagnostic_comparable_rows": 2320,
+  "false_positive_opportunities": 0,
+  "false_positive_assessment": "unassessed: no rank-change row has dense error above tolerance",
+  "false_positive_examples": [],
+  "definition": "diagnostic pass: ||y_r-y_previous_tested_rank||/||y_r|| <= the same action tolerance; true pass: independent dense action error <= tolerance",
+  "benchmark_rank_selection": "independent dense errors on five saved registered vectors; rank-change diagnostic does not select ranks",
+  "limitations": [
+    "Only tested ranks, vectors, configurations, and time scales are covered; no general error certificate.",
+    "Paths stop at the first dense passing rank, so further diagnostic-selected ranks and costs are unobserved.",
+    "Rank increments are nonuniform; these are successive tested ranks, not necessarily r and r-1.",
+    "A finite vector-dependent Lanczos noise action is nonlinear; these action diagnostics do not establish a covariance operator bound.",
+    "No false positives in the observed rows would be empirical evidence only, not a proof that the diagnostic is safe."
+  ]
+}

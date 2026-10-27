@@ -1,0 +1,37 @@
+{
+  "status": "pass",
+  "output": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/results/reference_tail_audit.json",
+  "baseline_sha": "76ceb517fc24f60dfdf6d9d2b4af7a2109a07e54",
+  "historical_snapshot_checks": 1145,
+  "historical_snapshot_differences": [],
+  "numerical_checks": [
+    {
+      "N": 2,
+      "L": 1.3867225487012693,
+      "R": 8.0,
+      "analytic_bound": 209.46571985646676,
+      "independent_quadrature": 209.46571985646673,
+      "quadrature_error_estimate": 6.912778109498632e-11,
+      "relative_discrepancy": 1.3568668634600237e-16
+    },
+    {
+      "N": 16,
+      "L": 2.7734450974025386,
+      "R": 40.0,
+      "analytic_bound": 5.246139219919077,
+      "independent_quadrature": 5.246139219919072,
+      "quadrature_error_estimate": 3.9966113984948304e-12,
+      "relative_discrepancy": 1.0158080628067955e-15
+    },
+    {
+      "N": 64,
+      "L": 4.402569665192835,
+      "R": 140.0,
+      "analytic_bound": 1.0065424804433074e-07,
+      "independent_quadrature": 1.0065424804433059e-07,
+      "quadrature_error_estimate": 2.8770888836020657e-19,
+      "relative_discrepancy": 1.446374997955516e-15
+    }
+  ],
+  "numerical_relative_tolerance": 1e-11
+}

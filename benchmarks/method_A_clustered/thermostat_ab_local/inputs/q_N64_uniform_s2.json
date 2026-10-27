@@ -1,0 +1,13 @@
+{
+  "name": "uniform_N64_s2_nested_rho0.75",
+  "family": "uniform",
+  "seed": 2,
+  "source_seed": 2,
+  "rho": 0.75,
+  "N": 64,
+  "L": 4.402569665192835,
+  "hash": "240eddde5a11",
+  "position_sha256": "240eddde5a11d2f24c4bd0b1090db587bc34fe611f82893f8b32a57da6dfaf26",
+  "d_min": 0.5710711212906923,
+  "generation": "nested subset of committed configuration, box-scaled at fixed density"
+}

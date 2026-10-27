@@ -1,0 +1,267 @@
+{
+  "cases": [
+    {
+      "config": "N2_uniform_s2_eps0.0001",
+      "N": 2,
+      "family": "uniform",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N8_uniform_s2_eps0.0001",
+      "N": 8,
+      "family": "uniform",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N16_uniform_s1_eps0.0001",
+      "N": 16,
+      "family": "uniform",
+      "seed": 1,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N16_uniform_s2_eps0.0001",
+      "N": 16,
+      "family": "uniform",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N16_uniform_s3_eps0.0001",
+      "N": 16,
+      "family": "uniform",
+      "seed": 3,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N16_moderate_s1_eps0.0001",
+      "N": 16,
+      "family": "moderate",
+      "seed": 1,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N16_moderate_s2_eps0.0001",
+      "N": 16,
+      "family": "moderate",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N16_moderate_s3_eps0.0001",
+      "N": 16,
+      "family": "moderate",
+      "seed": 3,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N16_strong_s1_eps0.0001",
+      "N": 16,
+      "family": "strong",
+      "seed": 1,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N16_strong_s2_eps0.0001",
+      "N": 16,
+      "family": "strong",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N16_strong_s3_eps0.0001",
+      "N": 16,
+      "family": "strong",
+      "seed": 3,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N64_uniform_s1_eps0.0001",
+      "N": 64,
+      "family": "uniform",
+      "seed": 1,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N64_uniform_s2_eps0.0001",
+      "N": 64,
+      "family": "uniform",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N64_uniform_s3_eps0.0001",
+      "N": 64,
+      "family": "uniform",
+      "seed": 3,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N64_moderate_s1_eps0.0001",
+      "N": 64,
+      "family": "moderate",
+      "seed": 1,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N64_moderate_s2_eps0.0001",
+      "N": 64,
+      "family": "moderate",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N64_moderate_s3_eps0.0001",
+      "N": 64,
+      "family": "moderate",
+      "seed": 3,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N64_strong_s1_eps0.0001",
+      "N": 64,
+      "family": "strong",
+      "seed": 1,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N64_strong_s2_eps0.0001",
+      "N": 64,
+      "family": "strong",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N64_strong_s3_eps0.0001",
+      "N": 64,
+      "family": "strong",
+      "seed": 3,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N256_uniform_s1_eps0.0001",
+      "N": 256,
+      "family": "uniform",
+      "seed": 1,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N256_uniform_s2_eps0.0001",
+      "N": 256,
+      "family": "uniform",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N256_uniform_s3_eps0.0001",
+      "N": 256,
+      "family": "uniform",
+      "seed": 3,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N256_moderate_s1_eps0.0001",
+      "N": 256,
+      "family": "moderate",
+      "seed": 1,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N256_moderate_s2_eps0.0001",
+      "N": 256,
+      "family": "moderate",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N256_moderate_s3_eps0.0001",
+      "N": 256,
+      "family": "moderate",
+      "seed": 3,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N256_strong_s1_eps0.0001",
+      "N": 256,
+      "family": "strong",
+      "seed": 1,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N256_strong_s2_eps0.0001",
+      "N": 256,
+      "family": "strong",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N256_strong_s3_eps0.0001",
+      "N": 256,
+      "family": "strong",
+      "seed": 3,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N128_uniform_s2_eps0.0001",
+      "N": 128,
+      "family": "uniform",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N128_moderate_s2_eps0.0001",
+      "N": 128,
+      "family": "moderate",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N128_strong_s2_eps0.0001",
+      "N": 128,
+      "family": "strong",
+      "seed": 2,
+      "epsilon": 0.0001
+    },
+    {
+      "config": "N256_uniform_s2_eps0.001",
+      "N": 256,
+      "family": "uniform",
+      "seed": 2,
+      "epsilon": 0.001
+    },
+    {
+      "config": "N256_uniform_s2_eps1e-05",
+      "N": 256,
+      "family": "uniform",
+      "seed": 2,
+      "epsilon": 1e-05
+    }
+  ],
+  "alphas": [
+    0.1,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "global_seed": 2026102707,
+  "spatial_parameters": "PR7 Grid PSD best tested; same discrete graph in A and B",
+  "rank_probes": [
+    "slow",
+    "fast",
+    "random",
+    "input_p",
+    "input_z"
+  ],
+  "rank_tolerance": 1e-05,
+  "dynamical_tolerance": 0.001,
+  "mc_cases": "uniform seed2 N2/8/16/64/128/256 plus moderate/strong N16 seed2",
+  "mc_samples_small": 512,
+  "mc_samples_medium": 128,
+  "mc_alpha": 1.0,
+  "CI": "pointwise Student-t interval on independent squared centered directional samples; asymptotic delta-method for sample variance",
+  "selection": "smallest tested separate damp/noise ranks passing five saved probes; A splitting smallest tested substeps passing dense mean and covariance error",
+  "coverage_limits": "rank limits 128, splitting substeps<=32; no universal rank guarantee; no trajectory test",
+  "covariance_note": "finite vector-dependent Lanczos is nonlinear: no column-assembly covariance assertion"
+}
