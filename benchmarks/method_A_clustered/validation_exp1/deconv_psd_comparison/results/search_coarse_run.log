@@ -1,0 +1,179 @@
+21:31:56 coarse PPPM-original_xi1.25_sR2.8_sF2.8_M16_p5: E=7.1e-05
+21:31:56 coarse PPPM-original_xi1_sR3_sF3_M20_p5: E=1.82e-05
+21:31:56 coarse PPPM-original_xi0.7_sR3.2_sF3.5_M24_p5: E=7.64e-06
+21:31:57 coarse PPPM-original_xi0.35_sR2.8_sF2.8_M16_p3: E=0.000228
+21:31:57 coarse PPPM-original_xi0.35_sR3.3_sF3.3_M16_p3: E=2.95e-05
+21:31:58 coarse PPPM-original_xi0.35_sR2.8_sF2.8_M16_p5: E=0.000228
+21:31:59 coarse PPPM-original_xi0.35_sR3.3_sF3.3_M16_p5: E=7.86e-06
+21:31:59 coarse PPPM-original_xi0.35_sR2.8_sF2.8_M16_p7: E=0.000228
+21:32:00 coarse PPPM-original_xi0.35_sR3.3_sF3.3_M16_p7: E=7.85e-06
+21:32:00 coarse PPPM-original_xi0.6_sR2.8_sF2.8_M16_p3: E=0.000131
+21:32:00 coarse PPPM-original_xi0.6_sR3.3_sF3.3_M16_p3: E=5.86e-05
+21:32:00 coarse PPPM-original_xi0.6_sR2.8_sF2.8_M16_p5: E=0.000126
+21:32:01 coarse PPPM-original_xi0.6_sR3.3_sF3.3_M16_p5: E=5.45e-06
+21:32:01 coarse PPPM-original_xi0.6_sR2.8_sF2.8_M16_p7: E=0.000125
+21:32:01 coarse PPPM-original_xi0.6_sR3.3_sF3.3_M16_p7: E=5.4e-06
+21:32:01 coarse PPPM-original_xi0.85_sR2.8_sF2.8_M16_p3: E=0.000162
+21:32:01 coarse PPPM-original_xi0.85_sR3.3_sF3.3_M16_p3: E=0.000129
+21:32:02 coarse PPPM-original_xi0.85_sR2.8_sF2.8_M16_p5: E=7.17e-05
+21:32:02 coarse PPPM-original_xi0.85_sR3.3_sF3.3_M16_p5: E=7.48e-06
+21:32:02 coarse PPPM-original_xi0.85_sR2.8_sF2.8_M16_p7: E=7.17e-05
+21:32:02 coarse PPPM-original_xi0.85_sR3.3_sF3.3_M16_p7: E=3.57e-06
+21:32:03 coarse PPPM-original_xi1_sR2.8_sF2.8_M16_p3: E=0.000223
+21:32:03 coarse PPPM-original_xi1_sR3.3_sF3.3_M16_p3: E=0.000202
+21:32:03 coarse PPPM-original_xi1_sR2.8_sF2.8_M16_p5: E=5.98e-05
+21:32:03 coarse PPPM-original_xi1_sR3.3_sF3.3_M16_p5: E=1.58e-05
+21:32:03 coarse PPPM-original_xi1_sR2.8_sF2.8_M16_p7: E=5.84e-05
+21:32:04 coarse PPPM-original_xi1_sR3.3_sF3.3_M16_p7: E=3.62e-06
+21:32:04 coarse PPPM-original_xi1.25_sR2.8_sF2.8_M16_p3: E=0.000404
+21:32:04 coarse PPPM-original_xi1.25_sR3.3_sF3.3_M16_p3: invalid original mesh: {'M': 16, 'h': 0.4367902323681494, 'mc': 9, 'eta': 1.14564392373896, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 9 >= M/2 = 8', 't_mesh_build_s': 2.0583043806254864e-05}
+21:32:04 coarse PPPM-original_xi1.25_sR3.3_sF3.3_M16_p5: invalid original mesh: {'M': 16, 'h': 0.4367902323681494, 'mc': 9, 'eta': 1.14564392373896, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 9 >= M/2 = 8', 't_mesh_build_s': 4.832982085645199e-06}
+21:32:04 coarse PPPM-original_xi1.25_sR2.8_sF2.8_M16_p7: E=5.3e-05
+21:32:04 coarse PPPM-original_xi1.25_sR3.3_sF3.3_M16_p7: invalid original mesh: {'M': 16, 'h': 0.4367902323681494, 'mc': 9, 'eta': 1.14564392373896, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 9 >= M/2 = 8', 't_mesh_build_s': 7.541966624557972e-06}
+21:32:04 coarse PPPM-original_xi1.5_sR2.8_sF2.8_M20_p3: E=0.000313
+21:32:04 coarse PPPM-original_xi1.5_sR3.3_sF3.3_M20_p3: invalid original mesh: {'M': 20, 'h': 0.3494321858945195, 'mc': 11, 'eta': 1.1, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 11 >= M/2 = 10', 't_mesh_build_s': 7.208087481558323e-06}
+21:32:04 coarse PPPM-original_xi1.5_sR2.8_sF2.8_M20_p5: E=5.51e-05
+21:32:04 coarse PPPM-original_xi1.5_sR3.3_sF3.3_M20_p5: invalid original mesh: {'M': 20, 'h': 0.3494321858945195, 'mc': 11, 'eta': 1.1, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 11 >= M/2 = 10', 't_mesh_build_s': 5.749985575675964e-06}
+21:32:05 coarse PPPM-original_xi1.5_sR2.8_sF2.8_M20_p7: E=4.41e-05
+21:32:05 coarse PPPM-original_xi1.5_sR3.3_sF3.3_M20_p7: invalid original mesh: {'M': 20, 'h': 0.3494321858945195, 'mc': 11, 'eta': 1.1, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 11 >= M/2 = 10', 't_mesh_build_s': 8.25000461190939e-06}
+21:32:05 coarse PPPM-original_xi1.75_sR2.8_sF2.8_M24_p3: E=0.00023
+21:32:05 coarse PPPM-original_xi1.75_sR3.3_sF3.3_M24_p3: invalid original mesh: {'M': 24, 'h': 0.29119348824543295, 'mc': 12, 'eta': 1.070436048222094, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 12 >= M/2 = 12', 't_mesh_build_s': 1.154094934463501e-05}
+21:32:05 coarse PPPM-original_xi1.75_sR2.8_sF2.8_M24_p5: E=4.8e-05
+21:32:05 coarse PPPM-original_xi1.75_sR3.3_sF3.3_M24_p5: invalid original mesh: {'M': 24, 'h': 0.29119348824543295, 'mc': 12, 'eta': 1.070436048222094, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 12 >= M/2 = 12', 't_mesh_build_s': 1.2459000572562218e-05}
+21:32:06 coarse PPPM-original_xi1.75_sR2.8_sF2.8_M24_p7: E=4.43e-05
+21:32:06 coarse PPPM-original_xi1.75_sR3.3_sF3.3_M24_p7: invalid original mesh: {'M': 24, 'h': 0.29119348824543295, 'mc': 12, 'eta': 1.070436048222094, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 12 >= M/2 = 12', 't_mesh_build_s': 7.874914444983006e-06}
+21:32:06 coarse PPPM-original_xi1_sR3.8_sF3.8_M24_p5: E=1.16e-06
+21:32:06 coarse PPPM-original_xi1_sR4.2_sF4.2_M32_p7: E=6.65e-09
+21:32:07 coarse PPPM-original_xi1_sR4.8_sF4.8_M40_p9: E=2.48e-11
+21:32:13 validate PPPM-original_xi1.5_sR2.8_sF2.8_M20_p5: maxE=6.62e-05
+21:32:18 validate PPPM-original_xi1_sR3_sF3_M20_p5: maxE=2.05e-05
+21:32:22 validate PPPM-original_xi1_sR3.3_sF3.3_M16_p5: maxE=1.9e-05
+21:32:24 validate PPPM-original_xi1_sR2.8_sF2.8_M16_p5: maxE=6.35e-05
+21:32:27 validate PPPM-original_xi1_sR2.8_sF2.8_M16_p7: maxE=6.15e-05
+21:32:30 validate PPPM-original_xi0.85_sR2.8_sF2.8_M16_p5: maxE=7.4e-05
+21:32:33 validate PPPM-original_xi1.5_sR2.8_sF2.8_M20_p7: maxE=5.46e-05
+21:32:36 validate PPPM-original_xi1.25_sR2.8_sF2.8_M16_p7: maxE=6.58e-05
+21:32:38 validate PPPM-original_xi1_sR3.3_sF3.3_M16_p7: maxE=3.84e-06
+21:32:41 validate PPPM-original_xi1.25_sR2.8_sF2.8_M16_p5: maxE=8.51e-05
+21:32:44 validate PPPM-original_xi1.5_sR2.8_sF2.8_M20_p3: maxE=0.00038
+21:32:47 validate PPPM-original_xi0.85_sR3.3_sF3.3_M16_p7: maxE=3.61e-06
+21:32:51 validate PPPM-original_xi1_sR4.2_sF4.2_M32_p7: maxE=6.69e-09
+21:32:58 validate PPPM-original_xi1_sR4.8_sF4.8_M40_p9: maxE=2.68e-11
+21:33:00 coarse B2-positive_xi0.35_sR3.1_sT36_M72_p2: E=9.34e-05
+21:33:01 coarse B2-positive_xi0.325_sR3.2_sT36_M64_p2: E=9.58e-05
+21:33:03 coarse B2-positive_xi0.375_sR3.3_sT36_M75_p2: E=8.68e-05
+21:33:05 coarse B2-positive_xi0.25_sR2.9_sT36_M48_p2: E=0.000188
+21:33:07 coarse B2-positive_xi0.25_sR3.2_sT36_M48_p2: E=7.05e-05
+21:33:10 coarse B2-positive_xi0.25_sR3.5_sT36_M48_p2: E=5.18e-05
+21:33:11 coarse B2-positive_xi0.25_sR2.9_sT36_M48_p3: E=0.00021
+21:33:13 coarse B2-positive_xi0.25_sR3.2_sT36_M48_p3: E=9.11e-05
+21:33:16 coarse B2-positive_xi0.25_sR3.5_sT36_M48_p3: E=7.23e-05
+21:33:17 coarse B2-positive_xi0.3_sR2.9_sT36_M60_p2: E=0.000158
+21:33:19 coarse B2-positive_xi0.3_sR3.2_sT36_M60_p2: E=8.87e-05
+21:33:21 coarse B2-positive_xi0.3_sR3.5_sT36_M60_p2: E=7.31e-05
+21:33:23 coarse B2-positive_xi0.3_sR2.9_sT36_M60_p3: E=0.000188
+21:33:26 coarse B2-positive_xi0.3_sR3.2_sT36_M60_p3: E=0.000119
+21:33:30 coarse B2-positive_xi0.3_sR3.5_sT36_M60_p3: E=0.000103
+21:33:32 coarse B2-positive_xi0.35_sR2.9_sT36_M72_p2: E=0.000127
+21:33:34 coarse B2-positive_xi0.35_sR3.2_sT36_M72_p2: E=8.62e-05
+21:33:36 coarse B2-positive_xi0.35_sR3.5_sT36_M72_p2: E=7.78e-05
+21:33:38 coarse B2-positive_xi0.35_sR2.9_sT36_M72_p3: E=0.000157
+21:33:40 coarse B2-positive_xi0.35_sR3.2_sT36_M72_p3: E=0.000118
+21:33:42 coarse B2-positive_xi0.35_sR3.5_sT36_M72_p3: E=0.00011
+21:33:43 coarse B2-positive_xi0.4_sR2.9_sT36_M80_p2: E=0.000125
+21:33:45 coarse B2-positive_xi0.4_sR3.2_sT36_M80_p2: E=8.66e-05
+21:33:46 coarse B2-positive_xi0.4_sR3.5_sT36_M80_p2: E=8.08e-05
+21:33:48 coarse B2-positive_xi0.4_sR2.9_sT36_M80_p3: E=0.000155
+21:33:49 coarse B2-positive_xi0.4_sR3.2_sT36_M80_p3: E=0.000119
+21:33:51 coarse B2-positive_xi0.4_sR3.5_sT36_M80_p3: E=0.000113
+21:33:53 coarse B2-positive_xi0.45_sR2.9_sT36_M90_p2: E=0.000118
+21:33:54 coarse B2-positive_xi0.45_sR3.2_sT36_M90_p2: E=7.85e-05
+21:33:57 coarse B2-positive_xi0.45_sR3.5_sT36_M90_p2: E=7.28e-05
+21:33:58 coarse B2-positive_xi0.45_sR2.9_sT36_M90_p3: E=0.000149
+21:34:00 coarse B2-positive_xi0.45_sR3.2_sT36_M90_p3: E=0.00011
+21:34:02 coarse B2-positive_xi0.45_sR3.5_sT36_M90_p3: E=0.000104
+21:34:04 coarse B2-positive_xi0.5_sR2.9_sT36_M100_p2: E=0.000114
+21:34:06 coarse B2-positive_xi0.5_sR3.2_sT36_M100_p2: E=7.24e-05
+21:34:07 coarse B2-positive_xi0.5_sR3.5_sT36_M100_p2: E=6.65e-05
+21:34:09 coarse B2-positive_xi0.5_sR2.9_sT36_M100_p3: E=0.000141
+21:34:11 coarse B2-positive_xi0.5_sR3.2_sT36_M100_p3: E=9.95e-05
+21:34:13 coarse B2-positive_xi0.5_sR3.5_sT36_M100_p3: E=9.36e-05
+21:34:15 coarse B2-positive_xi0.35_sR3.1_sT16_M72_p2: E=9.38e-05
+21:34:17 coarse B2-positive_xi0.35_sR3.1_sT24_M72_p2: E=9.34e-05
+21:34:19 coarse B2-positive_xi0.35_sR3.1_sT30_M72_p2: E=9.34e-05
+21:34:21 coarse B2-positive_xi0.35_sR3.1_sT42_M72_p2: E=9.34e-05
+21:34:24 coarse B2-positive_xi0.25_sR3.8_sT36_M96_p2: E=1.26e-05
+21:34:31 coarse B2-positive_xi0.2_sR4_sT36_M128_p2: E=1.44e-06
+21:34:56 validate B2-positive_xi0.325_sR3.2_sT36_M64_p2: maxE=9.98e-05
+21:35:24 validate B2-positive_xi0.35_sR3.2_sT36_M72_p2: maxE=9.25e-05
+21:35:50 validate B2-positive_xi0.35_sR3.1_sT16_M72_p2: maxE=0.0001
+21:36:18 validate B2-positive_xi0.35_sR3.1_sT30_M72_p2: maxE=9.97e-05
+21:36:43 validate B2-positive_xi0.4_sR3.2_sT36_M80_p2: maxE=0.000104
+21:37:12 validate B2-positive_xi0.35_sR3.1_sT24_M72_p2: maxE=9.97e-05
+21:37:44 validate B2-positive_xi0.35_sR3.1_sT36_M72_p2: maxE=9.97e-05
+21:38:13 validate B2-positive_xi0.3_sR3.2_sT36_M60_p2: maxE=9.27e-05
+21:38:39 validate B2-positive_xi0.35_sR3.1_sT42_M72_p2: maxE=9.97e-05
+21:39:07 validate B2-positive_xi0.375_sR3.3_sT36_M75_p2: maxE=9.71e-05
+21:39:29 validate B2-positive_xi0.35_sR2.9_sT36_M72_p2: maxE=0.000147
+21:42:15 validate B2-positive_xi0.2_sR4_sT36_M128_p2: maxE=1.49e-06
+21:42:15 coarse PPPM-grid-PSD_xi1.25_sR2.8_sF2.8_M16_p5: E=0.00138
+21:42:16 coarse PPPM-grid-PSD_xi1_sR3_sF3_M20_p5: E=1.82e-05
+21:42:16 coarse PPPM-grid-PSD_xi0.7_sR3.2_sF3.5_M24_p5: E=7.64e-06
+21:42:17 coarse PPPM-grid-PSD_xi0.35_sR2.8_sF2.8_M16_p3: E=0.000228
+21:42:18 coarse PPPM-grid-PSD_xi0.35_sR3.3_sF3.3_M16_p3: E=2.95e-05
+21:42:19 coarse PPPM-grid-PSD_xi0.35_sR2.8_sF2.8_M16_p5: E=0.000228
+21:42:20 coarse PPPM-grid-PSD_xi0.35_sR3.3_sF3.3_M16_p5: E=7.86e-06
+21:42:21 coarse PPPM-grid-PSD_xi0.35_sR2.8_sF2.8_M16_p7: E=0.000228
+21:42:22 coarse PPPM-grid-PSD_xi0.35_sR3.3_sF3.3_M16_p7: E=7.85e-06
+21:42:22 coarse PPPM-grid-PSD_xi0.6_sR2.8_sF2.8_M16_p3: E=0.000131
+21:42:23 coarse PPPM-grid-PSD_xi0.6_sR3.3_sF3.3_M16_p3: E=5.86e-05
+21:42:23 coarse PPPM-grid-PSD_xi0.6_sR2.8_sF2.8_M16_p5: E=0.000126
+21:42:24 coarse PPPM-grid-PSD_xi0.6_sR3.3_sF3.3_M16_p5: E=5.45e-06
+21:42:24 coarse PPPM-grid-PSD_xi0.6_sR2.8_sF2.8_M16_p7: E=0.000125
+21:42:25 coarse PPPM-grid-PSD_xi0.6_sR3.3_sF3.3_M16_p7: E=5.4e-06
+21:42:25 coarse PPPM-grid-PSD_xi0.85_sR2.8_sF2.8_M16_p3: E=0.000162
+21:42:26 coarse PPPM-grid-PSD_xi0.85_sR3.3_sF3.3_M16_p3: E=0.000129
+21:42:27 coarse PPPM-grid-PSD_xi0.85_sR2.8_sF2.8_M16_p5: E=7.17e-05
+21:42:27 coarse PPPM-grid-PSD_xi0.85_sR3.3_sF3.3_M16_p5: E=7.48e-06
+21:42:28 coarse PPPM-grid-PSD_xi0.85_sR2.8_sF2.8_M16_p7: E=7.17e-05
+21:42:29 coarse PPPM-grid-PSD_xi0.85_sR3.3_sF3.3_M16_p7: E=3.57e-06
+21:42:29 coarse PPPM-grid-PSD_xi1_sR2.8_sF2.8_M16_p3: E=0.000223
+21:42:30 coarse PPPM-grid-PSD_xi1_sR3.3_sF3.3_M16_p3: E=0.000202
+21:42:30 coarse PPPM-grid-PSD_xi1_sR2.8_sF2.8_M16_p5: E=5.98e-05
+21:42:31 coarse PPPM-grid-PSD_xi1_sR3.3_sF3.3_M16_p5: E=1.58e-05
+21:42:32 coarse PPPM-grid-PSD_xi1_sR2.8_sF2.8_M16_p7: E=0.000183
+21:42:33 coarse PPPM-grid-PSD_xi1_sR3.3_sF3.3_M16_p7: E=0.000268
+21:42:33 coarse PPPM-grid-PSD_xi1.25_sR2.8_sF2.8_M16_p3: E=0.000404
+21:42:33 coarse PPPM-grid-PSD_xi1.25_sR3.3_sF3.3_M16_p3: invalid original mesh: {'M': 16, 'h': 0.4367902323681494, 'mc': 9, 'eta': 1.14564392373896, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 9 >= M/2 = 8', 't_mesh_build_s': 8.750008419156075e-06}
+21:42:33 coarse PPPM-grid-PSD_xi1.25_sR3.3_sF3.3_M16_p5: invalid original mesh: {'M': 16, 'h': 0.4367902323681494, 'mc': 9, 'eta': 1.14564392373896, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 9 >= M/2 = 8', 't_mesh_build_s': 6.9999368861317635e-06}
+21:42:34 coarse PPPM-grid-PSD_xi1.25_sR2.8_sF2.8_M16_p7: E=0.00845
+21:42:34 coarse PPPM-grid-PSD_xi1.25_sR3.3_sF3.3_M16_p7: invalid original mesh: {'M': 16, 'h': 0.4367902323681494, 'mc': 9, 'eta': 1.14564392373896, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 9 >= M/2 = 8', 't_mesh_build_s': 2.0167091861367226e-05}
+21:42:35 coarse PPPM-grid-PSD_xi1.5_sR2.8_sF2.8_M20_p3: E=0.000313
+21:42:35 coarse PPPM-grid-PSD_xi1.5_sR3.3_sF3.3_M20_p3: invalid original mesh: {'M': 20, 'h': 0.3494321858945195, 'mc': 11, 'eta': 1.1, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 11 >= M/2 = 10', 't_mesh_build_s': 1.491699367761612e-05}
+21:42:36 coarse PPPM-grid-PSD_xi1.5_sR2.8_sF2.8_M20_p5: E=0.000685
+21:42:36 coarse PPPM-grid-PSD_xi1.5_sR3.3_sF3.3_M20_p5: invalid original mesh: {'M': 20, 'h': 0.3494321858945195, 'mc': 11, 'eta': 1.1, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 11 >= M/2 = 10', 't_mesh_build_s': 1.2874952517449856e-05}
+21:42:37 coarse PPPM-grid-PSD_xi1.5_sR2.8_sF2.8_M20_p7: E=0.00446
+21:42:37 coarse PPPM-grid-PSD_xi1.5_sR3.3_sF3.3_M20_p7: invalid original mesh: {'M': 20, 'h': 0.3494321858945195, 'mc': 11, 'eta': 1.1, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 11 >= M/2 = 10', 't_mesh_build_s': 9.541981853544712e-06}
+21:42:38 coarse PPPM-grid-PSD_xi1.75_sR2.8_sF2.8_M24_p3: E=0.00023
+21:42:38 coarse PPPM-grid-PSD_xi1.75_sR3.3_sF3.3_M24_p3: invalid original mesh: {'M': 24, 'h': 0.29119348824543295, 'mc': 12, 'eta': 1.070436048222094, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 12 >= M/2 = 12', 't_mesh_build_s': 1.354096457362175e-05}
+21:42:38 coarse PPPM-grid-PSD_xi1.75_sR2.8_sF2.8_M24_p5: E=0.000313
+21:42:38 coarse PPPM-grid-PSD_xi1.75_sR3.3_sF3.3_M24_p5: invalid original mesh: {'M': 24, 'h': 0.29119348824543295, 'mc': 12, 'eta': 1.070436048222094, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 12 >= M/2 = 12', 't_mesh_build_s': 1.8834020011126995e-05}
+21:42:40 coarse PPPM-grid-PSD_xi1.75_sR2.8_sF2.8_M24_p7: E=0.00239
+21:42:40 coarse PPPM-grid-PSD_xi1.75_sR3.3_sF3.3_M24_p7: invalid original mesh: {'M': 24, 'h': 0.29119348824543295, 'mc': 12, 'eta': 1.070436048222094, 'valid': False, 'reason': 'Nyquist: largest retained |m_a| = 12 >= M/2 = 12', 't_mesh_build_s': 2.6333029381930828e-05}
+21:42:41 coarse PPPM-grid-PSD_xi1_sR3.8_sF3.8_M24_p5: E=1.16e-06
+21:42:42 coarse PPPM-grid-PSD_xi1_sR4.2_sF4.2_M32_p7: E=6.65e-09
+21:42:44 coarse PPPM-grid-PSD_xi1_sR4.8_sF4.8_M40_p9: E=2.48e-11
+21:42:54 validate PPPM-grid-PSD_xi1_sR2.8_sF2.8_M16_p5: maxE=6.35e-05
+21:43:03 validate PPPM-grid-PSD_xi1_sR3.3_sF3.3_M16_p5: maxE=1.9e-05
+21:43:12 validate PPPM-grid-PSD_xi1_sR3_sF3_M20_p5: maxE=2.05e-05
+21:43:20 validate PPPM-grid-PSD_xi0.85_sR2.8_sF2.8_M16_p5: maxE=7.4e-05
+21:43:30 validate PPPM-grid-PSD_xi1_sR3.8_sF3.8_M24_p5: maxE=1.52e-06
+21:43:40 validate PPPM-grid-PSD_xi0.85_sR3.3_sF3.3_M16_p7: maxE=3.61e-06
+21:43:47 validate PPPM-grid-PSD_xi0.85_sR2.8_sF2.8_M16_p7: maxE=7.39e-05
+21:43:56 validate PPPM-grid-PSD_xi0.6_sR3.3_sF3.3_M16_p3: maxE=6.53e-05
+21:44:04 validate PPPM-grid-PSD_xi0.6_sR3.3_sF3.3_M16_p5: maxE=5.55e-06
+21:44:11 validate PPPM-grid-PSD_xi0.6_sR3.3_sF3.3_M16_p7: maxE=5.5e-06
+21:44:17 validate PPPM-grid-PSD_xi1_sR2.8_sF2.8_M16_p3: maxE=0.000266
+21:44:24 validate PPPM-grid-PSD_xi0.85_sR3.3_sF3.3_M16_p3: maxE=0.000158
+21:44:34 validate PPPM-grid-PSD_xi1_sR4.2_sF4.2_M32_p7: maxE=6.69e-09
+21:44:48 validate PPPM-grid-PSD_xi1_sR4.8_sF4.8_M40_p9: maxE=2.68e-11

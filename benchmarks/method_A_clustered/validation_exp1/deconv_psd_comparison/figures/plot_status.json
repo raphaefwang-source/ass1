@@ -1,0 +1,57 @@
+{
+  "generated": [
+    {
+      "figure": "fig1_operator_six_sweeps",
+      "plotted_records": 927
+    },
+    {
+      "figure": "fig2_action_six_sweeps",
+      "plotted_records": 927
+    },
+    {
+      "figure": "fig3_mesh_convergence",
+      "plotted_records": 324
+    },
+    {
+      "figure": "fig3b_observed_mesh_orders",
+      "plotted_records": 90
+    },
+    {
+      "figure": "fig4_projection_error_and_correction",
+      "plotted_records": 864
+    },
+    {
+      "figure": "fig5_error_vs_time_pareto",
+      "plotted_records": 295
+    },
+    {
+      "figure": "fig6_optimal_speed_frontier",
+      "plotted_records": 32
+    },
+    {
+      "figure": "fig7_optimal_parameters",
+      "plotted_records": 66
+    },
+    {
+      "figure": "fig8_setup_and_cached_cost",
+      "plotted_records": 9
+    },
+    {
+      "figure": "fig8b_matvec_components",
+      "plotted_records": 12
+    },
+    {
+      "figure": "fig9_xi_controlled_sweep",
+      "plotted_records": 90
+    }
+  ],
+  "skipped": [],
+  "notes": [],
+  "results_directory": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results",
+  "epsilons": [
+    1e-06,
+    1e-05,
+    0.0001,
+    0.001
+  ]
+}

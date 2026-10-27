@@ -1,0 +1,14 @@
+test_all_modes_including_odd_even_nyquist (test_grid_psd.GridPSDTests.test_all_modes_including_odd_even_nyquist) ... ok
+test_dense_fft_actions_new_degree_and_psd (test_grid_psd.GridPSDTests.test_dense_fft_actions_new_degree_and_psd) ... ok
+test_exact_block_clipping_no_negative_threshold (test_grid_psd.GridPSDTests.test_exact_block_clipping_no_negative_threshold) ... ok
+test_original_normalization_control_odd_even (test_grid_psd.GridPSDTests.test_original_normalization_control_odd_even) ... ok
+test_positive_stencils_wrap_and_half_ties (test_grid_psd.GridPSDTests.test_positive_stencils_wrap_and_half_ties) ... ok
+test_production_audit_switch_preserves_bitwise_operator (test_grid_psd.GridPSDTests.test_production_audit_switch_preserves_bitwise_operator) ... ok
+test_rotated_spectrum_and_nearest_projection (test_grid_psd.GridPSDTests.test_rotated_spectrum_and_nearest_projection) ... ok
+test_self_cancellation_and_periodic_positions (test_grid_psd.GridPSDTests.test_self_cancellation_and_periodic_positions) ... ok
+test_zero_amplitude_and_illegal_inputs (test_grid_psd.GridPSDTests.test_zero_amplitude_and_illegal_inputs) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.663s
+
+OK

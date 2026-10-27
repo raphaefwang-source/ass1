@@ -1,0 +1,107 @@
+{
+ "rounds": 5,
+ "reps": 7,
+ "n_configs": 9,
+ "threads": 1,
+ "seed": 20261027,
+ "started_unix": 1793068545.741083,
+ "elapsed_s": 194.08743810653687,
+ "randomization": "all method/candidate blocks randomized within each configuration and round",
+ "warmup": "3 per candidate block; 1 immediately before every sample",
+ "objective": "median over nine configuration medians",
+ "prescreen": "all selected main confirmation finalists retained; primary 79-candidate common serial prescreen preserved in primary_timing/",
+ "timing_batch": "main_confirmation",
+ "frontier": "one proxy-fastest validated hint per method and epsilon added when absent; final ranking uses common timing only",
+ "setup": "3 fresh parameter tables and 3 fresh configuration builds per state; common kernel primitives warmed",
+ "memory": "unique owning ndarray allocations, views and shared original-mesh arrays counted once; temporary estimate is not measured peak RSS",
+ "load_limitation": "Other system workloads remain active and are neither terminated nor controlled; see system_load.json, including chrome_crashpad when present.",
+ "paired_ratios": [
+  {
+   "method": "B2-positive",
+   "reference_method": "PPPM-original",
+   "id": "B2-positive_xi0.35_sR3.1_sT36_M72_p2",
+   "reference_id": "PPPM-original_xi1.025_sR2.85_sF3_M15_p5",
+   "ratio_median_paired_blocks": 32.74553558764474,
+   "ratio_ci95_low": 31.551704452604433,
+   "ratio_ci95_high": 34.547789220161484,
+   "blocks": 45,
+   "bootstrap_resamples": 5000,
+   "note": "configuration/round paired blocks; conditional on measured candidate selection"
+  },
+  {
+   "method": "PPPM-grid-PSD",
+   "reference_method": "PPPM-original",
+   "id": "PPPM-grid-PSD_xi1.025_sR2.85_sF3_M15_p5",
+   "reference_id": "PPPM-original_xi1.025_sR2.85_sF3_M15_p5",
+   "ratio_median_paired_blocks": 1.020753229985338,
+   "ratio_ci95_low": 0.9589919916810653,
+   "ratio_ci95_high": 1.064189558462416,
+   "blocks": 45,
+   "bootstrap_resamples": 5000,
+   "note": "configuration/round paired blocks; conditional on measured candidate selection"
+  },
+  {
+   "method": "PPPM-grid-PSD",
+   "reference_method": "B2-positive",
+   "id": "PPPM-grid-PSD_xi1.025_sR2.85_sF3_M15_p5",
+   "reference_id": "B2-positive_xi0.35_sR3.1_sT36_M72_p2",
+   "ratio_median_paired_blocks": 0.030432856538132127,
+   "ratio_ci95_low": 0.0288646058503276,
+   "ratio_ci95_high": 0.03277128753962578,
+   "blocks": 45,
+   "bootstrap_resamples": 5000,
+   "note": "configuration/round paired blocks; conditional on measured candidate selection"
+  }
+ ],
+ "environment_threads": {
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1",
+  "VECLIB_MAXIMUM_THREADS": "1",
+  "NUMEXPR_NUM_THREADS": "1",
+  "BLIS_NUM_THREADS": "1"
+ },
+ "provenance": {
+  "time": "2026-10-26T22:38:59-0400",
+  "command": "python3 benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/run_timing.py --main-confirmation",
+  "git": {
+   "commit": "128aaf1cd8bf39c69d2bf2db9619e478fefc0c73",
+   "dirty": true
+  },
+  "code_hash": "f8a7bffc64f84699",
+  "python": "3.11.5",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1",
+  "host": "host-375949.dhcp.egr.msu.edu",
+  "cpu": "arm",
+  "n_cpu": 8,
+  "threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  },
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "threadpool": [],
+  "amplitude_c": 1.0
+ },
+ "source_sha256": {
+  "analyze_regimes.py": "a2bc993b755ad3243dcac29fb9b7cfde842a6997aa0bb46783c1e87e727b4f0d",
+  "archive_primary_timing.py": "606eac5d7134a7b1186437599d5a880316304f79419158017675e7a63fc1e49f",
+  "audit_initial.py": "74bb371e5a737488ac6a8a2eb3968a1a66dc0083c962fa21c2f6cef3a164283a",
+  "cross_winner.py": "92b54ce2408b5bece7ab5a5ac8189ffb8ec3ce483f9fd94d7d3fe46f36bc267b",
+  "finalize_audit.py": "328942baa16fa6fc2c43960fb619458f35c811cdca86a7603329acef9d62a7b9",
+  "grid_psd.py": "ce1b71fd0189acf42b43a9390861703f91218b172d94633311c34023b4bf53c1",
+  "merge_diagnostics.py": "005c42ac65626cf233c7cb3972c64d01ed1de19c619dbdb9632cb824e5b541ad",
+  "merge_frontiers.py": "ed41b4464bff31be2b94933fe4248a9a454117c5cca8f48e4f99e91b03eb8d93",
+  "plot_results.py": "516e5e2740982f207c3187297662b624eafd59788ecd964283535911330cb689",
+  "report_generator.py": "146bc29adbd9c5e35724ba3be38973e09b53a1f13d6a79d93e24124360f7b233",
+  "run_accuracy.py": "40a58bfcb1a1c41df3fc6167bf4260e140f3b0a33f1f813a78c8f21c7b7fc49e",
+  "run_all.py": "6bef9ce0e5d9fdf203fe92ca44b3b0d0297f0e02dcae0dec87d4e6b29b19a0df",
+  "run_search.py": "240f2611e7372a560b0cbdff1359627520583eb3a50329cd80f65ce216baa0e6",
+  "run_timing.py": "003dc2c1a722c73d40b5f1a28a199fe8aade71680e8510f5cfa05aeb6856d245",
+  "run_xi_sweep.py": "037e91bc799b05edc7202834ad51e1e2f575b819096c3b389869a43ce938935c",
+  "study.py": "daf458337c8bf3abecad280ae880a0daf035f98997550631760c3d4ff4ddc117",
+  "table_audit.py": "dbec7865f6338376869ee1de63b35ceb64492e20dac2938dca89de807b120dd4",
+  "test_grid_psd.py": "715acc930005b73e75283ab83a674b921c0ead80eac444578c895235490c1338"
+ }
+}

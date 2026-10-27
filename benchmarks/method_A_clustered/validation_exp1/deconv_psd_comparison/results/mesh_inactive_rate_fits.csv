@@ -1,0 +1,16 @@
+method,family,p,n,Mlo,Mhi,order,available,floor,status
+PPPM-grid-PSD,uniform,2,4,40,80,2.0873541221820004,True,1e-11,measured projection-inactive interval
+PPPM-grid-PSD,uniform,3,4,40,80,2.9613701605698872,True,1e-11,measured projection-inactive interval
+PPPM-grid-PSD,uniform,5,3,48,80,5.186366177756168,True,1e-11,measured projection-inactive interval
+PPPM-grid-PSD,uniform,7,1,64,64,,False,1e-11,N/A: fewer than three decreasing inactive points above floor
+PPPM-grid-PSD,uniform,9,0,,,,False,1e-11,N/A: fewer than three decreasing inactive points above floor
+PPPM-grid-PSD,moderate,2,4,40,80,1.9377348808442183,True,1e-11,measured projection-inactive interval
+PPPM-grid-PSD,moderate,3,4,40,80,3.020997498412119,True,1e-11,measured projection-inactive interval
+PPPM-grid-PSD,moderate,5,3,48,80,5.153602233218049,True,1e-11,measured projection-inactive interval
+PPPM-grid-PSD,moderate,7,1,64,64,,False,1e-11,N/A: fewer than three decreasing inactive points above floor
+PPPM-grid-PSD,moderate,9,0,,,,False,1e-11,N/A: fewer than three decreasing inactive points above floor
+PPPM-grid-PSD,strong,2,4,40,80,2.039790021927602,True,1e-11,measured projection-inactive interval
+PPPM-grid-PSD,strong,3,4,40,80,3.0234316352049486,True,1e-11,measured projection-inactive interval
+PPPM-grid-PSD,strong,5,3,48,80,5.118115887231155,True,1e-11,measured projection-inactive interval
+PPPM-grid-PSD,strong,7,1,64,64,,False,1e-11,N/A: fewer than three decreasing inactive points above floor
+PPPM-grid-PSD,strong,9,0,,,,False,1e-11,N/A: fewer than three decreasing inactive points above floor

@@ -1,0 +1,93 @@
+77 distinct tables, 0 already complete; serial single-thread audit
+1/77 rho0.75_kappa0.7_xi0.85_sF6_M80_p9: complete, negative=0, direct=True, elapsed=5.0s
+2/77 rho0.75_kappa0.7_xi0.85_sF2_M80_p9: complete, negative=0, direct=False, elapsed=8.1s
+3/77 rho0.75_kappa0.7_xi0.85_sF2.25_M80_p9: complete, negative=0, direct=False, elapsed=11.2s
+4/77 rho0.75_kappa0.7_xi0.85_sF2.5_M80_p9: complete, negative=0, direct=False, elapsed=14.2s
+5/77 rho0.75_kappa0.7_xi0.85_sF2.75_M80_p9: complete, negative=0, direct=False, elapsed=17.3s
+6/77 rho0.75_kappa0.7_xi0.85_sF3_M80_p9: complete, negative=0, direct=False, elapsed=20.4s
+7/77 rho0.75_kappa0.7_xi0.85_sF3.25_M80_p9: complete, negative=0, direct=False, elapsed=23.5s
+8/77 rho0.75_kappa0.7_xi0.85_sF3.5_M80_p9: complete, negative=0, direct=False, elapsed=26.8s
+9/77 rho0.75_kappa0.7_xi0.85_sF3.75_M80_p9: complete, negative=0, direct=False, elapsed=30.0s
+10/77 rho0.75_kappa0.7_xi0.85_sF4_M80_p9: complete, negative=0, direct=False, elapsed=33.2s
+11/77 rho0.75_kappa0.7_xi0.85_sF4.25_M80_p9: complete, negative=0, direct=False, elapsed=37.1s
+12/77 rho0.75_kappa0.7_xi0.85_sF4.5_M80_p9: complete, negative=0, direct=False, elapsed=40.5s
+13/77 rho0.75_kappa0.7_xi0.85_sF4.75_M80_p9: complete, negative=0, direct=False, elapsed=43.7s
+14/77 rho0.75_kappa0.7_xi0.85_sF5_M80_p9: complete, negative=0, direct=False, elapsed=46.9s
+15/77 rho0.75_kappa0.7_xi0.85_sF5.25_M80_p9: complete, negative=0, direct=False, elapsed=51.6s
+16/77 rho0.75_kappa0.7_xi0.85_sF5.5_M80_p9: complete, negative=0, direct=False, elapsed=54.9s
+17/77 rho0.75_kappa0.7_xi0.85_sF5.75_M80_p9: complete, negative=0, direct=False, elapsed=58.3s
+18/77 rho0.75_kappa0.7_xi0.85_sF6.25_M80_p9: complete, negative=0, direct=False, elapsed=62.4s
+19/77 rho0.75_kappa0.7_xi0.85_sF6.5_M80_p9: complete, negative=0, direct=False, elapsed=65.7s
+20/77 rho0.75_kappa0.7_xi0.85_sF6_M24_p9: complete, negative=1663, direct=True, elapsed=66.5s
+21/77 rho0.75_kappa0.7_xi0.85_sF6_M25_p9: complete, negative=1735, direct=True, elapsed=67.3s
+22/77 rho0.75_kappa0.7_xi0.85_sF6_M27_p9: complete, negative=1957, direct=False, elapsed=67.5s
+23/77 rho0.75_kappa0.7_xi0.85_sF6_M30_p9: complete, negative=2157, direct=False, elapsed=67.8s
+24/77 rho0.75_kappa0.7_xi0.85_sF6_M32_p9: complete, negative=2205, direct=False, elapsed=68.1s
+25/77 rho0.75_kappa0.7_xi0.85_sF6_M36_p9: complete, negative=2337, direct=False, elapsed=68.5s
+26/77 rho0.75_kappa0.7_xi0.85_sF6_M40_p9: complete, negative=2337, direct=True, elapsed=69.7s
+27/77 rho0.75_kappa0.7_xi0.85_sF6_M45_p9: complete, negative=2157, direct=False, elapsed=70.6s
+28/77 rho0.75_kappa0.7_xi0.85_sF6_M48_p9: complete, negative=1933, direct=False, elapsed=71.5s
+29/77 rho0.75_kappa0.7_xi0.85_sF6_M50_p9: complete, negative=1663, direct=False, elapsed=72.8s
+30/77 rho0.75_kappa0.7_xi0.85_sF6_M54_p9: complete, negative=1237, direct=False, elapsed=73.9s
+31/77 rho0.75_kappa0.7_xi0.85_sF6_M60_p9: complete, negative=437, direct=False, elapsed=75.4s
+32/77 rho0.75_kappa0.7_xi0.85_sF6_M64_p9: complete, negative=19, direct=False, elapsed=77.2s
+33/77 rho0.75_kappa0.7_xi0.85_sF6_M72_p9: complete, negative=0, direct=False, elapsed=80.6s
+34/77 rho0.75_kappa0.7_xi0.85_sF6_M75_p9: complete, negative=0, direct=False, elapsed=83.3s
+35/77 rho0.75_kappa0.7_xi0.85_sF6_M80_p3: complete, negative=0, direct=False, elapsed=86.5s
+36/77 rho0.75_kappa0.7_xi0.85_sF6_M80_p4: complete, negative=0, direct=False, elapsed=89.8s
+37/77 rho0.75_kappa0.7_xi0.85_sF6_M80_p5: complete, negative=0, direct=False, elapsed=93.1s
+38/77 rho0.75_kappa0.7_xi0.85_sF6_M80_p6: complete, negative=0, direct=False, elapsed=96.2s
+39/77 rho0.75_kappa0.7_xi0.85_sF6_M80_p7: complete, negative=0, direct=False, elapsed=99.4s
+40/77 rho0.75_kappa0.7_xi0.85_sF6_M80_p8: complete, negative=0, direct=False, elapsed=102.6s
+41/77 rho0.3_kappa0.7_xi0.85_sF6_M80_p9: complete, negative=31513, direct=True, elapsed=107.8s
+42/77 rho0.5_kappa0.7_xi0.85_sF6_M80_p9: complete, negative=7681, direct=False, elapsed=111.1s
+43/77 rho1_kappa0.7_xi0.85_sF6_M80_p9: complete, negative=0, direct=False, elapsed=114.2s
+44/77 rho0.75_kappa0.2_xi0.85_sF6_M80_p9: complete, negative=0, direct=False, elapsed=117.3s
+45/77 rho0.75_kappa0.5_xi0.85_sF6_M80_p9: complete, negative=0, direct=False, elapsed=120.3s
+46/77 rho0.75_kappa1_xi0.85_sF6_M80_p9: complete, negative=23735, direct=False, elapsed=123.5s
+47/77 rho0.75_kappa2_xi0.85_sF6_M80_p9: complete, negative=269294, direct=True, elapsed=128.6s
+48/77 rho0.75_kappa0.7_xi0.85_sF4_M16_p7: complete, negative=719, direct=False, elapsed=128.7s
+49/77 rho0.75_kappa0.7_xi0.85_sF4_M18_p7: complete, negative=925, direct=False, elapsed=128.7s
+50/77 rho0.75_kappa0.7_xi0.85_sF4_M20_p7: complete, negative=1045, direct=False, elapsed=128.9s
+51/77 rho0.75_kappa0.7_xi0.85_sF4_M24_p7: complete, negative=1303, direct=True, elapsed=129.2s
+52/77 rho0.75_kappa0.7_xi0.85_sF4_M25_p7: complete, negative=1375, direct=True, elapsed=129.5s
+53/77 rho0.75_kappa0.7_xi0.85_sF4_M27_p7: complete, negative=1495, direct=False, elapsed=129.7s
+54/77 rho0.75_kappa0.7_xi0.85_sF4_M30_p7: complete, negative=1639, direct=False, elapsed=129.9s
+55/77 rho0.75_kappa0.7_xi0.85_sF4_M32_p7: complete, negative=1639, direct=False, elapsed=130.1s
+56/77 rho0.75_kappa0.7_xi0.85_sF4_M36_p7: complete, negative=1639, direct=False, elapsed=130.4s
+57/77 rho0.75_kappa0.7_xi0.85_sF4_M40_p7: complete, negative=1447, direct=True, elapsed=131.1s
+58/77 rho0.75_kappa0.7_xi0.85_sF4_M45_p7: complete, negative=1141, direct=False, elapsed=131.6s
+59/77 rho0.75_kappa0.7_xi0.85_sF4_M48_p7: complete, negative=797, direct=False, elapsed=132.3s
+60/77 rho0.75_kappa0.7_xi0.85_sF4_M54_p7: complete, negative=195, direct=False, elapsed=133.2s
+61/77 rho0.75_kappa0.7_xi0.85_sF4_M60_p7: complete, negative=0, direct=False, elapsed=134.5s
+62/77 rho0.75_kappa0.7_xi0.85_sF4_M64_p7: complete, negative=0, direct=False, elapsed=136.0s
+63/77 rho0.75_kappa0.7_xi0.85_sF4_M72_p7: complete, negative=0, direct=False, elapsed=138.1s
+64/77 rho0.75_kappa0.7_xi0.85_sF4_M80_p7: complete, negative=0, direct=True, elapsed=142.2s
+65/77 rho0.75_kappa0.7_xi0.85_sF4_M40_p3: complete, negative=0, direct=False, elapsed=142.6s
+66/77 rho0.75_kappa0.7_xi0.85_sF4_M40_p4: complete, negative=123, direct=False, elapsed=143.1s
+67/77 rho0.75_kappa0.7_xi0.85_sF4_M40_p5: complete, negative=491, direct=False, elapsed=143.5s
+68/77 rho0.75_kappa0.7_xi0.85_sF4_M40_p6: complete, negative=973, direct=False, elapsed=143.9s
+69/77 rho0.75_kappa0.7_xi0.85_sF4_M40_p8: complete, negative=1933, direct=False, elapsed=144.3s
+70/77 rho0.75_kappa0.7_xi0.85_sF4_M40_p9: complete, negative=2337, direct=False, elapsed=144.7s
+71/77 rho0.3_kappa0.7_xi0.85_sF4_M40_p7: complete, negative=8635, direct=True, elapsed=145.3s
+72/77 rho0.5_kappa0.7_xi0.85_sF4_M40_p7: complete, negative=4553, direct=False, elapsed=145.8s
+73/77 rho1_kappa0.7_xi0.85_sF4_M40_p7: complete, negative=0, direct=False, elapsed=146.1s
+74/77 rho0.75_kappa0.2_xi0.85_sF4_M40_p7: complete, negative=0, direct=False, elapsed=146.5s
+75/77 rho0.75_kappa0.5_xi0.85_sF4_M40_p7: complete, negative=0, direct=False, elapsed=146.9s
+76/77 rho0.75_kappa1_xi0.85_sF4_M40_p7: complete, negative=9067, direct=False, elapsed=147.4s
+77/77 rho0.75_kappa2_xi0.85_sF4_M40_p7: complete, negative=41229, direct=True, elapsed=148.1s
+{
+  "command": "python3 /Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/table_audit.py",
+  "workers": 1,
+  "threads": 1,
+  "elapsed_s": 155.72049045795575,
+  "distinct_tables": 77,
+  "complete_tables": 77,
+  "invalid_tables": 0,
+  "direct_checked_tables": 12,
+  "max_direct_vs_fft_relative": 3.8523411232701855e-13,
+  "max_direct_graph_relative": 3.582547192433577e-13,
+  "max_assignment_apply_relative": 5.286251782625261e-16,
+  "python": "3.11.5",
+  "numpy": "2.4.6"
+}

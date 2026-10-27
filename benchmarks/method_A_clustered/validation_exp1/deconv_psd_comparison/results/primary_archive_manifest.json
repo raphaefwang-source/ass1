@@ -1,0 +1,24 @@
+{
+  "sha256": {
+    "serial_prescreen_raw.csv": "88fa7229990d2233589d513d3f64d338fe2d7e027be581924de415a3bb8b667d",
+    "timing_plan.json": "74d503e82eb9fd46ffd5229a32b5f3cb11341de15867c4fc0538cda2100f54ce",
+    "timed_candidates.csv": "cf697b37c108756af0696066da47d235d3f30e1940aeae34829f6bbc9dfacee4",
+    "table_setup_raw.csv": "0d052248ccdc2308cd9f939ff246af987d4edf905f29ba88d615793f459308fc",
+    "config_setup_raw.csv": "a9a902f3f7191859fce71d4a07a03194b58d1c7ee9694e5003c0ba101a877551",
+    "memory.csv": "c7a68b23e4ff5c2d23fae4816716f85e48a7e5fcd89f88814c2783cacad92e34",
+    "final_timing.csv": "f13eb2d7953298544bab2cf494e6fc421858ec68844b27827288ea3071af8cbd",
+    "final_timing_raw.csv": "34d22eea1f2de5dd513d124e24bfe6b61b3c37521c4f52177d1e4f1f262bc7c4",
+    "best_configuration.json": "d926f7066f17e950d6471ea22695adc72f63f91a5b9e8f7fa21121846eb7c248",
+    "best_configuration.csv": "010a25082364983fc618634326c18799e8a0f947fd7f9c2d07714e38f90fbee5",
+    "accuracy_time_frontier.csv": "868326472a670bd27dafd71aec024ed73d89a7d7fb8745856cd0f7a15a508240",
+    "frontier.csv": "868326472a670bd27dafd71aec024ed73d89a7d7fb8745856cd0f7a15a508240",
+    "paired_speed_ratios.csv": "9c5d044b131f7274ea8e3639bd431c6625dfd12af1cab78bab1e460ef6681b34",
+    "components_raw.csv": "1d87c486dbc5a238c4421e10251cea27e8d1b3098e4d0905bbb2b61dbd432ab0",
+    "common_kernel_setup_raw.csv": "0839cf1c2368fe839a4c78423178ccf2c7a7e338516d54b65138d955f56262b1",
+    "system_load.json": "26c557398f73bea9ddcaa682f2d6cde7b9e899b91fea0504fe119c2d8ea72d3d",
+    "timing_protocol.json": "085f17195a113caa510c1754a5133c0da1174dc76779956d1120b278342d1dd6",
+    "timing_progress.json": "9956ad5eebf66877cc0462f87de82a4c00ec229c658fe405bae46678a310ee8b",
+    "timing_run.log": "8bb3f13a302311624fb5348ecdc1adfff1657ac0c91d3da7a84f67a8389a5b5f"
+  },
+  "note": "All first-pass artifacts moved without modification; final main comparison uses a fresh common confirmation batch"
+}

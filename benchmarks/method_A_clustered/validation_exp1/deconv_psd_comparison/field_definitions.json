@@ -1,0 +1,47 @@
+{
+  "methods": {
+    "PPPM-original": "Historical deconvolved influence, original cached near+far action",
+    "B2-positive": "Direct positive physical tensor table, positive assignment, no deconvolution",
+    "PPPM-grid-PSD": "Original influence, physical-table symmetric 3x3 negative-eigenvalue clipping, all resulting mesh modes"
+  },
+  "errors": {
+    "E_G": "||Gamma_h-Gamma_D||_2 / ||Gamma_D||_2, complete dense symmetric spectral operator norm",
+    "E_GX": "Frobenius relative action error on the same ten historical Gaussian probes; supplementary, never feasibility criterion",
+    "E_mesh": "||Gamma_Lh-(Gamma_D-Gamma_S(sR=8))||_2 / ||Gamma_D||_2; includes finite Fourier/table construction tail, negligible on fitted range",
+    "E_G_mesh_only": "Alias of E_mesh for new rows; imported historical original mesh-only used its truncated Fourier target, so dedicated convergence.csv is used for method-order comparisons",
+    "E_R": "||Gamma_S(sR)-Gamma_S(sR=8)||_2 / ||Gamma_D||_2",
+    "E_proj": "||Gamma_gridPSD-Gamma_original||_2 / ||Gamma_D||_2; when the table projection is inactive, roundoff differences of assignment weights can remain",
+    "E_original": "Complete error before projection for the same requested numerical parameters",
+    "norm_qualification": "Float64 numerical spectral norms against independently certified direct references, not interval arithmetic certificates"
+  },
+  "cutoffs": {
+    "sR": "xi*r_c",
+    "sF": "Requested k_c/(2*xi) BEFORE projection",
+    "sF_eff": "Largest retained reciprocal shell k_c/(2*xi)",
+    "sT": "B2 kappa*R_T, physical image-cube half-width; not comparable by numerical equality with sF",
+    "post_projection": "No cutoff or deconvolution is reapplied, actual zero mode retained"
+  },
+  "projection": {
+    "min_raw_eig": "Minimum physical real-space block eigenvalue after inversion symmetrization (raw-vs-sym difference separately audited)",
+    "max_correction": "Maximum spectral norm of an individual physical tensor correction",
+    "correction_max_spectral": "Same as max_correction",
+    "correction_max_block_fro": "Maximum block Frobenius norm, distinct from spectral correction",
+    "neg_fraction": "Fraction of blocks having any strictly negative float64 eigenvalue; no threshold is used to define the projection",
+    "significant_negative_threshold": "64*machine_epsilon*global table spectral scale, diagnostics only",
+    "audit_eigenvalues_false": "Production setup omits extra raw/post eigvalsh and quantiles; unmeasured fields are null. Operator bitwise equal to audited path."
+  },
+  "timing": {
+    "t_screen_s": "Concurrent-load heuristic timing on uniform seed2, never the final speed comparison",
+    "median_matvec_s": "Median across nine per-configuration medians in the same serial timing pass; seconds",
+    "protocol": "5 rounds x 7 samples x 9 configurations, randomized blocks, single numerical thread",
+    "setup": "Three fresh warmed-kernel parameter tables, three fresh configuration builds per state; parameter setup includes mandatory projection eigh, excludes optional table-audit eigvalsh",
+    "memory": "Unique owning ndarray allocations plus explicitly labeled temporary estimates; process RSS is a separate high-water measurement",
+    "amortization": "Measured T_table + T_config + n_apply*T_matvec; derived cost, not an additional measurement"
+  },
+  "fits": {
+    "floor": 1e-11,
+    "mesh_rate_fits": "Last four decreasing points above floor, or at least three. Mixed projection-active transitions are formal finite-interval slopes, not asymptotic convergence certificates.",
+    "mesh_local_slopes": "Adjacent M slopes with projection regime and floor flags",
+    "mesh_inactive_rate_fits": "Only projection-inactive points above floor, at least three; otherwise N/A"
+  }
+}

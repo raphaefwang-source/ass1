@@ -1,0 +1,48 @@
+{
+ "time": "2026-10-26T22:42:05-0400",
+ "command": "python3 benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/best_table_audit.py",
+ "git": {
+  "commit": "128aaf1cd8bf39c69d2bf2db9619e478fefc0c73",
+  "dirty": true
+ },
+ "code_hash": "f8a7bffc64f84699",
+ "python": "3.11.5",
+ "numpy": "2.4.6",
+ "scipy": "1.17.1",
+ "host": "host-375949.dhcp.egr.msu.edu",
+ "cpu": "arm",
+ "n_cpu": 8,
+ "threads": {
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1"
+ },
+ "stage": "best_table_offline_audit",
+ "workers": 1,
+ "audit_threads": 1,
+ "rows": 1,
+ "merged_validation_rows": 9,
+ "best_id": "PPPM-grid-PSD_xi1.025_sR2.85_sF3_M15_p5",
+ "parameters": {
+  "xi": 1.025,
+  "sR": 2.85,
+  "M": 15,
+  "p": 5,
+  "sF": 3.0,
+  "sT": 36.0,
+  "kappa": 0.2,
+  "rho": 0.75
+ },
+ "input_sha256": {
+  "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/best_configuration.json": "8ad66dede4d018ee8d37df219e23d16ad1e1ca836891446290f4e147f8dafcf2",
+  "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/validation.csv": "00b4d1933f8c0053409087ae71fe6b76ab5ceea4a576a1a521c3b33cfe51bc67"
+ },
+ "source_sha256": {
+  "best_table_audit.py": "da282a72fe6b66f3db0f48b7f19e9d28fead65cb2cab9138fc48e96be0219909",
+  "grid_psd.py": "ce1b71fd0189acf42b43a9390861703f91218b172d94633311c34023b4bf53c1",
+  "study.py": "daf458337c8bf3abecad280ae880a0daf035f98997550631760c3d4ff4ddc117"
+ },
+ "elapsed_s": 0.09326908306684345,
+ "note": "Fresh original mesh plus audit_eigenvalues=True projection. Offline timings explicitly labeled. No changes to best_configuration.json, validation.csv, or any timing artifact.",
+ "amplitude_c": 1.0
+}

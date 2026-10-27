@@ -1,0 +1,4 @@
+method,reference_method,id,reference_id,ratio_median_paired_blocks,ratio_ci95_low,ratio_ci95_high,blocks,bootstrap_resamples,note
+B2-positive,PPPM-original,B2-positive_xi0.35_sR3.1_sT36_M72_p2,PPPM-original_xi1.025_sR2.85_sF3_M15_p5,32.74553558764474,31.551704452604433,34.547789220161484,45,5000,configuration/round paired blocks; conditional on measured candidate selection
+PPPM-grid-PSD,PPPM-original,PPPM-grid-PSD_xi1.025_sR2.85_sF3_M15_p5,PPPM-original_xi1.025_sR2.85_sF3_M15_p5,1.020753229985338,0.9589919916810653,1.064189558462416,45,5000,configuration/round paired blocks; conditional on measured candidate selection
+PPPM-grid-PSD,B2-positive,PPPM-grid-PSD_xi1.025_sR2.85_sF3_M15_p5,B2-positive_xi0.35_sR3.1_sT36_M72_p2,0.030432856538132127,0.0288646058503276,0.03277128753962578,45,5000,configuration/round paired blocks; conditional on measured candidate selection
