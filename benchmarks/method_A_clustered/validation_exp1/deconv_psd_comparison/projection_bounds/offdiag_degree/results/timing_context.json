@@ -1,0 +1,12 @@
+{
+  "repeats": 9,
+  "warmups": 1,
+  "threads": [],
+  "load_average": [
+    6.6337890625,
+    8.58642578125,
+    10.32177734375
+  ],
+  "platform": "darwin",
+  "policy": "New isolated bound-only setup batch; parameter samples shared across configurations. Full bound includes correction total-degree FFT and self-exclusion. Fallback cost reported separately; no cached-matvec timings or old-batch speed ratios."
+}

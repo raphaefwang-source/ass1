@@ -1,0 +1,20 @@
+{
+  "selected_table_configurations": 6,
+  "selection_relative_degree_error_threshold": 1e-08,
+  "selection_role": "Offline diagnostic only; never a mathematical bound floor or a production selection/rejection criterion",
+  "auto_unavailable": 3,
+  "forced_exceeds_default_budget": 3,
+  "max_forced_relative_error": 3.805069032427714e-16,
+  "max_forced_strict_norm_violation_abs": 2.5849394142282115e-26,
+  "forced_setup_seconds": [
+    0.11137216701172292,
+    0.21483812492806464,
+    1.2337061250582337,
+    32.284602334024385,
+    15.184720666962676,
+    12.655425125034526
+  ],
+  "algorithm_sha256": "d741bb51a745af593721517795af5f0b3bae6d64b826e148b6dabb21ff6c9e61",
+  "primary_results_modified": false,
+  "policy": "Explicit extra-cost offline stable audit; the original 3 auto-unavailable rows remain unavailable in the primary batch. Float64 diagnostics, not interval certificates."
+}

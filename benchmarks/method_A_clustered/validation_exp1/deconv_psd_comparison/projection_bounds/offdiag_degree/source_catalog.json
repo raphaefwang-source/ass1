@@ -1,0 +1,1093 @@
+{
+  "created_at": "2026-10-27T03:03:23.096313-04:00",
+  "snapshot": "source_snapshot.json",
+  "source_csv": "source_catalog.csv",
+  "focus_csv": "focus_catalog.csv",
+  "preservation": {
+    "tracked_files": 861,
+    "independent_references": 72,
+    "sidecars": 72,
+    "parts": 141
+  },
+  "source_counts": {
+    "source_rows": 1692,
+    "unique_case_ids": 1602,
+    "unique_parameter_ids": 141,
+    "unique_parameter_configuration_pairs": 1269,
+    "datasets": {
+      "convergence": 324,
+      "sweeps": 927,
+      "validation": 387,
+      "xi_sweep": 45,
+      "best_projection_diagnostics": 9
+    },
+    "true_norm_unavailable_source_rows": 63,
+    "true_norm_unavailable_case_ids": 63,
+    "active_dense_case_ids": 540,
+    "active_dense_parameter_configuration_pairs": 477
+  },
+  "focus_groups": {
+    "convergence": {
+      "rows": 324,
+      "unique_cases": 324,
+      "parameter_ids": [
+        "table_0d404389d9f41cfa",
+        "table_0dfb399e75c3848e",
+        "table_10e3008bd04de4c3",
+        "table_15ec7f1b7e67641b",
+        "table_1719e7f499e88462",
+        "table_1795b97c94ec03c2",
+        "table_1fc33befaed67f0c",
+        "table_1ff95ece47cde54d",
+        "table_362cf15ce8ba28b5",
+        "table_3d94208065f30c7b",
+        "table_442cb03274a64c6d",
+        "table_46974690a7d3eba6",
+        "table_551d7eebbf6e4c8f",
+        "table_564318e28d7a6536",
+        "table_671848646c0f149f",
+        "table_6d17f10c63173c27",
+        "table_70f81adb5ab868e6",
+        "table_73da40a32e753844",
+        "table_86a67168eadbc3fd",
+        "table_8de6e014890ebd11",
+        "table_9311b294810ab38a",
+        "table_9e8be2bdca35415c",
+        "table_a1ead0c642879b03",
+        "table_a8a8e448be9fa667",
+        "table_b79548131b83ebc1",
+        "table_bd2f85cc5e7fad74",
+        "table_c563a833021266d1",
+        "table_c71170b952ef27a2",
+        "table_cf83a8800922de51",
+        "table_d42402ddbfe09ea2",
+        "table_d67539e02d8b0b15",
+        "table_d95d1bd1805cb4f4",
+        "table_e4e1fb52191e7daf",
+        "table_ea5b9755935be9dc",
+        "table_ee58dceb5a270a30",
+        "table_fe7882282c76c617"
+      ]
+    },
+    "winner": {
+      "rows": 9,
+      "unique_cases": 9,
+      "parameter_ids": [
+        "table_150739192a74aff4"
+      ]
+    },
+    "active-badcase": {
+      "rows": 9,
+      "unique_cases": 9,
+      "parameter_ids": [
+        "table_6d5e10af174f03b0"
+      ]
+    },
+    "self-dominated-outlier": {
+      "rows": 9,
+      "unique_cases": 9,
+      "parameter_ids": [
+        "table_a1ead0c642879b03"
+      ]
+    }
+  },
+  "reused_parts": {
+    "table_069c4144c8457c0a": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF5.75_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_087d8dcb913b09b4": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M45_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_0c77e7f123a27b8b": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF2.25_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_0d404389d9f41cfa": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M64_p2",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_0dfb399e75c3848e": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M30_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_10e3008bd04de4c3": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M40_p3",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_11049950a9a478d0": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF3_M16_p6",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_1122a7130f5a059f": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF3_M20_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_12dc3a8eb059938f": {
+      "table_key": "L6.98864371789_kappa0.2_xi1.45_sF2.8_M20_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_14878fc314a3cda3": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.85_sF2.8_M16_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_150739192a74aff4": {
+      "table_key": "L6.98864371789_kappa0.2_xi1.025_sF3_M15_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_15ec7f1b7e67641b": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M40_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_1712f38182dcd216": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M24_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_1719e7f499e88462": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M40_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_1795b97c94ec03c2": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M48_p2",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_1a173d7ecaf874f9": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M64_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_1a71011e1132ca36": {
+      "table_key": "L6.34960420787_kappa0.7_xi0.85_sF6_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_1d6f75ec899062c3": {
+      "table_key": "L6.98864371789_kappa0.2_xi1.025_sF2.8_M15_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_1ee1c08a31463f31": {
+      "table_key": "L6.98864371789_kappa0.2_xi1.25_sF3_M20_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_1f9ce85e85b93c9a": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_1fc33befaed67f0c": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M48_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_1ff95ece47cde54d": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M40_p2",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_212ef897ab9f8103": {
+      "table_key": "L6.98864371789_kappa0.2_xi1.075_sF2.8_M15_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_229c2435d18a996a": {
+      "table_key": "L6.98864371789_kappa0.5_xi0.85_sF4_M40_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_261944ce9445fba0": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF2.8_M14_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_27c10892726c8686": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4.25_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_2f1a28d6bbb34b2f": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.6_sF3_M20_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_3373120e3a3da8c2": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.35_sF3_M20_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_362cf15ce8ba28b5": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M24_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_375f80f0fe42c044": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M25_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_3929401e5e4211e1": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M80_p4",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_3af989d082cad1de": {
+      "table_key": "L6.98864371789_kappa1_xi0.85_sF4_M40_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 0,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 9
+    },
+    "table_3d94208065f30c7b": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M48_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_3e38f193a1d4c0e2": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF3_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_3e3d09ad50d5112a": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M32_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_3eb58919bbfa58fd": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M72_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_3f6c00ae5d37044c": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF5.25_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_4014e3bd030a0a7e": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF3_M18_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_4134aaabbf21e3a1": {
+      "table_key": "L6.98864371789_kappa0.2_xi1.05_sF3_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_416a4a4b5cc3f97f": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M40_p4",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_42c5522bdc978b01": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.85_sF2.8_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_43e0fb61d86c6ce1": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF2.8_M16_p6",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_442cb03274a64c6d": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M24_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_46974690a7d3eba6": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M80_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_4dd27d17c01fe9cd": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M80_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_5254b5b946489c32": {
+      "table_key": "L8_kappa0.7_xi0.85_sF4_M40_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_540658395d9c8751": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF3.8_M24_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_543b95dba37a9496": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M40_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_551d7eebbf6e4c8f": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M48_p3",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_55bfd27928ff40c3": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.6_sF3.3_M16_p3",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_564318e28d7a6536": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M27_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_5788cea3fa91c96c": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF3.3_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_57d351521233a41b": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M48_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_5e4609fbe7f2ee89": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6.25_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_671848646c0f149f": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M30_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_688620615bffbf5d": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.325_sF2.8_M64_p2",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_6b57f8b909c8b429": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M27_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_6d17f10c63173c27": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M32_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_6d5e10af174f03b0": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M16_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_6e85ce7bf5be7b26": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M50_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_70f81adb5ab868e6": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M32_p2",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_73da40a32e753844": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M27_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_7801ff4b9ab3476a": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M18_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_8010f5affe3623ef": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M54_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_8536068d0cc0a4bc": {
+      "table_key": "L6.98864371789_kappa1_xi0.85_sF6_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 0,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 9
+    },
+    "table_86a67168eadbc3fd": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M24_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_8a67831ea69ced9a": {
+      "table_key": "L6.98864371789_kappa0.2_xi1.05_sF3.3_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_8abfa53f39be2d37": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M80_p6",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_8ad779c6cf669f0f": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF5.5_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_8c75a2d69d614bdc": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.6_sF3.3_M16_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_8de6e014890ebd11": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M48_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_8dfc92cec1d8c3c1": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF3_M14_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_91a355b7d2e06794": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF5_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_9311b294810ab38a": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_93957f74e14f1c3c": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF3.75_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_9521be0063e9cfc3": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF3_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_96cdc1b93e1ab01e": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.6_sF3.3_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_97bead14b52344bd": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF3.25_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_9e442055c7d67520": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4.5_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_9e8be2bdca35415c": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M40_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_9eb668da35f6dcde": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M75_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_9f4d9af229a99d67": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.95_sF3.3_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_a01068d6bbe391e6": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4.75_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_a061500c2cb2c874": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M40_p3",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_a1ead0c642879b03": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M64_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_a248968e593ba791": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF2.75_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_a55e47f45747ee64": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF2.8_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_a595c8f7166d8a50": {
+      "table_key": "L6.98864371789_kappa0.2_xi1.05_sF2.8_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_a8a8e448be9fa667": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M30_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_a9c1281f378ca056": {
+      "table_key": "L9.48504881197_kappa0.7_xi0.85_sF4_M40_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 0,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 9
+    },
+    "table_ab18a89f6bc2673b": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.85_sF4_M40_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_abcd7d55cf1d1c09": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF3.1_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_af54b63c48388efa": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M45_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_afadced5512770e4": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M60_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_b06dc370a64c94b2": {
+      "table_key": "L6.98864371789_kappa0.2_xi1.025_sF3_M17_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_b0ba5afe03ef4104": {
+      "table_key": "L6.98864371789_kappa2_xi0.85_sF4_M40_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 0,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 9
+    },
+    "table_b60945bde91f2862": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.975_sF3_M15_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_b6d7fd7d2fc1fcd4": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M36_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_b79548131b83ebc1": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M32_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_b96e003d6138e528": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.95_sF2.8_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_bd2f85cc5e7fad74": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M24_p3",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_c397807f6b969e21": {
+      "table_key": "L6.98864371789_kappa0.2_xi1.05_sF2.6_M16_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_c563a833021266d1": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M80_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_c5b5f1161e2c7531": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M60_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_c71170b952ef27a2": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M80_p3",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_c8540c35dfeeb507": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF2.8_M16_p4",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_cad1d13cd920d452": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.85_sF3_M20_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_cd71b721fefe0603": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF4.2_M32_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_cf83a8800922de51": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M32_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_d100ad4546d8fd12": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M72_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_d17c9de2cef051c3": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M36_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_d2ae8d6c3649ada8": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF3.5_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_d42402ddbfe09ea2": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M64_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_d55e8562aac1e5fd": {
+      "table_key": "L6.34960420787_kappa0.7_xi0.85_sF4_M40_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_d67539e02d8b0b15": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M32_p3",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_d8058671cd0694bd": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M30_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_d939dd52d5e05673": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.85_sF3.3_M16_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_d95d1bd1805cb4f4": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M64_p3",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_db4b2ddfe0fa52fd": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.85_sF6_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_dd0b0c1f1a84b094": {
+      "table_key": "L6.98864371789_kappa0.2_xi0.85_sF3.3_M16_p3",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_dd57feaf1f04cfb6": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF2_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_dda0614997aad00f": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M25_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_e16635fc5e44815d": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M40_p8",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_e4e1fb52191e7daf": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M64_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_e6506faf8c42a402": {
+      "table_key": "L9.48504881197_kappa0.7_xi0.85_sF6_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 0,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 9
+    },
+    "table_e975833df54396ae": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M40_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_e9d74fbd1c8f6e0d": {
+      "table_key": "L6.98864371789_kappa2_xi0.85_sF6_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 0,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 9
+    },
+    "table_ea5b9755935be9dc": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M27_p5",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_ec3c296a0b8a6221": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M40_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_ec40fa2404f6302e": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M40_p6",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_ec5d78089dc3b022": {
+      "table_key": "L6.98864371789_kappa0.5_xi0.85_sF6_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_ed8bb11c79c3d3f7": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF2.8_M16_p3",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_ee58dceb5a270a30": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M80_p2",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_f2ad89b395ba21e2": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M20_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_f3223e79ce22efa7": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6.5_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_f4febbb24ba8e78b": {
+      "table_key": "L8_kappa0.7_xi0.85_sF6_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 0,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 9
+    },
+    "table_f7b3bc5946edd937": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M80_p8",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_f86d4df3b1da3caa": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF2.5_M80_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_fd0b623d1804a731": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF4_M54_p7",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    },
+    "table_fdd95d3906f71552": {
+      "table_key": "L6.98864371789_kappa0.2_xi1_sF4.8_M40_p9",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 0,
+      "unavailable_wide_configurations": 0
+    },
+    "table_fe7882282c76c617": {
+      "table_key": "L6.98864371789_kappa0.7_xi0.85_sF6_M24_p2",
+      "configurations": 9,
+      "known_true_norm_configurations": 9,
+      "active_true_dense_configurations": 9,
+      "unavailable_wide_configurations": 0
+    }
+  },
+  "field_mapping": {
+    "B_old": "PR #5 B",
+    "B_total": "PR #5 B_degree",
+    "B_simple": "PR #5 N*delta",
+    "correction_norm": "PR #5 true correction-only norm, literal zero or all-offset dense; unavailable wide rows stay blank",
+    "E_old": "PR #5 E_old, unchanged empirical complete operator error",
+    "E_new": "PR #5 E_new, unchanged empirical complete operator error",
+    "E_proj": "PR #5 E_proj, unchanged historical full-operator difference; never a true correction norm proxy"
+  },
+  "policy": "Compute new self/offdiagonal degrees per table/configuration while preserving all 1692 source rows. The 9 outlier rows are a subset of the 324 convergence rows; focus CSV repeats their label intentionally. No certified total discretization error exists without a separately certified original error."
+}

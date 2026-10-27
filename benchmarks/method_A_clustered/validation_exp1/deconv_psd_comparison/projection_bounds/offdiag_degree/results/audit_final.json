@@ -1,0 +1,5516 @@
+{
+  "timestamp": "2026-10-27T12:27:28.608591-04:00",
+  "status": "pass",
+  "ok": true,
+  "issues": [],
+  "checks": {
+    "preservation": {
+      "tracked_file_sha256": {
+        "checked": 861,
+        "changed": []
+      },
+      "reused_part_sha256": {
+        "checked": 141,
+        "changed": []
+      },
+      "references": {
+        "npz": 72,
+        "sidecars": 72,
+        "changed": []
+      },
+      "source_csv": {
+        "checked": 10,
+        "changed": []
+      }
+    },
+    "bounds": {
+      "source_rows": 1692,
+      "unique_cases": 1602,
+      "physical_table_configurations": 1269,
+      "tables": 141,
+      "dataset_counts": {
+        "convergence": 324,
+        "sweeps": 927,
+        "validation": 387,
+        "xi_sweep": 45,
+        "best_projection_diagnostics": 9
+      },
+      "source_mismatches": [],
+      "formula_mismatches": [],
+      "scope_mismatches": [],
+      "stability_mismatches": [],
+      "ratio_mismatches": [],
+      "unavailable_true_norm_cases": 63,
+      "unavailable_improved_table_configurations": 0,
+      "raw_unreliable_table_configurations": 9,
+      "stable_fallback_table_configurations": 9,
+      "strict_historical_Eproj_violations": [
+        {
+          "source": "convergence.csv:27",
+          "case_id": "grid_b9ac787053bb1e7f",
+          "excess_relative": 7.374454982581611e-16
+        },
+        {
+          "source": "convergence.csv:135",
+          "case_id": "grid_900f80bc6023eec4",
+          "excess_relative": 6.497992263867433e-16
+        },
+        {
+          "source": "convergence.csv:243",
+          "case_id": "grid_fb4b660232440f74",
+          "excess_relative": 6.491435404966793e-16
+        },
+        {
+          "source": "convergence.csv:351",
+          "case_id": "grid_870f714c511fa1fc",
+          "excess_relative": 5.791020382220976e-16
+        },
+        {
+          "source": "convergence.csv:459",
+          "case_id": "grid_7fe40ba5f6ad0070",
+          "excess_relative": 4.857670663742816e-16
+        },
+        {
+          "source": "convergence.csv:567",
+          "case_id": "grid_b46d95dbb9b58d95",
+          "excess_relative": 5.723862994481875e-16
+        },
+        {
+          "source": "convergence.csv:675",
+          "case_id": "grid_f5d202e26938d749",
+          "excess_relative": 4.652161394614723e-16
+        },
+        {
+          "source": "convergence.csv:783",
+          "case_id": "grid_9a67f40e2c9a2d13",
+          "excess_relative": 5.471705473219492e-16
+        },
+        {
+          "source": "convergence.csv:891",
+          "case_id": "grid_56efd4fc661c3e54",
+          "excess_relative": 7.272725067349676e-16
+        },
+        {
+          "source": "convergence.csv:30",
+          "case_id": "grid_91b6a7c934461df2",
+          "excess_relative": 5.495307601139e-16
+        },
+        {
+          "source": "convergence.csv:138",
+          "case_id": "grid_2842beeb2c2e071d",
+          "excess_relative": 6.451593356113903e-16
+        },
+        {
+          "source": "convergence.csv:246",
+          "case_id": "grid_7e5d323fa06ed3ca",
+          "excess_relative": 6.414283647009108e-16
+        },
+        {
+          "source": "convergence.csv:354",
+          "case_id": "grid_424184fbf3901260",
+          "excess_relative": 4.862277227935626e-16
+        },
+        {
+          "source": "convergence.csv:462",
+          "case_id": "grid_b20f44237b64124c",
+          "excess_relative": 5.748112026340706e-16
+        },
+        {
+          "source": "convergence.csv:570",
+          "case_id": "grid_e5b63ba216eb8764",
+          "excess_relative": 4.787507938936508e-16
+        },
+        {
+          "source": "convergence.csv:678",
+          "case_id": "grid_820aa82cc29ce448",
+          "excess_relative": 6.330120072930864e-16
+        },
+        {
+          "source": "convergence.csv:786",
+          "case_id": "grid_f504a337a3719462",
+          "excess_relative": 4.823278273653873e-16
+        },
+        {
+          "source": "convergence.csv:894",
+          "case_id": "grid_302b4834ac69a7bf",
+          "excess_relative": 5.461750960002263e-16
+        },
+        {
+          "source": "convergence.csv:33",
+          "case_id": "grid_d696caf7b62f8abc",
+          "excess_relative": 7.394892791562505e-16
+        },
+        {
+          "source": "convergence.csv:141",
+          "case_id": "grid_f50170d172a23d57",
+          "excess_relative": 5.405402009248984e-16
+        },
+        {
+          "source": "convergence.csv:249",
+          "case_id": "grid_a611080d5de861de",
+          "excess_relative": 6.406549565329505e-16
+        },
+        {
+          "source": "convergence.csv:357",
+          "case_id": "grid_ebf2421b9d1d073d",
+          "excess_relative": 5.7854625597234215e-16
+        },
+        {
+          "source": "convergence.csv:465",
+          "case_id": "grid_972577b118bc23fe",
+          "excess_relative": 5.92017921312903e-16
+        },
+        {
+          "source": "convergence.csv:573",
+          "case_id": "grid_56f635ed17501a13",
+          "excess_relative": 6.655172628546847e-16
+        },
+        {
+          "source": "convergence.csv:681",
+          "case_id": "grid_f00df548e3995624",
+          "excess_relative": 5.442811343947388e-16
+        },
+        {
+          "source": "convergence.csv:789",
+          "case_id": "grid_9e5527d45828c2f3",
+          "excess_relative": 4.579049416929396e-16
+        },
+        {
+          "source": "convergence.csv:897",
+          "case_id": "grid_92c9d630bd9c0a86",
+          "excess_relative": 6.345167176525208e-16
+        },
+        {
+          "source": "convergence.csv:36",
+          "case_id": "grid_11e371d345d3cdff",
+          "excess_relative": 5.312428583800804e-16
+        },
+        {
+          "source": "convergence.csv:144",
+          "case_id": "grid_0a8ab616b7a68bd2",
+          "excess_relative": 5.382232833813861e-16
+        },
+        {
+          "source": "convergence.csv:252",
+          "case_id": "grid_dcfd45c93fae486d",
+          "excess_relative": 6.429792451605005e-16
+        },
+        {
+          "source": "convergence.csv:360",
+          "case_id": "grid_205036f71d866d8d",
+          "excess_relative": 4.8198095551083035e-16
+        },
+        {
+          "source": "convergence.csv:468",
+          "case_id": "grid_22c60293428577cd",
+          "excess_relative": 5.249969865552353e-16
+        },
+        {
+          "source": "convergence.csv:576",
+          "case_id": "grid_8c79714a7d79c100",
+          "excess_relative": 5.827675020303569e-16
+        },
+        {
+          "source": "convergence.csv:684",
+          "case_id": "grid_fbe6aed5de6d82c8",
+          "excess_relative": 4.813960128446792e-16
+        },
+        {
+          "source": "convergence.csv:792",
+          "case_id": "grid_65a4d8b51559c83a",
+          "excess_relative": 6.406775092087676e-16
+        },
+        {
+          "source": "convergence.csv:900",
+          "case_id": "grid_ba376dff0066860f",
+          "excess_relative": 6.39973914407304e-16
+        },
+        {
+          "source": "sweeps.csv:1909",
+          "case_id": "grid_c414720875a2fe9e",
+          "excess_relative": 5.382232833813861e-16
+        },
+        {
+          "source": "sweeps.csv:1998",
+          "case_id": "grid_261c0cced0ded594",
+          "excess_relative": 5.312428583800804e-16
+        },
+        {
+          "source": "sweeps.csv:2087",
+          "case_id": "grid_b3ae67821af1c2af",
+          "excess_relative": 6.429792451605005e-16
+        },
+        {
+          "source": "sweeps.csv:2176",
+          "case_id": "grid_3feee2bb9f3b4f79",
+          "excess_relative": 4.8198095551083035e-16
+        },
+        {
+          "source": "sweeps.csv:2265",
+          "case_id": "grid_1d3a0d6cef0c10ec",
+          "excess_relative": 5.827675020303569e-16
+        },
+        {
+          "source": "sweeps.csv:2354",
+          "case_id": "grid_a802bdb0d877916b",
+          "excess_relative": 5.249969865552353e-16
+        },
+        {
+          "source": "sweeps.csv:2443",
+          "case_id": "grid_91a53bab1936ff19",
+          "excess_relative": 4.813960128446792e-16
+        },
+        {
+          "source": "sweeps.csv:2532",
+          "case_id": "grid_1333e204f7ca984a",
+          "excess_relative": 6.406775092087676e-16
+        },
+        {
+          "source": "sweeps.csv:2677",
+          "case_id": "grid_99963fbc555f8cf6",
+          "excess_relative": 6.39973914407304e-16
+        },
+        {
+          "source": "convergence.csv:54",
+          "case_id": "grid_d348e64311ad657c",
+          "excess_relative": 7.422109013204756e-16
+        },
+        {
+          "source": "convergence.csv:162",
+          "case_id": "grid_0ccc3358c00fc7ef",
+          "excess_relative": 6.574364663789283e-16
+        },
+        {
+          "source": "convergence.csv:270",
+          "case_id": "grid_7f3cc16c2eecfaf5",
+          "excess_relative": 8.833202579206994e-16
+        },
+        {
+          "source": "convergence.csv:378",
+          "case_id": "grid_5eb4bd06d7dc4867",
+          "excess_relative": 7.665752950697076e-16
+        },
+        {
+          "source": "convergence.csv:486",
+          "case_id": "grid_fe1c72aeba1d6c42",
+          "excess_relative": 5.760686054626582e-16
+        },
+        {
+          "source": "convergence.csv:594",
+          "case_id": "grid_bea956336995d162",
+          "excess_relative": 5.821147297674006e-16
+        },
+        {
+          "source": "convergence.csv:702",
+          "case_id": "grid_a60ebdf06dd1eadf",
+          "excess_relative": 7.242556734879167e-16
+        },
+        {
+          "source": "convergence.csv:810",
+          "case_id": "grid_2b4202b2214c822d",
+          "excess_relative": 5.606141045034972e-16
+        },
+        {
+          "source": "convergence.csv:918",
+          "case_id": "grid_8f3c73691ae2fd1b",
+          "excess_relative": 1.0500831623815438e-15
+        },
+        {
+          "source": "convergence.csv:57",
+          "case_id": "grid_8e4cbb5cfd1d56ed",
+          "excess_relative": 1.0528789897225563e-15
+        },
+        {
+          "source": "convergence.csv:165",
+          "case_id": "grid_02e01da4fc690ae1",
+          "excess_relative": 7.983020033832707e-16
+        },
+        {
+          "source": "convergence.csv:273",
+          "case_id": "grid_c1d5900ccd93b40b",
+          "excess_relative": 8.5591468795401e-16
+        },
+        {
+          "source": "convergence.csv:381",
+          "case_id": "grid_83b830d04feaece0",
+          "excess_relative": 7.722659625609751e-16
+        },
+        {
+          "source": "convergence.csv:489",
+          "case_id": "grid_a16fb4eee9c786f4",
+          "excess_relative": 7.684391793508129e-16
+        },
+        {
+          "source": "convergence.csv:597",
+          "case_id": "grid_89aae69bea6169c4",
+          "excess_relative": 6.660781055960197e-16
+        },
+        {
+          "source": "convergence.csv:705",
+          "case_id": "grid_d414275010465be4",
+          "excess_relative": 6.460966171370927e-16
+        },
+        {
+          "source": "convergence.csv:813",
+          "case_id": "grid_e6ecdab477126755",
+          "excess_relative": 6.829590067835284e-16
+        },
+        {
+          "source": "convergence.csv:921",
+          "case_id": "grid_65ce19f6e207c2f3",
+          "excess_relative": 7.275294202449821e-16
+        },
+        {
+          "source": "convergence.csv:60",
+          "case_id": "grid_a0925e1231e7adcd",
+          "excess_relative": 7.428439608063422e-16
+        },
+        {
+          "source": "convergence.csv:168",
+          "case_id": "grid_120a1e93ca02f681",
+          "excess_relative": 6.513383201596308e-16
+        },
+        {
+          "source": "convergence.csv:276",
+          "case_id": "grid_1c569344a3189585",
+          "excess_relative": 6.484408686093362e-16
+        },
+        {
+          "source": "convergence.csv:384",
+          "case_id": "grid_6c0b22b58527e8ac",
+          "excess_relative": 6.739003497445163e-16
+        },
+        {
+          "source": "convergence.csv:492",
+          "case_id": "grid_7a764a823c5d784d",
+          "excess_relative": 7.69869701176486e-16
+        },
+        {
+          "source": "convergence.csv:600",
+          "case_id": "grid_081c2bae094617b8",
+          "excess_relative": 8.553838540625281e-16
+        },
+        {
+          "source": "convergence.csv:708",
+          "case_id": "grid_42ce52d474a5b72e",
+          "excess_relative": 7.384256319005083e-16
+        },
+        {
+          "source": "convergence.csv:816",
+          "case_id": "grid_816117e14a6e76cb",
+          "excess_relative": 6.408149889807936e-16
+        },
+        {
+          "source": "convergence.csv:924",
+          "case_id": "grid_59113fb0b326c335",
+          "excess_relative": 8.260144107026777e-16
+        },
+        {
+          "source": "sweeps.csv:1911",
+          "case_id": "grid_278d8fcc655474ec",
+          "excess_relative": 6.513383201596308e-16
+        },
+        {
+          "source": "sweeps.csv:2000",
+          "case_id": "grid_9cbea0b3f331bf74",
+          "excess_relative": 7.428439608063422e-16
+        },
+        {
+          "source": "sweeps.csv:2089",
+          "case_id": "grid_d0472a45ec622a2b",
+          "excess_relative": 6.484408686093362e-16
+        },
+        {
+          "source": "sweeps.csv:2178",
+          "case_id": "grid_00b080dba937fb94",
+          "excess_relative": 6.739003497445163e-16
+        },
+        {
+          "source": "sweeps.csv:2267",
+          "case_id": "grid_170f7859b4076c5e",
+          "excess_relative": 8.553838540625281e-16
+        },
+        {
+          "source": "sweeps.csv:2356",
+          "case_id": "grid_a56bded50c1b4f5d",
+          "excess_relative": 7.69869701176486e-16
+        },
+        {
+          "source": "sweeps.csv:2445",
+          "case_id": "grid_5d232869b6695513",
+          "excess_relative": 7.384256319005083e-16
+        },
+        {
+          "source": "sweeps.csv:2534",
+          "case_id": "grid_7780885df6ffb5b3",
+          "excess_relative": 6.408149889807936e-16
+        },
+        {
+          "source": "sweeps.csv:2679",
+          "case_id": "grid_c7d71b8d05eafbf6",
+          "excess_relative": 8.260144107026777e-16
+        },
+        {
+          "source": "convergence.csv:81",
+          "case_id": "grid_358dac6b6a88900c",
+          "excess_relative": 6.695664005793971e-16
+        },
+        {
+          "source": "convergence.csv:189",
+          "case_id": "grid_056d7ca3498b590a",
+          "excess_relative": 7.622559736868395e-16
+        },
+        {
+          "source": "convergence.csv:297",
+          "case_id": "grid_b430720946330488",
+          "excess_relative": 7.499688884300648e-16
+        },
+        {
+          "source": "convergence.csv:405",
+          "case_id": "grid_bc8383853576f1dd",
+          "excess_relative": 6.75655728367685e-16
+        },
+        {
+          "source": "convergence.csv:513",
+          "case_id": "grid_7fefe0a3304d64a5",
+          "excess_relative": 7.729011879646531e-16
+        },
+        {
+          "source": "convergence.csv:621",
+          "case_id": "grid_b8aa0aee6ec0f2a2",
+          "excess_relative": 7.647542864020874e-16
+        },
+        {
+          "source": "convergence.csv:729",
+          "case_id": "grid_1336a524bffc3cd9",
+          "excess_relative": 7.267468787467957e-16
+        },
+        {
+          "source": "convergence.csv:837",
+          "case_id": "grid_919486039c50897b",
+          "excess_relative": 7.418813572052053e-16
+        },
+        {
+          "source": "convergence.csv:945",
+          "case_id": "grid_b30009acda624092",
+          "excess_relative": 6.580219673673022e-16
+        },
+        {
+          "source": "convergence.csv:84",
+          "case_id": "grid_a48b236e7c5f0f88",
+          "excess_relative": 7.404772394158366e-16
+        },
+        {
+          "source": "convergence.csv:192",
+          "case_id": "grid_4ca55ad68413e63c",
+          "excess_relative": 8.607587538179831e-16
+        },
+        {
+          "source": "convergence.csv:300",
+          "case_id": "grid_c836eceb2f467c8e",
+          "excess_relative": 9.637308252934898e-16
+        },
+        {
+          "source": "convergence.csv:408",
+          "case_id": "grid_031e56dd014c4f04",
+          "excess_relative": 6.77971038345049e-16
+        },
+        {
+          "source": "convergence.csv:516",
+          "case_id": "grid_9c4ed5821443472e",
+          "excess_relative": 1.0601084113905788e-15
+        },
+        {
+          "source": "convergence.csv:624",
+          "case_id": "grid_38276ef2e2077bcf",
+          "excess_relative": 7.664204609810769e-16
+        },
+        {
+          "source": "convergence.csv:732",
+          "case_id": "grid_4d625a879d836bc9",
+          "excess_relative": 7.289149145181496e-16
+        },
+        {
+          "source": "convergence.csv:840",
+          "case_id": "grid_4585614da69ccd7f",
+          "excess_relative": 6.428771416930263e-16
+        },
+        {
+          "source": "convergence.csv:948",
+          "case_id": "grid_32c37b7291d26d39",
+          "excess_relative": 7.26221391806783e-16
+        },
+        {
+          "source": "sweeps.csv:1913",
+          "case_id": "grid_8a4cf927785f06a3",
+          "excess_relative": 8.607587538179831e-16
+        },
+        {
+          "source": "sweeps.csv:2002",
+          "case_id": "grid_6bbd958ad1258eea",
+          "excess_relative": 7.404772394158366e-16
+        },
+        {
+          "source": "sweeps.csv:2091",
+          "case_id": "grid_4271af5bba3cc93a",
+          "excess_relative": 9.637308252934898e-16
+        },
+        {
+          "source": "sweeps.csv:2180",
+          "case_id": "grid_7fb6a175604f77d6",
+          "excess_relative": 6.77971038345049e-16
+        },
+        {
+          "source": "sweeps.csv:2269",
+          "case_id": "grid_db9523e187ec678a",
+          "excess_relative": 7.664204609810769e-16
+        },
+        {
+          "source": "sweeps.csv:2358",
+          "case_id": "grid_6403527edec6a9dc",
+          "excess_relative": 1.0601084113905788e-15
+        },
+        {
+          "source": "sweeps.csv:2447",
+          "case_id": "grid_1ac6db1b7a89a3c6",
+          "excess_relative": 7.289149145181496e-16
+        },
+        {
+          "source": "sweeps.csv:2536",
+          "case_id": "grid_970fb54c4aac0fc3",
+          "excess_relative": 6.428771416930263e-16
+        },
+        {
+          "source": "sweeps.csv:2681",
+          "case_id": "grid_3755578dfa296c92",
+          "excess_relative": 7.26221391806783e-16
+        },
+        {
+          "source": "convergence.csv:861",
+          "case_id": "grid_ae9f696f9f4a2871",
+          "excess_relative": 1.927548505235403e-16
+        },
+        {
+          "source": "sweeps.csv:2528",
+          "case_id": "grid_5ddbb4f909c1b0ac",
+          "excess_relative": 1.927548505235403e-16
+        },
+        {
+          "source": "convergence.csv:108",
+          "case_id": "grid_5b26df9a07340a35",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "convergence.csv:216",
+          "case_id": "grid_b7049f9aa6864c33",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "convergence.csv:324",
+          "case_id": "grid_736156c1af7bd452",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "convergence.csv:432",
+          "case_id": "grid_56a58e5d125c9ca1",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "convergence.csv:540",
+          "case_id": "grid_7616204c91606c44",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "convergence.csv:648",
+          "case_id": "grid_9495e841a2723be9",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "convergence.csv:756",
+          "case_id": "grid_97d4966e3e383d19",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "convergence.csv:864",
+          "case_id": "grid_977a202fceded6ed",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "convergence.csv:972",
+          "case_id": "grid_b1887574e3b4806a",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:1855",
+          "case_id": "grid_5bbadd1b03172732",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1857",
+          "case_id": "grid_52190530616cabab",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1859",
+          "case_id": "grid_8b4fc07b7caaa2e6",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1861",
+          "case_id": "grid_becda5af60317e17",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1863",
+          "case_id": "grid_c15b2daee90e9a87",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1865",
+          "case_id": "grid_9102b24442ea6cdb",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1867",
+          "case_id": "grid_461f6ec3e2177988",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1869",
+          "case_id": "grid_7e47c90a08811d97",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1871",
+          "case_id": "grid_9bec01099925e981",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1873",
+          "case_id": "grid_ed8ca474ad48f3e4",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1875",
+          "case_id": "grid_22da327b446f69bf",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1877",
+          "case_id": "grid_018d8cc2fcac16e3",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1879",
+          "case_id": "grid_583a4ceeb3719aab",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1881",
+          "case_id": "grid_8ecf6dabefc02865",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1883",
+          "case_id": "grid_5c2a390bc1b15cba",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1885",
+          "case_id": "grid_f7b5235a9fd14575",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1887",
+          "case_id": "grid_1ce36df7f7127865",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1888",
+          "case_id": "grid_1ce36df7f7127865",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1889",
+          "case_id": "grid_893dd0dd1e3b2358",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1891",
+          "case_id": "grid_2f66eb2676d0ae72",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1908",
+          "case_id": "grid_1ce36df7f7127865",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1915",
+          "case_id": "grid_1ce36df7f7127865",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1916",
+          "case_id": "grid_1ce36df7f7127865",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1917",
+          "case_id": "grid_1ce36df7f7127865",
+          "excess_relative": 1.1830204160009558e-15
+        },
+        {
+          "source": "sweeps.csv:1944",
+          "case_id": "grid_e08e0fb3e9f6de9d",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1946",
+          "case_id": "grid_bc7591b7938e2e65",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1948",
+          "case_id": "grid_7b7fe540ae0652c1",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1950",
+          "case_id": "grid_763caa0d8da76690",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1952",
+          "case_id": "grid_b8ee679844533ba8",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1954",
+          "case_id": "grid_9e2cc3a91e562ee6",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1956",
+          "case_id": "grid_1a8dceba4d9998a1",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1958",
+          "case_id": "grid_f324db3155df7a64",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1960",
+          "case_id": "grid_5ce66c9d7b368809",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1962",
+          "case_id": "grid_f37893a7cf4d0850",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1964",
+          "case_id": "grid_0b385b9a5c6a10b0",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1966",
+          "case_id": "grid_604d3579ab3f0c69",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1968",
+          "case_id": "grid_50b38834f3aa9cfd",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1970",
+          "case_id": "grid_83e425d7528a4800",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1972",
+          "case_id": "grid_3d1fb6dc4b151ff1",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1974",
+          "case_id": "grid_84312d60eb21e9c7",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1976",
+          "case_id": "grid_be4ae7cf7d6c6fb4",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1977",
+          "case_id": "grid_be4ae7cf7d6c6fb4",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1978",
+          "case_id": "grid_091803026db0c5d9",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1980",
+          "case_id": "grid_375d662f45883dfa",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:1997",
+          "case_id": "grid_be4ae7cf7d6c6fb4",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:2004",
+          "case_id": "grid_be4ae7cf7d6c6fb4",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:2005",
+          "case_id": "grid_be4ae7cf7d6c6fb4",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:2006",
+          "case_id": "grid_be4ae7cf7d6c6fb4",
+          "excess_relative": 8.426662901128868e-16
+        },
+        {
+          "source": "sweeps.csv:2033",
+          "case_id": "grid_25b77c42ea723e45",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2035",
+          "case_id": "grid_dc23a541c8b92d65",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2037",
+          "case_id": "grid_149bf8270f805eea",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2039",
+          "case_id": "grid_647d66a69d389c1a",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2041",
+          "case_id": "grid_a8b7c7fc9c2de2cb",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2043",
+          "case_id": "grid_1b01346bb3b07686",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2045",
+          "case_id": "grid_1672fd2456f3d8a1",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2047",
+          "case_id": "grid_6f9829d79c4c1f58",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2049",
+          "case_id": "grid_bb31e3b08a720235",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2051",
+          "case_id": "grid_fcf099e4d1b9d71e",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2053",
+          "case_id": "grid_5997ce397080189d",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2055",
+          "case_id": "grid_45ccd9ac4ac9f79b",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2057",
+          "case_id": "grid_e9648163d8d8dc6a",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2059",
+          "case_id": "grid_d4ea6ff3299a97f6",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2061",
+          "case_id": "grid_be60078f71816498",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2063",
+          "case_id": "grid_133896f1518861a2",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2065",
+          "case_id": "grid_3368571eabf6341b",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2066",
+          "case_id": "grid_3368571eabf6341b",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2067",
+          "case_id": "grid_706bbf2346e5c70a",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2069",
+          "case_id": "grid_4b743af872577c89",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2086",
+          "case_id": "grid_3368571eabf6341b",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2093",
+          "case_id": "grid_3368571eabf6341b",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2094",
+          "case_id": "grid_3368571eabf6341b",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2095",
+          "case_id": "grid_3368571eabf6341b",
+          "excess_relative": 8.59061147977013e-16
+        },
+        {
+          "source": "sweeps.csv:2122",
+          "case_id": "grid_9dfb9bb738e1bf1f",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2124",
+          "case_id": "grid_63b3df3a7a44dffd",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2126",
+          "case_id": "grid_f35405b2a157927d",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2128",
+          "case_id": "grid_dfe51e161f66c3e0",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2130",
+          "case_id": "grid_ec0ecaf7e029d92d",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2132",
+          "case_id": "grid_9d782fa556d1be16",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2134",
+          "case_id": "grid_796c78d8545a74c7",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2136",
+          "case_id": "grid_cc8d2ab404ce56b8",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2138",
+          "case_id": "grid_98fb2d80b30c3299",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2140",
+          "case_id": "grid_94ac7c8d7ff11f17",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2142",
+          "case_id": "grid_2c796970bdda37d9",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2144",
+          "case_id": "grid_8182deda6501dafc",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2146",
+          "case_id": "grid_926e1ae9eda86a41",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2148",
+          "case_id": "grid_faf2492745b72a23",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2150",
+          "case_id": "grid_8c4db3861c53493d",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2152",
+          "case_id": "grid_c1d4fa82af2202ef",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2154",
+          "case_id": "grid_9c257437f5a647ee",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2155",
+          "case_id": "grid_9c257437f5a647ee",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2156",
+          "case_id": "grid_fc92e6ac643ba09b",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2158",
+          "case_id": "grid_35257f25e646e532",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2175",
+          "case_id": "grid_9c257437f5a647ee",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2182",
+          "case_id": "grid_9c257437f5a647ee",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2183",
+          "case_id": "grid_9c257437f5a647ee",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2184",
+          "case_id": "grid_9c257437f5a647ee",
+          "excess_relative": 6.785794364543128e-16
+        },
+        {
+          "source": "sweeps.csv:2211",
+          "case_id": "grid_c076f16de04e1810",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2213",
+          "case_id": "grid_b93de664d38e789d",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2215",
+          "case_id": "grid_08f226550f07882c",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2217",
+          "case_id": "grid_b605e1363f20261e",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2219",
+          "case_id": "grid_f42fe39e2b33d935",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2221",
+          "case_id": "grid_48ee2f9d4e02f63a",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2223",
+          "case_id": "grid_852bea2c8e00f988",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2225",
+          "case_id": "grid_95794797c7e4632a",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2227",
+          "case_id": "grid_bbe772928a6e728a",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2229",
+          "case_id": "grid_353a126845e2f748",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2231",
+          "case_id": "grid_d19a009b2cb9da36",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2233",
+          "case_id": "grid_55f74eccbc6862aa",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2235",
+          "case_id": "grid_849a15b643c5ff6d",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2237",
+          "case_id": "grid_4f7c3b737e56d0c5",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2239",
+          "case_id": "grid_ec8deeccce2edf4a",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2241",
+          "case_id": "grid_73ffb4614a27a1d1",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2243",
+          "case_id": "grid_fe849b1b9b3c61fc",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2244",
+          "case_id": "grid_fe849b1b9b3c61fc",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2245",
+          "case_id": "grid_6becf486a31571ab",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2247",
+          "case_id": "grid_28c32df244b4f281",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2264",
+          "case_id": "grid_fe849b1b9b3c61fc",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2271",
+          "case_id": "grid_fe849b1b9b3c61fc",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2272",
+          "case_id": "grid_fe849b1b9b3c61fc",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2273",
+          "case_id": "grid_fe849b1b9b3c61fc",
+          "excess_relative": 8.624092347958703e-16
+        },
+        {
+          "source": "sweeps.csv:2300",
+          "case_id": "grid_d59a85df70d359b2",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2302",
+          "case_id": "grid_d49a3774a144b023",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2304",
+          "case_id": "grid_b2c61ffd15c54894",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2306",
+          "case_id": "grid_281eec8715e79268",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2308",
+          "case_id": "grid_3ae3b862d6f32297",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2310",
+          "case_id": "grid_f28455960c2551f5",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2312",
+          "case_id": "grid_6d7fe0ab665da62c",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2314",
+          "case_id": "grid_a04277861b3434b4",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2316",
+          "case_id": "grid_eb16871afbf7a1ee",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2318",
+          "case_id": "grid_cd81ad32e886a671",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2320",
+          "case_id": "grid_6eb413fe2e4e10bd",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2322",
+          "case_id": "grid_4fee4c2725180077",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2324",
+          "case_id": "grid_7a3dbfcfd8894fb9",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2326",
+          "case_id": "grid_4d2a9229f38b7c2b",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2328",
+          "case_id": "grid_517534ee45c097ea",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2330",
+          "case_id": "grid_3218a1fea6f7d6ab",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2332",
+          "case_id": "grid_68b4cd9dfd0c28c9",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2333",
+          "case_id": "grid_68b4cd9dfd0c28c9",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2334",
+          "case_id": "grid_39e951f5053e483b",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2336",
+          "case_id": "grid_ed0faeaef71aa823",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2353",
+          "case_id": "grid_68b4cd9dfd0c28c9",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2360",
+          "case_id": "grid_68b4cd9dfd0c28c9",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2361",
+          "case_id": "grid_68b4cd9dfd0c28c9",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2362",
+          "case_id": "grid_68b4cd9dfd0c28c9",
+          "excess_relative": 7.672029524094497e-16
+        },
+        {
+          "source": "sweeps.csv:2389",
+          "case_id": "grid_3b23abc1fa4fb56c",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2391",
+          "case_id": "grid_c767c3f73065686e",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2393",
+          "case_id": "grid_8d716c60734f28c1",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2395",
+          "case_id": "grid_ec18ab178b0a5ece",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2397",
+          "case_id": "grid_6ef84ba9f71ed822",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2399",
+          "case_id": "grid_306084cef60aff6c",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2401",
+          "case_id": "grid_b64fb50edb88599d",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2403",
+          "case_id": "grid_301d3bc58bec336c",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2405",
+          "case_id": "grid_82a1cb8801d0b2c8",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2407",
+          "case_id": "grid_3b96ce0c1ac5acc9",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2409",
+          "case_id": "grid_955fd6911668bfa2",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2411",
+          "case_id": "grid_a1bdf27d17d0cadd",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2413",
+          "case_id": "grid_15adc3694dbb008f",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2415",
+          "case_id": "grid_8d6138e07ecd278c",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2417",
+          "case_id": "grid_4a41939c0772871d",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2419",
+          "case_id": "grid_a6cf3b7099b81fb3",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2421",
+          "case_id": "grid_eaa15777ac285b92",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2422",
+          "case_id": "grid_eaa15777ac285b92",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2423",
+          "case_id": "grid_25bf1fcdcb9d818f",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2425",
+          "case_id": "grid_411badff7971939e",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2442",
+          "case_id": "grid_eaa15777ac285b92",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2449",
+          "case_id": "grid_eaa15777ac285b92",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2450",
+          "case_id": "grid_eaa15777ac285b92",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2451",
+          "case_id": "grid_eaa15777ac285b92",
+          "excess_relative": 6.412497713858203e-16
+        },
+        {
+          "source": "sweeps.csv:2478",
+          "case_id": "grid_ac95c017dd3132d7",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2480",
+          "case_id": "grid_51866987f47b14d5",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2482",
+          "case_id": "grid_03a8cfc95701d75f",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2484",
+          "case_id": "grid_b3f21e9083d5d34b",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2486",
+          "case_id": "grid_4dbee3eae2f0e3a1",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2488",
+          "case_id": "grid_ae055a3d4573613a",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2490",
+          "case_id": "grid_1a05e02715cda05c",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2492",
+          "case_id": "grid_bfdac08ea57d9654",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2494",
+          "case_id": "grid_898f2c268bfbf4f3",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2496",
+          "case_id": "grid_8b7b5511d3135188",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2498",
+          "case_id": "grid_9089cd5560bdacff",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2500",
+          "case_id": "grid_ffae5505d3abc295",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2502",
+          "case_id": "grid_98bdcdeb8a52c890",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2504",
+          "case_id": "grid_66f8037516438cad",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2506",
+          "case_id": "grid_3d30fa75f3c2016d",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2508",
+          "case_id": "grid_d5457bf7e366fb3c",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2510",
+          "case_id": "grid_23965b3dbbe9bab4",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2511",
+          "case_id": "grid_23965b3dbbe9bab4",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2512",
+          "case_id": "grid_48f37f88b8aea620",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2514",
+          "case_id": "grid_90cb66c0a2c1f278",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2531",
+          "case_id": "grid_23965b3dbbe9bab4",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2538",
+          "case_id": "grid_23965b3dbbe9bab4",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2539",
+          "case_id": "grid_23965b3dbbe9bab4",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2540",
+          "case_id": "grid_23965b3dbbe9bab4",
+          "excess_relative": 7.306626661172903e-16
+        },
+        {
+          "source": "sweeps.csv:2623",
+          "case_id": "grid_1e1eb4324cae1a89",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2625",
+          "case_id": "grid_38af88b75660aa00",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2627",
+          "case_id": "grid_a084177f9481f6f9",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2629",
+          "case_id": "grid_0a0e7121961bca21",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2631",
+          "case_id": "grid_4d17c485d850587b",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2633",
+          "case_id": "grid_02373e53be09e9e5",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2635",
+          "case_id": "grid_77667086fc8560b9",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2637",
+          "case_id": "grid_cfbb6a3167a49940",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2639",
+          "case_id": "grid_68cff3ab88bf90de",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2641",
+          "case_id": "grid_f2ef04dc3a8073c1",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2643",
+          "case_id": "grid_a393be3cb5c16872",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2645",
+          "case_id": "grid_ea7d9f563d05d273",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2647",
+          "case_id": "grid_0d53141ac7cba427",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2649",
+          "case_id": "grid_557744539f694966",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2651",
+          "case_id": "grid_c69352687e58d3de",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2653",
+          "case_id": "grid_141395bb34b2cd5e",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2655",
+          "case_id": "grid_e2ea2bb741e59654",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2656",
+          "case_id": "grid_e2ea2bb741e59654",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2657",
+          "case_id": "grid_4767c9e2f064f3e1",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2659",
+          "case_id": "grid_875272fc4a02d4b5",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2676",
+          "case_id": "grid_e2ea2bb741e59654",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2683",
+          "case_id": "grid_e2ea2bb741e59654",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2684",
+          "case_id": "grid_e2ea2bb741e59654",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "sweeps.csv:2685",
+          "case_id": "grid_e2ea2bb741e59654",
+          "excess_relative": 6.5434787739569125e-16
+        },
+        {
+          "source": "validation.csv:235",
+          "case_id": "grid_717ae844d2cc48fc",
+          "excess_relative": 1.1815258994272066e-15
+        },
+        {
+          "source": "validation.csv:236",
+          "case_id": "grid_0c510a248a7e3adf",
+          "excess_relative": 1.1139723617051806e-15
+        },
+        {
+          "source": "validation.csv:237",
+          "case_id": "grid_2cc15fe10531d656",
+          "excess_relative": 1.344252313287519e-15
+        },
+        {
+          "source": "validation.csv:238",
+          "case_id": "grid_ab899ca3db1b84e7",
+          "excess_relative": 1.6800499143077223e-15
+        },
+        {
+          "source": "validation.csv:239",
+          "case_id": "grid_0670e4c5e1380f17",
+          "excess_relative": 1.1439287926632645e-15
+        },
+        {
+          "source": "validation.csv:240",
+          "case_id": "grid_60d49f73a5c1350c",
+          "excess_relative": 1.470822635153563e-15
+        },
+        {
+          "source": "validation.csv:241",
+          "case_id": "grid_3edf87a44cf71dbb",
+          "excess_relative": 1.788143294484293e-15
+        },
+        {
+          "source": "validation.csv:242",
+          "case_id": "grid_f75c5cd1b898c269",
+          "excess_relative": 1.1150562319445424e-15
+        },
+        {
+          "source": "validation.csv:243",
+          "case_id": "grid_ada5946684375381",
+          "excess_relative": 1.274776057879508e-15
+        },
+        {
+          "source": "validation.csv:532",
+          "case_id": "grid_d119bbd8a0c78660",
+          "excess_relative": 1.1815258994272066e-15
+        },
+        {
+          "source": "validation.csv:533",
+          "case_id": "grid_204301fff945eafe",
+          "excess_relative": 1.1139723617051806e-15
+        },
+        {
+          "source": "validation.csv:534",
+          "case_id": "grid_42d1c0956d13dbb5",
+          "excess_relative": 1.344252313287519e-15
+        },
+        {
+          "source": "validation.csv:535",
+          "case_id": "grid_c21fb41e52c9a89f",
+          "excess_relative": 1.6800499143077223e-15
+        },
+        {
+          "source": "validation.csv:536",
+          "case_id": "grid_d76208465b395516",
+          "excess_relative": 1.1439287926632645e-15
+        },
+        {
+          "source": "validation.csv:537",
+          "case_id": "grid_33d4b280c08a5a5b",
+          "excess_relative": 1.470822635153563e-15
+        },
+        {
+          "source": "validation.csv:538",
+          "case_id": "grid_d16495c0b96b9caf",
+          "excess_relative": 1.788143294484293e-15
+        },
+        {
+          "source": "validation.csv:539",
+          "case_id": "grid_48bdbb3c9761a633",
+          "excess_relative": 1.1150562319445424e-15
+        },
+        {
+          "source": "validation.csv:540",
+          "case_id": "grid_1ff1023f3c53137e",
+          "excess_relative": 1.274776057879508e-15
+        },
+        {
+          "source": "validation.csv:541",
+          "case_id": "grid_357df5a84732200c",
+          "excess_relative": 1.1815258994272066e-15
+        },
+        {
+          "source": "validation.csv:542",
+          "case_id": "grid_864f36b978c8630c",
+          "excess_relative": 1.1139723617051806e-15
+        },
+        {
+          "source": "validation.csv:543",
+          "case_id": "grid_147382a8dfd58efb",
+          "excess_relative": 1.344252313287519e-15
+        },
+        {
+          "source": "validation.csv:544",
+          "case_id": "grid_6d0b4d81462a9464",
+          "excess_relative": 1.6800499143077223e-15
+        },
+        {
+          "source": "validation.csv:545",
+          "case_id": "grid_7f6428244f92da21",
+          "excess_relative": 1.1439287926632645e-15
+        },
+        {
+          "source": "validation.csv:546",
+          "case_id": "grid_776f9756c8243bd3",
+          "excess_relative": 1.470822635153563e-15
+        },
+        {
+          "source": "validation.csv:547",
+          "case_id": "grid_5e0ba938494afee6",
+          "excess_relative": 1.788143294484293e-15
+        },
+        {
+          "source": "validation.csv:548",
+          "case_id": "grid_87159f853368c825",
+          "excess_relative": 1.1150562319445424e-15
+        },
+        {
+          "source": "validation.csv:549",
+          "case_id": "grid_3759ad97029b9507",
+          "excess_relative": 1.274776057879508e-15
+        },
+        {
+          "source": "validation.csv:244",
+          "case_id": "grid_a7be8e5a1cd49901",
+          "excess_relative": 1.6789336057029e-15
+        },
+        {
+          "source": "validation.csv:245",
+          "case_id": "grid_50792a4c8b3d33d2",
+          "excess_relative": 1.2715687600276913e-15
+        },
+        {
+          "source": "validation.csv:246",
+          "case_id": "grid_3449829b66eae8d2",
+          "excess_relative": 1.3406217380751117e-15
+        },
+        {
+          "source": "validation.csv:247",
+          "case_id": "grid_a2f533b80d019bc6",
+          "excess_relative": 1.3451664126418125e-15
+        },
+        {
+          "source": "validation.csv:248",
+          "case_id": "grid_9cbb75774eb5d715",
+          "excess_relative": 1.1459576535597633e-15
+        },
+        {
+          "source": "validation.csv:249",
+          "case_id": "grid_34260e71a64fe8ed",
+          "excess_relative": 1.1457336703684066e-15
+        },
+        {
+          "source": "validation.csv:250",
+          "case_id": "grid_23890d7781d05e82",
+          "excess_relative": 1.4638315133296e-15
+        },
+        {
+          "source": "validation.csv:251",
+          "case_id": "grid_aafbc8f51077f283",
+          "excess_relative": 1.1142855052769709e-15
+        },
+        {
+          "source": "validation.csv:252",
+          "case_id": "grid_cf0100718c2e6fc0",
+          "excess_relative": 1.2759401170394119e-15
+        },
+        {
+          "source": "validation.csv:523",
+          "case_id": "grid_e1b59fa81a76c24b",
+          "excess_relative": 1.6789336057029e-15
+        },
+        {
+          "source": "validation.csv:524",
+          "case_id": "grid_7d4f1f0b464d4e0b",
+          "excess_relative": 1.2715687600276913e-15
+        },
+        {
+          "source": "validation.csv:525",
+          "case_id": "grid_9bc63a8fe2214b26",
+          "excess_relative": 1.3406217380751117e-15
+        },
+        {
+          "source": "validation.csv:526",
+          "case_id": "grid_5a58063bc269b1cb",
+          "excess_relative": 1.3451664126418125e-15
+        },
+        {
+          "source": "validation.csv:527",
+          "case_id": "grid_8ea0a20652cfdf29",
+          "excess_relative": 1.1459576535597633e-15
+        },
+        {
+          "source": "validation.csv:528",
+          "case_id": "grid_1e83dd38eced2a53",
+          "excess_relative": 1.1457336703684066e-15
+        },
+        {
+          "source": "validation.csv:529",
+          "case_id": "grid_4dae1079e76a731f",
+          "excess_relative": 1.4638315133296e-15
+        },
+        {
+          "source": "validation.csv:530",
+          "case_id": "grid_c8a92be58c8e2a63",
+          "excess_relative": 1.1142855052769709e-15
+        },
+        {
+          "source": "validation.csv:531",
+          "case_id": "grid_590b54cff7f2be27",
+          "excess_relative": 1.2759401170394119e-15
+        },
+        {
+          "source": "validation.csv:253",
+          "case_id": "grid_6c9223c44e1ce4b6",
+          "excess_relative": 1.3452175461470375e-15
+        },
+        {
+          "source": "validation.csv:254",
+          "case_id": "grid_8f4f178df254f5e6",
+          "excess_relative": 1.2750369716214993e-15
+        },
+        {
+          "source": "validation.csv:255",
+          "case_id": "grid_fd5e50e383f356ec",
+          "excess_relative": 1.3545648672213325e-15
+        },
+        {
+          "source": "validation.csv:256",
+          "case_id": "grid_531f83264cf092a7",
+          "excess_relative": 1.0100204851855617e-15
+        },
+        {
+          "source": "validation.csv:257",
+          "case_id": "grid_d381962fa2dd8c18",
+          "excess_relative": 1.1540114598330517e-15
+        },
+        {
+          "source": "validation.csv:258",
+          "case_id": "grid_5db73d8e8b85363c",
+          "excess_relative": 1.471465917197873e-15
+        },
+        {
+          "source": "validation.csv:259",
+          "case_id": "grid_164e757f6d20f23e",
+          "excess_relative": 1.14497474400765e-15
+        },
+        {
+          "source": "validation.csv:260",
+          "case_id": "grid_f4c23a276d119c0f",
+          "excess_relative": 1.2745890224754935e-15
+        },
+        {
+          "source": "validation.csv:261",
+          "case_id": "grid_f126a3947ceb21f9",
+          "excess_relative": 1.1247480122762855e-15
+        },
+        {
+          "source": "xi_sweep.csv:11",
+          "case_id": "grid_d381962fa2dd8c18",
+          "excess_relative": 1.1540114598330517e-15
+        },
+        {
+          "source": "xi_sweep.csv:26",
+          "case_id": "grid_5db73d8e8b85363c",
+          "excess_relative": 1.471465917197873e-15
+        },
+        {
+          "source": "xi_sweep.csv:41",
+          "case_id": "grid_164e757f6d20f23e",
+          "excess_relative": 1.14497474400765e-15
+        },
+        {
+          "source": "xi_sweep.csv:56",
+          "case_id": "grid_f4c23a276d119c0f",
+          "excess_relative": 1.2745890224754935e-15
+        },
+        {
+          "source": "xi_sweep.csv:71",
+          "case_id": "grid_f126a3947ceb21f9",
+          "excess_relative": 1.1247480122762855e-15
+        },
+        {
+          "source": "xi_sweep.csv:86",
+          "case_id": "grid_8f4f178df254f5e6",
+          "excess_relative": 1.2750369716214993e-15
+        },
+        {
+          "source": "xi_sweep.csv:101",
+          "case_id": "grid_fd5e50e383f356ec",
+          "excess_relative": 1.3545648672213325e-15
+        },
+        {
+          "source": "xi_sweep.csv:116",
+          "case_id": "grid_6c9223c44e1ce4b6",
+          "excess_relative": 1.3452175461470375e-15
+        },
+        {
+          "source": "xi_sweep.csv:131",
+          "case_id": "grid_531f83264cf092a7",
+          "excess_relative": 1.0100204851855617e-15
+        },
+        {
+          "source": "validation.csv:262",
+          "case_id": "grid_95bd66050e3986a8",
+          "excess_relative": 1.5118032818621105e-15
+        },
+        {
+          "source": "validation.csv:263",
+          "case_id": "grid_66ddfea2191b8853",
+          "excess_relative": 9.612095125944854e-16
+        },
+        {
+          "source": "validation.csv:264",
+          "case_id": "grid_3504dc200dec3d6c",
+          "excess_relative": 1.3442721760528004e-15
+        },
+        {
+          "source": "validation.csv:265",
+          "case_id": "grid_095046fe9f629515",
+          "excess_relative": 1.1808237958013139e-15
+        },
+        {
+          "source": "validation.csv:266",
+          "case_id": "grid_5aee15028bfc1a77",
+          "excess_relative": 1.3070461205084433e-15
+        },
+        {
+          "source": "validation.csv:267",
+          "case_id": "grid_e5763cefa5a64c62",
+          "excess_relative": 1.3065142899924143e-15
+        },
+        {
+          "source": "validation.csv:268",
+          "case_id": "grid_ee43271230c0301b",
+          "excess_relative": 1.3021012503683414e-15
+        },
+        {
+          "source": "validation.csv:269",
+          "case_id": "grid_b5c2255735762fd8",
+          "excess_relative": 1.2753571901077761e-15
+        },
+        {
+          "source": "validation.csv:270",
+          "case_id": "grid_a3f1b4eec3e1eacf",
+          "excess_relative": 1.2748645171506511e-15
+        },
+        {
+          "source": "validation.csv:271",
+          "case_id": "grid_b2d468b9ade1b15f",
+          "excess_relative": 1.3439879409266457e-15
+        },
+        {
+          "source": "validation.csv:272",
+          "case_id": "grid_491f9782f6acecf3",
+          "excess_relative": 1.4324292876242685e-15
+        },
+        {
+          "source": "validation.csv:273",
+          "case_id": "grid_4d604fee2e85d1db",
+          "excess_relative": 1.5106710419789165e-15
+        },
+        {
+          "source": "validation.csv:274",
+          "case_id": "grid_568bba4689ddc093",
+          "excess_relative": 1.5131280380819714e-15
+        },
+        {
+          "source": "validation.csv:275",
+          "case_id": "grid_2a6ee8d9d36dc12d",
+          "excess_relative": 1.1447593057943263e-15
+        },
+        {
+          "source": "validation.csv:276",
+          "case_id": "grid_4fe33174f8e2136f",
+          "excess_relative": 1.306452595470519e-15
+        },
+        {
+          "source": "validation.csv:277",
+          "case_id": "grid_215692be1b3fc4e4",
+          "excess_relative": 1.1385702401834143e-15
+        },
+        {
+          "source": "validation.csv:278",
+          "case_id": "grid_e30124b0b20184ac",
+          "excess_relative": 1.1148780897737551e-15
+        },
+        {
+          "source": "validation.csv:279",
+          "case_id": "grid_ac5412dfb3dd3463",
+          "excess_relative": 1.2726727376242603e-15
+        },
+        {
+          "source": "validation.csv:280",
+          "case_id": "grid_37d6d9f918606d39",
+          "excess_relative": 1.511669980386955e-15
+        },
+        {
+          "source": "validation.csv:281",
+          "case_id": "grid_71a2c3efa4ffd4c2",
+          "excess_relative": 1.27410837550786e-15
+        },
+        {
+          "source": "validation.csv:282",
+          "case_id": "grid_dcf30d0cef1345b4",
+          "excess_relative": 1.5099922266706403e-15
+        },
+        {
+          "source": "validation.csv:283",
+          "case_id": "grid_ecd1fdc27fd18802",
+          "excess_relative": 1.5131279831386138e-15
+        },
+        {
+          "source": "validation.csv:284",
+          "case_id": "grid_bb57b88b89d867bd",
+          "excess_relative": 1.4719564501658969e-15
+        },
+        {
+          "source": "validation.csv:285",
+          "case_id": "grid_f6bf3a98fd11832c",
+          "excess_relative": 1.6336942394785276e-15
+        },
+        {
+          "source": "validation.csv:286",
+          "case_id": "grid_ab7bfe2d97756f2f",
+          "excess_relative": 1.3011581238418614e-15
+        },
+        {
+          "source": "validation.csv:287",
+          "case_id": "grid_2b4511a28a63c74a",
+          "excess_relative": 1.3095410711443786e-15
+        },
+        {
+          "source": "validation.csv:288",
+          "case_id": "grid_c75668b285196350",
+          "excess_relative": 1.4330299655735872e-15
+        },
+        {
+          "source": "validation.csv:289",
+          "case_id": "grid_3f8b36ac2afadead",
+          "excess_relative": 1.5141397672554107e-15
+        },
+        {
+          "source": "validation.csv:290",
+          "case_id": "grid_7af95fd86206c523",
+          "excess_relative": 1.2729474690416314e-15
+        },
+        {
+          "source": "validation.csv:291",
+          "case_id": "grid_c93678607b5dcc66",
+          "excess_relative": 1.5130270990517791e-15
+        },
+        {
+          "source": "validation.csv:292",
+          "case_id": "grid_1dff7264ad2a2dc8",
+          "excess_relative": 1.6796423109681065e-15
+        },
+        {
+          "source": "validation.csv:293",
+          "case_id": "grid_6d8974cd4764c426",
+          "excess_relative": 1.634763764205653e-15
+        },
+        {
+          "source": "validation.csv:294",
+          "case_id": "grid_abc361f83ee93dce",
+          "excess_relative": 1.4716163265492805e-15
+        },
+        {
+          "source": "validation.csv:295",
+          "case_id": "grid_6506b74309f46941",
+          "excess_relative": 1.301918344970833e-15
+        },
+        {
+          "source": "validation.csv:296",
+          "case_id": "grid_f39f552766ba900b",
+          "excess_relative": 1.4327925479761772e-15
+        },
+        {
+          "source": "validation.csv:297",
+          "case_id": "grid_87df8a38a0fb1bc0",
+          "excess_relative": 1.4326069241589258e-15
+        },
+        {
+          "source": "validation.csv:298",
+          "case_id": "grid_5c138d174360175e",
+          "excess_relative": 1.0076123783066574e-15
+        },
+        {
+          "source": "validation.csv:299",
+          "case_id": "grid_5b575961fb4a5534",
+          "excess_relative": 1.272950489030266e-15
+        },
+        {
+          "source": "validation.csv:300",
+          "case_id": "grid_c302b12379985a9e",
+          "excess_relative": 1.008520184562233e-15
+        },
+        {
+          "source": "validation.csv:301",
+          "case_id": "grid_31c36675d4383f09",
+          "excess_relative": 8.395830163074111e-16
+        },
+        {
+          "source": "validation.csv:302",
+          "case_id": "grid_a7ac1ab335c9beb6",
+          "excess_relative": 1.3064584444025497e-15
+        },
+        {
+          "source": "validation.csv:303",
+          "case_id": "grid_f9ae7d0ceb4ba043",
+          "excess_relative": 9.803279677760503e-16
+        },
+        {
+          "source": "validation.csv:304",
+          "case_id": "grid_392701cf8544e13c",
+          "excess_relative": 8.1490717371537145e-16
+        },
+        {
+          "source": "validation.csv:305",
+          "case_id": "grid_1bb2788c345f483f",
+          "excess_relative": 7.957698745691093e-16
+        },
+        {
+          "source": "validation.csv:306",
+          "case_id": "grid_e3bfd57553d98cb6",
+          "excess_relative": 1.1127348637124523e-15
+        },
+        {
+          "source": "validation.csv:307",
+          "case_id": "grid_735a2984ed87a096",
+          "excess_relative": 1.3438966820824382e-15
+        },
+        {
+          "source": "validation.csv:308",
+          "case_id": "grid_61b469f7540e7faa",
+          "excess_relative": 9.586001359732349e-16
+        },
+        {
+          "source": "validation.csv:309",
+          "case_id": "grid_a1d2bf024d9130b5",
+          "excess_relative": 1.3431428049124302e-15
+        },
+        {
+          "source": "validation.csv:310",
+          "case_id": "grid_843229a0223d36c1",
+          "excess_relative": 1.344345869981681e-15
+        },
+        {
+          "source": "validation.csv:311",
+          "case_id": "grid_0883b5a8167a7e08",
+          "excess_relative": 9.821879630187649e-16
+        },
+        {
+          "source": "validation.csv:312",
+          "case_id": "grid_8d87ef361f04c1f4",
+          "excess_relative": 1.1443876573782696e-15
+        },
+        {
+          "source": "validation.csv:313",
+          "case_id": "grid_a11ad0a7e84d7777",
+          "excess_relative": 1.1395408927532066e-15
+        },
+        {
+          "source": "validation.csv:314",
+          "case_id": "grid_e7d7a9c5fa5ae559",
+          "excess_relative": 9.682670863061148e-16
+        },
+        {
+          "source": "validation.csv:315",
+          "case_id": "grid_f97d361867880512",
+          "excess_relative": 1.115766354024627e-15
+        },
+        {
+          "source": "validation.csv:316",
+          "case_id": "grid_ba632e9715cc66b1",
+          "excess_relative": 1.3460766724564227e-15
+        },
+        {
+          "source": "validation.csv:317",
+          "case_id": "grid_2691d591e2dff003",
+          "excess_relative": 1.272787572023463e-15
+        },
+        {
+          "source": "validation.csv:318",
+          "case_id": "grid_dadd96ec0f17f0ff",
+          "excess_relative": 1.512594418195223e-15
+        },
+        {
+          "source": "validation.csv:319",
+          "case_id": "grid_4f28036ef87d3066",
+          "excess_relative": 1.3453377246112737e-15
+        },
+        {
+          "source": "validation.csv:320",
+          "case_id": "grid_eb4d20f211b2aa5d",
+          "excess_relative": 1.1474886469319106e-15
+        },
+        {
+          "source": "validation.csv:321",
+          "case_id": "grid_467f33e3250c4a0e",
+          "excess_relative": 1.6330471995299583e-15
+        },
+        {
+          "source": "validation.csv:322",
+          "case_id": "grid_828e4e075ab09551",
+          "excess_relative": 1.1383218245666675e-15
+        },
+        {
+          "source": "validation.csv:323",
+          "case_id": "grid_a55026e0655b8075",
+          "excess_relative": 1.4320326180200653e-15
+        },
+        {
+          "source": "validation.csv:324",
+          "case_id": "grid_f4f3b048d879e842",
+          "excess_relative": 1.4326942621409009e-15
+        },
+        {
+          "source": "validation.csv:325",
+          "case_id": "grid_ae75e3364bd5620c",
+          "excess_relative": 1.3427746903826564e-15
+        },
+        {
+          "source": "validation.csv:326",
+          "case_id": "grid_1aceac957a38c7f8",
+          "excess_relative": 1.1158743012707298e-15
+        },
+        {
+          "source": "validation.csv:327",
+          "case_id": "grid_a60ee09871ebfe3e",
+          "excess_relative": 1.005584621202394e-15
+        },
+        {
+          "source": "validation.csv:328",
+          "case_id": "grid_1244a95290ad9b32",
+          "excess_relative": 8.398912610054953e-16
+        },
+        {
+          "source": "validation.csv:329",
+          "case_id": "grid_cc10d72ccb84ff7e",
+          "excess_relative": 9.810057468410524e-16
+        },
+        {
+          "source": "validation.csv:330",
+          "case_id": "grid_46dbd950ad82aac2",
+          "excess_relative": 8.205497953983682e-16
+        },
+        {
+          "source": "validation.csv:331",
+          "case_id": "grid_5595eab9c2750fa8",
+          "excess_relative": 9.759064702057856e-16
+        },
+        {
+          "source": "validation.csv:332",
+          "case_id": "grid_ed98cc0eda1c7822",
+          "excess_relative": 9.543622074878963e-16
+        },
+        {
+          "source": "validation.csv:333",
+          "case_id": "grid_eaba1596092ca36c",
+          "excess_relative": 9.542447175084503e-16
+        },
+        {
+          "source": "validation.csv:334",
+          "case_id": "grid_00f0c15d0483ddcb",
+          "excess_relative": 1.1742969993749472e-15
+        },
+        {
+          "source": "validation.csv:335",
+          "case_id": "grid_9357a419321cccaf",
+          "excess_relative": 1.117116212819452e-15
+        },
+        {
+          "source": "validation.csv:336",
+          "case_id": "grid_a0503a06f07a4711",
+          "excess_relative": 1.0073659509771689e-15
+        },
+        {
+          "source": "validation.csv:337",
+          "case_id": "grid_346ce1865e821b33",
+          "excess_relative": 1.1758185455310694e-15
+        },
+        {
+          "source": "validation.csv:338",
+          "case_id": "grid_8d93c90a7e9af67e",
+          "excess_relative": 1.1437476976028222e-15
+        },
+        {
+          "source": "validation.csv:339",
+          "case_id": "grid_0b7460dc94dab272",
+          "excess_relative": 9.805760010367093e-16
+        },
+        {
+          "source": "validation.csv:340",
+          "case_id": "grid_a653173e061794e8",
+          "excess_relative": 8.185585731550967e-16
+        },
+        {
+          "source": "validation.csv:341",
+          "case_id": "grid_6620c430ff802828",
+          "excess_relative": 1.270153172756565e-15
+        },
+        {
+          "source": "validation.csv:342",
+          "case_id": "grid_65b47c774150d81d",
+          "excess_relative": 9.5757705313814e-16
+        },
+        {
+          "source": "validation.csv:343",
+          "case_id": "grid_dfce9f697ab51a3c",
+          "excess_relative": 1.518125922257514e-15
+        },
+        {
+          "source": "validation.csv:344",
+          "case_id": "grid_68d3dfe175b04bc5",
+          "excess_relative": 1.5914449201540182e-15
+        },
+        {
+          "source": "validation.csv:345",
+          "case_id": "grid_ee6d5c5a837a601e",
+          "excess_relative": 1.177049504472805e-15
+        },
+        {
+          "source": "validation.csv:346",
+          "case_id": "grid_c2ef16be33b6594d",
+          "excess_relative": 1.1787169146019247e-15
+        },
+        {
+          "source": "validation.csv:347",
+          "case_id": "grid_e5f80d180d80d3dc",
+          "excess_relative": 1.1543744101038974e-15
+        },
+        {
+          "source": "validation.csv:348",
+          "case_id": "grid_8a6013f271578a0e",
+          "excess_relative": 1.307068324709708e-15
+        },
+        {
+          "source": "validation.csv:349",
+          "case_id": "grid_d946bf1060919538",
+          "excess_relative": 1.4636621614563457e-15
+        },
+        {
+          "source": "validation.csv:350",
+          "case_id": "grid_a236609a43362d9d",
+          "excess_relative": 1.2715081937474726e-15
+        },
+        {
+          "source": "validation.csv:351",
+          "case_id": "grid_23e3912c52050090",
+          "excess_relative": 1.5923549804620224e-15
+        },
+        {
+          "source": "validation.csv:352",
+          "case_id": "grid_998be1dbd8afe041",
+          "excess_relative": 1.1753588498931918e-15
+        },
+        {
+          "source": "validation.csv:353",
+          "case_id": "grid_b25371a6495af0aa",
+          "excess_relative": 1.1127914335644187e-15
+        },
+        {
+          "source": "validation.csv:354",
+          "case_id": "grid_709229c8c44da0db",
+          "excess_relative": 1.1733791258258191e-15
+        },
+        {
+          "source": "validation.csv:355",
+          "case_id": "grid_20e435d9d5010daa",
+          "excess_relative": 1.6816630114473693e-15
+        },
+        {
+          "source": "validation.csv:356",
+          "case_id": "grid_49742ba496d384cc",
+          "excess_relative": 1.4717866333918199e-15
+        },
+        {
+          "source": "validation.csv:357",
+          "case_id": "grid_f950210944152d8a",
+          "excess_relative": 1.1438161513818538e-15
+        },
+        {
+          "source": "validation.csv:358",
+          "case_id": "grid_7f85c6ebf5c42a41",
+          "excess_relative": 1.1382337471501673e-15
+        },
+        {
+          "source": "validation.csv:359",
+          "case_id": "grid_d2588ed636da5ee4",
+          "excess_relative": 1.747929376404253e-15
+        },
+        {
+          "source": "validation.csv:360",
+          "case_id": "grid_9738f91a52face11",
+          "excess_relative": 1.4332246409859002e-15
+        },
+        {
+          "source": "validation.csv:487",
+          "case_id": "grid_24f6971b2d2d98c0",
+          "excess_relative": 1.1857135003178317e-15
+        },
+        {
+          "source": "validation.csv:488",
+          "case_id": "grid_51159d4426c701f9",
+          "excess_relative": 1.2724646181635789e-15
+        },
+        {
+          "source": "validation.csv:489",
+          "case_id": "grid_fc85c2afa953ddf1",
+          "excess_relative": 1.5114348433484782e-15
+        },
+        {
+          "source": "validation.csv:490",
+          "case_id": "grid_5c3d5cbc12b606e0",
+          "excess_relative": 1.013218054569609e-15
+        },
+        {
+          "source": "validation.csv:491",
+          "case_id": "grid_160969d155e127c4",
+          "excess_relative": 9.84992446044554e-16
+        },
+        {
+          "source": "validation.csv:492",
+          "case_id": "grid_c3c6d7f07ab8ad62",
+          "excess_relative": 1.7955216426877273e-15
+        },
+        {
+          "source": "validation.csv:493",
+          "case_id": "grid_f69800a2d4b75832",
+          "excess_relative": 1.1408930650018833e-15
+        },
+        {
+          "source": "validation.csv:494",
+          "case_id": "grid_b02a644f62386580",
+          "excess_relative": 1.2712037312427809e-15
+        },
+        {
+          "source": "validation.csv:495",
+          "case_id": "grid_1fc5ef262764c476",
+          "excess_relative": 1.1212174005953967e-15
+        },
+        {
+          "source": "validation.csv:712",
+          "case_id": "grid_804c4024359ffefa",
+          "excess_relative": 1.1857135003178317e-15
+        },
+        {
+          "source": "validation.csv:713",
+          "case_id": "grid_8ef069337316dfab",
+          "excess_relative": 1.2724646181635789e-15
+        },
+        {
+          "source": "validation.csv:714",
+          "case_id": "grid_cb76f4d3b3d486ee",
+          "excess_relative": 1.5114348433484782e-15
+        },
+        {
+          "source": "validation.csv:715",
+          "case_id": "grid_723d821d4f3d5132",
+          "excess_relative": 1.013218054569609e-15
+        },
+        {
+          "source": "validation.csv:716",
+          "case_id": "grid_e1f55c3545b0f52d",
+          "excess_relative": 9.84992446044554e-16
+        },
+        {
+          "source": "validation.csv:717",
+          "case_id": "grid_b7cf99a347905176",
+          "excess_relative": 1.7955216426877273e-15
+        },
+        {
+          "source": "validation.csv:718",
+          "case_id": "grid_33a162500142a454",
+          "excess_relative": 1.1408930650018833e-15
+        },
+        {
+          "source": "validation.csv:719",
+          "case_id": "grid_3dbabac8b9b60cbd",
+          "excess_relative": 1.2712037312427809e-15
+        },
+        {
+          "source": "validation.csv:720",
+          "case_id": "grid_2ad772ce05fe6ade",
+          "excess_relative": 1.1212174005953967e-15
+        },
+        {
+          "source": "validation.csv:496",
+          "case_id": "grid_89609e79d26ca279",
+          "excess_relative": 1.5115781074080827e-15
+        },
+        {
+          "source": "validation.csv:497",
+          "case_id": "grid_2390821f0f78993e",
+          "excess_relative": 1.2724292156370255e-15
+        },
+        {
+          "source": "validation.csv:498",
+          "case_id": "grid_42522679ade57ea2",
+          "excess_relative": 1.511146116015253e-15
+        },
+        {
+          "source": "validation.csv:499",
+          "case_id": "grid_66ee1b8867c6e91a",
+          "excess_relative": 1.3444526963128626e-15
+        },
+        {
+          "source": "validation.csv:500",
+          "case_id": "grid_0686c736ac8e13e9",
+          "excess_relative": 1.1435742027488221e-15
+        },
+        {
+          "source": "validation.csv:501",
+          "case_id": "grid_16279ccf4b039f9a",
+          "excess_relative": 1.1487798059247733e-15
+        },
+        {
+          "source": "validation.csv:502",
+          "case_id": "grid_c58de5cbfb535abd",
+          "excess_relative": 1.6258565264963719e-15
+        },
+        {
+          "source": "validation.csv:503",
+          "case_id": "grid_83c81d391ba9658b",
+          "excess_relative": 1.2706743098862226e-15
+        },
+        {
+          "source": "validation.csv:504",
+          "case_id": "grid_0616d8febf93fa31",
+          "excess_relative": 1.1155758299730068e-15
+        },
+        {
+          "source": "validation.csv:739",
+          "case_id": "grid_f7b456cbb89770c9",
+          "excess_relative": 1.5115781074080827e-15
+        },
+        {
+          "source": "validation.csv:740",
+          "case_id": "grid_12f2f768b1d8801f",
+          "excess_relative": 1.2724292156370255e-15
+        },
+        {
+          "source": "validation.csv:741",
+          "case_id": "grid_11845cfc09784c12",
+          "excess_relative": 1.511146116015253e-15
+        },
+        {
+          "source": "validation.csv:742",
+          "case_id": "grid_588f7018bcda6825",
+          "excess_relative": 1.3444526963128626e-15
+        },
+        {
+          "source": "validation.csv:743",
+          "case_id": "grid_eb3c2c99fd5dd4fc",
+          "excess_relative": 1.1435742027488221e-15
+        },
+        {
+          "source": "validation.csv:744",
+          "case_id": "grid_80b9ffa13182174f",
+          "excess_relative": 1.1487798059247733e-15
+        },
+        {
+          "source": "validation.csv:745",
+          "case_id": "grid_eb0f6689370793e0",
+          "excess_relative": 1.6258565264963719e-15
+        },
+        {
+          "source": "validation.csv:746",
+          "case_id": "grid_52836e2cb38cd1be",
+          "excess_relative": 1.2706743098862226e-15
+        },
+        {
+          "source": "validation.csv:747",
+          "case_id": "grid_9029e7ee0d35cd04",
+          "excess_relative": 1.1155758299730068e-15
+        },
+        {
+          "source": "validation.csv:748",
+          "case_id": "grid_f89d9878f31814b6",
+          "excess_relative": 1.5115781074080827e-15
+        },
+        {
+          "source": "validation.csv:749",
+          "case_id": "grid_6d94980c64d3ef77",
+          "excess_relative": 1.2724292156370255e-15
+        },
+        {
+          "source": "validation.csv:750",
+          "case_id": "grid_8abfa60d263d74b7",
+          "excess_relative": 1.511146116015253e-15
+        },
+        {
+          "source": "validation.csv:751",
+          "case_id": "grid_62b7346295de50ed",
+          "excess_relative": 1.3444526963128626e-15
+        },
+        {
+          "source": "validation.csv:752",
+          "case_id": "grid_f56c5f4fe0dabb2a",
+          "excess_relative": 1.1435742027488221e-15
+        },
+        {
+          "source": "validation.csv:753",
+          "case_id": "grid_121e2e586881f111",
+          "excess_relative": 1.1487798059247733e-15
+        },
+        {
+          "source": "validation.csv:754",
+          "case_id": "grid_72a9d9270f84fb7a",
+          "excess_relative": 1.6258565264963719e-15
+        },
+        {
+          "source": "validation.csv:755",
+          "case_id": "grid_6a6c4a7dc6e232c9",
+          "excess_relative": 1.2706743098862226e-15
+        },
+        {
+          "source": "validation.csv:756",
+          "case_id": "grid_f5b5e4580074de0c",
+          "excess_relative": 1.1155758299730068e-15
+        },
+        {
+          "source": "validation.csv:757",
+          "case_id": "grid_7e31fb776e5db11b",
+          "excess_relative": 1.5115781074080827e-15
+        },
+        {
+          "source": "validation.csv:758",
+          "case_id": "grid_c59cbcb16f19457e",
+          "excess_relative": 1.2724292156370255e-15
+        },
+        {
+          "source": "validation.csv:759",
+          "case_id": "grid_c71b52e7ef458b07",
+          "excess_relative": 1.511146116015253e-15
+        },
+        {
+          "source": "validation.csv:760",
+          "case_id": "grid_6a13cd345e736bcd",
+          "excess_relative": 1.3444526963128626e-15
+        },
+        {
+          "source": "validation.csv:761",
+          "case_id": "grid_adde4304b3f5abcc",
+          "excess_relative": 1.1435742027488221e-15
+        },
+        {
+          "source": "validation.csv:762",
+          "case_id": "grid_0e9d912e1169d49e",
+          "excess_relative": 1.1487798059247733e-15
+        },
+        {
+          "source": "validation.csv:763",
+          "case_id": "grid_d934bd78562263a8",
+          "excess_relative": 1.6258565264963719e-15
+        },
+        {
+          "source": "validation.csv:764",
+          "case_id": "grid_12bcdf99a6f442b1",
+          "excess_relative": 1.2706743098862226e-15
+        },
+        {
+          "source": "validation.csv:765",
+          "case_id": "grid_8a82253d71925494",
+          "excess_relative": 1.1155758299730068e-15
+        },
+        {
+          "source": "validation.csv:514",
+          "case_id": "grid_0d58afee0fefb4b5",
+          "excess_relative": 1.8474535573578727e-15
+        },
+        {
+          "source": "validation.csv:515",
+          "case_id": "grid_fb8a5a0b79a43853",
+          "excess_relative": 1.4324257837739915e-15
+        },
+        {
+          "source": "validation.csv:516",
+          "case_id": "grid_f2714f0297a474b7",
+          "excess_relative": 1.3413835838060027e-15
+        },
+        {
+          "source": "validation.csv:517",
+          "case_id": "grid_8b6b7c7e6ae28407",
+          "excess_relative": 1.3465702377779901e-15
+        },
+        {
+          "source": "validation.csv:518",
+          "case_id": "grid_39a6ca77d643548f",
+          "excess_relative": 1.3073710902982507e-15
+        },
+        {
+          "source": "validation.csv:519",
+          "case_id": "grid_22f0eb2b7488e0c2",
+          "excess_relative": 1.1509683502791058e-15
+        },
+        {
+          "source": "validation.csv:520",
+          "case_id": "grid_4db9bf369f70f9ff",
+          "excess_relative": 1.1439985399842373e-15
+        },
+        {
+          "source": "validation.csv:521",
+          "case_id": "grid_30f6b368bb90665c",
+          "excess_relative": 1.4321334888428399e-15
+        },
+        {
+          "source": "validation.csv:522",
+          "case_id": "grid_05fe22a7503b6984",
+          "excess_relative": 1.4346745308003636e-15
+        },
+        {
+          "source": "validation.csv:550",
+          "case_id": "grid_d980a35902b85592",
+          "excess_relative": 1.0074529999118863e-15
+        },
+        {
+          "source": "validation.csv:551",
+          "case_id": "grid_9bd67e44d873aa73",
+          "excess_relative": 9.596982347012571e-16
+        },
+        {
+          "source": "validation.csv:552",
+          "case_id": "grid_f62566a4d2ed5b0b",
+          "excess_relative": 1.0096734370770103e-15
+        },
+        {
+          "source": "validation.csv:553",
+          "case_id": "grid_df709443a1e8f968",
+          "excess_relative": 1.3464036180284126e-15
+        },
+        {
+          "source": "validation.csv:554",
+          "case_id": "grid_09bee0670e800023",
+          "excess_relative": 1.148176323705367e-15
+        },
+        {
+          "source": "validation.csv:555",
+          "case_id": "grid_d4644dee3a93d8de",
+          "excess_relative": 1.1445349391720757e-15
+        },
+        {
+          "source": "validation.csv:556",
+          "case_id": "grid_35039c7bbdda725a",
+          "excess_relative": 1.3015752019999665e-15
+        },
+        {
+          "source": "validation.csv:557",
+          "case_id": "grid_c1cc40719e1e575f",
+          "excess_relative": 1.111395300147741e-15
+        },
+        {
+          "source": "validation.csv:558",
+          "case_id": "grid_8d2e4e783aa2e618",
+          "excess_relative": 1.292279110320772e-15
+        },
+        {
+          "source": "validation.csv:559",
+          "case_id": "grid_3677effda568937d",
+          "excess_relative": 1.3441727351335309e-15
+        },
+        {
+          "source": "validation.csv:560",
+          "case_id": "grid_92090320d5dfe843",
+          "excess_relative": 1.2732068701871324e-15
+        },
+        {
+          "source": "validation.csv:561",
+          "case_id": "grid_783580f818943460",
+          "excess_relative": 1.1777245677502368e-15
+        },
+        {
+          "source": "validation.csv:562",
+          "case_id": "grid_729d387940319c06",
+          "excess_relative": 1.1815345976799674e-15
+        },
+        {
+          "source": "validation.csv:563",
+          "case_id": "grid_a859240487e8347f",
+          "excess_relative": 1.3103665085301956e-15
+        },
+        {
+          "source": "validation.csv:564",
+          "case_id": "grid_7234e56b64f8e885",
+          "excess_relative": 1.3069540036418209e-15
+        },
+        {
+          "source": "validation.csv:565",
+          "case_id": "grid_0b322585897b6fa6",
+          "excess_relative": 1.4642300824459304e-15
+        },
+        {
+          "source": "validation.csv:566",
+          "case_id": "grid_6d1d54620de8760c",
+          "excess_relative": 1.2751041836657118e-15
+        },
+        {
+          "source": "validation.csv:567",
+          "case_id": "grid_27e9aa11abdbd0cf",
+          "excess_relative": 1.1270606154576611e-15
+        },
+        {
+          "source": "validation.csv:568",
+          "case_id": "grid_7af6ffc860bfbe8e",
+          "excess_relative": 1.511926243908344e-15
+        },
+        {
+          "source": "validation.csv:569",
+          "case_id": "grid_420fdda6a50812e9",
+          "excess_relative": 1.273238527018682e-15
+        },
+        {
+          "source": "validation.csv:570",
+          "case_id": "grid_e98db98cfb7e18f0",
+          "excess_relative": 1.5112765323604294e-15
+        },
+        {
+          "source": "validation.csv:571",
+          "case_id": "grid_b37769659b0e2944",
+          "excess_relative": 1.1765420348598496e-15
+        },
+        {
+          "source": "validation.csv:572",
+          "case_id": "grid_4140cfbd2d9818d1",
+          "excess_relative": 1.1456573479000647e-15
+        },
+        {
+          "source": "validation.csv:573",
+          "case_id": "grid_d00645f971a9d736",
+          "excess_relative": 1.476959800547909e-15
+        },
+        {
+          "source": "validation.csv:574",
+          "case_id": "grid_91f80aa4610fd752",
+          "excess_relative": 1.3206602730900528e-15
+        },
+        {
+          "source": "validation.csv:575",
+          "case_id": "grid_5038a541fd3526ad",
+          "excess_relative": 1.4312508705509554e-15
+        },
+        {
+          "source": "validation.csv:576",
+          "case_id": "grid_984e71220d7f43b6",
+          "excess_relative": 1.115765372932061e-15
+        },
+        {
+          "source": "validation.csv:577",
+          "case_id": "grid_f6c5d43881f1a78e",
+          "excess_relative": 1.1878845609269181e-15
+        },
+        {
+          "source": "validation.csv:578",
+          "case_id": "grid_277dd61d83a0d9c6",
+          "excess_relative": 1.1176892932573883e-15
+        },
+        {
+          "source": "validation.csv:579",
+          "case_id": "grid_d780de174070e764",
+          "excess_relative": 1.1824906190334382e-15
+        },
+        {
+          "source": "validation.csv:580",
+          "case_id": "grid_d7757a611c55c89a",
+          "excess_relative": 1.5120296840615666e-15
+        },
+        {
+          "source": "validation.csv:581",
+          "case_id": "grid_4b7e38d90f9d59ca",
+          "excess_relative": 1.1457642187704784e-15
+        },
+        {
+          "source": "validation.csv:582",
+          "case_id": "grid_4b3a088a6713818b",
+          "excess_relative": 1.4708134568963162e-15
+        },
+        {
+          "source": "validation.csv:583",
+          "case_id": "grid_39577f05f169f3f1",
+          "excess_relative": 1.464279935154611e-15
+        },
+        {
+          "source": "validation.csv:584",
+          "case_id": "grid_fdb5c14ff0e0f9e7",
+          "excess_relative": 1.2740725569817925e-15
+        },
+        {
+          "source": "validation.csv:585",
+          "case_id": "grid_54d06348c2e8637f",
+          "excess_relative": 1.1175750040610108e-15
+        },
+        {
+          "source": "validation.csv:586",
+          "case_id": "grid_3c21a69829d81d23",
+          "excess_relative": 1.344352430363138e-15
+        },
+        {
+          "source": "validation.csv:587",
+          "case_id": "grid_f59fe13b1c8edc0e",
+          "excess_relative": 1.2724539890964652e-15
+        },
+        {
+          "source": "validation.csv:588",
+          "case_id": "grid_61e98ebeb854e7f4",
+          "excess_relative": 1.508677532333117e-15
+        },
+        {
+          "source": "validation.csv:589",
+          "case_id": "grid_d173928ea4c9f5d3",
+          "excess_relative": 1.1792609682660772e-15
+        },
+        {
+          "source": "validation.csv:590",
+          "case_id": "grid_1393bdc2faf4c8d8",
+          "excess_relative": 9.840740610546071e-16
+        },
+        {
+          "source": "validation.csv:591",
+          "case_id": "grid_cb6c988bdfe07b8c",
+          "excess_relative": 1.1461616318250307e-15
+        },
+        {
+          "source": "validation.csv:592",
+          "case_id": "grid_4c841a959a19796e",
+          "excess_relative": 1.3036898353699903e-15
+        },
+        {
+          "source": "validation.csv:593",
+          "case_id": "grid_72db3755288d8001",
+          "excess_relative": 1.2733766948511488e-15
+        },
+        {
+          "source": "validation.csv:594",
+          "case_id": "grid_03c40c9adb3c005a",
+          "excess_relative": 9.698417965962544e-16
+        },
+        {
+          "source": "validation.csv:676",
+          "case_id": "grid_c7d5a65fef969413",
+          "excess_relative": 1.3438458098497162e-15
+        },
+        {
+          "source": "validation.csv:677",
+          "case_id": "grid_e75fcc1867f5572e",
+          "excess_relative": 1.4324395249819477e-15
+        },
+        {
+          "source": "validation.csv:678",
+          "case_id": "grid_44a5a159f9a7a9f5",
+          "excess_relative": 1.1751084267037484e-15
+        },
+        {
+          "source": "validation.csv:679",
+          "case_id": "grid_20e491f6359dccbb",
+          "excess_relative": 1.1781666532733312e-15
+        },
+        {
+          "source": "validation.csv:680",
+          "case_id": "grid_f25dc57914633a0a",
+          "excess_relative": 1.1440903509151305e-15
+        },
+        {
+          "source": "validation.csv:681",
+          "case_id": "grid_d88415cea35ca8d9",
+          "excess_relative": 1.3074516567742141e-15
+        },
+        {
+          "source": "validation.csv:682",
+          "case_id": "grid_ce88f62e90f33f6d",
+          "excess_relative": 1.1370197907109009e-15
+        },
+        {
+          "source": "validation.csv:683",
+          "case_id": "grid_0173995836d15752",
+          "excess_relative": 1.5878157646837258e-15
+        },
+        {
+          "source": "validation.csv:684",
+          "case_id": "grid_18c328cf7058488c",
+          "excess_relative": 1.1182879655519828e-15
+        },
+        {
+          "source": "validation.csv:694",
+          "case_id": "grid_8ab76a4ff15e3cd5",
+          "excess_relative": 1.3438458098497162e-15
+        },
+        {
+          "source": "validation.csv:695",
+          "case_id": "grid_164a93fdbd28c946",
+          "excess_relative": 1.4324395249819477e-15
+        },
+        {
+          "source": "validation.csv:696",
+          "case_id": "grid_04ba756085b60dc7",
+          "excess_relative": 1.1751084267037484e-15
+        },
+        {
+          "source": "validation.csv:697",
+          "case_id": "grid_392e7ae073447a0e",
+          "excess_relative": 1.1781666532733312e-15
+        },
+        {
+          "source": "validation.csv:698",
+          "case_id": "grid_b79fed0695310584",
+          "excess_relative": 1.1440903509151305e-15
+        },
+        {
+          "source": "validation.csv:699",
+          "case_id": "grid_bc3cfb7a4a0ffb07",
+          "excess_relative": 1.3074516567742141e-15
+        },
+        {
+          "source": "validation.csv:700",
+          "case_id": "grid_b844727263ebed34",
+          "excess_relative": 1.1370197907109009e-15
+        },
+        {
+          "source": "validation.csv:701",
+          "case_id": "grid_73a1040e287f0f13",
+          "excess_relative": 1.5878157646837258e-15
+        },
+        {
+          "source": "validation.csv:702",
+          "case_id": "grid_d58cdf5b4f723f8d",
+          "excess_relative": 1.1182879655519828e-15
+        },
+        {
+          "source": "validation.csv:685",
+          "case_id": "grid_2650dcc1b24599df",
+          "excess_relative": 1.5099332255938745e-15
+        },
+        {
+          "source": "validation.csv:686",
+          "case_id": "grid_c5a0e6ea3614b040",
+          "excess_relative": 1.7487831731846916e-15
+        },
+        {
+          "source": "validation.csv:687",
+          "case_id": "grid_35f6521717e69266",
+          "excess_relative": 1.6785013347191017e-15
+        },
+        {
+          "source": "validation.csv:688",
+          "case_id": "grid_490fb8bc0b0f001d",
+          "excess_relative": 1.3445169634620967e-15
+        },
+        {
+          "source": "validation.csv:689",
+          "case_id": "grid_d61d6d0d31635fd6",
+          "excess_relative": 1.1457068907190858e-15
+        },
+        {
+          "source": "validation.csv:690",
+          "case_id": "grid_962e40afb6f0122f",
+          "excess_relative": 1.4720669830627371e-15
+        },
+        {
+          "source": "validation.csv:691",
+          "case_id": "grid_40c4658d3ab7f161",
+          "excess_relative": 1.1421926903795668e-15
+        },
+        {
+          "source": "validation.csv:692",
+          "case_id": "grid_cfdf92e29f187872",
+          "excess_relative": 1.2725187101412967e-15
+        },
+        {
+          "source": "validation.csv:693",
+          "case_id": "grid_e659eb48ee2b4422",
+          "excess_relative": 1.2747492845365196e-15
+        },
+        {
+          "source": "validation.csv:703",
+          "case_id": "grid_a1747ace4e89281f",
+          "excess_relative": 1.178367028697704e-15
+        },
+        {
+          "source": "validation.csv:704",
+          "case_id": "grid_1c38a9976964da12",
+          "excess_relative": 1.2729494086241268e-15
+        },
+        {
+          "source": "validation.csv:705",
+          "case_id": "grid_121e8230f4269628",
+          "excess_relative": 1.6783285269002908e-15
+        },
+        {
+          "source": "validation.csv:706",
+          "case_id": "grid_8c965ca6bd3eb795",
+          "excess_relative": 1.177859083715866e-15
+        },
+        {
+          "source": "validation.csv:707",
+          "case_id": "grid_dbc274dede2229b2",
+          "excess_relative": 1.3100111242967813e-15
+        },
+        {
+          "source": "validation.csv:708",
+          "case_id": "grid_66e389b2c6b40d60",
+          "excess_relative": 1.1554112226396433e-15
+        },
+        {
+          "source": "validation.csv:709",
+          "case_id": "grid_d66e44aa96dee1fe",
+          "excess_relative": 1.4639289416879924e-15
+        },
+        {
+          "source": "validation.csv:710",
+          "case_id": "grid_24f92d762f013268",
+          "excess_relative": 1.1170840491082029e-15
+        },
+        {
+          "source": "validation.csv:711",
+          "case_id": "grid_a997faec67fce201",
+          "excess_relative": 1.274873446766904e-15
+        },
+        {
+          "source": "validation.csv:730",
+          "case_id": "grid_367cb37a387dbe08",
+          "excess_relative": 1.1770718374984093e-15
+        },
+        {
+          "source": "validation.csv:731",
+          "case_id": "grid_209117cec9e54ee9",
+          "excess_relative": 1.1224960290448174e-15
+        },
+        {
+          "source": "validation.csv:732",
+          "case_id": "grid_734bf36135b52cf3",
+          "excess_relative": 1.178852537935655e-15
+        },
+        {
+          "source": "validation.csv:733",
+          "case_id": "grid_732ee032469c8450",
+          "excess_relative": 1.1819910357004467e-15
+        },
+        {
+          "source": "validation.csv:734",
+          "case_id": "grid_113f5038cbdb1da4",
+          "excess_relative": 1.1449922207117893e-15
+        },
+        {
+          "source": "validation.csv:735",
+          "case_id": "grid_cc598acb9674d2ae",
+          "excess_relative": 1.1471738035869399e-15
+        },
+        {
+          "source": "validation.csv:736",
+          "case_id": "grid_1a69d6744c8e4e15",
+          "excess_relative": 1.1391156002456703e-15
+        },
+        {
+          "source": "validation.csv:737",
+          "case_id": "grid_2a676268c2e1bfc8",
+          "excess_relative": 1.1142883052855329e-15
+        },
+        {
+          "source": "validation.csv:738",
+          "case_id": "grid_9a709cb9c473f557",
+          "excess_relative": 1.1154112620457724e-15
+        },
+        {
+          "source": "validation.csv:766",
+          "case_id": "grid_fb646aa84034a9c8",
+          "excess_relative": 1.1785972304131363e-15
+        },
+        {
+          "source": "validation.csv:767",
+          "case_id": "grid_9088356592854697",
+          "excess_relative": 1.4343675160421298e-15
+        },
+        {
+          "source": "validation.csv:768",
+          "case_id": "grid_f7733147e13670fc",
+          "excess_relative": 1.0122076409574714e-15
+        },
+        {
+          "source": "validation.csv:769",
+          "case_id": "grid_8aa5fdae762c7962",
+          "excess_relative": 1.5120715447199434e-15
+        },
+        {
+          "source": "validation.csv:770",
+          "case_id": "grid_cb5c3842eb292012",
+          "excess_relative": 1.308704633214115e-15
+        },
+        {
+          "source": "validation.csv:771",
+          "case_id": "grid_81757c6bc510a328",
+          "excess_relative": 1.3065185614152694e-15
+        },
+        {
+          "source": "validation.csv:772",
+          "case_id": "grid_25a1f2d4ca319748",
+          "excess_relative": 1.4629234567369708e-15
+        },
+        {
+          "source": "validation.csv:773",
+          "case_id": "grid_4e59480c6c2f8949",
+          "excess_relative": 1.1200258684151498e-15
+        },
+        {
+          "source": "validation.csv:774",
+          "case_id": "grid_7095d83c682760f7",
+          "excess_relative": 1.1349659519714144e-15
+        },
+        {
+          "source": "sweeps.csv:1856",
+          "case_id": "grid_f561bd3a40273029",
+          "excess_relative": 7.603851812877288e-16
+        },
+        {
+          "source": "sweeps.csv:1945",
+          "case_id": "grid_ebaa6f7a539669ff",
+          "excess_relative": 6.348858661559663e-16
+        },
+        {
+          "source": "sweeps.csv:2034",
+          "case_id": "grid_73b9b6ba40ae02c3",
+          "excess_relative": 8.566062063843305e-16
+        },
+        {
+          "source": "sweeps.csv:2123",
+          "case_id": "grid_81920a7a62a9d14a",
+          "excess_relative": 6.781002672463813e-16
+        },
+        {
+          "source": "sweeps.csv:2212",
+          "case_id": "grid_e7f9dbc9414c92d2",
+          "excess_relative": 6.718158570246582e-16
+        },
+        {
+          "source": "sweeps.csv:2301",
+          "case_id": "grid_75d8562cda7a8fcf",
+          "excess_relative": 9.566875531668314e-16
+        },
+        {
+          "source": "sweeps.csv:2390",
+          "case_id": "grid_050b6401b1f1ffb8",
+          "excess_relative": 8.179318754113776e-16
+        },
+        {
+          "source": "sweeps.csv:2479",
+          "case_id": "grid_304d7839f4af5274",
+          "excess_relative": 7.358409376324109e-16
+        },
+        {
+          "source": "sweeps.csv:2624",
+          "case_id": "grid_819b24a514f936ad",
+          "excess_relative": 6.596359688150683e-16
+        },
+        {
+          "source": "sweeps.csv:1858",
+          "case_id": "grid_754f043fcdeb74d5",
+          "excess_relative": 8.63352675138205e-16
+        },
+        {
+          "source": "sweeps.csv:1947",
+          "case_id": "grid_4bced1c7deea2a08",
+          "excess_relative": 7.426332554771749e-16
+        },
+        {
+          "source": "sweeps.csv:2036",
+          "case_id": "grid_e50d47d1e0553b8d",
+          "excess_relative": 8.683892190145683e-16
+        },
+        {
+          "source": "sweeps.csv:2125",
+          "case_id": "grid_72931ca6cd7863af",
+          "excess_relative": 6.834695353095177e-16
+        },
+        {
+          "source": "sweeps.csv:2214",
+          "case_id": "grid_908b2d514d06c122",
+          "excess_relative": 7.63104679312788e-16
+        },
+        {
+          "source": "sweeps.csv:2303",
+          "case_id": "grid_0ec9d0b45fb2b7b6",
+          "excess_relative": 5.874296341924408e-16
+        },
+        {
+          "source": "sweeps.csv:2392",
+          "case_id": "grid_dae62d8f28acb800",
+          "excess_relative": 9.063032077551375e-16
+        },
+        {
+          "source": "sweeps.csv:2481",
+          "case_id": "grid_be10dc1913fcec9f",
+          "excess_relative": 7.374955241346097e-16
+        },
+        {
+          "source": "sweeps.csv:2626",
+          "case_id": "grid_02ab28f7acc73f29",
+          "excess_relative": 6.458798357749739e-16
+        },
+        {
+          "source": "sweeps.csv:1860",
+          "case_id": "grid_3e8daaf1ed904af0",
+          "excess_relative": 6.61104199639879e-16
+        },
+        {
+          "source": "sweeps.csv:1949",
+          "case_id": "grid_95d40045f300b7c9",
+          "excess_relative": 7.395480865772418e-16
+        },
+        {
+          "source": "sweeps.csv:2038",
+          "case_id": "grid_b19159b9ddb7e31d",
+          "excess_relative": 7.601232000612694e-16
+        },
+        {
+          "source": "sweeps.csv:2127",
+          "case_id": "grid_56738bb0ebab8710",
+          "excess_relative": 6.764741090612497e-16
+        },
+        {
+          "source": "sweeps.csv:2216",
+          "case_id": "grid_772e1205d0090409",
+          "excess_relative": 8.568417170833239e-16
+        },
+        {
+          "source": "sweeps.csv:2305",
+          "case_id": "grid_b367d7b2ddc3585b",
+          "excess_relative": 8.615660572845886e-16
+        },
+        {
+          "source": "sweeps.csv:2394",
+          "case_id": "grid_7b0faff827c6242d",
+          "excess_relative": 6.854355797346125e-16
+        },
+        {
+          "source": "sweeps.csv:2483",
+          "case_id": "grid_5b547f22de78b103",
+          "excess_relative": 6.405824317787687e-16
+        },
+        {
+          "source": "sweeps.csv:2628",
+          "case_id": "grid_7f43219bfaa417b9",
+          "excess_relative": 7.686941320294554e-16
+        },
+        {
+          "source": "sweeps.csv:1862",
+          "case_id": "grid_abbf42544928f169",
+          "excess_relative": 6.562387919170992e-16
+        },
+        {
+          "source": "sweeps.csv:1951",
+          "case_id": "grid_4abc7fd81a6b0018",
+          "excess_relative": 6.320844420675217e-16
+        },
+        {
+          "source": "sweeps.csv:2040",
+          "case_id": "grid_b50e70a69977932a",
+          "excess_relative": 8.591584211107381e-16
+        },
+        {
+          "source": "sweeps.csv:2129",
+          "case_id": "grid_7f8a7b045aa840bf",
+          "excess_relative": 6.754482985351201e-16
+        },
+        {
+          "source": "sweeps.csv:2218",
+          "case_id": "grid_b5721122f4bb81a3",
+          "excess_relative": 6.772457058967401e-16
+        },
+        {
+          "source": "sweeps.csv:2307",
+          "case_id": "grid_26d206fa39df7f5c",
+          "excess_relative": 6.078304357927355e-16
+        },
+        {
+          "source": "sweeps.csv:2396",
+          "case_id": "grid_70160138595f29ad",
+          "excess_relative": 1.000507189636209e-15
+        },
+        {
+          "source": "sweeps.csv:2485",
+          "case_id": "grid_c27b5af0876e1db0",
+          "excess_relative": 6.407084276653792e-16
+        },
+        {
+          "source": "sweeps.csv:2630",
+          "case_id": "grid_4cad0b3a336af5c6",
+          "excess_relative": 7.093567656949893e-16
+        },
+        {
+          "source": "sweeps.csv:1864",
+          "case_id": "grid_f63ac6a457b61a1b",
+          "excess_relative": 7.033608116805215e-16
+        },
+        {
+          "source": "sweeps.csv:1953",
+          "case_id": "grid_6cec57fa91b9043a",
+          "excess_relative": 7.404184808945977e-16
+        },
+        {
+          "source": "sweeps.csv:2042",
+          "case_id": "grid_dd3ed70bf9fcdd2c",
+          "excess_relative": 7.486916679287044e-16
+        },
+        {
+          "source": "sweeps.csv:2131",
+          "case_id": "grid_1fce1350ab255a0f",
+          "excess_relative": 7.736145415528749e-16
+        },
+        {
+          "source": "sweeps.csv:2220",
+          "case_id": "grid_dcf0319df298a31e",
+          "excess_relative": 7.624540207211978e-16
+        },
+        {
+          "source": "sweeps.csv:2309",
+          "case_id": "grid_4d249163ea07484f",
+          "excess_relative": 6.82951262551049e-16
+        },
+        {
+          "source": "sweeps.csv:2398",
+          "case_id": "grid_25ab9d07f7ce96b5",
+          "excess_relative": 8.179815804829981e-16
+        },
+        {
+          "source": "sweeps.csv:2487",
+          "case_id": "grid_da6f20d4f18a1d8b",
+          "excess_relative": 7.302227207753466e-16
+        },
+        {
+          "source": "sweeps.csv:2632",
+          "case_id": "grid_39aaf980a62aa887",
+          "excess_relative": 6.803711872924443e-16
+        },
+        {
+          "source": "sweeps.csv:1866",
+          "case_id": "grid_b5b8766d96a3329e",
+          "excess_relative": 8.956576315477663e-16
+        },
+        {
+          "source": "sweeps.csv:1955",
+          "case_id": "grid_2a381ef1fb9b9e9a",
+          "excess_relative": 6.574643070072457e-16
+        },
+        {
+          "source": "sweeps.csv:2044",
+          "case_id": "grid_d41f20b41c302a9b",
+          "excess_relative": 8.575274055884601e-16
+        },
+        {
+          "source": "sweeps.csv:2133",
+          "case_id": "grid_31a38990b768c23a",
+          "excess_relative": 7.724905104886851e-16
+        },
+        {
+          "source": "sweeps.csv:2222",
+          "case_id": "grid_7a8bf602a7c7c129",
+          "excess_relative": 7.60891641118367e-16
+        },
+        {
+          "source": "sweeps.csv:2311",
+          "case_id": "grid_8b9a3c53f65c467b",
+          "excess_relative": 7.677237664195412e-16
+        },
+        {
+          "source": "sweeps.csv:2400",
+          "case_id": "grid_dfedffafad762703",
+          "excess_relative": 8.172632843831348e-16
+        },
+        {
+          "source": "sweeps.csv:2489",
+          "case_id": "grid_800ff1161b21cbc7",
+          "excess_relative": 6.390325953724278e-16
+        },
+        {
+          "source": "sweeps.csv:2634",
+          "case_id": "grid_863cd5a714604049",
+          "excess_relative": 6.845712453110594e-16
+        },
+        {
+          "source": "sweeps.csv:1868",
+          "case_id": "grid_53e134c40c162986",
+          "excess_relative": 7.608152398218509e-16
+        },
+        {
+          "source": "sweeps.csv:1957",
+          "case_id": "grid_76c7ed776ad118f6",
+          "excess_relative": 7.390809224232762e-16
+        },
+        {
+          "source": "sweeps.csv:2046",
+          "case_id": "grid_acb47e4ef2d85ae3",
+          "excess_relative": 8.593337338745256e-16
+        },
+        {
+          "source": "sweeps.csv:2135",
+          "case_id": "grid_555dd754925b9221",
+          "excess_relative": 6.757388251358827e-16
+        },
+        {
+          "source": "sweeps.csv:2224",
+          "case_id": "grid_cb528f33f04e10ba",
+          "excess_relative": 9.507282220787448e-16
+        },
+        {
+          "source": "sweeps.csv:2313",
+          "case_id": "grid_498c9ae5c1e8b9da",
+          "excess_relative": 6.723117307039879e-16
+        },
+        {
+          "source": "sweeps.csv:2402",
+          "case_id": "grid_39993b0e567e30fe",
+          "excess_relative": 7.580900047806038e-16
+        },
+        {
+          "source": "sweeps.csv:2491",
+          "case_id": "grid_1efe9268c63ec359",
+          "excess_relative": 6.442033538122478e-16
+        },
+        {
+          "source": "sweeps.csv:2636",
+          "case_id": "grid_77f07b35bc3ec36a",
+          "excess_relative": 6.485627137454796e-16
+        },
+        {
+          "source": "sweeps.csv:1870",
+          "case_id": "grid_73d7b8b5d698fec8",
+          "excess_relative": 7.557869644183801e-16
+        },
+        {
+          "source": "sweeps.csv:1959",
+          "case_id": "grid_f73d0438ef30a108",
+          "excess_relative": 7.366175178698359e-16
+        },
+        {
+          "source": "sweeps.csv:2048",
+          "case_id": "grid_79f0de4c9e67f2b5",
+          "excess_relative": 7.538393921260127e-16
+        },
+        {
+          "source": "sweeps.csv:2137",
+          "case_id": "grid_277c4398fedb1f76",
+          "excess_relative": 7.683780060120863e-16
+        },
+        {
+          "source": "sweeps.csv:2226",
+          "case_id": "grid_df69fba933ce7d14",
+          "excess_relative": 6.723624438091349e-16
+        },
+        {
+          "source": "sweeps.csv:2315",
+          "case_id": "grid_0e0e258bfabcbdfd",
+          "excess_relative": 6.747935019344619e-16
+        },
+        {
+          "source": "sweeps.csv:2404",
+          "case_id": "grid_1dd2a01a025dabed",
+          "excess_relative": 6.370600334892862e-16
+        },
+        {
+          "source": "sweeps.csv:2493",
+          "case_id": "grid_a8998b073fee6f9f",
+          "excess_relative": 6.449170453294409e-16
+        },
+        {
+          "source": "sweeps.csv:2638",
+          "case_id": "grid_4bce4804eaffd97a",
+          "excess_relative": 6.469756846141082e-16
+        },
+        {
+          "source": "sweeps.csv:1872",
+          "case_id": "grid_8c6d1f698f2b6e9e",
+          "excess_relative": 8.666145877952627e-16
+        },
+        {
+          "source": "sweeps.csv:1961",
+          "case_id": "grid_dde01efabe2cb55f",
+          "excess_relative": 6.539230877488094e-16
+        },
+        {
+          "source": "sweeps.csv:2050",
+          "case_id": "grid_84c5ee7d065cc1c6",
+          "excess_relative": 8.568544644025048e-16
+        },
+        {
+          "source": "sweeps.csv:2139",
+          "case_id": "grid_80ece57bc684ebb4",
+          "excess_relative": 9.636849099904542e-16
+        },
+        {
+          "source": "sweeps.csv:2228",
+          "case_id": "grid_e5e9d2ad860d7d4d",
+          "excess_relative": 7.833630034357434e-16
+        },
+        {
+          "source": "sweeps.csv:2317",
+          "case_id": "grid_217aab749918d229",
+          "excess_relative": 7.861821836610364e-16
+        },
+        {
+          "source": "sweeps.csv:2406",
+          "case_id": "grid_6ee217097493e016",
+          "excess_relative": 7.509256458723882e-16
+        },
+        {
+          "source": "sweeps.csv:2495",
+          "case_id": "grid_36698f9c6742b770",
+          "excess_relative": 7.297737355460117e-16
+        },
+        {
+          "source": "sweeps.csv:2640",
+          "case_id": "grid_60a43ad149d46022",
+          "excess_relative": 6.767612570749075e-16
+        },
+        {
+          "source": "sweeps.csv:1874",
+          "case_id": "grid_1c2e6f2958195bec",
+          "excess_relative": 7.758561252103459e-16
+        },
+        {
+          "source": "sweeps.csv:1963",
+          "case_id": "grid_3c7d0749159c87d3",
+          "excess_relative": 6.438294160134814e-16
+        },
+        {
+          "source": "sweeps.csv:2052",
+          "case_id": "grid_c3b1a5173d944ad9",
+          "excess_relative": 8.754342750692287e-16
+        },
+        {
+          "source": "sweeps.csv:2141",
+          "case_id": "grid_979c215e8763c959",
+          "excess_relative": 5.824134234056991e-16
+        },
+        {
+          "source": "sweeps.csv:2230",
+          "case_id": "grid_b0aec3a8c1d213e0",
+          "excess_relative": 6.677919692372823e-16
+        },
+        {
+          "source": "sweeps.csv:2319",
+          "case_id": "grid_9c818e972905ac85",
+          "excess_relative": 6.915958068096971e-16
+        },
+        {
+          "source": "sweeps.csv:2408",
+          "case_id": "grid_275fecce3ae8c33a",
+          "excess_relative": 8.170824719199167e-16
+        },
+        {
+          "source": "sweeps.csv:2497",
+          "case_id": "grid_dabc909b43e3a1d5",
+          "excess_relative": 6.469673394072555e-16
+        },
+        {
+          "source": "sweeps.csv:2642",
+          "case_id": "grid_ae8fa39bd7d2a496",
+          "excess_relative": 6.943963829615128e-16
+        },
+        {
+          "source": "sweeps.csv:1876",
+          "case_id": "grid_9ce1e5f190c88f15",
+          "excess_relative": 7.604543756992141e-16
+        },
+        {
+          "source": "sweeps.csv:1965",
+          "case_id": "grid_a66642ef6a653be3",
+          "excess_relative": 7.421620808118729e-16
+        },
+        {
+          "source": "sweeps.csv:2054",
+          "case_id": "grid_fd217a579886348b",
+          "excess_relative": 8.580919205596863e-16
+        },
+        {
+          "source": "sweeps.csv:2143",
+          "case_id": "grid_6ffbbff340ca41d8",
+          "excess_relative": 7.706051576592133e-16
+        },
+        {
+          "source": "sweeps.csv:2232",
+          "case_id": "grid_483d4ae551f83268",
+          "excess_relative": 6.845958632493845e-16
+        },
+        {
+          "source": "sweeps.csv:2321",
+          "case_id": "grid_843c185f141ea12c",
+          "excess_relative": 6.693911975641184e-16
+        },
+        {
+          "source": "sweeps.csv:2410",
+          "case_id": "grid_b166f1a0fce4170b",
+          "excess_relative": 7.275227920321849e-16
+        },
+        {
+          "source": "sweeps.csv:2499",
+          "case_id": "grid_01fc73ac5797f4fc",
+          "excess_relative": 6.48430558508369e-16
+        },
+        {
+          "source": "sweeps.csv:2644",
+          "case_id": "grid_894720f05eb15563",
+          "excess_relative": 7.331923023147647e-16
+        },
+        {
+          "source": "sweeps.csv:1878",
+          "case_id": "grid_47d4f14c22c28c5a",
+          "excess_relative": 7.639342480682917e-16
+        },
+        {
+          "source": "sweeps.csv:1967",
+          "case_id": "grid_6905b9575c6fb2c0",
+          "excess_relative": 7.37422313649845e-16
+        },
+        {
+          "source": "sweeps.csv:2056",
+          "case_id": "grid_c0566548af0845df",
+          "excess_relative": 6.501869201572947e-16
+        },
+        {
+          "source": "sweeps.csv:2145",
+          "case_id": "grid_fe18f1b2a70b08ae",
+          "excess_relative": 7.691859007449207e-16
+        },
+        {
+          "source": "sweeps.csv:2234",
+          "case_id": "grid_d3f97704cc676ffc",
+          "excess_relative": 6.858259842975481e-16
+        },
+        {
+          "source": "sweeps.csv:2323",
+          "case_id": "grid_49c73e7f26ad636b",
+          "excess_relative": 7.642442968337048e-16
+        },
+        {
+          "source": "sweeps.csv:2412",
+          "case_id": "grid_141984e16fd3860a",
+          "excess_relative": 6.54768132485298e-16
+        },
+        {
+          "source": "sweeps.csv:2501",
+          "case_id": "grid_d7e7cfa96a907e49",
+          "excess_relative": 7.279620026436297e-16
+        },
+        {
+          "source": "sweeps.csv:2646",
+          "case_id": "grid_c22d0dd323b49f05",
+          "excess_relative": 5.812565118083768e-16
+        },
+        {
+          "source": "sweeps.csv:1880",
+          "case_id": "grid_2012061b56a7113e",
+          "excess_relative": 8.625555157424867e-16
+        },
+        {
+          "source": "sweeps.csv:1969",
+          "case_id": "grid_5bf657c89fbf0535",
+          "excess_relative": 7.382771325540548e-16
+        },
+        {
+          "source": "sweeps.csv:2058",
+          "case_id": "grid_287f7c27f9149bc3",
+          "excess_relative": 7.831235244758979e-16
+        },
+        {
+          "source": "sweeps.csv:2147",
+          "case_id": "grid_5c7c506056602051",
+          "excess_relative": 7.728267714794847e-16
+        },
+        {
+          "source": "sweeps.csv:2236",
+          "case_id": "grid_03e8443f479c6010",
+          "excess_relative": 8.566395692169813e-16
+        },
+        {
+          "source": "sweeps.csv:2325",
+          "case_id": "grid_9c18741895f6e0f5",
+          "excess_relative": 7.675519677870299e-16
+        },
+        {
+          "source": "sweeps.csv:2414",
+          "case_id": "grid_f33ff273f2ca54b0",
+          "excess_relative": 8.238710452771204e-16
+        },
+        {
+          "source": "sweeps.csv:2503",
+          "case_id": "grid_7b836c1135c5cbfa",
+          "excess_relative": 6.406679734674243e-16
+        },
+        {
+          "source": "sweeps.csv:2648",
+          "case_id": "grid_a3e566110d0dbd9d",
+          "excess_relative": 7.347436834701519e-16
+        },
+        {
+          "source": "sweeps.csv:1882",
+          "case_id": "grid_b5a766ace5788292",
+          "excess_relative": 9.719257120646215e-16
+        },
+        {
+          "source": "sweeps.csv:1971",
+          "case_id": "grid_5a5c031494b38847",
+          "excess_relative": 6.388791766686441e-16
+        },
+        {
+          "source": "sweeps.csv:2060",
+          "case_id": "grid_ba473a62aa273e79",
+          "excess_relative": 6.650232048247102e-16
+        },
+        {
+          "source": "sweeps.csv:2149",
+          "case_id": "grid_fa80440bafccf1ed",
+          "excess_relative": 8.662202684859761e-16
+        },
+        {
+          "source": "sweeps.csv:2238",
+          "case_id": "grid_e50575fc9fe86999",
+          "excess_relative": 6.707870441302459e-16
+        },
+        {
+          "source": "sweeps.csv:2327",
+          "case_id": "grid_8b926ccd6d7611ad",
+          "excess_relative": 7.673360533078907e-16
+        },
+        {
+          "source": "sweeps.csv:2416",
+          "case_id": "grid_30d28589483a8a75",
+          "excess_relative": 7.465470538950802e-16
+        },
+        {
+          "source": "sweeps.csv:2505",
+          "case_id": "grid_05631d1be1728c3b",
+          "excess_relative": 6.396878954142286e-16
+        },
+        {
+          "source": "sweeps.csv:2650",
+          "case_id": "grid_d3da9e3703478fbb",
+          "excess_relative": 8.191479099916295e-16
+        },
+        {
+          "source": "sweeps.csv:1884",
+          "case_id": "grid_a937f7c083db05d0",
+          "excess_relative": 1.3969189652755724e-15
+        },
+        {
+          "source": "sweeps.csv:1973",
+          "case_id": "grid_f3503ac155813f26",
+          "excess_relative": 7.473665549707366e-16
+        },
+        {
+          "source": "sweeps.csv:2062",
+          "case_id": "grid_638b06c160fcaa34",
+          "excess_relative": 8.589628285031456e-16
+        },
+        {
+          "source": "sweeps.csv:2151",
+          "case_id": "grid_955786fb7e863d8e",
+          "excess_relative": 8.63588061654804e-16
+        },
+        {
+          "source": "sweeps.csv:2240",
+          "case_id": "grid_d8480cab9058f3f3",
+          "excess_relative": 7.674551182532764e-16
+        },
+        {
+          "source": "sweeps.csv:2329",
+          "case_id": "grid_b3ebac0c906a4655",
+          "excess_relative": 7.722257436185187e-16
+        },
+        {
+          "source": "sweeps.csv:2418",
+          "case_id": "grid_9a4289d2cd11e1ed",
+          "excess_relative": 6.988684790719471e-16
+        },
+        {
+          "source": "sweeps.csv:2507",
+          "case_id": "grid_5ca8ae5cd5481648",
+          "excess_relative": 6.386391305120193e-16
+        },
+        {
+          "source": "sweeps.csv:2652",
+          "case_id": "grid_5b10370e1d3fde45",
+          "excess_relative": 6.402412464381651e-16
+        },
+        {
+          "source": "sweeps.csv:1886",
+          "case_id": "grid_1f6af7caa8ffdf9a",
+          "excess_relative": 9.694317822443153e-16
+        },
+        {
+          "source": "sweeps.csv:1975",
+          "case_id": "grid_d333f770674b4e65",
+          "excess_relative": 7.407884092810028e-16
+        },
+        {
+          "source": "sweeps.csv:2064",
+          "case_id": "grid_485866a2712520b0",
+          "excess_relative": 8.553795806141322e-16
+        },
+        {
+          "source": "sweeps.csv:2153",
+          "case_id": "grid_6300cfda3cf0f15b",
+          "excess_relative": 7.729292021847673e-16
+        },
+        {
+          "source": "sweeps.csv:2242",
+          "case_id": "grid_536e77ee7c94affb",
+          "excess_relative": 7.599580793474777e-16
+        },
+        {
+          "source": "sweeps.csv:2331",
+          "case_id": "grid_4b06988cbb3e9c9d",
+          "excess_relative": 5.797896847246779e-16
+        },
+        {
+          "source": "sweeps.csv:2420",
+          "case_id": "grid_7bd4696364c1143c",
+          "excess_relative": 8.300150278018424e-16
+        },
+        {
+          "source": "sweeps.csv:2509",
+          "case_id": "grid_ddbadf7bde54244b",
+          "excess_relative": 6.532215343724246e-16
+        },
+        {
+          "source": "sweeps.csv:2654",
+          "case_id": "grid_0d2661d7b7f27c3a",
+          "excess_relative": 8.199776573255608e-16
+        },
+        {
+          "source": "sweeps.csv:1890",
+          "case_id": "grid_0a50c1bc555568c8",
+          "excess_relative": 9.68304609803252e-16
+        },
+        {
+          "source": "sweeps.csv:1979",
+          "case_id": "grid_c420c8b4ed036b3d",
+          "excess_relative": 7.368458259796046e-16
+        },
+        {
+          "source": "sweeps.csv:2068",
+          "case_id": "grid_948984dd0ac44be3",
+          "excess_relative": 8.608385519605568e-16
+        },
+        {
+          "source": "sweeps.csv:2157",
+          "case_id": "grid_643a66387f74ff1d",
+          "excess_relative": 6.747065555883448e-16
+        },
+        {
+          "source": "sweeps.csv:2246",
+          "case_id": "grid_b82b62ce8d92141d",
+          "excess_relative": 6.703120667521666e-16
+        },
+        {
+          "source": "sweeps.csv:2335",
+          "case_id": "grid_66743e9396207f8d",
+          "excess_relative": 6.793740288587278e-16
+        },
+        {
+          "source": "sweeps.csv:2424",
+          "case_id": "grid_7f3358c874810c53",
+          "excess_relative": 6.405348722991852e-16
+        },
+        {
+          "source": "sweeps.csv:2513",
+          "case_id": "grid_56e0fe43132a072b",
+          "excess_relative": 7.283900276677193e-16
+        },
+        {
+          "source": "sweeps.csv:2658",
+          "case_id": "grid_c3bcd73db00e2c11",
+          "excess_relative": 6.460818277213889e-16
+        },
+        {
+          "source": "sweeps.csv:1892",
+          "case_id": "grid_113d7f6921141755",
+          "excess_relative": 8.705932094757855e-16
+        },
+        {
+          "source": "sweeps.csv:1981",
+          "case_id": "grid_7e0712ea35d915a6",
+          "excess_relative": 7.371850276895587e-16
+        },
+        {
+          "source": "sweeps.csv:2070",
+          "case_id": "grid_773a17c162d08a26",
+          "excess_relative": 8.596228363040351e-16
+        },
+        {
+          "source": "sweeps.csv:2159",
+          "case_id": "grid_7cfd4a3b488f587e",
+          "excess_relative": 6.744216760916952e-16
+        },
+        {
+          "source": "sweeps.csv:2248",
+          "case_id": "grid_302db7c202841a0a",
+          "excess_relative": 6.666961010715841e-16
+        },
+        {
+          "source": "sweeps.csv:2337",
+          "case_id": "grid_3f6163871f9a0665",
+          "excess_relative": 6.77711518889311e-16
+        },
+        {
+          "source": "sweeps.csv:2426",
+          "case_id": "grid_68580f80f54fda91",
+          "excess_relative": 6.408977083334832e-16
+        },
+        {
+          "source": "sweeps.csv:2515",
+          "case_id": "grid_07c677fd9b5e07bc",
+          "excess_relative": 7.284920846341322e-16
+        },
+        {
+          "source": "sweeps.csv:2660",
+          "case_id": "grid_9bbe220e2eaa3dc9",
+          "excess_relative": 6.457737237018086e-16
+        },
+        {
+          "source": "sweeps.csv:1906",
+          "case_id": "grid_bd82613b57db62ba",
+          "excess_relative": 9.71050327652627e-16
+        },
+        {
+          "source": "sweeps.csv:1995",
+          "case_id": "grid_26a337f78daeb9b4",
+          "excess_relative": 7.441254578714599e-16
+        },
+        {
+          "source": "sweeps.csv:2084",
+          "case_id": "grid_7ef52dcb66331991",
+          "excess_relative": 7.510010482581982e-16
+        },
+        {
+          "source": "sweeps.csv:2173",
+          "case_id": "grid_03c730ae0840b525",
+          "excess_relative": 6.773277641706869e-16
+        },
+        {
+          "source": "sweeps.csv:2262",
+          "case_id": "grid_59c5d51c889303be",
+          "excess_relative": 6.668571976455916e-16
+        },
+        {
+          "source": "sweeps.csv:2351",
+          "case_id": "grid_48108122cf564b83",
+          "excess_relative": 5.794308823666117e-16
+        },
+        {
+          "source": "sweeps.csv:2440",
+          "case_id": "grid_4c68d8243aafaf08",
+          "excess_relative": 8.248029624199288e-16
+        },
+        {
+          "source": "sweeps.csv:2529",
+          "case_id": "grid_124cef7f56cc535c",
+          "excess_relative": 9.091439376242473e-16
+        },
+        {
+          "source": "sweeps.csv:2674",
+          "case_id": "grid_c237f0c47d53f5b8",
+          "excess_relative": 6.627824781684864e-16
+        },
+        {
+          "source": "sweeps.csv:1907",
+          "case_id": "grid_f082e8d9882bcd3c",
+          "excess_relative": 7.548081399675363e-16
+        },
+        {
+          "source": "sweeps.csv:1996",
+          "case_id": "grid_e91b9bbb48ccf319",
+          "excess_relative": 6.555756161091506e-16
+        },
+        {
+          "source": "sweeps.csv:2085",
+          "case_id": "grid_9a8f311482edaf55",
+          "excess_relative": 6.444769800086663e-16
+        },
+        {
+          "source": "sweeps.csv:2174",
+          "case_id": "grid_e417568d8de6a9dc",
+          "excess_relative": 6.813294847468187e-16
+        },
+        {
+          "source": "sweeps.csv:2263",
+          "case_id": "grid_0d460df169600d18",
+          "excess_relative": 7.584630067957493e-16
+        },
+        {
+          "source": "sweeps.csv:2352",
+          "case_id": "grid_6b138966a42ab0e0",
+          "excess_relative": 7.649371128425607e-16
+        },
+        {
+          "source": "sweeps.csv:2441",
+          "case_id": "grid_4c12ba241260440e",
+          "excess_relative": 7.268322439071229e-16
+        },
+        {
+          "source": "sweeps.csv:2530",
+          "case_id": "grid_4a061b55fb647d91",
+          "excess_relative": 6.601560480898011e-16
+        },
+        {
+          "source": "sweeps.csv:2675",
+          "case_id": "grid_6afdc98251fc7870",
+          "excess_relative": 5.507173692270845e-16
+        },
+        {
+          "source": "sweeps.csv:1910",
+          "case_id": "grid_2285039616fb8f86",
+          "excess_relative": 7.530338519168308e-16
+        },
+        {
+          "source": "sweeps.csv:1999",
+          "case_id": "grid_ab6e4378b1648260",
+          "excess_relative": 8.449812039374907e-16
+        },
+        {
+          "source": "sweeps.csv:2088",
+          "case_id": "grid_17cd9fb81d7cb00f",
+          "excess_relative": 7.612841453122709e-16
+        },
+        {
+          "source": "sweeps.csv:2177",
+          "case_id": "grid_2cb6dd00806dc040",
+          "excess_relative": 6.728645239308196e-16
+        },
+        {
+          "source": "sweeps.csv:2266",
+          "case_id": "grid_2b4669c28f3a3130",
+          "excess_relative": 6.680757579950776e-16
+        },
+        {
+          "source": "sweeps.csv:2355",
+          "case_id": "grid_6d6f0bef2ffba452",
+          "excess_relative": 7.88661648395516e-16
+        },
+        {
+          "source": "sweeps.csv:2444",
+          "case_id": "grid_69a8438686372be2",
+          "excess_relative": 6.375328974954154e-16
+        },
+        {
+          "source": "sweeps.csv:2533",
+          "case_id": "grid_783d69accb382138",
+          "excess_relative": 6.770538083058455e-16
+        },
+        {
+          "source": "sweeps.csv:2678",
+          "case_id": "grid_e6ceab99bd3588d4",
+          "excess_relative": 1.0894886195858022e-15
+        },
+        {
+          "source": "sweeps.csv:1912",
+          "case_id": "grid_8a310d25c5dd026f",
+          "excess_relative": 7.639855731064672e-16
+        },
+        {
+          "source": "sweeps.csv:2001",
+          "case_id": "grid_62b2dbafd14a06c5",
+          "excess_relative": 7.419172016353258e-16
+        },
+        {
+          "source": "sweeps.csv:2090",
+          "case_id": "grid_1f47856a5b52e1d9",
+          "excess_relative": 8.566587585296068e-16
+        },
+        {
+          "source": "sweeps.csv:2179",
+          "case_id": "grid_f7ad2f1f43279056",
+          "excess_relative": 6.741845720261424e-16
+        },
+        {
+          "source": "sweeps.csv:2268",
+          "case_id": "grid_5720dd1257f3ae86",
+          "excess_relative": 6.678310071980856e-16
+        },
+        {
+          "source": "sweeps.csv:2357",
+          "case_id": "grid_a3cb37260e9b083f",
+          "excess_relative": 7.752037295026136e-16
+        },
+        {
+          "source": "sweeps.csv:2446",
+          "case_id": "grid_169bd07d9d1d61f3",
+          "excess_relative": 6.339227386819363e-16
+        },
+        {
+          "source": "sweeps.csv:2535",
+          "case_id": "grid_de7ec1eccd619389",
+          "excess_relative": 6.385401939295994e-16
+        },
+        {
+          "source": "sweeps.csv:2680",
+          "case_id": "grid_6b113e27c4d7efba",
+          "excess_relative": 6.377399852917544e-16
+        },
+        {
+          "source": "sweeps.csv:1914",
+          "case_id": "grid_1db1746f74165412",
+          "excess_relative": 6.580457089278177e-16
+        },
+        {
+          "source": "sweeps.csv:2003",
+          "case_id": "grid_97463a101eb202b9",
+          "excess_relative": 7.370139268986423e-16
+        },
+        {
+          "source": "sweeps.csv:2092",
+          "case_id": "grid_c5a179be269d4722",
+          "excess_relative": 7.4796761699960545e-16
+        },
+        {
+          "source": "sweeps.csv:2181",
+          "case_id": "grid_1aa6cc41f2c21d99",
+          "excess_relative": 4.903885644910257e-16
+        },
+        {
+          "source": "sweeps.csv:2270",
+          "case_id": "grid_e6c47786f03baf96",
+          "excess_relative": 5.877266333932501e-16
+        },
+        {
+          "source": "sweeps.csv:2359",
+          "case_id": "grid_f8bccdf19018ae99",
+          "excess_relative": 6.750297149152383e-16
+        },
+        {
+          "source": "sweeps.csv:2448",
+          "case_id": "grid_7d1ca91150b23f28",
+          "excess_relative": 5.149404691197951e-16
+        },
+        {
+          "source": "sweeps.csv:2537",
+          "case_id": "grid_ec183277f40ef907",
+          "excess_relative": 6.454404649788607e-16
+        },
+        {
+          "source": "sweeps.csv:2682",
+          "case_id": "grid_6927e7113481b8ef",
+          "excess_relative": 5.677319180974877e-16
+        },
+        {
+          "source": "sweeps.csv:1931",
+          "case_id": "grid_2af6b5e08393e69b",
+          "excess_relative": 7.567911467882403e-16
+        },
+        {
+          "source": "sweeps.csv:2020",
+          "case_id": "grid_4609c8a9c4b0904c",
+          "excess_relative": 7.492294634576385e-16
+        },
+        {
+          "source": "sweeps.csv:2109",
+          "case_id": "grid_59a2fb39d7553dc6",
+          "excess_relative": 7.5222190789207e-16
+        },
+        {
+          "source": "sweeps.csv:2198",
+          "case_id": "grid_bdc72124f3d9681b",
+          "excess_relative": 8.730827692237648e-16
+        },
+        {
+          "source": "sweeps.csv:2287",
+          "case_id": "grid_bbe315add3a73e84",
+          "excess_relative": 6.703782822591269e-16
+        },
+        {
+          "source": "sweeps.csv:2376",
+          "case_id": "grid_4a1bacf115946c00",
+          "excess_relative": 6.824518269988859e-16
+        },
+        {
+          "source": "sweeps.csv:2465",
+          "case_id": "grid_8682181a9854e231",
+          "excess_relative": 6.065537980032062e-16
+        },
+        {
+          "source": "sweeps.csv:2554",
+          "case_id": "grid_b77dcac5147fc944",
+          "excess_relative": 6.676702214760566e-16
+        },
+        {
+          "source": "sweeps.csv:2699",
+          "case_id": "grid_5881fd35d21a6bc8",
+          "excess_relative": 7.744702804319046e-16
+        },
+        {
+          "source": "sweeps.csv:1932",
+          "case_id": "grid_89cf995d88e1b078",
+          "excess_relative": 9.676648970631278e-16
+        },
+        {
+          "source": "sweeps.csv:2021",
+          "case_id": "grid_766164a2bae8e488",
+          "excess_relative": 8.470252310268338e-16
+        },
+        {
+          "source": "sweeps.csv:2110",
+          "case_id": "grid_90ee4ed63ec29a2c",
+          "excess_relative": 7.548766706969782e-16
+        },
+        {
+          "source": "sweeps.csv:2199",
+          "case_id": "grid_fbac76c817cada62",
+          "excess_relative": 6.786123924199435e-16
+        },
+        {
+          "source": "sweeps.csv:2288",
+          "case_id": "grid_3c4abe7b2675e5ce",
+          "excess_relative": 9.502687664720665e-16
+        },
+        {
+          "source": "sweeps.csv:2377",
+          "case_id": "grid_d1e7ceddbd929b33",
+          "excess_relative": 1.1495943236859112e-15
+        },
+        {
+          "source": "sweeps.csv:2466",
+          "case_id": "grid_da32c3c2eb856e7a",
+          "excess_relative": 6.992388738916656e-16
+        },
+        {
+          "source": "sweeps.csv:2555",
+          "case_id": "grid_00d2f0336a4ec2e2",
+          "excess_relative": 9.131923333522042e-16
+        },
+        {
+          "source": "sweeps.csv:2700",
+          "case_id": "grid_44c0b745c4253df7",
+          "excess_relative": 7.716797635114946e-16
+        },
+        {
+          "source": "sweeps.csv:1933",
+          "case_id": "grid_d236c8611e04283a",
+          "excess_relative": 8.597725977610552e-16
+        },
+        {
+          "source": "sweeps.csv:2022",
+          "case_id": "grid_20620ed64ae24914",
+          "excess_relative": 7.400285940199154e-16
+        },
+        {
+          "source": "sweeps.csv:2111",
+          "case_id": "grid_c26941d3257e55a6",
+          "excess_relative": 8.63743885026158e-16
+        },
+        {
+          "source": "sweeps.csv:2200",
+          "case_id": "grid_5aa2f7d5dc545eaa",
+          "excess_relative": 7.70693986105747e-16
+        },
+        {
+          "source": "sweeps.csv:2289",
+          "case_id": "grid_dda51089f7622d19",
+          "excess_relative": 6.393474064102418e-16
+        },
+        {
+          "source": "sweeps.csv:2378",
+          "case_id": "grid_3fe0730b489cd422",
+          "excess_relative": 6.7297911904109865e-16
+        },
+        {
+          "source": "sweeps.csv:2467",
+          "case_id": "grid_a64aabfd676d95b3",
+          "excess_relative": 6.3468429117006345e-16
+        },
+        {
+          "source": "sweeps.csv:2556",
+          "case_id": "grid_18e726dc5844e00a",
+          "excess_relative": 8.05663743448474e-16
+        },
+        {
+          "source": "sweeps.csv:2701",
+          "case_id": "grid_a5df59c639f1170c",
+          "excess_relative": 9.099141292859885e-16
+        },
+        {
+          "source": "sweeps.csv:1934",
+          "case_id": "grid_df112fd3a95f3f9b",
+          "excess_relative": 7.601702557543775e-16
+        },
+        {
+          "source": "sweeps.csv:2023",
+          "case_id": "grid_568c78b81acd1683",
+          "excess_relative": 7.46992077737851e-16
+        },
+        {
+          "source": "sweeps.csv:2112",
+          "case_id": "grid_6338147bc539e820",
+          "excess_relative": 7.564735911368932e-16
+        },
+        {
+          "source": "sweeps.csv:2201",
+          "case_id": "grid_5089f480a164e50f",
+          "excess_relative": 6.904764834025096e-16
+        },
+        {
+          "source": "sweeps.csv:2290",
+          "case_id": "grid_039927d0813638f8",
+          "excess_relative": 7.635377644294391e-16
+        },
+        {
+          "source": "sweeps.csv:2379",
+          "case_id": "grid_123fa42f778c7168",
+          "excess_relative": 6.999025558766415e-16
+        },
+        {
+          "source": "sweeps.csv:2468",
+          "case_id": "grid_e16c65991ed966b5",
+          "excess_relative": 7.837273425806945e-16
+        },
+        {
+          "source": "sweeps.csv:2557",
+          "case_id": "grid_791a1c2e5e812e04",
+          "excess_relative": 6.824913697706286e-16
+        },
+        {
+          "source": "sweeps.csv:2702",
+          "case_id": "grid_3a3fe3ffcd2592ec",
+          "excess_relative": 6.369998299524253e-16
+        },
+        {
+          "source": "sweeps.csv:1935",
+          "case_id": "grid_2480d8c6f586101d",
+          "excess_relative": 6.450436350378793e-16
+        },
+        {
+          "source": "sweeps.csv:2024",
+          "case_id": "grid_fff59549a9d99f15",
+          "excess_relative": 5.351728830709758e-16
+        },
+        {
+          "source": "sweeps.csv:2113",
+          "case_id": "grid_e7acc913607c75b9",
+          "excess_relative": 6.520216336102606e-16
+        },
+        {
+          "source": "sweeps.csv:2202",
+          "case_id": "grid_bc6984b322c5d52a",
+          "excess_relative": 5.778517502206505e-16
+        },
+        {
+          "source": "sweeps.csv:2291",
+          "case_id": "grid_c56e7fc4ef4a79a5",
+          "excess_relative": 6.662656736036534e-16
+        },
+        {
+          "source": "sweeps.csv:2380",
+          "case_id": "grid_de848d72228c7ff4",
+          "excess_relative": 4.870845137837819e-16
+        },
+        {
+          "source": "sweeps.csv:2469",
+          "case_id": "grid_6128e4d250dc5af7",
+          "excess_relative": 4.635755941306105e-16
+        },
+        {
+          "source": "sweeps.csv:2558",
+          "case_id": "grid_8e3565b7937f125b",
+          "excess_relative": 6.372902740999207e-16
+        },
+        {
+          "source": "sweeps.csv:2703",
+          "case_id": "grid_3ad6bf3ac17b00d6",
+          "excess_relative": 7.635709502596915e-16
+        },
+        {
+          "source": "sweeps.csv:2603",
+          "case_id": "grid_ad77baaed64ca5d8",
+          "excess_relative": 7.36340387014964e-16
+        },
+        {
+          "source": "sweeps.csv:2605",
+          "case_id": "grid_53194393d1ca2509",
+          "excess_relative": 9.099250987413457e-16
+        },
+        {
+          "source": "sweeps.csv:2607",
+          "case_id": "grid_dd9443981191769e",
+          "excess_relative": 8.223606799971802e-16
+        },
+        {
+          "source": "sweeps.csv:2609",
+          "case_id": "grid_efab267320fe8e8d",
+          "excess_relative": 8.147701554896926e-16
+        },
+        {
+          "source": "sweeps.csv:2611",
+          "case_id": "grid_a1f3c9a29ea28046",
+          "excess_relative": 7.373767045666198e-16
+        },
+        {
+          "source": "sweeps.csv:2613",
+          "case_id": "grid_c5331ea0bbcd9b66",
+          "excess_relative": 8.794111157520503e-16
+        },
+        {
+          "source": "sweeps.csv:2615",
+          "case_id": "grid_f8836fde6c8f4bd7",
+          "excess_relative": 7.907358372310618e-16
+        },
+        {
+          "source": "sweeps.csv:2617",
+          "case_id": "grid_aef0735b492941be",
+          "excess_relative": 7.077205048010041e-16
+        },
+        {
+          "source": "sweeps.csv:2619",
+          "case_id": "grid_380bf7d287385dfa",
+          "excess_relative": 7.826586350825529e-16
+        },
+        {
+          "source": "sweeps.csv:2604",
+          "case_id": "grid_7bd02da73a5617a9",
+          "excess_relative": 8.182988500392948e-16
+        },
+        {
+          "source": "sweeps.csv:2606",
+          "case_id": "grid_520cf25ac30310ac",
+          "excess_relative": 7.640417149218795e-16
+        },
+        {
+          "source": "sweeps.csv:2608",
+          "case_id": "grid_8a8c4106f87d4c9b",
+          "excess_relative": 5.78493633209889e-16
+        },
+        {
+          "source": "sweeps.csv:2610",
+          "case_id": "grid_39f3b166d89c7288",
+          "excess_relative": 8.883314482363355e-16
+        },
+        {
+          "source": "sweeps.csv:2612",
+          "case_id": "grid_888a515924f2cd9f",
+          "excess_relative": 8.136579207906939e-16
+        },
+        {
+          "source": "sweeps.csv:2614",
+          "case_id": "grid_8328279a2c08bea5",
+          "excess_relative": 8.086614784576196e-16
+        },
+        {
+          "source": "sweeps.csv:2616",
+          "case_id": "grid_bef6552b89a17a1f",
+          "excess_relative": 8.455004377071022e-16
+        },
+        {
+          "source": "sweeps.csv:2618",
+          "case_id": "grid_6baefa6130040d5f",
+          "excess_relative": 7.094465400026807e-16
+        },
+        {
+          "source": "sweeps.csv:2620",
+          "case_id": "grid_41019e30d25f28d4",
+          "excess_relative": 7.365702274897213e-16
+        },
+        {
+          "source": "sweeps.csv:2621",
+          "case_id": "grid_8aae1398f1328347",
+          "excess_relative": 1.0084147266707191e-15
+        },
+        {
+          "source": "sweeps.csv:2712",
+          "case_id": "grid_cf8dc9c5e55d71fa",
+          "excess_relative": 1.5134564187392786e-15
+        },
+        {
+          "source": "sweeps.csv:2714",
+          "case_id": "grid_e766c79d80db1eb2",
+          "excess_relative": 1.3453861486380426e-15
+        },
+        {
+          "source": "sweeps.csv:2716",
+          "case_id": "grid_be57c35c66fadab9",
+          "excess_relative": 1.1487887046415029e-15
+        },
+        {
+          "source": "sweeps.csv:2718",
+          "case_id": "grid_111140cc3c632ab5",
+          "excess_relative": 9.89581080699567e-16
+        },
+        {
+          "source": "sweeps.csv:2720",
+          "case_id": "grid_611e611b5477a030",
+          "excess_relative": 9.89089071759124e-16
+        },
+        {
+          "source": "sweeps.csv:2722",
+          "case_id": "grid_2fef23bffffebcf8",
+          "excess_relative": 1.2717090450215632e-15
+        },
+        {
+          "source": "sweeps.csv:2724",
+          "case_id": "grid_02fa936ae88705a1",
+          "excess_relative": 1.2772394075464662e-15
+        },
+        {
+          "source": "sweeps.csv:2726",
+          "case_id": "grid_3fb90a71e814e82a",
+          "excess_relative": 1.2725676050920718e-15
+        },
+        {
+          "source": "sweeps.csv:2622",
+          "case_id": "grid_10083a5ada625a06",
+          "excess_relative": 1.3428814700677732e-15
+        },
+        {
+          "source": "sweeps.csv:2713",
+          "case_id": "grid_bfe27ef4909ce8c4",
+          "excess_relative": 1.1769326080145106e-15
+        },
+        {
+          "source": "sweeps.csv:2715",
+          "case_id": "grid_e60a489fa7c449b1",
+          "excess_relative": 1.3460231827561224e-15
+        },
+        {
+          "source": "sweeps.csv:2717",
+          "case_id": "grid_6eafc63354c66716",
+          "excess_relative": 1.177734053158997e-15
+        },
+        {
+          "source": "sweeps.csv:2719",
+          "case_id": "grid_3ec0f8eb5b59cb87",
+          "excess_relative": 1.3069214535180517e-15
+        },
+        {
+          "source": "sweeps.csv:2721",
+          "case_id": "grid_0978e24b08aef4fb",
+          "excess_relative": 1.4639258190713907e-15
+        },
+        {
+          "source": "sweeps.csv:2723",
+          "case_id": "grid_0664a2e6d3447d17",
+          "excess_relative": 1.1180452039987722e-15
+        },
+        {
+          "source": "sweeps.csv:2725",
+          "case_id": "grid_50f51de34fbfe93a",
+          "excess_relative": 1.117535997290875e-15
+        },
+        {
+          "source": "sweeps.csv:2727",
+          "case_id": "grid_cba12e4ac3089c31",
+          "excess_relative": 1.2752201219642923e-15
+        },
+        {
+          "source": "sweeps.csv:2728",
+          "case_id": "grid_790062444690fa0f",
+          "excess_relative": 8.188598174043383e-16
+        },
+        {
+          "source": "sweeps.csv:2730",
+          "case_id": "grid_6feb8a8d26069d43",
+          "excess_relative": 1.1843140393046412e-15
+        },
+        {
+          "source": "sweeps.csv:2732",
+          "case_id": "grid_571cbb3cc6a48a1d",
+          "excess_relative": 1.1887104606837348e-15
+        },
+        {
+          "source": "sweeps.csv:2734",
+          "case_id": "grid_dc2195c64b34a38c",
+          "excess_relative": 8.679474864451366e-16
+        },
+        {
+          "source": "sweeps.csv:2736",
+          "case_id": "grid_5bb3fd5c20cd1e7e",
+          "excess_relative": 9.661738667752449e-16
+        },
+        {
+          "source": "sweeps.csv:2738",
+          "case_id": "grid_4daa9743679c4444",
+          "excess_relative": 1.384013052674497e-15
+        },
+        {
+          "source": "sweeps.csv:2740",
+          "case_id": "grid_f0652f944ed0a0c0",
+          "excess_relative": 1.0260034587931563e-15
+        },
+        {
+          "source": "sweeps.csv:2742",
+          "case_id": "grid_bf7b7b2e138b9d38",
+          "excess_relative": 8.371892160834953e-16
+        },
+        {
+          "source": "sweeps.csv:2744",
+          "case_id": "grid_bb1b9db0eff35205",
+          "excess_relative": 1.0354545858826374e-15
+        },
+        {
+          "source": "sweeps.csv:2729",
+          "case_id": "grid_12ac07dff0c290ee",
+          "excess_relative": 9.320758110296072e-16
+        },
+        {
+          "source": "sweeps.csv:2731",
+          "case_id": "grid_767f739bf928c30d",
+          "excess_relative": 1.0679907294882303e-15
+        },
+        {
+          "source": "sweeps.csv:2733",
+          "case_id": "grid_a8173849593b39db",
+          "excess_relative": 9.469022704229348e-16
+        },
+        {
+          "source": "sweeps.csv:2735",
+          "case_id": "grid_1136063e69b84875",
+          "excess_relative": 9.748016934641362e-16
+        },
+        {
+          "source": "sweeps.csv:2737",
+          "case_id": "grid_d4bbc7fc7d309a8e",
+          "excess_relative": 1.0727791109405283e-15
+        },
+        {
+          "source": "sweeps.csv:2739",
+          "case_id": "grid_d4cc0b8b36c074f6",
+          "excess_relative": 1.1700606238460417e-15
+        },
+        {
+          "source": "sweeps.csv:2741",
+          "case_id": "grid_8bac57faf068e061",
+          "excess_relative": 8.693055751725646e-16
+        },
+        {
+          "source": "sweeps.csv:2743",
+          "case_id": "grid_1243981d8be8c245",
+          "excess_relative": 8.397171519634876e-16
+        },
+        {
+          "source": "sweeps.csv:2745",
+          "case_id": "grid_57e82d53f6f90f99",
+          "excess_relative": 9.303132097736475e-16
+        },
+        {
+          "source": "xi_sweep.csv:2",
+          "case_id": "grid_8533b7e33815c53e",
+          "excess_relative": 9.836391770813116e-16
+        },
+        {
+          "source": "xi_sweep.csv:17",
+          "case_id": "grid_37011b1a7a0bfe03",
+          "excess_relative": 1.3071802803362514e-15
+        },
+        {
+          "source": "xi_sweep.csv:32",
+          "case_id": "grid_6ac6f48bf343c86b",
+          "excess_relative": 1.1374768134081013e-15
+        },
+        {
+          "source": "xi_sweep.csv:47",
+          "case_id": "grid_6471a46b7e0354e5",
+          "excess_relative": 1.1121444345121565e-15
+        },
+        {
+          "source": "xi_sweep.csv:62",
+          "case_id": "grid_c4759d1237749447",
+          "excess_relative": 9.583726694606443e-16
+        },
+        {
+          "source": "xi_sweep.csv:77",
+          "case_id": "grid_b0125e16731dc8ed",
+          "excess_relative": 1.1134605419768727e-15
+        },
+        {
+          "source": "xi_sweep.csv:92",
+          "case_id": "grid_4ec56a66e57963eb",
+          "excess_relative": 1.1753425768518029e-15
+        },
+        {
+          "source": "xi_sweep.csv:107",
+          "case_id": "grid_d228e6ed1c935040",
+          "excess_relative": 1.1760485466884206e-15
+        },
+        {
+          "source": "xi_sweep.csv:122",
+          "case_id": "grid_a1dc148a64c65d56",
+          "excess_relative": 1.0080090612159827e-15
+        },
+        {
+          "source": "xi_sweep.csv:5",
+          "case_id": "grid_b23b1bfef1338c14",
+          "excess_relative": 1.3062526738792763e-15
+        },
+        {
+          "source": "xi_sweep.csv:20",
+          "case_id": "grid_114d16cdeb7a44fd",
+          "excess_relative": 1.4709339287128588e-15
+        },
+        {
+          "source": "xi_sweep.csv:35",
+          "case_id": "grid_2f998b1f155bd111",
+          "excess_relative": 9.843550173421341e-16
+        },
+        {
+          "source": "xi_sweep.csv:50",
+          "case_id": "grid_e8f9df3ad452742f",
+          "excess_relative": 9.602282382534223e-16
+        },
+        {
+          "source": "xi_sweep.csv:65",
+          "case_id": "grid_ad32d4b5df817daa",
+          "excess_relative": 1.5912664661290023e-15
+        },
+        {
+          "source": "xi_sweep.csv:80",
+          "case_id": "grid_27b022aba223bfbd",
+          "excess_relative": 1.4316543660039712e-15
+        },
+        {
+          "source": "xi_sweep.csv:95",
+          "case_id": "grid_9ef325e99add9487",
+          "excess_relative": 1.178585190125673e-15
+        },
+        {
+          "source": "xi_sweep.csv:110",
+          "case_id": "grid_8ffd1a67f15d600c",
+          "excess_relative": 1.3446025987480548e-15
+        },
+        {
+          "source": "xi_sweep.csv:125",
+          "case_id": "grid_1dc952ec386fc05e",
+          "excess_relative": 1.0085153889307459e-15
+        },
+        {
+          "source": "xi_sweep.csv:8",
+          "case_id": "grid_22094db58327fabd",
+          "excess_relative": 1.4697253931236925e-15
+        },
+        {
+          "source": "xi_sweep.csv:23",
+          "case_id": "grid_909b1996d5216857",
+          "excess_relative": 1.4716078232095696e-15
+        },
+        {
+          "source": "xi_sweep.csv:38",
+          "case_id": "grid_f136bc087585fe25",
+          "excess_relative": 1.4639981285751721e-15
+        },
+        {
+          "source": "xi_sweep.csv:53",
+          "case_id": "grid_49efeaf67dcdd07b",
+          "excess_relative": 1.271779199666173e-15
+        },
+        {
+          "source": "xi_sweep.csv:68",
+          "case_id": "grid_9a80d7ea2b082cdc",
+          "excess_relative": 1.431854665716401e-15
+        },
+        {
+          "source": "xi_sweep.csv:83",
+          "case_id": "grid_b888fddcc6573e57",
+          "excess_relative": 1.4312182949738997e-15
+        },
+        {
+          "source": "xi_sweep.csv:98",
+          "case_id": "grid_d814488870b569c8",
+          "excess_relative": 1.3437827994121631e-15
+        },
+        {
+          "source": "xi_sweep.csv:113",
+          "case_id": "grid_312358313c3555fd",
+          "excess_relative": 1.511495384891358e-15
+        },
+        {
+          "source": "xi_sweep.csv:128",
+          "case_id": "grid_8987e3413f8b1015",
+          "excess_relative": 1.0093292982967474e-15
+        },
+        {
+          "source": "xi_sweep.csv:14",
+          "case_id": "grid_657bedfa53875acd",
+          "excess_relative": 1.1594981257079026e-15
+        },
+        {
+          "source": "xi_sweep.csv:29",
+          "case_id": "grid_247349f4e91321e6",
+          "excess_relative": 1.172329447662212e-15
+        },
+        {
+          "source": "xi_sweep.csv:44",
+          "case_id": "grid_1db5b87ad553b219",
+          "excess_relative": 1.3020294441090963e-15
+        },
+        {
+          "source": "xi_sweep.csv:59",
+          "case_id": "grid_4206d866c15e3446",
+          "excess_relative": 1.4299342411507173e-15
+        },
+        {
+          "source": "xi_sweep.csv:74",
+          "case_id": "grid_eae5e5d6e9de2846",
+          "excess_relative": 1.2739474294081561e-15
+        },
+        {
+          "source": "xi_sweep.csv:89",
+          "case_id": "grid_a57428779aae379b",
+          "excess_relative": 1.277642818474232e-15
+        },
+        {
+          "source": "xi_sweep.csv:104",
+          "case_id": "grid_2f55169b90f36ff2",
+          "excess_relative": 1.3423689493318833e-15
+        },
+        {
+          "source": "xi_sweep.csv:119",
+          "case_id": "grid_e3e247c3a528583e",
+          "excess_relative": 1.1816556979168727e-15
+        },
+        {
+          "source": "xi_sweep.csv:134",
+          "case_id": "grid_775d5035e0912ec0",
+          "excess_relative": 1.511496923056505e-15
+        }
+      ],
+      "strict_true_norm_violations": [],
+      "true_norm_violations_above_float_comparison_scale": [],
+      "monotonicity_violations": [],
+      "float_comparison_scale": "512 eps times max(N delta, B_total, true norm); diagnostics only, never added to bounds"
+    },
+    "independent_audits": {
+      "full_focus_table_configurations": 342,
+      "expected_full_focus": 342,
+      "full_active_dense_checks": 207,
+      "full_inactive_zero_checks": 135,
+      "small_N4_table_configurations": 1269,
+      "literal_N2_active_tables": 60,
+      "max_full_raw_error_relative_true_norm": 3.4868136133445555e-07,
+      "max_full_final_error_relative_true_norm": 1.3004841214562924e-14,
+      "max_small_raw_error_relative_true_norm": 3.7119357393222367e+25,
+      "max_small_final_error_relative_true_norm_all_including_unavailable": 17190247.901579257,
+      "max_small_final_error_relative_true_norm_available_only": 2.1603340247337162e-08,
+      "worst_available_small_N_case": {
+        "parameter_id": "table_afadced5512770e4",
+        "config": "uniform_N256_s1_rho0.75",
+        "audit_small_true_correction_norm": "8.782821858353564e-12",
+        "audit_small_off_error_max_spectral": "1.897382889377621e-19",
+        "audit_small_error_relative_true_correction_norm": "2.1603340247337162e-08"
+      },
+      "small_N_unavailable_bounds": 3,
+      "small_N_unavailable_cases": [
+        {
+          "parameter_id": "table_e6506faf8c42a402",
+          "config": "uniform_N256_s2_rho0.3",
+          "true_correction_norm": 2.041226369744074e-18,
+          "raw_error_relative_true_norm": 0.9542562420188181,
+          "final_exposed_raw_error_relative_true_norm": 0.9542562420188181,
+          "reason": "Raw cancellation unreliable; automatic stable path exceeds its query budget; no available numerical small-N bound is claimed."
+        },
+        {
+          "parameter_id": "table_8536068d0cc0a4bc",
+          "config": "uniform_N256_s2_rho0.75",
+          "true_correction_norm": 1.8952329648634204e-26,
+          "raw_error_relative_true_norm": 17190247.901579257,
+          "final_exposed_raw_error_relative_true_norm": 17190247.901579257,
+          "reason": "Raw cancellation unreliable; automatic stable path exceeds its query budget; no available numerical small-N bound is claimed."
+        },
+        {
+          "parameter_id": "table_8536068d0cc0a4bc",
+          "config": "moderate_N256_s1_rho0.75",
+          "true_correction_norm": 2.325325772537098e-13,
+          "raw_error_relative_true_norm": 1.1674606567334884e-06,
+          "final_exposed_raw_error_relative_true_norm": 1.1674606567334884e-06,
+          "reason": "Raw cancellation unreliable; automatic stable path exceeds its query budget; no available numerical small-N bound is claimed."
+        }
+      ],
+      "small_N_availability_flag_mismatches": [],
+      "max_literal_pair_component_residual": 3.3046482217358175e-15,
+      "incomplete_residuals": [],
+      "parts": 141,
+      "part_configurations": 1269,
+      "algorithm_sha256": "d741bb51a745af593721517795af5f0b3bae6d64b826e148b6dabb21ff6c9e61",
+      "stale_parts": [],
+      "primary_checkpoint_replay_mismatches": []
+    },
+    "tests_and_plots": {
+      "tests": {
+        "tests_run": 12,
+        "failures": 0,
+        "errors": 0,
+        "ok": true,
+        "elapsed_s": 0.2538484580582008,
+        "source_sha256": {
+          "offdiag_bounds.py": "d741bb51a745af593721517795af5f0b3bae6d64b826e148b6dabb21ff6c9e61",
+          "test_offdiag_bounds.py": "818557e80feebe0eeb5019784c881cf469dba37508df392b58fb6b064a7e51e1"
+        }
+      },
+      "log_ok": true,
+      "figures": {
+        "fig1_correction_and_degree_bounds": {
+          "pixels": [
+            2967,
+            1694
+          ],
+          "source_rows": 252,
+          "png_sha256": "2f015d980e90f902d4b1096a925cc02e9537280057eaff88bbd8f6611ffac4a5",
+          "svg_sha256": "92a95d8b87f11870ab049f1add70ccf1040e4829a475fb82b7105a6f48218188",
+          "csv_sha256": "c0f05bf531c7871c7f21b552716a5f97532f4405740de4c6c607c94df57b178e"
+        },
+        "fig2_tightness_self_and_offdegree": {
+          "pixels": [
+            3565,
+            2003
+          ],
+          "source_rows": 84,
+          "png_sha256": "c0b0346c4af99f56492fc17e2e22c7e774cbd50e8466a1feaaf8710a4a1cf66b",
+          "svg_sha256": "3c054678ece26654481c6cc36ba18208e5aa973d4aec672a569c00e571d914d8",
+          "csv_sha256": "885edc41824a73b3cdedca5eec9900107926cb773ffeba98d43df3061dc4557e"
+        },
+        "fig3_winner_badcase_empirical_budgets": {
+          "pixels": [
+            2751,
+            1209
+          ],
+          "source_rows": 90,
+          "png_sha256": "4d6b451bcbcba030a0bc9e13e890ea46c865cf8a4e3aac6f197deb40767e7c15",
+          "svg_sha256": "6cc7607bb12c9b33a2dd48603370e8d2b40f62de4a64be9b82d9b652397e04e5",
+          "csv_sha256": "8a3e9f6cb1a5f0d370599be565c109645f74c6f210746ad78855ded50de1f419"
+        },
+        "fig4_incremental_bound_setup_cost": {
+          "pixels": [
+            2367,
+            1226
+          ],
+          "source_rows": 21,
+          "png_sha256": "7054d91d84cd30f4d7c713794ee64df7033368f05a7f464c95dc0b68d82723c9",
+          "svg_sha256": "ead50b810a8c7a0d027d0b1cc94882d47d6284541937c59773de27a6d72fc05a",
+          "csv_sha256": "d3377f64cd23bebe9b33e37548c99b36d19a7019bb11473678db5b745ef9e125"
+        }
+      },
+      "plot_status": {
+        "generated": [
+          {
+            "figure": "fig1_correction_and_degree_bounds",
+            "plotted_records": 252
+          },
+          {
+            "figure": "fig2_tightness_self_and_offdegree",
+            "plotted_records": 84
+          },
+          {
+            "figure": "fig3_winner_badcase_empirical_budgets",
+            "plotted_records": 90
+          },
+          {
+            "figure": "fig4_incremental_bound_setup_cost",
+            "plotted_records": 21
+          }
+        ],
+        "skipped": [],
+        "notes": [],
+        "input_rows": 1692,
+        "dataset_rows": {
+          "convergence": 324,
+          "sweeps": 927,
+          "validation": 387,
+          "xi_sweep": 45,
+          "best_projection_diagnostics": 9
+        }
+      }
+    },
+    "incremental_cost": {
+      "raw_rows": 1701,
+      "case_summary_rows": 27,
+      "labels": {
+        "self-dominated-outlier": 9,
+        "winner": 9,
+        "active-badcase": 9
+      },
+      "invalid_samples": [],
+      "bad_shared_parameter_samples": [],
+      "summary_mismatches": [],
+      "budgets": {
+        "winner": {
+          "configurations": 9,
+          "old_envelope_pass": 5,
+          "improved_envelope_pass": 9,
+          "independent_reference_empirical_pass": 9
+        },
+        "active-badcase": {
+          "configurations": 9,
+          "old_envelope_pass": 0,
+          "improved_envelope_pass": 0,
+          "independent_reference_empirical_pass": 0
+        },
+        "self-dominated-outlier": {
+          "configurations": 9,
+          "old_envelope_pass": 9,
+          "improved_envelope_pass": 9,
+          "independent_reference_empirical_pass": 9
+        }
+      },
+      "context": {
+        "repeats": 9,
+        "warmups": 1,
+        "threads": [],
+        "load_average": [
+          6.6337890625,
+          8.58642578125,
+          10.32177734375
+        ],
+        "platform": "darwin",
+        "policy": "New isolated bound-only setup batch; parameter samples shared across configurations. Full bound includes correction total-degree FFT and self-exclusion. Fallback cost reported separately; no cached-matvec timings or old-batch speed ratios."
+      }
+    },
+    "targeted_small_N_stability": {
+      "rows": 6,
+      "auto_unavailable": 3,
+      "forced_over_default_budget": 3,
+      "max_forced_relative_error": 3.805069032427714e-16,
+      "strict_forced_norm_violations": [
+        {
+          "parameter_id": "table_0dfb399e75c3848e",
+          "config": "uniform_N256_s2_rho0.75",
+          "excess_absolute": 2.5849394142282115e-26,
+          "excess_relative_true_norm": 2.261897598685362e-16
+        },
+        {
+          "parameter_id": "table_8536068d0cc0a4bc",
+          "config": "uniform_N256_s2_rho0.75",
+          "excess_absolute": 1.1479437019748901e-41,
+          "excess_relative_true_norm": 6.057005778482839e-16
+        }
+      ],
+      "forced_setup_seconds": [
+        0.11137216701172292,
+        0.21483812492806464,
+        1.2337061250582337,
+        32.284602334024385,
+        15.184720666962676,
+        12.655425125034526
+      ],
+      "inconsistent_rows": [],
+      "summary": {
+        "selected_table_configurations": 6,
+        "selection_relative_degree_error_threshold": 1e-08,
+        "selection_role": "Offline diagnostic only; never a mathematical bound floor or a production selection/rejection criterion",
+        "auto_unavailable": 3,
+        "forced_exceeds_default_budget": 3,
+        "max_forced_relative_error": 3.805069032427714e-16,
+        "max_forced_strict_norm_violation_abs": 2.5849394142282115e-26,
+        "forced_setup_seconds": [
+          0.11137216701172292,
+          0.21483812492806464,
+          1.2337061250582337,
+          32.284602334024385,
+          15.184720666962676,
+          12.655425125034526
+        ],
+        "algorithm_sha256": "d741bb51a745af593721517795af5f0b3bae6d64b826e148b6dabb21ff6c9e61",
+        "primary_results_modified": false,
+        "policy": "Explicit extra-cost offline stable audit; the original 3 auto-unavailable rows remain unavailable in the primary batch. Float64 diagnostics, not interval certificates."
+      },
+      "scope": "Separate explicit-cost offline audit; primary auto-unavailable bounds remain unavailable; no bound inflation."
+    },
+    "verification_summary": {
+      "source_rows": 1692,
+      "unique_case_ids": 1602,
+      "unique_parameter_ids": 141,
+      "computed_table_configurations": 1269,
+      "active_table_configurations": 540,
+      "reused_active_dense_table_configurations": 477,
+      "true_norm_unavailable_cases": 63,
+      "small_N_checked_table_configurations": 1269,
+      "full_N_checked_table_configurations": 342,
+      "literal_N2_checked_tables": 60,
+      "stable_fallback_used_table_configurations": 9,
+      "cancellation_unreliable_raw_table_configurations": 9,
+      "small_N_unavailable_bounds": 3,
+      "unavailable_improved_bounds": 0,
+      "max_true_norm_violation_abs": 0,
+      "max_old_bound_monotonicity_violation_abs": 0,
+      "max_B_total_source_residual_abs": 0,
+      "max_full_raw_off_error_relative_true_norm": 3.4868136133445555e-07,
+      "max_full_off_error_relative_true_norm": 1.3004841214562924e-14,
+      "max_small_raw_off_error_relative_true_norm": 3.7119357393222367e+25,
+      "max_small_off_error_relative_true_norm": 17190247.901579257,
+      "max_small_off_error_relative_true_norm_available": 2.1603340247337162e-08,
+      "small_N_error_policy": "All-case maxima retain the raw diagnostics of unavailable auto bounds; available-only precision and extra-cost forced-stable audits are reported separately.",
+      "max_literal_pair_component_residual": 3.3046482217358175e-15,
+      "historical_Eproj_material_violations": 0,
+      "max_historical_Eproj_violation_relative": 1.8474535573578727e-15,
+      "roundoff_classification_relative_scale": 1.1368683772161603e-13,
+      "certified_total_bound_available": false,
+      "policy": "Sufficient/conservative correction bound; empirical-pass candidates are not rejected merely for envelope failure. No certified epsilon_old is available.",
+      "recorded_at": "2026-10-27T16:23:49.395560+00:00"
+    }
+  },
+  "artifact_sha256": {
+    "README.md": "f3845e7e3c8eb560841ec9527fe738d425587a7d7f9cc0a0eda08e42771d2872",
+    "audit_small_stability.py": "c29474c062b87ad18b113cb8d02156695804eb98b1e4a506eda92d4130a39280",
+    "audit_sources.py": "534243a9e21bdb87c5da0f47e64534a7883594986dcf94f3fd1293e7cc44c7e4",
+    "figures/fig1_correction_and_degree_bounds.png": "2f015d980e90f902d4b1096a925cc02e9537280057eaff88bbd8f6611ffac4a5",
+    "figures/fig1_correction_and_degree_bounds.svg": "92a95d8b87f11870ab049f1add70ccf1040e4829a475fb82b7105a6f48218188",
+    "figures/fig2_tightness_self_and_offdegree.png": "c0b0346c4af99f56492fc17e2e22c7e774cbd50e8466a1feaaf8710a4a1cf66b",
+    "figures/fig2_tightness_self_and_offdegree.svg": "3c054678ece26654481c6cc36ba18208e5aa973d4aec672a569c00e571d914d8",
+    "figures/fig3_winner_badcase_empirical_budgets.png": "4d6b451bcbcba030a0bc9e13e890ea46c865cf8a4e3aac6f197deb40767e7c15",
+    "figures/fig3_winner_badcase_empirical_budgets.svg": "6cc7607bb12c9b33a2dd48603370e8d2b40f62de4a64be9b82d9b652397e04e5",
+    "figures/fig4_incremental_bound_setup_cost.png": "7054d91d84cd30f4d7c713794ee64df7033368f05a7f464c95dc0b68d82723c9",
+    "figures/fig4_incremental_bound_setup_cost.svg": "ead50b810a8c7a0d027d0b1cc94882d47d6284541937c59773de27a6d72fc05a",
+    "figures/plot_data/fig1_correction_and_degree_bounds.csv": "c0f05bf531c7871c7f21b552716a5f97532f4405740de4c6c607c94df57b178e",
+    "figures/plot_data/fig2_tightness_self_and_offdegree.csv": "885edc41824a73b3cdedca5eec9900107926cb773ffeba98d43df3061dc4557e",
+    "figures/plot_data/fig3_winner_badcase_empirical_budgets.csv": "8a3e9f6cb1a5f0d370599be565c109645f74c6f210746ad78855ded50de1f419",
+    "figures/plot_data/fig4_incremental_bound_setup_cost.csv": "d3377f64cd23bebe9b33e37548c99b36d19a7019bb11473678db5b745ef9e125",
+    "figures/plot_status.json": "71b299d1fcab98b454b6ab80252203fccf44e372c85eb35a94cb105321282fc6",
+    "final_audit.py": "18fcccf27255044eb5aa4886ca9f1aa710ccd2e406e2e760575cb0958a72a406",
+    "focus_catalog.csv": "c132db1f198c939df2aa68c7de55d879844f094455dab3590264e17ba9c6072d",
+    "offdiag_bounds.py": "d741bb51a745af593721517795af5f0b3bae6d64b826e148b6dabb21ff6c9e61",
+    "plot_results.py": "028ed74dd365a4a82588f47ec56d39cc8996a7a9ce6d0e174a361a64fff3f469",
+    "proof.md": "4e63773c9c13b9c98e66385a2de9acf81877492b94ec72593b38e55db9f4132a",
+    "report.md": "7b85d756b5c691838d4dc603977b0a61e5906d35e7a147360e14d0376cfe7680",
+    "report.sources.json": "08d20a2245ffeb41f1c4c1c6ea42d67b26e376bc8403ba6e9191e225e649e725",
+    "report_generator.py": "f3e5917a15ab26dc4e4d8a0b98d3a7b1fa121c7a6bcec07474c703498c4ccfff",
+    "requirements_github.md": "867948af4e28007dc586670d6ce21382b13b73569c60085e60f18b37bc8347e3",
+    "results/analysis_summary.json": "96766cb393c2d484ff1e2cf6af6d5a5f1d17859f9580d6820fb4a192daabb9c8",
+    "results/bounds.csv": "7a0ed66cae701ff9a6f27918a0f00d4d470162039f210a8553bbf46020880925",
+    "results/cases_summary.csv": "f74c737a3dec28516001aeddf2130f3e66af199cfcf1f1a3de63782548912ecb",
+    "results/merge.log": "ebe99e21025e64413586ad929fdd6ae9c85ed5cb73eaa195156ba6972af161fd",
+    "results/parts/table_069c4144c8457c0a.json": "75ee3e34ba1c1cbed1a31519e15ca4f366d31180e949d3c305e5f8dc0b6c46c9",
+    "results/parts/table_087d8dcb913b09b4.json": "b6eca24bcdf9062d073eef3b03ff5b0e68428e12dab40c00421d3b7cd36a8824",
+    "results/parts/table_0c77e7f123a27b8b.json": "7cc99aa6f0ee39127f535357ed59778fb4853e5e48d6de63a90d5808af99bc2f",
+    "results/parts/table_0d404389d9f41cfa.json": "5542daa062602aa1e30e5b2b495e075bc7d64f1114ce03708f209e5fc4dc8886",
+    "results/parts/table_0dfb399e75c3848e.json": "12c0a870257dd06295d8515ff123a32d127cb79c1250c43253f8f3c46da05823",
+    "results/parts/table_10e3008bd04de4c3.json": "84e886dda1bd166eef3ae1133e08c4741df56bba16e2e9738e9b6705b6bd39bc",
+    "results/parts/table_11049950a9a478d0.json": "f1fc62bd9bc8571ccf27f06888e904860354c17c2bed67efb3887f90e5de3739",
+    "results/parts/table_1122a7130f5a059f.json": "380c0dc708bbeb691d2c5822fed3bda32044cc3f1ba71c1966b7a83124ec95aa",
+    "results/parts/table_12dc3a8eb059938f.json": "b07efc57a6680177eb4644ae2dffec682807e509291affb3ad2b895ff76c7994",
+    "results/parts/table_14878fc314a3cda3.json": "f242f040a6390aacbcfb375ee30a367b2009fcbd9823a3810f045cdc7e9928cf",
+    "results/parts/table_150739192a74aff4.json": "d2f076ed72559d103d65b20f2dc598eeadec7af81432af238093f186df03733d",
+    "results/parts/table_15ec7f1b7e67641b.json": "0c64d7b8a1e7cf423b063c5f05b8409d70633c511b009c350b0a689faefe9d4c",
+    "results/parts/table_1712f38182dcd216.json": "f2d9edadb8169de945803b5987e211f4d1b73390e40b67b666a8699cec594820",
+    "results/parts/table_1719e7f499e88462.json": "c8a73d1cf291b339cc80487951023a4435d425b94ebe548a030be966561b5420",
+    "results/parts/table_1795b97c94ec03c2.json": "b0293f61c9468a6178613aa332e5e22dfd760758e59439ddfe20bb5d31da82d8",
+    "results/parts/table_1a173d7ecaf874f9.json": "8c933a4922d4f8248aada1fbb4712ba430c3b260c27ac0fc1df78db3af2a0d4b",
+    "results/parts/table_1a71011e1132ca36.json": "51a0f07c0d93113a6042d3d4734cee9abfb6003a18d32c98a4d23ee3bbd57c5b",
+    "results/parts/table_1d6f75ec899062c3.json": "e58ff39f0ca6604b78cc1080ea847d75993e3276ce85d1b75e6b3ed4650e3cee",
+    "results/parts/table_1ee1c08a31463f31.json": "d1a86bd7212863f7043122bb76479d2688c58865ffcbaedc45350c84fea504fe",
+    "results/parts/table_1f9ce85e85b93c9a.json": "a5b0b97ef556565f3cb87d2c87c1dcf77c5325b9bc231ced6a23ab5fe95d50e4",
+    "results/parts/table_1fc33befaed67f0c.json": "94125a30b3ed70ed979a555591996aa7b52ba67f088f814d3fba9b2f2c00c526",
+    "results/parts/table_1ff95ece47cde54d.json": "3c81e2ee8fcd5a18e7979604eaebbcd9fd440fc4a853ca12ec2fbe211b56222c",
+    "results/parts/table_212ef897ab9f8103.json": "86dabc4436227481096e550d4818906f970c5f23511f66ca671a1cf3c43aa056",
+    "results/parts/table_229c2435d18a996a.json": "b089248515cfe3cf131231976fab57edc68209154fbc1c22c07795e3390882b4",
+    "results/parts/table_261944ce9445fba0.json": "5b5cdff2e11b65e16a652d03cfdae813612c8591895f36a6f7d5c3b1f6c66f5e",
+    "results/parts/table_27c10892726c8686.json": "7db47a2ca9c1fdf92ac4be1d345010b2f45d0f26cd52af427d5b02cfc00be754",
+    "results/parts/table_2f1a28d6bbb34b2f.json": "9a1fcca4a2bc260cdb9c1eaa7426a5958964498133c1e2c1f2a88a05732d4d0a",
+    "results/parts/table_3373120e3a3da8c2.json": "9b689524ad23030238797b5e04dc75490353bce8eb3137aeeedba5b171a1a3c4",
+    "results/parts/table_362cf15ce8ba28b5.json": "80a3e564a2371f8cdb82182566142f83d246ae3675ad28349282ed5eec9f8dde",
+    "results/parts/table_375f80f0fe42c044.json": "5219a48bef0e3d6d626bca28c7ea23ca40c371f3e6dad45910f213d710da20a6",
+    "results/parts/table_3929401e5e4211e1.json": "bbde12d97ca4d78b8c9a3c23312a78b5d1325cb3296af12cdc57bd55695c2c57",
+    "results/parts/table_3af989d082cad1de.json": "9e64d818e86ed9eab5c83e97fe6e3746dd2e291c07f4555e1a8b7928bf23b302",
+    "results/parts/table_3d94208065f30c7b.json": "586040c25cca0cd9e1995a261faddd672eeed536b1f4052ca0946a424655c1bb",
+    "results/parts/table_3e38f193a1d4c0e2.json": "79ab97d26857c49ba17a2e6d84c65030290f14d8fbff998f19de2e3281f12f41",
+    "results/parts/table_3e3d09ad50d5112a.json": "6b42da3f41b680ce8a52e1c13a504ca1e1c169e9938f3fa8b694b2e8e7d3e615",
+    "results/parts/table_3eb58919bbfa58fd.json": "3bcec2180886901ba68904d21adfb4fc68d8e25ff6d3d1d1048be9546184a5dd",
+    "results/parts/table_3f6c00ae5d37044c.json": "b4068c1a3838a2f6329f3d2c07ae0d3ffbe54533c118ee398da03c154704df4e",
+    "results/parts/table_4014e3bd030a0a7e.json": "02703bb2cacfc7bb6ab8b917eecf7b079046844925534bc230c8ad2d11244e78",
+    "results/parts/table_4134aaabbf21e3a1.json": "0855c681c2f5836a73930cc37d4a3c88330ab0d2a57e0d4efefedc9bd7fbaad4",
+    "results/parts/table_416a4a4b5cc3f97f.json": "c7c1f95dc129a89c43daaf91c74e97ade3120f615b2fa6ea9d3960fa15b0b22d",
+    "results/parts/table_42c5522bdc978b01.json": "88e781e8a85218f93329ae800cf7f651f935c5b692fe5b2254db82750b57e826",
+    "results/parts/table_43e0fb61d86c6ce1.json": "b2ff89c613a59017b7f919fabbad01f74a8cb3f5bf5ec33f51f0f4fdf2fd3fa1",
+    "results/parts/table_442cb03274a64c6d.json": "2c66304d71c44b3d33b36837754c9f66de7aadba90548685c542f6d2beca35f0",
+    "results/parts/table_46974690a7d3eba6.json": "ab0d66cb34695b786a30b81c2cf09c3f31c271a0e91cef258dc7c8ff0e982ee7",
+    "results/parts/table_4dd27d17c01fe9cd.json": "cf2f3f1e92b8efba144d3c2903eafabbbf750755fe8886312acfa7a549a8814c",
+    "results/parts/table_5254b5b946489c32.json": "51aabc4928f9b5f2db6aedfcfa950c448206e691ffeee8ac8417e310d8c84736",
+    "results/parts/table_540658395d9c8751.json": "44364f2ca59c0d20c114aabcf2b9feb48a7c4aeb85f438c172ef732ef6ac8f7d",
+    "results/parts/table_543b95dba37a9496.json": "9677db84252712347eeff177d1114e8b20173aaaa56888c7f3ff6b157ffb09f0",
+    "results/parts/table_551d7eebbf6e4c8f.json": "1d2b9cabb8af9f77f0bdf47ff69dbaf63240a7a78a4d29bf4b02a4cc6c15970b",
+    "results/parts/table_55bfd27928ff40c3.json": "5cf0a8e25eeb5b53366fa21b49eb8ff0ad0c6453bee53a8c4aec2e78df21a3a7",
+    "results/parts/table_564318e28d7a6536.json": "3a05f8b4b2203d28233359799f147f3cd005c0762057462e50b61bcdc961dd3b",
+    "results/parts/table_5788cea3fa91c96c.json": "282ae7a90c4aed2375b90d5ebebc0208102b0121336b63f59bf182a4f7b66e5b",
+    "results/parts/table_57d351521233a41b.json": "0e79e1f09a66539f9882cb2bdeba37196b5250203a4e1a0954bad66e8553eb70",
+    "results/parts/table_5e4609fbe7f2ee89.json": "1e1f81d2801161ae6875a1588173c88bbff448080d326f07a8f6d6dae9d5d6d7",
+    "results/parts/table_671848646c0f149f.json": "0a0be48cfdfdf1cd3d2c697238beeea3c996db310bf5dbd34b3c4c6ce6acea01",
+    "results/parts/table_688620615bffbf5d.json": "42dbd9fbc4eb92f915d30bf86d9ba5c384d08967b6d479bdb5c1eb56d360668d",
+    "results/parts/table_6b57f8b909c8b429.json": "45e62d5b0c993ea82be0c9584be56a36ab09591de518a0fc6d66643d2778f057",
+    "results/parts/table_6d17f10c63173c27.json": "2fd652a340e3d8b87ca6134797c3b4c1406a34fbc1d5608e695fdc3a30cab37a",
+    "results/parts/table_6d5e10af174f03b0.json": "3f2b838ad07c0353540f9ab26f54b06258d499ba09c53c75dc6f85de2b0fedbc",
+    "results/parts/table_6e85ce7bf5be7b26.json": "33d6081da449b858e963eb62f45d091b0bab2f0b8174149ac47ab8bc26e4300e",
+    "results/parts/table_70f81adb5ab868e6.json": "4819036230e1424af8253a3f6d821a66042a9a6bb5907ed8fca271f13e643e19",
+    "results/parts/table_73da40a32e753844.json": "c2e49b7a29933e297fe2c726b5cc41612a71634d849415cb62293ecbf62afb75",
+    "results/parts/table_7801ff4b9ab3476a.json": "60f55d828fafe6bbe3d89eeaf58749d383f2827cd1715384451bb3e7e502277a",
+    "results/parts/table_8010f5affe3623ef.json": "3820860fd90a9a89a73bf272ac242bb1587ac3519c458729fbf222ab14a38001",
+    "results/parts/table_8536068d0cc0a4bc.json": "5d5b34f9a854e8ff95dae08ad5668323deb6dcefc7832aaae1bddcda2a4f8088",
+    "results/parts/table_86a67168eadbc3fd.json": "bbedbc8e3dd03061066e5e710a98df189356599fd084fb94aa6e8afdd36113da",
+    "results/parts/table_8a67831ea69ced9a.json": "73bcb1bea2a624f9b6da0a4c2f4fcf0fbbf87e03477527ab68ae6721e856f7e0",
+    "results/parts/table_8abfa53f39be2d37.json": "00d364348366259bd3bfe57fcbc1d084a3deee45fb24e48d313ef5be6962f5dd",
+    "results/parts/table_8ad779c6cf669f0f.json": "cd341b72f533299ebba722011e357de261178af370ee6509ce0da1fa1155aea0",
+    "results/parts/table_8c75a2d69d614bdc.json": "fc0a80b2da6a1bbd91a386b9254d5b90d73dc800be620db8d605bb258b64caf7",
+    "results/parts/table_8de6e014890ebd11.json": "03d665679b5bd3d439412b2a303bdf98d49cb007a2859ccd9b0f59bf8788cbaa",
+    "results/parts/table_8dfc92cec1d8c3c1.json": "42893d255d5a70e23301198792be34d40fade82128d04bc887b167b76598d3bf",
+    "results/parts/table_91a355b7d2e06794.json": "304438ecaa4ecc9e521c3d684d7dcae12ca49b3211d1a088c5e99bb6ddb9cd3b",
+    "results/parts/table_9311b294810ab38a.json": "3d37ab2cd9dbac5fa6ca37e55c07e5a4adabdfe0a7c2f1ae42d81418da3b2d5e",
+    "results/parts/table_93957f74e14f1c3c.json": "0b7165864cbc7688fa0e45f782683a864ccba03271c18d7c9e575dc8ed5f0386",
+    "results/parts/table_9521be0063e9cfc3.json": "73aa39de9e9df29b824e2a571a19989c08969dd71f680ec2d34c0fe3f105fec6",
+    "results/parts/table_96cdc1b93e1ab01e.json": "84b079d0bd5c68183d2ca8a5fd23183dcd609f9475947a4a4d6bfc493e08f1f0",
+    "results/parts/table_97bead14b52344bd.json": "692f72c1d0d0ea251e6f353423f0d03957df493ffb051b2b8ff5ec815f3ec692",
+    "results/parts/table_9e442055c7d67520.json": "a3747932e66db84e22c0c507a8d2ee6bd90a691a908a9e182a7057f722dd11c4",
+    "results/parts/table_9e8be2bdca35415c.json": "0a7d6f6d1a37ae954ad7fe8fedefe09fcc8fc324ce8fff0b5cbffa2c319a76f5",
+    "results/parts/table_9eb668da35f6dcde.json": "63d38bf70217891caf96af3e052ce5a1dabe173ca0073c31574935d9e707c228",
+    "results/parts/table_9f4d9af229a99d67.json": "75056bb40e3ea059d3ff975f191cf0d85c5e377100a0152621dabafbb526f432",
+    "results/parts/table_a01068d6bbe391e6.json": "17dc3d2454bc66780d58be4f97e701b4370442aedb4ff73abb9799d7dc33b0c7",
+    "results/parts/table_a061500c2cb2c874.json": "8f919790e6c7d83f7f8897a196ca0ad28b30baab2adb67b7e788365780f791f5",
+    "results/parts/table_a1ead0c642879b03.json": "cab2a1027be39d37187520b1ccf858d9f4866872455a98bf03a53e610f05056f",
+    "results/parts/table_a248968e593ba791.json": "d96e73ff16f16cddedbc059c14978698dd43d001097784fa73205d5375fd9cab",
+    "results/parts/table_a55e47f45747ee64.json": "12358f74a68f507f81ca2d33634e82197b9d3508e26abe33b2ee25b35218a636",
+    "results/parts/table_a595c8f7166d8a50.json": "1572cc13d66b4cae2fca2e3d043d9e54ab1ed142c8ac080d3b4d009a453e183d",
+    "results/parts/table_a8a8e448be9fa667.json": "14f133fefb30a2a308c68a1c5114af914f03c1355bdab400850813fef59597a3",
+    "results/parts/table_a9c1281f378ca056.json": "0998b01fa3d78c155b13f621ffb1237a68270438506e6759cf0bacdfefd94c7a",
+    "results/parts/table_ab18a89f6bc2673b.json": "47c39c56f0aaaaa8cbb6afe1c945979a831c44bff3749542fd1a01a0aaeecbf9",
+    "results/parts/table_abcd7d55cf1d1c09.json": "f59ebb4bc03d287cc218bf9b09c61f5922d5bafb17b402af152b1a0ce3b95dd6",
+    "results/parts/table_af54b63c48388efa.json": "89325ec12c33b5926c1e0197c395738fc4c5403f333de4da11966ccde0be54ae",
+    "results/parts/table_afadced5512770e4.json": "48d7b001839b2c697562ff5d7b35e0fa5eada2ceb727943f5455ac504227606b",
+    "results/parts/table_b06dc370a64c94b2.json": "843e7682be5a59c2c973c8fe0f6887e869d8bb9d8da7823f2ab831b91e0aa793",
+    "results/parts/table_b0ba5afe03ef4104.json": "cc1848e6082e3658d53291c407bd9e679105da0cf5e579f271d775d9aab9f73b",
+    "results/parts/table_b60945bde91f2862.json": "893b80d936b2199ec718a747fd490b49ccf6c746a0f72e1d56cec47a94c78664",
+    "results/parts/table_b6d7fd7d2fc1fcd4.json": "fd9286a7237912d9aaf72253d6242e7dda2bff04c1ec042d40896ef558b4336d",
+    "results/parts/table_b79548131b83ebc1.json": "eda4cc91f81f06f27afcf42e3ce7c624fd4fec4d62ffa5239d50136c7124cbd7",
+    "results/parts/table_b96e003d6138e528.json": "d574cc71bc055d8f29eca0ba2395044de2d3725f613f4d33cb13b31bc1225161",
+    "results/parts/table_bd2f85cc5e7fad74.json": "41ec041d91bf705b37ef03c04e885498ec9128bef1d206faeba40da9e6785e4f",
+    "results/parts/table_c397807f6b969e21.json": "4b7ebbcb0faf7ca88839d750c949c97ed1967b8044f05d62869e62a9e9ff2451",
+    "results/parts/table_c563a833021266d1.json": "43bd5b4b912103f440133fa38c177d7366a824923a8f135dc4f4ea6b1495ae69",
+    "results/parts/table_c5b5f1161e2c7531.json": "214a79509b45c3ad18b60822ea450b637772b126bdc981e9a8afd1bba54cb206",
+    "results/parts/table_c71170b952ef27a2.json": "0ab72f44fd3d706efca165982713990bdb6e5936dc67f807bafa69b88e197845",
+    "results/parts/table_c8540c35dfeeb507.json": "4202eff59193c8195bff0d5fdde3c3d1ffdb488ad6577122c372d7b5ac06b144",
+    "results/parts/table_cad1d13cd920d452.json": "031bff3a8a3cb51db7dc30e8fc3472d9a8896a8c10a4acca483dea8d500da588",
+    "results/parts/table_cd71b721fefe0603.json": "967ca2477a265d3989cdd9af6fe05982ebbb6fb569e05afe5a6eb9abceb0c5c3",
+    "results/parts/table_cf83a8800922de51.json": "4fffb1f34852d27956c688bd0757cd1e14ebd18f9a69bfd60b4faf2b464e467d",
+    "results/parts/table_d100ad4546d8fd12.json": "7e62d422002cfbd437eb3ad28d4d2c0af4ef19e99646c5dc8b4def939e9d5230",
+    "results/parts/table_d17c9de2cef051c3.json": "260a361beb93a8b7b7107df96f0d46b6dbb6fc3744548239af794cd09eb539f3",
+    "results/parts/table_d2ae8d6c3649ada8.json": "c7cbaa3a810b10ad6a4bf45227be7a3057a76101f1501e1291e093dabdaf9cb6",
+    "results/parts/table_d42402ddbfe09ea2.json": "e640148814733133aa491e3d7d951a55cae348e2194fb1bec2ef89b5baff5207",
+    "results/parts/table_d55e8562aac1e5fd.json": "be29f34b7b8383dc7630db15df86a34e148ebea5e32145714419107c9558adf3",
+    "results/parts/table_d67539e02d8b0b15.json": "ceea0e8df51242d40db1e3def5ee684eedf36c5d3503f33add96dc3a0f2dbc88",
+    "results/parts/table_d8058671cd0694bd.json": "063c46ff35c62cf99de4284f67d6cb87e9e1ef8ec7d7b942ce1aa18178c8f1ae",
+    "results/parts/table_d939dd52d5e05673.json": "3565d334af50265b197256170d660521edcbfc50199e26c4ddf19b3e459bacd5",
+    "results/parts/table_d95d1bd1805cb4f4.json": "57685acd368dd76c1b38dfe69f4f1ae8d62864f73b6aa679b603b38516a58d5b",
+    "results/parts/table_db4b2ddfe0fa52fd.json": "22591f4dd64a70ee3d6dd9f836cea5db9b7186ad755fd2c6722182b9a082654c",
+    "results/parts/table_dd0b0c1f1a84b094.json": "b7a61418da9889382ce175e22ea47b7d8e7ce34f62ed54c61324a41419385f3f",
+    "results/parts/table_dd57feaf1f04cfb6.json": "bb9c0ed3921f32616bae0daca188516c8cccef5130870d9aab5c7d6a643f9d24",
+    "results/parts/table_dda0614997aad00f.json": "2c943c9146a0dbb9f9d297ca11948b29e0f84039016ca7ae1a1b2e1fd48cc154",
+    "results/parts/table_e16635fc5e44815d.json": "4abb62b0c9b406faa95574d91be933f68acc57e1ef8761468907aff22d20af1c",
+    "results/parts/table_e4e1fb52191e7daf.json": "dd6facf4a976c88e4edab320c3d35ac6fdffe8e9c0443c73be9041c4443e774a",
+    "results/parts/table_e6506faf8c42a402.json": "461e5c7e718d1f29daca23101ba686a16f478eef6367e2c44842e3bff2eef5c2",
+    "results/parts/table_e975833df54396ae.json": "25f39025bb10fbbf0ed8f678eec26c0a8050eac90bf15eec25c21774f48b6f31",
+    "results/parts/table_e9d74fbd1c8f6e0d.json": "f10cfa8f450c0faf7bdb5b57fb8fc738c153f1c980dd2030bf6ce4f55f1744d1",
+    "results/parts/table_ea5b9755935be9dc.json": "24c7d199e8fff7108f9367ab7564c1e64b5cf8e7ddfc9c75f5bc057e825e7c65",
+    "results/parts/table_ec3c296a0b8a6221.json": "2dc4ca79d6b42c28f1728c6aa5455f493e4dbf12bb551f6027dae0bf89615b75",
+    "results/parts/table_ec40fa2404f6302e.json": "bde04d977d21555ccc6939d1b10df8bce402fa28fa17fdf40c2c9799c6f40e37",
+    "results/parts/table_ec5d78089dc3b022.json": "6c9611d7d17d2d7a4deffe53edca23947f4d12e8501fd4620e0743d15d019b20",
+    "results/parts/table_ed8bb11c79c3d3f7.json": "7cb1502a95fa59ada1cad1647e646e70472f8bddfc51692c3f7697a8cd5cb31d",
+    "results/parts/table_ee58dceb5a270a30.json": "e1e0c8a94333fe865278182b0ba92824c4cdff8c7e9570a355216611ac46c96e",
+    "results/parts/table_f2ad89b395ba21e2.json": "3d51ce6685c9659715d208c117c466730ce948aafc92f245f9faab786aede9a0",
+    "results/parts/table_f3223e79ce22efa7.json": "dbf529d134243aeca899ae1134fd89e8f972241517d100901dd02e6d33158e7a",
+    "results/parts/table_f4febbb24ba8e78b.json": "e790a46ab779c016c64268ee08f0619802729d01492f64ea1a6864a95fb8b68c",
+    "results/parts/table_f7b3bc5946edd937.json": "2ae50068b408f34521759918b0e56fd069dda5119b77ae89e6f30bad9a61da1e",
+    "results/parts/table_f86d4df3b1da3caa.json": "a3e06e6e8c266156e7b022840e0167ea3fe1c381cf40f4728437de730d98da27",
+    "results/parts/table_fd0b623d1804a731.json": "fdb3a1543aa7abe0454e4b088fa49ae9dfb74b8d07bd16039d98810171621991",
+    "results/parts/table_fdd95d3906f71552.json": "2ceec7e27d56f321a2067fdf7eefcb3f6e05a711c1863fe5740747d3fef55cbf",
+    "results/parts/table_fe7882282c76c617.json": "642f35eff0a837092c3a0d02b0cf02229bd36aa78195e9fff42cfc8737cc8fe0",
+    "results/resume.log": "8d3c16a8ec41508672bc575473477f6af8f81b66db7bca9b056e86955834bc49",
+    "results/run.log": "1202a969e7bb2a26613a147cf28d472c43e075f4d98d8ac3c5a9e4026d9b65e3",
+    "results/smallN_stability.log": "08b0b2cec275942bb17574c9cce1afb6863675b6e9b19e69f11986c31a1c0bd5",
+    "results/smallN_stability_cases.csv": "74cd704de3e99595e644db22553aaa914f076a3f679a878e2c5c2b72becfffc5",
+    "results/smallN_stability_summary.json": "9c6b53fd08fd32eb0c8984834ca9a76adc9991f5a68716a8871a040e0b0fe7e0",
+    "results/test_offdiag_bounds.log": "98497912b5a2efd2914e8ebb841b5420bfcfe126a5e57c4ec9cadebca7a1315b",
+    "results/tests_summary.json": "6b1de00e73fcd5560acfecf336d6fc43901cdf53b19d7f7769e8cf2e3f936030",
+    "results/timing_context.json": "b901d1683f91611e936ba68d9d189d00f877807058770a2f48e3fabe010f8064",
+    "results/timing_raw.csv": "82332a81f1046c307c55d55a432f8f0fe4e5d76de385d526cf9f92d5d362c20b",
+    "results/timing_resume_check.json": "98d2c8ba9341ecf2b3c6c2c36d940209728ec720e4afe6a79546f3b472e99bcb",
+    "results/verification_summary.json": "ebe99e21025e64413586ad929fdd6ae9c85ed5cb73eaa195156ba6972af161fd",
+    "run_offdiag.py": "6938cc634d60baad09bc424742fbf510169ea07170b2f1aa047599d034486d68",
+    "source_catalog.csv": "c5e3067a20df75ca9cdc86167fab8752194cd626c5e15e4ec8b37b32ef678ff5",
+    "source_catalog.json": "74aaf98ad0e24919814ab557ce4bf6a68d6a4c2f33fcee89b3ed5d7dd47ac6b2",
+    "source_snapshot.json": "2efdfc7d4a53e273fba6a11495bcc0b7f787445052af288378522a3e2d692ce1",
+    "test_offdiag_bounds.py": "818557e80feebe0eeb5019784c881cf469dba37508df392b58fb6b064a7e51e1"
+  },
+  "scope": "Exact-arithmetic sufficient correction bound; float64 diagnostics are not interval certificates. Empirical envelope failure does not reject independently validated empirical-pass candidates."
+}

@@ -1,0 +1,30 @@
+{
+  "generated": [
+    {
+      "figure": "fig1_correction_and_degree_bounds",
+      "plotted_records": 252
+    },
+    {
+      "figure": "fig2_tightness_self_and_offdegree",
+      "plotted_records": 84
+    },
+    {
+      "figure": "fig3_winner_badcase_empirical_budgets",
+      "plotted_records": 90
+    },
+    {
+      "figure": "fig4_incremental_bound_setup_cost",
+      "plotted_records": 21
+    }
+  ],
+  "skipped": [],
+  "notes": [],
+  "input_rows": 1692,
+  "dataset_rows": {
+    "convergence": 324,
+    "sweeps": 927,
+    "validation": 387,
+    "xi_sweep": 45,
+    "best_projection_diagnostics": 9
+  }
+}
