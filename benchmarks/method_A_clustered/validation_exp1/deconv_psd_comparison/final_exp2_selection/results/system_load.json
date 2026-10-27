@@ -1,0 +1,112 @@
+[
+  {
+    "label": "before_common_formal_batch",
+    "unix": 1793120873.088227,
+    "loadavg": [
+      7.04931640625,
+      7.1337890625,
+      6.66259765625
+    ],
+    "process_rss_max_bytes": 112050176,
+    "top_processes": "  PID  PPID  %CPU %MEM COMM\n 6223     1 248.5  0.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler\n32109 31790  82.8  0.2 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/MacOS/XProtectRemediatorAdload\n32172 33675  78.2  1.3 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python\n32073 31495  58.3  0.2 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/MacOS/XProtectRemediatorPirrit\n57516     1  34.3  1.0 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer\n33683 33621  29.5  7.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)\n57618     1  12.7  0.2 /System/Library/PrivateFrameworks/TCC.framework/Support/tccd\n33675 33621  11.1  1.6 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex\n23061     1   7.6  0.1 /usr/libexec/sandboxd\n33646 33621   6.7  0.5 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)\n 2539     1   6.3  0.1 /System/Library/CoreServices/CoreServicesUIAgent.app/Contents/MacOS/CoreServicesUIAgent\n30525     1   4.8  0.1 /usr/libexec/trustd\n33365 33231   4.0  2.3 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)\n58383 57724   3.6  0.0 /usr/bin/log\n42933     1   2.8  0.0 /usr/libexec/diagnosticd"
+  },
+  {
+    "label": "uniform_N256_s2_rho0.75",
+    "unix": 1793120999.558495,
+    "loadavg": [
+      7.400390625,
+      7.36474609375,
+      6.82421875
+    ],
+    "process_rss_max_bytes": 818233344,
+    "top_processes": "  PID  PPID  %CPU %MEM COMM\n 6223     1 270.0  0.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler\n32172 33675  97.2  7.9 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python\n32522 31790  87.6  0.3 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/MacOS/XProtectRemediatorPirrit\n57516     1  27.8  0.7 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer\n57691     1   8.0  0.1 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension\n32409     1   3.2  0.3 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService\n14615     1   2.5  0.0 /System/Library/CoreServices/audioaccessoryd\n17655     1   2.2  0.9 /Applications/WeChat.app/Contents/MacOS/WeChat\n33621     1   1.6  1.1 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT\n33231     1   1.5  0.4 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome\n33683 33621   1.2  1.6 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)\n57735     1   1.1  0.2 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder\n  437     1   1.0  0.1 /usr/libexec/runningboardd\n33249 33231   0.6  0.3 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif).app/Contents/MacOS/Google Chrome Helper (Aperitif)\n33648 33621   0.6  0.3 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)"
+  },
+  {
+    "label": "strong_N256_s3_rho0.75",
+    "unix": 1793121108.933105,
+    "loadavg": [
+      6.21630859375,
+      6.9951171875,
+      6.74609375
+    ],
+    "process_rss_max_bytes": 828538880,
+    "top_processes": "  PID  PPID  %CPU %MEM COMM\n 6223     1 276.2  0.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler\n32172 33675 100.0  8.4 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python\n32717 31790  81.1  2.9 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/MacOS/XProtectRemediatorSnowBeagle\n57516     1  26.5  0.6 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer\n57691     1   8.8  0.2 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension\n57725     1   3.7  0.2 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor\n32409     1   3.0  0.2 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService\n  502     1   2.6  0.1 /usr/libexec/airportd\n57348     1   2.3  0.4 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN\n  838     1   1.8  0.0 /usr/libexec/sysmond\n17782     1   1.7  0.1 /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod\n33675 33621   1.5  0.6 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex\n  409     1   0.7  0.1 /usr/libexec/locationd\n  503     1   0.7  0.1 /usr/libexec/symptomsd\n  797     1   0.6  0.1 /Applications/Adobe Acrobat DC/Adobe Acrobat.app/Contents/Helpers/AdobeResourceSynchronizer.app/Contents/MacOS/AdobeResourceSynchronizer"
+  },
+  {
+    "label": "uniform_N256_s1_rho0.75",
+    "unix": 1793121217.8933692,
+    "loadavg": [
+      6.57177734375,
+      6.79150390625,
+      6.6865234375
+    ],
+    "process_rss_max_bytes": 884932608,
+    "top_processes": "  PID  PPID  %CPU %MEM COMM\n 6223     1 272.6  0.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler\n32172 33675  95.6  9.0 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python\n32916 31790  91.7  0.1 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/MacOS/XProtectRemediatorKeySteal\n57516     1  27.1  0.6 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer\n57691     1   9.6  0.2 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension\n57725     1   3.9  0.1 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor\n32409     1   3.2  0.2 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService\n33365 33231   1.8  1.0 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)\n    1     0   1.3  0.1 /sbin/launchd\n33249 33231   0.8  0.7 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif).app/Contents/MacOS/Google Chrome Helper (Aperitif)\n23214     1   0.6  0.1 /usr/libexec/textunderstandingd\n23722     1   0.6  0.1 /usr/libexec/PerfPowerServices\n33621     1   0.6  0.7 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT\n17655     1   0.4  0.2 /Applications/WeChat.app/Contents/MacOS/WeChat\n33231     1   0.4  0.7 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  },
+  {
+    "label": "uniform_N256_s3_rho0.75",
+    "unix": 1793121319.25541,
+    "loadavg": [
+      6.041015625,
+      6.583984375,
+      6.61669921875
+    ],
+    "process_rss_max_bytes": 895975424,
+    "top_processes": "  PID  PPID  %CPU %MEM COMM\n 6223     1 275.2  0.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler\n32172 33675  98.3  7.8 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python\n57516     1  26.9  0.7 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer\n57691     1  10.9  0.1 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension\n33675 33621   5.5  1.1 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex\n32409     1   3.1  0.2 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService\n57348     1   1.3  0.5 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN\n14036     1   1.1  0.2 /Applications/Utilities/Adobe Creative Cloud Experience/CCXProcess/CCXProcess.app/Contents/MacOS/Creative Cloud Content Manager.node\n30526     1   0.9  0.1 /usr/libexec/trustd\n  502     1   0.8  0.2 /usr/libexec/airportd\n33365 33231   0.7  0.4 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)\n58139     1   0.6  0.2 /Applications/Utilities/Adobe Creative Cloud/ACC/Creative Cloud.app/Contents/MacOS/Creative Cloud\n  536     1   0.5  0.5 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores\n33646 33621   0.5  0.3 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)\n33841 33621   0.4  0.5 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+  },
+  {
+    "label": "moderate_N256_s1_rho0.75",
+    "unix": 1793121418.503794,
+    "loadavg": [
+      5.2607421875,
+      6.18017578125,
+      6.45361328125
+    ],
+    "process_rss_max_bytes": 895975424,
+    "top_processes": "  PID  PPID  %CPU %MEM COMM\n 6223     1 269.4  0.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler\n32172 33675  97.8  8.4 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python\n57516     1  28.0  0.7 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer\n57691     1  12.7  0.2 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension\n32409     1   2.9  0.2 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService\n57725     1   1.8  0.2 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor\n27990 33231   0.7  0.1 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif Renderer).app/Contents/MacOS/Google Chrome Helper (Aperitif Renderer)\n33231     1   0.6  0.5 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome\n33646 33621   0.6  0.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)\n33841 33621   0.5  0.5 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)\n58486     1   0.5  0.1 /Users/wfy666/Library/Application Support/Adobe/com.adobe.ARMDCHelper/Adobe Acrobat Updater.app/Contents/MacOS/Acrobat Updater\n58139     1   0.4  0.2 /Applications/Utilities/Adobe Creative Cloud/ACC/Creative Cloud.app/Contents/MacOS/Creative Cloud\n  404     1   0.3  0.0 /System/Library/CoreServices/launchservicesd\n15879     1   0.3  0.3 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/MacOS/Electron\n17655     1   0.3  0.8 /Applications/WeChat.app/Contents/MacOS/WeChat"
+  },
+  {
+    "label": "moderate_N256_s2_rho0.75",
+    "unix": 1793121518.540981,
+    "loadavg": [
+      5.48291015625,
+      5.9970703125,
+      6.349609375
+    ],
+    "process_rss_max_bytes": 928956416,
+    "top_processes": "  PID  PPID  %CPU %MEM COMM\n 6223     1 274.2  0.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler\n32172 33675  99.9  8.6 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python\n57516     1  27.4  0.6 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer\n57691     1   9.2  0.2 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension\n57735     1   4.1  0.2 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder\n32409     1   3.6  0.2 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService\n57726     1   3.1  0.2 /Applications/Adobe Acrobat DC/Adobe Acrobat.app/Contents/Helpers/Adobe Acrobat Helper.app/Contents/MacOS/AdobeAcrobat\n57725     1   1.0  0.2 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor\n  633     1   0.5  0.1 /usr/libexec/secd\n33621     1   0.5  1.2 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT\n33646 33621   0.5  0.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)\n33310 33231   0.4  0.1 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif).app/Contents/MacOS/Google Chrome Helper (Aperitif)\n33675 33621   0.4  1.0 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex\n  471     1   0.3  0.1 /System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsd\n33683 33621   0.3  3.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)"
+  },
+  {
+    "label": "moderate_N256_s3_rho0.75",
+    "unix": 1793121614.38974,
+    "loadavg": [
+      5.16796875,
+      5.73779296875,
+      6.20947265625
+    ],
+    "process_rss_max_bytes": 928956416,
+    "top_processes": "  PID  PPID  %CPU %MEM COMM\n 6223     1 265.9  0.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler\n32172 33675  98.4  8.9 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python\n57516     1  29.4  0.7 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer\n57691     1   8.6  0.1 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension\n  502     1   3.9  0.1 /usr/libexec/airportd\n32409     1   3.4  0.2 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService\n57635     1   2.0  0.1 /System/Library/CoreServices/WiFiAgent.app/Contents/MacOS/WiFiAgent\n57735     1   1.8  0.2 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder\n57604     1   1.2  0.2 /System/Library/CoreServices/ControlCenter.app/Contents/MacOS/ControlCenter\n15879     1   0.7  0.3 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/MacOS/Electron\n33675 33621   0.4  0.9 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex\n33231     1   0.3  0.7 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome\n33309 33231   0.3  0.1 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif).app/Contents/MacOS/Google Chrome Helper (Aperitif)\n57724     1   0.3  0.2 /Applications/zoom.us.app/Contents/MacOS/zoom.us\n  483     1   0.2  0.0 /usr/libexec/clocksyncd"
+  },
+  {
+    "label": "strong_N256_s1_rho0.75",
+    "unix": 1793121713.306206,
+    "loadavg": [
+      5.24755859375,
+      5.57470703125,
+      6.087890625
+    ],
+    "process_rss_max_bytes": 928956416,
+    "top_processes": "  PID  PPID  %CPU %MEM COMM\n 6223     1 275.7  0.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler\n32172 33675  99.1  8.4 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python\n57516     1  26.4  0.7 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer\n57691     1   9.2  0.2 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension\n32409     1   3.1  0.2 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService\n57735     1   3.1  0.3 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder\n33646 33621   0.7  0.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)\n33249 33231   0.6  0.4 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif).app/Contents/MacOS/Google Chrome Helper (Aperitif)\n57725     1   0.6  0.2 /System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Monitor\n29058 28983   0.6  0.4 Claude\n33841 33621   0.4  0.6 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)\n17746 17670   0.3  0.1 /Applications/WeChat.app/Contents/MacOS/WeChatAppEx.app/Contents/Frameworks/WeChatAppEx Framework.framework/Versions/C/Helpers/WeApp.app/Contents/MacOS/WeApp\n  483     1   0.2  0.0 /usr/libexec/clocksyncd\n17655     1   0.2  0.7 /Applications/WeChat.app/Contents/MacOS/WeChat\n17707 17670   0.2  0.1 /Applications/WeChat.app/Contents/MacOS/WeChatAppEx.app/Contents/Frameworks/WeChatAppEx Framework.framework/Versions/C/Helpers/WeChatAppEx Helper (Renderer).app/Contents/MacOS/WeChatAppEx Helper (Renderer)"
+  },
+  {
+    "label": "strong_N256_s2_rho0.75",
+    "unix": 1793121809.6675909,
+    "loadavg": [
+      6.1630859375,
+      5.814453125,
+      6.12353515625
+    ],
+    "process_rss_max_bytes": 928956416,
+    "top_processes": "  PID  PPID  %CPU %MEM COMM\n 6223     1 278.3  0.0 /var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/CACBD069-140A-4742-9AA4-D6ADAF216770/d/Visual Studio Code-2.app/Contents/Frameworks/Electron Framework.framework/Helpers/chrome_crashpad_handler\n32172 33675  99.6  8.5 /Library/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python\n57516     1  28.3  0.6 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer\n57691     1   6.7  0.2 /System/Library/ExtensionKit/Extensions/WallpaperAerialsExtension.appex/Contents/MacOS/WallpaperAerialsExtension\n32409     1   3.8  0.2 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTDecoderXPCService.xpc/Contents/MacOS/VTDecoderXPCService\n58139     1   2.3  0.2 /Applications/Utilities/Adobe Creative Cloud/ACC/Creative Cloud.app/Contents/MacOS/Creative Cloud\n14036     1   1.6  0.4 /Applications/Utilities/Adobe Creative Cloud Experience/CCXProcess/CCXProcess.app/Contents/MacOS/Creative Cloud Content Manager.node\n33646 33621   0.5  0.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)\n  502     1   0.4  0.1 /usr/libexec/airportd\n28906 15879   0.4  0.1 /private/var/folders/2z/l_0spjx1341528jy3yg4h_dm0000gn/T/AppTranslocation/3EFDDC01-11F6-4443-A2CE-A5A8C907F55F/d/Visual Studio Code-2.app/Contents/Frameworks/Code Helper (Plugin).app/Contents/MacOS/Code Helper (Plugin)\n29058 28983   0.4  0.2 Claude\n33841 33621   0.3  0.5 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/155.0.8059.80/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)\n57724     1   0.3  0.2 /Applications/zoom.us.app/Contents/MacOS/zoom.us\n  483     1   0.2  0.0 /usr/libexec/clocksyncd\n33249 33231   0.2  0.4 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/156.0.8078.47/Helpers/Google Chrome Helper (Aperitif).app/Contents/MacOS/Google Chrome Helper (Aperitif)"
+  }
+]

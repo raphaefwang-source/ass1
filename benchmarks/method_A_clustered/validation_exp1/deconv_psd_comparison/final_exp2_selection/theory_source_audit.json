@@ -1,0 +1,127 @@
+{
+  "actual_existing_legality": {
+    "eta_rule": "eta_actual = kc*(L/M)/pi < 1 strictly",
+    "fixed_eta_max_below_one_in_existing_code": null,
+    "nyquist_rule": "floor(kc*L/(2*pi)+1e-12) < M/2",
+    "influence_denominator_threshold": 1e-10,
+    "denominator_rule": "Every retained |W_hat|^2 > INFL_THR; n_excluded must be zero",
+    "complete_shell_rule": "n_modes+n_excluded equals independent reciprocal-lattice shell count",
+    "assignment_legality": "1 <= p <= M, enforced by ProjectedMesh",
+    "source": "validation_exp1/run_exp1.py:check_mesh and ewald_longitudinal/test_parameter_selection.py:Mesh"
+  },
+  "initialization_model": {
+    "H": "exp(-z^2)-sqrt(pi)*z*erfc(z), z=kappa/(2*xi); H is not mesh spacing",
+    "CS": "4 sqrt(pi) H / xi^2",
+    "CF": "4 xi H/pi",
+    "CS_relative": "CS*kappa^2/(4*pi)",
+    "CF_relative": "CF*V*kappa^2/(4*pi)",
+    "tail": "C*s*exp(-s^2); solve on large-s branch using s_lambert; sqrt(log(C/epsilon)) is an initialization approximation",
+    "prefactors_kind": "Continuum/mean-field predictor, not certified periodic operator error or acceptance constraint"
+  },
+  "alias_mesh_models": {
+    "heuristic": "q(eta)^p, q=eta/(2-eta); O((xi*h)^p) with a locally calibrated C_M",
+    "complete_mode_bound": "alpha(k)=((1+2*zeta(p))^3-1)*max_a(|k_a|h/(2*pi-|k_a|h))^p for p>1",
+    "limitation": "Original deconvolved mesh predictor only; active real-table PSD projection has no inherited h^p certificate. p need not monotonically improve projected full error."
+  },
+  "prefactor_values_at_target_physics": [
+    {
+      "xi": 0.35,
+      "kappa": 0.2,
+      "V": 341.3333333333333,
+      "z": 0.28571428571428575,
+      "H_auxiliary": 0.5741244907710171,
+      "CS": 33.22805435318393,
+      "CF": 0.25584930183770893,
+      "CS_relative_predictor": 0.10576818199270789,
+      "CF_relative_predictor": 0.2779796894657312
+    },
+    {
+      "xi": 0.6,
+      "kappa": 0.2,
+      "V": 341.3333333333333,
+      "z": 0.16666666666666669,
+      "H_auxiliary": 0.7322409127241915,
+      "CS": 14.420702506095145,
+      "CF": 0.5593908518120457,
+      "CS_relative_predictor": 0.04590252173405452,
+      "CF_relative_predictor": 0.6077768989782905
+    },
+    {
+      "xi": 0.85,
+      "kappa": 0.2,
+      "V": 341.3333333333333,
+      "z": 0.11764705882352942,
+      "H_auxiliary": 0.8052850080567349,
+      "CS": 7.902175853877587,
+      "CF": 0.8715226094841775,
+      "CS_relative_predictor": 0.02515340696652074,
+      "CF_relative_predictor": 0.9469073497822168
+    },
+    {
+      "xi": 1.0,
+      "kappa": 0.2,
+      "V": 341.3333333333333,
+      "z": 0.1,
+      "H_auxiliary": 0.8327379815166838,
+      "CS": 5.90395856853813,
+      "CF": 1.0602749284699808,
+      "CS_relative_predictor": 0.018792883799851882,
+      "CF_relative_predictor": 1.1519863186937394
+    },
+    {
+      "xi": 1.025,
+      "kappa": 0.2,
+      "V": 341.3333333333333,
+      "z": 0.09756097560975611,
+      "H_auxiliary": 0.83658074656135,
+      "CS": 5.645404462433604,
+      "CF": 1.0917968811081251,
+      "CS_relative_predictor": 0.017969880518987052,
+      "CF_relative_predictor": 1.1862348491480577
+    },
+    {
+      "xi": 1.25,
+      "kappa": 0.2,
+      "V": 341.3333333333333,
+      "z": 0.08,
+      "H_auxiliary": 0.8645968739890488,
+      "CS": 3.9230926304838674,
+      "CF": 1.3760486627715767,
+      "CS_relative_predictor": 0.01248759168697788,
+      "CF_relative_predictor": 1.495073768892341
+    },
+    {
+      "xi": 1.5,
+      "kappa": 0.2,
+      "V": 341.3333333333333,
+      "z": 0.06666666666666667,
+      "H_auxiliary": 0.886277565127069,
+      "CS": 2.792686370276689,
+      "CF": 1.692665465297067,
+      "CS_relative_predictor": 0.008889396806697966,
+      "CF_relative_predictor": 1.8390772108149505
+    },
+    {
+      "xi": 1.75,
+      "kappa": 0.2,
+      "V": 341.3333333333333,
+      "z": 0.05714285714285715,
+      "H_auxiliary": 0.9019804530503404,
+      "CS": 2.088122419527285,
+      "CF": 2.0097650674532046,
+      "CS_relative_predictor": 0.00664670009697552,
+      "CF_relative_predictor": 2.1836052134474686
+    }
+  ],
+  "normalization": "Use same-physics independent Gamma_D norm; the kappa=.7/nonunit-amplitude defaults in common/parameter_optimizer are not the target physics.",
+  "selection_rule": "Only mesh legality plus actual max-nine full E_G <= epsilon controls precision feasibility. No projection bound or matrix PSD eigenvalue test is a hard search constraint.",
+  "source_sha256": {
+    "ewald_longitudinal/test_parameter_selection.py": "10474225653b10147af0b814d82b3728d0b8b4db9a161a51631ec74b63af6b8c",
+    "ewald_longitudinal/verify_ewald_longitudinal.py": "a603df07a485b37ad584a7f7db0353ad95d8a58dcb3dcba1a74d722bb4739113",
+    "benchmarks/method_A_clustered/parameter_optimizer.py": "a764067e8511506d14045877becf098782cece113013f3704177c99d17a72e1e",
+    "benchmarks/method_A_clustered/validation_exp1/run_exp1.py": "2875b558dfef7232e1dd4b48b0df79230c8cd03e11dd3ea0c841e34feb8cbf63",
+    "benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/stage1_theory.md": "0eb3f87c6e9872a481c119124ead158dc551b1b456abe4a5207b6026cc695051",
+    "benchmarks/method_A_clustered/validation_exp1/theory_guided_joint_optimization/theory.py": "c1d07d91b2fa657a63dd7e2fce65c1257d070b7412278d9e092ecfa87a3f1e67",
+    "benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/grid_psd.py": "ce1b71fd0189acf42b43a9390861703f91218b172d94633311c34023b4bf53c1"
+  }
+}

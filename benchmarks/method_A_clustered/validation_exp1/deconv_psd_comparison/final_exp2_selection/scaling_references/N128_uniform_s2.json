@@ -1,0 +1,16 @@
+{
+  "N": 128,
+  "L": 5.546890194805077,
+  "rho": 0.75,
+  "kappa": 0.2,
+  "amplitude": 1.0,
+  "position_hash": "a1152a8925fe",
+  "generation": "nested subset of committed uniform_s2, box-scaled at fixed density; one configuration only",
+  "R_D": 190.0,
+  "norm2": 83.92210785398987,
+  "cert_bound_rel": 9.869763653805473e-14,
+  "t_direct_s": 182.6002805000171,
+  "n_images": 1368306426,
+  "source": "fresh independent unsplit direct periodic annulus_tensors; own scaling_references directory",
+  "setup_timing_role": "reference-generation wall time, concurrent accuracy phase; not mixed into formal same-batch setup comparisons"
+}

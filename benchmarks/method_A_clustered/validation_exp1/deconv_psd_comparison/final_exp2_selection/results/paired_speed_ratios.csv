@@ -1,0 +1,10 @@
+epsilon,method,reference_method,id,reference_id,ratio_median_paired_blocks,ratio_ci95_low,ratio_ci95_high,blocks,resamples,batch,conditional_on_measured_candidate_selection
+0.001,PPPM-grid-PSD,PPPM-original,PPPM-grid-PSD_xi0.8_sR2.29367_sF3.19571_M12_p3,PPPM-original_xi0.8_sR2.29367_sF2.99571_M12_p3,0.988093590922697,0.9127592309344361,1.0257413241233806,45,5000,final_four_step_common_serial,True
+0.001,PPPM-grid-PSD,B2-positive,PPPM-grid-PSD_xi0.8_sR2.29367_sF3.19571_M12_p3,B2-positive_xi0.32375_sR2.59071_sT36_M24_p2,0.05856589194069216,0.05569601369374488,0.06239305374838345,45,5000,final_four_step_common_serial,True
+0.001,PPPM-grid-PSD,direct-dense,PPPM-grid-PSD_xi0.8_sR2.29367_sF3.19571_M12_p3,direct-dense,40.0525092775639,39.30927514179001,42.4968275862069,45,5000,final_four_step_common_serial,True
+0.0001,PPPM-grid-PSD,PPPM-original,PPPM-grid-PSD_xi1.24875_sR2.9_sF2.9_M20_p4,PPPM-original_xi1.35_sR2.9_sF2.9_M20_p4,1.057608844292302,0.9918646037626206,1.1503056483743064,45,5000,final_four_step_common_serial,True
+0.0001,PPPM-grid-PSD,B2-positive,PPPM-grid-PSD_xi1.24875_sR2.9_sF2.9_M20_p4,B2-positive_xi0.35_sR3.1_sT36_M72_p2,0.035753498794713026,0.03195393860999586,0.04004924409981413,45,5000,final_four_step_common_serial,True
+0.0001,PPPM-grid-PSD,direct-dense,PPPM-grid-PSD_xi1.24875_sR2.9_sF2.9_M20_p4,direct-dense,59.5952263536838,56.22752109558722,65.41158228274793,45,5000,final_four_step_common_serial,True
+1e-05,PPPM-grid-PSD,PPPM-original,PPPM-grid-PSD_xi1.05_sR3.1119_sF3.75967_M20_p6,PPPM-original_xi1_sR3.3_sF3.3_M16_p6,0.9914451478795517,0.9415457333576684,1.0481739047346041,45,5000,final_four_step_common_serial,True
+1e-05,PPPM-grid-PSD,B2-positive,PPPM-grid-PSD_xi1.05_sR3.1119_sF3.75967_M20_p6,B2-positive_xi0.2_sR3.7_sT36_M100_p2,0.007924192537290486,0.0076132172659516585,0.00815072924532496,45,5000,final_four_step_common_serial,True
+1e-05,PPPM-grid-PSD,direct-dense,PPPM-grid-PSD_xi1.05_sR3.1119_sF3.75967_M20_p6,direct-dense,87.06046017699116,82.45551237471877,90.33778040964192,45,5000,final_four_step_common_serial,True

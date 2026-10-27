@@ -1,0 +1,91 @@
+{
+  "created_at": "2026-10-27T12:47:16.385077-04:00",
+  "snapshot": "source_snapshot.json",
+  "preservation": {
+    "old_tracked_files": 1048,
+    "old_result_files": 773,
+    "independent_references": 72,
+    "reference_sidecars": 72
+  },
+  "sources": {
+    "deconv_psd_comparison/results/search.csv": {
+      "source_rows": 310,
+      "catalog_rows": 310,
+      "sha256": "7f134984dafa16e40c2ea8e1e7b8ba15e285bca749f005cc4c32bacde0c77c8f"
+    },
+    "deconv_psd_comparison/results/validation_summary.csv": {
+      "source_rows": 94,
+      "catalog_rows": 94,
+      "sha256": "93ec999ce479427dc9fedf7ac6f56b5a6df49959437e449278bd387b1af997f7"
+    },
+    "deconv_psd_comparison/results/validation.csv": {
+      "source_rows": 846,
+      "catalog_rows": 846,
+      "sha256": "00b4d1933f8c0053409087ae71fe6b76ab5ceea4a576a1a521c3b33cfe51bc67"
+    },
+    "deconv_psd_comparison/results/final_timing.csv": {
+      "source_rows": 6,
+      "catalog_rows": 6,
+      "sha256": "3ae77853ebdf7c8c20081e5209e16ef13d26697468c79acb223b700e0dd18abd"
+    },
+    "deconv_psd_comparison/results/primary_timing/final_timing.csv": {
+      "source_rows": 15,
+      "catalog_rows": 15,
+      "sha256": "f13eb2d7953298544bab2cf494e6fc421858ec68844b27827288ea3071af8cbd"
+    },
+    "positive_mesh_b2/results/search.csv": {
+      "source_rows": 355,
+      "catalog_rows": 355,
+      "sha256": "f47c527e464f235375a2ae50266bb14666a2d57c29b1c9b086ae72fa5f495565"
+    },
+    "positive_mesh_b2/results/validation_summary.csv": {
+      "source_rows": 59,
+      "catalog_rows": 59,
+      "sha256": "f713cfcf54b577a41e94eca3b0407980fd3ba9f01bfc0920eb727aa8906da458"
+    },
+    "positive_mesh_b2/results/validation.csv": {
+      "source_rows": 531,
+      "catalog_rows": 531,
+      "sha256": "a33dbc643aa9914e774106cf87853e5ac18588e555f385e3f731352fde7072cf"
+    },
+    "positive_mesh_b2/results/final_timing.csv": {
+      "source_rows": 15,
+      "catalog_rows": 15,
+      "sha256": "e7f7502b8e537fac12b6cde5aaf271e994c348b66e5022bee10ce584f6a24836"
+    },
+    "theory_guided_joint_optimization/joint_candidates.csv": {
+      "source_rows": 5112,
+      "catalog_rows": 5112,
+      "sha256": "fb10030066ccc8ee115c19d9b47f2f30f21eae37fc3f613a27ea120f2fe894a2"
+    },
+    "theory_guided_joint_optimization/results/final_validation.csv": {
+      "source_rows": 648,
+      "catalog_rows": 648,
+      "sha256": "466efee2d7d3d484cb60a76fa1411186fea99926159952d2d719b1466e062751"
+    },
+    "theory_guided_joint_optimization/results/final_timing.csv": {
+      "source_rows": 477,
+      "catalog_rows": 477,
+      "sha256": "d3a919e36c03624833d7e4abd61b0c91e6eae420b8bdb46b5e38dab3fd68cbba"
+    },
+    "theory_guided_joint_optimization/results/mesh_scale_calibration.csv": {
+      "source_rows": 4,
+      "catalog_rows": 4,
+      "sha256": "d487abb4e80474f3144603146eddd2c065d4ea49ce3645fc2380fd29321801fa"
+    }
+  },
+  "catalog_rows": 8472,
+  "unique_prior_candidate_parameters": 5740,
+  "method_rows": {
+    "PPPM-original": 6676,
+    "B2-positive": 1242,
+    "PPPM-grid-PSD": 554
+  },
+  "unique_candidates_by_method": {
+    "B2-positive": 427,
+    "PPPM-grid-PSD": 118,
+    "PPPM-original": 5195
+  },
+  "theory_audit": "theory_source_audit.json",
+  "policy": "Historical records are read-only hints/baselines. New formal rankings require a fresh matched same-machine/same-thread timing batch."
+}

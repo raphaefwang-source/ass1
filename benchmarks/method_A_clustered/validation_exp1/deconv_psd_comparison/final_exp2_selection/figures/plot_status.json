@@ -1,0 +1,76 @@
+{
+  "generated": [
+    {
+      "figure": "fig1_best_tested_parameters",
+      "records": 24
+    },
+    {
+      "figure": "fig2_accuracy_cost_pareto",
+      "records": 131
+    },
+    {
+      "figure": "fig3_matched_error_and_runtime",
+      "records": 12
+    },
+    {
+      "figure": "fig4_setup_and_matvec_components",
+      "records": 66
+    },
+    {
+      "figure": "fig5_dynamics_step_amortized_cost",
+      "records": 72
+    },
+    {
+      "figure": "fig6_particle_number_scaling",
+      "records": 12
+    },
+    {
+      "figure": "fig7_projection_effect_diagnostics",
+      "records": 27
+    },
+    {
+      "figure": "fig7b_validated_grid_projection_effect",
+      "records": 17
+    }
+  ],
+  "skipped": [],
+  "notes": [],
+  "input_files": [
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/best_by_epsilon.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/final_timing.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/timing_raw.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/components_raw.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/table_setup_raw.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/config_setup_raw.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/search.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/candidate_memberships.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/shortlist.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/availability.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/validation.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/cross_validation.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/scaling.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/scaling_raw.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/paired_speed_ratios.csv",
+    "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/final_exp2_selection/results/theory_initialization.csv"
+  ],
+  "input_rows": {
+    "best": 12,
+    "timing": 26,
+    "raw": 12585,
+    "components": 3645,
+    "tables": 75,
+    "setups": 675,
+    "candidates": 228,
+    "memberships": 273,
+    "shortlist": 36,
+    "availability": 9,
+    "validation": 378,
+    "cross_validation": 99,
+    "scaling": 12,
+    "scaling_raw": 252,
+    "ratios": 9,
+    "seeds": 72,
+    "formal_raw": 8190,
+    "validation_primary": 279
+  }
+}
