@@ -1,0 +1,32 @@
+{
+ "PPPM-original": {
+  "independent_candidates": 105,
+  "failures": 15,
+  "stages": {
+   "boundary": 28,
+   "coarse": 47,
+   "cross_winner": 2,
+   "local": 28
+  }
+ },
+ "B2-positive": {
+  "independent_candidates": 87,
+  "failures": 0,
+  "stages": {
+   "boundary": 16,
+   "coarse": 45,
+   "cross_winner": 2,
+   "local": 24
+  }
+ },
+ "PPPM-grid-PSD": {
+  "independent_candidates": 118,
+  "failures": 14,
+  "stages": {
+   "boundary": 41,
+   "coarse": 47,
+   "cross_winner": 2,
+   "local": 28
+  }
+ }
+}

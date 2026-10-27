@@ -1,0 +1,290 @@
+{
+  "generated": "2026-10-26T22:46:06-04:00",
+  "report": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/report.md",
+  "results": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results",
+  "status": {
+    "sweep_done": true,
+    "sweep_counts": {
+      "PPPM-original": 927,
+      "B2-positive": 927,
+      "PPPM-grid-PSD": 927
+    },
+    "expected_sweeps_per_method": 927,
+    "convergence_done": true,
+    "convergence_rows": 972,
+    "expected_convergence_rows": 972,
+    "validated_main_methods": [
+      "B2-positive",
+      "PPPM-grid-PSD",
+      "PPPM-original"
+    ],
+    "timing_done": true,
+    "figures_generated": 11,
+    "figures_skipped": [],
+    "controlled_xi_rows": 135,
+    "controlled_xi_done": true,
+    "protocol_complete": true
+  },
+  "source_files": [
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/audit_initial.json",
+      "size": 140466,
+      "sha256": "87b09ed3bb944b9e941b9a1cbb08044d2e0809577c0de788abf9d2da088090ac"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/figures/plot_status.json",
+      "size": 1222,
+      "sha256": "b5e95bc5e0c23c308d0933b70b8b78e46df4e8aa1d78efa204f63e0a8273df9a"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/initial_state.json",
+      "size": 1072,
+      "sha256": "b2670ea06167122de3acd7ceb70f7dd2004812dd859a6a23e96d160ad290eb24"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/assignment_weights_audit.csv",
+      "size": 639,
+      "sha256": "edd0faf5390dac8de06d3210d03fec5511f38136b586e3f1e9ad4ddd59f43c79"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/audit_final.json",
+      "size": 38741,
+      "sha256": "b33e77a3eac9a8ab38c6ded1d9bfb3749d797a80b7a91029aa90ef0da280da87"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/best_configuration.csv",
+      "size": 1710,
+      "sha256": "129fd12fed8f1b8d1d652248a6b18ae269cbf176df542472c89bc6e2f5514354"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/best_projection_diagnostics.csv",
+      "size": 16999,
+      "sha256": "0a9d5adc8c64a32aa8cbbcb6eb55e948311393217415198a9577e7c554d5150e"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/components_raw.csv",
+      "size": 222705,
+      "sha256": "dabbf651a2379a1fe4f34a1273621bc59bdef0b0ac92a5f8b1f79918e05af755"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/config_setup_raw.csv",
+      "size": 32162,
+      "sha256": "4566c9a367444df8915b6e33da2d052b4a367efce5d7dd0b20d3ca8eac81f9ad"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/convergence.csv",
+      "size": 595557,
+      "sha256": "278cfa46b4e9158b416c872534710e1fd4005d19d6ebb287c9663d0ce335b603"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/cross_winner_summary.csv",
+      "size": 1899,
+      "sha256": "17ae58e0f12bd12c1fcc6653b6912e09eeb3eed5d3620c201a08c137e2ee4989"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/final_timing.csv",
+      "size": 2955,
+      "sha256": "3ae77853ebdf7c8c20081e5209e16ef13d26697468c79acb223b700e0dd18abd"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/final_timing_raw.csv",
+      "size": 183407,
+      "sha256": "4e5baa3e443e4a91c03de3df54296a5d27e162226f57647586f220df0a14be0b"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/frontier.csv",
+      "size": 6649,
+      "sha256": "e744c060f7bd6d648d63bab6e1d04623e47a144d5a14f8a2d45b5bc155afe703"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/memory.csv",
+      "size": 12973,
+      "sha256": "16a6821cffb3fca38ce8774611c44759c27940d9cd8ea51e7e07b4882b80d785"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/mesh_inactive_rate_fits.csv",
+      "size": 1590,
+      "sha256": "8a90ecd388a59d7ee3974cf8f2d5d5cbbee588345a97c675fc569930d7ab6e1e"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/mesh_local_slopes.csv",
+      "size": 56854,
+      "sha256": "e04c2882320c55df0c6f4922893ce0560be666730bcbe3a3005c872a89a1681d"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/mesh_rate_fits.csv",
+      "size": 3140,
+      "sha256": "4aa962e9de9352175522e4f70657da25537a84e7f396f9f4165a4d258a57403c"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/paired_speed_ratios.csv",
+      "size": 880,
+      "sha256": "166bae0ba39e6743711a7d1764daa90a6d88709d1f73fa3614991788bc49bee2"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/accuracy_time_frontier.csv",
+      "size": 5914,
+      "sha256": "868326472a670bd27dafd71aec024ed73d89a7d7fb8745856cd0f7a15a508240"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/best_configuration.csv",
+      "size": 1609,
+      "sha256": "010a25082364983fc618634326c18799e8a0f947fd7f9c2d07714e38f90fbee5"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/best_configuration.json",
+      "size": 3153,
+      "sha256": "d926f7066f17e950d6471ea22695adc72f63f91a5b9e8f7fa21121846eb7c248"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/common_kernel_setup_raw.csv",
+      "size": 708,
+      "sha256": "0839cf1c2368fe839a4c78423178ccf2c7a7e338516d54b65138d955f56262b1"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/components_raw.csv",
+      "size": 222095,
+      "sha256": "1d87c486dbc5a238c4421e10251cea27e8d1b3098e4d0905bbb2b61dbd432ab0"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/config_setup_raw.csv",
+      "size": 79020,
+      "sha256": "a9a902f3f7191859fce71d4a07a03194b58d1c7ee9694e5003c0ba101a877551"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/final_timing.csv",
+      "size": 6222,
+      "sha256": "f13eb2d7953298544bab2cf494e6fc421858ec68844b27827288ea3071af8cbd"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/final_timing_raw.csv",
+      "size": 457261,
+      "sha256": "34d22eea1f2de5dd513d124e24bfe6b61b3c37521c4f52177d1e4f1f262bc7c4"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/frontier.csv",
+      "size": 5914,
+      "sha256": "868326472a670bd27dafd71aec024ed73d89a7d7fb8745856cd0f7a15a508240"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/memory.csv",
+      "size": 32185,
+      "sha256": "c7a68b23e4ff5c2d23fae4816716f85e48a7e5fcd89f88814c2783cacad92e34"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/paired_speed_ratios.csv",
+      "size": 880,
+      "sha256": "9c5d044b131f7274ea8e3639bd431c6625dfd12af1cab78bab1e460ef6681b34"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/serial_prescreen_raw.csv",
+      "size": 68207,
+      "sha256": "88fa7229990d2233589d513d3f64d338fe2d7e027be581924de415a3bb8b667d"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/system_load.json",
+      "size": 104267,
+      "sha256": "26c557398f73bea9ddcaa682f2d6cde7b9e899b91fea0504fe119c2d8ea72d3d"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/table_setup_raw.csv",
+      "size": 7911,
+      "sha256": "0d052248ccdc2308cd9f939ff246af987d4edf905f29ba88d615793f459308fc"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/timed_candidates.csv",
+      "size": 3886,
+      "sha256": "cf697b37c108756af0696066da47d235d3f30e1940aeae34829f6bbc9dfacee4"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/timing_plan.json",
+      "size": 46806,
+      "sha256": "74d503e82eb9fd46ffd5229a32b5f3cb11341de15867c4fc0538cda2100f54ce"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/timing_progress.json",
+      "size": 118,
+      "sha256": "9956ad5eebf66877cc0462f87de82a4c00ec229c658fe405bae46678a310ee8b"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/timing_protocol.json",
+      "size": 4661,
+      "sha256": "085f17195a113caa510c1754a5133c0da1174dc76779956d1120b278342d1dd6"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/primary_timing/timing_run.log",
+      "size": 885,
+      "sha256": "8bb3f13a302311624fb5348ecdc1adfff1657ac0c91d3da7a84f67a8389a5b5f"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/search.csv",
+      "size": 170847,
+      "sha256": "7f134984dafa16e40c2ea8e1e7b8ba15e285bca749f005cc4c32bacde0c77c8f"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/search_budget.json",
+      "size": 497,
+      "sha256": "f047a1e45b818b2349c56b481866d6876cec621220eed4ddd17c243f0e1c1921"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/search_theory.json",
+      "size": 1040,
+      "sha256": "641dc85c35586448db2f14e002787aaa0c53abd710b9acdd5898e87a4ff1f464"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/sweeps.csv",
+      "size": 2731166,
+      "sha256": "2258fb90b7e4b727854e19d5424ae728dbf3d3f43f1a499633f05d2174eb7ad2"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/table_audit_summary.json",
+      "size": 831,
+      "sha256": "23448cbbf69d1b9b64df2c8ea9acf75f6ece36a875a3d3bbd6b4ab730bdbd794"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/table_diagnostics.csv",
+      "size": 76107,
+      "sha256": "f53678dbf2b93fc1800e03a1298dbc6ccaf4e817511eb616d5418ed5cacfbb67"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/table_setup_raw.csv",
+      "size": 2738,
+      "sha256": "6c6f413b9d85ccd6dedadd610c7aa619af9de8d121684a0fb4703b9f0f1ffab4"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/tests_b2_regression.log",
+      "size": 948,
+      "sha256": "73d204e52389928f6d2857354133c2d0fa15d060e7122f2b74a04e4657c460d0"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/tests_grid_psd.log",
+      "size": 1232,
+      "sha256": "f667c7e9e957167fab08591c5c5f6ebce0de9d07691f21b620758bc7abbfacfb"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/timing_protocol.json",
+      "size": 5001,
+      "sha256": "f5f520fcf7e88a7e8f340919634b93692d8d88e50853631ac89dbdbf3b5913fb"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/unit_tests.log",
+      "size": 107,
+      "sha256": "f2db3b2eb01614e3a9f9604558dda452920eaec62b4ebfbc3dcc1fc3ebc32fe4"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/validation.csv",
+      "size": 615264,
+      "sha256": "00b4d1933f8c0053409087ae71fe6b76ab5ceea4a576a1a521c3b33cfe51bc67"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/validation_summary.csv",
+      "size": 19597,
+      "sha256": "93ec999ce479427dc9fedf7ac6f56b5a6df49959437e449278bd387b1af997f7"
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/results/xi_sweep.csv",
+      "size": 94785,
+      "sha256": "041ff109b157413a3cadaa881aaa4d210a636ce9190f1d53525dd92d084e7983"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "repository": "raphaefwang-source/ass1",
+  "local_repository": "/Users/wfy666/Documents/New project/ass1_joint",
+  "initial_branch": "codex/b2-positive-mesh",
+  "initial_worktree_clean": true,
+  "initial_head": "128aaf1cd8bf39c69d2bf2db9619e478fefc0c73",
+  "original_baseline": "99b416fb8a5eba3d4130f62a39110f6f00197188",
+  "new_branch": "codex/deconv-grid-psd-comparison",
+  "new_branch_start": "128aaf1cd8bf39c69d2bf2db9619e478fefc0c73",
+  "applicable_AGENTS_files_found": [],
+  "request_source": "https://github.com/raphaefwang-source/ass1/pull/3#issuecomment-6431287227",
+  "request_read_successfully": true,
+  "historical_accuracy_rows_reused": {"PPPM-original": 927, "B2-positive": 927},
+  "existing_independent_references_reused": 72,
+  "new_outputs_only": "benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/",
+  "paid_compute_resources_used": false,
+  "note": "The outer New project directory is an unrelated unborn Git repository containing many untracked projects. Research work is confined to the existing nested ass1_joint repository."
+}

@@ -1,0 +1,24 @@
+{
+ "time": "2026-10-26T22:11:23-0400",
+ "command": "python3 benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/run_accuracy.py sweeps --workers 2",
+ "git": {
+  "commit": "128aaf1cd8bf39c69d2bf2db9619e478fefc0c73",
+  "dirty": true
+ },
+ "code_hash": "f8a7bffc64f84699",
+ "python": "3.11.5",
+ "numpy": "2.4.6",
+ "scipy": "1.17.1",
+ "host": "host-375949.dhcp.egr.msu.edu",
+ "cpu": "arm",
+ "n_cpu": 8,
+ "threads": {
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1"
+ },
+ "workers": 2,
+ "rows": 2781,
+ "note": "Historical accuracy rows read-only, new projected path evaluated on identical references.",
+ "amplitude_c": 1.0
+}

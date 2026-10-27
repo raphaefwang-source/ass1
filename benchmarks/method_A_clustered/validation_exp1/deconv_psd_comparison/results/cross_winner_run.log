@@ -1,0 +1,19 @@
+22:33:39 cross_winner PPPM-original_xi1.025_sR2.85_sF3_M15_p5: E=4.43e-05
+22:33:43 validate PPPM-original_xi1.025_sR2.85_sF3_M15_p5: maxE=4.99e-05
+22:33:43 cross winner PPPM-original at PPPM-grid-PSD: max_E_G=4.989966649102328e-05, feasible=True, t_screen_s=0.0018043749732896686
+22:33:44 cross_winner PPPM-original_xi0.325_sR3.2_sF2.8_M64_p2: E=3.73e-05
+22:33:54 validate PPPM-original_xi0.325_sR3.2_sF2.8_M64_p2: maxE=4.13e-05
+22:33:54 cross winner PPPM-original at B2-positive: max_E_G=4.13332258994802e-05, feasible=True, t_screen_s=0.054303209064528346
+22:33:55 cross_winner B2-positive_xi1.45_sR3_sT36_M20_p5: E=0.00969
+22:34:02 validate B2-positive_xi1.45_sR3_sT36_M20_p5: maxE=0.0116
+22:34:02 cross winner B2-positive at PPPM-original: max_E_G=0.01163647954195343, feasible=False, t_screen_s=0.001868791994638741
+22:34:02 cross_winner B2-positive_xi1.025_sR2.85_sT36_M15_p5: E=0.0115
+22:34:08 validate B2-positive_xi1.025_sR2.85_sT36_M15_p5: maxE=0.0163
+22:34:08 cross winner B2-positive at PPPM-grid-PSD: max_E_G=0.01630185800898827, feasible=False, t_screen_s=0.0017579590203240514
+22:34:09 cross_winner PPPM-grid-PSD_xi1.45_sR3_sF2.8_M20_p5: E=0.000404
+22:34:14 validate PPPM-grid-PSD_xi1.45_sR3_sF2.8_M20_p5: maxE=0.000521
+22:34:14 cross winner PPPM-grid-PSD at PPPM-original: max_E_G=0.0005214633453146141, feasible=False, t_screen_s=0.0016716249519959092
+22:34:16 cross_winner PPPM-grid-PSD_xi0.325_sR3.2_sF2.8_M64_p2: E=3.73e-05
+22:34:33 validate PPPM-grid-PSD_xi0.325_sR3.2_sF2.8_M64_p2: maxE=4.13e-05
+22:34:33 cross winner PPPM-grid-PSD at B2-positive: max_E_G=4.13332258994802e-05, feasible=True, t_screen_s=0.05361241602804512
+22:34:33 cross winner COMPLETE: 6 exact cross candidates, 3 feasible, elapsed=53.8s; no final timing run

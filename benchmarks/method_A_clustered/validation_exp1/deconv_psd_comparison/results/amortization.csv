@@ -1,0 +1,16 @@
+method,id,n_apply,table_s,config_s,matvec_s,total_s,kind
+PPPM-original,PPPM-original_xi1.025_sR2.85_sF3_M15_p5,1,0.003627875,0.005221333000000001,0.0020592920000000003,0.010908500000000002,linear amortization from measured phase medians; not independently timed
+PPPM-original,PPPM-original_xi1.025_sR2.85_sF3_M15_p5,10,0.003627875,0.005221333000000001,0.0020592920000000003,0.029442128000000005,linear amortization from measured phase medians; not independently timed
+PPPM-original,PPPM-original_xi1.025_sR2.85_sF3_M15_p5,100,0.003627875,0.005221333000000001,0.0020592920000000003,0.21477840800000003,linear amortization from measured phase medians; not independently timed
+PPPM-original,PPPM-original_xi1.025_sR2.85_sF3_M15_p5,1000,0.003627875,0.005221333000000001,0.0020592920000000003,2.068141208,linear amortization from measured phase medians; not independently timed
+PPPM-original,PPPM-original_xi1.025_sR2.85_sF3_M15_p5,10000,0.003627875,0.005221333000000001,0.0020592920000000003,20.601769208000004,linear amortization from measured phase medians; not independently timed
+B2-positive,B2-positive_xi0.35_sR3.1_sT36_M72_p2,1,0.357531875,0.179866458,0.06141179200000001,0.5988101250000001,linear amortization from measured phase medians; not independently timed
+B2-positive,B2-positive_xi0.35_sR3.1_sT36_M72_p2,10,0.357531875,0.179866458,0.06141179200000001,1.151516253,linear amortization from measured phase medians; not independently timed
+B2-positive,B2-positive_xi0.35_sR3.1_sT36_M72_p2,100,0.357531875,0.179866458,0.06141179200000001,6.678577533,linear amortization from measured phase medians; not independently timed
+B2-positive,B2-positive_xi0.35_sR3.1_sT36_M72_p2,1000,0.357531875,0.179866458,0.06141179200000001,61.949190333000004,linear amortization from measured phase medians; not independently timed
+B2-positive,B2-positive_xi0.35_sR3.1_sT36_M72_p2,10000,0.357531875,0.179866458,0.06141179200000001,614.6553183330001,linear amortization from measured phase medians; not independently timed
+PPPM-grid-PSD,PPPM-grid-PSD_xi1.025_sR2.85_sF3_M15_p5,1,0.018202208,0.006284792,0.0018227080000000001,0.026309708,linear amortization from measured phase medians; not independently timed
+PPPM-grid-PSD,PPPM-grid-PSD_xi1.025_sR2.85_sF3_M15_p5,10,0.018202208,0.006284792,0.0018227080000000001,0.04271408,linear amortization from measured phase medians; not independently timed
+PPPM-grid-PSD,PPPM-grid-PSD_xi1.025_sR2.85_sF3_M15_p5,100,0.018202208,0.006284792,0.0018227080000000001,0.20675780000000002,linear amortization from measured phase medians; not independently timed
+PPPM-grid-PSD,PPPM-grid-PSD_xi1.025_sR2.85_sF3_M15_p5,1000,0.018202208,0.006284792,0.0018227080000000001,1.8471950000000001,linear amortization from measured phase medians; not independently timed
+PPPM-grid-PSD,PPPM-grid-PSD_xi1.025_sR2.85_sF3_M15_p5,10000,0.018202208,0.006284792,0.0018227080000000001,18.251567,linear amortization from measured phase medians; not independently timed

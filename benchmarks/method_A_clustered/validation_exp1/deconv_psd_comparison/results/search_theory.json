@@ -1,0 +1,18 @@
+{
+ "epsilon": 0.0001,
+ "fixed_physics": {
+  "N": 256,
+  "rho": 0.75,
+  "kappa": 0.2,
+  "c": 1
+ },
+ "sR_initial": 3.034854258770293,
+ "original": "Gaussian cutoff tails and measured high-order mesh slopes; inspect actual complete E_G.",
+ "B2": "Measured positive-assignment second-order bias, initialized at historical best.",
+ "projected": "E_total <= E_original + E_proj (triangle inequality); projection active region measured explicitly. No assumed h^p or h^2 error law. Coarse xi/M/p grid, then measured constrained local and boundary searches.",
+ "mesh_rate_fits": [],
+ "projection_calibration_rows": 144,
+ "validation": "screen uniform seed2, then all nine; criterion max actual spectral operator norm E_G <= epsilon",
+ "prior_budgets": "Historical original extensive optimization and B2 355 candidates retained as initial knowledge. This follow-up gives similar new independent candidate budgets; exact counts saved.",
+ "resources": "local hardware only, M<=128; invalid points retained; no timeout censoring of successful points"
+}

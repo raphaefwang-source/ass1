@@ -1,0 +1,41 @@
+{
+ "experiment": "Controlled supplementary xi scan",
+ "xi": [
+  0.35,
+  0.6,
+  0.85,
+  1.0,
+  1.25
+ ],
+ "fixed": {
+  "N": 256,
+  "rho": 0.75,
+  "kappa": 0.2,
+  "c": 1.0,
+  "M": 20,
+  "p": 5,
+  "sR": 3.0,
+  "sF": 3.0,
+  "sT": 36.0
+ },
+ "families": [
+  "uniform",
+  "moderate",
+  "strong"
+ ],
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "methods": [
+  "PPPM-original",
+  "B2-positive",
+  "PPPM-grid-PSD"
+ ],
+ "expected_rows": 135,
+ "structure": true,
+ "actions": true,
+ "mesh_only": false,
+ "note": "All three methods share fixed M20,p5,sR3,sF3; B2 sT36. No search or parameter retuning."
+}

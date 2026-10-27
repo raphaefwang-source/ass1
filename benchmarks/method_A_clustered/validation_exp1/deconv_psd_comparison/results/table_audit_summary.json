@@ -1,0 +1,21 @@
+{
+ "command": "python3 /Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/table_audit.py",
+ "workers": 1,
+ "threads": 1,
+ "elapsed_s": 155.72049045795575,
+ "distinct_tables": 77,
+ "complete_tables": 77,
+ "invalid_tables": 0,
+ "direct_checked_tables": 12,
+ "max_direct_vs_fft_relative": 3.8523411232701855e-13,
+ "max_direct_graph_relative": 3.582547192433577e-13,
+ "max_assignment_apply_relative": 5.286251782625261e-16,
+ "python": "3.11.5",
+ "numpy": "2.4.6",
+ "threadpools": [],
+ "source_sha256": {
+  "grid_psd.py": "8e74d8d85e09528cac2424c1e16d897c2aa7632b7143651c763868cee4de13da",
+  "table_audit.py": "dbec7865f6338376869ee1de63b35ceb64492e20dac2938dca89de807b120dd4",
+  "test_grid_psd.py": "989ee4bbf96036330e1485808952d4dcea5bd52a9be36573f5f4d4770c6f3601"
+ }
+}
