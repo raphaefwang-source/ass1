@@ -1,0 +1,13 @@
+{
+  "name": "uniform_N256_s2_rho0.75",
+  "family": "uniform",
+  "seed": 2,
+  "source_seed": 2,
+  "rho": 0.75,
+  "N": 256,
+  "L": 6.98864371789039,
+  "hash": "f1f6ac5c6252",
+  "position_sha256": "f1f6ac5c6252ce834bee16e04737c01e6ed14bde391afd3589ee6fbb1f42b334",
+  "d_min": 0.9025199876512106,
+  "generation": "exact committed PR 7 configuration"
+}

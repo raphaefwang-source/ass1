@@ -1,0 +1,29 @@
+test_c_kernel_rejects_invalid_graph_before_mutation (test_compiled_edge.TestCompiledEdge.test_c_kernel_rejects_invalid_graph_before_mutation) ... ok
+test_empty_graph (test_compiled_edge.TestCompiledEdge.test_empty_graph) ... ok
+test_explicit_original_fallback_and_failed_compile_fallback (test_compiled_edge.TestCompiledEdge.test_explicit_original_fallback_and_failed_compile_fallback) ... ok
+test_expm1_small_tau_noise_remains_nonzero (test_compiled_edge.TestCompiledEdge.test_expm1_small_tau_noise_remains_nonzero) ... ok
+test_graph_is_immutable_and_rebuild_invalidates (test_compiled_edge.TestCompiledEdge.test_graph_is_immutable_and_rebuild_invalidates) ... FAIL
+test_isolated_cold_compile_then_cache_load (test_compiled_edge.TestCompiledEdge.test_isolated_cold_compile_then_cache_load) ... ok
+test_noncontiguous_inputs_are_copied_without_mutation (test_compiled_edge.TestCompiledEdge.test_noncontiguous_inputs_are_copied_without_mutation) ... ok
+test_order_and_original_noise_indexing_are_observable (test_compiled_edge.TestCompiledEdge.test_order_and_original_noise_indexing_are_observable) ... ok
+test_pathwise_forward_reverse_full_rank_deficient_zero_and_small_tau (test_compiled_edge.TestCompiledEdge.test_pathwise_forward_reverse_full_rank_deficient_zero_and_small_tau) ... ok
+test_preparation_cache_all_physical_parameters (test_compiled_edge.TestCompiledEdge.test_preparation_cache_all_physical_parameters) ... ok
+test_repeated_path_and_ou_a_subclass_dispatch (test_compiled_edge.TestCompiledEdge.test_repeated_path_and_ou_a_subclass_dispatch) ... ok
+test_single_pair_mean_covariance_and_maxwell_stationarity (test_compiled_edge.TestCompiledEdge.test_single_pair_mean_covariance_and_maxwell_stationarity) ... ok
+test_true_compilation_and_provenance (test_compiled_edge.TestCompiledEdge.test_true_compilation_and_provenance) ... ok
+test_validation (test_compiled_edge.TestCompiledEdge.test_validation) ... ok
+test_zero_operator_exact_identity_and_zero_mode_no_noise (test_compiled_edge.TestCompiledEdge.test_zero_operator_exact_identity_and_zero_mode_no_noise) ... ok
+test_zero_tau_is_bitwise_identity (test_compiled_edge.TestCompiledEdge.test_zero_tau_is_bitwise_identity) ... ok
+
+======================================================================
+FAIL: test_graph_is_immutable_and_rebuild_invalidates (test_compiled_edge.TestCompiledEdge.test_graph_is_immutable_and_rebuild_invalidates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/optimized_pairou/test_compiled_edge.py", line 149, in test_graph_is_immutable_and_rebuild_invalidates
+    self.assertGreater(np.linalg.norm(edge.sweep(p,eta,.1)[0]-replacement.sweep(p,eta,.1)[0]),.01)
+AssertionError: np.float64(0.0008888317048479077) not greater than 0.01
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.712s
+
+FAILED (failures=1)

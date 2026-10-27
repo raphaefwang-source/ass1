@@ -1,0 +1,13 @@
+{
+  "name": "moderate_N64_s3_nested_rho0.75",
+  "family": "moderate",
+  "seed": 3,
+  "source_seed": 3,
+  "rho": 0.75,
+  "N": 64,
+  "L": 4.402569665192835,
+  "hash": "a9db17ab7800",
+  "position_sha256": "a9db17ab7800ce4a3f176617db235a8423bf13f12454c0446cf6c97db1891267",
+  "d_min": 0.5723102048627956,
+  "generation": "nested subset of committed configuration, box-scaled at fixed density"
+}

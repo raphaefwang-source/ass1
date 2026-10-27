@@ -1,0 +1,8 @@
+test_directional_statistics_use_sample_variance (test_validation.ValidationTests.test_directional_statistics_use_sample_variance) ... ok
+test_full_rank_shared_paths_match_independent_dense_reference (test_validation.ValidationTests.test_full_rank_shared_paths_match_independent_dense_reference) ... ok
+test_ideal_A_noise_columns_give_invariance_covariance (test_validation.ValidationTests.test_ideal_A_noise_columns_give_invariance_covariance) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.075s
+
+OK

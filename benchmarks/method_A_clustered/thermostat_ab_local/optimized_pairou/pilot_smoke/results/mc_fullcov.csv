@@ -1,0 +1,7 @@
+config,N,family,seed,epsilon,method,phase,n_samples,spectral_error_vs_ideal,spectral_error_vs_exact_full,interpretation
+N2_uniform_s2_eps0.0001,2.0,uniform,2.0,0.0001,A-python,conditional,32,0.6477375434827275,0.6477375433988857,finite-sample empirical covariance error; includes sampling uncertainty
+N2_uniform_s2_eps0.0001,2.0,uniform,2.0,0.0001,A-compiled,conditional,32,0.6477375434827294,0.6477375433988873,finite-sample empirical covariance error; includes sampling uncertainty
+N2_uniform_s2_eps0.0001,2.0,uniform,2.0,0.0001,B,conditional,32,0.7032971443072594,0.7032971443072594,finite-sample empirical covariance error; includes sampling uncertainty
+N2_uniform_s2_eps0.0001,2.0,uniform,2.0,0.0001,A-python,equilibrium,32,0.4699894193638965,0.4699894193638965,finite-sample empirical covariance error; includes sampling uncertainty
+N2_uniform_s2_eps0.0001,2.0,uniform,2.0,0.0001,A-compiled,equilibrium,32,0.4699894193638963,0.4699894193638963,finite-sample empirical covariance error; includes sampling uncertainty
+N2_uniform_s2_eps0.0001,2.0,uniform,2.0,0.0001,B,equilibrium,32,0.4662830975756519,0.4662830975756519,finite-sample empirical covariance error; includes sampling uncertainty
