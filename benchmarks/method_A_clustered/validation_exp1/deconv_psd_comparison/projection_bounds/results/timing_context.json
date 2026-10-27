@@ -1,0 +1,12 @@
+{
+  "repeats": 9,
+  "warmups": 1,
+  "threads": [],
+  "load_average": [
+    4.74560546875,
+    6.11279296875,
+    6.361328125
+  ],
+  "platform": "darwin",
+  "policy": "Incremental correction-bound setup only; parameter sample is shared, not 9 independent FFT samples. No cached matvec re-timing or old-batch speed ratio."
+}

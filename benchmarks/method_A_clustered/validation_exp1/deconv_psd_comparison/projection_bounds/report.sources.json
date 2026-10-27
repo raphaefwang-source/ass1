@@ -1,0 +1,62 @@
+{
+  "created_at": "2026-10-27T02:27:04-04:00",
+  "report": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/report.md",
+  "inputs": [
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/figures/plot_status.json",
+      "sha256": "6153601796b70c2c8f114a0b34e85892f6f408ad6b5e5a84c85506192c14e131",
+      "bytes": 930
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/results/bounds.csv",
+      "sha256": "867cafd09c53d9f44e8b4c6fec1005bcfa7194b39fcd54257a7906b51c2eab07",
+      "bytes": 2571685
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/results/cases_summary.csv",
+      "sha256": "3b7bfac2a8c5a1bfe438bbb80b0b2a0e1c3a142c02048a92b06559c82394feb9",
+      "bytes": 39110
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/results/resume.log",
+      "sha256": "a4c4d19f236341f58314e35de55b594b411a699f3ae966afbdaa9bdc6843d25b",
+      "bytes": 6660
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/results/test_bounds.log",
+      "sha256": "d21fab5e1d190ca726898c4f3af1ae0278580b37ffd471b695f08d18a7477b50",
+      "bytes": 109
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/results/tightness_outlier_diagnostic.json",
+      "sha256": "9410a432a858aa3a899860857f24d126ae1bccaf27cdda7d26a65518c414e936",
+      "bytes": 2314
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/results/timing_context.json",
+      "sha256": "3174d0589c917b5286bc26325de8e62225c5514ef140c19d23515cb3b191de7d",
+      "bytes": 323
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/results/timing_raw.csv",
+      "sha256": "2cdf271c61062f38f19945e99a9507675009754d9e6de81a6402b82f4f3a998e",
+      "bytes": 235588
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/results/verification_summary.json",
+      "sha256": "19744aed8c62c9c735813037e6658c8dc7d479a3af4c7017c2ed59fb9edd46e8",
+      "bytes": 1693
+    },
+    {
+      "path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/validation_exp1/deconv_psd_comparison/projection_bounds/source_catalog.json",
+      "sha256": "7f34b180a97be51e42104ad7c02eff12595ce819f8bd6f0b3588ef1d5ef2aeab",
+      "bytes": 141070
+    }
+  ],
+  "audit_status_consulted": {
+    "status": "pass",
+    "ok": true,
+    "issues": 0,
+    "dependency_kind": "status-only; no fixed SHA to avoid a report/audit artifact-hash cycle"
+  }
+}
