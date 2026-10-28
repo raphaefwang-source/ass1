@@ -1,0 +1,66 @@
+test_B_remains_one_full_step (test_matched_dynamics.MatchedDynamicsTests.test_B_remains_one_full_step) ... ok
+test_all_registered_k_setup_once_and_coefficient_tau (test_matched_dynamics.MatchedDynamicsTests.test_all_registered_k_setup_once_and_coefficient_tau) ... ok
+test_complete_wall_and_nested_phase_accounting (test_matched_dynamics.MatchedDynamicsTests.test_complete_wall_and_nested_phase_accounting) ... ok
+test_fresh_q_graph_and_same_A_B_Gamma (test_matched_dynamics.MatchedDynamicsTests.test_fresh_q_graph_and_same_A_B_Gamma) ... ok
+test_independent_draw_indexing_replay_no_extra_scaling (test_matched_dynamics.MatchedDynamicsTests.test_independent_draw_indexing_replay_no_extra_scaling) ... ok
+test_k1_bitwise_legacy_moving_A_and_B (test_matched_dynamics.MatchedDynamicsTests.test_k1_bitwise_legacy_moving_A_and_B) ... ok
+test_k1_bitwise_reused_fixed_graph_ou (test_matched_dynamics.MatchedDynamicsTests.test_k1_bitwise_reused_fixed_graph_ou) ... ok
+test_k_greater_one_literal_dense_path (test_matched_dynamics.MatchedDynamicsTests.test_k_greater_one_literal_dense_path) ... ok
+test_outer_BAOAB_midpoint_unchanged_by_subcycling (test_matched_dynamics.MatchedDynamicsTests.test_outer_BAOAB_midpoint_unchanged_by_subcycling) ... ok
+test_reject_unregistered_k_and_mismatched_setup (test_matched_dynamics.MatchedDynamicsTests.test_reject_unregistered_k_and_mismatched_setup) ... ok
+test_covariance_identity_matches_independent_Gaussian_columns (test_frozen_accuracy.FrozenAccuracyTests.test_covariance_identity_matches_independent_Gaussian_columns) ... ok
+test_expected_convergence_observed_not_assumed (test_frozen_accuracy.FrozenAccuracyTests.test_expected_convergence_observed_not_assumed) ... ok
+test_nonsymmetric_norm_uses_full_SVD (test_frozen_accuracy.FrozenAccuracyTests.test_nonsymmetric_norm_uses_full_SVD) ... ok
+test_normalizations_exclude_COM_unit_modes (test_frozen_accuracy.FrozenAccuracyTests.test_normalizations_exclude_COM_unit_modes) ... ok
+test_ordered_mean_matches_literal_full_edge_matrices (test_frozen_accuracy.FrozenAccuracyTests.test_ordered_mean_matches_literal_full_edge_matrices) ... ok
+test_positive_integer_substeps (test_frozen_accuracy.FrozenAccuracyTests.test_positive_integer_substeps) ... ok
+test_B_rejects_artificial_substeps (test_stochastic_validation.StochasticTests.test_B_rejects_artificial_substeps) ... ok
+test_full_dimension_paths_match_each_own_ideal (test_stochastic_validation.StochasticTests.test_full_dimension_paths_match_each_own_ideal) ... ok
+test_mc_statistics_are_sample_based_and_paired (test_stochastic_validation.StochasticTests.test_mc_statistics_are_sample_based_and_paired) ... ok
+test_multistep_noise_order_matches_literal_pair_dense_reference (test_stochastic_validation.StochasticTests.test_multistep_noise_order_matches_literal_pair_dense_reference) ... ok
+test_substep_budgets_and_schema (test_stochastic_validation.StochasticTests.test_substep_budgets_and_schema) ... ok
+test_B_control_x_coordinate_does_not_repeat_B_OU (test_plot_results.PlotEvidenceTests.test_B_control_x_coordinate_does_not_repeat_B_OU) ... ERROR
+test_disjoint_phases_do_not_add_nested_diagnostics (test_plot_results.PlotEvidenceTests.test_disjoint_phases_do_not_add_nested_diagnostics) ... ERROR
+test_invalid_total_or_negative_phase_rejects_plot (test_plot_results.PlotEvidenceTests.test_invalid_total_or_negative_phase_rejects_plot) ... ERROR
+test_range_uses_round_blocks_not_independent_step_CI (test_plot_results.PlotEvidenceTests.test_range_uses_round_blocks_not_independent_step_CI) ... ERROR
+
+======================================================================
+ERROR: test_B_control_x_coordinate_does_not_repeat_B_OU (test_plot_results.PlotEvidenceTests.test_B_control_x_coordinate_does_not_repeat_B_OU)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/baoab_ab_matched_accuracy/test_plot_results.py", line 26, in test_B_control_x_coordinate_does_not_repeat_B_OU
+    self.assertEqual(P.curve_k(row,{1e-6:4}),4)
+                     ^^^^^^^^^
+AttributeError: module 'plot_results' has no attribute 'curve_k'
+
+======================================================================
+ERROR: test_disjoint_phases_do_not_add_nested_diagnostics (test_plot_results.PlotEvidenceTests.test_disjoint_phases_do_not_add_nested_diagnostics)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/baoab_ab_matched_accuracy/test_plot_results.py", line 14, in test_disjoint_phases_do_not_add_nested_diagnostics
+    values=P.phase_vector(self.row())
+           ^^^^^^^^^^^^^^
+AttributeError: module 'plot_results' has no attribute 'phase_vector'
+
+======================================================================
+ERROR: test_invalid_total_or_negative_phase_rejects_plot (test_plot_results.PlotEvidenceTests.test_invalid_total_or_negative_phase_rejects_plot)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/baoab_ab_matched_accuracy/test_plot_results.py", line 20, in test_invalid_total_or_negative_phase_rejects_plot
+    with self.assertRaises(ValueError):P.phase_vector(row)
+                                       ^^^^^^^^^^^^^^
+AttributeError: module 'plot_results' has no attribute 'phase_vector'
+
+======================================================================
+ERROR: test_range_uses_round_blocks_not_independent_step_CI (test_plot_results.PlotEvidenceTests.test_range_uses_round_blocks_not_independent_step_CI)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/baoab_ab_matched_accuracy/test_plot_results.py", line 36, in test_range_uses_round_blocks_not_independent_step_CI
+    summary=P.block_summary(rows)
+            ^^^^^^^^^^^^^^^
+AttributeError: module 'plot_results' has no attribute 'block_summary'
+
+----------------------------------------------------------------------
+Ran 25 tests in 2.068s
+
+FAILED (errors=4)

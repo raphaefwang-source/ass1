@@ -1,0 +1,43 @@
+{
+  "run": "matched_t0_round2_B",
+  "method": "B",
+  "k": 1,
+  "ranks": {
+    "r_d": 5,
+    "r_n": 12
+  },
+  "steps": 20,
+  "dt": 0.005,
+  "epsilon_frozen": 2e-08,
+  "initial_index": 2,
+  "seed": 202610291041,
+  "round": 2,
+  "order_position": 0,
+  "file": "inputs/matched_t0_round2_B.npz",
+  "file_sha256": "81a837a8f28c805f53497b4d21bcb2c26986ba5b18f4a0c2eb6b51e2f9d3c339",
+  "start_q_sha256": "35e24836747bdb5a17a9a896b5d677288c28eceb4e7276dbe62bdf24d6771aba",
+  "start_p_sha256": "cb441fcc8ddb5f8264a10b52b6d0f23763c5cf6ab5a1e32d35bfdab9c882390f",
+  "end_q_sha256": "1b3dd17f2df77a4ae1f956639b06a3da6d98aa6a06965dbc35f758a738dbada4",
+  "end_p_sha256": "cde630429bbff7cecfc994025796325ffe512cde9722c4407536fbea4624db38",
+  "full_BAOAB_mean_s": 0.7107467168068979,
+  "full_BAOAB_median_s": 0.6851928954711184,
+  "compute_wall_s": 14.214934336137958,
+  "loop_wall_s": 14.224152417038567,
+  "dynamic_setup_mean_s": 0.13722448956104927,
+  "inner_calls": 20,
+  "max_COM_norm": 4.771425031972024e-14,
+  "min_pair_distance": 0.8916901583823245,
+  "max_peak_rss_bytes": 211599360,
+  "table_sha256": "b0eeb92ce832fe581009ae58cec3a1886a90db4ffd06ef3ba17276d6c6cd2273",
+  "load_before": [
+    7.9912109375,
+    8.68310546875,
+    9.88720703125
+  ],
+  "load_after": [
+    7.69091796875,
+    8.5830078125,
+    9.830078125
+  ],
+  "scope": "true moving-particle BAOAB; one fresh graph per outer midpoint; selected k active"
+}

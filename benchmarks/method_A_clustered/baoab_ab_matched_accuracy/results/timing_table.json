@@ -1,0 +1,18 @@
+{
+  "sha256": "b0eeb92ce832fe581009ae58cec3a1886a90db4ffd06ef3ba17276d6c6cd2273",
+  "wall_s": 0.1939159999601543,
+  "physics": {
+    "N": 256,
+    "rho": 0.75,
+    "L": 6.98864371789039,
+    "kappa": 0.7,
+    "c": 1.6148096467001307,
+    "xi": 0.65,
+    "sR": 4.7,
+    "sF": 4.7,
+    "M": 40,
+    "p": 10
+  },
+  "graph_rebuilt_each_step": true,
+  "parameter_table_reused": true
+}

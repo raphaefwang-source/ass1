@@ -1,0 +1,27 @@
+{
+  "label": "initial_0",
+  "N": 256,
+  "q_sha256": "da4656e45594c169ad420f419a1095abed5246f70f3c6f429cc72eccb338b206",
+  "p_sha256": "41e19fa5e25793a7c24c8c719badaa3cb14f9c3e2b2def8fcd0db8160926f837",
+  "GH_sha256": "80d9273b4f0903b45e900557824c0f38d07ad08bf5c29464c9e1aabf85169bfa",
+  "GL_sha256": "180631c3ccd68d626384c8b5096ae396347ddf3b572ecaf722e25aae27234bdb",
+  "reference_file": "frozen_refs_initial_0.npz",
+  "reference_file_sha256": "4bcaa1cfaf6980834c6ad087607dc2d433a6d230e8431fa0e1fc60d89112273b",
+  "dimension_COM": 765,
+  "lambda_min": 4.685856734260973,
+  "lambda_max": 11.860054001169571,
+  "graph_build_and_reference_s": 3.1308256670599803,
+  "metadata": {
+    "label": "initial_0",
+    "file": "inputs/domain_initial_0.npz",
+    "file_sha256": "17169fed2bda6321ded0e2dab364a0215d6ce4152be6462f8e7ad5766e1eae6a",
+    "q_sha256": "da4656e45594c169ad420f419a1095abed5246f70f3c6f429cc72eccb338b206",
+    "p_sha256": "41e19fa5e25793a7c24c8c719badaa3cb14f9c3e2b2def8fcd0db8160926f837",
+    "kind": "initial",
+    "initial_index": 0,
+    "source": "benchmarks/method_A_clustered/baoab_ab_pilot/inputs/initial_0.npz",
+    "source_sha256": "ad3916c98feb6d3362d8a1f89c0396a3f5c63be1220c0b86185f5e9c92fa366e",
+    "preparation_seed": 202610280101,
+    "preparation_duration": 30.0
+  }
+}

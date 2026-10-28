@@ -1,0 +1,70 @@
+{
+  "seed": 202610381841,
+  "bit_generator": "PCG64",
+  "states": [
+    {
+      "step": 1,
+      "before": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 206875698565935250226388941266574934266,
+          "inc": 68806003812409230694006192358342277527
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      },
+      "after": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 138597036935456520560551698450980112906,
+          "inc": 68806003812409230694006192358342277527
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      }
+    },
+    {
+      "step": 2,
+      "before": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 138597036935456520560551698450980112906,
+          "inc": 68806003812409230694006192358342277527
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      },
+      "after": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 260762746178657017012773791198981346896,
+          "inc": 68806003812409230694006192358342277527
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      }
+    },
+    {
+      "step": 3,
+      "before": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 260762746178657017012773791198981346896,
+          "inc": 68806003812409230694006192358342277527
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      },
+      "after": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 51652086419441091915220518295777915639,
+          "inc": 68806003812409230694006192358342277527
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      }
+    }
+  ],
+  "recipe": "Each A inner substep draws z,ef,er independently in this order; B draws only z"
+}

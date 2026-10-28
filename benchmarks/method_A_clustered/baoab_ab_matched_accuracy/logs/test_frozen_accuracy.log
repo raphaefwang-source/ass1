@@ -1,0 +1,11 @@
+test_covariance_identity_matches_independent_Gaussian_columns (test_frozen_accuracy.FrozenAccuracyTests.test_covariance_identity_matches_independent_Gaussian_columns) ... ok
+test_expected_convergence_observed_not_assumed (test_frozen_accuracy.FrozenAccuracyTests.test_expected_convergence_observed_not_assumed) ... ok
+test_nonsymmetric_norm_uses_full_SVD (test_frozen_accuracy.FrozenAccuracyTests.test_nonsymmetric_norm_uses_full_SVD) ... ok
+test_normalizations_exclude_COM_unit_modes (test_frozen_accuracy.FrozenAccuracyTests.test_normalizations_exclude_COM_unit_modes) ... ok
+test_ordered_mean_matches_literal_full_edge_matrices (test_frozen_accuracy.FrozenAccuracyTests.test_ordered_mean_matches_literal_full_edge_matrices) ... ok
+test_positive_integer_substeps (test_frozen_accuracy.FrozenAccuracyTests.test_positive_integer_substeps) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.033s
+
+OK

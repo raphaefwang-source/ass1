@@ -1,0 +1,28 @@
+{
+  "label": "visited_0_B_200",
+  "N": 256,
+  "q_sha256": "421cf6c0b6265daf3ec41d2efdb7a4e696e7deac30c96919eb4f581159e63dcb",
+  "p_sha256": "86ea95eb1f30182d05515a089e994328fea4b4c62e2a169d3445c28bd3509efd",
+  "GH_sha256": "6a20eb87a35a172b76e478bea0a5afb1379860ce627f292e7f87cae7629fbb4a",
+  "GL_sha256": "60b69b12d1954638004caf00254698368f71a88d4e5081fd6e88c760fa992759",
+  "reference_file": "frozen_refs_visited_0_B_200.npz",
+  "reference_file_sha256": "3f4d052f5104071a93ea8e2c26208eb74953facb42613ac50e1eb57dc837c305",
+  "dimension_COM": 765,
+  "lambda_min": 4.693593147141628,
+  "lambda_max": 11.977974637195635,
+  "graph_build_and_reference_s": 2.845934750046581,
+  "metadata": {
+    "label": "visited_0_B_200",
+    "file": "inputs/domain_visited_0_B_200.npz",
+    "file_sha256": "15952dd214a8cea36a974c9a06902a024c1f64769579560a0197c1cc9d24ce2d",
+    "q_sha256": "421cf6c0b6265daf3ec41d2efdb7a4e696e7deac30c96919eb4f581159e63dcb",
+    "p_sha256": "86ea95eb1f30182d05515a089e994328fea4b4c62e2a169d3445c28bd3509efd",
+    "kind": "visited_midpoint",
+    "initial_index": 0,
+    "method": "B",
+    "step": 200,
+    "source": "benchmarks/method_A_clustered/baoab_ab_pilot/inputs/production_0_B.npz",
+    "source_sha256": "2ad3b54608f36c53ed63c9672a4e4126b3e725c838c1f4b9e4acaaf73de6cd72",
+    "min_pair_distance": 0.912053260942972
+  }
+}

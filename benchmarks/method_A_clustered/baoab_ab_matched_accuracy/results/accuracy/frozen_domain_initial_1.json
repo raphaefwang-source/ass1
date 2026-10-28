@@ -1,0 +1,27 @@
+{
+  "label": "initial_1",
+  "N": 256,
+  "q_sha256": "06f63ef7e2f04996ee47ded3e40b8b1d0918f9ac1382dfd82b50e80b5d13e5f9",
+  "p_sha256": "1d600aa3863e1ddc63e5917388a0f01d1b7b35b3ef3b36f2ba82651bd4df11bd",
+  "GH_sha256": "30904c1f4aebd168a3031b7cde062eeba71e60d60ee8eae17de067d0aff35ca5",
+  "GL_sha256": "14526c02c08ab5454901acbaeb326c745b944c0bb47d9b40d6bf5fba31bd3421",
+  "reference_file": "frozen_refs_initial_1.npz",
+  "reference_file_sha256": "1c06b85a87397fd3aaacab894910ba07906f24de69c9337ad69130261162916e",
+  "dimension_COM": 765,
+  "lambda_min": 4.699632978819717,
+  "lambda_max": 12.095179163834059,
+  "graph_build_and_reference_s": 2.959277958027087,
+  "metadata": {
+    "label": "initial_1",
+    "file": "inputs/domain_initial_1.npz",
+    "file_sha256": "8893daaba18a2c032dc5e4ed99d9b6dc276a3d90064c2ddbb9c5e0984d53646a",
+    "q_sha256": "06f63ef7e2f04996ee47ded3e40b8b1d0918f9ac1382dfd82b50e80b5d13e5f9",
+    "p_sha256": "1d600aa3863e1ddc63e5917388a0f01d1b7b35b3ef3b36f2ba82651bd4df11bd",
+    "kind": "initial",
+    "initial_index": 1,
+    "source": "benchmarks/method_A_clustered/baoab_ab_pilot/inputs/initial_1.npz",
+    "source_sha256": "c25a362c6a1d071898249a59749fec494653c287b6cd60dfb86cb1a3a938fc05",
+    "preparation_seed": 202610280102,
+    "preparation_duration": 30.0
+  }
+}

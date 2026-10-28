@@ -1,0 +1,46 @@
+test_B_remains_one_full_step (test_matched_dynamics.MatchedDynamicsTests.test_B_remains_one_full_step) ... ok
+test_all_registered_k_setup_once_and_coefficient_tau (test_matched_dynamics.MatchedDynamicsTests.test_all_registered_k_setup_once_and_coefficient_tau) ... ok
+test_complete_wall_and_nested_phase_accounting (test_matched_dynamics.MatchedDynamicsTests.test_complete_wall_and_nested_phase_accounting) ... ok
+test_fresh_q_graph_and_same_A_B_Gamma (test_matched_dynamics.MatchedDynamicsTests.test_fresh_q_graph_and_same_A_B_Gamma) ... ok
+test_independent_draw_indexing_replay_no_extra_scaling (test_matched_dynamics.MatchedDynamicsTests.test_independent_draw_indexing_replay_no_extra_scaling) ... ok
+test_k1_bitwise_legacy_moving_A_and_B (test_matched_dynamics.MatchedDynamicsTests.test_k1_bitwise_legacy_moving_A_and_B) ... ok
+test_k1_bitwise_reused_fixed_graph_ou (test_matched_dynamics.MatchedDynamicsTests.test_k1_bitwise_reused_fixed_graph_ou) ... ok
+test_k_greater_one_literal_dense_path (test_matched_dynamics.MatchedDynamicsTests.test_k_greater_one_literal_dense_path) ... FAIL
+test_outer_BAOAB_midpoint_unchanged_by_subcycling (test_matched_dynamics.MatchedDynamicsTests.test_outer_BAOAB_midpoint_unchanged_by_subcycling) ... ok
+test_reject_unregistered_k_and_mismatched_setup (test_matched_dynamics.MatchedDynamicsTests.test_reject_unregistered_k_and_mismatched_setup) ... ok
+
+======================================================================
+FAIL: test_k_greater_one_literal_dense_path (test_matched_dynamics.MatchedDynamicsTests.test_k_greater_one_literal_dense_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/baoab_ab_matched_accuracy/test_matched_dynamics.py", line 75, in test_k_greater_one_literal_dense_path
+    np.testing.assert_allclose(actual,exact,rtol=2e-12,atol=2e-12)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/testing/_private/utils.py", line 1768, in assert_allclose
+    assert_array_compare(compare, actual, desired, err_msg=str(err_msg),
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/testing/_private/utils.py", line 983, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError: 
+Not equal to tolerance rtol=2e-12, atol=2e-12
+
+Mismatched elements: 12 / 12 (100%)
+First 5 mismatches are at indices:
+ [0, 0]: -1.3364548158895613 (ACTUAL), -1.3364548155212543 (DESIRED)
+ [0, 1]: -1.1941920643730284 (ACTUAL), -1.1941920666611336 (DESIRED)
+ [0, 2]: 0.5382949391455709 (ACTUAL), 0.5382949382215567 (DESIRED)
+ [1, 0]: 0.5596951478701548 (ACTUAL), 0.5596951478850005 (DESIRED)
+ [1, 1]: 0.46359803971882374 (ACTUAL), 0.4635980413368276 (DESIRED)
+Max absolute difference among violations: 2.28810526e-09
+Max relative difference among violations: 3.49010069e-09
+ ACTUAL: array([[-1.336455, -1.194192,  0.538295],
+       [ 0.559695,  0.463598, -0.475845],
+       [ 0.711243, -0.688139,  0.534286],
+       [ 0.065516,  1.418733, -0.596736]])
+ DESIRED: array([[-1.336455, -1.194192,  0.538295],
+       [ 0.559695,  0.463598, -0.475845],
+       [ 0.711243, -0.688139,  0.534286],
+       [ 0.065516,  1.418733, -0.596736]])
+
+----------------------------------------------------------------------
+Ran 10 tests in 2.283s
+
+FAILED (failures=1)
