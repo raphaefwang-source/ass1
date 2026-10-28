@@ -1,0 +1,15 @@
+initial_0 B damping r=5: max=4.045e-13
+initial_0 B noise r=14: max=2.401e-12
+initial_0 A damping r=5: max=1.44e-13
+initial_0 A noise r=14: max=1.44e-13
+Initial Stage0 0 spatial 3.857233581633732e-10 ranks {'A': {'r_d': 5, 'r_n': 14}, 'B': {'r_d': 5, 'r_n': 14}, 'threshold': 2e-08, 'dt': 0.005, 'substeps': 1, 'state': 'initial_0', 'seed': 202610280130, 'q_sha256': 'da4656e45594c169ad420f419a1095abed5246f70f3c6f429cc72eccb338b206', 'p_sha256': '41e19fa5e25793a7c24c8c719badaa3cb14f9c3e2b2def8fcd0db8160926f837', 'independent_gaussian_streams': {'z': '85674ad7cfa223ef2de2c01dabd0b0ddf4e5b21c32ff1c724ceb54f30c0100a1', 'eta_forward': '851307d3084654d8a3c580df288e23e0cc45fdd880467c8027ed457cc7b67b60', 'eta_reverse': 'b035fe1064b3083dc3e7c9c0442d4f1d3d7026ea6ab934563e7343481f1a78c9'}, 'elapsed_s': 16.211797750089318, 'interpretation': 'Finite saved directions at this state only; no uniform rank or Gibbs guarantee'}
+initial_1 B damping r=5: max=4.736e-13
+initial_1 B noise r=14: max=3.314e-12
+initial_1 A damping r=5: max=9.016e-14
+initial_1 A noise r=14: max=9.065e-14
+Initial Stage0 1 spatial 3.8210306008228424e-10 ranks {'A': {'r_d': 5, 'r_n': 14}, 'B': {'r_d': 5, 'r_n': 14}, 'threshold': 2e-08, 'dt': 0.005, 'substeps': 1, 'state': 'initial_1', 'seed': 202610280130, 'q_sha256': '06f63ef7e2f04996ee47ded3e40b8b1d0918f9ac1382dfd82b50e80b5d13e5f9', 'p_sha256': '1d600aa3863e1ddc63e5917388a0f01d1b7b35b3ef3b36f2ba82651bd4df11bd', 'independent_gaussian_streams': {'z': '85674ad7cfa223ef2de2c01dabd0b0ddf4e5b21c32ff1c724ceb54f30c0100a1', 'eta_forward': '851307d3084654d8a3c580df288e23e0cc45fdd880467c8027ed457cc7b67b60', 'eta_reverse': 'b035fe1064b3083dc3e7c9c0442d4f1d3d7026ea6ab934563e7343481f1a78c9'}, 'elapsed_s': 14.551465666969307, 'interpretation': 'Finite saved directions at this state only; no uniform rank or Gibbs guarantee'}
+initial_2 B damping r=5: max=4.407e-13
+initial_2 B noise r=14: max=2.932e-12
+initial_2 A damping r=5: max=9.364e-14
+initial_2 A noise r=14: max=9.361e-14
+Initial Stage0 2 spatial 3.838572216136002e-10 ranks {'A': {'r_d': 5, 'r_n': 14}, 'B': {'r_d': 5, 'r_n': 14}, 'threshold': 2e-08, 'dt': 0.005, 'substeps': 1, 'state': 'initial_2', 'seed': 202610280130, 'q_sha256': '624927bcf3fc699dc4e48d87c3e6dbb48139a6b48a16656efaae43bdef65080c', 'p_sha256': 'cb441fcc8ddb5f8264a10b52b6d0f23763c5cf6ab5a1e32d35bfdab9c882390f', 'independent_gaussian_streams': {'z': '85674ad7cfa223ef2de2c01dabd0b0ddf4e5b21c32ff1c724ceb54f30c0100a1', 'eta_forward': '851307d3084654d8a3c580df288e23e0cc45fdd880467c8027ed457cc7b67b60', 'eta_reverse': 'b035fe1064b3083dc3e7c9c0442d4f1d3d7026ea6ab934563e7343481f1a78c9'}, 'elapsed_s': 15.39865741704125, 'interpretation': 'Finite saved directions at this state only; no uniform rank or Gibbs guarantee'}

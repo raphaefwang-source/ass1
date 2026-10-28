@@ -1,0 +1,16 @@
+test_fcc_physical_constants (test_dynamics.ConservativeTests.test_fcc_physical_constants) ... ok
+test_force_finite_difference_including_switch (test_dynamics.ConservativeTests.test_force_finite_difference_including_switch) ... ok
+test_periodic_force_and_translation (test_dynamics.ConservativeTests.test_periodic_force_and_translation) ... ok
+test_preparation_distinct_seed_and_com (test_dynamics.ConservativeTests.test_preparation_distinct_seed_and_com) ... ok
+test_switch_continuity (test_dynamics.ConservativeTests.test_switch_continuity) ... ok
+test_ab_identical_graph_and_no_self (test_dynamics.MovingTests.test_ab_identical_graph_and_no_self) ... ok
+test_actual_moving_step_com_rng_and_timing_accounting (test_dynamics.MovingTests.test_actual_moving_step_com_rng_and_timing_accounting) ... ok
+test_baoab_sequence_at_midpoint_with_identity_ou (test_dynamics.MovingTests.test_baoab_sequence_at_midpoint_with_identity_ou) ... ok
+test_changed_positions_rebuild_assignments_and_eigen (test_dynamics.MovingTests.test_changed_positions_rebuild_assignments_and_eigen) ... ok
+test_fft_meter_preserves_transform (test_dynamics.MovingTests.test_fft_meter_preserves_transform) ... ok
+test_wrapped_unwrapped_separate (test_dynamics.MovingTests.test_wrapped_unwrapped_separate) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.978s
+
+OK

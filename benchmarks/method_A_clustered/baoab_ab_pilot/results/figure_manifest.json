@@ -1,0 +1,16 @@
+{
+  "source": "results/timing_steps.csv",
+  "source_sha256": "caf3fc1de7dc2b850f2fd20161743abdf1ef6ca059087c29e887a8893059e4e0",
+  "rows": 480,
+  "scope": "Saved true moving-particle steps; no frozen replay",
+  "error_bars": "Range of round/block mean times, not confidence intervals",
+  "accounting": "Setup/LJ/RNG/OU/other disjoint. FFT/eigh/reorth are nested and not added twice.",
+  "figures": [
+    "figures/baoab_total_time.png",
+    "figures/baoab_total_time.svg",
+    "figures/dynamic_setup.png",
+    "figures/dynamic_setup.svg",
+    "figures/trajectory_observables.png",
+    "figures/trajectory_observables.svg"
+  ]
+}

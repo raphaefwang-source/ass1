@@ -1,0 +1,29 @@
+figure,method,phase,mean_ms,steps
+dynamic_setup,A,Near image enumeration,32.23649441594413,240
+dynamic_setup,B,Near image enumeration,32.78422291477909,240
+dynamic_setup,A,Near weights / degree,24.35190590379837,240
+dynamic_setup,B,Near weights / degree,24.428669246844947,240
+dynamic_setup,A,Mesh assignment,28.473760740598664,240
+dynamic_setup,B,Mesh assignment,29.7866804151757,240
+dynamic_setup,A,Mesh degree,8.225866971770301,240
+dynamic_setup,B,Mesh degree,8.6527696136424,240
+dynamic_setup,A,Operator overhead,0.5279795902121501,240
+dynamic_setup,B,Operator overhead,0.5412076454376802,240
+dynamic_setup,A,Aggregate 3x3 edges,25.267494457754463,240
+dynamic_setup,B,Aggregate 3x3 edges,0.0,240
+dynamic_setup,A,Edge constructor (includes eigh),83.7569161138769,240
+dynamic_setup,B,Edge constructor (includes eigh),0.0,240
+dynamic_setup,A,Fresh coefficients,30.66789372775626,240
+dynamic_setup,B,Fresh coefficients,0.0,240
+dynamic_setup,A,Other setup,0.10593145270831883,240
+dynamic_setup,B,Other setup,0.006176706422896435,240
+baoab_total_time,A,Dynamic q setup,233.61424337441954,240
+baoab_total_time,B,Dynamic q setup,96.19972654230271,240
+baoab_total_time,A,LJ forces,5.248371909935183,240
+baoab_total_time,B,LJ forces,5.341128462653917,240
+baoab_total_time,A,Gaussian RNG,1.4041951294833173,240
+baoab_total_time,B,Gaussian RNG,0.018100764039748658,240
+baoab_total_time,A,OU update,154.6782589837676,240
+baoab_total_time,B,OU update,413.54954096022993,240
+baoab_total_time,A,Other BAOAB,3.0181913500806936,240
+baoab_total_time,B,Other BAOAB,0.6645865874209752,240

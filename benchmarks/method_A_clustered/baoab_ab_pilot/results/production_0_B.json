@@ -1,0 +1,38 @@
+{
+  "label": "production_0_B",
+  "method": "B",
+  "initial_index": 0,
+  "seed": 202610280301,
+  "steps": 200,
+  "dt": 0.005,
+  "simulated_time": 1.0,
+  "file": "inputs/production_0_B.npz",
+  "file_sha256": "2ad3b54608f36c53ed63c9672a4e4126b3e725c838c1f4b9e4acaaf73de6cd72",
+  "start_q_sha256": "8914abbcbf4bcce45d665d70bcd1b2b3821586be6c9b5913eb608671941641b8",
+  "start_p_sha256": "41e19fa5e25793a7c24c8c719badaa3cb14f9c3e2b2def8fcd0db8160926f837",
+  "end_q_sha256": "f3cdceeea9f46e9e04112bec4cbfde273fb5e303935401997f55635c75fc70d2",
+  "end_p_sha256": "39516d6180da4d0efe5945f6cd3bca4bac28b8494f44f8ed9547b5306bde26cd",
+  "full_BAOAB_mean_s": 0.6967604686971753,
+  "full_BAOAB_median_s": 0.6514642294496298,
+  "loop_wall_including_evidence_s": 139.45677962491754,
+  "BAOAB_compute_wall_s": 139.35209373943508,
+  "max_momentum_norm": 1.3651790281927779e-13,
+  "min_pair_distance": 0.9004801534669729,
+  "max_rss_bytes": 271925248,
+  "load_before": [
+    6.90576171875,
+    6.177734375,
+    5.521484375
+  ],
+  "load_after": [
+    5.82763671875,
+    5.97607421875,
+    5.5322265625
+  ],
+  "ranks": {
+    "r_d": 5,
+    "r_n": 14
+  },
+  "parameter_table_sha256": "b0eeb92ce832fe581009ae58cec3a1886a90db4ffd06ef3ba17276d6c6cd2273",
+  "scope": "true moving-particle BAOAB; setup rebuilt every q_mid; exploratory Stage1 pilot"
+}

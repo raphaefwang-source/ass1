@@ -1,0 +1,36 @@
+{
+  "A": {
+    "n_timing": 240,
+    "n_production": 600,
+    "full_mean_ms": 397.9632607476863,
+    "full_median_ms": 381.6541459527798,
+    "production_mean_ms": 579.5394436219552,
+    "round_mean_min_ms": 385.98533437470905,
+    "round_mean_max_ms": 405.51390729960985,
+    "dynamic_setup_ms": 233.61424337441954
+  },
+  "B": {
+    "n_timing": 240,
+    "n_production": 600,
+    "full_mean_ms": 515.7730833166473,
+    "full_median_ms": 488.21514553856105,
+    "production_mean_ms": 685.6262227520347,
+    "round_mean_min_ms": 485.1893552724505,
+    "round_mean_max_ms": 589.2129739193479,
+    "dynamic_setup_ms": 96.19972654230271
+  },
+  "round_ratio_mean": 0.774188075724426,
+  "round_ratio_min": 0.6869957824686836,
+  "round_ratio_max": 0.8009768315955313,
+  "spatial_max": 3.9194983032915336e-10,
+  "action_max": 3.313578442192361e-12,
+  "COM_max": 2.0365582067491285e-13,
+  "peak_rss_MiB": 312.015625,
+  "preparation_wall_s": 55.120139834005386,
+  "planning_only_estimate": {
+    "one_dt_16starts_seconds": 29239.56301005868,
+    "hypothetical_four_halved_dt_seconds": 438593.4451508802,
+    "hypothetical_four_dt_trajectory_storage_GiB": 21.229813141482218,
+    "executed": false
+  }
+}

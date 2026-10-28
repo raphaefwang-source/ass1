@@ -1,0 +1,98 @@
+{
+  "params": {
+    "xi": 0.85,
+    "sR": 4.1,
+    "sF": 4.1,
+    "M": 24,
+    "p": 8,
+    "kappa": 0.7,
+    "c": 1.6148096467001307,
+    "L": 6.98864371789039
+  },
+  "q_sha256": "325ada2221bc72f19b30c3a585bdf72abfaf17da68f22502c4f739335b09b83a",
+  "relative_spectral_error": 0.011981122628712933,
+  "reference_tail_relative": 5.0625263799859124e-11,
+  "conservative_relative_error_bound": 0.011981122679944745,
+  "strict_budget_met": false,
+  "exploratory_budget_met": false,
+  "reference": {
+    "N": 256,
+    "L": 6.98864371789039,
+    "kappa": 0.7,
+    "c": 1.6148096467001307,
+    "R_max": 45.0,
+    "q_sha256": "325ada2221bc72f19b30c3a585bdf72abfaf17da68f22502c4f739335b09b83a",
+    "matrix_sha256": "f352871aa1b6877bad4116051ff49f6b3242b17fa876ad86564b97b1ad2a26d8",
+    "norm2": 13.384907918875246,
+    "reference": "unsplit full periodic direct lattice sum; no Ewald/mesh",
+    "excludes_self_particle_edges": true,
+    "total_images": 36499549,
+    "convergence": [
+      {
+        "R": 33.75,
+        "images": 15399533,
+        "difference_to_final_relative": 1.063087685689139e-09,
+        "certified_tail_absolute": 1.1521355693651122e-06,
+        "certified_tail_relative": 8.607721295866246e-08
+      },
+      {
+        "R": 40.5,
+        "images": 26608756,
+        "difference_to_final_relative": 1.0737778580782756e-11,
+        "certified_tail_absolute": 1.3425356536527527e-08,
+        "certified_tail_relative": 1.0030219571100106e-09
+      },
+      {
+        "R": 45.0,
+        "images": 36499549,
+        "difference_to_final_relative": 0.0,
+        "certified_tail_absolute": 6.776144943298828e-10,
+        "certified_tail_relative": 5.0625263799859124e-11
+      }
+    ],
+    "certified_tail_relative": 5.0625263799859124e-11,
+    "wall_s": 5.4989657499827445
+  },
+  "diagnostics": {
+    "relative_symmetry": 0.0,
+    "COM_null_relative": 9.010264449624531e-15,
+    "min_eigenvalue": -1.421665597953937e-14,
+    "long_min_eigenvalue": -7.998849648570003e-15,
+    "largest_eigenvalue": 13.48506213044857,
+    "FFT_action_relative_max": 5.689879615439779e-16,
+    "full_near_long_relative_max": 2.1976174043217476e-16,
+    "self_particle_edges": 0,
+    "images": 45013,
+    "unique_near_edges": 31044,
+    "rc": 4.823529411764706,
+    "kc": 6.905783733368152,
+    "shell": 59,
+    "full_rank_near_edges": 0,
+    "projection_active": true,
+    "physical_k0_preserved_before_projection": true,
+    "zero_mode_before": [
+      9.6147897739401,
+      9.6147897739401,
+      9.6147897739401,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "zero_mode_after": [
+      9.761854357064038,
+      9.761854357064038,
+      9.761854357064038,
+      -6.4334361079174585e-18,
+      -1.4785160672413864e-17,
+      -1.639098186907338e-17
+    ],
+    "mesh_self_terms_cancel": "full W_ii appears in both degree and convolution and cancels",
+    "M": 24,
+    "p": 8,
+    "kappa": 0.7,
+    "c": 1.6148096467001307
+  },
+  "table_setup_s": 0.03753287508152425,
+  "operator_dense_validation_s": 1.115982708055526,
+  "structural_checks_passed": true
+}

@@ -1,0 +1,4 @@
+# Keep generated CSV evidence bytes intact and recognize CSV CRLF endings.
+*.csv -text whitespace=cr-at-eol
+# Preserve Matplotlib's generated multiline SVG path serialization.
+*.svg -whitespace

@@ -1,0 +1,11 @@
+{
+  "stage": 1,
+  "actual_steps": 480,
+  "rounds": 6,
+  "steps_per_method_per_round": 40,
+  "order_seed": 202610280401,
+  "parameter_table_setup_s": 0.13735591701697558,
+  "parameter_table_sha256": "b0eeb92ce832fe581009ae58cec3a1886a90db4ffd06ef3ba17276d6c6cd2273",
+  "control": "Each round A/B restart from same q,p start; independent correct internal noise; both advance 40 true moving steps",
+  "scope": "exploratory dynamic timing only; no equal-dynamics ranking"
+}

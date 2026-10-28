@@ -1,0 +1,13 @@
+{
+  "A": {
+    "r_d": 5,
+    "r_n": 14
+  },
+  "B": {
+    "r_d": 5,
+    "r_n": 14
+  },
+  "threshold": 2e-08,
+  "substeps": 1,
+  "selection": "maximum of separately verified ranks over 3 independent pre-equilibrated starts"
+}
