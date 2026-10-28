@@ -1,0 +1,24 @@
+{
+  "group_id": "sp_f12368aae7_A_k4_bd906e968",
+  "spatial_id": "sp_f12368aae7",
+  "method": "A",
+  "k": 4,
+  "r_d": 3,
+  "r_n": 8,
+  "per_action_budget": 3.618786270811148e-09,
+  "full_path_budget": 2e-08,
+  "max_registered_probe_error": 1.2043834687924568e-09,
+  "max_actual_input_action_error": 1.3774660468511672e-09,
+  "max_coupled_path_error": 4.2947084750650373e-10,
+  "wrapper_bitwise_equal": true,
+  "passed": true,
+  "failures": [],
+  "validation_states": [
+    "initial_0",
+    "initial_1",
+    "initial_2",
+    "visited_1_B_200",
+    "visited_global_min_distance"
+  ],
+  "limitation": "sampled finite-Lanczos actions and own-ideal paths; not a uniform nonlinear covariance operator bound"
+}

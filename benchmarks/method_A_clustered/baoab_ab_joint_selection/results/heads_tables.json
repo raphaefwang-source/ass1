@@ -1,0 +1,38 @@
+[
+  {
+    "table_id": 1,
+    "params": {
+      "N": 256,
+      "rho": 0.75,
+      "L": 6.98864371789039,
+      "kappa": 0.7,
+      "c": 1.6148096467001307,
+      "xi": 0.65,
+      "sR": 4.5,
+      "sF": 4.1,
+      "M": 32,
+      "p": 6
+    },
+    "parameter_table_sha256": "b26db0940cf17a31aab46aa93192f45d30791721571d8e50d1a637d3a51ac1be",
+    "actual_table_setup_s": 0.11322104092687368,
+    "scope": "one-time parameter-only construction, excluded from moving step wall"
+  },
+  {
+    "table_id": 2,
+    "params": {
+      "N": 256,
+      "rho": 0.75,
+      "L": 6.98864371789039,
+      "kappa": 0.7,
+      "c": 1.6148096467001307,
+      "xi": 0.65,
+      "sR": 4.7,
+      "sF": 4.7,
+      "M": 40,
+      "p": 10
+    },
+    "parameter_table_sha256": "b0eeb92ce832fe581009ae58cec3a1886a90db4ffd06ef3ba17276d6c6cd2273",
+    "actual_table_setup_s": 0.1972111250506714,
+    "scope": "one-time parameter-only construction, excluded from moving step wall"
+  }
+]

@@ -1,0 +1,87 @@
+{
+  "method": "B",
+  "k": 1,
+  "r_d": 4,
+  "r_n": 9,
+  "actual_noise_reconstructed": true,
+  "max_actual_input_action_error": 1.1320541534885678e-08,
+  "per_action_budget": 2e-08,
+  "coupled_own_ideal_path_error": 3.334276899682535e-09,
+  "full_path_budget": 2e-08,
+  "timed_O_output_match": true,
+  "timed_O_output_replay_abs_error": 2.220446049250313e-16,
+  "timed_O_output_replay_relative_error": 2.2406033893334667e-17,
+  "negative_ritz_count": 0,
+  "COM_error": 3.998946624703877e-15,
+  "finite_passed": true,
+  "action_checks": [
+    {
+      "substep": 1,
+      "kind": "damping",
+      "method": "B",
+      "k": 1,
+      "rank_requested": 4,
+      "rank_used": 4,
+      "relative_error": 2.647856630883356e-10,
+      "budget": 2e-08,
+      "passed": true,
+      "negative_ritz_count": 0,
+      "clipped_negative_count": 0,
+      "matvec_count": 4,
+      "input_sha256": "16aee5622b33f0d07595dfadd6b0181912390a41c97773d841bb7dab13833491",
+      "exact_sha256": "64217b0709e750a8a2528ded75e4991972faf9345848b747c79032672db492b6",
+      "actual_sha256": "9230e1e78a2f580b57ff43585c72b90473d1ad8c794c2d8a68f19bd3acf0d513"
+    },
+    {
+      "substep": 1,
+      "kind": "noise",
+      "method": "B",
+      "k": 1,
+      "rank_requested": 9,
+      "rank_used": 9,
+      "relative_error": 1.1320541534885678e-08,
+      "budget": 2e-08,
+      "passed": true,
+      "negative_ritz_count": 0,
+      "clipped_negative_count": 0,
+      "matvec_count": 9,
+      "input_sha256": "5197592c526a8c814bf4ee190a6bc4eba12b771e96f34505e1eae49a6a6d615a",
+      "exact_sha256": "2ddd31e9cad0edd6ba31b88da71612424064c1e988f9c27f85dc46627e260b62",
+      "actual_sha256": "065477906cb460fd48934b48a0446355db00ee12585b4b9f98c10da8a8840afe"
+    }
+  ],
+  "substep_paths": [
+    {
+      "substep": 1,
+      "dt_inner": 0.005,
+      "k": 1,
+      "method": "B",
+      "actual_sha256": "d1aa37c1d8d23fc676957c74600fe2bd1848129ab77502acd3686b6bb5c3b380",
+      "own_ideal_sha256": "06a1d37022766ea9536383e4847fdbbadbfc9c357d940f696b667bcb25fa3abb",
+      "coupled_relative_error": 3.334276899682535e-09,
+      "matvec_count": 13,
+      "r_d_used": 4,
+      "r_n_used": 9,
+      "negative_ritz_count": 0
+    }
+  ],
+  "scope": "actual timed inner inputs/noise, finite own-ideal path; no nonlinear covariance operator or Gibbs guarantee",
+  "run": "head_g3_round4_B",
+  "config_id": "sp_b4884e6cd3_B_eps1e-06",
+  "q_mid_sha256": "b9756af1359da9e054d3b076b2a181afe544e275995dbb7499b163e284b26171",
+  "p_half_sha256": "16aee5622b33f0d07595dfadd6b0181912390a41c97773d841bb7dab13833491",
+  "file": "results/post_certificates/finite_head_g3_round4_B.npz",
+  "file_sha256": "24f263f868908b720bd20407419676adbabb320bdf8e31d1b357467ff5565a9e",
+  "source_rng_file": "results/head_g3_round4_B_rng.json",
+  "source_rng_file_sha256": "3112f4c202e0a23b7ef3cc5b7d6a83b7650d6539a473878d0f5ac994f539d2b1",
+  "actual_noise_substeps": [
+    {
+      "substep": 1,
+      "z_sha256": "5197592c526a8c814bf4ee190a6bc4eba12b771e96f34505e1eae49a6a6d615a",
+      "eta_forward_sha256": null,
+      "eta_reverse_sha256": null,
+      "rng_state_before_sha256": "3e2e84f858d355360a363d8f09c6c1d6ccbab95ed18b793cdbe09c5418413905",
+      "rng_state_after_sha256": "2ec09e0d18648901c26a0061d8dca5e870884dea1d40aeb37fffa429e4e38727"
+    }
+  ]
+}

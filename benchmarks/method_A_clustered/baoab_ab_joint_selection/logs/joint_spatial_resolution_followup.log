@@ -1,0 +1,115 @@
+Adaptive resolution leader sp_b5023de1c5 initial_0 2.297041294204487e-08
+Adaptive resolution leader sp_b5023de1c5 initial_1 2.2092500147474654e-08
+Adaptive resolution leader sp_b5023de1c5 initial_2 2.2013878863350172e-08
+Adaptive resolution leader sp_b5023de1c5 visited_1_B_200 2.199397416438414e-08
+Adaptive resolution leader sp_b5023de1c5 visited_global_min_distance 2.1948121864016326e-08
+[
+  {
+    "setting_id": "sp_b4884e6cd3",
+    "params": {
+      "N": 256,
+      "rho": 0.75,
+      "L": 6.98864371789039,
+      "kappa": 0.7,
+      "c": 1.6148096467001307,
+      "xi": 0.65,
+      "sR": 4.7,
+      "sF": 4.7,
+      "M": 40,
+      "p": 10
+    },
+    "spatial_passed": true,
+    "max_spatial_error": 3.878471284432964e-10,
+    "validation_states": [
+      "initial_0",
+      "initial_1",
+      "initial_2",
+      "visited_1_B_200",
+      "visited_global_min_distance"
+    ],
+    "priority_proxy_s": 1.0012169656110927,
+    "proxy_not_performance_winner": true,
+    "baseline_control": true
+  },
+  {
+    "setting_id": "sp_f12368aae7",
+    "params": {
+      "N": 256,
+      "rho": 0.75,
+      "L": 6.98864371789039,
+      "kappa": 0.7,
+      "c": 1.6148096467001307,
+      "xi": 0.55,
+      "sR": 4.1,
+      "sF": 4.7,
+      "M": 32,
+      "p": 8
+    },
+    "spatial_passed": true,
+    "max_spatial_error": 5.9512658735519136e-08,
+    "validation_states": [
+      "initial_0",
+      "initial_1",
+      "initial_2",
+      "visited_1_B_200",
+      "visited_global_min_distance"
+    ],
+    "priority_proxy_s": 0.5415922906831838,
+    "proxy_not_performance_winner": true,
+    "baseline_control": false
+  },
+  {
+    "setting_id": "sp_59e8503896",
+    "params": {
+      "N": 256,
+      "rho": 0.75,
+      "L": 6.98864371789039,
+      "kappa": 0.7,
+      "c": 1.6148096467001307,
+      "xi": 0.75,
+      "sR": 4.7,
+      "sF": 5.2,
+      "M": 64,
+      "p": 12
+    },
+    "spatial_passed": true,
+    "max_spatial_error": 3.8947214529700446e-10,
+    "validation_states": [
+      "initial_0",
+      "initial_1",
+      "initial_2",
+      "visited_1_B_200",
+      "visited_global_min_distance"
+    ],
+    "priority_proxy_s": 0.7630055582849309,
+    "proxy_not_performance_winner": true,
+    "baseline_control": false
+  },
+  {
+    "setting_id": "sp_b5023de1c5",
+    "params": {
+      "N": 256,
+      "rho": 0.75,
+      "L": 6.98864371789039,
+      "kappa": 0.7,
+      "c": 1.6148096467001307,
+      "xi": 0.65,
+      "sR": 4.5,
+      "sF": 4.1,
+      "M": 32,
+      "p": 6
+    },
+    "spatial_passed": true,
+    "max_spatial_error": 2.297041294204487e-08,
+    "validation_states": [
+      "initial_0",
+      "initial_1",
+      "initial_2",
+      "visited_1_B_200",
+      "visited_global_min_distance"
+    ],
+    "priority_proxy_s": 0.4006252807448618,
+    "proxy_not_performance_winner": true,
+    "baseline_control": false
+  }
+]

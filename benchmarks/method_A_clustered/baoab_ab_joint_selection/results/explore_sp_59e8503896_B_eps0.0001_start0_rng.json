@@ -1,0 +1,70 @@
+{
+  "seed": 202610282110,
+  "bit_generator": "PCG64",
+  "states": [
+    {
+      "step": 1,
+      "before": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 22244089804090244776327322241328983175,
+          "inc": 144687719728174092608270690868722023613
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      },
+      "after": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 203026548147447171530638747940223992040,
+          "inc": 144687719728174092608270690868722023613
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      }
+    },
+    {
+      "step": 2,
+      "before": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 203026548147447171530638747940223992040,
+          "inc": 144687719728174092608270690868722023613
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      },
+      "after": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 189017460137991196399751785094785467228,
+          "inc": 144687719728174092608270690868722023613
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      }
+    },
+    {
+      "step": 3,
+      "before": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 189017460137991196399751785094785467228,
+          "inc": 144687719728174092608270690868722023613
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      },
+      "after": {
+        "bit_generator": "PCG64",
+        "state": {
+          "state": 286257913339123426872247597399303320440,
+          "inc": 144687719728174092608270690868722023613
+        },
+        "has_uint32": 0,
+        "uinteger": 0
+      }
+    }
+  ],
+  "recipe": "Every complete A inner step draws z,ef,er independently; B draws z once"
+}

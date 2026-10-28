@@ -1,0 +1,10 @@
+test_conservative_reference_allowance (test_joint_spatial.JointSpatialTests.test_conservative_reference_allowance) ... ok
+test_illegal_mesh_parameters_rejected (test_joint_spatial.JointSpatialTests.test_illegal_mesh_parameters_rejected) ... ok
+test_joint_candidates_cover_splitting_and_asymmetry (test_joint_spatial.JointSpatialTests.test_joint_candidates_cover_splitting_and_asymmetry) ... ok
+test_probe_bound_is_safe_even_when_direction_soft (test_joint_spatial.JointSpatialTests.test_probe_bound_is_safe_even_when_direction_soft) ... ok
+test_readonly_direct_reference_new_physics (test_joint_spatial.JointSpatialTests.test_readonly_direct_reference_new_physics) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.053s
+
+OK

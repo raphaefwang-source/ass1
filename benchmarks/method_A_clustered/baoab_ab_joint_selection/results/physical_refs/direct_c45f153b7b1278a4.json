@@ -1,0 +1,38 @@
+{
+  "N": 256,
+  "L": 6.98864371789039,
+  "kappa": 0.7,
+  "c": 1.6148096467001307,
+  "R_max": 45.0,
+  "q_sha256": "c45f153b7b1278a424c171ca6be8384fa29a8db7e1d3847905cd59d5a0c17d92",
+  "matrix_sha256": "2d1dffd61e92f4f0bf9889fa57fc43e9022ce870d2a816b51a667bc5a372cb99",
+  "norm2": 11.907960693280291,
+  "reference": "unsplit full periodic direct lattice sum; no Ewald/mesh",
+  "excludes_self_particle_edges": true,
+  "total_images": 36498690,
+  "convergence": [
+    {
+      "R": 33.75,
+      "images": 15400481,
+      "difference_to_final_relative": 1.1941070550716081e-09,
+      "certified_tail_absolute": 1.1521355693651122e-06,
+      "certified_tail_relative": 9.675339036139638e-08
+    },
+    {
+      "R": 40.5,
+      "images": 26611435,
+      "difference_to_final_relative": 1.2043564996433167e-11,
+      "certified_tail_absolute": 1.3425356536527527e-08,
+      "certified_tail_relative": 1.1274270114196386e-09
+    },
+    {
+      "R": 45.0,
+      "images": 36498690,
+      "difference_to_final_relative": 0.0,
+      "certified_tail_absolute": 6.776144943298828e-10,
+      "certified_tail_relative": 5.690432743133451e-11
+    }
+  ],
+  "certified_tail_relative": 5.690432743133451e-11,
+  "wall_s": 5.503506500041112
+}

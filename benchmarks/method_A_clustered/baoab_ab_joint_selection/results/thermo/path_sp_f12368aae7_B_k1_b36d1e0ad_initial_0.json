@@ -1,0 +1,90 @@
+{
+  "method": "B",
+  "k": 1,
+  "r_d": 4,
+  "r_n": 9,
+  "seed": 202610821104,
+  "bit_generator": "PCG64",
+  "rng_state_before": {
+    "bit_generator": "PCG64",
+    "state": {
+      "state": 292311969875556050771318143915206647448,
+      "inc": 103355406435546787285670746309244570715
+    },
+    "has_uint32": 0,
+    "uinteger": 0
+  },
+  "rng_state_after": {
+    "bit_generator": "PCG64",
+    "state": {
+      "state": 199737725337917498695907011739599471964,
+      "inc": 103355406435546787285670746309244570715
+    },
+    "has_uint32": 0,
+    "uinteger": 0
+  },
+  "noise_recipe": "for each substep: standard_normal(p.shape), then A standard_normal((E,3)) forward and reverse; no extra sqrt(dt) factor",
+  "coupled_relative_error": 2.6446139872863585e-09,
+  "max_actual_input_action_error": 8.383370197174823e-09,
+  "actual_matvec_count": 13,
+  "negative_ritz_count": 0,
+  "COM_error": 8.267481704019852e-15,
+  "substeps": [
+    {
+      "substep": 0,
+      "k": 1,
+      "method": "B",
+      "sub_dt": 0.005,
+      "z_sha256": "49fb9b74e0988031ac2e00ce8e017a104e58fb4db52c99fc035ab147fde3181d",
+      "ef_sha256": null,
+      "er_sha256": null,
+      "p_input_sha256": "41e19fa5e25793a7c24c8c719badaa3cb14f9c3e2b2def8fcd0db8160926f837",
+      "p_actual_sha256": "fa4dc0bc4ba705d65c3215698d2d5c92958428c6125736e59b0c09f620f2ac1c",
+      "p_ideal_sha256": "b3408114a4da8ef25322265c4c69fb8444503cd1f3d9c8be5d43dc3b402243ef",
+      "coupled_relative_error": 2.6446139872863585e-09,
+      "matvec_count": 13,
+      "damp_rank_used": 4,
+      "noise_rank_used": 9,
+      "negative_ritz_count": 0,
+      "t_ou_s": 0.28686245798598975
+    }
+  ],
+  "action_checks": [
+    {
+      "method": "B",
+      "k": 1,
+      "substep": 0,
+      "kind": "damping",
+      "relative_error": 2.7263365353648735e-10,
+      "budget": 2e-08,
+      "passed": true,
+      "rank_used": 4,
+      "negative_ritz_count": 0,
+      "matvec_count": 4,
+      "input_sha256": "41e19fa5e25793a7c24c8c719badaa3cb14f9c3e2b2def8fcd0db8160926f837",
+      "exact_sha256": "b9f3f27accf2227975a4cd023782b58d47da89c5c587f550e1e7aedaa7e41d22",
+      "actual_sha256": "c4e38fed24f0d60814a0e721e2ec0343daee8dd612cbfb6b34302842a60787c6"
+    },
+    {
+      "method": "B",
+      "k": 1,
+      "substep": 0,
+      "kind": "noise",
+      "relative_error": 8.383370197174823e-09,
+      "budget": 2e-08,
+      "passed": true,
+      "rank_used": 9,
+      "negative_ritz_count": 0,
+      "matvec_count": 9,
+      "input_sha256": "49fb9b74e0988031ac2e00ce8e017a104e58fb4db52c99fc035ab147fde3181d",
+      "exact_sha256": "2836b3072649e31c73dedbee8ad419431a9c3322fb4949b8c718aacd16e24dad",
+      "actual_sha256": "8a038dce307cdc09e2b79b260671a40444d90483e625e074e0c33df4d568310f"
+    }
+  ],
+  "interpretation": "Same-method finite-Lanczos vs coupled own ideal reference only; not raw A/B path bias",
+  "spatial_id": "sp_f12368aae7",
+  "state": "initial_0",
+  "per_action_budget": 2e-08,
+  "full_path_budget": 2e-08,
+  "passed": true
+}

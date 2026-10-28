@@ -1,0 +1,97 @@
+{
+  "figures": [
+    {
+      "name": "accuracy_cost_pareto",
+      "files": [
+        {
+          "file": "figures/accuracy_cost_pareto.png",
+          "sha256": "9ea318bbf4551c5cebab4d0540a9f8784780d793351666ba32b7d3cf7148063f"
+        },
+        {
+          "file": "figures/accuracy_cost_pareto.svg",
+          "sha256": "9efa2a653ce9cdfdb4b4a585c55fba77c69c98570acbbdc078a9779b1c29952b"
+        }
+      ],
+      "rows_file": "figures/accuracy_cost_pareto_plotted.csv",
+      "rows_sha256": "69146b88471502c4e484db349c72616dc89bc5df8bc3bffde35780897b4d59a4",
+      "caption": "Exploratory measured candidates; circles are the empirical 3-objective front within method/tier. No CI or global-optimum claim."
+    },
+    {
+      "name": "independent_controlled_baoab",
+      "files": [
+        {
+          "file": "figures/independent_controlled_baoab.png",
+          "sha256": "6a0736c2e1d754c4d0adacbb2d8149a149790e7eb0506fa22767d2be7b92cf8f"
+        },
+        {
+          "file": "figures/independent_controlled_baoab.svg",
+          "sha256": "54314b86ae6d13617a6aa502a8c21bb383f8a6d5b7edd2696b4131bf6f06c580"
+        }
+      ],
+      "rows_file": "figures/independent_controlled_baoab_plotted.csv",
+      "rows_sha256": "8358ba74417c5f707fc666c1364a6553959e1a1a134687eaf0b2a1518c996c1d",
+      "caption": "New local paired batches only; A/B>1 means B has lower wall time. Post-validation gates verdicts; starts/rounds define the sampled population."
+    },
+    {
+      "name": "joint_parameter_sensitivity",
+      "files": [
+        {
+          "file": "figures/joint_parameter_sensitivity.png",
+          "sha256": "42a2056e41281f49755fa769de9d679a0252deddfda30d6e0d0ec77c8f90c51a"
+        },
+        {
+          "file": "figures/joint_parameter_sensitivity.svg",
+          "sha256": "8688b9db2e535a1f5bbc2e3bd14c4acaa9c6796aff2a5d3f74484bdf300174b4"
+        }
+      ],
+      "rows_file": "figures/joint_parameter_sensitivity_plotted.csv",
+      "rows_sha256": "69146b88471502c4e484db349c72616dc89bc5df8bc3bffde35780897b4d59a4",
+      "caption": "Confounded jointly varied families. Each point uses actual short moving BAOAB; complete setting identities are in the plotted CSV."
+    },
+    {
+      "name": "frozen_splitting_vs_k",
+      "files": [
+        {
+          "file": "figures/frozen_splitting_vs_k.png",
+          "sha256": "176eba84492f472a815998cbd8f6e91a3f0ee4eb511d778996f98cecb01d1e40"
+        },
+        {
+          "file": "figures/frozen_splitting_vs_k.svg",
+          "sha256": "83b22f8a56514e2b753d7fc20b75ef74ab49132fe260b97e82ce11da5c259da8"
+        }
+      ],
+      "rows_file": "figures/frozen_splitting_vs_k_plotted.csv",
+      "rows_sha256": "8519426c89ccc24d501693c9e9591656c144918730a9bba79506b70c295b8934",
+      "caption": "Full 765D COM norms, maximum over five registered geometries. Only actually evaluated k are shown; early stopping is explicit in thermo_selection.json."
+    },
+    {
+      "name": "head_phase_costs",
+      "files": [
+        {
+          "file": "figures/head_phase_costs.png",
+          "sha256": "55542b2c64417f78b1c03b555f658085f77147b860ad56e7d0990e220c90ede5"
+        },
+        {
+          "file": "figures/head_phase_costs.svg",
+          "sha256": "61509c478866d6d3d88b6cc16ab657a0fd26ecce491f42cc64526d4b76c88ecd"
+        }
+      ],
+      "rows_file": "figures/head_phase_costs_plotted.csv",
+      "rows_sha256": "d2fad9f1bd7fcf3d7f48da2f11936d6afacd1e472eed11e384471bf45ff9b49f",
+      "caption": "Disjoint outer clocks only. FFT, pair, eigensolve and reorthogonalization subclocks are nested diagnostics, never added again."
+    }
+  ],
+  "source_sha256": {
+    "results/analysis.json": "fcf762a3ad4fe415a4fba7751672ade530813f0d6b7f7f5caf84d2e71c9acce4",
+    "results/exploratory_done.json": "9ba7b22c48db9be132a0e18197807edb03303897fd58762832756b386b86b5b0",
+    "results/heads_done.json": "57ad015d4d322505b665f257558d177b7fc845edbf143c43458a83a1e7e41608",
+    "results/post_validation.json": "12f0dc0397f67c16756ce0755c33ec1c0d883eec387fe56255e1f1341c4c0c1d",
+    "results/spatial/spatial_selection.json": "9dc6f85f60e089fd1fba6aa26a14c3471221757753429dfed5d264352052cf3a",
+    "results/thermo/thermo_selection.json": "72356b58010fabc2fe3b302b218efa212d9da40597a6e49e6655c0d8a6a63be0",
+    "results/thermo/rank_selection.json": "0bdcffccf1831551094c3f6ea7b63cabd96ece442256ffcef887c4ba9d76ea34",
+    "results/thermo/ideal_errors.csv": "2aac78a312a3623f3014069e9e27f07bda26ed7788039a41baabf6d93d2f0cf8",
+    "results/heads_steps.csv": "768902624a976951ac2b62ab279c1d7e302203c90fac929fe58df9a261362696",
+    "results/pareto.csv": "11f08307baa0dc96c9b10e751e8e80a4b4af67e64b4ee04fe8dc815634373e13"
+  },
+  "historical_timings_used": false
+}

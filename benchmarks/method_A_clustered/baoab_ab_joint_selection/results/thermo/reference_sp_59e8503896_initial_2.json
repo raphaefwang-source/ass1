@@ -1,0 +1,50 @@
+{
+  "setting_id": "sp_59e8503896",
+  "state": "initial_2",
+  "q_sha256": "624927bcf3fc699dc4e48d87c3e6dbb48139a6b48a16656efaae43bdef65080c",
+  "GH_sha256": "888844310772f78caa297c9671a6ce58d698be6f249bd285451f15dc8c336030",
+  "GL_sha256": "7751321f0df20e5c0e467655867b139360db9b1f52153d90b99d679779982a72",
+  "file": "results/thermo/reference_sp_59e8503896_initial_2.npz",
+  "file_sha256": "447e290774f37bbd3501228b10d1c230dddff52ed1d23e89eaf58620e514f82e",
+  "physical_reference": {
+    "q_sha256": "624927bcf3fc699dc4e48d87c3e6dbb48139a6b48a16656efaae43bdef65080c",
+    "matrix_sha256": "c990de7dfc796e32e1bf9296542b248425bb752ee290c08ed126019a666fb511",
+    "norm2": 11.986482786638913,
+    "tail_absolute": 6.776144943298828e-10,
+    "tail_relative": 5.6531553616812914e-11,
+    "source_file": "benchmarks/method_A_clustered/baoab_ab_pilot/results/initial_2_spatial_direct.npz",
+    "source_sha256": "8ee8a10c1024b642eacfd3e6588f3d2991f0530177e9f6dbfb731bbbd3c580c7",
+    "source_metadata_file": "benchmarks/method_A_clustered/baoab_ab_pilot/results/initial_2_spatial_direct.json",
+    "source_metadata_sha256": "ceebb3633cce12311719b2fc0677bdda9313c2e1cc5e4534943a71951a56c93c",
+    "kappa": 0.7,
+    "c": 1.6148096467001307,
+    "L": 6.98864371789039,
+    "R_max": 45.0,
+    "reference": "unsplit c exp(-kappa*r)/r full periodic direct lattice graph",
+    "direct_convergence": [
+      {
+        "R": 33.75,
+        "images": 15399356,
+        "difference_to_final_relative": 1.1868369558312011e-09,
+        "certified_tail_absolute": 1.1521355693651122e-06,
+        "certified_tail_relative": 9.611956984156972e-08
+      },
+      {
+        "R": 40.5,
+        "images": 26610044,
+        "difference_to_final_relative": 1.1970291225347341e-11,
+        "certified_tail_absolute": 1.3425356536527527e-08,
+        "certified_tail_relative": 1.1200413645521185e-09
+      },
+      {
+        "R": 45.0,
+        "images": 36499000,
+        "difference_to_final_relative": 0.0,
+        "certified_tail_absolute": 6.776144943298828e-10,
+        "certified_tail_relative": 5.6531553616812914e-11
+      }
+    ],
+    "self_particle_edges_excluded": true,
+    "reused_readonly_reference": true
+  }
+}
