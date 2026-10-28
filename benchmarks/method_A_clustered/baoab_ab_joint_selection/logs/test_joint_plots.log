@@ -1,0 +1,9 @@
+test_full_norm_figure_aggregates_worst_state_and_only_executed_k (test_joint_plots.PlotEvidenceTests.test_full_norm_figure_aggregates_worst_state_and_only_executed_k) ... ok
+test_missing_pareto_registry_cannot_silently_add_unmeasured_point (test_joint_plots.PlotEvidenceTests.test_missing_pareto_registry_cannot_silently_add_unmeasured_point) ... ok
+test_pareto_requires_three_objectives_and_same_method_tier (test_joint_plots.PlotEvidenceTests.test_pareto_requires_three_objectives_and_same_method_tier) ... ok
+test_phase_costs_add_disjoint_outer_clocks_including_rng_once (test_joint_plots.PlotEvidenceTests.test_phase_costs_add_disjoint_outer_clocks_including_rng_once) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+OK

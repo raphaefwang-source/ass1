@@ -1,0 +1,50 @@
+{
+  "setting_id": "sp_f12368aae7",
+  "state": "visited_global_min_distance",
+  "q_sha256": "bc7cc8a1a04593b3ee4d73e0d7e94e2990aab7a412f8f288f133a51224d71cb1",
+  "GH_sha256": "e012b9550c4b672614f056d5beb4f055300de12b8e8b26f89c675e308ad7d7ed",
+  "GL_sha256": "0504e87fe391a2d16ceb96d478fda2be695829a10438a712721edb65773f83a3",
+  "file": "results/thermo/reference_sp_f12368aae7_visited_global_min_distance.npz",
+  "file_sha256": "bb04956551b9988bb61cc0dd20ce8dc34311fafc3a827f26175393527249a286",
+  "physical_reference": {
+    "q_sha256": "bc7cc8a1a04593b3ee4d73e0d7e94e2990aab7a412f8f288f133a51224d71cb1",
+    "matrix_sha256": "cc859c5885c06108c0f1e202d96d25acc02dbfff18da8841263b4dbc59267e2b",
+    "norm2": 11.973268818439582,
+    "tail_absolute": 6.776144943298828e-10,
+    "tail_relative": 5.6593943108193987e-11,
+    "source_file": "benchmarks/method_A_clustered/baoab_ab_joint_selection/results/physical_refs/direct_bc7cc8a1a04593b3.npz",
+    "source_sha256": "d2f5eedfdf366cc3a51c11f2d136e482839c90b6b0651de96c2186b761e78f9f",
+    "source_metadata_file": "benchmarks/method_A_clustered/baoab_ab_joint_selection/results/physical_refs/direct_bc7cc8a1a04593b3.json",
+    "source_metadata_sha256": "de3cb5ab50caaff68bc2f748b7f974775b50a49db1c8f74be35c77898a968216",
+    "kappa": 0.7,
+    "c": 1.6148096467001307,
+    "L": 6.98864371789039,
+    "R_max": 45.0,
+    "reference": "unsplit c exp(-kappa*r)/r full periodic direct lattice graph",
+    "direct_convergence": [
+      {
+        "R": 33.75,
+        "images": 15399730,
+        "difference_to_final_relative": 1.1880407685089996e-09,
+        "certified_tail_absolute": 1.1521355693651122e-06,
+        "certified_tail_relative": 9.622564955618063e-08
+      },
+      {
+        "R": 40.5,
+        "images": 26610808,
+        "difference_to_final_relative": 1.198176346709247e-11,
+        "certified_tail_absolute": 1.3425356536527527e-08,
+        "certified_tail_relative": 1.121277467340551e-09
+      },
+      {
+        "R": 45.0,
+        "images": 36499501,
+        "difference_to_final_relative": 0.0,
+        "certified_tail_absolute": 6.776144943298828e-10,
+        "certified_tail_relative": 5.6593943108193987e-11
+      }
+    ],
+    "self_particle_edges_excluded": true,
+    "reused_readonly_reference": false
+  }
+}

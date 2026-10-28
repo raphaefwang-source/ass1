@@ -1,0 +1,355 @@
+{
+  "qualified_settings": [
+    {
+      "setting_id": "sp_b4884e6cd3",
+      "params": {
+        "N": 256,
+        "rho": 0.75,
+        "L": 6.98864371789039,
+        "kappa": 0.7,
+        "c": 1.6148096467001307,
+        "xi": 0.65,
+        "sR": 4.7,
+        "sF": 4.7,
+        "M": 40,
+        "p": 10
+      },
+      "spatial_passed": true,
+      "max_spatial_error": 3.878471284432964e-10,
+      "validation_states": [
+        "initial_0",
+        "initial_1",
+        "initial_2",
+        "visited_1_B_200",
+        "visited_global_min_distance"
+      ],
+      "priority_proxy_s": 1.0012169656110927,
+      "proxy_not_performance_winner": true,
+      "baseline_control": true
+    },
+    {
+      "setting_id": "sp_f12368aae7",
+      "params": {
+        "N": 256,
+        "rho": 0.75,
+        "L": 6.98864371789039,
+        "kappa": 0.7,
+        "c": 1.6148096467001307,
+        "xi": 0.55,
+        "sR": 4.1,
+        "sF": 4.7,
+        "M": 32,
+        "p": 8
+      },
+      "spatial_passed": true,
+      "max_spatial_error": 5.9512658735519136e-08,
+      "validation_states": [
+        "initial_0",
+        "initial_1",
+        "initial_2",
+        "visited_1_B_200",
+        "visited_global_min_distance"
+      ],
+      "priority_proxy_s": 0.5415922906831838,
+      "proxy_not_performance_winner": true,
+      "baseline_control": false
+    },
+    {
+      "setting_id": "sp_59e8503896",
+      "params": {
+        "N": 256,
+        "rho": 0.75,
+        "L": 6.98864371789039,
+        "kappa": 0.7,
+        "c": 1.6148096467001307,
+        "xi": 0.75,
+        "sR": 4.7,
+        "sF": 5.2,
+        "M": 64,
+        "p": 12
+      },
+      "spatial_passed": true,
+      "max_spatial_error": 3.8947214529700446e-10,
+      "validation_states": [
+        "initial_0",
+        "initial_1",
+        "initial_2",
+        "visited_1_B_200",
+        "visited_global_min_distance"
+      ],
+      "priority_proxy_s": 0.7630055582849309,
+      "proxy_not_performance_winner": true,
+      "baseline_control": false
+    }
+  ],
+  "candidates_screened": 34,
+  "initial_full_candidates": 9,
+  "actual_full_operator_checks": 21,
+  "registered_validation_states": [
+    "initial_0",
+    "initial_1",
+    "initial_2",
+    "visited_1_B_200",
+    "visited_global_min_distance"
+  ],
+  "spatial_budget": 2e-07,
+  "baseline_setting_id": "sp_b4884e6cd3",
+  "adaptive_decisions": [
+    {
+      "round": 0,
+      "candidates": [
+        {
+          "xi": 0.65,
+          "sR": 4.7,
+          "sF": 4.7,
+          "M": 40,
+          "p": 10
+        },
+        {
+          "xi": 0.45,
+          "sR": 4.5,
+          "sF": 4.1,
+          "M": 32,
+          "p": 6
+        },
+        {
+          "xi": 0.45,
+          "sR": 4.5,
+          "sF": 4.7,
+          "M": 40,
+          "p": 8
+        },
+        {
+          "xi": 0.45,
+          "sR": 4.7,
+          "sF": 5.0,
+          "M": 48,
+          "p": 10
+        },
+        {
+          "xi": 0.55,
+          "sR": 4.5,
+          "sF": 4.1,
+          "M": 32,
+          "p": 6
+        },
+        {
+          "xi": 0.55,
+          "sR": 4.5,
+          "sF": 4.7,
+          "M": 40,
+          "p": 8
+        },
+        {
+          "xi": 0.55,
+          "sR": 4.7,
+          "sF": 5.0,
+          "M": 48,
+          "p": 10
+        },
+        {
+          "xi": 0.65,
+          "sR": 4.5,
+          "sF": 4.1,
+          "M": 32,
+          "p": 6
+        },
+        {
+          "xi": 0.65,
+          "sR": 4.5,
+          "sF": 4.7,
+          "M": 40,
+          "p": 8
+        },
+        {
+          "xi": 0.65,
+          "sR": 4.7,
+          "sF": 5.0,
+          "M": 48,
+          "p": 10
+        },
+        {
+          "xi": 0.75,
+          "sR": 4.5,
+          "sF": 4.1,
+          "M": 32,
+          "p": 6
+        },
+        {
+          "xi": 0.75,
+          "sR": 4.5,
+          "sF": 4.7,
+          "M": 40,
+          "p": 8
+        },
+        {
+          "xi": 0.75,
+          "sR": 4.7,
+          "sF": 5.0,
+          "M": 48,
+          "p": 10
+        },
+        {
+          "xi": 0.85,
+          "sR": 4.5,
+          "sF": 4.1,
+          "M": 32,
+          "p": 6
+        },
+        {
+          "xi": 0.85,
+          "sR": 4.5,
+          "sF": 4.7,
+          "M": 40,
+          "p": 8
+        },
+        {
+          "xi": 0.85,
+          "sR": 4.7,
+          "sF": 5.0,
+          "M": 48,
+          "p": 10
+        },
+        {
+          "xi": 1.0,
+          "sR": 4.5,
+          "sF": 4.1,
+          "M": 32,
+          "p": 6
+        },
+        {
+          "xi": 1.0,
+          "sR": 4.5,
+          "sF": 4.7,
+          "M": 40,
+          "p": 8
+        },
+        {
+          "xi": 1.0,
+          "sR": 4.7,
+          "sF": 5.0,
+          "M": 48,
+          "p": 10
+        }
+      ],
+      "rule": "baseline and3jointfamilies/xi"
+    },
+    {
+      "round": 1,
+      "candidates": [
+        {
+          "xi": 0.45,
+          "sR": 4.1,
+          "sF": 4.7,
+          "M": 32,
+          "p": 8
+        },
+        {
+          "xi": 0.45,
+          "sR": 4.7,
+          "sF": 4.1,
+          "M": 32,
+          "p": 8
+        },
+        {
+          "xi": 0.45,
+          "sR": 4.7,
+          "sF": 4.7,
+          "M": 40,
+          "p": 6
+        },
+        {
+          "xi": 0.55,
+          "sR": 4.1,
+          "sF": 4.7,
+          "M": 32,
+          "p": 8
+        },
+        {
+          "xi": 0.55,
+          "sR": 4.7,
+          "sF": 4.1,
+          "M": 32,
+          "p": 8
+        },
+        {
+          "xi": 0.55,
+          "sR": 4.7,
+          "sF": 4.7,
+          "M": 40,
+          "p": 6
+        },
+        {
+          "xi": 0.65,
+          "sR": 4.1,
+          "sF": 4.7,
+          "M": 32,
+          "p": 8
+        },
+        {
+          "xi": 0.65,
+          "sR": 4.7,
+          "sF": 4.1,
+          "M": 32,
+          "p": 8
+        },
+        {
+          "xi": 0.65,
+          "sR": 4.7,
+          "sF": 4.7,
+          "M": 40,
+          "p": 6
+        },
+        {
+          "xi": 0.75,
+          "sR": 5.2,
+          "sF": 5.0,
+          "M": 64,
+          "p": 10
+        },
+        {
+          "xi": 0.75,
+          "sR": 4.7,
+          "sF": 5.2,
+          "M": 64,
+          "p": 12
+        },
+        {
+          "xi": 0.85,
+          "sR": 5.2,
+          "sF": 5.0,
+          "M": 64,
+          "p": 10
+        },
+        {
+          "xi": 0.85,
+          "sR": 4.7,
+          "sF": 5.2,
+          "M": 64,
+          "p": 12
+        },
+        {
+          "xi": 1.0,
+          "sR": 5.2,
+          "sF": 5.0,
+          "M": 64,
+          "p": 10
+        },
+        {
+          "xi": 1.0,
+          "sR": 4.7,
+          "sF": 5.2,
+          "M": 64,
+          "p": 12
+        }
+      ],
+      "rule": "if any cheap-eligible family: lowercost asymmetric cutoff/resolution alternatives; otherwise refine M/p and cutoffs"
+    }
+  ],
+  "max_unique_candidates": 60,
+  "full_candidate_budget": 9,
+  "finalist_budget": 3,
+  "local_budget_reduction": "Small adaptive search, max9 initial full candidates and3 final settings; not global optimization",
+  "search_elapsed_s": 57.07409441692289,
+  "no_qualified_speed_claim": "Actual dynamic BAOAB benchmark and thermostat constraints decide method-specific leaders later"
+}

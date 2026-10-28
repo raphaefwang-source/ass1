@@ -1,0 +1,58 @@
+{
+  "backend": {
+    "source_sha256": "1df59b3b948514226dcfe72de6650e12b4f68ba7ffdb46b4ec08340bd06e9342",
+    "compiler": "/usr/bin/clang",
+    "compiler_version": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin27.0.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+    "flags": [
+      "-O3",
+      "-std=c11",
+      "-fPIC",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-dynamiclib"
+    ],
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "compiler_command": [
+      "/usr/bin/clang",
+      "-O3",
+      "-std=c11",
+      "-fPIC",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-dynamiclib",
+      "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/optimized_pairou/edge_sweep.c",
+      "-o",
+      "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/optimized_pairou/.build/compile_8su0d4gi.dylib"
+    ],
+    "library_path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/optimized_pairou/.build/edge_sweep_214d2ccca2fa86dd8ddb2e7f.dylib",
+    "library_sha256": "74286322bd8305df96e0a627c93c240b594cd642f1ec03f9e5b74f392f896078",
+    "original_cold_compile_s": 0.406547375023365,
+    "compiler_stdout": "",
+    "compiler_stderr": "",
+    "compiled_now": false,
+    "t_compile_s": 0.0,
+    "t_load_s": 0.001334166037850082,
+    "fast_math": false,
+    "fp_contract": false,
+    "edge_parallelism": false
+  },
+  "source_path": "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/thermostat_ab_local/optimized_pairou/edge_sweep.c",
+  "observation": "warm-cache post-timing provenance read; no new cold-compile timing claim",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "native_thread_requests": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "BLIS_NUM_THREADS": "1"
+  },
+  "threadpoolctl": [],
+  "native_count_scope": "Accelerate pool counts may be unobservable",
+  "load_average": [
+    7.77197265625,
+    6.86962890625,
+    6.79736328125
+  ]
+}

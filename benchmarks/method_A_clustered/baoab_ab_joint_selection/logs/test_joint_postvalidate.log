@@ -1,0 +1,9 @@
+test_gaussian_substep_indexing_and_independent_reverse (test_joint_postvalidate.PostValidationTests.test_gaussian_substep_indexing_and_independent_reverse) ... ok
+test_missing_control_cannot_be_invented (test_joint_postvalidate.PostValidationTests.test_missing_control_cannot_be_invented) ... ok
+test_samples_last_actual_round_per_start (test_joint_postvalidate.PostValidationTests.test_samples_last_actual_round_per_start) ... ok
+test_three_round_and_explicit_group_reuse (test_joint_postvalidate.PostValidationTests.test_three_round_and_explicit_group_reuse) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+OK

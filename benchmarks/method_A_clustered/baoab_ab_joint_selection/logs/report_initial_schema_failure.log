@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/baoab_ab_joint_selection/report_generator.py", line 118, in <module>
+    if __name__=='__main__':print(generate_report())
+                                  ^^^^^^^^^^^^^^^^^
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/baoab_ab_joint_selection/report_generator.py", line 61, in generate_report
+    [[s['setting_id'],','.join(map(str,s['executed_ks'])),','.join(map(str,s['not_executed_ks'])),
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/baoab_ab_joint_selection/report_generator.py", line 62, in <listcomp>
+    next(t['A_k'] for t in s['targets'] if t['epsilon']==1e-4),next(t['A_k'] for t in s['targets'] if t['epsilon']==1e-6)] for s in thermo['settings']]), '',
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/baoab_ab_joint_selection/report_generator.py", line 62, in <genexpr>
+    next(t['A_k'] for t in s['targets'] if t['epsilon']==1e-4),next(t['A_k'] for t in s['targets'] if t['epsilon']==1e-6)] for s in thermo['settings']]), '',
+                                           ~^^^^^^^^^^^
+KeyError: 'epsilon'

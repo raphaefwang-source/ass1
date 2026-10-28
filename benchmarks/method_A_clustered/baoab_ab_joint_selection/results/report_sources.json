@@ -1,0 +1,79 @@
+{
+  "report_file": "report.md",
+  "report_sha256": "59864eea660e66464ff24cf4dd1965915491746a2b014a0420f70dd6734db089",
+  "source_sha256": {
+    "results/analysis.json": "fcf762a3ad4fe415a4fba7751672ade530813f0d6b7f7f5caf84d2e71c9acce4",
+    "results/exploratory_done.json": "9ba7b22c48db9be132a0e18197807edb03303897fd58762832756b386b86b5b0",
+    "results/heads_done.json": "57ad015d4d322505b665f257558d177b7fc845edbf143c43458a83a1e7e41608",
+    "results/post_validation.json": "12f0dc0397f67c16756ce0755c33ec1c0d883eec387fe56255e1f1341c4c0c1d",
+    "results/spatial/spatial_selection.json": "9dc6f85f60e089fd1fba6aa26a14c3471221757753429dfed5d264352052cf3a",
+    "results/thermo/thermo_selection.json": "72356b58010fabc2fe3b302b218efa212d9da40597a6e49e6655c0d8a6a63be0",
+    "results/thermo/rank_selection.json": "0bdcffccf1831551094c3f6ea7b63cabd96ece442256ffcef887c4ba9d76ea34",
+    "results/thermo/ideal_errors.csv": "2aac78a312a3623f3014069e9e27f07bda26ed7788039a41baabf6d93d2f0cf8",
+    "results/heads_steps.csv": "768902624a976951ac2b62ab279c1d7e302203c90fac929fe58df9a261362696",
+    "results/pareto.csv": "11f08307baa0dc96c9b10e751e8e80a4b4af67e64b4ee04fe8dc815634373e13",
+    "results/environment_initial.json": "91776a7b073db7cc16796a59a2fb3b40e7ff331a2d22701ab49a78fcbe24d0e8",
+    "results/spatial/cheap_screen.csv": "a97e9ef001a46e0d3dc1cc5452c4ba405bcbd36639c01bda654375652da91583",
+    "baseline_snapshot.json": "050afb5e96699a6d2411fc0138dac26b90f85e1d05571c60602d2dd6112bfa70",
+    "figures/figure_manifest.json": "0208a7e966000c69cfb1005df15b7be7da7f18c4ad72eb4b4c5a8096703ee068",
+    "logs/baseline_regressions.log": "291fba6ec6a7a308fa45c2e5f4c86945979ee825090534abf1b9f28ea0c0a042",
+    "logs/test_joint_driver.log": "c728f209ab00fec026dfbd672ea2cf35baa2ace922729e4acf6971982b1ca090",
+    "logs/test_joint_plots.log": "d23a746527f5c71ce9deb50de14d797a9a12f72da0af013145fd6ff165ff2669",
+    "logs/test_joint_postvalidate.log": "437881267246507128ce83ac7cb16bb6064be5e6ed3e96ab654c2c5ead9a67da",
+    "logs/test_joint_spatial.log": "6f3474b6c24cb25fac3e54460264b3fb9c113e0640b6b2bbce796df881b266d0",
+    "logs/test_joint_thermo.log": "18ba0b1ea2320cdedca063da01e1ebf28a699d2826636901ae0673c23fc43447",
+    "logs/test_independent_audit.log": "3ec947c1eba956dee3a6bef1ea6e15234d5f05bf30325987f4019e6c0641fd5d"
+  },
+  "historical_timings_used": false,
+  "tests_with_log_evidence": [
+    {
+      "file": "logs/baseline_regressions.log",
+      "tests": 106,
+      "seconds": 6.09,
+      "passed": true,
+      "sha256": "291fba6ec6a7a308fa45c2e5f4c86945979ee825090534abf1b9f28ea0c0a042"
+    },
+    {
+      "file": "logs/test_joint_driver.log",
+      "tests": 8,
+      "seconds": 0.03,
+      "passed": true,
+      "sha256": "c728f209ab00fec026dfbd672ea2cf35baa2ace922729e4acf6971982b1ca090"
+    },
+    {
+      "file": "logs/test_joint_plots.log",
+      "tests": 4,
+      "seconds": 0.001,
+      "passed": true,
+      "sha256": "d23a746527f5c71ce9deb50de14d797a9a12f72da0af013145fd6ff165ff2669"
+    },
+    {
+      "file": "logs/test_joint_postvalidate.log",
+      "tests": 4,
+      "seconds": 0.002,
+      "passed": true,
+      "sha256": "437881267246507128ce83ac7cb16bb6064be5e6ed3e96ab654c2c5ead9a67da"
+    },
+    {
+      "file": "logs/test_joint_spatial.log",
+      "tests": 5,
+      "seconds": 0.053,
+      "passed": true,
+      "sha256": "6f3474b6c24cb25fac3e54460264b3fb9c113e0640b6b2bbce796df881b266d0"
+    },
+    {
+      "file": "logs/test_joint_thermo.log",
+      "tests": 6,
+      "seconds": 0.029,
+      "passed": true,
+      "sha256": "18ba0b1ea2320cdedca063da01e1ebf28a699d2826636901ae0673c23fc43447"
+    },
+    {
+      "file": "logs/test_independent_audit.log",
+      "tests": 4,
+      "seconds": 0.366,
+      "passed": true,
+      "sha256": "3ec947c1eba956dee3a6bef1ea6e15234d5f05bf30325987f4019e6c0641fd5d"
+    }
+  ]
+}

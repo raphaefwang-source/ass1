@@ -1,0 +1,14 @@
+test_certification_is_required_before_measuring (test_joint_driver.JointDriverTests.test_certification_is_required_before_measuring) ... ok
+test_identical_independent_and_controlled_groups_reuse_new_batch (test_joint_driver.JointDriverTests.test_identical_independent_and_controlled_groups_reuse_new_batch) ... ok
+test_objective_uses_full_wall_per_simulated_time_not_cached_components (test_joint_driver.JointDriverTests.test_objective_uses_full_wall_per_simulated_time_not_cached_components) ... ok
+test_parameter_cache_shared_only_for_identical_spatial_settings (test_joint_driver.JointDriverTests.test_parameter_cache_shared_only_for_identical_spatial_settings) ... ok
+test_preserved_initial_data_is_hash_checked_and_copied (test_joint_driver.JointDriverTests.test_preserved_initial_data_is_hash_checked_and_copied) ... ok
+test_run_archives_actual_substeps_and_normalizes_physical_time (test_joint_driver.JointDriverTests.test_run_archives_actual_substeps_and_normalizes_physical_time) ... synthetic_run A baseline eps 1e-06 k 4 steps 3 mean_ms 25.000000000000004
+ok
+test_schedule_covers_three_starts_twice_and_balances_order (test_joint_driver.JointDriverTests.test_schedule_covers_three_starts_twice_and_balances_order) ... ok
+test_wrong_physics_or_B_subcycling_cannot_enter_ranking (test_joint_driver.JointDriverTests.test_wrong_physics_or_B_subcycling_cannot_enter_ranking) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.030s
+
+OK
