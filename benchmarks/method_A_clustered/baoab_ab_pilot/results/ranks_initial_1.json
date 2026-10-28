@@ -1,0 +1,24 @@
+{
+  "A": {
+    "r_d": 5,
+    "r_n": 14
+  },
+  "B": {
+    "r_d": 5,
+    "r_n": 14
+  },
+  "threshold": 2e-08,
+  "dt": 0.005,
+  "substeps": 1,
+  "state": "initial_1",
+  "seed": 202610280130,
+  "q_sha256": "06f63ef7e2f04996ee47ded3e40b8b1d0918f9ac1382dfd82b50e80b5d13e5f9",
+  "p_sha256": "1d600aa3863e1ddc63e5917388a0f01d1b7b35b3ef3b36f2ba82651bd4df11bd",
+  "independent_gaussian_streams": {
+    "z": "85674ad7cfa223ef2de2c01dabd0b0ddf4e5b21c32ff1c724ceb54f30c0100a1",
+    "eta_forward": "851307d3084654d8a3c580df288e23e0cc45fdd880467c8027ed457cc7b67b60",
+    "eta_reverse": "b035fe1064b3083dc3e7c9c0442d4f1d3d7026ea6ab934563e7343481f1a78c9"
+  },
+  "elapsed_s": 14.551465666969307,
+  "interpretation": "Finite saved directions at this state only; no uniform rank or Gibbs guarantee"
+}

@@ -1,0 +1,32 @@
+test_fcc_physical_constants (test_dynamics.ConservativeTests.test_fcc_physical_constants) ... ok
+test_force_finite_difference_including_switch (test_dynamics.ConservativeTests.test_force_finite_difference_including_switch) ... ok
+test_periodic_force_and_translation (test_dynamics.ConservativeTests.test_periodic_force_and_translation) ... ok
+test_preparation_distinct_seed_and_com (test_dynamics.ConservativeTests.test_preparation_distinct_seed_and_com) ... ok
+test_switch_continuity (test_dynamics.ConservativeTests.test_switch_continuity) ... ok
+test_ab_identical_graph_and_no_self (test_dynamics.MovingTests.test_ab_identical_graph_and_no_self) ... ok
+test_actual_moving_step_com_rng_and_timing_accounting (test_dynamics.MovingTests.test_actual_moving_step_com_rng_and_timing_accounting) ... ok
+test_baoab_sequence_at_midpoint_with_identity_ou (test_dynamics.MovingTests.test_baoab_sequence_at_midpoint_with_identity_ou) ... ok
+test_changed_positions_rebuild_assignments_and_eigen (test_dynamics.MovingTests.test_changed_positions_rebuild_assignments_and_eigen) ... ok
+test_fft_meter_preserves_transform (test_dynamics.MovingTests.test_fft_meter_preserves_transform) ... ok
+test_wrapped_unwrapped_separate (test_dynamics.MovingTests.test_wrapped_unwrapped_separate) ... ok
+test_analytic_direct_tail_bound_decreases (test_spatial_pilot.SpatialPilotTests.test_analytic_direct_tail_bound_decreases) ... ok
+test_changed_geometry_rebuild_and_parameter_table_reuse (test_spatial_pilot.SpatialPilotTests.test_changed_geometry_rebuild_and_parameter_table_reuse) ... ok
+test_complete_image_tensors_no_self_edges (test_spatial_pilot.SpatialPilotTests.test_complete_image_tensors_no_self_edges) ... ok
+test_full_fft_and_long_dense_actions (test_spatial_pilot.SpatialPilotTests.test_full_fft_and_long_dense_actions) ... ok
+test_mesh_self_cancellation (test_spatial_pilot.SpatialPilotTests.test_mesh_self_cancellation) ... ok
+test_periodicity_of_dense_operator_with_mesh_translation (test_spatial_pilot.SpatialPilotTests.test_periodicity_of_dense_operator_with_mesh_translation) ... ok
+test_physical_fourier_zero_mode_is_retained (test_spatial_pilot.SpatialPilotTests.test_physical_fourier_zero_mode_is_retained) ... ok
+test_physical_normalization (test_spatial_pilot.SpatialPilotTests.test_physical_normalization) ... ok
+test_reference_literal_physics_and_no_self (test_spatial_pilot.SpatialPilotTests.test_reference_literal_physics_and_no_self) ... ok
+test_same_geometry_A_B_graph_equality (test_spatial_pilot.SpatialPilotTests.test_same_geometry_A_B_graph_equality) ... ok
+test_symmetry_PSD_COM (test_spatial_pilot.SpatialPilotTests.test_symmetry_PSD_COM) ... ok
+test_actual_action_validation_with_full_com_free_rank (test_rank_validation.RankValidationTests.test_actual_action_validation_with_full_com_free_rank) ... ok
+test_candidates_are_bounded_and_include_dimension (test_rank_validation.RankValidationTests.test_candidates_are_bounded_and_include_dimension) ... ok
+test_low_rank_is_not_automatically_accepted (test_rank_validation.RankValidationTests.test_low_rank_is_not_automatically_accepted) ... ok
+test_material_negative_ritz_aborts (test_rank_validation.RankValidationTests.test_material_negative_ritz_aborts) ... ok
+test_registered_directions_include_physical_modes (test_rank_validation.RankValidationTests.test_registered_directions_include_physical_modes) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.370s
+
+OK

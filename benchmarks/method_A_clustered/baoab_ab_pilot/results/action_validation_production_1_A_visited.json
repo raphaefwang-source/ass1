@@ -1,0 +1,50 @@
+{
+  "state": "production_1_A_visited",
+  "dt": 0.005,
+  "ranks": {
+    "A": {
+      "r_d": 5,
+      "r_n": 14
+    },
+    "B": {
+      "r_d": 5,
+      "r_n": 14
+    }
+  },
+  "threshold": 2e-08,
+  "all_probes_passed": true,
+  "max_relative_action_error": 2.501327327031741e-12,
+  "negative_ritz_count": 0,
+  "stochastic_path_checks": {
+    "B_finite_vs_dense_relative": 8.209895546007197e-13,
+    "A_finite_vs_ideal_split_relative": 7.10714545461253e-14,
+    "A_damp_rank_used": 5,
+    "A_noise_rank_used": 14,
+    "B_damp_rank_used": 5,
+    "B_noise_rank_used": 14,
+    "negative_ritz_count": 0,
+    "clipped_negative_count": 0,
+    "A_COM_error": 3.3125788218758983e-15,
+    "B_COM_error": 8.784804109573207e-15
+  },
+  "splitting": [],
+  "q_sha256": "b21831cac19ac536d2d9b8c4709c1d548b089f7599986e6e932121d0d68e094a",
+  "p_sha256": "9cc1605355ec0139b6d801a0023686c72247a83141321308290a668abfa72395",
+  "noise_source": "saved production components with other components independently generated",
+  "supplied_noise_components": [
+    "ef",
+    "er",
+    "z"
+  ],
+  "supplied_noise_sha256": {
+    "z": "d684a98063c3de48756db24d92a3967edf1bb407c69b6659110054c0e2393c06",
+    "ef": "19b24ae5fbfe928944fbfbf315763fcc192d0928f20834cd8a593d16f1972b1c",
+    "er": "3ce6642c66672e2bfe4b82a1faee4d7de98236985dbac6104c5e9b430f1972c4"
+  },
+  "z_sha256": "b4bd9454804883c826fc5cd0ea25d69ba4ea66790742bb55c6b5b1547010447b",
+  "eta_forward_sha256": "19b24ae5fbfe928944fbfbf315763fcc192d0928f20834cd8a593d16f1972b1c",
+  "eta_reverse_sha256": "3ce6642c66672e2bfe4b82a1faee4d7de98236985dbac6104c5e9b430f1972c4",
+  "actual_A_middle_sha256": "2d36cca5859b9d23289eb19ea3e8f000e67308c2b9d2e0c1ab8065a3509068cb",
+  "elapsed_s": 14.150869167060591,
+  "interpretation": "Krylov-vs-discrete-graph, ideal splitting-vs-full OU, and spatial-vs-physical errors are separate; no full Gibbs or equal-dynamics claim"
+}

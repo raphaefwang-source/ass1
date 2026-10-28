@@ -1,0 +1,73 @@
+{
+  "state": "initial_1_final",
+  "dt": 0.005,
+  "ranks": {
+    "A": {
+      "r_d": 5,
+      "r_n": 14
+    },
+    "B": {
+      "r_d": 5,
+      "r_n": 14
+    }
+  },
+  "threshold": 2e-08,
+  "all_probes_passed": true,
+  "max_relative_action_error": 3.313578442192361e-12,
+  "negative_ritz_count": 0,
+  "stochastic_path_checks": {
+    "B_finite_vs_dense_relative": 1.1220655880533547e-12,
+    "A_finite_vs_ideal_split_relative": 5.74722525331939e-14,
+    "A_damp_rank_used": 5,
+    "A_noise_rank_used": 14,
+    "B_damp_rank_used": 5,
+    "B_noise_rank_used": 14,
+    "negative_ritz_count": 0,
+    "clipped_negative_count": 0,
+    "A_COM_error": 4.787173027398592e-15,
+    "B_COM_error": 5.899871815800505e-15
+  },
+  "splitting": [
+    {
+      "state": "initial_1_final",
+      "dt": 0.005,
+      "substeps": 1,
+      "selected_substeps": 1,
+      "mean_operator_error": 2.664510185866583e-07,
+      "covariance_operator_error": 5.052598798693653e-07,
+      "covariance_relative_error": 4.435087189424621e-06,
+      "ideal_split_fdt_identity_residual": 9.891290939109396e-19
+    },
+    {
+      "state": "initial_1_final",
+      "dt": 0.005,
+      "substeps": 2,
+      "selected_substeps": 1,
+      "mean_operator_error": 6.661250774124041e-08,
+      "covariance_operator_error": 1.2631451758029274e-07,
+      "covariance_relative_error": 1.108767826377885e-06,
+      "ideal_split_fdt_identity_residual": 8.940560153363762e-19
+    },
+    {
+      "state": "initial_1_final",
+      "dt": 0.005,
+      "substeps": 4,
+      "selected_substeps": 1,
+      "mean_operator_error": 1.6653118921127818e-08,
+      "covariance_operator_error": 3.157861539029554e-08,
+      "covariance_relative_error": 2.7719183366286235e-07,
+      "ideal_split_fdt_identity_residual": 9.69739903612216e-19
+    }
+  ],
+  "q_sha256": "06f63ef7e2f04996ee47ded3e40b8b1d0918f9ac1382dfd82b50e80b5d13e5f9",
+  "p_sha256": "1d600aa3863e1ddc63e5917388a0f01d1b7b35b3ef3b36f2ba82651bd4df11bd",
+  "noise_source": "independent Stage 0 probe stream",
+  "supplied_noise_components": [],
+  "supplied_noise_sha256": {},
+  "z_sha256": "85674ad7cfa223ef2de2c01dabd0b0ddf4e5b21c32ff1c724ceb54f30c0100a1",
+  "eta_forward_sha256": "851307d3084654d8a3c580df288e23e0cc45fdd880467c8027ed457cc7b67b60",
+  "eta_reverse_sha256": "b035fe1064b3083dc3e7c9c0442d4f1d3d7026ea6ab934563e7343481f1a78c9",
+  "actual_A_middle_sha256": "46e447aa1935f1d6a610bbd6d8a0a24eef2a4d21a23daf0141bc2b6edaac6060",
+  "elapsed_s": 22.156605707947165,
+  "interpretation": "Krylov-vs-discrete-graph, ideal splitting-vs-full OU, and spatial-vs-physical errors are separate; no full Gibbs or equal-dynamics claim"
+}

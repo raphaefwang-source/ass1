@@ -1,0 +1,10 @@
+test_actual_action_validation_with_full_com_free_rank (test_rank_validation.RankValidationTests.test_actual_action_validation_with_full_com_free_rank) ... ok
+test_candidates_are_bounded_and_include_dimension (test_rank_validation.RankValidationTests.test_candidates_are_bounded_and_include_dimension) ... ok
+test_low_rank_is_not_automatically_accepted (test_rank_validation.RankValidationTests.test_low_rank_is_not_automatically_accepted) ... ok
+test_material_negative_ritz_aborts (test_rank_validation.RankValidationTests.test_material_negative_ritz_aborts) ... ok
+test_registered_directions_include_physical_modes (test_rank_validation.RankValidationTests.test_registered_directions_include_physical_modes) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.029s
+
+OK

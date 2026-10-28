@@ -1,0 +1,25 @@
+test_analytic_direct_tail_bound_decreases (test_spatial_pilot.SpatialPilotTests.test_analytic_direct_tail_bound_decreases) ... ok
+test_changed_geometry_rebuild_and_parameter_table_reuse (test_spatial_pilot.SpatialPilotTests.test_changed_geometry_rebuild_and_parameter_table_reuse) ... ok
+test_complete_image_tensors_no_self_edges (test_spatial_pilot.SpatialPilotTests.test_complete_image_tensors_no_self_edges) ... ok
+test_full_fft_and_long_dense_actions (test_spatial_pilot.SpatialPilotTests.test_full_fft_and_long_dense_actions) ... ok
+test_mesh_self_cancellation (test_spatial_pilot.SpatialPilotTests.test_mesh_self_cancellation) ... ok
+test_periodicity_of_dense_operator_with_mesh_translation (test_spatial_pilot.SpatialPilotTests.test_periodicity_of_dense_operator_with_mesh_translation) ... ok
+test_physical_fourier_zero_mode_is_retained (test_spatial_pilot.SpatialPilotTests.test_physical_fourier_zero_mode_is_retained) ... ERROR
+test_physical_normalization (test_spatial_pilot.SpatialPilotTests.test_physical_normalization) ... ok
+test_reference_literal_physics_and_no_self (test_spatial_pilot.SpatialPilotTests.test_reference_literal_physics_and_no_self) ... ok
+test_same_geometry_A_B_graph_equality (test_spatial_pilot.SpatialPilotTests.test_same_geometry_A_B_graph_equality) ... ok
+test_symmetry_PSD_COM (test_spatial_pilot.SpatialPilotTests.test_symmetry_PSD_COM) ... ok
+
+======================================================================
+ERROR: test_physical_fourier_zero_mode_is_retained (test_spatial_pilot.SpatialPilotTests.test_physical_fourier_zero_mode_is_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wfy666/Documents/New project/ass1_joint/benchmarks/method_A_clustered/baoab_ab_pilot/test_spatial_pilot.py", line 66, in test_physical_fourier_zero_mode_is_retained
+    A,B=self.op.K.AB(np.array([0.]))
+        ^^^^^^^^^^^^
+AttributeError: 'RadialEwald' object has no attribute 'AB'
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.104s
+
+FAILED (errors=1)

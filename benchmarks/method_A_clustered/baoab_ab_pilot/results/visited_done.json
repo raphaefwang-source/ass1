@@ -1,0 +1,900 @@
+{
+  "sampled_states": 6,
+  "at_actual_q_mid": true,
+  "records": [
+    {
+      "run": "production_0_A",
+      "spatial": {
+        "params": {
+          "xi": 0.65,
+          "sR": 4.7,
+          "sF": 4.7,
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "L": 6.98864371789039
+        },
+        "q_sha256": "750dbe0896cd43a60029312841e936800d647dd943b98b00408f13cdd1d625a7",
+        "relative_spectral_error": 3.223667956893124e-10,
+        "reference_tail_relative": 5.680925594319838e-11,
+        "conservative_relative_error_bound": 3.7917605165405146e-10,
+        "strict_budget_met": true,
+        "exploratory_budget_met": true,
+        "reference": {
+          "N": 256,
+          "L": 6.98864371789039,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "R_max": 45.0,
+          "q_sha256": "750dbe0896cd43a60029312841e936800d647dd943b98b00408f13cdd1d625a7",
+          "matrix_sha256": "5727f6cebd999dd78ddfa4f5b5e2eafb298826e57b211334990d9887dcd74fc1",
+          "norm2": 11.927888916682981,
+          "reference": "unsplit full periodic direct lattice sum; no Ewald/mesh",
+          "excludes_self_particle_edges": true,
+          "total_images": 36499500,
+          "convergence": [
+            {
+              "R": 33.75,
+              "images": 15399115,
+              "difference_to_final_relative": 1.1930807398478655e-09,
+              "certified_tail_absolute": 1.1521355693651122e-06,
+              "certified_tail_relative": 9.659174204361293e-08
+            },
+            {
+              "R": 40.5,
+              "images": 26610738,
+              "difference_to_final_relative": 1.2023174493595232e-11,
+              "certified_tail_absolute": 1.3425356536527527e-08,
+              "certified_tail_relative": 1.125543390813282e-09
+            },
+            {
+              "R": 45.0,
+              "images": 36499500,
+              "difference_to_final_relative": 0.0,
+              "certified_tail_absolute": 6.776144943298828e-10,
+              "certified_tail_relative": 5.680925594319838e-11
+            }
+          ],
+          "certified_tail_relative": 5.680925594319838e-11,
+          "wall_s": 4.8451987920561805
+        },
+        "diagnostics": {
+          "relative_symmetry": 9.236172545659348e-18,
+          "COM_null_relative": 9.511743882349083e-15,
+          "min_eigenvalue": -7.119216923811708e-15,
+          "long_min_eigenvalue": -2.668906894451431e-15,
+          "largest_eigenvalue": 11.927888914176243,
+          "FFT_action_relative_max": 5.623747885636251e-16,
+          "full_near_long_relative_max": 3.9085643970792864e-16,
+          "self_particle_edges": 0,
+          "images": 151339,
+          "unique_near_edges": 32640,
+          "rc": 7.230769230769231,
+          "kc": 6.097697610385555,
+          "shell": 46,
+          "full_rank_near_edges": 31986,
+          "projection_active": false,
+          "physical_k0_preserved_before_projection": true,
+          "zero_mode_before": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "zero_mode_after": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mesh_self_terms_cancel": "full W_ii appears in both degree and convolution and cancels",
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307
+        },
+        "table_setup_s": 0.11852866609115154,
+        "operator_dense_validation_s": 1.0510024999966845,
+        "structural_checks_passed": true
+      },
+      "rank_validation": {
+        "state": "production_0_A_visited",
+        "dt": 0.005,
+        "ranks": {
+          "A": {
+            "r_d": 5,
+            "r_n": 14
+          },
+          "B": {
+            "r_d": 5,
+            "r_n": 14
+          }
+        },
+        "threshold": 2e-08,
+        "all_probes_passed": true,
+        "max_relative_action_error": 2.8542002543077396e-12,
+        "negative_ritz_count": 0,
+        "stochastic_path_checks": {
+          "B_finite_vs_dense_relative": 9.169564152312562e-13,
+          "A_finite_vs_ideal_split_relative": 6.299528333034346e-14,
+          "A_damp_rank_used": 5,
+          "A_noise_rank_used": 14,
+          "B_damp_rank_used": 5,
+          "B_noise_rank_used": 14,
+          "negative_ritz_count": 0,
+          "clipped_negative_count": 0,
+          "A_COM_error": 1.6050308076832566e-15,
+          "B_COM_error": 5.645787009052548e-15
+        },
+        "splitting": [],
+        "q_sha256": "750dbe0896cd43a60029312841e936800d647dd943b98b00408f13cdd1d625a7",
+        "p_sha256": "9909ca5784f36c7f0caf0a1c8033c7878d6fea6be62beb92b0d1d5286b6cb9d6",
+        "noise_source": "saved production components with other components independently generated",
+        "supplied_noise_components": [
+          "ef",
+          "er",
+          "z"
+        ],
+        "supplied_noise_sha256": {
+          "z": "78e2a3f7335042e544ec249db4c7ee9ec4c069bc3c2e65964c002ccf100965a9",
+          "ef": "cf238b0c6f5472126341a7ded4062f6db8eceb510abfd10c75b475a5fabaa5dd",
+          "er": "09aefe779f0e9c36ca3a7dfa18ed1d00fc2e8d8258048010ee3dad08b720c0db"
+        },
+        "z_sha256": "39b6d13771579ed71acae50bfee5f41c22695fea8ef830606e0cba9bf2f1bc84",
+        "eta_forward_sha256": "cf238b0c6f5472126341a7ded4062f6db8eceb510abfd10c75b475a5fabaa5dd",
+        "eta_reverse_sha256": "09aefe779f0e9c36ca3a7dfa18ed1d00fc2e8d8258048010ee3dad08b720c0db",
+        "actual_A_middle_sha256": "11d603c1999dd1985bf2128d7f8849273cdbed3f28936c934da891b8eecc7049",
+        "elapsed_s": 13.933432166930288,
+        "interpretation": "Krylov-vs-discrete-graph, ideal splitting-vs-full OU, and spatial-vs-physical errors are separate; no full Gibbs or equal-dynamics claim"
+      }
+    },
+    {
+      "run": "production_0_B",
+      "spatial": {
+        "params": {
+          "xi": 0.65,
+          "sR": 4.7,
+          "sF": 4.7,
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "L": 6.98864371789039
+        },
+        "q_sha256": "421cf6c0b6265daf3ec41d2efdb7a4e696e7deac30c96919eb4f581159e63dcb",
+        "relative_spectral_error": 3.2616007135153184e-10,
+        "reference_tail_relative": 5.6571708883722345e-11,
+        "conservative_relative_error_bound": 3.82731780256906e-10,
+        "strict_budget_met": true,
+        "exploratory_budget_met": true,
+        "reference": {
+          "N": 256,
+          "L": 6.98864371789039,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "R_max": 45.0,
+          "q_sha256": "421cf6c0b6265daf3ec41d2efdb7a4e696e7deac30c96919eb4f581159e63dcb",
+          "matrix_sha256": "0a480e8261947c48e8d6d96530974c02485ebc66219d1366e134ac31e0a06abd",
+          "norm2": 11.977974639632215,
+          "reference": "unsplit full periodic direct lattice sum; no Ewald/mesh",
+          "excludes_self_particle_edges": true,
+          "total_images": 36498955,
+          "convergence": [
+            {
+              "R": 33.75,
+              "images": 15399778,
+              "difference_to_final_relative": 1.187643201478751e-09,
+              "certified_tail_absolute": 1.1521355693651122e-06,
+              "certified_tail_relative": 9.61878451097212e-08
+            },
+            {
+              "R": 40.5,
+              "images": 26610721,
+              "difference_to_final_relative": 1.1974679135430226e-11,
+              "certified_tail_absolute": 1.3425356536527527e-08,
+              "certified_tail_relative": 1.120836947851457e-09
+            },
+            {
+              "R": 45.0,
+              "images": 36498955,
+              "difference_to_final_relative": 0.0,
+              "certified_tail_absolute": 6.776144943298828e-10,
+              "certified_tail_relative": 5.6571708883722345e-11
+            }
+          ],
+          "certified_tail_relative": 5.6571708883722345e-11,
+          "wall_s": 4.932651792070828
+        },
+        "diagnostics": {
+          "relative_symmetry": 9.107797996920296e-18,
+          "COM_null_relative": 9.722861057838003e-15,
+          "min_eigenvalue": 1.7160142742905063e-15,
+          "long_min_eigenvalue": -3.558326489661455e-15,
+          "largest_eigenvalue": 11.977974637195624,
+          "FFT_action_relative_max": 5.263227226029332e-16,
+          "full_near_long_relative_max": 3.616310170586122e-16,
+          "self_particle_edges": 0,
+          "images": 151293,
+          "unique_near_edges": 32640,
+          "rc": 7.230769230769231,
+          "kc": 6.097697610385555,
+          "shell": 46,
+          "full_rank_near_edges": 31981,
+          "projection_active": false,
+          "physical_k0_preserved_before_projection": true,
+          "zero_mode_before": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "zero_mode_after": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mesh_self_terms_cancel": "full W_ii appears in both degree and convolution and cancels",
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307
+        },
+        "table_setup_s": 0.16360437497496605,
+        "operator_dense_validation_s": 1.3596246250672266,
+        "structural_checks_passed": true
+      },
+      "rank_validation": {
+        "state": "production_0_B_visited",
+        "dt": 0.005,
+        "ranks": {
+          "A": {
+            "r_d": 5,
+            "r_n": 14
+          },
+          "B": {
+            "r_d": 5,
+            "r_n": 14
+          }
+        },
+        "threshold": 2e-08,
+        "all_probes_passed": true,
+        "max_relative_action_error": 2.852542659000123e-12,
+        "negative_ritz_count": 0,
+        "stochastic_path_checks": {
+          "B_finite_vs_dense_relative": 8.689327409086952e-13,
+          "A_finite_vs_ideal_split_relative": 1.2154082532701286e-13,
+          "A_damp_rank_used": 5,
+          "A_noise_rank_used": 14,
+          "B_damp_rank_used": 5,
+          "B_noise_rank_used": 14,
+          "negative_ritz_count": 0,
+          "clipped_negative_count": 0,
+          "A_COM_error": 3.5095235187406652e-15,
+          "B_COM_error": 4.868255962523541e-15
+        },
+        "splitting": [],
+        "q_sha256": "421cf6c0b6265daf3ec41d2efdb7a4e696e7deac30c96919eb4f581159e63dcb",
+        "p_sha256": "86ea95eb1f30182d05515a089e994328fea4b4c62e2a169d3445c28bd3509efd",
+        "noise_source": "saved production components with other components independently generated",
+        "supplied_noise_components": [
+          "z"
+        ],
+        "supplied_noise_sha256": {
+          "z": "8724b872012843387c778f3ce1b4d332f78c4d2bf0fa91a0e041bbe67934b6f6"
+        },
+        "z_sha256": "a31f6b18cc255cf77030bfc38ecd516fece5a902a71f0eb0a0fdb93fd68f010b",
+        "eta_forward_sha256": "5963de6acd5513fa385e7238995dd02389bec91673d1e1cceb90111741d1338e",
+        "eta_reverse_sha256": "fd93d6645266bd45fd54a5c189094359a478e56f0327fc698130fdcf084969ce",
+        "actual_A_middle_sha256": "43c53ae313e6cdf70e0443594d670207b48b8c933b315bf52d12c99a5236b106",
+        "elapsed_s": 13.939346041996032,
+        "interpretation": "Krylov-vs-discrete-graph, ideal splitting-vs-full OU, and spatial-vs-physical errors are separate; no full Gibbs or equal-dynamics claim"
+      }
+    },
+    {
+      "run": "production_1_A",
+      "spatial": {
+        "params": {
+          "xi": 0.65,
+          "sR": 4.7,
+          "sF": 4.7,
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "L": 6.98864371789039
+        },
+        "q_sha256": "b21831cac19ac536d2d9b8c4709c1d548b089f7599986e6e932121d0d68e094a",
+        "relative_spectral_error": 3.352864237655167e-10,
+        "reference_tail_relative": 5.6663406541427415e-11,
+        "conservative_relative_error_bound": 3.9194983032915336e-10,
+        "strict_budget_met": true,
+        "exploratory_budget_met": true,
+        "reference": {
+          "N": 256,
+          "L": 6.98864371789039,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "R_max": 45.0,
+          "q_sha256": "b21831cac19ac536d2d9b8c4709c1d548b089f7599986e6e932121d0d68e094a",
+          "matrix_sha256": "39b0bfec3d5b1ea8e880b12ccdc06181a9e85c759b3bea4cb6fbbf37a358ce27",
+          "norm2": 11.958590838241772,
+          "reference": "unsplit full periodic direct lattice sum; no Ewald/mesh",
+          "excludes_self_particle_edges": true,
+          "total_images": 36499338,
+          "convergence": [
+            {
+              "R": 33.75,
+              "images": 15399182,
+              "difference_to_final_relative": 1.189652474033143e-09,
+              "certified_tail_absolute": 1.1521355693651122e-06,
+              "certified_tail_relative": 9.634375696513976e-08
+            },
+            {
+              "R": 40.5,
+              "images": 26611054,
+              "difference_to_final_relative": 1.1994227469704941e-11,
+              "certified_tail_absolute": 1.3425356536527527e-08,
+              "certified_tail_relative": 1.122653723848069e-09
+            },
+            {
+              "R": 45.0,
+              "images": 36499338,
+              "difference_to_final_relative": 0.0,
+              "certified_tail_absolute": 6.776144943298828e-10,
+              "certified_tail_relative": 5.6663406541427415e-11
+            }
+          ],
+          "certified_tail_relative": 5.6663406541427415e-11,
+          "wall_s": 4.808508709073067
+        },
+        "diagnostics": {
+          "relative_symmetry": 9.194425051794902e-18,
+          "COM_null_relative": 9.2388183286251e-15,
+          "min_eigenvalue": -5.333013833360341e-15,
+          "long_min_eigenvalue": -4.441851574015237e-15,
+          "largest_eigenvalue": 11.958590835592624,
+          "FFT_action_relative_max": 5.058411627067647e-16,
+          "full_near_long_relative_max": 3.7124225681489445e-16,
+          "self_particle_edges": 0,
+          "images": 151231,
+          "unique_near_edges": 32640,
+          "rc": 7.230769230769231,
+          "kc": 6.097697610385555,
+          "shell": 46,
+          "full_rank_near_edges": 31993,
+          "projection_active": false,
+          "physical_k0_preserved_before_projection": true,
+          "zero_mode_before": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "zero_mode_after": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mesh_self_terms_cancel": "full W_ii appears in both degree and convolution and cancels",
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307
+        },
+        "table_setup_s": 0.11477604205720127,
+        "operator_dense_validation_s": 1.0432128750253469,
+        "structural_checks_passed": true
+      },
+      "rank_validation": {
+        "state": "production_1_A_visited",
+        "dt": 0.005,
+        "ranks": {
+          "A": {
+            "r_d": 5,
+            "r_n": 14
+          },
+          "B": {
+            "r_d": 5,
+            "r_n": 14
+          }
+        },
+        "threshold": 2e-08,
+        "all_probes_passed": true,
+        "max_relative_action_error": 2.501327327031741e-12,
+        "negative_ritz_count": 0,
+        "stochastic_path_checks": {
+          "B_finite_vs_dense_relative": 8.209895546007197e-13,
+          "A_finite_vs_ideal_split_relative": 7.10714545461253e-14,
+          "A_damp_rank_used": 5,
+          "A_noise_rank_used": 14,
+          "B_damp_rank_used": 5,
+          "B_noise_rank_used": 14,
+          "negative_ritz_count": 0,
+          "clipped_negative_count": 0,
+          "A_COM_error": 3.3125788218758983e-15,
+          "B_COM_error": 8.784804109573207e-15
+        },
+        "splitting": [],
+        "q_sha256": "b21831cac19ac536d2d9b8c4709c1d548b089f7599986e6e932121d0d68e094a",
+        "p_sha256": "9cc1605355ec0139b6d801a0023686c72247a83141321308290a668abfa72395",
+        "noise_source": "saved production components with other components independently generated",
+        "supplied_noise_components": [
+          "ef",
+          "er",
+          "z"
+        ],
+        "supplied_noise_sha256": {
+          "z": "d684a98063c3de48756db24d92a3967edf1bb407c69b6659110054c0e2393c06",
+          "ef": "19b24ae5fbfe928944fbfbf315763fcc192d0928f20834cd8a593d16f1972b1c",
+          "er": "3ce6642c66672e2bfe4b82a1faee4d7de98236985dbac6104c5e9b430f1972c4"
+        },
+        "z_sha256": "b4bd9454804883c826fc5cd0ea25d69ba4ea66790742bb55c6b5b1547010447b",
+        "eta_forward_sha256": "19b24ae5fbfe928944fbfbf315763fcc192d0928f20834cd8a593d16f1972b1c",
+        "eta_reverse_sha256": "3ce6642c66672e2bfe4b82a1faee4d7de98236985dbac6104c5e9b430f1972c4",
+        "actual_A_middle_sha256": "2d36cca5859b9d23289eb19ea3e8f000e67308c2b9d2e0c1ab8065a3509068cb",
+        "elapsed_s": 14.150869167060591,
+        "interpretation": "Krylov-vs-discrete-graph, ideal splitting-vs-full OU, and spatial-vs-physical errors are separate; no full Gibbs or equal-dynamics claim"
+      }
+    },
+    {
+      "run": "production_1_B",
+      "spatial": {
+        "params": {
+          "xi": 0.65,
+          "sR": 4.7,
+          "sF": 4.7,
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "L": 6.98864371789039
+        },
+        "q_sha256": "dd8a1dd362d219d621eb9554cbbee8d7a88b578c8bcf9dca1b487e3893005fd1",
+        "relative_spectral_error": 3.164169029160559e-10,
+        "reference_tail_relative": 5.5774143076665896e-11,
+        "conservative_relative_error_bound": 3.721910460134805e-10,
+        "strict_budget_met": true,
+        "exploratory_budget_met": true,
+        "reference": {
+          "N": 256,
+          "L": 6.98864371789039,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "R_max": 45.0,
+          "q_sha256": "dd8a1dd362d219d621eb9554cbbee8d7a88b578c8bcf9dca1b487e3893005fd1",
+          "matrix_sha256": "65f85cd28322e96d23ee5c24a3becb95cc55b0d98c8a54b2e0e32789bcbbff0a",
+          "norm2": 12.149258723678622,
+          "reference": "unsplit full periodic direct lattice sum; no Ewald/mesh",
+          "excludes_self_particle_edges": true,
+          "total_images": 36499060,
+          "convergence": [
+            {
+              "R": 33.75,
+              "images": 15399121,
+              "difference_to_final_relative": 1.1712083335780307e-09,
+              "certified_tail_absolute": 1.1521355693651122e-06,
+              "certified_tail_relative": 9.483175851047001e-08
+            },
+            {
+              "R": 40.5,
+              "images": 26611627,
+              "difference_to_final_relative": 1.1804838560860879e-11,
+              "certified_tail_absolute": 1.3425356536527527e-08,
+              "certified_tail_relative": 1.1050350348010797e-09
+            },
+            {
+              "R": 45.0,
+              "images": 36499060,
+              "difference_to_final_relative": 0.0,
+              "certified_tail_absolute": 6.776144943298828e-10,
+              "certified_tail_relative": 5.5774143076665896e-11
+            }
+          ],
+          "certified_tail_relative": 5.5774143076665896e-11,
+          "wall_s": 4.917951999930665
+        },
+        "diagnostics": {
+          "relative_symmetry": 9.127458842525882e-18,
+          "COM_null_relative": 9.658645299377353e-15,
+          "min_eigenvalue": -2.0585175944216405e-15,
+          "long_min_eigenvalue": -7.1186459223528e-15,
+          "largest_eigenvalue": 12.149258720988486,
+          "FFT_action_relative_max": 5.610742596863455e-16,
+          "full_near_long_relative_max": 3.746427540015294e-16,
+          "self_particle_edges": 0,
+          "images": 151280,
+          "unique_near_edges": 32640,
+          "rc": 7.230769230769231,
+          "kc": 6.097697610385555,
+          "shell": 46,
+          "full_rank_near_edges": 31991,
+          "projection_active": false,
+          "physical_k0_preserved_before_projection": true,
+          "zero_mode_before": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "zero_mode_after": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mesh_self_terms_cancel": "full W_ii appears in both degree and convolution and cancels",
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307
+        },
+        "table_setup_s": 0.11361050000414252,
+        "operator_dense_validation_s": 1.0112335830926895,
+        "structural_checks_passed": true
+      },
+      "rank_validation": {
+        "state": "production_1_B_visited",
+        "dt": 0.005,
+        "ranks": {
+          "A": {
+            "r_d": 5,
+            "r_n": 14
+          },
+          "B": {
+            "r_d": 5,
+            "r_n": 14
+          }
+        },
+        "threshold": 2e-08,
+        "all_probes_passed": true,
+        "max_relative_action_error": 3.236694819805614e-12,
+        "negative_ritz_count": 0,
+        "stochastic_path_checks": {
+          "B_finite_vs_dense_relative": 1.055470782021498e-12,
+          "A_finite_vs_ideal_split_relative": 8.34689206469772e-14,
+          "A_damp_rank_used": 5,
+          "A_noise_rank_used": 14,
+          "B_damp_rank_used": 5,
+          "B_noise_rank_used": 14,
+          "negative_ritz_count": 0,
+          "clipped_negative_count": 0,
+          "A_COM_error": 4.755851266270183e-15,
+          "B_COM_error": 3.969338444759164e-15
+        },
+        "splitting": [],
+        "q_sha256": "dd8a1dd362d219d621eb9554cbbee8d7a88b578c8bcf9dca1b487e3893005fd1",
+        "p_sha256": "e0096328b7f1f8555c68047f933ec1e0e5d193102ec58d66286ff428151404b3",
+        "noise_source": "saved production components with other components independently generated",
+        "supplied_noise_components": [
+          "z"
+        ],
+        "supplied_noise_sha256": {
+          "z": "15f4bfc26f1378b7153055ad83c3ef0e6e016d605358c167c31e719ea493e446"
+        },
+        "z_sha256": "d2ea3f48b88e9c61340a38f4e46d6d6d91bee638156bae0f0f54361bac7df384",
+        "eta_forward_sha256": "5963de6acd5513fa385e7238995dd02389bec91673d1e1cceb90111741d1338e",
+        "eta_reverse_sha256": "fd93d6645266bd45fd54a5c189094359a478e56f0327fc698130fdcf084969ce",
+        "actual_A_middle_sha256": "348cc2886f9deaba01fcd38e3c969dd2500a7036056c8402e0d1d59083e0b27a",
+        "elapsed_s": 12.865263540996239,
+        "interpretation": "Krylov-vs-discrete-graph, ideal splitting-vs-full OU, and spatial-vs-physical errors are separate; no full Gibbs or equal-dynamics claim"
+      }
+    },
+    {
+      "run": "production_2_A",
+      "spatial": {
+        "params": {
+          "xi": 0.65,
+          "sR": 4.7,
+          "sF": 4.7,
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "L": 6.98864371789039
+        },
+        "q_sha256": "2f21a3e25919ff03401081762d20dec270d211170ee481ec702c90174ec05a85",
+        "relative_spectral_error": 3.255212393394712e-10,
+        "reference_tail_relative": 5.6679342939082394e-11,
+        "conservative_relative_error_bound": 3.8220058230021644e-10,
+        "strict_budget_met": true,
+        "exploratory_budget_met": true,
+        "reference": {
+          "N": 256,
+          "L": 6.98864371789039,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "R_max": 45.0,
+          "q_sha256": "2f21a3e25919ff03401081762d20dec270d211170ee481ec702c90174ec05a85",
+          "matrix_sha256": "5596b57ae6089eb1d484f27f74072593f9dfffcc27c2d8ace7c3ca4516a44178",
+          "norm2": 11.955228469359051,
+          "reference": "unsplit full periodic direct lattice sum; no Ewald/mesh",
+          "excludes_self_particle_edges": true,
+          "total_images": 36499222,
+          "convergence": [
+            {
+              "R": 33.75,
+              "images": 15399895,
+              "difference_to_final_relative": 1.1898794330380908e-09,
+              "certified_tail_absolute": 1.1521355693651122e-06,
+              "certified_tail_relative": 9.63708533314948e-08
+            },
+            {
+              "R": 40.5,
+              "images": 26610670,
+              "difference_to_final_relative": 1.1996565627470387e-11,
+              "certified_tail_absolute": 1.3425356536527527e-08,
+              "certified_tail_relative": 1.1229694665339418e-09
+            },
+            {
+              "R": 45.0,
+              "images": 36499222,
+              "difference_to_final_relative": 0.0,
+              "certified_tail_absolute": 6.776144943298828e-10,
+              "certified_tail_relative": 5.6679342939082394e-11
+            }
+          ],
+          "certified_tail_relative": 5.6679342939082394e-11,
+          "wall_s": 4.7375626671127975
+        },
+        "diagnostics": {
+          "relative_symmetry": 9.169279687327039e-18,
+          "COM_null_relative": 9.863438632287772e-15,
+          "min_eigenvalue": -1.6127736532270792e-16,
+          "long_min_eigenvalue": -3.553179335963883e-15,
+          "largest_eigenvalue": 11.95522846680724,
+          "FFT_action_relative_max": 5.643093204529143e-16,
+          "full_near_long_relative_max": 3.617798258999283e-16,
+          "self_particle_edges": 0,
+          "images": 151366,
+          "unique_near_edges": 32640,
+          "rc": 7.230769230769231,
+          "kc": 6.097697610385555,
+          "shell": 46,
+          "full_rank_near_edges": 31958,
+          "projection_active": false,
+          "physical_k0_preserved_before_projection": true,
+          "zero_mode_before": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "zero_mode_after": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mesh_self_terms_cancel": "full W_ii appears in both degree and convolution and cancels",
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307
+        },
+        "table_setup_s": 0.11278583400417119,
+        "operator_dense_validation_s": 1.1758821669500321,
+        "structural_checks_passed": true
+      },
+      "rank_validation": {
+        "state": "production_2_A_visited",
+        "dt": 0.005,
+        "ranks": {
+          "A": {
+            "r_d": 5,
+            "r_n": 14
+          },
+          "B": {
+            "r_d": 5,
+            "r_n": 14
+          }
+        },
+        "threshold": 2e-08,
+        "all_probes_passed": true,
+        "max_relative_action_error": 2.618248705314011e-12,
+        "negative_ritz_count": 0,
+        "stochastic_path_checks": {
+          "B_finite_vs_dense_relative": 7.839551444855297e-13,
+          "A_finite_vs_ideal_split_relative": 1.161121618152142e-13,
+          "A_damp_rank_used": 5,
+          "A_noise_rank_used": 14,
+          "B_damp_rank_used": 5,
+          "B_noise_rank_used": 14,
+          "negative_ritz_count": 0,
+          "clipped_negative_count": 0,
+          "A_COM_error": 3.5605384226165826e-15,
+          "B_COM_error": 6.002026909034048e-15
+        },
+        "splitting": [],
+        "q_sha256": "2f21a3e25919ff03401081762d20dec270d211170ee481ec702c90174ec05a85",
+        "p_sha256": "81551c7cf410de4acdd7172e5f062b2c685a5c7547ce02500ff6076c2f2602a7",
+        "noise_source": "saved production components with other components independently generated",
+        "supplied_noise_components": [
+          "ef",
+          "er",
+          "z"
+        ],
+        "supplied_noise_sha256": {
+          "z": "295e13355a31874d59e061f1b364b32787f12430128bd9561cea7bf37bde22d1",
+          "ef": "2f7f3fce5c726ba2822b26a2ad3ed846a70d8184479cb061e5612e0d2c6f3dc3",
+          "er": "404503edad4ad8da741d84f23a182c235b5c4706d1da78e32009e1a05d371d8b"
+        },
+        "z_sha256": "00218f5f296d8e60104c58c5b864e8d23798af7661c887a822eedd2743ff414b",
+        "eta_forward_sha256": "2f7f3fce5c726ba2822b26a2ad3ed846a70d8184479cb061e5612e0d2c6f3dc3",
+        "eta_reverse_sha256": "404503edad4ad8da741d84f23a182c235b5c4706d1da78e32009e1a05d371d8b",
+        "actual_A_middle_sha256": "e055266e23db0cc954810f54922419f39e04cb0fb29a1bd717cd10dfa6b64325",
+        "elapsed_s": 12.615392292034812,
+        "interpretation": "Krylov-vs-discrete-graph, ideal splitting-vs-full OU, and spatial-vs-physical errors are separate; no full Gibbs or equal-dynamics claim"
+      }
+    },
+    {
+      "run": "production_2_B",
+      "spatial": {
+        "params": {
+          "xi": 0.65,
+          "sR": 4.7,
+          "sF": 4.7,
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "L": 6.98864371789039
+        },
+        "q_sha256": "752ef79baf6aef341c12136b583031793d05f1307377395de61a3239ae096007",
+        "relative_spectral_error": 3.2693719684868583e-10,
+        "reference_tail_relative": 5.6600366929564365e-11,
+        "conservative_relative_error_bound": 3.835375637999586e-10,
+        "strict_budget_met": true,
+        "exploratory_budget_met": true,
+        "reference": {
+          "N": 256,
+          "L": 6.98864371789039,
+          "kappa": 0.7,
+          "c": 1.6148096467001307,
+          "R_max": 45.0,
+          "q_sha256": "752ef79baf6aef341c12136b583031793d05f1307377395de61a3239ae096007",
+          "matrix_sha256": "477b011c2e787446e30f464d8d54fbb72654ce98fafcdb02f685605bbce0ca19",
+          "norm2": 11.971909920180055,
+          "reference": "unsplit full periodic direct lattice sum; no Ewald/mesh",
+          "excludes_self_particle_edges": true,
+          "total_images": 36498270,
+          "convergence": [
+            {
+              "R": 33.75,
+              "images": 15399774,
+              "difference_to_final_relative": 1.18838892365458e-09,
+              "certified_tail_absolute": 1.1521355693651122e-06,
+              "certified_tail_relative": 9.623657186252737e-08
+            },
+            {
+              "R": 40.5,
+              "images": 26610978,
+              "difference_to_final_relative": 1.1986547409691808e-11,
+              "certified_tail_absolute": 1.3425356536527527e-08,
+              "certified_tail_relative": 1.121404740433063e-09
+            },
+            {
+              "R": 45.0,
+              "images": 36498270,
+              "difference_to_final_relative": 0.0,
+              "certified_tail_absolute": 6.776144943298828e-10,
+              "certified_tail_relative": 5.6600366929564365e-11
+            }
+          ],
+          "certified_tail_relative": 5.6600366929564365e-11,
+          "wall_s": 4.957263792050071
+        },
+        "diagnostics": {
+          "relative_symmetry": 9.137347635050015e-18,
+          "COM_null_relative": 9.766122009902675e-15,
+          "min_eigenvalue": -8.884745638756323e-15,
+          "long_min_eigenvalue": -4.277695385349628e-18,
+          "largest_eigenvalue": 11.971909917687483,
+          "FFT_action_relative_max": 5.153043277466138e-16,
+          "full_near_long_relative_max": 3.415485423366718e-16,
+          "self_particle_edges": 0,
+          "images": 151293,
+          "unique_near_edges": 32640,
+          "rc": 7.230769230769231,
+          "kc": 6.097697610385555,
+          "shell": 46,
+          "full_rank_near_edges": 31993,
+          "projection_active": false,
+          "physical_k0_preserved_before_projection": true,
+          "zero_mode_before": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "zero_mode_after": [
+            7.7498590564194325,
+            7.7498590564194325,
+            7.7498590564194325,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mesh_self_terms_cancel": "full W_ii appears in both degree and convolution and cancels",
+          "M": 40,
+          "p": 10,
+          "kappa": 0.7,
+          "c": 1.6148096467001307
+        },
+        "table_setup_s": 0.11303908296395093,
+        "operator_dense_validation_s": 1.0027278749039397,
+        "structural_checks_passed": true
+      },
+      "rank_validation": {
+        "state": "production_2_B_visited",
+        "dt": 0.005,
+        "ranks": {
+          "A": {
+            "r_d": 5,
+            "r_n": 14
+          },
+          "B": {
+            "r_d": 5,
+            "r_n": 14
+          }
+        },
+        "threshold": 2e-08,
+        "all_probes_passed": true,
+        "max_relative_action_error": 3.1256574769449617e-12,
+        "negative_ritz_count": 0,
+        "stochastic_path_checks": {
+          "B_finite_vs_dense_relative": 8.969199567170797e-13,
+          "A_finite_vs_ideal_split_relative": 5.729016637850792e-14,
+          "A_damp_rank_used": 5,
+          "A_noise_rank_used": 14,
+          "B_damp_rank_used": 5,
+          "B_noise_rank_used": 14,
+          "negative_ritz_count": 0,
+          "clipped_negative_count": 0,
+          "A_COM_error": 7.437044205522137e-15,
+          "B_COM_error": 3.609932461376776e-15
+        },
+        "splitting": [],
+        "q_sha256": "752ef79baf6aef341c12136b583031793d05f1307377395de61a3239ae096007",
+        "p_sha256": "f7089d70a923cf4ff463d60cc02e330f9d9b7e5f6806c78bd7da8fa4933fae50",
+        "noise_source": "saved production components with other components independently generated",
+        "supplied_noise_components": [
+          "z"
+        ],
+        "supplied_noise_sha256": {
+          "z": "9482971eae67e940fd040a0d123f2a3ebb2ecc9cc5167813dbe8841ff187f335"
+        },
+        "z_sha256": "efd33cfa4d9cb36627238116ae77352e356457fdbf78d2355943bb5ff2ef18b1",
+        "eta_forward_sha256": "5963de6acd5513fa385e7238995dd02389bec91673d1e1cceb90111741d1338e",
+        "eta_reverse_sha256": "fd93d6645266bd45fd54a5c189094359a478e56f0327fc698130fdcf084969ce",
+        "actual_A_middle_sha256": "ac4278a825015c843d806f6d2d434a2d96506daedac32d16b16ed4ba7b7fd27d",
+        "elapsed_s": 12.713383416994475,
+        "interpretation": "Krylov-vs-discrete-graph, ideal splitting-vs-full OU, and spatial-vs-physical errors are separate; no full Gibbs or equal-dynamics claim"
+      }
+    }
+  ]
+}
