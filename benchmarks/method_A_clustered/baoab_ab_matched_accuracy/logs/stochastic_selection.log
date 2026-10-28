@@ -1,0 +1,249 @@
+rank initial_0 B k 1 damping 3 max 1.148523053970031e-07 budget 1e-09
+rank initial_0 B k 1 damping 5 max 4.0451040813049197e-13 budget 1e-09
+rank initial_0 B k 1 noise 3 max 0.0006691608808812185 budget 1e-09
+rank initial_0 B k 1 noise 5 max 1.1157076442205608e-05 budget 1e-09
+rank initial_0 B k 1 noise 8 max 6.79518895910601e-08 budget 1e-09
+rank initial_0 B k 1 noise 12 max 7.258052516078418e-11 budget 1e-09
+rank initial_0 A k 1 damping 3 max 1.113046141547582e-08 budget 2e-08
+rank initial_0 A k 1 noise 3 max 0.00019220883037451066 budget 2e-08
+rank initial_0 A k 1 noise 5 max 1.304666052527737e-06 budget 2e-08
+rank initial_0 A k 1 noise 8 max 2.187860454551131e-09 budget 2e-08
+rank initial_0 A k 2 damping 3 max 1.3859593685905867e-09 budget 5e-10
+rank initial_0 A k 2 damping 5 max 1.4399835128483485e-13 budget 5e-10
+rank initial_0 A k 2 noise 3 max 0.00018892841375413072 budget 5e-10
+rank initial_0 A k 2 noise 5 max 1.2886971514877965e-06 budget 5e-10
+rank initial_0 A k 2 noise 8 max 2.201400753164819e-09 budget 5e-10
+rank initial_0 A k 2 noise 12 max 6.312483270896268e-13 budget 5e-10
+rank initial_0 A k 4 damping 3 max 1.725373557032574e-10 budget 4.438711847570237e-09
+rank initial_0 A k 4 noise 3 max 0.0001868719250507092 budget 4.438711847570237e-09
+rank initial_0 A k 4 noise 5 max 1.2848760542000566e-06 budget 4.438711847570237e-09
+rank initial_0 A k 4 noise 8 max 2.1983827988903013e-09 budget 4.438711847570237e-09
+rank initial_0 A k 8 damping 3 max 2.1604609291299514e-11 budget 1.25e-10
+rank initial_0 A k 8 noise 3 max 0.0001862382841720667 budget 1.25e-10
+rank initial_0 A k 8 noise 5 max 1.2865524824582113e-06 budget 1.25e-10
+rank initial_0 A k 8 noise 8 max 2.190444157645734e-09 budget 1.25e-10
+rank initial_0 A k 8 noise 12 max 6.382794277583266e-13 budget 1.25e-10
+rank initial_0 A k 16 damping 3 max 2.706382850737898e-12 budget 2.9528449721502168e-12
+rank initial_0 A k 16 noise 3 max 0.00018615006593907286 budget 2.9528449721502168e-12
+rank initial_0 A k 16 noise 5 max 1.2813240588404254e-06 budget 2.9528449721502168e-12
+rank initial_0 A k 16 noise 8 max 2.199316168753068e-09 budget 2.9528449721502168e-12
+rank initial_0 A k 16 noise 12 max 6.362347336034256e-13 budget 2.9528449721502168e-12
+rank initial_0 A k 32 damping 3 max 3.5791294568976456e-13 budget 3.125e-11
+rank initial_0 A k 32 noise 3 max 0.00018531194046051251 budget 3.125e-11
+rank initial_0 A k 32 noise 5 max 1.2793180166880788e-06 budget 3.125e-11
+rank initial_0 A k 32 noise 8 max 2.1766175516000005e-09 budget 3.125e-11
+rank initial_0 A k 32 noise 12 max 6.315987863730039e-13 budget 3.125e-11
+rank initial_1 B k 1 damping 3 max 1.17795157194144e-07 budget 1e-09
+rank initial_1 B k 1 damping 5 max 4.735552463079505e-13 budget 1e-09
+rank initial_1 B k 1 noise 3 max 0.0006172088830094082 budget 1e-09
+rank initial_1 B k 1 noise 5 max 1.2295524315004646e-05 budget 1e-09
+rank initial_1 B k 1 noise 8 max 7.21512997531773e-08 budget 1e-09
+rank initial_1 B k 1 noise 12 max 6.662382200437491e-11 budget 1e-09
+rank initial_1 A k 1 damping 3 max 1.0897189248077255e-08 budget 2e-08
+rank initial_1 A k 1 noise 3 max 0.0001790009935838699 budget 2e-08
+rank initial_1 A k 1 noise 5 max 1.3619133381708376e-06 budget 2e-08
+rank initial_1 A k 1 noise 8 max 3.007959657865616e-09 budget 2e-08
+rank initial_1 A k 4 damping 3 max 1.740062671827283e-10 budget 4.438711847570237e-09
+rank initial_1 A k 4 noise 3 max 0.00018357185396915857 budget 4.438711847570237e-09
+rank initial_1 A k 4 noise 5 max 1.429158099413951e-06 budget 4.438711847570237e-09
+rank initial_1 A k 4 noise 8 max 2.9677342719645116e-09 budget 4.438711847570237e-09
+rank initial_1 A k 16 damping 3 max 2.7623962225769265e-12 budget 2.9528449721502168e-12
+rank initial_1 A k 16 noise 3 max 0.00018379449195171042 budget 2.9528449721502168e-12
+rank initial_1 A k 16 noise 5 max 1.4448610404272687e-06 budget 2.9528449721502168e-12
+rank initial_1 A k 16 noise 8 max 3.1267250822089077e-09 budget 2.9528449721502168e-12
+rank initial_1 A k 16 noise 12 max 8.15193128605364e-13 budget 2.9528449721502168e-12
+rank initial_2 B k 1 damping 3 max 1.2079919445010585e-07 budget 1e-09
+rank initial_2 B k 1 damping 5 max 4.4476950098517604e-13 budget 1e-09
+rank initial_2 B k 1 noise 3 max 0.0006623271599459043 budget 1e-09
+rank initial_2 B k 1 noise 5 max 1.1527873882359615e-05 budget 1e-09
+rank initial_2 B k 1 noise 8 max 7.180347301668282e-08 budget 1e-09
+rank initial_2 B k 1 noise 12 max 6.952103396655127e-11 budget 1e-09
+rank initial_2 A k 1 damping 3 max 9.905661314251757e-09 budget 2e-08
+rank initial_2 A k 1 noise 3 max 0.000165513410099313 budget 2e-08
+rank initial_2 A k 1 noise 5 max 1.2064554571665016e-06 budget 2e-08
+rank initial_2 A k 1 noise 8 max 2.2209842346450393e-09 budget 2e-08
+rank initial_2 A k 4 damping 3 max 1.5125748037746053e-10 budget 4.438711847570237e-09
+rank initial_2 A k 4 noise 3 max 0.00015862408859667647 budget 4.438711847570237e-09
+rank initial_2 A k 4 noise 5 max 1.1485583068759776e-06 budget 4.438711847570237e-09
+rank initial_2 A k 4 noise 8 max 2.1915946727943565e-09 budget 4.438711847570237e-09
+rank initial_2 A k 16 damping 3 max 2.3950133509266376e-12 budget 2.9528449721502168e-12
+rank initial_2 A k 16 noise 3 max 0.00016002341058372804 budget 2.9528449721502168e-12
+rank initial_2 A k 16 noise 5 max 1.1648006874624176e-06 budget 2.9528449721502168e-12
+rank initial_2 A k 16 noise 8 max 2.18428528449942e-09 budget 2.9528449721502168e-12
+rank initial_2 A k 16 noise 12 max 6.28247265746895e-13 budget 2.9528449721502168e-12
+rank visited_0_A_200 B k 1 damping 3 max 1.1810782407968382e-07 budget 1e-09
+rank visited_0_A_200 B k 1 damping 5 max 4.539275118978958e-13 budget 1e-09
+rank visited_0_A_200 B k 1 noise 3 max 0.0006527347693827672 budget 1e-09
+rank visited_0_A_200 B k 1 noise 5 max 1.2317076193214238e-05 budget 1e-09
+rank visited_0_A_200 B k 1 noise 8 max 7.876696829351298e-08 budget 1e-09
+rank visited_0_A_200 B k 1 noise 12 max 1.0918251600920927e-10 budget 1e-09
+rank visited_0_A_200 A k 1 damping 3 max 1.0602511204634624e-08 budget 2e-08
+rank visited_0_A_200 A k 1 noise 3 max 0.0001792365149334273 budget 2e-08
+rank visited_0_A_200 A k 1 noise 5 max 1.2662936511759783e-06 budget 2e-08
+rank visited_0_A_200 A k 1 noise 8 max 2.5175233063479094e-09 budget 2e-08
+rank visited_0_A_200 A k 4 damping 3 max 1.6513396063745923e-10 budget 4.438711847570237e-09
+rank visited_0_A_200 A k 4 noise 3 max 0.0001751482746193307 budget 4.438711847570237e-09
+rank visited_0_A_200 A k 4 noise 5 max 1.2901329624681908e-06 budget 4.438711847570237e-09
+rank visited_0_A_200 A k 4 noise 8 max 2.5251340548580073e-09 budget 4.438711847570237e-09
+rank visited_0_A_200 A k 16 damping 3 max 2.6728692867051845e-12 budget 2.9528449721502168e-12
+rank visited_0_A_200 A k 16 noise 3 max 0.0001788183869657362 budget 2.9528449721502168e-12
+rank visited_0_A_200 A k 16 noise 5 max 1.3114472435873619e-06 budget 2.9528449721502168e-12
+rank visited_0_A_200 A k 16 noise 8 max 2.6473357433093955e-09 budget 2.9528449721502168e-12
+rank visited_0_A_200 A k 16 noise 12 max 7.668292603023794e-13 budget 2.9528449721502168e-12
+rank visited_0_B_200 B k 1 damping 3 max 1.1521650840892052e-07 budget 1e-09
+rank visited_0_B_200 B k 1 damping 5 max 4.3119012812465833e-13 budget 1e-09
+rank visited_0_B_200 B k 1 noise 3 max 0.0006281899913965123 budget 1e-09
+rank visited_0_B_200 B k 1 noise 5 max 1.1299191442792215e-05 budget 1e-09
+rank visited_0_B_200 B k 1 noise 8 max 6.58542633046108e-08 budget 1e-09
+rank visited_0_B_200 B k 1 noise 12 max 7.169016531397519e-11 budget 1e-09
+rank visited_0_B_200 A k 1 damping 3 max 1.018759313131895e-08 budget 2e-08
+rank visited_0_B_200 A k 1 noise 3 max 0.0001694811769913654 budget 2e-08
+rank visited_0_B_200 A k 1 noise 5 max 1.213723815818618e-06 budget 2e-08
+rank visited_0_B_200 A k 1 noise 8 max 2.3005799347976552e-09 budget 2e-08
+rank visited_0_B_200 A k 4 damping 3 max 1.5336726694880886e-10 budget 4.438711847570237e-09
+rank visited_0_B_200 A k 4 noise 3 max 0.0001626886136817585 budget 4.438711847570237e-09
+rank visited_0_B_200 A k 4 noise 5 max 1.1949050686891119e-06 budget 4.438711847570237e-09
+rank visited_0_B_200 A k 4 noise 8 max 2.325167763099761e-09 budget 4.438711847570237e-09
+rank visited_0_B_200 A k 16 damping 3 max 2.3819578912085937e-12 budget 2.9528449721502168e-12
+rank visited_0_B_200 A k 16 noise 3 max 0.00016117743802751647 budget 2.9528449721502168e-12
+rank visited_0_B_200 A k 16 noise 5 max 1.1902425937894405e-06 budget 2.9528449721502168e-12
+rank visited_0_B_200 A k 16 noise 8 max 2.470283353997635e-09 budget 2.9528449721502168e-12
+rank visited_0_B_200 A k 16 noise 12 max 7.264129038388255e-13 budget 2.9528449721502168e-12
+rank visited_1_A_200 B k 1 damping 3 max 1.1533492508339229e-07 budget 1e-09
+rank visited_1_A_200 B k 1 damping 5 max 4.2790834964618187e-13 budget 1e-09
+rank visited_1_A_200 B k 1 noise 3 max 0.0006547538028284491 budget 1e-09
+rank visited_1_A_200 B k 1 noise 5 max 1.1649000130055307e-05 budget 1e-09
+rank visited_1_A_200 B k 1 noise 8 max 7.351314709058649e-08 budget 1e-09
+rank visited_1_A_200 B k 1 noise 12 max 5.3044893540676305e-11 budget 1e-09
+rank visited_1_A_200 A k 1 damping 3 max 1.0683585287933508e-08 budget 2e-08
+rank visited_1_A_200 A k 1 noise 3 max 0.00017495642661837952 budget 2e-08
+rank visited_1_A_200 A k 1 noise 5 max 1.2555347914742245e-06 budget 2e-08
+rank visited_1_A_200 A k 1 noise 8 max 2.376129636775182e-09 budget 2e-08
+rank visited_1_A_200 A k 4 damping 3 max 1.6690519158513324e-10 budget 4.438711847570237e-09
+rank visited_1_A_200 A k 4 noise 3 max 0.00017111147663703862 budget 4.438711847570237e-09
+rank visited_1_A_200 A k 4 noise 5 max 1.236009366646902e-06 budget 4.438711847570237e-09
+rank visited_1_A_200 A k 4 noise 8 max 2.3443335753629125e-09 budget 4.438711847570237e-09
+rank visited_1_A_200 A k 16 damping 3 max 2.6092833788749206e-12 budget 2.9528449721502168e-12
+rank visited_1_A_200 A k 16 noise 3 max 0.00017018103957108934 budget 2.9528449721502168e-12
+rank visited_1_A_200 A k 16 noise 5 max 1.235435446464749e-06 budget 2.9528449721502168e-12
+rank visited_1_A_200 A k 16 noise 8 max 2.3364257665967494e-09 budget 2.9528449721502168e-12
+rank visited_1_A_200 A k 16 noise 12 max 5.739354945762397e-13 budget 2.9528449721502168e-12
+rank visited_1_B_200 B k 1 damping 3 max 1.1659816649004859e-07 budget 1e-09
+rank visited_1_B_200 B k 1 damping 5 max 4.769956938503074e-13 budget 1e-09
+rank visited_1_B_200 B k 1 noise 3 max 0.0006476778090823741 budget 1e-09
+rank visited_1_B_200 B k 1 noise 5 max 1.229306109302224e-05 budget 1e-09
+rank visited_1_B_200 B k 1 noise 8 max 7.650819138232046e-08 budget 1e-09
+rank visited_1_B_200 B k 1 noise 12 max 8.942102824739223e-11 budget 1e-09
+rank visited_1_B_200 A k 1 damping 3 max 1.042475288528203e-08 budget 2e-08
+rank visited_1_B_200 A k 1 noise 3 max 0.00017573914800391157 budget 2e-08
+rank visited_1_B_200 A k 1 noise 5 max 1.1689040311333184e-06 budget 2e-08
+rank visited_1_B_200 A k 1 noise 8 max 2.352633165631075e-09 budget 2e-08
+rank visited_1_B_200 A k 4 damping 3 max 1.6164780328247542e-10 budget 4.438711847570237e-09
+rank visited_1_B_200 A k 4 noise 3 max 0.000170540157442489 budget 4.438711847570237e-09
+rank visited_1_B_200 A k 4 noise 5 max 1.1523592737100173e-06 budget 4.438711847570237e-09
+rank visited_1_B_200 A k 4 noise 8 max 2.321298785211326e-09 budget 4.438711847570237e-09
+rank visited_1_B_200 A k 16 damping 3 max 2.6804507638359686e-12 budget 2.9528449721502168e-12
+rank visited_1_B_200 A k 16 noise 3 max 0.0001804170203505371 budget 2.9528449721502168e-12
+rank visited_1_B_200 A k 16 noise 5 max 1.2526398812285143e-06 budget 2.9528449721502168e-12
+rank visited_1_B_200 A k 16 noise 8 max 2.3501814750792624e-09 budget 2.9528449721502168e-12
+rank visited_1_B_200 A k 16 noise 12 max 6.363008031555536e-13 budget 2.9528449721502168e-12
+rank visited_2_A_200 B k 1 damping 3 max 1.1503694914595329e-07 budget 1e-09
+rank visited_2_A_200 B k 1 damping 5 max 4.194113607396566e-13 budget 1e-09
+rank visited_2_A_200 B k 1 noise 3 max 0.0006419289076749745 budget 1e-09
+rank visited_2_A_200 B k 1 noise 5 max 1.1730028777357694e-05 budget 1e-09
+rank visited_2_A_200 B k 1 noise 8 max 7.036880626137041e-08 budget 1e-09
+rank visited_2_A_200 B k 1 noise 12 max 8.514149741123667e-11 budget 1e-09
+rank visited_2_A_200 A k 1 damping 3 max 1.0425891052389995e-08 budget 2e-08
+rank visited_2_A_200 A k 1 noise 3 max 0.0001751448296231622 budget 2e-08
+rank visited_2_A_200 A k 1 noise 5 max 1.3949252099393338e-06 budget 2e-08
+rank visited_2_A_200 A k 1 noise 8 max 2.212627283729336e-09 budget 2e-08
+rank visited_2_A_200 A k 4 damping 3 max 1.631367706651495e-10 budget 4.438711847570237e-09
+rank visited_2_A_200 A k 4 noise 3 max 0.00017115756264465468 budget 4.438711847570237e-09
+rank visited_2_A_200 A k 4 noise 5 max 1.3849729736335988e-06 budget 4.438711847570237e-09
+rank visited_2_A_200 A k 4 noise 8 max 2.40032886335787e-09 budget 4.438711847570237e-09
+rank visited_2_A_200 A k 16 damping 3 max 2.5417040888060397e-12 budget 2.9528449721502168e-12
+rank visited_2_A_200 A k 16 noise 3 max 0.00016950297194874315 budget 2.9528449721502168e-12
+rank visited_2_A_200 A k 16 noise 5 max 1.3796253622154655e-06 budget 2.9528449721502168e-12
+rank visited_2_A_200 A k 16 noise 8 max 2.1759968839664387e-09 budget 2.9528449721502168e-12
+rank visited_2_A_200 A k 16 noise 12 max 5.74232760334145e-13 budget 2.9528449721502168e-12
+rank visited_2_B_200 B k 1 damping 3 max 1.1296179992650289e-07 budget 1e-09
+rank visited_2_B_200 B k 1 damping 5 max 4.288706058964854e-13 budget 1e-09
+rank visited_2_B_200 B k 1 noise 3 max 0.0006265855631427662 budget 1e-09
+rank visited_2_B_200 B k 1 noise 5 max 1.1454328148322486e-05 budget 1e-09
+rank visited_2_B_200 B k 1 noise 8 max 7.239995588893745e-08 budget 1e-09
+rank visited_2_B_200 B k 1 noise 12 max 8.433086079299807e-11 budget 1e-09
+rank visited_2_B_200 A k 1 damping 3 max 1.0682110110807748e-08 budget 2e-08
+rank visited_2_B_200 A k 1 noise 3 max 0.00017730890375132694 budget 2e-08
+rank visited_2_B_200 A k 1 noise 5 max 1.3471406692884997e-06 budget 2e-08
+rank visited_2_B_200 A k 1 noise 8 max 2.5249198712437716e-09 budget 2e-08
+rank visited_2_B_200 A k 4 damping 3 max 1.680971570387368e-10 budget 4.438711847570237e-09
+rank visited_2_B_200 A k 4 noise 3 max 0.0001747563791277012 budget 4.438711847570237e-09
+rank visited_2_B_200 A k 4 noise 5 max 1.3154109944221822e-06 budget 4.438711847570237e-09
+rank visited_2_B_200 A k 4 noise 8 max 2.4797278944946165e-09 budget 4.438711847570237e-09
+rank visited_2_B_200 A k 16 damping 3 max 2.600847717553926e-12 budget 2.9528449721502168e-12
+rank visited_2_B_200 A k 16 noise 3 max 0.00017215341620674241 budget 2.9528449721502168e-12
+rank visited_2_B_200 A k 16 noise 5 max 1.295173927378764e-06 budget 2.9528449721502168e-12
+rank visited_2_B_200 A k 16 noise 8 max 2.4635291631255256e-09 budget 2.9528449721502168e-12
+rank visited_2_B_200 A k 16 noise 12 max 6.98306222875976e-13 budget 2.9528449721502168e-12
+rank visited_global_min_distance B k 1 damping 3 max 1.1593970646276338e-07 budget 1e-09
+rank visited_global_min_distance B k 1 damping 5 max 4.0773267328922323e-13 budget 1e-09
+rank visited_global_min_distance B k 1 noise 3 max 0.0006380275607262049 budget 1e-09
+rank visited_global_min_distance B k 1 noise 5 max 1.0874142859771543e-05 budget 1e-09
+rank visited_global_min_distance B k 1 noise 8 max 6.718665349121173e-08 budget 1e-09
+rank visited_global_min_distance B k 1 noise 12 max 6.473077721008769e-11 budget 1e-09
+rank visited_global_min_distance A k 1 damping 3 max 1.0042897148391942e-08 budget 2e-08
+rank visited_global_min_distance A k 1 noise 3 max 0.0001658123682378583 budget 2e-08
+rank visited_global_min_distance A k 1 noise 5 max 1.1509152908637424e-06 budget 2e-08
+rank visited_global_min_distance A k 1 noise 8 max 2.428810242098293e-09 budget 2e-08
+rank visited_global_min_distance A k 4 damping 3 max 1.5718100379873954e-10 budget 4.438711847570237e-09
+rank visited_global_min_distance A k 4 noise 3 max 0.0001630642432018227 budget 4.438711847570237e-09
+rank visited_global_min_distance A k 4 noise 5 max 1.132486965748081e-06 budget 4.438711847570237e-09
+rank visited_global_min_distance A k 4 noise 8 max 2.357961681460788e-09 budget 4.438711847570237e-09
+rank visited_global_min_distance A k 16 damping 3 max 2.443905917896407e-12 budget 2.9528449721502168e-12
+rank visited_global_min_distance A k 16 noise 3 max 0.0001611686242459492 budget 2.9528449721502168e-12
+rank visited_global_min_distance A k 16 noise 5 max 1.133058258256778e-06 budget 2.9528449721502168e-12
+rank visited_global_min_distance A k 16 noise 8 max 2.3581358490579784e-09 budget 2.9528449721502168e-12
+rank visited_global_min_distance A k 16 noise 12 max 5.916109248994723e-13 budget 2.9528449721502168e-12
+path initial_0 B 1 2.187534966962384e-11 passed True
+path initial_0 A 1 1.0582572214313602e-08 passed True
+path initial_0 A 2 2.864233034527181e-13 passed True
+path initial_0 A 4 7.785034207559765e-10 passed True
+path initial_0 A 8 1.6920744006790814e-10 passed True
+path initial_0 A 16 4.229671748901566e-11 passed True
+path initial_0 A 32 1.1045356204406074e-11 passed True
+path initial_1 B 1 1.8697883719972037e-11 passed True
+path initial_1 A 1 9.194039768707875e-09 passed True
+path initial_1 A 4 8.646903116742499e-10 passed True
+path initial_1 A 16 3.765078120307753e-11 passed True
+path initial_2 B 1 1.8606461386871885e-11 passed True
+path initial_2 A 1 9.438246878524463e-09 passed True
+path initial_2 A 4 7.369346218561862e-10 passed True
+path initial_2 A 16 3.7402225400916006e-11 passed True
+path visited_0_A_200 B 1 1.9589130350614812e-11 passed True
+path visited_0_A_200 A 1 1.0439865887503025e-08 passed True
+path visited_0_A_200 A 4 8.572901983847252e-10 passed True
+path visited_0_A_200 A 16 3.9861057392461646e-11 passed True
+path visited_0_B_200 B 1 1.850075754700156e-11 passed True
+path visited_0_B_200 A 1 9.373116555683812e-09 passed True
+path visited_0_B_200 A 4 7.735236782572432e-10 passed True
+path visited_0_B_200 A 16 3.7677694318683525e-11 passed True
+path visited_1_A_200 B 1 1.4037251202774489e-11 passed True
+path visited_1_A_200 A 1 9.25295642617269e-09 passed True
+path visited_1_A_200 A 4 8.137388216788907e-10 passed True
+path visited_1_A_200 A 16 3.67223808901799e-11 passed True
+path visited_1_B_200 B 1 1.6880382818549647e-11 passed True
+path visited_1_B_200 A 1 9.968842266668692e-09 passed True
+path visited_1_B_200 A 4 8.49206609239863e-10 passed True
+path visited_1_B_200 A 16 3.9112314918064316e-11 passed True
+path visited_2_A_200 B 1 1.2524611263604202e-11 passed True
+path visited_2_A_200 A 1 1.0017888176552895e-08 passed True
+path visited_2_A_200 A 4 7.604640366632673e-10 passed True
+path visited_2_A_200 A 16 3.9043665895387526e-11 passed True
+path visited_2_B_200 B 1 2.762173198861748e-11 passed True
+path visited_2_B_200 A 1 1.0507915955496135e-08 passed True
+path visited_2_B_200 A 4 8.201223248045122e-10 passed True
+path visited_2_B_200 A 16 4.0450769865447246e-11 passed True
+path visited_global_min_distance B 1 1.9710920434381333e-11 passed True
+path visited_global_min_distance A 1 9.462134312450205e-09 passed True
+path visited_global_min_distance A 4 8.466467939430626e-10 passed True
+path visited_global_min_distance A 16 3.766840907062498e-11 passed True

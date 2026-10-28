@@ -1,0 +1,28 @@
+{
+  "label": "visited_0_A_200",
+  "N": 256,
+  "q_sha256": "750dbe0896cd43a60029312841e936800d647dd943b98b00408f13cdd1d625a7",
+  "p_sha256": "9909ca5784f36c7f0caf0a1c8033c7878d6fea6be62beb92b0d1d5286b6cb9d6",
+  "GH_sha256": "057f582f29d7c0acadddb84305995f9e0a956caf2a2fa3c77a43db21af93ba4e",
+  "GL_sha256": "2a1bebff3453cbb3bce89ce99d6d8193366cffafa074bcd54d53a7cb731c7b88",
+  "reference_file": "frozen_refs_visited_0_A_200.npz",
+  "reference_file_sha256": "7e0192b4e1ed966d0a65df3d717e6ad1b0ec768a7cb56c3e4bc048c209b59f5b",
+  "dimension_COM": 765,
+  "lambda_min": 4.656025034499868,
+  "lambda_max": 11.927888914176295,
+  "graph_build_and_reference_s": 3.0517562499735504,
+  "metadata": {
+    "label": "visited_0_A_200",
+    "file": "inputs/domain_visited_0_A_200.npz",
+    "file_sha256": "80fc3d89c4825b1d47cd7958812280ba3ec97024f5ca6bd879cc6b962c060b03",
+    "q_sha256": "750dbe0896cd43a60029312841e936800d647dd943b98b00408f13cdd1d625a7",
+    "p_sha256": "9909ca5784f36c7f0caf0a1c8033c7878d6fea6be62beb92b0d1d5286b6cb9d6",
+    "kind": "visited_midpoint",
+    "initial_index": 0,
+    "method": "A",
+    "step": 200,
+    "source": "benchmarks/method_A_clustered/baoab_ab_pilot/inputs/production_0_A.npz",
+    "source_sha256": "ade1da0046d8fa6fc909ac83e299abf99b9f2b9acd2162f6b515ac3bb4bdcfa4",
+    "min_pair_distance": 0.930491961974547
+  }
+}

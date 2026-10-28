@@ -1,0 +1,40 @@
+{
+  "verdicts": [
+    {
+      "epsilon_frozen": 0.0001,
+      "k": 1,
+      "A_mean_ms": 347.254376061998,
+      "B_mean_ms": 490.86860839064076,
+      "ratio": 0.7075004282055699,
+      "ratio_ci_low": 0.6898625332881175,
+      "ratio_ci_high": 0.7220012928539898,
+      "verdict": "A_faster"
+    },
+    {
+      "epsilon_frozen": 1e-06,
+      "k": 4,
+      "A_mean_ms": 618.6801780985359,
+      "B_mean_ms": 473.43404515607597,
+      "ratio": 1.306249422903028,
+      "ratio_ci_low": 1.2549500288001485,
+      "ratio_ci_high": 1.3571573918137758,
+      "verdict": "B_faster"
+    },
+    {
+      "epsilon_frozen": 2e-08,
+      "k": 16,
+      "A_mean_ms": 3229.590275683828,
+      "B_mean_ms": 619.0219562723844,
+      "ratio": 5.233009765381291,
+      "ratio_ci_low": 4.853148351293782,
+      "ratio_ci_high": 5.660267823438005,
+      "verdict": "B_faster"
+    }
+  ],
+  "regression_tests": 81,
+  "new_tests": 25,
+  "actual_matched_steps": 720,
+  "actual_extra_curve_steps": 54,
+  "new_endpoint_samples": 18,
+  "scope": "frozen-transition-accuracy-matched dynamic cost over finite registered/sampledstates; completeBAOABequalphysicalobservableaccuracyunfinished"
+}

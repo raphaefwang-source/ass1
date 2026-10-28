@@ -1,0 +1,29 @@
+{
+  "label": "visited_global_min_distance",
+  "N": 256,
+  "q_sha256": "bc7cc8a1a04593b3ee4d73e0d7e94e2990aab7a412f8f288f133a51224d71cb1",
+  "p_sha256": "c46cd2793e9c56dcdfe5764868b135395e8ae7c3ea4c3a65b6ae565f2d0cfdd8",
+  "GH_sha256": "5f47c98d2cbefc18ca3579e988b772c8c7dcf1ca1ecf68675b3bd07fe66f4637",
+  "GL_sha256": "bc05ed3a0b64abf01736bdc35b8b6da6f1dedb88ce81c1861145848afe95d816",
+  "reference_file": "frozen_refs_visited_global_min_distance.npz",
+  "reference_file_sha256": "92cd4c57e311d48835609e9ed00206d573061796997c3acb44a44f48483a5424",
+  "dimension_COM": 765,
+  "lambda_min": 4.709799276817382,
+  "lambda_max": 11.973268815879639,
+  "graph_build_and_reference_s": 3.4369539170293137,
+  "metadata": {
+    "label": "visited_global_min_distance",
+    "file": "inputs/domain_visited_global_min_distance.npz",
+    "file_sha256": "7c1605a8370ab0db2b90aa1a8084bad7f0c81e83249b071a70e5aa5ac2439264",
+    "q_sha256": "bc7cc8a1a04593b3ee4d73e0d7e94e2990aab7a412f8f288f133a51224d71cb1",
+    "p_sha256": "c46cd2793e9c56dcdfe5764868b135395e8ae7c3ea4c3a65b6ae565f2d0cfdd8",
+    "run": "production_0_A",
+    "step": 70,
+    "initial_index": 0,
+    "method": "A",
+    "source": "benchmarks/method_A_clustered/baoab_ab_pilot/inputs/production_0_A.npz",
+    "source_sha256": "ade1da0046d8fa6fc909ac83e299abf99b9f2b9acd2162f6b515ac3bb4bdcfa4",
+    "kind": "visited_global_min_midpoint_distance",
+    "min_pair_distance": 0.8832078532028237
+  }
+}

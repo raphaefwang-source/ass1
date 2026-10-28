@@ -1,0 +1,10 @@
+test_B_rejects_artificial_substeps (test_stochastic_validation.StochasticTests.test_B_rejects_artificial_substeps) ... ok
+test_full_dimension_paths_match_each_own_ideal (test_stochastic_validation.StochasticTests.test_full_dimension_paths_match_each_own_ideal) ... ok
+test_mc_statistics_are_sample_based_and_paired (test_stochastic_validation.StochasticTests.test_mc_statistics_are_sample_based_and_paired) ... ok
+test_multistep_noise_order_matches_literal_pair_dense_reference (test_stochastic_validation.StochasticTests.test_multistep_noise_order_matches_literal_pair_dense_reference) ... ok
+test_substep_budgets_and_schema (test_stochastic_validation.StochasticTests.test_substep_budgets_and_schema) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.368s
+
+OK

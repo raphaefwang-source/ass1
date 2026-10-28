@@ -1,0 +1,7 @@
+k,actual_steps,full_mean_ms,full_median_ms,ranks_d,ranks_n,data_scope
+1,120,347.254376061998,331.92185452207923,3,8,matched target120Asteps
+2,9,637.1555554344214,632.0142080076039,5,12,shortcostcurve9Asteps; one-statefinitevalidation
+4,120,618.6801780985359,588.3928130497225,3,8,matched target120Asteps
+8,9,1342.5372732389305,1357.4695420684293,3,12,shortcostcurve9Asteps; one-statefinitevalidation
+16,120,3229.590275683828,3137.505979044363,3,12,matched target120Asteps
+32,9,4369.068111202472,4298.885124968365,3,12,shortcostcurve9Asteps; one-statefinitevalidation

@@ -1,0 +1,43 @@
+{
+  "run": "curve_k32_start2_B",
+  "method": "B",
+  "k": 1,
+  "ranks": {
+    "r_d": 5,
+    "r_n": 12
+  },
+  "steps": 3,
+  "dt": 0.005,
+  "epsilon_frozen": null,
+  "initial_index": 2,
+  "seed": 202610384241,
+  "round": null,
+  "order_position": null,
+  "file": "inputs/curve_k32_start2_B.npz",
+  "file_sha256": "2f17f2b2468cbc82ad8f03911ff1395bd610d35838feeb06bffc2abff54d1f4e",
+  "start_q_sha256": "35e24836747bdb5a17a9a896b5d677288c28eceb4e7276dbe62bdf24d6771aba",
+  "start_p_sha256": "cb441fcc8ddb5f8264a10b52b6d0f23763c5cf6ab5a1e32d35bfdab9c882390f",
+  "end_q_sha256": "d80d4886bf151c19ffb5afc6a3b79d10b0d1c769648942724e9b3c953511ac55",
+  "end_p_sha256": "2cf6bed566efdf8621a4938502446e545821b3570c3133a1e13cc522f8c28754",
+  "full_BAOAB_mean_s": 0.47182380536105484,
+  "full_BAOAB_median_s": 0.4453227920457721,
+  "compute_wall_s": 1.4154714160831645,
+  "loop_wall_s": 1.4164539580233395,
+  "dynamic_setup_mean_s": 0.09402756967271368,
+  "inner_calls": 3,
+  "max_COM_norm": 1.4907819126839242e-14,
+  "min_pair_distance": 0.9165726292471245,
+  "max_peak_rss_bytes": 304021504,
+  "table_sha256": "b0eeb92ce832fe581009ae58cec3a1886a90db4ffd06ef3ba17276d6c6cd2273",
+  "load_before": [
+    4.9306640625,
+    5.85791015625,
+    7.6611328125
+  ],
+  "load_after": [
+    4.93603515625,
+    5.84326171875,
+    7.6455078125
+  ],
+  "scope": "true moving-particle BAOAB; one fresh graph per outer midpoint; selected k active"
+}

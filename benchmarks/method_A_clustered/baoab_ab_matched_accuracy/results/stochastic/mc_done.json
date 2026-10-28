@@ -1,0 +1,123 @@
+{
+  "representative_state": "initial_0",
+  "samples_per_method_phase": 16,
+  "rows": 32,
+  "methods": [
+    {
+      "method": "B",
+      "k": 1,
+      "r_d": 5,
+      "r_n": 12
+    },
+    {
+      "method": "A",
+      "k": 1,
+      "r_d": 3,
+      "r_n": 8
+    },
+    {
+      "method": "A",
+      "k": 4,
+      "r_d": 3,
+      "r_n": 8
+    },
+    {
+      "method": "A",
+      "k": 16,
+      "r_d": 3,
+      "r_n": 12
+    }
+  ],
+  "manifest": [
+    {
+      "state": "initial_0",
+      "method": "B",
+      "k": 1,
+      "phase": "conditional",
+      "n_samples": 16,
+      "file": "results/stochastic/mc_samples_initial_0_B_k1_conditional.npz",
+      "actual_sha256": "c98db5f349eac69ca7bfe2132c497362de74a99c391de9eba042a88a22e413aa",
+      "ideal_sha256": "124fd0c6e5b8e0eb24c6b1945319536d1c62ae58e236fb1dba20ffca19bf37fc",
+      "max_coupled_relative": 2.6114646522914733e-11
+    },
+    {
+      "state": "initial_0",
+      "method": "B",
+      "k": 1,
+      "phase": "equilibrium",
+      "n_samples": 16,
+      "file": "results/stochastic/mc_samples_initial_0_B_k1_equilibrium.npz",
+      "actual_sha256": "c23dd8fc5636d489c3740669e1266296db911bcc2dd1ff9703efa2709c1d2fde",
+      "ideal_sha256": "d7127cadc55e1c04d4bf557061a830b6aff402642ce73de2bcabab4ef0d3985f",
+      "max_coupled_relative": 2.4916891821679372e-11
+    },
+    {
+      "state": "initial_0",
+      "method": "A",
+      "k": 1,
+      "phase": "conditional",
+      "n_samples": 16,
+      "file": "results/stochastic/mc_samples_initial_0_A_k1_conditional.npz",
+      "actual_sha256": "e741f5fac7fcf7a771514cdc18559738c195c76242aa00df62733d76d2abe64f",
+      "ideal_sha256": "b5beb56834aa7938402dca703e14a70ce128e7bbe04bc1a9a6c5c2da0d92b909",
+      "max_coupled_relative": 1.0815035104587672e-08
+    },
+    {
+      "state": "initial_0",
+      "method": "A",
+      "k": 1,
+      "phase": "equilibrium",
+      "n_samples": 16,
+      "file": "results/stochastic/mc_samples_initial_0_A_k1_equilibrium.npz",
+      "actual_sha256": "c3274c6dd9771ff26e93aa0f152474b0f588c539f2dfc2a1264ee8be33a5b636",
+      "ideal_sha256": "5c7c54a1ed6162b5f697418194b8afc63a3c37238045840f3988cd19a81e718c",
+      "max_coupled_relative": 1.0211925600386631e-08
+    },
+    {
+      "state": "initial_0",
+      "method": "A",
+      "k": 4,
+      "phase": "conditional",
+      "n_samples": 16,
+      "file": "results/stochastic/mc_samples_initial_0_A_k4_conditional.npz",
+      "actual_sha256": "0a518bdf731507461c987d2a2a021b4cdd8480ad504da85665920555fe69d2f9",
+      "ideal_sha256": "2b6e3cd3d393f034f534cae744cac29a937af4193970f5a534cf486dbe3801c2",
+      "max_coupled_relative": 9.109186463706421e-10
+    },
+    {
+      "state": "initial_0",
+      "method": "A",
+      "k": 4,
+      "phase": "equilibrium",
+      "n_samples": 16,
+      "file": "results/stochastic/mc_samples_initial_0_A_k4_equilibrium.npz",
+      "actual_sha256": "6977ee8e8435a58deafa0fe4d9ec5157cb7079c385b6950f971a5b717529b0df",
+      "ideal_sha256": "59159490b7d402f333cfb890425f501cd29109c4f06a3b31ae9416ecbbcf7678",
+      "max_coupled_relative": 8.35197439796964e-10
+    },
+    {
+      "state": "initial_0",
+      "method": "A",
+      "k": 16,
+      "phase": "conditional",
+      "n_samples": 16,
+      "file": "results/stochastic/mc_samples_initial_0_A_k16_conditional.npz",
+      "actual_sha256": "9d435f58211cf0b14b255c11eafdc24cd307af2fb5e1996828f30f0ce2b5f8d9",
+      "ideal_sha256": "c7004d9c750adc5bb67ca49f5017992bc0ce0c7f2f0bb1679bb8519fc26b906d",
+      "max_coupled_relative": 4.2593780033489224e-11
+    },
+    {
+      "state": "initial_0",
+      "method": "A",
+      "k": 16,
+      "phase": "equilibrium",
+      "n_samples": 16,
+      "file": "results/stochastic/mc_samples_initial_0_A_k16_equilibrium.npz",
+      "actual_sha256": "098ee13bd592b637cde5083f78cdbbe10e92445028fa8c2f6b5727cf23745e55",
+      "ideal_sha256": "9922900e7505f44e1ee7e52d6a74cbac61e8269760ac23a40f91233d56b46a96",
+      "max_coupled_relative": 4.142940805280441e-11
+    }
+  ],
+  "elapsed_s": 147.93386133399326,
+  "scope": "local finite directional MC with wide pointwise uncertainty; no strict covariance-operator or Gibbs proof; no raw A/B path-distance bias comparison"
+}

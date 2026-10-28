@@ -1,0 +1,15 @@
+test_B_remains_one_full_step (test_matched_dynamics.MatchedDynamicsTests.test_B_remains_one_full_step) ... ok
+test_all_registered_k_setup_once_and_coefficient_tau (test_matched_dynamics.MatchedDynamicsTests.test_all_registered_k_setup_once_and_coefficient_tau) ... ok
+test_complete_wall_and_nested_phase_accounting (test_matched_dynamics.MatchedDynamicsTests.test_complete_wall_and_nested_phase_accounting) ... ok
+test_fresh_q_graph_and_same_A_B_Gamma (test_matched_dynamics.MatchedDynamicsTests.test_fresh_q_graph_and_same_A_B_Gamma) ... ok
+test_independent_draw_indexing_replay_no_extra_scaling (test_matched_dynamics.MatchedDynamicsTests.test_independent_draw_indexing_replay_no_extra_scaling) ... ok
+test_k1_bitwise_legacy_moving_A_and_B (test_matched_dynamics.MatchedDynamicsTests.test_k1_bitwise_legacy_moving_A_and_B) ... ok
+test_k1_bitwise_reused_fixed_graph_ou (test_matched_dynamics.MatchedDynamicsTests.test_k1_bitwise_reused_fixed_graph_ou) ... ok
+test_k_greater_one_literal_dense_path (test_matched_dynamics.MatchedDynamicsTests.test_k_greater_one_literal_dense_path) ... ok
+test_outer_BAOAB_midpoint_unchanged_by_subcycling (test_matched_dynamics.MatchedDynamicsTests.test_outer_BAOAB_midpoint_unchanged_by_subcycling) ... ok
+test_reject_unregistered_k_and_mismatched_setup (test_matched_dynamics.MatchedDynamicsTests.test_reject_unregistered_k_and_mismatched_setup) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.867s
+
+OK

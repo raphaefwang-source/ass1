@@ -1,0 +1,248 @@
+{
+  "targets": [
+    {
+      "epsilon_frozen": 0.0001,
+      "k": 1,
+      "ideal_selection": {
+        "epsilon_frozen": 0.0001,
+        "k": 1,
+        "status": "ideal_operator_accuracy_met",
+        "max_e_mean": 2.8263276356566687e-07,
+        "max_e_cov": 4.63693474940808e-06,
+        "actually_tested_passing_ks": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "selection_scope": "minimum actually tested k passing both full COM operator norms on every registered geometry"
+      },
+      "A": {
+        "r_d": 3,
+        "r_n": 8
+      },
+      "B": {
+        "r_d": 5,
+        "r_n": 12
+      }
+    },
+    {
+      "epsilon_frozen": 1e-06,
+      "k": 4,
+      "ideal_selection": {
+        "epsilon_frozen": 1e-06,
+        "k": 4,
+        "status": "ideal_operator_accuracy_met",
+        "max_e_mean": 1.7664408216084272e-08,
+        "max_e_cov": 2.8980610438876195e-07,
+        "actually_tested_passing_ks": [
+          4,
+          8,
+          16,
+          32
+        ],
+        "selection_scope": "minimum actually tested k passing both full COM operator norms on every registered geometry"
+      },
+      "A": {
+        "r_d": 3,
+        "r_n": 8
+      },
+      "B": {
+        "r_d": 5,
+        "r_n": 12
+      }
+    },
+    {
+      "epsilon_frozen": 2e-08,
+      "k": 16,
+      "ideal_selection": {
+        "epsilon_frozen": 2e-08,
+        "k": 16,
+        "status": "ideal_operator_accuracy_met",
+        "max_e_mean": 1.1038670917002866e-09,
+        "max_e_cov": 1.8110179217823862e-08,
+        "actually_tested_passing_ks": [
+          16,
+          32
+        ],
+        "selection_scope": "minimum actually tested k passing both full COM operator norms on every registered geometry"
+      },
+      "A": {
+        "r_d": 3,
+        "r_n": 12
+      },
+      "B": {
+        "r_d": 5,
+        "r_n": 12
+      }
+    }
+  ],
+  "by_k": {
+    "1": {
+      "A": {
+        "r_d": 3,
+        "r_n": 8
+      },
+      "B": {
+        "r_d": 5,
+        "r_n": 12
+      },
+      "per_action_budget": 2e-08,
+      "full_path_budget": 2e-08,
+      "epsilon_frozen": 0.0001,
+      "ideal_threshold_slack": 9.536306525059192e-05,
+      "validation_domain": "all_registered_states",
+      "validation_states": [
+        "initial_0",
+        "initial_1",
+        "initial_2",
+        "visited_0_A_200",
+        "visited_0_B_200",
+        "visited_1_A_200",
+        "visited_1_B_200",
+        "visited_2_A_200",
+        "visited_2_B_200",
+        "visited_global_min_distance"
+      ],
+      "matched_accuracy_tier": true
+    },
+    "2": {
+      "A": {
+        "r_d": 5,
+        "r_n": 12
+      },
+      "B": {
+        "r_d": 5,
+        "r_n": 12
+      },
+      "per_action_budget": 5e-10,
+      "full_path_budget": 2e-09,
+      "epsilon_frozen": 2e-08,
+      "ideal_threshold_slack": null,
+      "validation_domain": "representative_state_cost_curve_only",
+      "validation_states": [
+        "initial_0"
+      ],
+      "matched_accuracy_tier": false
+    },
+    "4": {
+      "A": {
+        "r_d": 3,
+        "r_n": 8
+      },
+      "B": {
+        "r_d": 5,
+        "r_n": 12
+      },
+      "per_action_budget": 4.438711847570237e-09,
+      "full_path_budget": 2e-08,
+      "epsilon_frozen": 1e-06,
+      "ideal_threshold_slack": 7.10193895611238e-07,
+      "validation_domain": "all_registered_states",
+      "validation_states": [
+        "initial_0",
+        "initial_1",
+        "initial_2",
+        "visited_0_A_200",
+        "visited_0_B_200",
+        "visited_1_A_200",
+        "visited_1_B_200",
+        "visited_2_A_200",
+        "visited_2_B_200",
+        "visited_global_min_distance"
+      ],
+      "matched_accuracy_tier": true
+    },
+    "8": {
+      "A": {
+        "r_d": 3,
+        "r_n": 12
+      },
+      "B": {
+        "r_d": 5,
+        "r_n": 12
+      },
+      "per_action_budget": 1.25e-10,
+      "full_path_budget": 2e-09,
+      "epsilon_frozen": 2e-08,
+      "ideal_threshold_slack": null,
+      "validation_domain": "representative_state_cost_curve_only",
+      "validation_states": [
+        "initial_0"
+      ],
+      "matched_accuracy_tier": false
+    },
+    "16": {
+      "A": {
+        "r_d": 3,
+        "r_n": 12
+      },
+      "B": {
+        "r_d": 5,
+        "r_n": 12
+      },
+      "per_action_budget": 2.9528449721502168e-12,
+      "full_path_budget": 2.3622759777201733e-10,
+      "epsilon_frozen": 2e-08,
+      "ideal_threshold_slack": 1.8898207821761386e-09,
+      "validation_domain": "all_registered_states",
+      "validation_states": [
+        "initial_0",
+        "initial_1",
+        "initial_2",
+        "visited_0_A_200",
+        "visited_0_B_200",
+        "visited_1_A_200",
+        "visited_1_B_200",
+        "visited_2_A_200",
+        "visited_2_B_200",
+        "visited_global_min_distance"
+      ],
+      "matched_accuracy_tier": true
+    },
+    "32": {
+      "A": {
+        "r_d": 3,
+        "r_n": 12
+      },
+      "B": {
+        "r_d": 5,
+        "r_n": 12
+      },
+      "per_action_budget": 3.125e-11,
+      "full_path_budget": 2e-09,
+      "epsilon_frozen": 2e-08,
+      "ideal_threshold_slack": null,
+      "validation_domain": "representative_state_cost_curve_only",
+      "validation_states": [
+        "initial_0"
+      ],
+      "matched_accuracy_tier": false
+    }
+  },
+  "B": {
+    "r_d": 5,
+    "r_n": 12
+  },
+  "B_action_budget": 1e-09,
+  "states": [
+    "initial_0",
+    "initial_1",
+    "initial_2",
+    "visited_0_A_200",
+    "visited_0_B_200",
+    "visited_1_A_200",
+    "visited_1_B_200",
+    "visited_2_A_200",
+    "visited_2_B_200",
+    "visited_global_min_distance"
+  ],
+  "all_checks_passed": true,
+  "failures": [],
+  "elapsed_s": 547.0623794579878,
+  "max_coupled_path_relative_error": 1.0582572214313602e-08,
+  "max_actual_input_action_error": 1.1123985724826618e-08,
+  "interpretation": "Ideal full-operator norm certification is separate; finite-Lanczos evidence covers saved directions and actual coupled paths only"
+}
